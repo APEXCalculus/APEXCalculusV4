@@ -1,0 +1,1 @@
+This folder is for source images only. That is, images that are included in the project which were produced externally somehow. Any images derived from .mbx source are stored in output/images. Once stable, git will track images there.

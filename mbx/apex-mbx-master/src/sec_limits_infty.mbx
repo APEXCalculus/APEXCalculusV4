@@ -1,0 +1,1971 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_limits_infty">
+  <title>Limits Involving Infinity</title>
+  <introduction>
+    <p>In <xref ref="def_limit">Definition</xref> we stated that in the equation <m>\lim\limits_{x\to c}f(x) = L</m>, both <m>c</m> and <m>L</m> were numbers. In this section we relax that definition a bit by considering situations when it makes sense to let <m>c</m> and/or <m>L</m> be <q>infinity.</q></p>
+
+    <p>As a motivating example, consider <m>f(x) = 1/x^2</m>, as shown in <xref ref="fig_oneoverxsquared">Figure</xref>. Note how, as <m>x</m> approaches 0, <m>f(x)</m> grows very, very large. It seems appropriate, and descriptive, to state that<me>
+      \lim_{x\to 0} \frac1{x^2}=\infty.</me></p>
+
+    <p>Also note that as <m>x</m> gets very large, <m>f(x)</m> gets very, very small. We could represent this concept with notation such as<me>
+        \lim_{x\to \infty} \frac1{x^2}=0.</me></p>
+
+    <figure xml:id="fig_oneoverxsquared" >
+      <caption>Graphing <m>f(x) = 1/x^2</m> for values of <m>x</m> near 0.</caption>
+      <!-- START figures/fig_oneoverxsquared.tex -->
+      <image xml:id="img_oneoverxsquared" width="47%">
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+            \begin{axis}[xmin=-1.1,xmax=1.1,
+                        ymin=-.1,ymax=110,]
+                \addplot[firstcurvestyle,domain=-1:-0.1] {1/x^2};
+                \addplot[firstcurvestyle,domain=0.1:1] {1/x^2};
+            \end{axis}
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_oneoverxsquared.tex END -->
+    </figure>
+
+    <p>We explore both types of use of <m>\infty</m> in turn.</p>
+
+    <definition xml:id="def_limit_of_infinity">
+      <title>Limit of Infinity, <m>\infty</m></title>
+      <statement>
+        <p>We say <m>\lim\limits_{x\to c} f(x)=\infty</m> if for every <m>M>0</m> there exists <m>\delta>0</m> such that for all <m>x\neq c</m>, if <m>\abs{x-c}\lt \delta</m>, then <m>f(x)\geq M</m>. <index><main>limit</main><sub>of infinity</sub></index></p>
+      </statement>
+    </definition>
+
+    <p>This is just like the <m>\varepsilon</m><ndash /><m>\delta</m> definition in <xref ref="def_limit">Definition</xref> from <xref ref="sec_limit_def">Section</xref>. In that definition, given any (small) value <m>\varepsilon</m>, if we let <m>x</m> get close enough to <m>c</m> (within <m>\delta</m> units of <m>c</m>) then <m>f(x)</m> is guaranteed to be within <m>\varepsilon</m> of <m>f(c)</m>. Here, given any (large) value <m>M</m>, if we let <m>x</m> get close enough to <m>c</m> (within <m>\delta</m> units of <m>c</m>), then <m>f(x)</m> will be at least as large as <m>M</m>. In other words, if we get close enough to <m>c</m>, then we can make <m>f(x)</m> as large as we want. We can define limits equal to <m>-\infty</m> in a similar way.</p>
+
+    <p>It is important to note that by saying <m>\lim\limits_{x\to c}f(x) = \infty</m> we are implicitly stating that <em>the</em> limit of <m>f(x)</m>, as <m>x</m> approaches <m>c</m>, <em>does not exist.</em> A limit only exists when <m>f(x)</m> approaches an actual numeric value. We use the concept of limits that approach infinity because it is helpful and descriptive. It is one <em>specific way</em> in which a limit can fail to exist.</p>
+
+    <example xml:id="ex_inflim1">
+      <title>Evaluating limits involving infinity</title>
+      <statement>
+        <p>Find <m>\lim\limits_{x\to 1}\frac1{(x-1)^2}</m> as shown in <xref ref="fig_inflim1">Figure</xref>.</p>
+
+        <figure xml:id="fig_inflim1" >
+          <caption>Observing infinite limit as <m>x\to 1</m> in <xref ref="ex_inflim1">Example</xref>.</caption>
+          <!-- START figures/fig_nolimit2.tex -->
+          <image xml:id="img_inflim1" width="47%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+                \begin{axis}[xmin=-.1,xmax=2.1,
+                            ymin=-1,ymax=110,]
+                    \addplot[firstcurvestyle,domain=0:0.9] {1/(x-1)^2};
+                    \addplot[firstcurvestyle,domain=1.1:2] {1/(x-1)^2};
+                    \addplot[asymptote,rightarrow] coordinates {(1,1) (1,100)};
+                \end{axis}
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_nolimit2.tex END -->
+        </figure>
+      </statement>
+      <solution>
+        <p>In <xref ref="ex_no_limit2">Example</xref> of <xref ref="sec_limit_intro">Section</xref>, by inspecting values of <m>x</m> close to <m>1</m> we concluded that this limit does not exist. That is, it cannot equal any real number. But the limit could be infinite. And in fact, we see that the function does appear to be growing larger and larger, as <m>f(.99)=10^4</m>, <m>f(.999)=10^6</m>, <m>f(.9999)=10^8</m>. A similar thing happens on the other side of <m>1</m>. From the graph and the numeric information, we could state <m>\lim \limits_{x \to 1}1/(x-1)^2=\infty</m>. We can prove this by using <xref ref="def_limit_of_infinity">Definition</xref></p>
+         <p>In general, let a <q>large</q> value <m>M</m> be given. Let <m>\delta=1/\sqrt{M}</m>. If <m>x</m> is within <m>\delta</m> of <m>1</m>, i.e., if <m>\abs{x-1}\lt 1/\sqrt{M}</m>, then:<md>
+            <mrow>\abs{x-1} \amp \lt  \frac{1}{\sqrt{M}}</mrow>
+            <mrow>(x-1)^2 \amp \lt  \frac{1}{M}</mrow>
+            <mrow>\frac{1}{(x-1)^2} \amp > M,</mrow>
+          </md>which is what we wanted to show. So we may say <m>\lim\limits_{x\to 1}1/{(x-1)^2}=\infty</m>.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_inflim2">
+      <title>Evaluating limits involving infinity</title>
+      <statement>
+        <p>Find <m>\lim\limits_{x\to 0}\frac1x</m>, as shown in <xref ref="fig_oneoverx">Figure</xref>.</p>
+      </statement>
+      <solution>
+        <p>It is easy to see that the function grows without bound near <m>0</m>, but it does so in different ways on different sides of <m>0</m>. Since its behavior is not consistent, we cannot say that <m>\lim\limits_{x\to 0}\frac{1}{x}=\infty</m>. Instead, we will say <m>\lim\limits_{x\to 0}\frac{1}{x}</m> does not exist.  However, we can make a statement about one-sided limits. We can state that <m>\lim\limits_{x\to 0^+}\frac1x=\infty</m> and <m>\lim\limits_{x\to 0^-}\frac1x=-\infty</m>.</p>
+
+        <figure xml:id="fig_oneoverx" >
+          <caption>Evaluating <m>\lim\limits_{x\to 0}\frac1x</m>.</caption>
+          <!-- START figures/fig_oneoverx.tex -->
+          <image xml:id="img_oneoverx" width="47%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+                \begin{axis}[xmin=-1.1,xmax=1.1,
+                            ymin=-55,ymax=55,]
+                    \addplot[firstcurvestyle,domain=-1:-0.125,leftarrow] {1/x};
+                    \addplot[firstcurvestyle,domain=-8:-50,rightarrow] ({1/x},{x});
+                    \addplot[firstcurvestyle,domain=1:0.125,leftarrow] {1/x};
+                    \addplot[firstcurvestyle,domain=8:50,rightarrow] ({1/x},{x});
+                 \end{axis}
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_oneoverx.tex END -->
+        </figure>
+      </solution>
+    </example>
+  </introduction>
+
+  <subsection>
+    <title>Vertical asymptotes</title>
+    <p><index><main>asymptote</main><sub>vertical</sub></index></p>
+
+    <p>If the limit of <m>f(x)</m> as <m>x</m> approaches <m>c</m> from either the left or right (or both) is <m>\infty</m> or <m>-\infty</m>, we say the function has a <em>vertical asymptote</em> at <m>c</m>.</p>
+
+    <example xml:id="ex_vertasy1">
+      <title>Finding vertical asymptotes</title>
+      <statement>
+        <p>Find the vertical asymptotes of <m>f(x)=\frac{3x}{x^2-4}</m>.</p>
+      </statement>
+      <solution>
+        <p>Vertical asymptotes occur where the function grows without bound; this can occur at values of <m>c</m> where the denominator is <m>0</m>. When <m>x</m> is near <m>c</m>, the denominator is small, which in turn can make the function take on large values. In the case of the given function, the denominator is <m>0</m> at <m>x=\pm 2</m>. Substituting in values of <m>x</m> close to <m>2</m> and <m>-2</m> seems to indicate that the function tends toward <m>\infty</m> or <m>-\infty</m> at those points. We can graphically confirm this by looking at <xref ref="fig_multipleasymptotes">Figure</xref>. Thus the vertical asymptotes are at <m>x=\pm2</m>.</p>
+
+        <figure xml:id="fig_multipleasymptotes" >
+          <caption>Graphing <m>f(x) = \frac{3x}{x^2-4}</m>.</caption>
+          <!-- START figures/fig_multipleasymptotes.tex -->
+          <image xml:id="img_multipleasymptotes" width="47%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+                \begin{axis}[xmin=-6.1,xmax=6.1,
+                            ymin=-16,ymax=16,]
+                    \addplot[firstcurvestyle,domain=-6:-2.5,leftarrow] {3*x/(x^2-4)};
+                    \addplot[firstcurvestyle,domain=-3.333:-15.366,rightarrow] ({(3+sqrt(9+16*x^2))/(2*x)},{x});
+                    \addplot[firstcurvestyle,domain=14.615:2.571,leftarrow] ({(3-sqrt(9+16*x^2))/(2*x)},{x});
+                    \addplot[firstcurvestyle,domain=-1.5:1.5,-] {3*x/(x^2-4)};
+                    \addplot[firstcurvestyle,domain=-2.571:-14.615,rightarrow] ({(3-sqrt(9+16*x^2))/(2*x)},{x});
+                    \addplot[firstcurvestyle,domain=3.333:15.366,rightarrow] ({(3+sqrt(9+16*x^2))/(2*x)},{x});
+                    \addplot[firstcurvestyle,domain=2.5:6,rightarrow] {3*x/(x^2-4)};
+                    \addplot[asymptote] coordinates {(-2,-16) (-2,16)};
+                    \addplot[asymptote] coordinates {(2,-16) (2,16)};
+                \end{axis}
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_multipleasymptotes.tex END -->
+        </figure>
+      </solution>
+    </example>
+
+    <p>When a rational function has a vertical asymptote at <m>x=c</m>, we can conclude that the denominator is <m>0</m> at <m>x=c</m>. However, just because the denominator is <m>0</m> at a certain point does not mean there is a vertical asymptote there. For instance, <m>f(x)=(x^2-1)/(x-1)</m> does not have a vertical asymptote at <m>x=1</m>, as shown in <xref ref="fig_noasy">Figure</xref>. While the denominator does get small near <m>x=1</m>, the numerator gets small too, matching the denominator step for step. In fact, factoring the numerator, we get<me>
+        f(x)=\frac{(x-1)(x+1)}{x-1}.</me></p>
+
+    <p>Canceling the common term, we get that <m>f(x)=x+1</m> for <m>x\not=1</m>. So there is clearly no asymptote, rather a hole exists in the graph at <m>x=1</m>.</p>
+
+    <figure xml:id="fig_noasy" >
+      <caption>Graphically showing that <m>f(x) = \frac{x^2-1}{x-1}</m> does not have an asymptote at <m>x=1</m>.</caption>
+      <!-- START figures/fig_noasy.tex -->
+      <image xml:id="img_noasy" width="47%">
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+            \begin{axis}[xmin=-1.2,xmax=2.2,
+                        ymin=-.2,ymax=3.2,]
+                \addplot+[domain=-1:2] {x+1};
+                \addplot[hollowdot] coordinates {(1,2)};
+            \end{axis}
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_noasy.tex END -->
+    </figure>
+
+    <p>The above example may seem a little contrived. Another example demonstrating this important concept is <m>f(x)= (\sin(x) )/x</m>. We have considered this function several times in the previous sections. We found that <m>\lim\limits_{x\to0}\frac{\sin(x) }{x}=1</m>; i.e., there is no vertical asymptote. No simple algebraic cancellation makes this fact obvious; we used the <xref ref="thm_sqz" /> in <xref ref="sec_limit_analytically">Section</xref> to prove this.</p>
+
+    <p>If the denominator is <m>0</m> at a certain point but the numerator is not, then there will usually be a vertical asymptote at that point. On the other hand, if the numerator and denominator are both zero at that point, then there may or may not be a vertical asymptote at that point. This case where the numerator and denominator are both zero returns us to an important topic.</p>
+  </subsection>
+
+  <subsection>
+    <title>Indeterminate Forms</title>
+    <p><index><main>limit</main><sub>indeterminate form</sub></index><index><main>indeterminate form</main></index></p>
+
+    <p>We have seen how the limits <m>\lim\limits_{x\to 0}\frac{\sin(x) }{x}</m> and <m>\lim\limits_{x\to1}\frac{x^2-1}{x-1}</m> each return the indeterminate form <m>0/0</m> when we blindly plug in <m>x=0</m> and <m>x=1</m>, respectively. However, <m>0/0</m> is not a valid arithmetical expression. It gives no indication that the respective limits are <m>1</m> and <m>2</m>.</p>
+
+    <p>With a little cleverness, one can come up with <m>0/0</m> expressions which have a limit of <m>\infty</m>, 0, or any other real number. That is why this expression is called <term>indeterminate</term>.</p>
+
+    <p>A key concept to understand is that such limits do not really return <m>0/0</m>. Rather, keep in mind that we are taking <em>limits</em>. What is really happening is that the numerator is shrinking to <m>0</m> while the denominator is also shrinking to <m>0</m>. The respective rates at which they do this are very important and determine the actual value of the limit.</p>
+
+    <p>An indeterminate form indicates that one needs to do more work in order to compute the limit. That work may be algebraic (such as factoring and canceling), it may involve using trigonometric identities or logarithm rules, or it may require a tool such as the <xref autoname="title" ref="thm_sqz" />. In <xref ref="sec_lhopitals_rule">Section</xref> we will learn yet another technique called L'H&#xf4;pital's Rule that provides another way to handle indeterminate forms.</p>
+
+    <p>Some other common indeterminate forms are <m>\infty-\infty</m>, <m>\infty\cdot 0</m>, <m>\infty/\infty</m>, <m>0^0</m>, <m>\infty^0</m> and <m>1^{\infty}</m>. Again, keep in mind that these are the <q>blind</q> results of directly substituting <m>c</m> into the expression, and each, in and of itself, has no meaning. The expression <m>\infty-\infty</m> does not really mean <q>subtract infinity from infinity.</q> Rather, it means <q>One quantity is subtracted from the other, but both are growing without bound.</q> What is the result? It is possible to get every value between <m>-\infty</m> and <m>\infty</m></p>
+
+    <p>Note that <m>1/0</m> and <m>\infty/0</m> are not indeterminate forms, though they are not exactly valid mathematical expressions either. In each, the function is growing without bound, indicating that the limit will be <m>\infty</m>, <m>-\infty</m>, or simply not exist if the left- and right-hand limits do not match.</p>
+  </subsection>
+
+  <subsection>
+    <title>Limits at Infinity and Horizontal Asymptotes</title>
+    <p>At the beginning of this section we briefly considered what happens to <m>f(x) = 1/x^2</m> as <m>x</m> grew very large. Graphically, it concerns the behavior of the function to the <q>far right</q> of the graph. We make this notion more explicit in the following definition.</p>
+
+    <definition xml:id="def_limit_at_infinity">
+      <title>Limits at Infinity and Horizontal Asymptote</title>
+      <statement>
+        <p><ol>
+          <li><p>We say <m>\lim\limits_{x\to\infty} f(x)=L</m> if for every <m>\varepsilon>0</m> there exists <m>M>0</m> such that if <m>x\geq M</m>, then <m>\abs{f(x)-L}\lt \varepsilon</m>.<index><main>limit</main><sub>at infinity</sub></index><index><main>asymptote</main><sub>horizontal</sub></index></p></li>
+
+          <li><p>We say <m>\lim\limits_{x\to-\infty} f(x)=L</m> if for every <m>\varepsilon>0</m> there exists <m>M\lt 0</m> such that if <m>x\leq M</m>, then <m>\abs{f(x)-L}\lt \varepsilon</m>.</p></li>
+
+          <li><p>If <m>\lim\limits_{x\to\infty} f(x)=L</m> or <m>\lim\limits_{x\to-\infty} f(x)=L</m>, we say that <m>y=L</m> is a <em>horizontal asymptote</em> of <m>f</m>.</p></li>
+        </ol></p>
+      </statement>
+    </definition>
+
+    <p>We can also define limits such as <m>\lim\limits_{x\to\infty}f(x)=\infty</m> by combining this definition with <xref ref="def_limit_of_infinity">Definition</xref>.</p>
+
+    <example xml:id="ex_hzasy1">
+      <title>Approximating horizontal asymptotes</title>
+      <statement>
+        <p>Approximate the horizontal asymptote(s) of <m>f(x)=\frac{x^2}{x^2+4}</m>.</p>
+      </statement>
+      <solution>
+        <p>We will approximate the horizontal asymptotes by approximating the limits <m>\lim\limits_{x\to-\infty} \frac{x^2}{x^2+4}</m> and <m>\lim\limits_{x\to\infty} \frac{x^2}{x^2+4}</m>. (A rational function can have at most <em>one</em> horizontal asymptote. So we could get away with only taking <m>x \to \infty</m>).</p>
+
+        <p><xref ref="fig_hzasy1">Figure</xref> shows a sketch of <m>f</m>, and the table in <xref ref="tab_hzasy1">Figure</xref> gives values of <m>f(x)</m> for large magnitude values of <m>x</m>. It seems reasonable to conclude from both of these sources that <m>f</m> has a horizontal asymptote at <m>y=1</m>.</p>
+
+        <sidebyside widths="47% 47%" margins="auto">
+          <caption>Using a graph and a table to approximate a horizontal asymptote in <xref ref="ex_hzasy1">Example</xref>.</caption>
+          <figure xml:id="fig_hzasy1"><!-- START figures/fig_hzasy1.tex -->
+            <caption />
+            <image xml:id="img_hzasy1a" >
+              <description></description>
+              <latex-image-code>
+                <![CDATA[
+                \begin{tikzpicture}
+                    \begin{axis}[xmin=-21,xmax=21,
+                                ymin=-.2,ymax=1.1,]
+                        \addplot+[domain=-84:84,samples=177] ({2*tan(x)},{-(cos(x))^2+1});
+                        \addplot[asymptote] coordinates {(-21,1) (21,1)};
+                    \end{axis}
+                \end{tikzpicture}
+                ]]>
+              </latex-image-code>
+            </image>
+            <!-- figures/fig_hzasy1.tex END -->
+          </figure>
+          <table xml:id="tab_hzasy1">
+            <caption />
+            <tabular>
+              <row bottom="minor">
+                <cell><m>x</m></cell>
+                <cell><m>f(x)</m></cell>
+              </row>
+              <row>
+                <cell><m>10</m></cell>
+                <cell><m>0.9615</m></cell>
+              </row>
+              <row>
+                <cell><m>100</m></cell>
+                <cell><m>0.9996</m></cell>
+              </row>
+              <row>
+                <cell><m>10000</m></cell>
+                <cell><m>0.999996</m></cell>
+              </row>
+              <row>
+                <cell><m>-10</m></cell>
+                <cell><m>0.9615</m></cell>
+              </row>
+              <row>
+                <cell><m>-100</m></cell>
+                <cell><m>0.9996</m></cell>
+              </row>
+              <row>
+                <cell><m>-10000</m></cell>
+                <cell><m>0.999996</m></cell>
+              </row>
+            </tabular>
+          </table>
+        </sidebyside>
+
+        <p>Later, we will show how to determine this analytically.</p>
+
+      </solution>
+    </example>
+
+    <p>Horizontal asymptotes can take on a variety of forms. <xref ref="fig_hzasya">Figure</xref> shows that <m>f(x) = x/(x^2+1)</m> has a horizontal asymptote of <m>y=0</m>, where <m>0</m> is approached from both above and below.</p>
+
+    <p><xref ref="fig_hzasyb">Figure</xref> shows that <m>f(x) =x/\sqrt{x^2+1}</m> has two horizontal asymptotes; one at <m>y=1</m> and the other at <m>y=-1</m>.</p>
+
+    <p><xref ref="fig_hzasyc">Figure</xref> shows that <m>f(x) = \sin(x)/x</m> has even more interesting behavior than at just <m>x=0</m>; as <m>x</m> approaches <m>\pm\infty</m>, <m>f(x)</m> approaches <m>0</m>, but oscillates as it does this.</p>
+
+    <sidebyside widths="31% 31% 31%">
+    <caption>Considering different types of horizontal asymptotes.</caption>
+      <figure xml:id="fig_hzasya">
+        <caption />
+        <!-- START figures/fig_hzasy2.tex -->
+        <image xml:id="img_hzasya" >
+          <description></description>
+          <latex-image-code>
+            <![CDATA[
+            \begin{tikzpicture}
+                \begin{axis}[xmin=-21,xmax=21,
+                            ymin=-1.1,ymax=1.1,]
+                    \addplot+[domain=-87:87,samples=100] ({tan(x)},{sin(x)*cos(x)});
+                \end{axis}
+            \end{tikzpicture}
+            ]]>
+          </latex-image-code>
+        </image>
+        <!-- figures/fig_hzasy2.tex END -->
+      </figure>
+      <figure xml:id="fig_hzasyb">
+        <caption />
+        <!-- START figures/fig_hzasy3.tex -->
+        <image xml:id="img_hzasyb" >
+          <description></description>
+          <latex-image-code>
+            <![CDATA[
+            \begin{tikzpicture}
+                \begin{axis}[xmin=-21,xmax=21,
+                            ymin=-1.1,ymax=1.1,]
+                    \addplot+[domain=-87:87,samples=100] ({tan(x)},{sin(x)});
+                \end{axis}
+            \end{tikzpicture}
+            ]]>
+          </latex-image-code>
+        </image>
+        <!-- figures/fig_hzasy3.tex END -->
+      </figure>
+      <figure xml:id="fig_hzasyc">
+        <caption />
+        <!-- START figures/fig_hzasy4.tex -->
+        <image xml:id="img_hzasy4" >
+          <description></description>
+          <latex-image-code>
+            <![CDATA[
+            \begin{tikzpicture}[declare function = {func(\x) = (\x != 0) * (sin(x*180/pi)/x) + (\x == 0) * (1);}]
+                \begin{axis}[xmin=-21,xmax=21,
+                            ymin=-.3,ymax=1.1]
+                    \addplot+[domain=-20:20,samples=100] {func(x)};
+                \end{axis}
+            \end{tikzpicture}
+            ]]>
+          </latex-image-code>
+        </image>
+        <!-- figures/fig_hzasy4.tex END -->
+      </figure>
+    </sidebyside>
+
+    <p>We can analytically evaluate limits at infinity for rational functions once we understand <m>\lim\limits_{x\to\infty}\frac{1}{x}</m>. As <m>x</m> gets larger and larger, the <m>1/x</m> gets smaller and smaller, approaching <m>0</m>. We can, in fact, make <m>1/x</m> as small as we want by choosing a large enough value of <m>x</m>. Given <m>\varepsilon</m>, we can make <m>1/x\lt \varepsilon</m> by choosing <m>x>1/\varepsilon</m>. Thus we have <m>\lim_{x\to\infty} 1/x=0</m>.</p>
+
+    <p>It is now not much of a jump to conclude the following:<md>
+        <mrow>\lim_{x\to\infty}\frac1{x^n}\amp=0\amp\lim_{x\to-\infty}\frac1{x^n}\amp=0</mrow>
+    </md></p>
+
+    <p>Now suppose we need to compute the following limit:<me>
+        \lim_{x\to\infty}\frac{x^3+2x+1}{4x^3-2x^2+9}.
+     </me></p>
+
+    <p>A good way of approaching this is to divide through the numerator and denominator by <m>x^3</m> (hence dividing by <m>1</m>), which is the largest power of <m>x</m> to appear in the denominator. Doing this, we get<md>
+        <mrow>\lim_{x\to\infty}\frac{x^3+2x+1}{4x^3-2x^2+9} \amp =
+        \lim_{x\to\infty}\frac{1/x^3}{1/x^3}\cdot\frac{x^3+2x+1}{4x^3-2x^2+9}</mrow>
+        <mrow>\amp =\lim_{x\to\infty}\frac{x^3/x^3+2x/x^3+1/x^3}{4x^3/x^3-2x^2/x^3+9/x^3}</mrow>
+        <mrow>\amp = \lim_{x\to\infty}\frac{1+2/x^2+1/x^3}{4-2/x+9/x^3}.</mrow>
+    </md></p>
+
+    <p>Then using the rules for limits (which also hold for limits at infinity), as well as the fact about limits of <m>1/x^n</m>, we see that the limit becomes<me>\frac{1+0+0}{4-0+0}=\frac14.</me></p>
+
+    <p>This procedure works for any rational function. In fact, it gives us the following theorem.</p>
+
+    <theorem xml:id="thm_lim_rational_fn_at_infty">
+      <title>Limits of Rational Functions at Infinity</title>
+      <statement>
+        <p>Let <m>f(x)</m> be a rational function of the following form:<me>
+            f(x)=\frac{a_nx^n + a_{n-1}x^{n-1}+\dots + a_1x + a_0}{b_mx^m + b_{m-1}x^{m-1} + \dots + b_1x + b_0},
+        </me>where <m>m,n</m> are positive integers and where any of the coefficients may be <m>0</m> except for <m>a_n</m> and <m>b_m</m>. Then:<ol>
+          <li>
+            <p>If <m>n=m</m>, then <me>\lim\limits_{x\to\infty} f(x) = \lim\limits_{x\to-\infty} f(x) = \frac{a_n}{b_m}\text{.}</me></p>
+          </li>
+          <li>
+            <p>If <m>n\lt m</m>, then <me>\lim\limits_{x\to\infty} f(x) = \lim\limits_{x\to-\infty} f(x) = 0\text{.}</me></p>
+          </li>
+          <li>
+            <p>If <m>n>m</m>, then <m>\lim\limits_{x\to\infty} f(x)</m> and <m>\lim\limits_{x\to-\infty} f(x)</m> are both infinite.</p>
+          </li>
+        </ol></p>
+      </statement>
+    </theorem>
+
+    <p>We can see why this is true. If the highest power of <m>x</m> is the same in both the numerator and denominator (<ie /> <m>n=m</m>), we will be in a situation like the example above, where we will divide by <m>x^n</m> and in the limit all the terms will approach <m>0</m> except for <m>a_nx^n/x^n</m> and <m>b_mx^m/x^n</m>. Since <m>n=m</m>, this will leave us with the limit <m>a_n/b_m</m>. If <m>n\lt m</m>, then after dividing through by <m>x^m</m>, all the terms in the numerator will approach <m>0</m> in the limit, leaving us with <m>0/b_m</m> or <m>0</m>. If <m>n>m</m>, and we try dividing through by <m>x^m</m>, we end up with the denominator tending to <m>b_m</m> while the numerator tends to <m>\infty</m>.</p>
+
+    <p>Intuitively, as <m>x</m> gets very large, all the terms in the numerator are small in comparison to <m>a_nx^n</m>, and likewise all the terms in the denominator are small compared to <m>b_nx^m</m>. If <m>n=m</m>, looking only at these two important terms, we have <m>(a_nx^n)/(b_nx^m)</m>. This reduces to <m>a_n/b_m</m>. If <m>n\lt m</m>, the function behaves like <m>a_n/(b_mx^{m-n})</m>, which tends toward <m>0</m>. If <m>n>m</m>, the function behaves like <m>a_nx^{n-m}/b_m</m>, which will tend to either <m>\infty</m> or <m>-\infty</m> depending on the values of <m>n</m>, <m>m</m>, <m>a_n</m>, <m>b_m</m> and whether you are looking for <m>\lim_{x\to\infty} f(x)</m> or <m>\lim_{x\to\infty} f(x)</m>.</p>
+
+
+    <example xml:id="ex_hzasy2">
+      <title>Finding a limit of a rational function</title>
+      <statement>
+        <p>Confirm analytically that <m>y=1</m> is the horizontal asymptote of <m>f(x) = \frac{x^2}{x^2+4}</m>, as approximated in <xref ref="ex_hzasy1">Example</xref>.</p>
+      </statement>
+      <solution>
+        <p>Before using <xref ref="thm_lim_rational_fn_at_infty">Theorem</xref>, let's use the technique of evaluating limits at infinity of rational functions that led to that theorem. The largest power of <m>x</m> in <m>f</m> is <m>2</m>, so divide the numerator and denominator of <m>f</m> by <m>x^2</m>, then take limits.<md>
+            <mrow>\lim_{x\to\infty}\frac{x^2}{x^2+4} \amp = \lim_{x\to\infty}\frac{x^2/x^2}{x^2/x^2+4/x^2}</mrow>
+            <mrow>\amp =\lim_{x\to\infty}\frac{1}{1+4/x^2}</mrow>
+            <mrow>\amp =\frac{1}{1+0}</mrow>
+            <mrow>\amp = 1.</mrow>
+        </md></p>
+
+        <p>We can also use <xref ref="thm_lim_rational_fn_at_infty">Theorem</xref> directly; in this case <m>n=m</m> so the limit is the ratio of the leading coefficients of the numerator and denominator, i.e., 1/1 = 1.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_hzasy3">
+      <title>Finding limits of rational functions</title>
+      <statement>
+        <p>Use <xref ref="thm_lim_rational_fn_at_infty">Theorem</xref> to evaluate each of the following limits.<ol cols="2" >
+          <li>
+            <p><m>\lim\limits_{x\to-\infty}\dfrac{x^2+2x-1}{x^3+1}</m></p>
+          </li>
+          <li>
+            <p><m>\lim\limits_{x\to\infty}\dfrac{x^2+2x-1}{1-x-3x^2}</m></p>
+          </li>
+          <li>
+            <p><m>\lim\limits_{x\to\infty}\dfrac{x^2-1}{3-x}</m></p>
+          </li>
+        </ol></p>
+      </statement>
+      <solution>
+        <p><ol>
+          <li>
+            <p>The highest power of <m>x</m> is in the denominator.  Therefore, the limit is <m>0</m>; see <xref ref="fig_hzasy3a">Figure</xref>.</p>
+          </li>
+
+          <li>
+            <p>The highest power of <m>x</m> is <m>x^2</m>, which occurs in both the numerator and denominator.  The limit is therefore the ratio of the coefficients of <m>x^2</m>, which is <m>-1/3</m>. See <xref ref="fig_hzasy3b">Figure</xref>.</p>
+          </li>
+
+          <li>
+            <p>The highest power of <m>x</m> is in the numerator so the limit will be <m>\infty</m> or <m>-\infty</m>.  To see which, consider only the dominant terms from the numerator and denominator, which are <m>x^2</m> and <m>-x</m>.  The expression in the limit will behave like <m>x^2/(-x) = -x</m> for large values of <m>x</m>.  Therefore, the limit is <m>-\infty</m>. See <xref ref="fig_hzasy3c">Figure</xref>.</p>
+          </li>
+        </ol></p>
+
+        <sidebyside xml:id="fig_hzasy3"  widths="31% 31% 31%">
+          <caption>Visualizing the functions in <xref ref="ex_hzasy3">Example</xref>.</caption>
+          <figure xml:id="fig_hzasy3a">
+            <caption/>
+            <!-- START figures/fig_hzasy5.tex -->
+            <image xml:id="img_hzasy3a" >
+              <description></description>
+              <latex-image-code>
+                <![CDATA[
+                \begin{tikzpicture}
+                  \begin{axis}[xmin=-41,xmax=2,
+                                ymin=-.6,ymax=.6,]
+                      \addplot[firstcurvestyle,domain=-40:-8,leftarrow] {(x^2+2*x-1)/(x^3+1)};
+                      \addplot[firstcurvestyle,domain=-8:-2,rightarrow] {(x^2+2*x-1)/(x^3+1)};
+                  \end{axis}
+                \end{tikzpicture}
+                ]]>
+              </latex-image-code>
+            </image>
+            <!-- figures/fig_hzasy5.tex END -->
+          </figure>
+
+          <figure xml:id="fig_hzasy3b">
+            <caption />
+            <!-- START figures/fig_hzasy6.tex -->
+            <image xml:id="img_hzasy3b" >
+              <description></description>
+              <latex-image-code>
+                <![CDATA[
+                \begin{tikzpicture}
+                  \begin{axis}[xmin=-1,xmax=41,
+                                ymin=-.55,ymax=.55,]
+                      \addplot[firstcurvestyle,domain=2:8,leftarrow] {(x^2+2*x-1)/(1-x-3*x^2)};
+                      \addplot[firstcurvestyle,domain=8:40,rightarrow] {(x^2+2*x-1)/(1-x-3*x^2)};
+                      \addplot[asymptote] coordinates {(-1,-0.33333) (41,-0.33333)};
+                  \end{axis}
+                \end{tikzpicture}
+                ]]>
+              </latex-image-code>
+            </image>
+            <!-- figures/fig_hzasy6.tex END -->
+          </figure>
+
+          <figure xml:id="fig_hzasy3c">
+            <caption />
+            <!-- START figures/fig_hzasy7.tex -->
+            <image xml:id="img_hzasy3c" >
+              <description></description>
+              <latex-image-code>
+                <![CDATA[
+                \begin{tikzpicture}
+                  \begin{axis}[xmin=-5,xmax=41,
+                                ymin=-50,ymax=5]
+                      \addplot[firstcurvestyle,domain=3.5:8,leftarrow] {(x^2-1)/(3-x)};
+                      \addplot[firstcurvestyle,domain=8:40,rightarrow] {(x^2-1)/(3-x)};
+                  \end{axis}
+                \end{tikzpicture}
+                ]]>
+              </latex-image-code>
+            </image>
+            <!-- figures/fig_hzasy7.tex END -->
+          </figure>
+        </sidebyside>
+      </solution>
+    </example>
+
+    <p>With care, we can quickly evaluate limits at infinity for a large number of functions by considering the long run behaviour using<q>dominant terms</q> of <m>f(x)</m>. For instance, consider again <m>\lim\limits_{x\to\pm\infty}\frac{x}{\sqrt{x^2+1}}</m>, graphed in <xref ref="fig_hzasyb">Figure</xref>. The dominant terms are <m>x</m> in the numerator and <m>\sqrt{x^2}</m> in the denominator. When <m>x</m> is very large, <m>x^2+1 \approx x^2</m>. Thus<md>
+        <mrow>\sqrt{x^2+1}\amp\approx \sqrt{x^2}= \abs{x}\amp\frac{x}{\sqrt{x^2+1}}\amp \approx \frac{x}{\abs{x}}\text{.}</mrow>
+    </md></p>
+
+    <p>This expression is <m>1</m> when <m>x</m> is positive and <m>-1</m> when <m>x</m> is negative. Hence we get asymptotes of <m>y=1</m> and <m>y=-1</m>, respectively. We will show this more formally in the next example.</p>
+
+    <example xml:id="ex_hzasy4">
+      <title>Finding a limit using dominant terms</title>
+      <statement>
+        <p>Confirm analytically that <m>y=1</m> and <m>y=-1</m> are the horizontal asymptote of <m>\lim\limits_{x\to\pm\infty}\frac{x}{\sqrt{x^2+1}}</m>, as graphed in <xref ref="fig_hzasyb">Figure</xref>.</p>
+      </statement>
+      <solution>
+        <p>The dominating term of <m>f</m> in the denominator is <m>\sqrt{x^2}=\abs{x}</m> so divide the numerator and denominator of <m>f</m> by <m>\sqrt{x^2}</m>, then take limits.<md>
+            <mrow>\lim\limits_{x\to\infty}\frac{x}{\sqrt{x^2+1}}
+              \amp = \lim\limits_{x\to\infty}\frac{x}{\sqrt{x^2+1}}\cdot \frac{\frac{1}{\sqrt{x^2}}}{\frac{1}{\sqrt{x^2}}}</mrow>
+              <mrow>\amp = \lim\limits_{x\to\infty} \frac{\frac{x}{\abs{x}}}{\sqrt{\frac{x^2+1}{x^2}}}</mrow>
+              <mrow>\amp = \lim\limits_{x\to\infty} \frac{1}{\sqrt{1+\frac{1}{x^2}}} \text{ for } x\gt 0</mrow>
+              <mrow>\amp =\frac{1}{\sqrt{1+0}}</mrow>
+              <mrow>\amp = 1 \text{.}</mrow>
+        </md></p>
+
+        <p>As <m>x \to -\infty</m>, the only thing that changes is the value of <m>\frac{x}{\abs{x}}</m>. For <m>x \lt 0</m>, we have <m>\frac{x}{\abs{x}}=-1</m>, making <m>\lim\limits_{x\to-\infty} \frac{x}{\sqrt{x^2+1}}=-1</m>. Therefore, the horizontal asymptotes are <m>y=1</m> and <m>y=-1</m>.</p>
+      </solution>
+    </example>
+  </subsection>
+
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$truefalse">
+              <set>
+                <member>True</member>
+                <member correct="yes">False</member>
+              </set>
+            </var>
+            <pg-code>
+              $truefalse=PopUp(['?','True','False'],'False');
+            </pg-code>
+          </setup>
+          <statement>
+            <p>True or False? If <m>\lim\limits_{x\to 5} f(x) = \infty</m>, then we are implicitly stating that the limit exists. <var name="$truefalse" form="popup"/></p>
+          </statement>
+          <solution>
+            <p><var name="$truefalse" /></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$truefalse">
+              <set>
+                <member correct="yes">True</member>
+                <member>False</member>
+              </set>
+            </var>
+            <pg-code>
+              $truefalse=PopUp(['?','True','False'],'True');
+            </pg-code>
+          </setup>
+          <statement>
+            <p>True or False? If <m>\lim\limits_{x\to 5} f(x) = 5</m>, then we are implicitly stating that the limit exists. <var name="$truefalse" form="popup"/></p>
+          </statement>
+          <solution>
+            <p><var name="$truefalse" /></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$truefalse">
+              <set>
+                <member>True</member>
+                <member correct="yes">False</member>
+              </set>
+            </var>
+            <pg-code>
+              $truefalse=PopUp(['?','True','False'],'False');
+            </pg-code>
+          </setup>
+          <statement>
+            <p>True or False? If <m>\lim\limits_{x\to 1^-} f(x) = -\infty</m>, then <m>\lim\limits_{x\to 1^+} f(x) = \infty</m>. <var name="$truefalse" form="popup"/></p>
+          </statement>
+          <solution>
+            <p><var name="$truefalse" /></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$truefalse">
+              <set>
+                <member correct="yes">True</member>
+                <member>False</member>
+              </set>
+            </var>
+            <pg-code>
+              $truefalse=PopUp(['?','True','False'],'True');
+            </pg-code>
+          </setup>
+          <statement>
+            <p>True or False? If <m>\lim\limits_{x\to 5} f(x) = \infty</m>, then <m>f</m> has a vertical asymptote at <m>x=5</m>. <var name="$truefalse" form="popup"/></p>
+          </statement>
+          <solution>
+            <p><var name="$truefalse" /></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$truefalse">
+              <set>
+                <member correct="yes">True</member>
+                <member>False</member>
+              </set>
+            </var>
+            <pg-code>
+              $truefalse=PopUp(['?','True','False'],'True');
+            </pg-code>
+          </setup>
+          <statement>
+            <p>True or False? <m>\infty/0</m> is not an indeterminate form. <var name="$truefalse" form="popup"/></p>
+          </statement>
+          <solution>
+            <p><var name="$truefalse" /></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <statement>
+            <p>List five indeterminate forms.</p>
+
+            <p><var form="essay" /></p>
+          </statement>
+          <solution>
+            <p>Answers will vary.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <statement>
+            <p>Construct a function with a vertical asymptote at <m>x=5</m> and a horizontal asymptote at <m>y=5</m>.</p>
+
+            <p><var form="essay" /></p>
+          </statement>
+          <solution>
+            <p>Answers will vary.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <statement>
+            <p>Let <m>\lim\limits_{x\to 7} f(x) = \infty</m>. Explain how we know that <m>f</m> is or is not continuous at <m>x=7</m>.</p>
+
+            <p><var form="essay" /></p>
+          </statement>
+          <solution>
+            <p>The limit of <m>f</m> as <m>x</m> approaches <m>7</m> does not exist, hence <m>f</m> is not continuous. (Note: <m>f</m> could be defined at <m>7</m>!)</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, evaluate the given limits using the graph of the function.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>\frac{1}{(x+1)^2}</static>
+            </var>
+            <var name="$a">
+              <static>-1</static>
+            </var>
+            <var name="$L[0]" category="number">
+              <static>\infty</static>
+            </var>
+            <var name="$L[1]" category="number">
+              <static>\infty</static>
+            </var>
+            <pg-code>
+              $a=non_zero_random(-3,3,1);
+              $b=non_zero_random(-1,1,2);
+              $n=random(2,5,1);
+              if($envir{problemSeed}==1){$a=-1;$b=1;$n=2;};
+              $f=Formula("$b/(x-$a)^($n)")->reduce;
+              $L[0]=($f->eval(x=>$a-1)>0)?Compute("inf"):Compute("-inf");
+              $L[1]=($f->eval(x=>$a+1)>0)?Compute("inf"):Compute("-inf");
+              for my$i(0,1){$ev[$i]=$L[$i]->cmp()->withPostFilter(AnswerHints(Compute("DNE")=> "Technically correct, but this question is asking for more specific information."));};
+              $xmin=min(-1,$a-2);$xmax=max(1,$a+2);
+              $gr=init_graph($xmin,-50,$xmax,50,axes=>[0,0],size=>[400,400]);
+              $gr->h_ticks(0,"black",(-3..3));
+              $gr->v_ticks(0,"black",map{$_*10}(-5..5));
+              for my$i(-3..3){$gr->lb(new Label($i,-0.05,"$i",'black','center','top'));};
+              for my$i(map{$_*10}(-5..5)){$gr->lb(new Label(-0.05,$i,"$i",'black','right','middle'));};
+              $e=1/50**(1/$n);
+              $below=$a-$e;
+              $above=$a+$e;
+              add_functions($gr, "$f for x in &lt;$xmin,$below> using color:blue and weight:2");
+              add_functions($gr, "$f for x in &lt;$above,$xmax> using color:blue and weight:2");
+              $gr->moveTo($a,-50);
+              $gr->lineTo($a,50,'gray',1,'dashed');
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = <var name="$f" /></m> has the graph:</p>
+
+            <figure>
+              <image pg-name="$gr" />
+            </figure>
+
+            <p>Use the graph of <m>f</m> to find:</p>
+            <p><ol>
+              <li>
+                <p><m>\lim\limits_{x\to <var name="$a" />^-} f(x)=</m><var name="$L[0]" evaluator="$ev[0]" width="10"/></p>
+              </li>
+              <li>
+                <p><m>\lim\limits_{x\to <var name="$a" />^+} f(x)=</m><var name="$L[1]" evaluator="$ev[1]" width="10"/></p>
+              </li>
+            </ol></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>\frac{1}{(x-3)(x-5)^2}</static>
+            </var>
+            <var name="$a[0]">
+              <static>3</static>
+            </var>
+            <var name="$a[1]">
+              <static>5</static>
+            </var>
+            <var name="$L[0]" category="number">
+              <static>-\infty</static>
+            </var>
+            <var name="$L[1]" category="number">
+              <static>\infty</static>
+            </var>
+            <var name="$L[2]" category="number">
+              <static>\text{DNE}</static>
+            </var>
+            <var name="$L[3]" category="number">
+              <static>\infty</static>
+            </var>
+            <var name="$L[4]" category="number">
+              <static>\infty</static>
+            </var>
+            <var name="$L[5]" category="number">
+              <static>\infty</static>
+            </var>
+            <pg-code>
+              @a=map{$_+1}NchooseK(9,2);
+              if($envir{problemSeed}==1){$a[0]=3;$a[1]=5;};
+              $f=Formula("1/((x-$a[0])(x-$a[1])^(2))")->reduce;
+              $L[0]=($f->eval(x=>$a[0]-0.1)>0)?Compute("inf"):Compute("-inf");
+              $L[1]=($f->eval(x=>$a[0]+0.1)>0)?Compute("inf"):Compute("-inf");
+              $L[3]=($f->eval(x=>$a[1]-0.1)>0)?Compute("inf"):Compute("-inf");
+              $L[4]=($f->eval(x=>$a[1]+0.1)>0)?Compute("inf"):Compute("-inf");
+              for my$i(2,5){$L[$i]=($L[$i-2]==$L[$i-1])?$L[$i-2]:Compute("DNE");};
+              for my$i(0..5){$ev[$i]=($L[$i]==Compute("DNE"))?$L[$i]->cmp():$L[$i]->cmp()->withPostFilter(AnswerHints(Compute("DNE")=> "Technically correct, but this question is asking for more specific information."));};
+              $xmin=min(0,@a)-1;$xmax=max(@a)+1;
+              $gr=init_graph($xmin,-50,$xmax,50,axes=>[0,0],size=>[400,400]);
+              $gr->h_ticks(0,"black",($xmin..$xmax));
+              $gr->v_ticks(0,"black",map{$_*10}(-5..5));
+              for my$i($xmin..$xmax){$gr->lb(new Label($i,-0.05,"$i",'black','center','top'));};
+              for my$i(map{$_*10}(-5..5)){$gr->lb(new Label(-0.05,$i,"$i",'black','right','middle'));};
+              $e[0]=1/(50*($a[1]-$a[0])^2)/2;
+              $e[1]=sqrt(1/(50*abs($a[1]-$a[0])))/2;
+              $below[0]=min(@a)-$e[0];
+              $above[0]=min(@a)+$e[0];
+              $below[1]=max(@a)-$e[1];
+              $above[1]=max(@a)+$e[1];
+              add_functions($gr, "$f for x in &lt;$xmin,$below[0]> using color:blue and weight:2");
+              add_functions($gr, "$f for x in &lt;$above[0],$below[1]> using color:blue and weight:2");
+              add_functions($gr, "$f for x in &lt;$above[1],$xmax> using color:blue and weight:2");
+              $gr->moveTo($a[0],-50);
+              $gr->lineTo($a[0],50,'gray',1,'dashed');
+              $gr->moveTo($a[1],-50);
+              $gr->lineTo($a[1],50,'gray',1,'dashed');
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = <var name="$f" /></m> has the graph:</p>
+
+            <figure>
+              <image pg-name="$gr" />
+            </figure>
+
+            <p>Use the graph of <m>f</m> to find:</p>
+            <p><ol>
+              <li>
+                <p><m>\lim\limits_{x\to <var name="$a[0]" />^-} f(x)=</m><var name="$L[0]" evaluator="$ev[0]" width="10"/></p>
+              </li>
+              <li>
+                <p><m>\lim\limits_{x\to <var name="$a[0]" />^+} f(x)=</m><var name="$L[1]" evaluator="$ev[1]" width="10"/></p>
+              </li>
+              <li>
+                <p><m>\lim\limits_{x\to <var name="$a[0]" />} f(x)=</m><var name="$L[2]" evaluator="$ev[2]" width="10"/></p>
+              </li>
+              <li>
+                <p><m>\lim\limits_{x\to <var name="$a[1]" />^-} f(x)=</m><var name="$L[3]" evaluator="$ev[3]" width="10"/></p>
+              </li>
+              <li>
+                <p><m>\lim\limits_{x\to <var name="$a[1]" />^+} f(x)=</m><var name="$L[4]" evaluator="$ev[4]" width="10"/></p>
+              </li>
+              <li>
+                <p><m>\lim\limits_{x\to <var name="$a[1]" />} f(x)=</m><var name="$L[5]" evaluator="$ev[5]" width="10"/></p>
+              </li>
+            </ol></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>\frac{1}{e^x+1}</static>
+            </var>
+            <var name="$L[0]" category="number">
+              <static>1</static>
+            </var>
+            <var name="$L[1]" category="number">
+              <static>0</static>
+            </var>
+            <var name="$L[2]" category="number">
+              <static>0.5</static>
+            </var>
+            <var name="$L[3]" category="number">
+              <static>0.5</static>
+            </var>
+            <pg-code>
+              $b=random(-1,1,2);
+              if($envir{problemSeed}==1){$b=1;};
+              $f=Formula("1/(e^($b*x)+1)")->reduce;
+              $L[0]=($b>0)?1:0;
+              $L[1]=($b>0)?0:1;
+              $L[2]=$f->eval(x=>0);
+              $L[3]=$f->eval(x=>0);
+              $xmin=-11;$xmax=11;
+              $gr=init_graph($xmin,-1,$xmax,2,axes=>[0,0],size=>[400,400]);
+              $gr->h_ticks(0,"black",(-10,-5,0,5,10));
+              $gr->v_ticks(0,"black",(-1,-0.5,0,0.5,1,1.5,2));
+              for my$i(-10,-5,0,5,10){$gr->lb(new Label($i,-0.05,"$i",'black','center','top'));};
+              for my$i(-1,-0.5,0,0.5,1,1.5,2){$gr->lb(new Label(-0.05,$i,"$i",'black','right','middle'));};
+              add_functions($gr, "$f for x in &lt;$xmin,$xmax> using color:blue and weight:2");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = <var name="$f" /></m> has the graph:</p>
+
+            <figure>
+              <image pg-name="$gr" />
+            </figure>
+
+            <p>Use the graph of <m>f</m> to find:</p>
+            <p><ol>
+              <li>
+                <p><m>\lim\limits_{x\to-\infty} f(x)=</m><var name="$L[0]" width="10"/></p>
+              </li>
+              <li>
+                <p><m>\lim\limits_{x\to\infty} f(x)=</m><var name="$L[1]" width="10"/></p>
+              </li>
+              <li>
+                <p><m>\lim\limits_{x\to 0^{-}} f(x)=</m><var name="$L[2]" width="10"/></p>
+              </li>
+              <li>
+                <p><m>\lim\limits_{x\to 0^{+}} f(x)=</m><var name="$L[3]" width="10"/></p>
+              </li>
+            </ol></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>x^2\sin(\pi x)</static>
+            </var>
+            <var name="$a">
+              <static>0</static>
+            </var>
+            <var name="$L[0]" category="number">
+              <static>\text{DNE}</static>
+            </var>
+            <var name="$L[1]" category="number">
+              <static>\text{DNE}</static>
+            </var>
+            <var name="$L[2]" category="number">
+              <static>0</static>
+            </var>
+            <var name="$L[3]" category="number">
+              <static>0</static>
+            </var>
+            <pg-code>
+              $a=random(-5,5,1);
+              $n=random(1,4,2);
+              if($envir{problemSeed}==1){$a=0;$n=2;};
+              $f=Formula("x^($n)*sin(pi x)")->reduce;
+              $L[0]=Compute("DNE");
+              $L[1]=Compute("DNE");
+              $L[2]=0;
+              $L[3]=0;
+              $xmin=-11;$xmax=11;
+              $gr=init_graph($xmin,-10**($n),$xmax,10**($n),axes=>[0,0],size=>[400,400]);
+              $gr->h_ticks(0,"black",(-10,-5,0,5,10));
+              $gr->v_ticks(0,"black",map{$_*10**($n)/2}(-2..2));
+              for my$i(-10,-5,0,5,10){$gr->lb(new Label($i,-0.05,"$i",'black','center','top'));};
+              for my$i(map{$_*10**($n)/2}(-2..2)){$gr->lb(new Label(-0.05,$i,"$i",'black','right','middle'));};
+              for my$i(-10..10){my$low=$i-0.5;my$high=$i+0.5;add_functions($gr, "$f for x in &lt;$low,$high> using color:blue and weight:2");};
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = <var name="$f" /></m> has the graph:</p>
+
+            <figure>
+              <image pg-name="$gr" />
+            </figure>
+
+            <p>Use the graph of <m>f</m> to find:</p>
+            <p><ol>
+              <li>
+                <p><m>\lim\limits_{x\to-\infty} f(x)=</m><var name="$L[0]" width="10"/></p>
+              </li>
+              <li>
+                <p><m>\lim\limits_{x\to\infty} f(x)=</m><var name="$L[1]" width="10"/></p>
+              </li>
+              <li>
+                <p><m>\lim\limits_{x\to <var name="$a" />^{-}} f(x)=</m><var name="$L[2]" width="10"/></p>
+              </li>
+              <li>
+                <p><m>\lim\limits_{x\to <var name="$a" />^{+}} f(x)=</m><var name="$L[3]" width="10"/></p>
+              </li>
+            </ol></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>\cos(x)</static>
+            </var>
+            <var name="$L[0]" category="number">
+              <static>\text{DNE}</static>
+            </var>
+            <var name="$L[1]" category="number">
+              <static>\text{DNE}</static>
+            </var>
+            <pg-code>
+              $f=list_random(Formula("sin(x)"),Formula("cos(x)"));
+              if($envir{problemSeed}==1){$f=Formula("cos(x)")};
+              $L[0]=Compute("DNE");
+              $L[1]=Compute("DNE");
+              $xmin=-14;$xmax=14;
+              $gr=init_graph($xmin,-1.2,$xmax,1.2,axes=>[0,0],size=>[400,400]);
+              $gr->h_ticks(0,"black",map{$_*pi/2}(-8..8));
+              $gr->v_ticks(0,"black",map{$_/2}(-2..2));
+              for my$i(-4,-3,-2,2,3,4){$gr->lb(new Label($i*pi,-0.05,"${i}pi",'black','center','top'));};
+              $gr->lb(new Label(-pi,-0.05,"-pi",'black','center','top'));
+              $gr->lb(new Label(pi,-0.05,"pi",'black','center','top'));
+              for my$i(map{$_/2}(-2..2)){$gr->lb(new Label(-0.05,$i,"$i",'black','right','middle'));};
+              for my$i(-4..4){my$low=($i-0.5)*pi;my$high=($i+0.5)*pi;add_functions($gr, "$f for x in &lt;$low,$high> using color:blue and weight:2");};
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = <var name="$f" /></m> has the graph:</p>
+
+            <figure>
+              <image pg-name="$gr" />
+            </figure>
+
+            <p>Use the graph of <m>f</m> to find:</p>
+            <p><ol>
+              <li>
+                <p><m>\lim\limits_{x\to-\infty} f(x)=</m><var name="$L[0]" width="10"/></p>
+              </li>
+              <li>
+                <p><m>\lim\limits_{x\to\infty} f(x)=</m><var name="$L[1]" width="10"/></p>
+              </li>
+            </ol></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>2^x+10</static>
+            </var>
+            <var name="$L[0]" category="number">
+              <static>10</static>
+            </var>
+            <var name="$L[1]" category="number">
+              <static>\infty</static>
+            </var>
+            <pg-code>
+              $b=random(1.5,2.5,0.1);
+              $c=non_zero_random(-12,12,1);
+              $n=random(-1,1,2);
+              if($envir{problemSeed}==1){$b=2;$c=10;$n=1;};
+              $f=Formula("($b)^($n x)+$c")->reduce;
+              $L[0]=($n>0)?$c:Compute("inf");
+              $L[1]=($n>0)?Compute("inf"):$c;
+              $xmin=-11;$xmax=11;
+              $gr=init_graph($xmin,-10,$xmax,160,axes=>[0,0],size=>[400,400]);
+              $gr->h_ticks(0,"black",(-10,-5,0,5,10));
+              $gr->v_ticks(0,"black",(50,100,150));
+              for my$i(-10,-5,0,5,10){$gr->lb(new Label($i,-0.05,"$i",'black','center','top'));};
+              for my$i(50,100,150){$gr->lb(new Label(-0.05,$i,"$i",'black','right','middle'));};
+              $low=($n>0)?$xmin:ln(160-$c)/ln($b)/$n;
+              $high=($n>0)?ln(160-$c)/ln($b)/$n:$xmax;
+              add_functions($gr, "$f for x in &lt;$low,$high> using color:blue and weight:2");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = <var name="$f" /></m> has the graph:</p>
+
+            <figure>
+              <image pg-name="$gr" />
+            </figure>
+
+            <p>Use the graph of <m>f</m> to find:</p>
+            <p><ol>
+              <li>
+                <p><m>\lim\limits_{x\to-\infty} f(x)=</m><var name="$L[0]" width="10"/></p>
+              </li>
+              <li>
+                <p><m>\lim\limits_{x\to\infty} f(x)=</m><var name="$L[1]" width="10"/></p>
+              </li>
+            </ol></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, numerically approximate some limits.</p>
+      </introduction>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>\frac{x^2-1}{x^2-x-6}</static>
+            </var>
+            <var name="$a">
+              <static>3</static>
+            </var>
+            <var name="$L[0]" category="number"><static>-\infty</static></var>
+            <var name="$L[1]" category="number"><static>\infty</static></var>
+            <var name="$L[2]" category="number"><static>\text{DNE}</static></var>
+            <var name="$x[0]"><static>2.9</static></var>
+            <var name="$x[1]"><static>2.99</static></var>
+            <var name="$x[2]"><static>2.999</static></var>
+            <var name="$x[3]"><static>3.1</static></var>
+            <var name="$x[4]"><static>3.01</static></var>
+            <var name="$x[5]"><static>3.001</static></var>
+            <var name="$y[0]"><static>-15.1224</static></var>
+            <var name="$y[1]"><static>-159.120</static></var>
+            <var name="$y[2]"><static>-1599.12</static></var>
+            <var name="$y[3]"><static>16.8823</static></var>
+            <var name="$y[4]"><static>160.880</static></var>
+            <var name="$y[5]"><static>1600.88</static></var>
+            <var name="$limit">
+              <static>\text{does not exist}</static>
+            </var>
+            <pg-code>
+              @b=map{$_-9}(NchooseK(19,4));
+              if($envir{problemSeed}==1){@b=(3,1,-1,-2);};
+              $a=$b[0];
+              $f=Formula("(x^2-($b[1]+$b[2])*x+$b[1]*$b[2])/(x^2-($a+$b[3])*x+$a*$b[3])")->reduce;
+              @x=($a-0.1,$a-0.01,$a-0.001,$a+0.1,$a+0.01,$a+0.001);
+              @y=map{$f->eval(x=>$_)}(@x);
+              $L[0]=($y[2]>0)?Compute("inf"):Compute("-inf");
+              $L[1]=($y[5]>0)?Compute("inf"):Compute("-inf");
+              $L[2]=($L[0]==$L[1])?$L[0]:Compute("DNE");
+              $limit=($L[2]==Compute("DNE"))?"does not exist":"is `".$L[2]->TeX."`";
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Numerically approximate the following limits, where <m>f(x)=<var name="$f" /></m>.</p>
+
+            <p><ol>
+              <li>
+                <p><m>\lim\limits_{x\to<var name="$a" />^{-}}f(x)=</m> <var name="$L[0]" width="10" /></p>
+              </li>
+              <li>
+                <p><m>\lim\limits_{x\to<var name="$a" />^{+}}f(x)=</m> <var name="$L[1]" width="10" /></p>
+              </li>
+              <li>
+                <p><m>\lim\limits_{x\to<var name="$a" />}f(x)=</m> <var name="$L[2]" width="10" /></p>
+              </li>
+            </ol></p>
+          </statement>
+          <solution>
+            <p>Tables will vary.</p>
+            <p><ol>
+              <li>
+                <tabular>
+                    <row bottom="minor">
+                      <cell><m>x</m></cell>
+                      <cell><m>f(x)</m></cell>
+                    </row>
+                    <row>
+                      <cell><m><var name="$x[0]" /></m></cell>
+                      <cell><m><var name="$y[0]" /></m></cell>
+                    </row>
+                    <row>
+                      <cell><m><var name="$x[1]" /></m></cell>
+                      <cell><m><var name="$y[1]" /></m></cell>
+                    </row>
+                    <row>
+                      <cell><m><var name="$x[2]" /></m></cell>
+                      <cell><m><var name="$y[2]" /></m></cell>
+                    </row>
+                </tabular>
+                <p>It seems <m>\lim\limits_{x\to<var name="$a" />^{-}}f(x)=<var name="$L[0]" /></m>.</p>
+              </li>
+
+              <li>
+                <tabular>
+                    <row bottom="minor">
+                      <cell><m>x</m></cell>
+                      <cell><m>f(x)</m></cell>
+                    </row>
+                    <row>
+                      <cell><m><var name="$x[3]" /></m></cell>
+                      <cell><m><var name="$y[3]" /></m></cell>
+                    </row>
+                    <row>
+                      <cell><m><var name="$x[4]" /></m></cell>
+                      <cell><m><var name="$y[4]" /></m></cell>
+                    </row>
+                    <row>
+                      <cell><m><var name="$x[5]" /></m></cell>
+                      <cell><m><var name="$y[5]" /></m></cell>
+                    </row>
+                </tabular>
+                <p>It seems <m>\lim\limits_{x\to<var name="$a" />^{+}}f(x)=<var name="$L[1]" /></m>.</p>
+              </li>
+
+              <li>
+                <p>It seems <m>\lim\limits_{x\to3}f(x) <var name="$limit" /></m>.</p>
+              </li>
+            </ol></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>\frac{x^2+5x-36}{x^3-5x^2+3x+9}</static>
+            </var>
+            <var name="$a">
+              <static>3</static>
+            </var>
+            <var name="$L[0]" category="number"><static>-\infty</static></var>
+            <var name="$L[1]" category="number"><static>-\infty</static></var>
+            <var name="$L[2]" category="number"><static>-\infty</static></var>
+            <var name="$x[0]"><static>2.9</static></var>
+            <var name="$x[1]"><static>2.99</static></var>
+            <var name="$x[2]"><static>2.999</static></var>
+            <var name="$x[3]"><static>3.1</static></var>
+            <var name="$x[4]"><static>3.01</static></var>
+            <var name="$x[5]"><static>3.001</static></var>
+            <var name="$y[0]"><static>-335.641</static></var>
+            <var name="$y[1]"><static>-30350.6</static></var>
+            <var name="$y[2]"><static>-3003500</static></var>
+            <var name="$y[3]"><static>-265.609</static></var>
+            <var name="$y[4]"><static>-29650.6</static></var>
+            <var name="$y[5]"><static>-2996500</static></var>
+            <var name="$limit">
+              <static>\text{is }-\infty</static>
+            </var>
+            <pg-code>
+              @b=map{$_-9}(NchooseK(19,4));
+              if($envir{problemSeed}==1){@b=(3,4,-9,-1);};
+              $a=$b[0];
+              $f=Formula("(x^2-($b[1]+$b[2])*x+$b[1]*$b[2])/(x^3-(2*$a+$b[3])*x^2+(2*$a*$b[3]+$a^2)*x-$a^2*$b[3])")->reduce;
+              @x=($a-0.1,$a-0.01,$a-0.001,$a+0.1,$a+0.01,$a+0.001);
+              @y=map{$f->eval(x=>$_)}(@x);
+              $L[0]=($y[2]>0)?Compute("inf"):Compute("-inf");
+              $L[1]=($y[5]>0)?Compute("inf"):Compute("-inf");
+              $L[2]=($L[0]==$L[1])?$L[0]:Compute("DNE");
+              $limit=($L[2]==Compute("DNE"))?"does not exist":"is `".$L[2]->TeX."`";
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Numerically approximate the following limits, where <m>f(x)=<var name="$f" /></m>.</p>
+
+            <p><ol>
+              <li>
+                <p><m>\lim\limits_{x\to<var name="$a" />^{-}}f(x)=</m> <var name="$L[0]" width="10" /></p>
+              </li>
+              <li>
+                <p><m>\lim\limits_{x\to<var name="$a" />^{+}}f(x)=</m> <var name="$L[1]" width="10" /></p>
+              </li>
+              <li>
+                <p><m>\lim\limits_{x\to<var name="$a" />}f(x)=</m> <var name="$L[2]" width="10" /></p>
+              </li>
+            </ol></p>
+          </statement>
+          <solution>
+            <p>Tables will vary.</p>
+            <p><ol>
+              <li>
+                <tabular>
+                    <row bottom="minor">
+                      <cell><m>x</m></cell>
+                      <cell><m>f(x)</m></cell>
+                    </row>
+                    <row>
+                      <cell><m><var name="$x[0]" /></m></cell>
+                      <cell><m><var name="$y[0]" /></m></cell>
+                    </row>
+                    <row>
+                      <cell><m><var name="$x[1]" /></m></cell>
+                      <cell><m><var name="$y[1]" /></m></cell>
+                    </row>
+                    <row>
+                      <cell><m><var name="$x[2]" /></m></cell>
+                      <cell><m><var name="$y[2]" /></m></cell>
+                    </row>
+                </tabular>
+                <p>It seems <m>\lim\limits_{x\to<var name="$a" />^{-}}f(x)=<var name="$L[0]" /></m>.</p>
+              </li>
+
+              <li>
+                <tabular>
+                    <row bottom="minor">
+                      <cell><m>x</m></cell>
+                      <cell><m>f(x)</m></cell>
+                    </row>
+                    <row>
+                      <cell><m><var name="$x[3]" /></m></cell>
+                      <cell><m><var name="$y[3]" /></m></cell>
+                    </row>
+                    <row>
+                      <cell><m><var name="$x[4]" /></m></cell>
+                      <cell><m><var name="$y[4]" /></m></cell>
+                    </row>
+                    <row>
+                      <cell><m><var name="$x[5]" /></m></cell>
+                      <cell><m><var name="$y[5]" /></m></cell>
+                    </row>
+                </tabular>
+                <p>It seems <m>\lim\limits_{x\to<var name="$a" />^{+}}f(x)=<var name="$L[1]" /></m>.</p>
+              </li>
+
+              <li>
+                <p>It seems <m>\lim\limits_{x\to3}f(x) <var name="$limit" /></m>.</p>
+              </li>
+            </ol></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>\frac{x^2-11x+30}{x^3-4x^2-3x+18}</static>
+            </var>
+            <var name="$a">
+              <static>3</static>
+            </var>
+            <var name="$L[0]" category="number"><static>\infty</static></var>
+            <var name="$L[1]" category="number"><static>\infty</static></var>
+            <var name="$L[2]" category="number"><static>\infty</static></var>
+            <var name="$x[0]"><static>2.9</static></var>
+            <var name="$x[1]"><static>2.99</static></var>
+            <var name="$x[2]"><static>2.999</static></var>
+            <var name="$x[3]"><static>3.1</static></var>
+            <var name="$x[4]"><static>3.01</static></var>
+            <var name="$x[5]"><static>3.001</static></var>
+            <var name="$y[0]"><static>132.857</static></var>
+            <var name="$y[1]"><static>12124.4</static></var>
+            <var name="$y[2]"><static>1201240</static></var>
+            <var name="$y[3]"><static>108.039</static></var>
+            <var name="$y[4]"><static>11876.4</static></var>
+            <var name="$y[5]"><static>1198760</static></var>
+            <var name="$limit">
+              <static>\text{is }\infty</static>
+            </var>
+            <pg-code>
+              @b=map{$_-9}(NchooseK(19,4));
+              if($envir{problemSeed}==1){@b=(3,5,6,-2);};
+              $a=$b[0];
+              $f=Formula("(x^2-($b[1]+$b[2])*x+$b[1]*$b[2])/(x^3-(2*$a+$b[3])*x^2+(2*$a*$b[3]+$a^2)*x-$a^2*$b[3])")->reduce;
+              @x=($a-0.1,$a-0.01,$a-0.001,$a+0.1,$a+0.01,$a+0.001);
+              @y=map{$f->eval(x=>$_)}(@x);
+              $L[0]=($y[2]>0)?Compute("inf"):Compute("-inf");
+              $L[1]=($y[5]>0)?Compute("inf"):Compute("-inf");
+              $L[2]=($L[0]==$L[1])?$L[0]:Compute("DNE");
+              $limit=($L[2]==Compute("DNE"))?"does not exist":"is `".$L[2]->TeX."`";
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Numerically approximate the following limits, where <m>f(x)=<var name="$f" /></m>.</p>
+
+            <p><ol>
+              <li>
+                <p><m>\lim\limits_{x\to<var name="$a" />^{-}}f(x)=</m> <var name="$L[0]" width="10" /></p>
+              </li>
+              <li>
+                <p><m>\lim\limits_{x\to<var name="$a" />^{+}}f(x)=</m> <var name="$L[1]" width="10" /></p>
+              </li>
+              <li>
+                <p><m>\lim\limits_{x\to<var name="$a" />}f(x)=</m> <var name="$L[2]" width="10" /></p>
+              </li>
+            </ol></p>
+          </statement>
+          <solution>
+            <p>Tables will vary.</p>
+            <p><ol>
+              <li>
+                <tabular>
+                    <row bottom="minor">
+                      <cell><m>x</m></cell>
+                      <cell><m>f(x)</m></cell>
+                    </row>
+                    <row>
+                      <cell><m><var name="$x[0]" /></m></cell>
+                      <cell><m><var name="$y[0]" /></m></cell>
+                    </row>
+                    <row>
+                      <cell><m><var name="$x[1]" /></m></cell>
+                      <cell><m><var name="$y[1]" /></m></cell>
+                    </row>
+                    <row>
+                      <cell><m><var name="$x[2]" /></m></cell>
+                      <cell><m><var name="$y[2]" /></m></cell>
+                    </row>
+                </tabular>
+                <p>It seems <m>\lim\limits_{x\to<var name="$a" />^{-}}f(x)=<var name="$L[0]" /></m>.</p>
+              </li>
+
+              <li>
+                <tabular>
+                    <row bottom="minor">
+                      <cell><m>x</m></cell>
+                      <cell><m>f(x)</m></cell>
+                    </row>
+                    <row>
+                      <cell><m><var name="$x[3]" /></m></cell>
+                      <cell><m><var name="$y[3]" /></m></cell>
+                    </row>
+                    <row>
+                      <cell><m><var name="$x[4]" /></m></cell>
+                      <cell><m><var name="$y[4]" /></m></cell>
+                    </row>
+                    <row>
+                      <cell><m><var name="$x[5]" /></m></cell>
+                      <cell><m><var name="$y[5]" /></m></cell>
+                    </row>
+                </tabular>
+                <p>It seems <m>\lim\limits_{x\to<var name="$a" />^{+}}f(x)=<var name="$L[1]" /></m>.</p>
+              </li>
+
+              <li>
+                <p>It seems <m>\lim\limits_{x\to3}f(x) <var name="$limit" /></m>.</p>
+              </li>
+            </ol></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>\frac{x^2-9x+18}{x^2-x-6}</static>
+            </var>
+            <var name="$a">
+              <static>3</static>
+            </var>
+            <var name="$L[0]" category="number"><static>0.6</static></var>
+            <var name="$L[1]" category="number"><static>0.6</static></var>
+            <var name="$L[2]" category="number"><static>0.6</static></var>
+            <var name="$x[0]"><static>2.9</static></var>
+            <var name="$x[1]"><static>2.99</static></var>
+            <var name="$x[2]"><static>2.999</static></var>
+            <var name="$x[3]"><static>3.1</static></var>
+            <var name="$x[4]"><static>3.01</static></var>
+            <var name="$x[5]"><static>3.001</static></var>
+            <var name="$y[0]"><static>-0.632653</static></var>
+            <var name="$y[1]"><static>-0.603206</static></var>
+            <var name="$y[2]"><static>-0.600320</static></var>
+            <var name="$y[3]"><static>-0.568627</static></var>
+            <var name="$y[4]"><static>-0.596806</static></var>
+            <var name="$y[5]"><static>-0.599680</static></var>
+            <var name="$limit">
+              <static>\text{is }-0.6</static>
+            </var>
+            <pg-code>
+              @b=map{$_-9}(NchooseK(19,4));
+              if($envir{problemSeed}==1){@b=(3,6,-2);};
+              $a=$b[0];
+              $f=Formula("(x^2-($a+$b[1])*x+$a*$b[1])/(x^2-($a+$b[2])*x+$a*$b[2])")->reduce;
+              @x=($a-0.1,$a-0.01,$a-0.001,$a+0.1,$a+0.01,$a+0.001);
+              @y=map{$f->eval(x=>$_)}(@x);
+              $L[0]=Real(($a-$b[1])/($a-$b[2]));
+              $L[1]=Real(($a-$b[1])/($a-$b[2]));
+              $L[2]=($L[0]==$L[1])?$L[0]:Compute("DNE");
+              $limit=($L[2]==Compute("DNE"))?"does not exist":"is `".$L[2]->TeX."`";
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Numerically approximate the following limits, where <m>f(x)=<var name="$f" /></m>.</p>
+
+            <p><ol>
+              <li>
+                <p><m>\lim\limits_{x\to<var name="$a" />^{-}}f(x)=</m> <var name="$L[0]" width="10" /></p>
+              </li>
+              <li>
+                <p><m>\lim\limits_{x\to<var name="$a" />^{+}}f(x)=</m> <var name="$L[1]" width="10" /></p>
+              </li>
+              <li>
+                <p><m>\lim\limits_{x\to<var name="$a" />}f(x)=</m> <var name="$L[2]" width="10" /></p>
+              </li>
+            </ol></p>
+          </statement>
+          <solution>
+            <p>Tables will vary.</p>
+            <p><ol>
+              <li>
+                <tabular>
+                    <row bottom="minor">
+                      <cell><m>x</m></cell>
+                      <cell><m>f(x)</m></cell>
+                    </row>
+                    <row>
+                      <cell><m><var name="$x[0]" /></m></cell>
+                      <cell><m><var name="$y[0]" /></m></cell>
+                    </row>
+                    <row>
+                      <cell><m><var name="$x[1]" /></m></cell>
+                      <cell><m><var name="$y[1]" /></m></cell>
+                    </row>
+                    <row>
+                      <cell><m><var name="$x[2]" /></m></cell>
+                      <cell><m><var name="$y[2]" /></m></cell>
+                    </row>
+                </tabular>
+                <p>It seems <m>\lim\limits_{x\to<var name="$a" />^{-}}f(x)=<var name="$L[0]" /></m>.</p>
+              </li>
+
+              <li>
+                <tabular>
+                    <row bottom="minor">
+                      <cell><m>x</m></cell>
+                      <cell><m>f(x)</m></cell>
+                    </row>
+                    <row>
+                      <cell><m><var name="$x[3]" /></m></cell>
+                      <cell><m><var name="$y[3]" /></m></cell>
+                    </row>
+                    <row>
+                      <cell><m><var name="$x[4]" /></m></cell>
+                      <cell><m><var name="$y[4]" /></m></cell>
+                    </row>
+                    <row>
+                      <cell><m><var name="$x[5]" /></m></cell>
+                      <cell><m><var name="$y[5]" /></m></cell>
+                    </row>
+                </tabular>
+                <p>It seems <m>\lim\limits_{x\to<var name="$a" />^{+}}f(x)=<var name="$L[1]" /></m>.</p>
+              </li>
+
+              <li>
+                <p>It seems <m>\lim\limits_{x\to3}f(x) <var name="$limit" /></m>.</p>
+              </li>
+            </ol></p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, identify the horizontal and vertical asymptotes, if any, of the given function.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>\frac{2 x^2-2 x-4}{x^2+x-20}</static>
+            </var>
+            <var name="$asymptotes">
+              <static>y=2, x=4, x=-5</static>
+            </var>
+            <pg-code>
+              $c[0]=random(2,5,1);
+              $c[1]=non_zero_random(-9,9,1);
+              @b=map{($_==9)?10:$_-9}(NchooseK(19,3));
+              if($envir{problemSeed}==1){@c=(2,-2);@b=(2,4,-5)};
+              $f=Formula("($c[0] x^2-($c[1]+$b[0]*$c[0])*x+$b[0]*$c[1])/(x^2-($b[1]+$b[2])*x+$b[1]*$b[2])")->reduce;
+              parser::Assignment->Allow;
+              Context()->variables->are(x=>'Real',y=>'Real');
+              Context()->flags->set(reduceConstants=>0);
+              $asymptotes=Formula("y=$c[0],x=$b[1],x=$b[2]");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Identify the horizontal and vertical asymptotes, if any, of <m>f</m> where <me>f(x)=<var name="$f" />\text{.}</me> Submit your answer as a list, using commas. Each asymptote is line of the form <c>x=...</c> or <c>y=...</c>. If there are no such asymptotes, enter an answer of <c>NONE</c>.</p>
+            <p><var name="$asymptotes" width="30" /></p>
+          </statement>
+          <solution>
+            <p>There are horizontal/vertical asymptotes at <m><var name="$asymptotes" /></m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>\frac{-3 x^2-9 x-6}{5 x^2-10 x-15}</static>
+            </var>
+            <var name="$asymptotes">
+              <static>y=-\frac{3}{5}, x=3</static>
+            </var>
+            <pg-code>
+              $c[0]=random(2,5,1);
+              $c[1]=non_zero_random(-9,9,1);
+              @b=map{($_==9)?10:$_-9}(NchooseK(19,3));
+              if($envir{problemSeed}==1){@c=(-3,6);@b=(-1,3,5)};
+              Context()->noreduce('(-x)+y','(-x)-y');
+              $f=Formula("($c[0] x^2-($c[1]+$b[0]*$c[0])*x+$b[0]*$c[1])/($b[2]*x^2-$b[2]*($b[0]+$b[1])*x+$b[0]*$b[1]*$b[2])")->reduce;
+              parser::Assignment->Allow;
+              Context()->variables->are(x=>'Real',y=>'Real');
+              Context()->flags->set(reduceConstants=>0);
+              $asymptotes=Compute("y=$c[0]/$b[2],x=$b[1]");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Identify the horizontal and vertical asymptotes, if any, of <m>f</m> where <me>f(x)=<var name="$f" />\text{.}</me> Submit your answer as a list, using commas. Each asymptote is line of the form <c>x=...</c> or <c>y=...</c>. If there are no such asymptotes, enter an answer of <c>NONE</c>.</p>
+            <p><var name="$asymptotes" width="30" /></p>
+          </statement>
+          <solution>
+            <p>There are horizontal/vertical asymptotes at <m><var name="$asymptotes" /></m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>\frac{x^2+x-12}{7 x^3-14 x^2-21 x}</static>
+            </var>
+            <var name="$asymptotes">
+              <static>y=0, x=0, x=-1</static>
+            </var>
+            <pg-code>
+              $c[0]=random(1,5,1);
+              $c[1]=non_zero_random(-9,9,1);
+              @b=map{($_==9)?10:$_-9}(NchooseK(19,3));
+              if($envir{problemSeed}==1){@c=(1,-4);@b=(3,-1,7)};
+              Context()->noreduce('(-x)+y','(-x)-y');
+              $f=Formula("($c[0] x^2-($c[1]+$b[0]*$c[0])*x+$b[0]*$c[1])/($b[2]*x^3-$b[2]*($b[0]+$b[1])*x^2+$b[0]*$b[1]*$b[2]*x)")->reduce;
+              parser::Assignment->Allow;
+              Context()->variables->are(x=>'Real',y=>'Real');
+              Context()->flags->set(reduceConstants=>0);
+              $asymptotestring="y=0,x=0,x=$b[1]";
+              $asymptotes=Compute("$asymptotestring");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Identify the horizontal and vertical asymptotes, if any, of <m>f</m> where <me>f(x)=<var name="$f" />\text{.}</me> Submit your answer as a list, using commas. Each asymptote is line of the form <c>x=...</c> or <c>y=...</c>. If there are no such asymptotes, enter an answer of <c>NONE</c>.</p>
+            <p><var name="$asymptotes" width="30" /></p>
+          </statement>
+          <solution>
+            <p>There are horizontal/vertical asymptotes at <m><var name="$asymptotes" /></m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>\frac{x^2-9}{9x-9}</static>
+            </var>
+            <var name="$asymptotes">
+              <static>x=1</static>
+            </var>
+            <pg-code>
+              $c[0]=random(1,5,1);
+              $c[1]=non_zero_random(-9,9,1);
+              @b=map{($_==9)?10:$_-9}(NchooseK(19,3));
+              if($envir{problemSeed}==1){@c=(1,3);@b=(-3,1,9)};
+              Context()->noreduce('(-x)+y','(-x)-y');
+              $f=Formula("($c[0] x^2-($c[1]+$b[0]*$c[0])*x+$b[0]*$c[1])/($b[2]*x-$b[2]*$b[1])")->reduce;
+              parser::Assignment->Allow;
+              Context()->variables->are(x=>'Real',y=>'Real');
+              Context()->flags->set(reduceConstants=>0);
+              $asymptotestring="x=$b[1]";
+              $asymptotes=Compute("$asymptotestring");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Identify the horizontal and vertical asymptotes, if any, of <m>f</m> where <me>f(x)=<var name="$f" />\text{.}</me> Submit your answer as a list, using commas. Each asymptote is line of the form <c>x=...</c> or <c>y=...</c>. If there are no such asymptotes, enter an answer of <c>NONE</c>.</p>
+            <p><var name="$asymptotes" width="30" /></p>
+          </statement>
+          <solution>
+            <p>There are horizontal/vertical asymptotes at <m><var name="$asymptotes" /></m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>\frac{x^2-9}{9x+27}</static>
+            </var>
+            <var name="$asymptotes">
+              <static>\text{NONE}</static>
+            </var>
+            <pg-code>
+              $c[0]=random(1,5,1);
+              $c[1]=non_zero_random(-9,9,1);
+              @b=map{($_==9)?10:$_-9}(NchooseK(19,3));
+              if($envir{problemSeed}==1){@c=(1,3);@b=(-3,1,9)};
+              Context()->noreduce('(-x)+y','(-x)-y');
+              $f=Formula("($c[0] x^2-($c[1]+$b[0]*$c[0])*x+$b[0]*$c[1])/($b[2]*x-$b[2]*$b[0])")->reduce;
+              parser::Assignment->Allow;
+              Context()->variables->are(x=>'Real',y=>'Real');
+              Context()->flags->set(reduceConstants=>0);
+              $asymptotes=Compute("NONE");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Identify the horizontal and vertical asymptotes, if any, of <m>f</m> where <me>f(x)=<var name="$f" />\text{.}</me> Submit your answer as a list, using commas. Each asymptote is line of the form <c>x=...</c> or <c>y=...</c>. If there are no such asymptotes, enter an answer of <c>NONE</c>.</p>
+            <p><var name="$asymptotes" width="30" /></p>
+          </statement>
+          <solution>
+            <p>There are horizontal/vertical asymptotes at <m><var name="$asymptotes" /></m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>\frac{x^2-1}{-x^2-1}</static>
+            </var>
+            <var name="$asymptotes">
+              <static>y=-1</static>
+            </var>
+            <pg-code>
+              $c[0]=random(1,5,1);
+              $c[1]=random(-5,-1,1);
+              @b=map{($_==9)?10:$_-9}(NchooseK(19,2));
+              $b[2]=random(-2,2,1);
+              $b[3]=random(1,5,1);
+              if($envir{problemSeed}==1){@c=(1,-1);@b=(1,-1,0,1)};
+              Context()->noreduce('(-x)+y','(-x)-y');
+              $f=Formula("($c[0] x^2-($b[0]+$b[1])*$c[0]*x+$b[0]*$b[1]*$c[0])/($c[1] x^2-2*$b[2]*$c[1]*x+($b[2]^2+$b[3])*$c[1])")->reduce;
+              parser::Assignment->Allow;
+              Context()->variables->are(x=>'Real',y=>'Real');
+              Context()->flags->set(reduceConstants=>0);
+              $asymptotes=Compute("y=$c[0]/$c[1]");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Identify the horizontal and vertical asymptotes, if any, of <m>f</m> where <me>f(x)=<var name="$f" />\text{.}</me> Submit your answer as a list, using commas. Each asymptote is line of the form <c>x=...</c> or <c>y=...</c>. If there are no such asymptotes, enter an answer of <c>NONE</c>.</p>
+            <p><var name="$asymptotes" width="30" /></p>
+          </statement>
+          <solution>
+            <p>There are horizontal/vertical asymptotes at <m><var name="$asymptotes" /></m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, evaluate the given limit.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$a">
+              <static>\infty</static>
+            </var>
+            <var name="$f">
+              <static>\frac{x^3+2x^2+1}{x-5}</static>
+            </var>
+            <var name="$L">
+              <static>\infty</static>
+            </var>
+            <pg-code>
+              $a=list_random(Compute("inf"),Compute("-inf"));
+              @b=map{($_==9)?10:$_-9}(NchooseK(19,3));
+              @c=map{($_==9)?10:$_-9}(NchooseK(19,2));
+              if($envir{problemSeed}==1){$a=Compute("inf");@b=(2,0,1);@c=(1,-5)};
+              $f=Formula("(x^3+$b[0]*x^2+$b[1]*x+$b[2])/($c[0]*x+$c[1])")->reduce;
+              $L=($c[0]>0)?Compute("inf"):Compute("-inf");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\displaystyle\lim_{x\to<var name="$a" />}<var name="$f" />=</m><var name="$L" width="10" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$a">
+              <static>\infty</static>
+            </var>
+            <var name="$f">
+              <static>\frac{x^3+2x^2+1}{5-x}</static>
+            </var>
+            <var name="$L">
+              <static>-\infty</static>
+            </var>
+            <pg-code>
+              $a=list_random(Compute("inf"),Compute("-inf"));
+              @b=map{($_==9)?10:$_-9}(NchooseK(19,3));
+              @c=map{($_==9)?10:$_-9}(NchooseK(19,2));
+              if($envir{problemSeed}==1){$a=Compute("inf");@b=(2,0,1);@c=(-1,5)};
+              $f=Formula("(x^3+$b[0]*x^2+$b[1]*x+$b[2])/($c[0]*x+$c[1])")->reduce;
+              $L=($c[0]>0)?Compute("inf"):Compute("-inf");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\displaystyle\lim_{x\to<var name="$a" />}<var name="$f" />=</m><var name="$L" width="10" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$a">
+              <static>-\infty</static>
+            </var>
+            <var name="$f">
+              <static>\frac{x^3+2x^2+1}{x^2-5}</static>
+            </var>
+            <var name="$L">
+              <static>-\infty</static>
+            </var>
+            <pg-code>
+              $a=list_random(Compute("inf"),Compute("-inf"));
+              @b=map{($_==9)?10:$_-9}(NchooseK(19,3));
+              @c=map{($_==9)?10:$_-9}(NchooseK(19,2));
+              if($envir{problemSeed}==1){$a=Compute("-inf");@b=(2,0,1);@c=(1,-5)};
+              $f=Formula("(x^3+$b[0]*x^2+$b[1]*x+$b[2])/($c[0]*x^2+$c[1])")->reduce;
+              $L=($c[0]>0 and $a==Compute("inf") or $c[0]&lt;0 and $a==Compute("-inf"))?Compute("inf"):Compute("-inf");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\displaystyle\lim_{x\to<var name="$a" />}<var name="$f" />=</m><var name="$L" width="10" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$a">
+              <static>-\infty</static>
+            </var>
+            <var name="$f">
+              <static>\frac{x^3+2x^2+1}{x^2-5}</static>
+            </var>
+            <var name="$L">
+              <static>-\infty</static>
+            </var>
+            <pg-code>
+              $a=list_random(Compute("inf"),Compute("-inf"));
+              @b=map{($_==9)?10:$_-9}(NchooseK(19,3));
+              @c=map{($_==9)?10:$_-9}(NchooseK(19,2));
+              if($envir{problemSeed}==1){$a=Compute("-inf");@b=(2,0,1);@c=(-1,5)};
+              $f=Formula("(x^3+$b[0]*x^2+$b[1]*x+$b[2])/($c[0]*x^2+$c[1])")->reduce;
+              $L=($c[0]>0 and $a==Compute("inf") or $c[0]&lt;0 and $a==Compute("-inf"))?Compute("inf"):Compute("-inf");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\displaystyle\lim_{x\to<var name="$a" />}<var name="$f" />=</m><var name="$L" width="10" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>The following exercises are review from prior sections.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <statement>
+            <p>Use an <m>\varepsilon</m>-<m>\delta</m> proof to prove that <me>\lim\limits_{x\to 1}(5x-2)=3</me></p>
+            <p><var form="essay" /></p>
+          </statement>
+          <solution>
+            <p>Let <m>\varepsilon>0</m> be given. We wish to find <m>\delta>0</m> such that when <m>\abs{x-1}\lt\delta</m>, <m>\abs{f(x)-3}\lt\varepsilon</m>.</p>
+
+            <p>First, some preliminary investigation to find a suitable <m>\delta</m>. Consider <m>\abs{f(x)-3}\lt\varepsilon</m>:<md>
+                <mrow>\abs{f(x)-3}\amp\lt\varepsilon</mrow>
+                <mrow>\abs{(5x-2)-3}\amp\lt\varepsilon</mrow>
+                <mrow>\abs{5x-5}\amp\lt\varepsilon</mrow>
+                <mrow>\abs{x-1}\amp\lt\varepsilon/5</mrow>
+            </md>Since we want to start with <m>\abs{x-1}\lt\delta</m>, this suggests we let <m>\delta=\varepsilon/5</m>.</p>
+
+            <p>Now we can apply the definition.<md>
+                <mrow>\abs{x-1}\amp\lt\delta</mrow>
+                <mrow>\abs{x-1}\amp\lt\varepsilon/5</mrow>
+                <mrow>-\varepsilon/5\lt x-1\amp\lt\varepsilon/5</mrow>
+                <mrow>-\varepsilon\lt 5(x-1)\amp\lt\varepsilon</mrow>
+                <mrow>-\varepsilon\lt 5x-5\amp\lt\varepsilon</mrow>
+                <mrow>-\varepsilon\lt (5x-2)-3\amp\lt\varepsilon</mrow>
+                <mrow>\abs{(5x-2)-3}\amp\lt\varepsilon\text{.}</mrow>
+            </md>In other words, <m>\abs{x-1}\lt\delta</m> implies <m>\abs{(5x-2)-3}\lt\varepsilon</m>. This is what we needed to prove.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$a">
+              <static>2</static>
+            </var>
+            <var name="$L[0]"><static>3</static></var>
+            <var name="$L[1]"><static>-1</static></var>
+            <var name="$L[2]"><static>2</static></var>
+            <var name="$L[3]"><static>-3</static></var>
+            <var name="$L[4]"><static>-3</static></var>
+            <var name="$L[5]"><static>\frac{1}{3}</static></var>
+            <pg-code>
+              $a=random(-9,9,1);
+              do{$L[0]=non_zero_random(-9,9,1);$L[1]=non_zero_random(-3,3,1);}until($L[0]!=$L[1]);
+              if($envir{problemSeed}==1){$a=2;@L=(3,-1)};
+              $L[2]=$L[0]+$L[1];
+              $L[3]=$L[0]*$L[1];
+              Context("Fraction");
+              $L[4]=Fraction($L[0]/$L[1]);
+              $L[5]=Fraction(($L[0])**($L[1]));
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Let <m>\lim\limits_{x\to<var name="$a" />} f(x) = <var name="$L[0]" /></m> and <m>\lim\limits_{x\to<var name="$a" />} g(x) = <var name="$L[1]" /></m>. Evaluate the following limits.</p>
+
+            <p><ol cols="2" >
+              <li>
+                <p><m>\displaystyle\lim_{x\to<var name="$a" />}(f+g)(x)=</m><var name="$L[2]" width="5" /></p>
+              </li>
+              <li>
+                <p><m>\displaystyle\lim_{x\to<var name="$a" />}(fg)(x)=</m><var name="$L[3]" width="5" /></p>
+              </li>
+              <li>
+                <p><m>\displaystyle\lim_{x\to<var name="$a" />}(f/g)(x)=</m><var name="$L[4]" width="5" /></p>
+              </li>
+              <li>
+                <p><m>\displaystyle\lim_{x\to<var name="$a" />}f(x)^{g(x)}=</m><var name="$L[5]" width="5" /></p>
+              </li>
+            </ol></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f[0]">
+              <static>x^2-1</static>
+            </var>
+            <var name="$f[1]">
+              <static>x+5</static>
+            </var>
+            <var name="$a">
+              <static>3</static>
+            </var>
+            <var name="$yesno">
+              <set>
+                <member correct="yes">\text{yes}</member>
+                <member>\text{no}</member>
+              </set>
+            </var>
+            <pg-code>
+              $b[0]=random(-1,1,1);
+              $b[3]=random(-1,1,1);
+              for my$i(1,2,4,5){$b[$i]=random(-5,5,1);};
+              $a=non_zero_random(-3,3,1);
+              $continuous=list_random('yes','no');
+              if($envir{problemSeed}==1){$a=3;@b=(1,1,-1,0,-1,5);$continuous='yes'};
+              if($continuous eq'yes'){$b[5]=$b[0]*$a**2-($b[1]+$b[0]*$b[2])*$a+$b[1]*$b[2]-$b[3]*$a**2+($b[4]+$b[3]*$b[5])*$a;};
+              $f[0]=Formula("$b[0]*x^2-($b[1]+$b[0]*$b[2])*x+$b[1]*$b[2]")->reduce;
+              $f[1]=Formula("$b[3]*x^2-($b[4]+$b[3]*$b[5])*x+$b[4]*$b[5]")->reduce;
+              $yesno=PopUp(['?','yes','no'],$continuous);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Let <m>f(x) = \begin{cases}<var name="$f[0]" />\amp x\lt<var name="$a" />\\<var name="$f[1]" />\amp x\geq<var name="$a" />\end{cases}\text{.}</m> Is <m>f</m> continuous everywhere? <var name="$yesno" form="popup" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$L">
+              <static>1</static>
+            </var>
+            <pg-code>
+              $L=1;
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Evaluate the limit:</p>
+            <p><m>\lim\limits_{x\to e} \ln(x)=</m><var name="$L" width="10" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

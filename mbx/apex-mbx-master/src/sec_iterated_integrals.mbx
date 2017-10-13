@@ -1,0 +1,1616 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_iterated_integrals">
+  <title>Iterated Integrals and Area</title>
+  <introduction>
+    <p>In <xref ref="chap_multi">Chapter</xref> we found that it was useful to differentiate functions of several variables with respect to one variable, while treating all the other variables as constants or coefficients. We can integrate functions of several variables in a similar way. For instance, if we are told that <m>f_x(x,y) = 2xy</m>, we can treat <m>y</m> as staying constant and integrate to obtain <m>f(x,y)</m>:
+      <md>
+        <mrow>f(x,y) \amp = \int f_x(x,y)\ dx</mrow>
+        <mrow>\amp = \int 2xy\ dx</mrow>
+        <mrow>\amp = x^2y + C.</mrow>
+      </md>
+    </p>
+
+    <p>Make a careful note about the constant of integration, <m>C</m>. This <q>constant</q> is something with a derivative of <m>0</m> with respect to <m>x</m>, so it could be any expression that contains only constants and functions of <m>y</m>. For instance, if <m>f(x,y) = x^2y+ \sin(y) + y^3 + 17</m>, then <m>f_x(x,y) = 2xy</m>. To signify that <m>C</m> is actually a function of <m>y</m>, we write:
+      <index><main>integration</main><sub>of multivariable functions</sub></index>
+      <me>
+        f(x,y) = \int f_x(x,y)\ dx  = x^2y+C(y).
+      </me>
+    </p>
+
+    <p>Using this process we can even evaluate definite integrals.</p>
+
+    <example xml:id="ex_iterated1">
+      <title>Integrating functions of more than one variable</title>
+      <statement>
+        <p>Evaluate the integral <m>\ds \int_1^{2y} 2xy\ dx</m>.</p>
+      </statement>
+      <solution>
+        <p>We find the indefinite integral as before, then apply the Fundamental Theorem of Calculus to evaluate the definite integral:
+          <md>
+            <mrow>\int_1^{2y} 2xy\ dx \amp = x^2y\Big|_1^{2y}</mrow>
+            <mrow>\amp = (2y)^2y - (1)^2y</mrow>
+            <mrow>\amp = 4y^3-y.</mrow>
+          </md>
+        </p>
+      </solution>
+    </example>
+
+    <p>We can also integrate with respect to <m>y</m>. In general,
+      <me>
+        \int_{h_1(y)}^{h_2(y)} f_x(x,y)\ dx = f(x,y)\Big|_{h_1(y)}^{h_2(y)} = f\big(h_2(y),y\big)-f\big(h_1(y),y\big),
+      </me>
+      and
+      <me>
+        \int_{g_1(x)}^{g_2(x)} f_y(x,y)\ dy = f(x,y)\Big|_{g_1(x)}^{g_2(x)} = f\big(x,g_2(x)\big)-f\big(x,g_1(x)\big).
+      </me>
+    </p>
+
+    <p>Note that when integrating with respect to <m>x</m>, the bounds are functions of <m>y</m> (of the form <m>x=h_1(y)</m> and <m>x=h_2(y)</m>) and the final result is also a function of <m>y</m>. When integrating with respect to <m>y</m>, the bounds are functions of <m>x</m> (of the form <m>y=g_1(x)</m> and <m>y=g_2(x)</m>) and the final result is a function of <m>x</m>. Another example will help us understand this.</p>
+
+    <example xml:id="ex_iterated2">
+      <title>Integrating functions of more than one variable</title>
+      <statement>
+        <p>Evaluate <m>\ds \int_1^x\big(5x^3y^{-3}+6y^2\big)\ dy</m>.</p>
+      </statement>
+      <solution>
+        <p>We consider <m>x</m> as staying constant and integrate with respect to <m>y</m>:
+          <md>
+            <mrow>\int_1^x\big(5x^3y^{-3}+6y^2\big)\ dy \amp  = \left(\frac{5x^3y^{-2}}{-2}+\frac{6y^3}{3}\right)\Bigg|_1^x</mrow>
+            <mrow>\amp = \left(-\frac52x^3x^{-2}+2x^3\right) - \left(-\frac52x^3+2\right)</mrow>
+            <mrow>\amp = \frac92x^3-\frac52x-2.</mrow>
+          </md>
+        </p>
+
+        <p>Note how the bounds of the integral are from <m>y=1</m> to <m>y=x</m> and that the final answer is a function of <m>x</m>.</p>
+      </solution>
+    </example>
+
+    <p>In the previous example, we integrated a function with respect to <m>y</m> and ended up with a function of <m>x</m>. We can integrate this as well. This process is known as <em>iterated integration</em>, or <em>multiple integration.</em></p>
+
+    <example xml:id="ex_iterated3">
+      <title>Integrating an integral</title>
+      <statement>
+        <p>Evaluate <m>\ds \int_1^2\left(\int_1^x\big(5x^3y^{-3}+6y^2\big)\ dy\right)\ dx</m>.</p>
+      </statement>
+      <solution>
+        <p>We follow a standard <q>order of operations</q> and perform the operations inside parentheses first (which is the integral evaluated in <xref ref="ex_iterated2">Example</xref>.)
+          <md>
+            <mrow>\int_1^2\left(\int_1^x\big(5x^3y^{-3}+6y^2\big)\ dy\right)\ dx \amp = \int_1^2 \left(\left[\frac{5x^3y^{-2}}{-2}+\frac{6y^3}{3}\right]\Bigg|_1^x\right)\ dx</mrow>
+            <mrow>\amp = \int_1^2 \left(\frac92x^3-\frac52x-2\right)\ dx</mrow>
+            <mrow>\amp = \left(\frac98x^4-\frac54x^2-2x\right)\Bigg|_1^2</mrow>
+            <mrow>\amp = \frac{89}8.</mrow>
+          </md>
+        </p>
+
+        <p>Note how the bounds of <m>x</m> were <m>x=1</m> to <m>x=2</m> and the final result was a number.</p>
+      </solution>
+    </example>
+
+    <p>The previous example showed how we could perform something called an iterated integral; we do not yet know <em>why</em> we would be interested in doing so nor what the result, such as the number <m>89/8</m>, <em>means</em>. Before we investigate these questions, we offer some definitions.</p>
+
+    <definition xml:id="def_iterated_integral">
+      <title>Iterated Integration</title>
+      <statement>
+        <p><term>Iterated integration</term> is the process of repeatedly integrating the results of previous integrations. Integrating one integral is denoted as follows.</p>
+
+        <p>Let <m>a</m>, <m>b</m>, <m>c</m> and <m>d</m> be numbers and let <m>g_1(x)</m>, <m>g_2(x)</m>, <m>h_1(y)</m> and <m>h_2(y)</m> be functions of <m>x</m> and <m>y</m>, respectively. Then:
+          <index><main>integration</main><sub>iterated</sub></index><index><main>integration</main><sub>multiple</sub></index><index><main>iterated integration</main></index><index><main>multiple integration|see{iterated integration}</main></index><index><main>integration</main><sub>notation</sub></index></p>
+
+        <ol>
+          <li><p><m>\ds \int_c^d\int_{h_1(y)}^{h_2(y)} f(x,y)\ dx\ dy = \int_c^d\left(\int_{h_1(y)}^{h_2(y)} f(x,y)\ dx\right) dy</m>.</p></li>
+
+          <li><p><m>\ds \int_a^b\int_{g_1(x)}^{g_2(x)} f(x,y)\ dy\ dx = \int_a^b\left(\int_{g_1(x)}^{g_2(x)} f(x,y)\ dy\right) dx</m>.</p></li>
+        </ol>
+      </statement>
+    </definition>
+
+    <p>Again make note of the bounds of these iterated integrals.</p>
+
+    <p>With <m>\ds \int_c^d\int_{h_1(y)}^{h_2(y)} f(x,y)\ dx\ dy</m>, <m>x</m> varies from <m>h_1(y)</m> to <m>h_2(y)</m>, whereas <m>y</m> varies from <m>c</m> to <m>d</m>. That is, the bounds of <m>x</m> are <em>curves</em>, the curves <m>x=h_1(y)</m> and <m>x=h_2(y)</m>, whereas the bounds of <m>y</m> are <em>constants</em>, <m>y=c</m> and <m>y=d</m>. It is useful to remember that when setting up and evaluating such iterated integrals, we integrate <q>from curve to curve, then from point to point.</q></p>
+
+    <p>We now begin to investigate <em>why</em> we are interested in iterated integrals and <em>what</em> they mean.</p>
+  </introduction>
+
+  <subsection>
+    <title>Area of a plane region</title>
+    <p>Consider the plane region <m>R</m> bounded by <m>a\leq x\leq b</m> and <m>g_1(x)\leq y\leq g_2(x)</m>, shown in <xref ref="fig_iterated_intro">Figure</xref>. We learned in <xref ref="sec_ABC">Section</xref> that the area of <m>R</m> is given by
+      <index><main>integration</main><sub>area</sub></index>
+      <me>
+        \int_a^b \big(g_2(x)-g_1(x)\big)\ dx.
+      </me>
+    </p>
+
+    <figure xml:id="fig_iterated_intro" >
+      <caption>Calculating the area of a plane region <m>R</m> with an iterated integral.</caption>
+      <!-- START figures/fig_iterated_intro.tex -->
+      <image xml:id="img_iterated_intro" >
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+          \begin{axis}[%
+          axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick=\empty,%
+			ytick=\empty,
+			extra x ticks={.1,.9},
+			extra x tick labels={$a$,$b$},
+          %			ytick={-1,1,2,3},
+			%%extra y ticks={-5,-3,...,7},%
+          %			minor x tick num=4,
+			ymin=-.1,ymax=1,%
+			xmin=-.1,xmax=1%
+          ]
+
+          %\addplot [thick, {\coloronefill},fill={\coloronefill}] coordinates { (2.,-2.)(1.805,-1.9)(1.62,-1.8)(1.445,-1.7)(1.28,-1.6)(1.125,-1.5)(0.98,-1.4)(0.845,-1.3)(0.72,-1.2)(0.605,-1.1)(0.5,-1.)(0.405,-0.9)(0.32,-0.8)(0.245,-0.7)(0.18,-0.6)(0.125,-0.5)(0.08,-0.4)(0.045,-0.3)(0.02,-0.2)(0.005,-0.1)(0,0)(0.005,0.1)(0.02,0.2)(0.045,0.3)(0.08,0.4)(0.125,0.5)(0.18,0.6)(0.245,0.7)(0.32,0.8)(0.405,0.9)(0.5,1.)(2,-2)};
+
+          \addplot [smooth,thick, {\colorone},samples=40,domain=0:1] ({x},{.3*x^2+.1});
+
+          \addplot [smooth,thick, {\colorone},samples=40,domain=0:1] ({x},{.2*cos(deg(3*x))+.7});
+
+          \draw [thick,{\colortwo}] (axis cs: .1,0) -- (axis cs: .1,1);
+          \draw [thick,{\colortwo}] (axis cs: .9,0) -- (axis cs: .9,1);
+
+          \draw (axis cs:.5,.5) node {\scriptsize $R$};
+          \draw (axis cs:.55,.1) node {\scriptsize $y=g_1(x)$};
+          \draw (axis cs:.5,.87) node {\scriptsize $y=g_2(x)$};
+          %
+          %\addplot [smooth,thick, {\colorone},samples=40,domain=1:3] {.25*(x-3)^2+1} node [shift={(-25pt,25pt)} ,black] {\scriptsize $y=x^2+1$};
+          %
+          %\draw [smooth,thick, {\colorone}] (axis cs:2,-2) --  node [pos=.85,shift={(30pt,0pt)},black] {\scriptsize $x=-1/2y+1$} (axis cs:.5,1);
+
+          %\draw [smooth,thick, {\colorone}] (axis cs:2,-1) --  node [pos=.3,shift={(-25pt,0pt)},black] {\scriptsize $y=-1/2x$} (axis cs:0,0);
+
+          \end{axis}
+
+
+
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_iterated_intro.tex END -->
+    </figure>
+
+    <p>We can view the expression <m>\big(g_2(x)-g_1(x)\big)</m> as
+      <me>
+        \big(g_2(x)-g_1(x)\big) = \int_{g_1(x)}^{g_2(x)} 1\ dy =\int_{g_1(x)}^{g_2(x)} \ dy,
+      </me>
+      meaning we can express the area of <m>R</m> as an iterated integral:
+      <me>
+        \text{ area of } R = \int_a^b \big(g_2(x)-g_1(x)\big)\ dx = \int_a^b\left(\int_{g_1(x)}^{g_2(x)} \ dy\right) dx =\int_a^b\int_{g_1(x)}^{g_2(x)} \ dy\ dx.
+      </me>
+    </p>
+
+    <p>In short: a certain iterated integral can be viewed as giving the area of a plane region.</p>
+
+    <p>A region <m>R</m> could also be defined by <m>c\leq y\leq d</m> and <m>h_1(y)\leq x\leq h_2(y)</m>, as shown in <xref ref="fig_iterated_intro2">Figure</xref>. Using a process similar to that above, we have
+      <me>
+        \text{ the area of } R = \int_c^d\int_{h_1(y)}^{h_2(y)} \ dx\ dy.
+      </me>
+    </p>
+
+    <figure xml:id="fig_iterated_intro2" >
+      <caption>Calculating the area of a plane region <m>R</m> with an iterated integral.</caption>
+      <!-- START figures/fig_iterated_intro2.tex -->
+      <image xml:id="img_iterated_intro2" >
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+          \begin{axis}[%
+          axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick=\empty,%
+			ytick=\empty,
+			extra y ticks={.1,.9},
+			extra y tick labels={$c$,$d$},
+          %			ytick={-1,1,2,3},
+			%%extra y ticks={-5,-3,...,7},%
+          %			minor x tick num=4,
+			ymin=-.1,ymax=1,%
+			xmin=-.1,xmax=1%
+          ]
+
+          %\addplot [thick, {\coloronefill},fill={\coloronefill}] coordinates { (2.,-2.)(1.805,-1.9)(1.62,-1.8)(1.445,-1.7)(1.28,-1.6)(1.125,-1.5)(0.98,-1.4)(0.845,-1.3)(0.72,-1.2)(0.605,-1.1)(0.5,-1.)(0.405,-0.9)(0.32,-0.8)(0.245,-0.7)(0.18,-0.6)(0.125,-0.5)(0.08,-0.4)(0.045,-0.3)(0.02,-0.2)(0.005,-0.1)(0,0)(0.005,0.1)(0.02,0.2)(0.045,0.3)(0.08,0.4)(0.125,0.5)(0.18,0.6)(0.245,0.7)(0.32,0.8)(0.405,0.9)(0.5,1.)(2,-2)};
+
+          \addplot [smooth,thick, {\colorone},samples=40,domain=0:1] ({.3*x^2+.1},x);
+
+          \addplot [smooth,thick, {\colorone},samples=40,domain=0:1] ({.2*sin(deg(3*x))+.7},{x});
+
+          \draw [thick,{\colortwo}] (axis cs: 0,.1) -- (axis cs: 1,.1);
+          \draw [thick,{\colortwo}] (axis cs: 0,.9) -- (axis cs: 1,.9);
+
+          \draw (axis cs:.5,.5) node {\scriptsize $R$};
+          \draw (axis cs:.3,.25) node {\scriptsize $x=h_1(y)$};
+          \draw (axis cs:.68,.8) node {\scriptsize $x=h_2(y)$};
+          %
+          %\addplot [smooth,thick, {\colorone},samples=40,domain=1:3] {.25*(x-3)^2+1} node [shift={(-25pt,25pt)} ,black] {\scriptsize $y=x^2+1$};
+          %
+          %\draw [smooth,thick, {\colorone}] (axis cs:2,-2) --  node [pos=.85,shift={(30pt,0pt)},black] {\scriptsize $x=-1/2y+1$} (axis cs:.5,1);
+
+          %\draw [smooth,thick, {\colorone}] (axis cs:2,-1) --  node [pos=.3,shift={(-25pt,0pt)},black] {\scriptsize $y=-1/2x$} (axis cs:0,0);
+
+          \end{axis}
+
+
+
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_iterated_intro2.tex END -->
+    </figure>
+
+    <p>We state this formally in a theorem.</p>
+
+    <theorem xml:id="thm_area_plane_region">
+      <title>Area of a plane region</title>
+      <statement>
+        <ol>
+          <li><p>Let <m>R</m> be a plane region bounded by <m>a\leq x\leq b</m> and <m>g_1(x)\leq y\leq g_2(x)</m>, where <m>g_1</m> and <m>g_2</m> are continuous functions on <m>[a,b]</m>. The area <m>A</m> of <m>R</m> is
+              <me>
+                A = \int_a^b\int_{g_1(x)}^{g_2(x)} \ dy\ dx.
+              </me>
+            </p></li>
+
+          <li><p>Let <m>R</m> be a plane region bounded by <m>c\leq y\leq d</m> and <m>h_1(y)\leq x\leq h_2(y)</m>, where <m>h_1</m> and <m>h_2</m> are continuous functions on <m>[c,d]</m>. The area <m>A</m> of <m>R</m> is
+	<index><main>integration</main><sub>area</sub></index>
+              <me>
+                A = \int_c^d\int_{h_1(y)}^{h_2(y)} \ dx\ dy.
+              </me>
+            </p></li>
+        </ol>
+      </statement>
+    </theorem>
+
+    <p>The following examples should help us understand this theorem.</p>
+
+    <example xml:id="ex_iterated4">
+      <title>Area of a rectangle</title>
+      <statement>
+        <p>Find the area <m>A</m> of the rectangle with corners <m>(-1,1)</m> and <m>(3,3)</m>, as shown in <xref ref="fig_iterated4">Figure</xref>.</p>
+      </statement>
+      <solution>
+        <p>Multiple integration is obviously overkill in this situation, but we proceed to establish its use.</p>
+
+        <figure xml:id="fig_iterated4" >
+          <caption>Calculating the area of a rectangle with an iterated integral in <xref ref="ex_iterated4">Example</xref>.</caption>
+          <!-- START figures/fig_iterated4.tex -->
+          <image xml:id="img_iterated4" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[%
+              axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={-1,1,2,3},%
+			%ytick=\empty,
+			%extra y ticks={.1,.9},
+			%extra y tick labels={$a$,$b$},
+              %			ytick={-1,1,2,3},
+			%%extra y ticks={-5,-3,...,7},%
+              %			minor x tick num=4,
+			ymin=-.1,ymax=3.5,%
+			xmin=-1.5,xmax=3.5%
+              ]
+
+              %\addplot [thick, {\coloronefill},fill={\coloronefill}] coordinates { (2.,-2.)(1.805,-1.9)(1.62,-1.8)(1.445,-1.7)(1.28,-1.6)(1.125,-1.5)(0.98,-1.4)(0.845,-1.3)(0.72,-1.2)(0.605,-1.1)(0.5,-1.)(0.405,-0.9)(0.32,-0.8)(0.245,-0.7)(0.18,-0.6)(0.125,-0.5)(0.08,-0.4)(0.045,-0.3)(0.02,-0.2)(0.005,-0.1)(0,0)(0.005,0.1)(0.02,0.2)(0.045,0.3)(0.08,0.4)(0.125,0.5)(0.18,0.6)(0.245,0.7)(0.32,0.8)(0.405,0.9)(0.5,1.)(2,-2)};
+
+              %\addplot [smooth,thick, {\colorone},samples=40,domain=0:1] ({.3*x^2+.1},x);
+              %
+              %\addplot [smooth,thick, {\colorone},samples=40,domain=0:1] ({.2*sin(deg(3*x))+.7},{x});
+
+              \draw [thick,{\colorone}] (axis cs: -1,1) -- (axis cs:3,1)--(axis cs:3,3) -- (axis cs:-1,3) -- cycle;
+              %\draw [thick,{\colortwo}] (axis cs: 0,.9) -- (axis cs: 1,.9);
+              %
+              \draw (axis cs:1,2) node {$R$};
+              %\draw (axis cs:.3,.25) node {\scriptsize $x=h_1(y)$};
+              %\draw (axis cs:.68,.8) node {\scriptsize $x=h_2(y)$};
+              %
+              %\addplot [smooth,thick, {\colorone},samples=40,domain=1:3] {.25*(x-3)^2+1} node [shift={(-25pt,25pt)} ,black] {\scriptsize $y=x^2+1$};
+              %
+              %\draw [smooth,thick, {\colorone}] (axis cs:2,-2) --  node [pos=.85,shift={(30pt,0pt)},black] {\scriptsize $x=-1/2y+1$} (axis cs:.5,1);
+
+              %\draw [smooth,thick, {\colorone}] (axis cs:2,-1) --  node [pos=.3,shift={(-25pt,0pt)},black] {\scriptsize $y=-1/2x$} (axis cs:0,0);
+
+              \end{axis}
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_iterated4.tex END -->
+        </figure>
+
+        <p>The region <m>R</m> is bounded by <m>x=-1</m>, <m>x=3</m>, <m>y=1</m> and <m>y=3</m>. Choosing to integrate with respect to <m>y</m> first, we have
+          <me>
+            A = \int_{-1}^3\int_1^3 1\ dy\ dx = \int_{-1}^3 \left(y\ \Big|_1^3\right)\ dx = \int_{-1}^3 2\ dx = 2x\Big|_{-1}^3=8.
+          </me>
+        </p>
+
+        <p>We could also integrate with respect to <m>x</m> first, giving:
+          <me>
+            A = \int_1^3\int_{-1}^3 1\ dx \ dy =\int_1^3 \left(x\ \Big|_{-1}^3\right)\ dy = \int_1^3 4\ dy = 4y\Big|_1^3 = 8.
+          </me>
+        </p>
+
+        <p>Clearly there are simpler ways to find this area, but it is interesting to note that this method works.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_iterated5">
+      <title>Area of a triangle</title>
+      <statement>
+        <p>Find the area <m>A</m> of the triangle with vertices at <m>(1,1)</m>, <m>(3,1)</m> and <m>(5,5)</m>, as shown in <xref ref="fig_iterated5">Figure</xref>.</p>
+
+        <figure xml:id="fig_iterated5" >
+          <caption>Calculating the area of a triangle with iterated integrals in <xref ref="ex_iterated5">Example</xref>.</caption>
+          <!-- START figures/fig_iterated5.tex -->
+          <image xml:id="img_iterated5" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[%
+              axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={4,5,1,2,3},%
+			ytick={1,2,3,4,5},
+			%extra y ticks={.1,.9},
+			%extra y tick labels={$a$,$b$},
+              %			ytick={-1,1,2,3},
+			%%extra y ticks={-5,-3,...,7},%
+              %			minor x tick num=4,
+			ymin=-.5,ymax=5.9,%
+			xmin=-.5,xmax=5.9%
+              ]
+
+              %\addplot [thick, {\coloronefill},fill={\coloronefill}] coordinates { (2.,-2.)(1.805,-1.9)(1.62,-1.8)(1.445,-1.7)(1.28,-1.6)(1.125,-1.5)(0.98,-1.4)(0.845,-1.3)(0.72,-1.2)(0.605,-1.1)(0.5,-1.)(0.405,-0.9)(0.32,-0.8)(0.245,-0.7)(0.18,-0.6)(0.125,-0.5)(0.08,-0.4)(0.045,-0.3)(0.02,-0.2)(0.005,-0.1)(0,0)(0.005,0.1)(0.02,0.2)(0.045,0.3)(0.08,0.4)(0.125,0.5)(0.18,0.6)(0.245,0.7)(0.32,0.8)(0.405,0.9)(0.5,1.)(2,-2)};
+
+              %\addplot [smooth,thick, {\colorone},samples=40,domain=0:1] ({.3*x^2+.1},x);
+              %
+              %\addplot [smooth,thick, {\colorone},samples=40,domain=0:1] ({.2*sin(deg(3*x))+.7},{x});
+
+              \draw [thick,{\colorone}] (axis cs: 1,1) -- (axis cs:3,1) node [pos=.5,black,below] {\scriptsize $y=1$} -- node [pos=.5,black,below,sloped] {\scriptsize $y=2x-5 $} (axis cs:5,5)  -- node [black,above,pos=.5,sloped] {\scriptsize $y=x$} (axis cs:1,1);
+              %\draw [thick,{\colortwo}] (axis cs: 0,.9) -- (axis cs: 1,.9);
+              %
+              \draw (axis cs:2.5,1.75) node {$R$};
+              %\draw (axis cs:.3,.25) node {\scriptsize $x=h_1(y)$};
+              %\draw (axis cs:.68,.8) node {\scriptsize $x=h_2(y)$};
+              %
+              %\addplot [smooth,thick, {\colorone},samples=40,domain=1:3] {.25*(x-3)^2+1} node [shift={(-25pt,25pt)} ,black] {\scriptsize $y=x^2+1$};
+              %
+              %\draw [smooth,thick, {\colorone}] (axis cs:2,-2) --  node [pos=.85,shift={(30pt,0pt)},black] {\scriptsize $x=-1/2y+1$} (axis cs:.5,1);
+
+              %\draw [smooth,thick, {\colorone}] (axis cs:2,-1) --  node [pos=.3,shift={(-25pt,0pt)},black] {\scriptsize $y=-1/2x$} (axis cs:0,0);
+
+              \end{axis}
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_iterated5.tex END -->
+        </figure>
+      </statement>
+      <solution>
+        <p>The triangle is bounded by the lines as shown in the figure. Choosing to integrate with respect to <m>x</m> first gives that <m>x</m> is bounded by <m>x=y</m> to <m>x = \frac{y+5}2</m>, while <m>y</m> is bounded by <m>y=1</m> to <m>y=5</m>. (Recall that since <m>x</m>-values increase from left to right, the leftmost curve, <m>x=y</m>, is the lower bound and the rightmost curve, <m>x=(y+5)/2</m>, is the upper bound.) The area is
+          <md>
+            <mrow>A \amp = \int_1^5\int_{y}^{\frac{y+5}2}\ dx\ dy</mrow>
+            <mrow>\amp = \int_1^5\left(x\ \Big|_y^{\frac{y+5}2}\right)\ dy</mrow>
+            <mrow>\amp = \int_1^5 \left(-\frac12y+\frac52\right)\ dy</mrow>
+            <mrow>\amp = \left(-\frac14y^2+\frac52y\right)\Big|_1^5</mrow>
+            <mrow>\amp =4.</mrow>
+          </md>
+        </p>
+
+        <p>We can also find the area by integrating with respect to <m>y</m> first. In this situation, though, we have two functions that act as the lower bound for the region <m>R</m>, <m>y=1</m> and <m>y=2x-5</m>. This requires us to use two iterated integrals. Note how the <m>x</m>-bounds are different for each integral:
+          <md>
+            <mrow>A \amp = \int_1^3\int_1^x 1\ dy \ dx \amp +\amp  \amp  \amp \int_3^5\int_{2x-5}^x1\ dy\ dx</mrow>
+            <mrow>\amp = \int_1^3\big(y\big)\Big|_1^x\ dx \amp  + \amp  \amp  \amp  \int_3^5\big(y\big)\Big|_{2x-5}^x\ dx</mrow>
+            <mrow>\amp = \int_1^3\big(x-1\big)\ dx \amp  + \amp  \amp  \amp  \int_3^5\big(-x+5\big)\ dx</mrow>
+            <mrow>\amp = 2 \amp  + \amp  \amp  \amp  2</mrow>
+            <mrow>\amp =4.</mrow>
+          </md>
+        </p>
+
+        <p>As expected, we get the same answer both ways.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_iterated6">
+      <title>Area of a plane region</title>
+      <statement>
+        <p>Find the area of the region enclosed by <m>y=2x</m> and <m>y=x^2</m>, as shown in <xref ref="fig_iterated6">Figure</xref>.</p>
+
+        <figure xml:id="fig_iterated6" >
+          <caption>Calculating the area of a plane region with iterated integrals in <xref ref="ex_iterated6">Example</xref>.</caption>
+          <!-- START figures/fig_iterated6.tex -->
+          <image xml:id="img_iterated6" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[%
+              axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={4,5,1,2,3},%
+			ytick={1,2,3,4,5},
+			%extra y ticks={.1,.9},
+			%extra y tick labels={$a$,$b$},
+              %			ytick={-1,1,2,3},
+			%%extra y ticks={-5,-3,...,7},%
+              %			minor x tick num=4,
+			ymin=-.5,ymax=4.5,%
+			xmin=-.5,xmax=2.5%
+              ]
+
+              %\addplot [thick, {\coloronefill},fill={\coloronefill}] coordinates { (2.,-2.)(1.805,-1.9)(1.62,-1.8)(1.445,-1.7)(1.28,-1.6)(1.125,-1.5)(0.98,-1.4)(0.845,-1.3)(0.72,-1.2)(0.605,-1.1)(0.5,-1.)(0.405,-0.9)(0.32,-0.8)(0.245,-0.7)(0.18,-0.6)(0.125,-0.5)(0.08,-0.4)(0.045,-0.3)(0.02,-0.2)(0.005,-0.1)(0,0)(0.005,0.1)(0.02,0.2)(0.045,0.3)(0.08,0.4)(0.125,0.5)(0.18,0.6)(0.245,0.7)(0.32,0.8)(0.405,0.9)(0.5,1.)(2,-2)};
+
+              \addplot [smooth,thick, {\colorone},samples=40,domain=0:2.5] ({x},{2*x});
+              %
+              \addplot [smooth,thick, {\colorone},samples=40,domain=0:2.5] ({x},{x^2});
+
+              %\draw [thick,{\colorone}] (axis cs: 1,1) -- (axis cs:3,1) node [pos=.5,black,below] {\scriptsize $y=1$} -- node [pos=.5,black,below,sloped] {\scriptsize $y=2x-5 $} (axis cs:5,5)  -- node [black,above,pos=.5,sloped] {\scriptsize $y=x$} (axis cs:1,1);
+              %\draw [thick,{\colortwo}] (axis cs: 0,.9) -- (axis cs: 1,.9);
+              %
+              \draw (axis cs:1,1.5) node {$R$};
+              \draw (axis cs:1,2.5) node [rotate=45] {\scriptsize $y=2x$};
+              \draw (axis cs:1.25,.9) node [rotate=45]  {\scriptsize $y=x^2$};
+              %
+              %\addplot [smooth,thick, {\colorone},samples=40,domain=1:3] {.25*(x-3)^2+1} node [shift={(-25pt,25pt)} ,black] {\scriptsize $y=x^2+1$};
+              %
+              %\draw [smooth,thick, {\colorone}] (axis cs:2,-2) --  node [pos=.85,shift={(30pt,0pt)},black] {\scriptsize $x=-1/2y+1$} (axis cs:.5,1);
+
+              %\draw [smooth,thick, {\colorone}] (axis cs:2,-1) --  node [pos=.3,shift={(-25pt,0pt)},black] {\scriptsize $y=-1/2x$} (axis cs:0,0);
+
+              \end{axis}
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_iterated6.tex END -->
+        </figure>
+      </statement>
+      <solution>
+        <p>Once again we'll find the area of the region using both orders of integration.</p>
+
+        <p>Using <m>dy\ dx</m>:
+          <me>
+            \int_0^2\int_{x^2}^{2x}1\ dy \ dx = \int_0^2(2x-x^2)\ dx = \big(x^2-\frac13x^3\big)\Big|_0^2 = \frac43.
+          </me>
+        </p>
+
+        <p>Using <m>dx\ dy</m>:
+          <me>
+            \int_0^4\int_{y/2}^{\sqrt{y}} 1\ dx\ dy = \int_0^4 (\sqrt{y}-y/2)\ dy = \left(\frac23y^{3/2} - \frac14y^2\right)\Big|_0^4 = \frac43.
+          </me>
+        </p>
+      </solution>
+    </example>
+
+    <p><em> Changing Order of Integration</em></p>
+
+    <p>In each of the previous examples, we have been given a region <m>R</m> and found the bounds needed to find the area of <m>R</m> using both orders of integration. We integrated using both orders of integration to demonstrate their equality.
+      <index><main>iterated integration</main><sub>changing order</sub></index></p>
+
+    <p>We now approach the skill of describing a region using both orders of integration from a different perspective. Instead of starting with a region and creating iterated integrals, we will start with an iterated integral and rewrite it in the other integration order. To do so, we'll need to understand the region over which we are integrating.</p>
+
+    <p>The simplest of all cases is when both integrals are bound by constants. The region described by these bounds is a rectangle (see <xref ref="ex_iterated4">Example</xref>), and so:
+      <me>
+        \int_a^b\int_c^d 1\ dy\ dx = \int_c^d\int_a^b1\ dx\ dy.
+      </me>
+    </p>
+
+    <p>When the inner integral's bounds are not constants, it is generally very useful to sketch the bounds to determine what the region we are integrating over looks like. From the sketch we can then rewrite the integral with the other order of integration.</p>
+
+    <p>Examples will help us develop this skill.</p>
+
+    <example xml:id="ex_double5">
+      <title>Changing the order of integration</title>
+      <statement>
+        <p>Rewrite the iterated integral <m>\ds \int_0^6\int_0^{x/3} 1\ dy\ dx</m> with the order of integration <m>dx\ dy</m>.</p>
+      </statement>
+      <solution>
+        <p>We need to use the bounds of integration to determine the region we are integrating over.</p>
+
+        <p>The bounds tell us that <m>y</m> is bounded by <m>0</m> and <m>x/3</m>; <m>x</m> is bounded by 0 and 6. We plot these four curves: <m>y=0</m>, <m>y=x/3</m>, <m>x=0</m> and <m>x=6</m> to find the region described by the bounds. <xref ref="fig_double5">Figure</xref> shows these curves, indicating that <m>R</m> is a triangle.</p>
+
+        <figure xml:id="fig_double5" >
+          <caption>Sketching the region <m>R</m> described by the iterated integral in <xref ref="ex_double5">Example</xref>.</caption>
+          <!-- START figures/fig_double5.tex -->
+          <image xml:id="img_double5" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[%
+              axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={4,5,1,2,3},%
+			%ytick={1,2,3,4,5},
+			%extra y ticks={.1,.9},
+			%extra y tick labels={$a$,$b$},
+              %			ytick={-1,1,2,3},
+			%%extra y ticks={-5,-3,...,7},%
+              %			minor x tick num=4,
+			ymin=-.5,ymax=2.5,%
+			xmin=-.5,xmax=6.9%
+              ]
+
+              %\addplot [smooth,very thick, {\colorone},samples=2,domain=-.5:6.9] ({x},{x/3});
+
+              \draw [very thick,{\colortwo}] (axis cs:-.5,0) -- (axis cs:6.9,0)
+													(axis cs:-.5,-.1666) -- node [above,black,pos=.5,sloped] {\scriptsize $y=x/3$} (axis cs: 6.9, 2.3);
+              \draw [very thick,{\colorone}] (axis cs:0,-.5) -- (axis cs:0,2.5)
+													(axis cs:6,-.5) -- (axis cs:6,2.5);
+													
+              \draw (axis cs:4,.5) node {$R$};													
+
+              \end{axis}
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_double5.tex END -->
+        </figure>
+
+        <p>To change the order of integration, we need to consider the curves that bound the <m>x</m>-values. We see that the lower bound is <m>x=3y</m> and the upper bound is <m>x=6</m>. The bounds on <m>y</m> are <m>0</m> to <m>2</m>. Thus we can rewrite the integral as
+          <m>\ds \int_0^2\int_{3y}^6 1\ dx \ dy</m>.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_double7">
+      <title>Changing the order of integration</title>
+      <statement>
+        <p>Change the order of integration of <m>\ds\int_0^4\int_{y^2/4}^{(y+4)/2}1\ dx\ dy</m>.</p>
+      </statement>
+      <solution>
+        <p>We sketch the region described by the bounds to help us change the integration order. <m>x</m> is bounded below and above (i.e., to the left and right) by <m>x=y^2/4</m> and <m>x=(y+4)/2</m> respectively, and <m>y</m> is bounded between 0 and 4. Graphing the previous curves, we find the region <m>R</m> to be that shown in <xref ref="fig_double7">Figure</xref>.</p>
+
+        <figure xml:id="fig_double7" >
+          <caption>Drawing the region determined by the bounds of integration in <xref ref="ex_double7">Example</xref>.</caption>
+          <!-- START figures/fig_double7.tex -->
+          <image xml:id="img_double7" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[%
+              axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={4,5,1,2,3},%
+			%ytick={1,2,3,4,5},
+			%extra y ticks={.1,.9},
+			%extra y tick labels={$a$,$b$},
+              %			ytick={-1,1,2,3},
+			%%extra y ticks={-5,-3,...,7},%
+              %			minor x tick num=4,
+			ymin=-.5,ymax=4.5,%
+			xmin=-.5,xmax=4.5%
+              ]
+
+              \addplot [smooth,very thick, {\colorone},samples=10,domain=-.5:4.5] ({x^2/4},{x});
+              \addplot [smooth,very thick, {\colorone},samples=10,domain=-.5:4.5] ({((x+4))/2},{x});
+
+              \draw [very thick,{\colortwo}] (axis cs:-.5,0) -- (axis cs:4.5,0)
+															(axis cs:-.5,4) -- (axis cs:4.5,4);
+              %\draw [very thick,{\colorone}] (axis cs:3,-.5) -- (axis cs:3,3.5)
+															%(axis cs:-.5,-.5) -- node [above,black,pos=.5,sloped] {\scriptsize $y=x$} (axis cs: 3.5,3.5);
+              \draw (axis cs:2,1.75) node {$R$};													
+              \draw (axis cs:2,3.1) node [rotate=30] {\scriptsize$x=y^2/4$};
+              \draw (axis cs:3,1.5) node [rotate=56] {\scriptsize $x= (y+4)/2$};													
+
+              \end{axis}
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_double7.tex END -->
+        </figure>
+
+        <p>To change the order of integration, we need to establish curves that bound <m>y</m>. The figure makes it clear that there are two lower bounds for <m>y</m>: <m>y=0</m> on <m>0\leq x\leq 2</m>, and <m>y=2x-4</m> on <m>2\leq x\leq 4</m>. Thus we need two double integrals. The upper bound for each is <m>y=2\sqrt{x}</m>. Thus we have
+          <me>
+            \int_0^4\int_{y^2/4}^{(y+4)/2}1\ dx\ dy = \int_0^2\int_0^{2\sqrt{x}} 1\ dy\ dx + \int_2^4\int_{2x-4}^{2\sqrt{x}}1\ dy\ dx.
+          </me>
+        </p>
+      </solution>
+    </example>
+
+    <p>This section has introduced a new concept, the iterated integral. We developed one application for iterated integration: area between curves. However, this is not new, for we already know how to find areas bounded by curves.</p>
+
+    <p>In the next section we apply iterated integration to solve problems we currently do not know how to handle. The ``real" goal of this section was not to learn a new way of computing area. Rather, our goal was to learn how to define a region in the plane using the bounds of an iterated integral. That skill is very important in the following sections.</p>
+  </subsection>
+
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>When integrating <m>f_x(x,y)</m> with respect to <m>x</m>, the constant of integration <m>C</m> is really which: <m>C(x)</m> or <m>C(y)</m>? What does this mean?</p>
+          </statement>
+          <solution>
+            <p><m>C(y)</m>, meaning that instead of being just a constant, like the number 5, it is a function of <m>y</m>, which acts like a constant when taking derivatives with respect to <m>x</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Integrating an integral is called <fillin /> <fillin />.</p>
+          </statement>
+          <solution>
+            <p>iterated integration</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>When evaluating an iterated integral, we integrate from <fillin /> to <fillin />, then from <fillin /> to <fillin />.</p>
+          </statement>
+          <solution>
+            <p>curve to curve, then from point to point</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>One understanding of an iterated integral is that <m>\ds \int_a^b\int_{g_1(x)}^{g_2(x)} \ dy\ dx</m> gives the <fillin /> of a plane region.</p>
+          </statement>
+          <solution>
+            <p>area</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, evaluate the integral and subsequent iterated integral.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <ol>
+              <li><p><m>\ds \int_2^{5} \big(6x^2+4xy-3y^2\big)\ dy</m></p></li>
+
+              <li><p><m>\ds \int_{-3}^{-2} \int_2^{5} \big(6x^2+4xy-3y^2\big)\ dy\ dx</m></p></li>
+            </ol>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>18x^2+42x-117</m></p></li>
+
+              <li><p><m>-108</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$a">
+              <static>2+\pi^2\cos(y)</static>
+            </var>
+            <var name="$b">
+              <static>\pi^2+\pi</static>
+            </var>
+            <pg-code>
+              Context()->variables->are(x=>'Real',y=>'Real');
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $a=Compute("2+pi^2cos(y)");
+              $b=Formula("pi^2+pi");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><ol label="a">
+              <li>
+                <p><m>\ds \int_0^{\pi} (2x\cos(y) + \sin(x) )\,dx=</m><var name="$a" width="20" /></p>
+              </li>
+              <li>
+                <p><m>\ds \int_{0}^{\pi/2} \int_0^{\pi} (2x\cos(y) + \sin(x) )\,dx\,dy=</m><var name="$b" width="20" /></p>
+              </li>
+            </ol></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <ol>
+              <li><p><m>\ds \int_1^x \big(x^2y - y+2\big)\ dy</m></p></li>
+
+              <li><p><m>\ds \int_0^2\int_1^x \big(x^2y - y+2\big)\ dy\ dx</m></p></li>
+            </ol>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>x^4/2-x^2+2x-3/2</m></p></li>
+
+              <li><p><m>23/15</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$a">
+              <static>y^4/2-y^3+y^2/2</static>
+            </var>
+            <var name="$b">
+              <static>8/15</static>
+            </var>
+            <pg-code>
+              Context()->variables->are(x=>'Real',y=>'Real');
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $a=Compute("y^4/2-y^3+y^2/2");
+              $b=Formula("8/15");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><ol label="a">
+              <li>
+                <p><m>\ds \int_y^{y^2} (x-y)\,dx=</m><var name="$a" width="20" /></p>
+              </li>
+              <li>
+                <p><m>\ds \int_{-1}^1\int_y^{y^2} (x-y)\,dx\,dy=</m><var name="$b" width="20" /></p>
+              </li>
+            </ol></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <ol>
+              <li><p><m>\ds \int_0^{y} \big(\cos(x) \sin(y) \big)\ dx</m></p></li>
+
+              <li><p><m>\ds \int_0^\pi \int_0^{y} \big(\cos(x) \sin(y) \big)\ dx\ dy</m></p></li>
+            </ol>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>\sin^2(y)</m></p></li>
+
+              <li><p><m>\pi/2</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$a">
+              <static>x/(1+x^2)</static>
+            </var>
+            <var name="$b">
+              <static>\frac12\ln\left(\frac52\right)</static>
+            </var>
+            <pg-code>
+              Context()->variables->are(x=>'Real',y=>'Real');
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $a=Compute("x/(1+x^2)");
+              $b=Formula("1/2 ln(5/2)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><ol label="a">
+              <li>
+                <p><m>\ds \int_0^{x} \left(\frac{1}{1+x^2}\right)\,dy=</m><var name="$a" width="20" /></p>
+              </li>
+              <li>
+                <p><m>\ds \int_1^2 \int_0^{x} \left(\frac{1}{1+x^2}\right)\,dy\,dx=</m><var name="$b" width="20" /></p>
+              </li>
+            </ol></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, a graph of a planar region <m>R</m> is given. Give the iterated integrals, with both orders of integration <m>dy\ dx</m> and <m>dx\ dy</m>, that give the area of <m>R</m>. Evaluate one of the iterated integrals to find the area.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <!-- START figures/fig_13_01_ex_11.tex -->
+              <image xml:id="img_13_01_ex_11" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}
+                  \begin{axis}[%
+                  axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={1,2,3,4},
+			%%
+                  %			extra x ticks={.33},
+                  %			extra x tick labels={$1/3$},
+			ytick={-2,-1,1},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-2.5,ymax=1.5,%
+			xmin=-.5,xmax=4.5%
+                  ]
+
+                  \draw [very thick,{\colorone}] (axis cs:1,-2) -- (axis cs: 4,-2)-- (axis cs: 4,1) -- (axis cs: 1,1) -- cycle;
+
+                  \draw (axis cs: 2.5,-1) node {$R$};
+
+                  %\addplot [{\colorone},thick,fill=white,area style, smooth,domain=0:360,samples=30] ({1+cos(x)},{sin(x)});
+                  %
+                  %\addplot [{\colorone},thick,,area style, smooth,domain=0:360,samples=30] ({2+2*cos(x)},{2*sin(x)});
+
+                  \end{axis}
+
+
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_13_01_ex_11.tex END -->
+            </figure>
+          </statement>
+          <solution>
+            <p><m>\ds \int_1^4\int_{-2}^1\ dy\ dx</m> and <m>\ds\int_{-2}^1\int_1^4\ dx\ dy</m>.</p>
+
+            <p>area of <m>R = 9u^2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <!-- START figures/fig_13_01_ex_12.tex -->
+              <image xml:id="img_13_01_ex_12" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}
+                  \begin{axis}[%
+                  axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={1,2,3,4},
+			%%
+                  %			extra x ticks={.33},
+                  %			extra x tick labels={$1/3$},
+			ytick={1,2,3},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-.5,ymax=3.5,%
+			xmin=-.5,xmax=4.5%
+                  ]
+
+                  \draw [very thick,{\colorone}] (axis cs:1,1) -- (axis cs: 4,1)-- (axis cs: 4,3)  -- cycle;
+
+                  \draw (axis cs: 3,1.75) node {$R$};
+
+                  %\addplot [{\colorone},thick,fill=white,area style, smooth,domain=0:360,samples=30] ({1+cos(x)},{sin(x)});
+                  %
+                  %\addplot [{\colorone},thick,,area style, smooth,domain=0:360,samples=30] ({2+2*cos(x)},{2*sin(x)});
+
+                  \end{axis}
+
+
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_13_01_ex_12.tex END -->
+            </figure>
+          </statement>
+          <solution>
+            <p><m>\ds\int_1^4\int_{1}^{\frac23x+\frac13}\ dy\ dx</m> and <m>\ds\int_{1}^3\int_{\frac32y-\frac12}^4\ dx\ dy</m>.</p>
+
+            <p>area of <m>R = 3u^2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <!-- START figures/fig_13_01_ex_13.tex -->
+              <image xml:id="img_13_01_ex_13" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}
+                  \begin{axis}[%
+                  axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={1,2,3,4},
+			%%
+                  %			extra x ticks={.33},
+                  %			extra x tick labels={$1/3$},
+			ytick={1,2,3,4,5},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-.5,ymax=5.5,%
+			xmin=-.5,xmax=4.5%
+                  ]
+
+                  \draw [very thick,{\colorone}] (axis cs:2,1) -- (axis cs: 4,3)-- (axis cs: 2,5)  -- cycle;
+
+                  \draw (axis cs: 2.75,3) node {$R$};
+
+                  %\addplot [{\colorone},thick,fill=white,area style, smooth,domain=0:360,samples=30] ({1+cos(x)},{sin(x)});
+                  %
+                  %\addplot [{\colorone},thick,,area style, smooth,domain=0:360,samples=30] ({2+2*cos(x)},{2*sin(x)});
+
+                  \end{axis}
+
+
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_13_01_ex_13.tex END -->
+            </figure>
+          </statement>
+          <solution>
+            <p><m>\ds\int_2^4\int_{x-1}^{7-x}\ dy\ dx</m>. The order <m>dx\ dy</m> needs two iterated integrals as <m>x</m> is bounded above by two different functions. This gives:
+              <me>
+                \int_{1}^3\int_{2}^{y+1}\ dx\ dy+\int_{3}^5\int_{2}^{7-y}\ dx\ dy.
+              </me>
+              area of <m>R = 4u^2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <!-- START figures/fig_13_01_ex_14.tex -->
+              <image xml:id="img_13_01_ex_14" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}
+                  \begin{axis}[%
+                  axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={2,4,...,12},
+			%%
+                  %			extra x ticks={.33},
+                  %			extra x tick labels={$1/3$},
+			ytick={-2,-4,-6,6,4,2},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-6.9,ymax=6.9,%
+			xmin=-.5,xmax=12.9%
+                  ]
+
+                  %\draw [very thick,{\colorone}] (axis cs:2,1) -- (axis cs: 4,3)-- (axis cs: 2,5)  -- cycle;
+
+                  \draw (axis cs: 6,2) node {$R$}
+			(axis cs: 4,4.5) node [rotate=23] {\scriptsize $x=y^2/3$};
+
+                  \addplot [{\colorone},very thick, smooth,domain=-6:6,samples=20] ({x^2/3},{x}) -- cycle;
+                  %
+                  %\addplot [{\colorone},thick,,area style, smooth,domain=0:360,samples=30] ({2+2*cos(x)},{2*sin(x)});
+
+                  \end{axis}
+
+
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_13_01_ex_14.tex END -->
+            </figure>
+          </statement>
+          <solution>
+            <p><m>\ds\int_0^{12}\int_{-\sqrt{3x}}^{\sqrt{3x}}\ dy\ dx</m> and <m>\ds \int_{-6}^6\int_{y^2/3}^{12}\ dx\ dy</m></p>
+
+            <p>area of <m>R = 96u^2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <!-- START figures/fig_13_01_ex_15.tex -->
+              <image xml:id="img_13_01_ex_15" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}
+                  \begin{axis}[%
+                  axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={2,4,...,12},
+			%%
+                  %			extra x ticks={.33},
+                  %			extra x tick labels={$1/3$},
+			%ytick={-2,-4,-6,6,4,2},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-.5,ymax=1.1,%
+			xmin=-.5,xmax=1.1%
+                  ]
+
+                  %\draw [very thick,{\colorone}] (axis cs:2,1) -- (axis cs: 4,3)-- (axis cs: 2,5)  -- cycle;
+
+                  \draw (axis cs: .5,.4) node {$R$}
+			(axis cs: .5,.8) node [rotate=26] {\scriptsize $y=\sqrt{x}$}
+			(axis cs: .75,.16) node [rotate=29] {\scriptsize $y=x^4$};
+
+                  \addplot [{\colorone},very thick, smooth,domain=-.1:1.05,samples=20] ({x},{x^4});
+                  \addplot [{\colorone},very thick, smooth,domain=0:1.05,samples=20] ({x^2},{x});
+                  %
+                  %\addplot [{\colorone},thick,,area style, smooth,domain=0:360,samples=30] ({2+2*cos(x)},{2*sin(x)});
+
+                  \end{axis}
+
+
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_13_01_ex_15.tex END -->
+            </figure>
+          </statement>
+          <solution>
+            <p><m>\ds\int_0^{1}\int_{x^4}^{\sqrt{x}}\ dy\ dx</m> and <m>\ds\int_{0}^1\int_{y^2}^{\sqrt[4]{y}}\ dx\ dy</m></p>
+
+            <p>area of <m>R = 7/15u^2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <!-- START figures/fig_13_01_ex_16.tex -->
+              <image xml:id="img_13_01_ex_16" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}
+                  \begin{axis}[%
+                  axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={2,4,...,12},
+			%%
+                  %			extra x ticks={.33},
+                  %			extra x tick labels={$1/3$},
+			%ytick={-2,-4,-6,6,4,2},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-.5,ymax=8.9,%
+			xmin=-.5,xmax=2.5%
+                  ]
+
+                  %\draw [very thick,{\colorone}] (axis cs:2,1) -- (axis cs: 4,3)-- (axis cs: 2,5)  -- cycle;
+
+                  \draw (axis cs: 1,2.25) node {$R$}
+			(axis cs: 0,0) [{\colorone},very thick]-- (axis cs:2.1,8.4) node [pos=.5,above,sloped,black] {\scriptsize $y=4x$}
+			(axis cs: 1.4,1.5) node [black, rotate=40] {\scriptsize $y=x^3$};
+
+                  \addplot [{\colorone},very thick, smooth,domain=-.1:2.1,samples=20] ({x},{x^3});
+                  %\addplot [{\colorone},very thick, smooth,domain=0:2.1,samples=20] ({x},{4*x});
+                  %
+                  %\addplot [{\colorone},thick,,area style, smooth,domain=0:360,samples=30] ({2+2*cos(x)},{2*sin(x)});
+
+                  \end{axis}
+
+
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_13_01_ex_16.tex END -->
+            </figure>
+          </statement>
+          <solution>
+            <p><m>\ds\int_0^{2}\int_{x^3}^{4{x}}\ dy\ dx</m> and <m>\ds\int_{0}^8\int_{y/4}^{\sqrt[3]{y}}\ dx\ dy</m></p>
+
+            <p>area of <m>R = 4u^2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, iterated integrals are given that compute the area of a region <m>R</m> in the <m>x</m>-<m>y</m> plane. Sketch the region <m>R</m>, and give the iterated integral(s) that give the area of <m>R</m> with the opposite order of integration.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{-2}^2\int_0^{4-x^2} \ dy \ dx</m></p>
+          </statement>
+          <solution>
+            <figure>
+              <!-- START figures/fig_13_01_ex_18.tex -->
+              <image xml:id="img_13_01_ex_18X" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}
+                  \begin{axis}[%
+                  axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={2,4,...,12},
+			%%
+                  %			extra x ticks={.33},
+                  %			extra x tick labels={$1/3$},
+			%ytick={-2,-4,-6,6,4,2},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-.5,ymax=4.5,%
+			xmin=-2.5,xmax=2.5%
+                  ]
+
+                  %\draw [very thick,{\colorone}] (axis cs:2,1) -- (axis cs: 4,3)-- (axis cs: 2,5)  -- cycle;
+
+                  \draw (axis cs: 1,1) node {$R$}
+			(axis cs: -.9,.5) node [] {\scriptsize $y=4-x^2$};
+			%(axis cs: 1.4,1.5) node [black, rotate=40] {\scriptsize $y=x^3$};
+
+                  \addplot [{\colorone},very thick, smooth,domain=-2:2,samples=30] ({x},{4-x^2}) -- cycle;
+                  %\addplot [{\colorone},very thick, smooth,domain=0:2.1,samples=20] ({x},{4*x});
+                  %
+                  %\addplot [{\colorone},thick,,area style, smooth,domain=0:360,samples=30] ({2+2*cos(x)},{2*sin(x)});
+
+                  \end{axis}
+
+
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_13_01_ex_18.tex END -->
+            </figure>
+
+            <p>area of <m>R = \ds\int_{0}^{4}\int_{-\sqrt{4-y}}^{\sqrt{4-y}}\ dx\ dy</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{0}^{1}\int_{5-5x}^{5-5x^2} \ dy \ dx</m></p>
+          </statement>
+          <solution>
+            <figure>
+              <!-- START figures/fig_13_01_ex_20.tex -->
+              <image xml:id="img_13_01_ex_20X" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}
+                  \begin{axis}[%
+                  axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={2,4,...,12},
+			%%
+                  %			extra x ticks={.33},
+                  %			extra x tick labels={$1/3$},
+			ytick={1,2,3,4,5},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-.5,ymax=5.9,%
+			xmin=-.1,xmax=1.1%
+                  ]
+
+                  %\draw [very thick,{\colorone}] (axis cs:2,1) -- (axis cs: 4,3)-- (axis cs: 2,5)  -- cycle;
+
+                  \draw (axis cs: .5,3.3) node {$R$}
+			(axis cs: .3,5.2) node [] {\scriptsize $y=5-5x^2$};
+			%(axis cs: 1.4,1.5) node [black, rotate=40] {\scriptsize $y=x^3$};
+
+                  \addplot [{\colorone},very thick, smooth,domain=0:1,samples=30] ({x},{5-5*x^2});
+
+                  \draw [{\colorone},very thick] (axis cs: 0,5) -- (axis cs:1,0) node [pos=.5,below,sloped,black] {\scriptsize $y=-5x+5$};
+                  %\addplot [{\colorone},very thick, smooth,domain=0:2.1,samples=20] ({x},{4*x});
+                  %
+                  %\addplot [{\colorone},thick,,area style, smooth,domain=0:360,samples=30] ({2+2*cos(x)},{2*sin(x)});
+
+                  \end{axis}
+
+
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_13_01_ex_20.tex END -->
+            </figure>
+
+            <p>area of <m>R = \ds \int_0^5\int_{1-y/5}^{\sqrt{1-y/5}} \ dx \ dy</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{-2}^2\int_{0}^{2\sqrt{4-y^2}} \ dx \ dy</m></p>
+          </statement>
+          <solution>
+            <figure>
+              <!-- START figures/fig_13_01_ex_19.tex -->
+              <image xml:id="img_13_01_ex_19X" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}
+                  \begin{axis}[%
+                  axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={2,4,...,12},
+			%%
+                  %			extra x ticks={.33},
+                  %			extra x tick labels={$1/3$},
+			%ytick={-2,-4,-6,6,4,2},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-2.5,ymax=2.5,%
+			xmin=-.5,xmax=4.5%
+                  ]
+
+                  %\draw [very thick,{\colorone}] (axis cs:2,1) -- (axis cs: 4,3)-- (axis cs: 2,5)  -- cycle;
+
+                  \draw (axis cs: 1,1) node {$R$}
+			(axis cs: 1.5,-1.1) node [] {\scriptsize $x^2/16+y^2/4=1$};
+			%(axis cs: 1.4,1.5) node [black, rotate=40] {\scriptsize $y=x^3$};
+
+                  \addplot [{\colorone},very thick, smooth,domain=-90:90,samples=30] ({4*cos(x)},{2*sin(x)}) -- cycle;
+                  %\addplot [{\colorone},very thick, smooth,domain=0:2.1,samples=20] ({x},{4*x});
+                  %
+                  %\addplot [{\colorone},thick,,area style, smooth,domain=0:360,samples=30] ({2+2*cos(x)},{2*sin(x)});
+
+                  \end{axis}
+
+
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_13_01_ex_19.tex END -->
+            </figure>
+
+            <p>area of <m>R = \ds \int_0^4\int_{-\sqrt{4-x^2/4}}^{\sqrt{4-x^2/4}} \ dy \ dx</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{-3}^3\int_{-\sqrt{9-x^2}}^{\sqrt{9-x^2}} \ dy \ dx</m></p>
+          </statement>
+          <solution>
+            <figure>
+              <!-- START figures/fig_13_01_ex_17.tex -->
+              <image xml:id="img_13_01_ex_17X" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}
+                  \begin{axis}[%
+                  axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={2,4,...,12},
+			%%
+                  %			extra x ticks={.33},
+                  %			extra x tick labels={$1/3$},
+			%ytick={-2,-4,-6,6,4,2},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-3.1,ymax=3.1,%
+			xmin=-3.7,xmax=3.7%
+                  ]
+
+                  %\draw [very thick,{\colorone}] (axis cs:2,1) -- (axis cs: 4,3)-- (axis cs: 2,5)  -- cycle;
+
+                  \draw (axis cs: 1,1) node {$R$}
+			(axis cs: -1.25,1) node [] {\scriptsize $x^2+y^2=9$};
+			%(axis cs: 1.4,1.5) node [black, rotate=40] {\scriptsize $y=x^3$};
+
+                  \addplot [{\colorone},very thick, smooth,domain=0:360,samples=30] ({3*cos(x)},{3*sin(x)});
+                  %\addplot [{\colorone},very thick, smooth,domain=0:2.1,samples=20] ({x},{4*x});
+                  %
+                  %\addplot [{\colorone},thick,,area style, smooth,domain=0:360,samples=30] ({2+2*cos(x)},{2*sin(x)});
+
+                  \end{axis}
+
+
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_13_01_ex_17.tex END -->
+            </figure>
+
+            <p>area of <m>R = \ds \int_{-3}^3\int_{-\sqrt{9-y^2}}^{\sqrt{9-y^2}} \ dx \ dy</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{0}^{1}\int_{-\sqrt{y}}^{\sqrt{y}} \ dx \ dy+\int_{1}^{4}\int_{y-2}^{\sqrt{y}} \ dx \ dy</m></p>
+          </statement>
+          <solution>
+            <figure>
+              <!-- START figures/fig_13_01_ex_22.tex -->
+              <image xml:id="img_13_01_ex_22X" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}
+                  \begin{axis}[%
+                  axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={-1,1,2},
+			%%
+                  %			extra x ticks={.33},
+                  %			extra x tick labels={$1/3$},
+			ytick={1,2,3,4},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-.1,ymax=4.5,%
+			xmin=-1.1,xmax=2.1%
+                  ]
+
+                  %\draw [very thick,{\colorone}] (axis cs:2,1) -- (axis cs: 4,3)-- (axis cs: 2,5)  -- cycle;
+
+                  \draw (axis cs: .5,1.5) node {$R$}
+			(axis cs: 1.3,.75) node [] {\scriptsize $y=x^2$};
+			%(axis cs: 1.4,1.5) node [black, rotate=40] {\scriptsize $y=x^3$};
+
+                  \addplot [{\colorone},very thick, smooth,domain=-1:2,samples=15] ({x},{x^2});
+
+                  \draw [{\colorone},very thick] (axis cs: -1,1) -- (axis cs:2,4) node [black,sloped, pos=.5,above] {\scriptsize $y=x+2$};
+                  %\addplot [{\colorone},very thick, smooth,domain=0:2.1,samples=20] ({x},{4*x});
+                  %
+                  %\addplot [{\colorone},thick,,area style, smooth,domain=0:360,samples=30] ({2+2*cos(x)},{2*sin(x)});
+
+                  \end{axis}
+
+
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_13_01_ex_22.tex END -->
+            </figure>
+
+            <p>area of <m>R = \ds \int_{-1}^2\int_{x^2}^{x+2} \ dy \ dx</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{-1}^{1}\int_{(x-1)/2}^{(1-x)/2} \ dy \ dx</m></p>
+          </statement>
+          <solution>
+            <figure>
+              <!-- START figures/fig_13_01_ex_21.tex -->
+              <image xml:id="img_13_01_ex_21X" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}
+                  \begin{axis}[%
+                  axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={-1,1},
+			%%
+                  %			extra x ticks={.33},
+                  %			extra x tick labels={$1/3$},
+			ytick={-1,1},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-1.1,ymax=1.1,%
+			xmin=-1.1,xmax=1.1%
+                  ]
+
+                  %\draw [very thick,{\colorone}] (axis cs:2,1) -- (axis cs: 4,3)-- (axis cs: 2,5)  -- cycle;
+
+                  \draw (axis cs: -.5,.25) node {$R$};
+			%(axis cs: .3,5.2) node [] {\scriptsize $y=5-5x^2$};
+			%(axis cs: 1.4,1.5) node [black, rotate=40] {\scriptsize $y=x^3$};
+
+                  %\addplot [{\colorone},very thick, smooth,domain=0:1,samples=30] ({x},{5-5*x^2});
+
+                  \draw [{\colorone},very thick] (axis cs: -1,1) -- (axis cs:1,0) -- (axis cs: -1,-1) -- (axis cs: -1,1);
+                  %\addplot [{\colorone},very thick, smooth,domain=0:2.1,samples=20] ({x},{4*x});
+                  %
+                  %\addplot [{\colorone},thick,,area style, smooth,domain=0:360,samples=30] ({2+2*cos(x)},{2*sin(x)});
+
+                  \end{axis}
+
+
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_13_01_ex_21.tex END -->
+            </figure>
+
+            <p>area of <m>R = \ds \int_{-1}^0\int_{0}^{2y+1} \ dx \ dy + \int_{0}^1\int_{0}^{1-2y} \ dx \ dy</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

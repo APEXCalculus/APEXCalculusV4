@@ -1,0 +1,1943 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_series">
+  <title>Infinite Series</title>
+  <introduction>
+    <p>Given the sequence <m>\{a_n\} = \{1/2^n\} = 1/2,\ 1/4,\ 1/8,\ \ldots</m>, consider the following sums:
+      <me>
+        \begin{array}{ccccc}
+        a_1				\amp =\amp  1/2					 \amp =\amp  1/2\\
+        a_1+a_2		\amp =\amp  1/2+1/4			 \amp =\amp  3/4\\
+        a_1+a_2+a_3 \amp =\amp  1/2+1/4+1/8  \amp =\amp  7/8\\
+        a_1+a_2+a_3+a_4 \amp =\amp  1/2+1/4+1/8+1/16 \amp  =\amp  15/16
+        \end{array}
+      </me>
+    </p>
+
+    <p>In general, we can show that
+      <me>
+        a_1+a_2+a_3+\cdots +a_n = \frac{2^n-1}{2^n} = 1-\frac{1}{2^n}.
+      </me>
+    </p>
+
+    <p>Let <m>S_n</m> be the sum of the first <m>n</m> terms of the sequence <m>\{1/2^n\}</m>. From the above, we see that <m>S_1=1/2</m>, <m>S_2 = 3/4</m>, etc. Our formula at the end shows that <m>S_n = 1-1/2^n</m>.</p>
+
+    <p>Now consider the following limit: <m>\lim\limits_{n\to\infty}S_n = \lim_{n\to\infty}\big(1-1/2^n\big) = 1</m>. This limit can be interpreted as saying something amazing: <em>the sum of <em>all</em> the terms of the sequence <m>\{1/2^n\}</m> is 1.</em></p>
+
+    <p>This example illustrates some interesting concepts that we explore in this section. We begin this exploration with some definitions.</p>
+
+    <definition xml:id="def_series">
+      <title>Infinite Series, <m>n^th</m> Partial Sums, Convergence, Divergence</title>
+      <statement>
+        <p>Let <m>\{a_n\}</m> be a sequence.</p>
+
+        <ol>
+          <li><p>The sum <m>\ds \infser a_n</m> is an <em>infinite series</em> (or, simply <em>series</em>).</p></li>
+
+          <li><p>Let <m>\ds S_n = \sum_{i=1}^n a_i</m> ; the sequence <m>\{S_n\}</m> is the sequence of <em><m>n^\text{ th }</m> partial sums</em> of <m>\{a_n\}</m>.</p></li>
+
+          <li><p>If the sequence <m>\{S_n\}</m> converges to <m>L</m>, we say the series <m>\ds \infser a_n</m> <em>converges</em> to <m>L</m>, and we write <m>\ds \infser a_n = L</m>.</p></li>
+
+          <li><p>If the sequence <m>\{S_n\}</m> diverges, the series <m>\ds \infser a_n</m> <em>diverges</em>.
+              <index><main>series</main><sub>definition</sub></index><index><main>series</main><sub>partial sums</sub></index><index><main>series</main><sub>convergent</sub></index><index><main>series</main><sub>divergent</sub></index><index><main>convergence</main><sub>of series</sub></index><index><main>divergence</main><sub>of series</sub></index></p></li>
+        </ol>
+      </statement>
+    </definition>
+
+    <p>Using our new terminology, we can state that the series <m>\ds \infser 1/2^n</m> converges, and <m>\ds \infser 1/2^n = 1</m>.</p>
+
+    <p>We will explore a variety of series in this section. We start with two series that diverge, showing how we might discern divergence.</p>
+
+    <example xml:id="ex_series1">
+      <title>Showing series diverge</title>
+      <statement>
+        <ol>
+          <li><p>Let <m>\{a_n\} = \{n^2\}</m>. Show <m>\ds \infser a_n</m> diverges.</p></li>
+
+          <li><p>Let <m>\{b_n\} = \{(-1)^{n+1}\}</m>. Show <m>\ds \infser b_n</m> diverges.</p></li>
+        </ol>
+      </statement>
+      <solution>
+        <ol>
+          <li><p>Consider <m>S_n</m>, the <m>n^\text{ th }</m> partial sum.
+              <md>
+                <mrow>S_n \amp = a_1+a_2+a_3+\cdots+a_n</mrow>
+                <mrow>\amp = 1^2+2^2+3^2\cdots + n^2.</mrow>
+                <intertext>By <xref ref="thm_summation">Theorem</xref>, this is</intertext>
+                <mrow>\amp = \frac{n(n+1)(2n+1)}{6}.</mrow>
+              </md>
+              Since <m>\lim\limits_{n\to\infty}S_n = \infty</m>, we conclude that the series <m>\ds \infser n^2</m> diverges. It is instructive to write <m>\ds \infser n^2=\infty</m> for this tells us <em>how</em> the series diverges: it grows without bound.
+
+              A scatter plot of the sequences <m>\{a_n\}</m> and <m>\{S_n\}</m> is given in <xref ref="fig_series1a">Figure</xref>. The terms of <m>\{a_n\}</m> are growing, so the terms of the partial sums <m>\{S_n\}</m> are growing even faster, illustrating that the series diverges.</p></li>
+
+          <li><p>The sequence <m>\{b_n\}</m> starts with 1, <m>-1</m>, 1, <m>-1</m>, <m>\ldots</m>. Consider some of the partial sums <m>S_n</m> of <m>\{b_n\}</m>:
+              <md>
+                <mrow>S_1 \amp = 1</mrow>
+                <mrow>S_2 \amp = 0</mrow>
+                <mrow>S_3 \amp = 1</mrow>
+                <mrow>S_4 \amp = 0</mrow>
+              </md>
+              This pattern repeats; we find that <m>S_n = \left\{\begin{array}{cc} 1  \amp  n\ \text{ is odd } \\
+																																		0  \amp  n\  \text{ is even }
+              \end{array} \right.</m>.
+              As <m>\{S_n\}</m> oscillates, repeating 1, 0, 1, 0, <m>\ldots</m>, we conclude that <m>\lim\limits_{n\to\infty}S_n</m> does not exist, hence <m>\ds\infser (-1)^{n+1}</m> diverges.		
+
+              A scatter plot of the sequence <m>\{b_n\}</m> and the partial sums <m>\{S_n\}</m> is given in <xref ref="fig_series1b">Figure</xref>. When <m>n</m> is odd, <m>b_n = S_n</m> so the marks for <m>b_n</m> are drawn oversized to show they coincide.
+
+          
+              
+              <sidebyside xml:id="fig_series1">
+                <caption>Scatter plots relating to <xref ref="ex_series1">Example</xref>.</caption>
+                <figure xml:id="fig_series1a">
+                  <caption/>
+                  <!-- START figures/fig_series1a.tex -->
+                  <image xml:id="img_series1a" >
+                    <description></description>
+                    <latex-image-code>
+                      <![CDATA[
+                      \begin{tikzpicture}
+                      \begin{axis}[%
+                      axis on top,%
+                      %			xtick={20,40,60,80,100},%
+                      %			extra x ticks={3.14,1.57},
+                      %			extra x tick labels={$\pi$,$\pi/2$},
+                      %			ytick={-1,-2,1,2},
+			%%extra y ticks={-5,-3,...,7},%
+                      %			minor x tick num=4,
+			ymin=-10,%ymax=2.1,%
+			xmin=-1,xmax=11%
+                      ]
+
+                      \addplot [only marks,{\colorone},mark size={1.5pt},domain=1:10,samples=10] {x^2};
+
+                      \addplot [only marks,{\colortwo},mark size={1.5pt},domain=1:10,samples=10] {x*(x+1)*(2*x+1)/6};
+
+                      %\fill [{\colorone}](axis cs:2,250) circle (1.5pt) node[right,black] {\scriptsize $a_n$};
+                      %\fill [{\colortwo}](axis cs:2,225) circle (1.5pt) node[right,black] {\scriptsize $S_n$};
+
+                      \end{axis}
+
+                      \node [right] at (myplot.right of origin) {\scriptsize $n$};
+
+
+                      \node[shift={(0,-25pt)},draw] at (myplot.south) {\begin{tikzpicture}
+																\fill [\colorone] (0,0) circle (1.5pt) node [right,black] {\scriptsize $a_n$};
+																\fill [\colortwo] (1,0) circle (1.5pt) node [right, black] {\scriptsize $S_n$};
+																\end{tikzpicture}};
+
+                      \end{tikzpicture}
+                      ]]>
+                    </latex-image-code>
+                  </image>
+                  <!-- figures/fig_series1a.tex END -->
+                </figure>
+
+                <figure xml:id="fig_series1b">
+                  <caption/>
+                  <!-- START figures/fig_series1b.tex -->
+                  <image xml:id="img_series1b" >
+                    <description></description>
+                    <latex-image-code>
+                      <![CDATA[
+                      \begin{tikzpicture}
+                      \begin{axis}[%
+                      axis on top,%
+                      %			xtick={20,40,60,80,100},%
+                      %			extra x ticks={3.14,1.57},
+                      %			extra x tick labels={$\pi$,$\pi/2$},
+                      %			ytick={-1,-2,1,2},
+			%%extra y ticks={-5,-3,...,7},%
+                      %			minor x tick num=4,
+			ymin=-1.1,ymax=1.1,%
+			xmin=-1,xmax=11%
+                      ]
+
+                      \addplot [only marks,{\colorone},mark size={2.5pt},domain=1:10,samples=10] {(-1)^(x+1)};
+
+                      \addplot [only marks,{\colortwo},mark size={1.5pt},domain=1:10] coordinates {(1,1)(2,0)(3,1)(4,0)(5,1)(6,0)(7,1)(8,0)(9,1)(10,0)};
+
+                      %\fill [{\colorone}](axis cs:2,250) circle (1.5pt) node[right,black] {\scriptsize $a_n$};
+                      %\fill [{\colortwo}](axis cs:2,225) circle (1.5pt) node[right,black] {\scriptsize $S_n$};
+
+                      \end{axis}
+
+                      \node [right] at (myplot.right of origin) {\scriptsize $n$};
+
+
+                      \node[shift={(0,-15pt)},draw] at (myplot.south) {\begin{tikzpicture}
+																\fill [\colorone] (0,0) circle (1.5pt) node [right,black] {\scriptsize $b_n$};
+																\fill [\colortwo] (1,0) circle (1.5pt) node [right, black] {\scriptsize $S_n$};
+																\end{tikzpicture}};
+
+                      \end{tikzpicture}
+                      ]]>
+                    </latex-image-code>
+                  </image>
+                  <!-- figures/fig_series1b.tex END -->
+                </figure>
+              </sidebyside>
+
+
+            </p></li>
+        </ol>
+      </solution>
+    </example>
+
+    <p>While it is important to recognize when a series diverges, we are generally more interested in the series that converge. In this section we will demonstrate a few general techniques for determining convergence; later sections will delve deeper into this topic.</p>
+  </introduction>
+
+  <subsection>
+    <title>Geometric Series</title>
+    <p>One important type of series is a <em>geometric series</em>.</p>
+
+    <definition xml:id="def_geom_series">
+      <title>Geometric Series</title>
+      <statement>
+        <p>A <term>geometric series</term> is a series of the form
+          <me>
+            \infser[0] r^n = 1+r+r^2+r^3+\cdots+r^n+\cdots
+          </me>
+        </p>
+
+        <p>Note that the index starts at <m>n=0</m>, not <m>n=1</m>.<index><main>series</main><sub>geometric</sub></index><index><main>geometric series</main></index></p>
+      </statement>
+    </definition>
+
+    <p>We started this section with a geometric series, although we dropped the first term of <m>1</m>. One reason geometric series are important is that they have nice convergence properties.</p>
+
+    <theorem xml:id="thm_geom_series">
+      <title>Convergence of Geometric Series</title>
+      <statement>
+        <p>Consider the geometric series <m>\ds \infser[0] r^n</m>.</p>
+
+        <ol>
+          <li xml:id="thm_geom_series_a"><p>The <m>n^\text{ th }</m> partial sum is: <m>\ds S_n = \frac{1-r^{n+1}}{1-r}</m>.</p></li>
+
+          <li><p>The series converges if, and only if, <m>\abs{r} \lt  1</m>. When <m>\abs{r}\lt 1</m>,
+              <index><main>series</main><sub>geometric</sub></index><index><main>geometric series</main></index><index><main>convergence</main><sub>of geometric series</sub></index><index><main>divergence</main><sub>of geometric series</sub></index>
+              <me>
+                \infser[0] r^n = \frac{1}{1-r}.
+              </me>
+            </p></li>
+        </ol>
+      </statement>
+    </theorem>
+
+    <proof statement="thm_geom_series">
+      <p>
+        We begin by proving the formula for the simplied form for the partial sums. Consider the <m>n^\text{ th }</m> partial sum of the geometric series, <m>S_n=\sum_{i=0}^n r^i</m>:
+        <md>
+          <mrow>S_n \amp = 1+r+r^2+\dots+r^{n-1}+r^n</mrow>
+          <intertext>Multiply both sides by <m>r</m>:</intertext>
+          <mrow>r\cdot S_n \amp = r+r^2+r^3+\dots+r^{n}+r^{n+1}</mrow>
+          <intertext>Now subtract the second line from the first and solve for <m>S_n</m>:</intertext>
+          <mrow>S_n-r\cdot S_n \amp = 1-r^{n+1}</mrow>
+          <mrow>S_n(1-r) \amp = 1-r^{n+1}</mrow>
+          <mrow>S_n \amp = \frac{1-r^{n+1}}{1-r}</mrow>
+        </md>.
+
+        We have shown <xref ref="thm_geom_series_a">Part</xref> of <xref ref="thm_geom_series" autoname="title"/>.
+      </p>
+      <p>Now, examining the partial sums, we consider four cases to determine when <m>S_n</m> converges:
+        <ol>
+          <li><p>If <m>\abs{r}\lt 1</m>, then <m>r^n \to 0</m> as <m>n \to \infty</m>, so we have <m>\inflim S_n=\frac{1-0}{1-r}=\frac{1}{1-r}</m>, a convergent sequence of partial sums.</p></li>
+          <li><p>If <m>\abs{r}\gt 1</m>, then <m>r^n \to \pm \infty</m> (depending on the sign of <m>r</m>) as <m>n \to \infty</m>. We also have <m>1-r</m> a constant, so <m>\inflim S_n</m> does not exist (if <m>r \gt 0</m>, the partial sums diverge to <m>\infty</m> and if <m>r \lt 0</m>, the partial sums diverge to <m>-\infty</m>).</p></li>
+          <li>If <m>r=1</m>, then <m>S_n = \frac{1-1^{n+1}}{1-1}</m> is undefined. However, examining <m>S_n = 1+r+r^2+\dots+r^{n-1}+r^n</m> for <m>r=1</m>, we can see that the partial sums simplify to <m>S_n=n+1</m>. Clearly this sequence diverges to <m>\infty</m>. </li>
+          <li>If <m>r=-1</m>, then <m>S_n = \frac{1-(-1)^{n+1}}{2}</m>. For even values of <m>n</m>, the partial sums are always <m>1</m>. For odd values of <m>n</m>, the partial sums are always <m>0</m>. So the sequence of partial sums diverges.</li>
+        </ol>
+        Therefore, a geometric series converges if and only if <m>\abs{r} \lt 1</m>.
+      </p>
+    </proof>
+
+    <p>According to <xref ref="thm_geom_series">Theorem</xref>, the series
+      <me>
+        \ds\infser[0] \frac{1}{2^n} =\infser[0] \left(\frac 12\right)^2= 1+\frac12+\frac14+\cdots
+      </me>
+      converges as <m>r=1/2 \lt 1</m>, and <m>\ds \infser[0] \frac{1}{2^n} = \frac{1}{1-1/2} = 2</m>. This concurs with our introductory example; while there we got a sum of 1, we skipped the first term of 1.</p>
+
+    <example xml:id="ex_series2">
+      <title>Exploring geometric series</title>
+      <statement>
+        <p>Check the convergence of the following series. If the series converges, find its sum.</p>
+        <ol cols="3">
+          <li><p><m>\ds \sum_{n=2}^\infty \left(\frac34\right)^n</m></p></li>
+          <li><p><m>\ds \infser[0] \left(\frac{-1}{2}\right)^n</m></p></li>
+          <li><p><m>\ds \infser[0] 3^n</m></p></li>
+        </ol>
+      </statement>
+      <solution>
+        <ol>
+          <li><p>Since <m>r=3/4\lt 1</m>, this series converges. By <xref ref="thm_geom_series">Theorem</xref>, we have that
+              <me>
+                \infser[0] \left(\frac34\right)^n = \frac{1}{1-3/4} = 4.
+              </me>
+              However, note the subscript of the summation in the given series: we are to start with <m>n=2</m>. Therefore we subtract off the first two terms, giving:
+              <me>
+                \sum_{n=2}^\infty \left(\frac34\right)^n = 4 - 1 - \frac34 = \frac94.
+              </me>
+              This is illustrated in <xref ref="fig_series2a">Figure</xref>.
+
+              <figure xml:id="fig_series2" >
+                <caption>Scatter plots relating to the series in <xref ref="ex_series2">Example</xref>.</caption>
+                <!-- START figures/fig_series2a.tex -->
+                <image xml:id="img_series2" width="47%" >
+                  <description></description>
+                  <latex-image-code>
+                    <![CDATA[
+                    \begin{tikzpicture}
+                    \begin{axis}[%
+                    axis on top,%
+			xtick={2,4,6,8,10},%
+                    %			extra x ticks={3.14,1.57},
+                    %			extra x tick labels={$\pi$,$\pi/2$},
+                    %			ytick={-1,-2,1,2},
+			%%extra y ticks={-5,-3,...,7},%
+                    %			minor x tick num=4,
+			ymin=-.5,ymax=2.5,%
+			xmin=-1,xmax=11%
+                    ]
+
+                    \addplot [only marks,{\colorone},mark size={1.5pt},domain=2:10,samples=9] {(.75)^x};
+
+                    \addplot [only marks,{\colortwo},mark size={1.5pt},domain=1:10,samples=10]coordinates {(2,0.5625)(3,0.9844)(4,1.301)(5,1.538)(6,1.716)(7,1.85)(8,1.95)(9,2.025)(10,2.081)};
+
+                    %\fill [{\colorone}](axis cs:2,250) circle (1.5pt) node[right,black] {\scriptsize $a_n$};
+                    %\fill [{\colortwo}](axis cs:2,225) circle (1.5pt) node[right,black] {\scriptsize $S_n$};
+
+                    \end{axis}
+
+                    \node [right] at (myplot.right of origin) {\scriptsize $n$};
+
+
+                    \node[shift={(0,-10pt)},draw] at (myplot.south) {\begin{tikzpicture}
+																\fill [\colorone] (0,0) circle (1.5pt) node [right,black] {\scriptsize $a_n$};
+																\fill [\colortwo] (1,0) circle (1.5pt) node [right, black] {\scriptsize $S_n$};
+																\end{tikzpicture}};
+
+                    \end{tikzpicture}
+                    ]]>
+                  </latex-image-code>
+                </image>
+                <!-- figures/fig_series2a.tex END -->
+              </figure>
+
+            </p></li>
+
+          <li><p>Since <m>\abs{r} = 1/2 \lt  1</m>, this series converges, and by <xref ref="thm_geom_series">Theorem</xref>,
+              <me>
+                \infser[0] \left(\frac{-1}{2}\right)^n = \frac{1}{1-(-1/2)} = \frac23.
+              </me>
+              The partial sums of this series are plotted in <xref ref="fig_series2a">Figure</xref>. Note how the partial sums are not purely increasing as some of the terms of the sequence <m>\{(-1/2)^n\}</m> are negative.</p></li>
+
+          <li><p>Since <m>r \gt 1</m>, the series diverges. (This makes <q>common sense</q>; we expect the sum
+              <me>
+                1+3+9+27 + 81+243+\cdots
+              </me>
+              to diverge.) This is illustrated in <xref ref="fig_series2b">Figure</xref>.
+
+      
+              
+              <sidebyside xml:id="fig_series2_2" widths="47% 47%">
+                <caption>Scatter plots relating to the series in <xref ref="ex_series2">Example</xref>.</caption>
+                <figure xml:id="fig_series2a">
+                  <caption/>
+                  <!-- START figures/fig_series2b.tex -->
+                  <image xml:id="img_series2a" >
+                    <description></description>
+                    <latex-image-code>
+                      <![CDATA[
+                      \begin{tikzpicture}
+                      \begin{axis}[%
+                      axis on top,%
+			xtick={2,4,6,8,10},%
+                      %			extra x ticks={3.14,1.57},
+                      %			extra x tick labels={$\pi$,$\pi/2$},
+                      %			ytick={-1,-2,1,2},
+			%%extra y ticks={-5,-3,...,7},%
+                      %			minor x tick num=4,
+			ymin=-1.1,ymax=1.1,%
+			xmin=-1,xmax=11%
+                      ]
+
+                      \addplot [only marks,{\colorone},mark size={1.5pt},domain=0:10,samples=11] {(-.5)^(x)};
+
+                      \addplot [only marks,{\colortwo},mark size={1.5pt},domain=0:10,samples=11]coordinates {(0,1.)(1,0.5)(2,0.75)(3,0.625)(4,0.6875)(5,0.6563)(6,0.6719)(7,0.6641)(8,0.668)(9,0.666)(10,0.667)};
+
+                      %\fill [{\colorone}](axis cs:2,250) circle (1.5pt) node[right,black] {\scriptsize $a_n$};
+                      %\fill [{\colortwo}](axis cs:2,225) circle (1.5pt) node[right,black] {\scriptsize $S_n$};
+
+                      \end{axis}
+
+                      \node [right] at (myplot.right of origin) {\scriptsize $n$};
+
+
+                      \node[shift={(0,15pt)},draw] at (myplot.south) {\begin{tikzpicture}
+																\fill [\colorone] (0,0) circle (1.5pt) node [right,black] {\scriptsize $a_n$};
+																\fill [\colortwo] (1,0) circle (1.5pt) node [right, black] {\scriptsize $S_n$};
+																\end{tikzpicture}};
+
+                      \end{tikzpicture}
+                      ]]>
+                    </latex-image-code>
+                  </image>
+                  <!-- figures/fig_series2b.tex END -->
+                </figure>
+
+                <figure xml:id="fig_series2b">
+                  <caption/>
+                  <!-- START figures/fig_series2c.tex -->
+                  <image xml:id="img_series2b" >
+                    <description></description>
+                    <latex-image-code>
+                      <![CDATA[
+                      \begin{tikzpicture}
+                      \begin{axis}[%
+                      axis on top,%
+                      %			xtick={20,40,60,80,100},%
+                      %			extra x ticks={3.14,1.57},
+                      %			extra x tick labels={$\pi$,$\pi/2$},
+                      %			ytick={-1,-2,1,2},
+			%%extra y ticks={-5,-3,...,7},%
+                      %			minor x tick num=4,
+			ymin=-50,%ymax=1.1,%
+			xmin=-1,xmax=7%
+                      ]
+
+                      \addplot [only marks,{\colorone},mark size={1.5pt},domain=0:6,samples=7] {3^(x)};
+
+                      \addplot [only marks,{\colortwo},mark size={1.5pt},domain=1:10] coordinates {(0,1)(1,3)(2,12)(3,39)(4,120)(5,363)(6,1092)};
+
+                      %\fill [{\colorone}](axis cs:2,250) circle (1.5pt) node[right,black] {\scriptsize $a_n$};
+                      %\fill [{\colortwo}](axis cs:2,225) circle (1.5pt) node[right,black] {\scriptsize $S_n$};
+
+                      \end{axis}
+
+                      \node [right] at (myplot.right of origin) {\scriptsize $n$};
+
+
+                      \node[shift={(0,-20pt)},draw] at (myplot.south) {\begin{tikzpicture}
+																\fill [\colorone] (0,0) circle (1.5pt) node [right,black] {\scriptsize $a_n$};
+																\fill [\colortwo] (1,0) circle (1.5pt) node [right, black] {\scriptsize $S_n$};
+																\end{tikzpicture}};
+
+                      \end{tikzpicture}
+                      ]]>
+                    </latex-image-code>
+                  </image>
+                  <!-- figures/fig_series2c.tex END -->
+                </figure>
+              </sidebyside>
+
+            </p></li>
+        </ol>
+      </solution>
+    </example>
+  </subsection>
+
+  <subsection>
+    <title><m>p</m><ndash />Series</title>
+    <p>Another important type of series is the <em>p-series</em>.</p>
+
+    <definition xml:id="def_pseries">
+      <title><m>p</m><ndash />Series, General <m>p</m><ndash />Series</title>
+      <statement>
+        <ol>
+          <li><p>A <em><m>p</m><ndash />series</em> is a series of the form
+              <me>
+                \infser \frac{1}{n^p}, \qquad \text{ where \(p>0\). }
+              </me>
+            </p></li>
+
+          <li><p>A <em>general <m>p</m><ndash />series</em> is a series of the form
+              <index><main>series</main><sub>p@<m>p</m>-series</sub></index><index><main>p@<m>p</m>-series</main></index>
+              <me>
+                \infser \frac{1}{(an+b)^p}, \qquad \text{ where \(p>0\) and \(a\), \(b\) are real numbers. }
+              </me>
+            </p></li>
+        </ol>
+      </statement>
+    </definition>
+
+    <p>Like geometric series, one of the nice things about p<ndash />series is that they have easy to determine convergence properties.</p>
+
+    <theorem xml:id="thm_pseries">
+      <title>Convergence of General <m>p</m><ndash />Series</title>
+      <statement>
+        <p>A general <m>p</m><ndash />series <m>\ds\infser \frac{1}{(an+b)^p}</m> will converge if, and only if, <m>p>1</m>.<index><main>series</main><sub>p@<m>p</m>-series</sub></index><index><main>p@<m>p</m>-series</main></index>
+          <index><main>convergence</main><sub>of p@of <m>p</m>-series</sub></index><index><main>divergence</main><sub>of p@of <m>p</m>-series</sub></index></p>
+      </statement>
+    </theorem>
+
+    <aside>
+      <p>We will be able to prove <xref ref="thm_pseries">Theorem</xref> in <xref ref="sec_int_comp_tests">Section</xref>.  This theorem assumes that <m>an+b\neq 0</m> for all <m>n</m>. If <m>an+b=0</m> for some <m>n</m>, then of course the series does not converge regardless of <m>p</m> as not all of the terms of the sequence are defined. </p>
+    </aside>
+
+    <example xml:id="ex_series6">
+      <title>Determining convergence of series</title>
+      <statement>
+        <p>Determine the convergence of the following series.</p>
+
+        <ol cols="3" >
+          <li><p><m>\ds\infser \frac{1}{n}</m></p></li>
+
+          <li><p><m>\ds\infser \frac{1}{n^2}</m></p></li>
+
+          <li><p><m>\ds\infser \frac{1}{\sqrt{n}}</m></p></li>
+
+          <li><p><m>\ds\infser \frac{(-1)^n}{n}</m></p></li>
+
+          <li><p><m>\ds\sum_{n=11}^\infty \frac{1}{(\frac12n-5)^3}</m></p></li>
+
+          <li><p><m>\ds\infser \frac{1}{2^n}</m></p></li>
+        </ol>
+      </statement>
+      <solution>
+        <ol>
+          <li><p>This is a <m>p</m><ndash />series with <m>p=1</m>. By <xref ref="thm_pseries">Theorem</xref>, this series diverges.
+
+              This series is a famous series, called the <em>Harmonic Series</em>, so named because of its relationship to <em>harmonics</em> in the study of music and sound.</p></li>
+
+          <li><p>This is a <m>p</m><ndash />series with <m>p=2</m>. By <xref ref="thm_pseries">Theorem</xref>, it converges. Note that the theorem does not give a formula by which we can determine <em>what</em> the series converges to; we just know it converges. A famous, unexpected result is that this series converges to <m>\ds{\pi^2}/{6}</m>.</p></li>
+
+          <li><p>This is a <m>p</m><ndash />series with <m>p=1/2</m>; the theorem states that it diverges.</p></li>
+
+          <li><p>This is not a <m>p</m><ndash />series; the definition does not allow for alternating signs. Therefore we cannot apply <xref ref="thm_pseries">Theorem</xref>. (Another famous result states that this series, the <em>Alternating Harmonic Series</em>, converges to <m>\ln(2)</m>.)</p></li>
+
+          <li><p>This is a general <m>p</m><ndash />series with <m>p=3</m>, therefore it converges.</p></li>
+
+          <li><p>This is not a <m>p</m><ndash />series, but a geometric series with <m>r=1/2</m>. It converges.</p></li>
+        </ol>
+      </solution>
+    </example>
+
+    <p>Later sections will provide tests by which we can determine whether or not a given series converges. This, in general, is much easier than determining <em>what</em> a given series converges to. There are many cases, though, where the sum can be determined.</p>
+
+    <example xml:id="ex_series3">
+      <title>Telescoping series</title>
+      <statement>
+        <p>Evaluate the sum <m>\ds \infser \left(\frac1n-\frac1{n+1}\right)</m>.
+          <index><main>series</main><sub>telescoping</sub></index><index><main>telescoping series</main></index></p>
+      </statement>
+      <solution>
+        <p>It will help to write down some of the first few partial sums of this series.
+          <md>
+            <mrow>S_1 \amp =	\frac11-\frac12 \amp  \amp  = 1-\frac12</mrow>
+            <mrow>S_2 \amp =	\left(\frac11-\frac12\right) + \left(\frac12-\frac13\right) \amp  \amp  = 1-\frac13</mrow>
+            <mrow>S_3 \amp =	\left(\frac11-\frac12\right) + \left(\frac12-\frac13\right)+\left(\frac13-\frac14\right) \amp  \amp = 1-\frac14</mrow>
+            <mrow>S_4 \amp =	\left(\frac11-\frac12\right) + \left(\frac12-\frac13\right)+\left(\frac13-\frac14\right) +\left(\frac14-\frac15\right)\amp  \amp = 1-\frac15</mrow>
+          </md>
+        </p>
+
+        <p>Note how most of the terms in each partial sum are canceled out! In general, we see that <m>\ds S_n = 1-\frac{1}{n+1}</m>. The sequence <m>\{S_n\}</m> converges, as <m>\lim\limits_{n\to\infty}S_n = \lim_{n\to\infty}\left(1-\frac1{n+1}\right) = 1</m>, and so we conclude that <m>\ds \infser \left(\frac1n-\frac1{n+1}\right) = 1</m>. Partial sums of the series are plotted in <xref ref="fig_series3">Figure</xref>.</p>
+
+        <figure xml:id="fig_series3" >
+          <caption>Scatter plots relating to the series of <xref ref="ex_series3">Example</xref>.</caption>
+          <!-- START figures/fig_series3.tex -->
+          <image xml:id="img_series3" widths="47%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[%
+              axis on top,%
+			xtick={2,4,6,8,10},%
+              %			extra x ticks={3.14,1.57},
+              %			extra x tick labels={$\pi$,$\pi/2$},
+              %			ytick={-1,-2,1,2},
+			%%extra y ticks={-5,-3,...,7},%
+              %			minor x tick num=4,
+			ymin=-.1,ymax=1.1,%
+			xmin=-1,xmax=11%
+              ]
+
+              \addplot [only marks,{\colorone},mark size={1.5pt},domain=1:10,samples=10] {1/x-1/(x+1)};
+
+              \addplot [only marks,{\colortwo},mark size={1.5pt},domain=1:10,samples=10] {1-1/x};
+
+              %\fill [{\colorone}](axis cs:2,250) circle (1.5pt) node[right,black] {\scriptsize $a_n$};
+              %\fill [{\colortwo}](axis cs:2,225) circle (1.5pt) node[right,black] {\scriptsize $S_n$};
+
+              \end{axis}
+
+              \node [right] at (myplot.right of origin) {\scriptsize $n$};
+
+
+              \node[shift={(0,-15pt)},draw] at (myplot.south) {\begin{tikzpicture}
+																\fill [\colorone] (0,0) circle (1.5pt) node [right,black] {\scriptsize $a_n$};
+																\fill [\colortwo] (1,0) circle (1.5pt) node [right, black] {\scriptsize $S_n$};
+																\end{tikzpicture}};
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_series3.tex END -->
+        </figure>
+      </solution>
+    </example>
+
+    <p>The series in <xref ref="ex_series3">Example</xref> is an example of a <em>telescoping series</em>. Informally, a telescoping series is one in which the partial sums reduce to just a finite number of terms. The partial sum <m>S_n</m> did not contain <m>n</m> terms, but rather just two: 1 and <m>1/(n+1)</m>.<index><main>series</main><sub>telescoping</sub></index><index><main>telescoping series</main></index></p>
+
+    <p>When possible, seek a way to write an explicit formula for the <m>n^\text{ th }</m> partial sum <m>S_n</m>. This makes evaluating the limit <m>\lim\limits_{n\to\infty} S_n</m> much more approachable. We do so in the next example.</p>
+
+    <example xml:id="ex_series4">
+      <title>Evaluating series</title>
+      <statement>
+        <p>Evaluate each of the following infinite series.</p>
+        <ol cols="2">
+          <li><p><m>\ds \infser \frac{2}{n^2+2n}</m> </p></li>
+          <li><p><m>\ds \infser \ln\left(\frac{n+1}{n}\right)</m></p></li>    
+        </ol>
+
+    
+      </statement>
+      <solution>
+        <ol>
+          <li><p>We can decompose the fraction <m>2/(n^2+2n)</m> as
+              <me>
+                \frac2{n^2+2n} = \frac1n-\frac1{n+2}.
+              </me>
+              (See <xref ref="sec_partial_fraction">Section</xref>, Partial Fraction Decomposition, to recall how  this is done, if necessary.)
+
+              <todo>Figure out how to format this. You could write S_4 as S_3+a_4 and save two terms?</todo>
+
+              Expressing the terms of <m>\{S_n\}</m> is now more instructive:
+              <md>
+                <mrow>S_1 \amp = 1-\frac13 \amp \amp = 1-\frac13</mrow>
+                <mrow>S_2 \amp = \left(1-\frac13\right) + \left(\frac12-\frac14\right) \amp \amp = 1+\frac12-\frac13-\frac14</mrow>
+                <mrow>S_3 \amp = \left(1-\frac13\right) + \left(\frac12-\frac14\right)+\left(\frac13-\frac15\right) \amp \amp = 1+\frac12-\frac14-\frac15</mrow>
+                <mrow>S_4 \amp = \left(1-\frac13\right) + \left(\frac12-\frac14\right)+\left(\frac13-\frac15\right)+\left(\frac14-\frac16\right) \amp \amp = 1+\frac12-\frac15-\frac16</mrow>
+                <mrow>S_5 \amp = \left(1-\frac13\right) + \left(\frac12-\frac14\right)+\left(\frac13-\frac15\right)+\left(\frac14-\frac16\right)+\left(\frac15-\frac17\right) \amp \amp = 1+\frac12-\frac16-\frac17</mrow>
+              </md>
+              We again have a telescoping series. In each partial sum, most of the terms cancel and we obtain the formula <m>\ds S_n = 1+\frac12-\frac1{n+1}-\frac1{n+2}</m>. Taking limits allows us to determine the convergence of the series:
+              <m>\lim_{n\to\infty}S_n = \lim_{n\to\infty} \left(1+\frac12-\frac1{n+1}-\frac1{n+2}\right) = \frac32</m> So <m>\infser \frac1{n^2+2n} = \frac32</m>.
+              
+              This is illustrated in <xref ref="fig_series4a">Figure</xref>.
+
+              
+              <sidebyside xml:id="fig_series4" widths="47% 47%">
+                <caption>Scatter plots relating to the series in <xref ref="ex_series4">Example</xref>.</caption>
+                <figure xml:id="fig_series4a" >
+                  <caption/>
+                  <!-- START figures/fig_series4a.tex -->
+                  <image xml:id="img_series4a" >
+                    <description></description>
+                    <latex-image-code>
+                      <![CDATA[
+                      \begin{tikzpicture}
+                      \begin{axis}[%
+                      axis on top,%
+			xtick={2,4,6,8,10},%
+                      %			extra x ticks={3.14,1.57},
+                      %			extra x tick labels={$\pi$,$\pi/2$},
+                      %			ytick={-1,-2,1,2},
+			%%extra y ticks={-5,-3,...,7},%
+                      %			minor x tick num=4,
+			ymin=-.1,ymax=1.6,%
+			xmin=-1,xmax=11%
+                      ]
+
+                      \addplot [only marks,{\colorone},mark size={1.5pt},domain=1:10,samples=10] {2/(x^2+2*x)};
+
+                      \addplot [only marks,{\colortwo},mark size={1.5pt},domain=1:10,samples=10] {1.5-1/(x+1)-1/(x+2)};
+
+                      %\fill [{\colorone}](axis cs:2,250) circle (1.5pt) node[right,black] {\scriptsize $a_n$};
+                      %\fill [{\colortwo}](axis cs:2,225) circle (1.5pt) node[right,black] {\scriptsize $S_n$};
+
+                      \end{axis}
+
+                      \node [right] at (myplot.right of origin) {\scriptsize $n$};
+
+
+                      \node[shift={(0,-17pt)},draw] at (myplot.south) {\begin{tikzpicture}
+																\fill [\colorone] (0,0) circle (1.5pt) node [right,black] {\scriptsize $a_n$};
+																\fill [\colortwo] (1,0) circle (1.5pt) node [right, black] {\scriptsize $S_n$};
+																\end{tikzpicture}};
+
+                      \end{tikzpicture}
+                      ]]>
+                    </latex-image-code>
+                  </image>
+                  <!-- figures/fig_series4a.tex END -->
+                </figure>
+
+                <figure xml:id="fig_series4b">
+                  <caption/>
+                  <!-- START figures/fig_series4b.tex -->
+                  <image xml:id="img_series4b" >
+                    <description></description>
+                    <latex-image-code>
+                      <![CDATA[
+                      \begin{tikzpicture}
+                      \begin{axis}[%
+                      axis on top,%
+			%xtick={2,4,6,8,10},%
+                      %			extra x ticks={3.14,1.57},
+                      %			extra x tick labels={$\pi$,$\pi/2$},
+                      %			ytick={-1,-2,1,2},
+			%%extra y ticks={-5,-3,...,7},%
+                      %			minor x tick num=4,
+			ymin=-.5,ymax=5,%
+			xmin=-10,xmax=110%
+                      ]
+
+                      \addplot [only marks,{\colorone},mark size={1.5pt},domain=10:100,samples=10] {ln((x+1)/x)};
+
+                      \addplot [only marks,{\colortwo},mark size={1.5pt},domain=10:100,samples=10] {ln(x+1)};
+
+                      %\fill [{\colorone}](axis cs:2,250) circle (1.5pt) node[right,black] {\scriptsize $a_n$};
+                      %\fill [{\colortwo}](axis cs:2,225) circle (1.5pt) node[right,black] {\scriptsize $S_n$};
+
+                      \end{axis}
+
+                      \node [right] at (myplot.right of origin) {\scriptsize $n$};
+
+
+                      \node[shift={(0,-15pt)},draw] at (myplot.south) {\begin{tikzpicture}
+																\fill [\colorone] (0,0) circle (1.5pt) node [right,black] {\scriptsize $a_n$};
+																\fill [\colortwo] (1,0) circle (1.5pt) node [right, black] {\scriptsize $S_n$};
+																\end{tikzpicture}};
+
+                      \end{tikzpicture}
+                      ]]>
+                    </latex-image-code>
+                  </image>
+                  <!-- figures/fig_series4b.tex END -->
+                </figure>
+              </sidebyside>
+
+
+            </p></li>
+
+          <li><p>We begin by writing the first few partial sums of the series:
+              <md>
+                <mrow>S_1 \amp = \ln\left(2\right)</mrow>
+                <mrow>S_2 \amp = \ln\left(2\right)+\ln\left(\frac32\right)</mrow>
+                <mrow>S_3 \amp = \ln\left(2\right)+\ln\left(\frac32\right)+\ln\left(\frac43\right)</mrow>
+                <mrow>S_4 \amp = \ln\left(2\right)+\ln\left(\frac32\right)+\ln\left(\frac43\right)+\ln\left(\frac54\right)</mrow>
+              </md>
+              At first, this does not seem helpful, but recall the logarithmic identity: <m>\ln(x) +\ln(y) = \ln(xy)</m>. Applying this to <m>S_4</m> gives:
+              <me>
+                S_4 = \ln\left(2\right)+\ln\left(\frac32\right)+\ln\left(\frac43\right)+\ln\left(\frac54\right) = \ln\left(\frac21\cdot\frac32\cdot\frac43\cdot\frac54\right) = \ln\left(5\right).
+              </me>
+              We can conclude that <m>\{S_n\} = \big\{\ln(n+1)\big\}</m>. This sequence  does not converge, as <m>\lim\limits_{n\to\infty}S_n=\infty</m>. Therefore  <m>\ds\infser  \ln\left(\frac{n+1}{n}\right)=\infty</m>; the series diverges. Note in <xref ref="fig_series4">Figure</xref>(b) how the sequence of partial sums grows slowly; after 100 terms, it is not yet over 5. Graphically we may be fooled into thinking the series converges, but our analysis above shows that it does not.</p></li>
+        </ol>
+      </solution>
+    </example>
+
+    <p>We are learning about a new mathematical object, the series. As done before, we apply <q>old</q> mathematics to this new topic.</p>
+
+    <theorem xml:id="thm_series_prop">
+      <title>Properties of Infinite Series</title>
+      <statement>
+        <p>Let <m>\ds \infser a_n = L</m>,<m>\ds\infser b_n = K</m>, and let <m>c</m> be a constant.</p>
+
+        <ol>
+          <li><p>Constant Multiple Rule: <m>\ds\infser c\cdot a_n = c\cdot\infser a_n = c\cdot L</m>.<index><main>Constant Multiple Rule</main><sub>of series</sub></index></p></li>
+
+          <li><p>Sum/Difference Rule: <m>\ds\infser \big(a_n\pm b_n\big) = \infser a_n \pm \infser b_n = L \pm K</m>.
+              <index><main>series</main><sub>properties</sub></index><index><main>Sum/Difference Rule</main><sub>of series</sub></index></p></li>
+        </ol>
+      </statement>
+    </theorem>
+
+    <p>Before using this theorem, we provide a few <q>famous</q> series.</p>
+
+    <insight xml:id="idea_famous_series">
+      <title>Important Series</title>
+      <ol>
+        <li><p><m>\ds\infser[0] \frac1{n!} = e</m>.  (Note that the index starts with <m>n=0</m>.)</p></li>
+
+        <li><p><m>\ds\infser \frac1{n^2} = \frac{\pi^2}{6}</m>.</p></li>
+
+        <li><p><m>\ds\infser \frac{(-1)^{n+1}}{n^2} = \frac{\pi^2}{12}</m>.</p></li>
+
+        <li><p><m>\ds\infser[0] \frac{(-1)^{n}}{2n+1} = \frac{\pi}{4}</m>.</p></li>
+
+        <li><p><m>\ds\infser \frac{1}{n}</m>   diverges. (This is called the <em>Harmonic Series</em>.)<index><main>Harmonic Series</main></index></p></li>
+
+        <li><p><m>\ds\infser \frac{(-1)^{n+1}}{n} = \ln(2)</m>. (This is called the <em>Alternating Harmonic Series</em>.)<index><main>Alternating Harmonic Series</main></index></p></li>
+      </ol>
+    </insight>
+
+    <example xml:id="ex_series5">
+      <title>Evaluating series</title>
+      <statement>
+        <p>Evaluate the given series.</p>
+        <ol cols="3">
+          <li><p><m>\ds\infser \frac{(-1)^{n+1}\big(n^2-n\big)}{n^3}</m> </p></li>
+          <li><p><m>\ds\infser \frac{1000}{n!}</m></p></li>
+          <li><p><m>\ds \frac1{16}+\frac1{25}+\frac1{36}+\frac1{49}+\cdots</m></p></li>
+        </ol>
+      </statement>
+      <solution>
+        <ol>
+          <li><p>We start by using algebra to break the series apart:
+              <md>
+                <mrow>\infser \frac{(-1)^{n+1}\big(n^2-n\big)}{n^3} \amp = \infser\left(\frac{(-1)^{n+1}n^2}{n^3}-\frac{(-1)^{n+1}n}{n^3}\right)</mrow>
+                <mrow>\amp = \infser\frac{(-1)^{n+1}}{n}-\infser\frac{(-1)^{n+1}}{n^2}</mrow>
+                <mrow>\amp = \ln(2) - \frac{\pi^2}{12}	\approx	-0.1293.</mrow>
+              </md>
+              This is illustrated in <xref ref="fig_series5a">Figure</xref>.</p></li>
+
+          <li><p>This looks very similar to the series that involves <m>e</m> in <xref ref="idea_famous_series">Key Idea</xref>. Note, however, that the series given in this example starts with <m>n=1</m> and not <m>n=0</m>. The first term of the series in the Key Idea is <m>1/0! = 1</m>, so we will subtract this from our result below:
+              <md>
+                <mrow>\infser \frac{1000}{n!} \amp = 1000\cdot\infser \frac{1}{n!}</mrow>
+                <mrow>\amp = 1000\cdot (e-1) \approx  1718.28.</mrow>
+              </md>
+              This is illustrated in <xref ref="fig_series5b">Figure</xref>. The graph shows how this particular series converges very rapidly.
+
+
+             
+              <sidebyside xml:id="fig_series5" widths="47% 47%">
+                 <caption>Scatter plots relating to the series in <xref ref="ex_series5">Example</xref>.</caption>
+                <figure xml:id="fig_series5a">
+                  <caption/>
+                  <!-- START figures/fig_series5a.tex -->
+                  <image xml:id="img_series5a" >
+                    <description></description>
+                    <latex-image-code>
+                      <![CDATA[
+                      \begin{tikzpicture}
+                      \begin{axis}[%
+                      axis on top,%
+			xtick={10,20,30,40,50},%
+                      %			extra x ticks={3.14,1.57},
+                      %			extra x tick labels={$\pi$,$\pi/2$},
+                      %			ytick={-1,-2,1,2},
+			%%extra y ticks={-5,-3,...,7},%
+                      %			minor x tick num=4,
+			ymin=-.3,ymax=.3,%
+			xmin=-1,xmax=55%
+                      ]
+
+                      \addplot [only marks,{\colorone},mark size={1.5pt},domain=5:50,samples=10] {((-1)^(x+1)*(x^2-x))/(x^3)};
+
+                      \addplot [only marks,{\colortwo},mark size={1.5pt},domain=1:10,samples=10]coordinates {(5,-0.05528)(10,-0.1723)(15,-0.09917)(20,-0.1525)(25,-0.1105)(30,-0.1452)(35,-0.1156)(40,-0.1414)(45,-0.1186)(50,-0.139)};
+
+                      %\fill [{\colorone}](axis cs:2,250) circle (1.5pt) node[right,black] {\scriptsize $a_n$};
+                      %\fill [{\colortwo}](axis cs:2,225) circle (1.5pt) node[right,black] {\scriptsize $S_n$};
+
+                      \end{axis}
+
+                      \node [right] at (myplot.right of origin) {\scriptsize $n$};
+
+
+                      \node[shift={(0,0pt)},draw] at (myplot.south) {\begin{tikzpicture}
+																\fill [\colorone] (0,0) circle (1.5pt) node [right,black] {\scriptsize $a_n$};
+																\fill [\colortwo] (1,0) circle (1.5pt) node [right, black] {\scriptsize $S_n$};
+																\end{tikzpicture}};
+
+                      \end{tikzpicture}
+                      ]]>
+                    </latex-image-code>
+                  </image>
+                  <!-- figures/fig_series5a.tex END -->
+                </figure>
+
+                <figure xml:id="fig_series5b">
+                  <caption/>
+                  <!-- START figures/fig_series5b.tex -->
+                  <image xml:id="img_series5b" >
+                    <description></description>
+                    <latex-image-code>
+                      <![CDATA[
+                      \begin{tikzpicture}
+                      \begin{axis}[%
+                      axis on top,%
+                      %			xtick={2,4,6,8,10},%
+                      %			extra x ticks={3.14,1.57},
+                      %			extra x tick labels={$\pi$,$\pi/2$},
+                      %			ytick={-1,-2,1,2},
+			%%extra y ticks={-5,-3,...,7},%
+                      %			minor x tick num=4,
+			ymin=-.3,ymax=2100,%
+			xmin=-1,xmax=11%
+                      ]
+
+                      \addplot [only marks,{\colorone},mark size={1.5pt},domain=1:10,samples=10]coordinates {(1,1000.)(2,500.)(3,166.7)(4,41.67)(5,8.333)(6,1.389)(7,0.1984)(8,0.0248)(9,0.002756)(10,0.0002756)};
+
+                      \addplot [only marks,{\colortwo},mark size={1.5pt},domain=1:10,samples=10]coordinates {(1,1000.)(2,1500.)(3,1667.)(4,1708.)(5,1717.)(6,1718.)(7,1718.)(8,1718.)(9,1718.)(10,1718.)};
+
+                      %\fill [{\colorone}](axis cs:2,250) circle (1.5pt) node[right,black] {\scriptsize $a_n$};
+                      %\fill [{\colortwo}](axis cs:2,225) circle (1.5pt) node[right,black] {\scriptsize $S_n$};
+
+                      \end{axis}
+
+                      \node [right] at (myplot.right of origin) {\scriptsize $n$};
+
+
+                      \node[shift={(0,-25pt)},draw] at (myplot.south) {\begin{tikzpicture}
+																\fill [\colorone] (0,0) circle (1.5pt) node [right,black] {\scriptsize $a_n$};
+																\fill [\colortwo] (1,0) circle (1.5pt) node [right, black] {\scriptsize $S_n$};
+																\end{tikzpicture}};
+
+                      \end{tikzpicture}
+                      ]]>
+                    </latex-image-code>
+                  </image>
+                  <!-- figures/fig_series5b.tex END -->
+                </figure>
+              </sidebyside>
+
+
+            </p></li>
+
+          <li><p>The denominators in each term are perfect squares; we are adding <m>\ds \sum_{n=4}^\infty \frac{1}{n^2}</m> (note  we start with <m>n=4</m>, not <m>n=1</m>). This series will converge. Using the formula from <xref ref="idea_famous_series">Key Idea</xref>, we have the following:
+              <md>
+                <mrow>\infser \frac1{n^2} \amp = \sum_{n=1}^3 \frac1{n^2} +\sum_{n=4}^\infty \frac1{n^2}</mrow>
+                <mrow>\infser \frac1{n^2} - \sum_{n=1}^3 \frac1{n^2} \amp =\sum_{n=4}^\infty \frac1{n^2}</mrow>
+                <mrow>\frac{\pi^2}{6} - \left(\frac11+\frac14+\frac19\right) \amp = \sum_{n=4}^\infty \frac1{n^2}</mrow>
+                <mrow>\frac{\pi^2}{6} - \frac{49}{36} \amp = \sum_{n=4}^\infty \frac1{n^2}</mrow>
+                <mrow>0.2838\amp \approx \sum_{n=4}^\infty \frac1{n^2}</mrow>
+              </md>
+            </p></li>
+        </ol>
+      </solution>
+    </example>
+
+    <p>It may take a while before one is comfortable with this statement, whose truth lies at the heart of the study of infinite series: <em>it is possible that the sum of an infinite list of nonzero numbers is finite.</em> We have seen this repeatedly in this section, yet it still may <q>take some getting used to.</q></p>
+
+    <p>As one contemplates the behavior of series, a few facts become clear.</p>
+
+    <ol>
+    <li><p>In order to add an infinite list of nonzero numbers and get a finite result, <q>most</q> of those numbers must be <q>very near</q> 0.</p></li>
+
+    <li><p>If a series diverges, it means that the sum of an infinite list of numbers is not finite (it may approach <m>\pm \infty</m> or it may oscillate), and:</p>
+
+    <ol>
+      <li><p>The series will still diverge if the first term is removed.</p></li>
+
+      <li><p>The series will still diverge if the first 10 terms are removed.</p></li>
+
+      <li><p>The series will still diverge if the first <m>1,000,000</m> terms are removed.</p></li>
+
+      <li><p>The series will still diverge if any finite number of terms from anywhere in the series are removed.</p></li>
+    </ol>
+
+    </li>
+    </ol>
+
+    <p>These concepts are very important and lie at the heart of the next two theorems.</p>
+
+    <theorem xml:id="thm_series_nth_term">
+      <title><m>n^{th}</m><ndash />Term Test and the Test for Divergence</title>
+      <statement>
+        <p>Consider the series <m>\ds\infser a_n</m>.
+          <index><main>series</main><sub>nth@<m>n^\text{ th }</m><ndash />term test</sub></index><index><main>nth@<m>n^\text{ th }</m><ndash />term test</main></index><index><main>convergence</main><sub>nth@<m>n^\text{ th }</m><ndash />term test</sub></index><index><main>divergence</main><sub>nth@<m>n^\text{ th }</m><ndash />term test</sub></index></p>
+
+        <ol>
+          <li><p>If <m>\ds\infser a_n</m> converges, then <m>\lim\limits_{n\to\infty}a_n =0</m>.</p></li>
+
+          <li xml:id="thm_series_nth_term_2"><p>If <m>\lim\limits_{n\to\infty}a_n \neq 0</m>, then <m>\ds\infser a_n</m> diverges.</p></li>
+        </ol>
+      </statement>
+    </theorem>
+
+    <p>Note that the two statements in <xref ref="thm_series_nth_term">Theorem</xref> are logically equivalent (each is the other's contrapositive). In order to converge, the limit of the terms of the sequence must approach 0; if they do not, the series will not converge.</p>
+
+    <p>Looking back, we can apply this theorem to the series in <xref ref="ex_series1">Example</xref>. In that example, the <m>n^\text{ th }</m> terms of both sequences do not converge to 0, therefore we can quickly conclude that each series diverges.</p>
+
+    <p><em>Important!</em> This theorem <em>does not state</em> that if <m>\lim\limits_{n\to\infty} a_n = 0</m> then <m>\ds \infser  a_n</m> converges. The standard example of this is the Harmonic Series, as given in <xref ref="idea_famous_series">Key Idea</xref>. The Harmonic Sequence, <m>\{1/n\}</m>, converges to 0; the Harmonic Series, <m>\ds \infser 1/n</m>, diverges.</p>
+
+    <theorem xml:id="thm_series_behavior">
+      <title>Infinite Nature of Series</title>
+      <statement>
+        <p>The convergence or divergence remains unchanged by the addition or subtraction of any finite number of terms. That is:</p>
+
+        <ol>
+          <li><p>A divergent series will remain divergent with the addition or subtraction of any finite number of terms.</p></li>
+
+          <li><p>A convergent series will remain convergent with the addition or subtraction of any finite number of terms. (Of course, the <em>sum</em> will likely change.)</p></li>
+        </ol>
+      </statement>
+    </theorem>
+
+    <p>Consider once more the Harmonic Series <m>\ds\infser  \frac1n</m> which diverges; that is, the sequence of partial sums <m>\{S_n\}</m> grows (very, very slowly) without bound. One might think that by removing the <q>large</q> terms of the sequence that perhaps the series will converge. This is simply not the case. For instance, the sum of the first 10 million terms of the Harmonic Series is about 16.7. Removing the first 10 million terms from the Harmonic Series changes the <m>n^\text{ th }</m> partial sums, effectively subtracting 16.7 from the sum. However, a sequence that is growing without bound will still grow without bound when 16.7 is subtracted from it.</p>
+
+    <p>The equations below illustrate this. The first line shows the infinite sum of the Harmonic Series split into the sum of the first 10 million terms plus the sum of <q>everything else.</q> The next equation shows us subtracting these first 10 million terms from both sides. The final equation employs a bit of <q>psuedo<ndash />math</q>: subtracting 16.7 from <q>infinity</q> still leaves one with <q>infinity.</q>
+      <md>
+        <mrow>\infser \frac1n \amp = \sum_{n=1}^{10,000,000}\frac1n + \ds\sum_{n=10,000,001}^\infty \frac1n</mrow>
+        <mrow>\infser \frac1n - \sum_{n=1}^{10,000,000}\frac1n\amp = \ds\sum_{n=10,000,001}^\infty \frac1n</mrow>
+        <mrow>\infty - 16.7 \amp =  \infty.</mrow>
+      </md>
+    </p>
+
+    <p>
+      Just for fun, we can show that the Harmonic Series diverges algebraically (without the use of <xref ref="thm_pseries" autoname="title"/>). </p>
+
+      <proof>
+      <p>If you just consider the partial sums <m>S_1, S_2, S_3, \dots, S_{1000}, S_{1001}, \dots</m>, it is not apparent that the partial sums diverge. Indeed they do diverge, but very, very slowly. (If you graph them on a logarithmic scale however, you can clearly see the divergence of the partial sums.) Instead, we will consider the partial sums, indexed by powers of <m>2</m>. That is, we will consider <m>S_2,S_4, S_8, S_{16}, \dots</m>.
+
+  
+      <md>
+        <mrow>S_2=1+\frac12</mrow>
+        <mrow>S_4=1+\frac12+\frac13+\frac14</mrow>
+        <mrow>S_8=1+\frac12+\frac13+\frac14+\frac15+\frac16+\frac18</mrow>
+      </md>
+    </p>
+    <p>
+      Next, we consider grouping together terms in each partial sum. We will use these groupings to set up inequalities. 
+            <md>
+        <mrow>S_2=1+\frac12</mrow>
+        <mrow>S_4=1+\frac12+\left(\frac13+\frac14\right)</mrow>
+        <mrow>S_8=1+\frac12+\left(\frac13+\frac14\right)+\left(\frac15+\frac16+\frac17+\frac18\right)</mrow>
+      </md>
+    </p>
+    <p>
+      In the partial sum <m>S_4</m>, we note that since <m>1/3\gt 1/4</m>, we can say <me>S_4=1+\frac12+\left(\frac13+\frac14\right)\gt 1+\frac12+\underbrace{\left(\frac14+\frac14\right)}_{1/2}=1+\frac22</me>. Do the same in <m>S_8</m> and also note that every term in the group <m>\left(\frac15+\frac16+\frac17+\frac18\right)</m> is larger than <m>1/8</m>. So 
+      <md>
+        <mrow>S_8 \amp = 1+\frac12+\left(\frac13+\frac14\right)+\left(\frac15+\frac16+\frac17+\frac18\right)</mrow>
+        <mrow>\amp \gt 1+\frac12+\underbrace{\left(\frac14+\frac14\right)}_{1/2}+\underbrace{\left(\frac18+\frac18+\frac18+\frac18\right)}_{1/2}=1+\frac32</mrow></md>
+    </p>
+
+    <p>Generally, we can see that <m>S_{2^n} \gt 1+\frac{n}2</m>. (In order to <em>really</em> show this, we should employ proof by induction.) Since the sequence of partial sums clearly diverges, so does the series <m>\infser 1/n</m>.</p>
+
+    </proof>
+
+    <p>This section introduced us to series and defined a few special types of series whose convergence properties are well known: we know when a <m>p</m>-series or a geometric series converges or diverges. Most series that we encounter are not one of these types, but we are still interested in knowing whether or not they converge. The next three sections introduce tests that help us determine whether or not a given series converges.</p>
+  </subsection>
+
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Use your own words to describe how sequences and series are related.</p>
+          </statement>
+          <solution>
+            <p>Answers will vary.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Use your own words to define a <em>partial sum</em>.</p>
+          </statement>
+          <solution>
+            <p>Answers will vary.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Given a series <m>\ds \infser a_n</m>, describe the two sequences related to the series that are important.</p>
+          </statement>
+          <solution>
+            <p>One sequence is the sequence of terms <m>\{a_\}</m>. The other is the sequence of <m>n^\text{ th }</m> partial sums, <m>\{S_n\} = \{\sum_{i=1}^n a_i\}</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Use your own words to explain what a geometric series is.</p>
+          </statement>
+          <solution>
+            <p>Answers will vary.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>T/F: If <m>\{a_n\}</m> is convergent, then <m>\ds \infser a_n</m> is also convergent.</p>
+          </statement>
+          <solution>
+            <p>F</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, a series <m>\ds\infser a_n</m> is given.</p>
+      </introduction>
+
+      <ol>
+        <li>
+          <title>(a)</title>
+          <p>Give the first 5 partial sums of the series.</p></li>
+
+        <li>
+          <title>(b)</title>
+          <p>Give a graph of the first 5 terms of <m>a_n</m> and <m>S_n</m> on the same axes.</p></li>
+      </ol>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \infser \frac{(-1)^n}{n}</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>-1,-\frac{1}{2},-\frac{5}{6},-\frac{7}{12},-\frac{47}{60}</m></p></li>
+
+              <li><p>Plot omitted</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \infser \frac{1}{n^2}</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>1,\frac{5}{4},\frac{49}{36},\frac{205}{144},\frac{526
+                     9}{3600}</m></p></li>
+
+              <li><p>Plot omitted</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \infser \cos(\pi n)</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>-1,0,-1,0,-1</m></p></li>
+
+              <li><p>Plot omitted</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \infser n</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>1,3,6,10,15</m></p></li>
+
+              <li><p>Plot omitted</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \infser \frac{1}{n!}</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>1,\frac{3}{2},\frac{5}{3},\frac{41}{24},\frac{103}{60}</m></p></li>
+
+              <li><p>Plot omitted</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \infser \frac{1}{3^n}</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>\frac{1}{3},\frac{4}{9},\frac{13}{27},\frac{40}{81},\frac{121}{243}</m></p></li>
+
+              <li><p>Plot omitted</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \infser \left(-\frac{9}{10}\right)^n</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>-0.9,-0.09,-0.819,-0.1629,-0.75339</m></p></li>
+
+              <li><p>Plot omitted</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \infser \left(\frac{1}{10}\right)^n</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>0.1,0.11,0.111,0.1111,0.11111</m></p></li>
+
+              <li><p>Plot omitted</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, use <xref ref="thm_series_nth_term">Theorem</xref> to show the given series diverges.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \infser \frac{3n^2}{n(n+2)}</m></p>
+          </statement>
+          <solution>
+            <p><m>\lim\limits_{n\to\infty}a_n = 3</m>; by <xref ref="thm_series_nth_term">Theorem</xref> the series diverges.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \infser \frac{2^n}{n^2}</m></p>
+          </statement>
+          <solution>
+            <p><m>\lim\limits_{n\to\infty}a_n = \infty</m>; by <xref ref="thm_series_nth_term">Theorem</xref> the series diverges.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \infser \frac{n!}{10^n}</m></p>
+          </statement>
+          <solution>
+            <p><m>\lim\limits_{n\to\infty}a_n = \infty</m>; by <xref ref="thm_series_nth_term">Theorem</xref> the series diverges.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \infser \frac{5^n-n^5}{5^n+n^5}</m></p>
+          </statement>
+          <solution>
+            <p><m>\lim\limits_{n\to\infty}a_n = 1</m>; by <xref ref="thm_series_nth_term">Theorem</xref> the series diverges.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \infser \frac{2^n+1}{2^{n+1}}</m></p>
+          </statement>
+          <solution>
+            <p><m>\lim\limits_{n\to\infty}a_n = 1/2</m>; by <xref ref="thm_series_nth_term">Theorem</xref> the series diverges.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \infser \left(1+\frac1n\right)^n</m></p>
+          </statement>
+          <solution>
+            <p><m>\lim\limits_{n\to\infty}a_n = e</m>; by <xref ref="thm_series_nth_term">Theorem</xref> the series diverges.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, state whether the given series converges or diverges.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \infser \frac{1}{n^5}</m></p>
+          </statement>
+          <solution>
+            <p>Converges</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \infser[0] \frac{1}{5^n}</m></p>
+          </statement>
+          <solution>
+            <p>Converges</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \infser[0] \frac{6^n}{5^n}</m></p>
+          </statement>
+          <solution>
+            <p>Diverges</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \infser n^{-4}</m></p>
+          </statement>
+          <solution>
+            <p>Converges</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \infser \sqrt{n}</m></p>
+          </statement>
+          <solution>
+            <p>Diverges</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \infser \frac{10}{n!}</m></p>
+          </statement>
+          <solution>
+            <p>Converges</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \infser \left(\frac{1}{n!}+\frac1n\right)</m></p>
+          </statement>
+          <solution>
+            <p>Diverges</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \infser \frac{2}{(2n+8)^2}</m></p>
+          </statement>
+          <solution>
+            <p>Converges</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \infser \frac{1}{2n}</m></p>
+          </statement>
+          <solution>
+            <p>Diverges</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \infser \frac{1}{2n-1}</m></p>
+          </statement>
+          <solution>
+            <p>Diverges</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, a series is given.</p>
+
+      <ol>
+        <li>
+          <title>(a)</title>
+          <p>Find a formula for <m>S_n</m>, the <m>n^\text{ th }</m> partial sum of the series.</p></li>
+
+        <li>
+          <title>(b)</title>
+          <p>Determine whether the series converges or diverges. If it converges, state what it converges to.</p></li>
+      </ol>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \infser[0] \frac{1}{4^n}</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>S_n = \frac{1-(1/4)^n}{3/4}</m></p></li>
+
+              <li><p>Converges to <m>4/3</m>.</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds 1^3+2^3+3^3+4^3+\cdots</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>S_n = \left(\frac{n(n+1)}{2}\right)^2</m></p></li>
+
+              <li><p>Diverges</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \infser (-1)^n n</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>S_n = \left\{\begin{array}{cc} \frac{n+1}{2} \amp  <m>n</m> \text{ is odd } \\
+																			-\frac{n}{2} \amp  <m>n</m> \text{ is even }
+                  \end{array} \right.</m></p></li>
+
+              <li><p>Diverges</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \infser[0] \frac{5}{2^n}</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>S_n = 5\frac{1-1/2^n}{1/2}</m></p></li>
+
+              <li><p>Converges to 10.</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \infser e^{-n}</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>S_n = \frac{1-(1/e)^{n+1}}{1-1/e}</m>.</p></li>
+
+              <li><p>Converges to <m>1/(1-1/e) = e/(e-1)</m>.</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds 1-\frac13+\frac19-\frac{1}{27}+\frac{1}{81}+\cdots</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>S_n = \frac{1-(-1/3)^n}{4/3}</m></p></li>
+
+              <li><p>Converges to <m>3/4</m>.</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \infser \frac{1}{n(n+1)}</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p>With partial fractions, <m>a_n = \frac1n-\frac1{n+1}</m>. Thus <m>S_n = 1-\frac1{n+1}</m>.</p></li>
+
+              <li><p>Converges to 1.</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \infser \frac{3}{n(n+2)}</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p>With partial fractions, <m>a_n = \frac32\left(\frac1n-\frac1{n+2}\right)</m>. Thus <m>S_n = \frac32\left(\frac32-\frac1{n+1}-\frac1{n+2}\right)</m>.</p></li>
+
+              <li><p>Converges to 9/4</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \infser \frac{1}{(2n-1)(2n+1)}</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p>Use partial fraction decomposition to recognize the telescoping series: <m>a_n = \frac12\left(\frac{1}{2n-1}-\frac{1}{2n+1}\right)</m>. Then <m>S_n = \frac{n}{2n+1}</m>.</p></li>
+
+              <li><p>Converges to <m>1/2</m>.</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \infser \ln\left(\frac{n}{n+1}\right)</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>S_n = \ln\big(1/(n+1)\big)</m></p></li>
+
+              <li><p>Diverges (to <m>-\infty</m>).</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \infser \frac{2n+1}{n^2(n+1)^2}</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>S_n = 1-\frac{1}{(n+1)^2}</m></p></li>
+
+              <li><p>Converges to 1.</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \frac{1}{1\cdot 4}+\frac1{2\cdot5}+\frac1{3\cdot6}+\frac1{4\cdot7}+\cdots</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>a_n = \frac1{n(n+3)}</m>; using partial fractions, the resulting telescoping sum reduces to <m>S_n = \frac13\left(1+\frac12+\frac13-\frac1{n+1}-\frac1{n+2}-\frac1{n+3}\right)</m></p></li>
+
+              <li><p>Converges to <m>11/18</m>.</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds 2+\left(\frac12+\frac13\right) + \left(\frac14+\frac19\right) + \left(\frac18+\frac1{27}\right)+\cdots</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>a_n = 1/2^n+1/3^n</m> for <m>n\geq 0</m>. Thus <m>S_n = \frac{1-1/2^2}{1/2}+\frac{1-1/3^n}{2/3}</m>.</p></li>
+
+              <li><p>Converges to <m>2+3/2 = 7/2</m>.</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \sum_{n=2}^\infty \frac{1}{n^2-1}</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p>With partial fractions, <m>a_n = \frac12\left(\frac1{n-1}-\frac1{n+1}\right)</m>. Thus <m>S_n = \frac12\left(3/2-\frac1n-\frac{1}{n+1}\right)</m>.</p></li>
+
+              <li><p>Converges to 3/4.</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \infser[0] \big(\sin(1) \big)^n</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>S_n=\frac{1-(\sin(1) )^{n+1}}{1-\sin(1) }</m></p></li>
+
+              <li><p>Converges to <m>\frac{1}{1-\sin(1) }</m>..</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise xml:id="x08_02_ex_24">
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Break the Harmonic Series into the sum of the odd and even terms:
+              <me>
+                \infser \frac1n = \infser \frac{1}{2n-1}+\infser \frac{1}{2n}.
+              </me>
+            </p>
+
+            <p>The goal is to show that each of the series on the right diverge.</p>
+
+            <ol>
+              <li><p>Show why <m>\ds \infser \frac{1}{2n-1}>\infser \frac{1}{2n}</m>.
+		
+		(Compare each <m>n^\text{ th }</m> partial sum.)</p></li>
+
+              <li><p>Show why <m>\ds\infser \frac{1}{2n-1}\lt 1+\infser \frac{1}{2n}</m></p></li>
+
+              <li><p>Explain why (a) and (b) demonstrate that the series of odd terms is convergent, if, and only if, the series of even terms is also convergent. (That is, show both converge or both diverge.)</p></li>
+
+              <li><p>Explain why knowing the Harmonic Series is divergent determines that the even and odd series are also divergent.</p></li>
+            </ol>
+          </statement>
+          <solution>
+            <ol>
+              <li><p>The <m>n^\text{ th }</m> partial sum of the odd series is <m>1+\frac13+\frac15+\cdots+\frac{1}{2n-1}</m>. The <m>n^\text{ th }</m> partial sum of the even series is <m>\frac12+\frac14 + \frac16 + \cdots +\frac1{2n}</m>. Each term of the even series is less than the corresponding term of the odd series, giving us our result.</p></li>
+
+              <li><p>The <m>n^\text{ th }</m> partial sum of the odd series is <m>1+\frac13+\frac15+\cdots+\frac1{2n-1}</m>. The <m>n^\text{ th }</m> partial sum of 1 plus the even series is <m>1+\frac12+\frac14+\cdots + \frac{1}{2(n-1)}</m>. Each term of the even series is now greater than or equal to the corresponding term of the odd series, with equality only on the first term. This gives us the result.</p></li>
+
+              <li><p>If the odd series converges, the work done in (a) shows the even series converges also. (The sequence of the <m>n^\text{ th }</m> partial sum of the even series is bounded and monotonically increasing.) Likewise, (b) shows that if the even series converges, the odd series will, too. Thus if either series converges, the other does.
+
+                  Similarly, (a) and (b) can be used to show that if either series diverges, the other does, too.</p></li>
+
+              <li><p>If both the even and odd series converge, then their sum would be a convergent series. This would imply that the Harmonic Series, their sum, is convergent. It is not. Hence each series diverges.</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Show the series <m>\ds \infser \frac{n}{(2n-1)(2n+1)}</m> diverges.</p>
+          </statement>
+          <solution>
+            <p>Using partial fractions, we can show that <m>a_n = \frac14\left(\frac1{2n-1}+\frac{1}{2n+1}\right)</m>. The series is effectively twice the sum of the odd terms of the Harmonic Series which was shown to diverge in <xref ref="x08_02_ex_24">Exercise</xref>. Thus this series diverges.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

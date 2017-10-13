@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<lxCollection version="1" xmlns:txclxp="http://schemas.ToolsCenter.org/TeXnicCenter/LaTeXCommands.xsd">
+	<lxPackage name="HartmanShortcuts" 
+		path="" 
+		desc="TeX/LaTeX math commands" 
+	>
+		
+	<lxEnvironment name="align*" 
+			parameters="1" 
+			desc="algin* environment"
+			icon="math.bmp"
+			index="10"
+			expafter="}&#xA;	&#xA;\end{align*}" 
+			expbefore="\begin{"/>

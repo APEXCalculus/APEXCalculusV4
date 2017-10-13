@@ -1,0 +1,1869 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_vvf_motion">
+  <title>The Calculus of Motion</title>
+  <introduction>
+    <p>A common use of vector<ndash />valued functions is to describe the motion of an object in the plane or in space. A <em>position function</em> <m>\vec r(t)</m> gives the position of an object at <em>time</em> <m>t</m>. This section explores how derivatives and integrals are used to study the motion described by such a function.</p>
+
+    <definition xml:id="def_vvf_motion">
+      <title>Velocity, Speed and Acceleration</title>
+      <statement>
+        <p>Let <m>\vec r(t)</m> be a position function in <m>\mathbb{R}^2</m> or <m>\mathbb{R}^3</m>.</p>
+
+        <ol>
+          <li><p><em>Velocity</em>, denoted <m>\vec v(t)</m>, is the instantaneous rate of position change; that is, <m>\vec v(t) = \vrp(t)</m>.</p></li>
+
+          <li><p><em>Speed</em> is the magnitude of velocity, <m>\norm{\vec v(t)}</m>.</p></li>
+
+          <li><p><em>Acceleration</em>, denoted <m>\vec a(t)</m>, is the instantaneous rate of velocity change; that is, <m>\vec a(t) = \vec v\,'(t) = \vrp'(t)</m>.
+	<index><main>velocity</main></index><index><main>speed</main></index><index><main>acceleration</main></index><index><main>vector<ndash />valued function</main><sub>describing motion</sub></index></p></li>
+        </ol>
+      </statement>
+    </definition>
+
+    <example xml:id="ex_motion1">
+      <title>Finding velocity and acceleration</title>
+      <statement>
+        <p>An object is moving with position function <m>\vec r(t) = \la t^2-t,t^2+t\ra</m>, <m>-3\leq t\leq 3</m>, where distances are measured in feet and time is measured in seconds.</p>
+
+        <ol>
+          <li><p>Find <m>\vvt</m>  and \vat.</p></li>
+
+          <li><p>Sketch \vrt; plot <m>\vec v(-1)</m>, <m>\vec a(-1)</m>, <m>\vec v(1)</m> and <m>\vec a(1)</m>, each with their initial point at their corresponding point on the graph of <m>\vrt</m>.</p></li>
+
+          <li><p>When is the object's speed minimized?</p></li>
+        </ol>
+      </statement>
+      <solution>
+        <ol>
+          <li><p>Taking derivatives, we find
+              <me>
+                \vvt = \vrp(t) =\la 2t-1,2t+1\ra  \text{ and }   \vat = \vrp'(t) = \la 2,2\ra.
+              </me>
+              Note that acceleration is constant.</p></li>
+
+          <li><p><m>\vec v(-1) = \la -3,-1\ra</m>, <m>\vec a(-1) = \la 2,2\ra</m>;   <m>\vec v(1) = \la 1,3\ra</m>, <m>\vec a(1) = \la 2,2\ra</m>. These are plotted with <m>\vrt</m> in <xref ref="fig_motion1">Figure</xref>(a).
+	
+	We can think of acceleration as <q>pulling</q> the velocity vector in a certain direction. At <m>t=-1</m>, the velocity vector points down and to the left; at <m>t=1</m>, the velocity vector has been pulled in the <m>\la 2,2\ra</m> direction and is now pointing up and to the right. In <xref ref="fig_motion1">Figure</xref>(b) we plot more velocity/acceleration vectors, making more clear the effect acceleration has on velocity.
+
+              <figure xml:id="fig_motion1" >
+              <caption>Graphing the position, velocity and acceleration of an object in <xref ref="ex_motion1">Example</xref>.</caption>
+              <sidebyside>
+                <figure>
+                  <caption>(a)</caption>
+                  <!-- START figures/fig_motion1a.tex -->
+                  <image xml:id="img_motion1a" >
+                    <description></description>
+                    <latex-image-code>
+                      <![CDATA[
+                      \begin{tikzpicture}[>=stealth]
+                      \begin{axis}[%
+                      %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-6,-4,-2,2,4,6},
+			%minor x tick num=4,%
+                      %			extra x ticks={.33},
+                      %			extra x tick labels={$1/3$},
+			%ytick={-1,1},
+			%minor y tick num=4,%extra y ticks={-5,-3,...,7},%
+			ymin=-1.9,ymax=13,%
+			xmin=-1.9,xmax=13%
+                      ]
+
+
+                      \addplot [thick,{\colorone}, smooth,domain=-3:3,samples=20] ({x^2-x},{x^2+x});
+
+                      %\filldraw (axis cs:6,2) circle (1.5pt);
+                      \filldraw (axis cs:2,0) circle (1.5pt);
+                      %\filldraw (axis cs:0,0) circle (1.5pt);
+                      \filldraw (axis cs:0,2) circle (1.5pt);
+                      %\filldraw (axis cs:2,6) circle (1.5pt);
+                      %\filldraw (axis cs:12,6) circle (1.5pt);
+                      %\filldraw (axis cs:6,12) circle (1.5pt);
+
+                      %\draw [thick,->,{\colortwo}] (axis cs:6,2)--(axis cs:1,-1);
+                      \draw [thick,->,{\colortwo}] (axis cs:2,0)--(axis cs:-1,-1);
+                      %\draw [thick,->,{\colortwo}] (axis cs:0,0)--(axis cs:-1,1);
+                      \draw [thick,->,{\colortwo}] (axis cs:0,2)--(axis cs:1,5);
+                      %\draw [thick,->,{\colortwo}] (axis cs:2,6)--(axis cs:5,11);
+
+                      %\draw [thick,->] (axis cs:6,2)--(axis cs:8,4);
+                      \draw [thick,->] (axis cs:2,0)--(axis cs:4,2);
+                      %\draw [thick,->] (axis cs:0,0)--(axis cs:2,2);
+                      \draw [thick,->] (axis cs:0,2)--(axis cs:2,4);
+                      %\draw [thick,->] (axis cs:2,6)--(axis cs:4,8);
+
+                      \draw [thick,->,{\colorone}] (axis cs:8.75,3.75) -- (axis cs: 8.69,3.71);
+                      \end{axis}
+
+
+
+                      %
+                      %\draw [thick] (0,1) circle (1);
+                      %\filldraw (1,1) circle (2pt) node [right] {\scriptsize $p$};
+                      %
+                      %\draw [{\colorone},thick,domain=-1:14,smooth,samples=60] plot ({cos(\x r)+\x},{-sin(\x r)+1});
+                      %\draw [thick] (-1,0) -- (15,0);
+                      %%\draw [thick,->] (-.75,2.5) -- (.75,2.5);
+                      %\draw [thick,->] (-1.3,1) arc (180:90:1.3);
+                      %\draw [thick,white] (0,2.5) -- (1,2.5);
+
+
+                      \end{tikzpicture}
+                      ]]>
+                    </latex-image-code>
+                  </image>
+                  <!-- figures/fig_motion1a.tex END -->
+                </figure>
+
+                <figure>
+                  <caption>(b)</caption>
+                  <!-- START figures/fig_motion1b.tex -->
+                  <image xml:id="img_motion1b" >
+                    <description></description>
+                    <latex-image-code>
+                      <![CDATA[
+                      \begin{tikzpicture}[>=stealth]
+                      \begin{axis}[%
+                      %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-6,-4,-2,2,4,6},
+			%minor x tick num=4,%
+                      %			extra x ticks={.33},
+                      %			extra x tick labels={$1/3$},
+			%ytick={-1,1},
+			%minor y tick num=4,%extra y ticks={-5,-3,...,7},%
+			ymin=-1.9,ymax=13,%
+			xmin=-1.9,xmax=13%
+                      ]
+
+
+                      \addplot [thick,{\colorone}, smooth,domain=-3:3,samples=20] ({x^2-x},{x^2+x});
+
+                      \filldraw (axis cs:6,2) circle (1.5pt);
+                      \filldraw (axis cs:2,0) circle (1.5pt);
+                      \filldraw (axis cs:0,0) circle (1.5pt);
+                      \filldraw (axis cs:0,2) circle (1.5pt);
+                      \filldraw (axis cs:2,6) circle (1.5pt);
+                      \filldraw (axis cs:12,6) circle (1.5pt);
+                      \filldraw (axis cs:6,12) circle (1.5pt);
+
+                      \draw [thick,->,{\colortwo}] (axis cs:6,2)--(axis cs:1,-1);
+                      \draw [thick,->,{\colortwo}] (axis cs:2,0)--(axis cs:-1,-1);
+                      \draw [thick,->,{\colortwo}] (axis cs:0,0)--(axis cs:-1,1);
+                      \draw [thick,->,{\colortwo}] (axis cs:0,2)--(axis cs:1,5);
+                      \draw [thick,->,{\colortwo}] (axis cs:2,6)--(axis cs:5,11);
+
+                      \draw [thick,->] (axis cs:6,2)--(axis cs:8,4);
+                      \draw [thick,->] (axis cs:2,0)--(axis cs:4,2);
+                      \draw [thick,->] (axis cs:0,0)--(axis cs:2,2);
+                      \draw [thick,->] (axis cs:0,2)--(axis cs:2,4);
+                      \draw [thick,->] (axis cs:2,6)--(axis cs:4,8);
+
+                      \draw [thick,->,{\colorone}] (axis cs:8.75,3.75) -- (axis cs: 8.69,3.71);
+                      \end{axis}
+
+
+
+                      %
+                      %\draw [thick] (0,1) circle (1);
+                      %\filldraw (1,1) circle (2pt) node [right] {\scriptsize $p$};
+                      %
+                      %\draw [{\colorone},thick,domain=-1:14,smooth,samples=60] plot ({cos(\x r)+\x},{-sin(\x r)+1});
+                      %\draw [thick] (-1,0) -- (15,0);
+                      %%\draw [thick,->] (-.75,2.5) -- (.75,2.5);
+                      %\draw [thick,->] (-1.3,1) arc (180:90:1.3);
+                      %\draw [thick,white] (0,2.5) -- (1,2.5);
+
+
+                      \end{tikzpicture}
+                      ]]>
+                    </latex-image-code>
+                  </image>
+                  <!-- figures/fig_motion1b.tex END -->
+                </figure>
+              </sidebyside>
+
+              </figure>
+
+              Since <m>\vat</m> is constant in this example, as <m>t</m> grows large <m>\vvt</m> becomes almost parallel to \vat. For instance, when <m>t=10</m>, <m>\vec v(10) = \la 19,21\ra</m>, which is nearly parallel to <m>\la 2,2\ra</m>.</p></li>
+
+          <li><p>The object's speed is given by
+              <me>
+                \norm{\vvt} = \sqrt{(2t-1)^2+(2t+1)^2} =\sqrt{8t^2+2}.
+              </me>
+              To find the minimal speed, we could apply calculus techniques (such as set the derivative equal to 0 and solve for <m>t</m>, etc.) but we can find it by inspection. Inside the square root we have a quadratic which is minimized when <m>t=0</m>. Thus the speed is minimized at <m>t=0</m>, with a speed of <m>\sqrt{2}</m> ft/s.
+	
+	The graph in <xref ref="fig_motion1">Figure</xref>(b) also implies speed is minimized here. The filled dots on the graph are located at integer values of <m>t</m> between <m>-3</m> and 3. Dots that are far apart imply the object traveled a far distance in 1 second, indicating high speed; dots that are close together imply the object did not travel far in 1 second, indicating a low speed. The dots are closest together near <m>t=0</m>, implying the speed is minimized near that value.</p></li>
+        </ol>
+      </solution>
+    </example>
+
+    <example xml:id="ex_motion2">
+      <title>Analyzing Motion</title>
+      <statement>
+        <p>Two objects follow an identical path at different rates on <m>[-1,1]</m>. The position function for Object 1 is <m>\vec r_1(t) = \la t, t^2\ra</m>; the position function for Object 2 is <m>\vec r_2(t) = \la t^3, t^6\ra</m>, where distances are measured in feet and time is measured in seconds. Compare the velocity, speed and acceleration of the two objects on the path.</p>
+      </statement>
+      <solution>
+        <p>We begin by computing the velocity and acceleration function for each object:
+          <md>
+            <mrow>\vec v_1(t) \amp = \la 1,2t\ra \amp  \vec v_2(t) \amp = \la 3t^2,6t^5\ra</mrow>
+            <mrow>\vec a_1(t) \amp = \la 0,2\ra \amp  \vec a_2(t) \amp =\la 6t,30t^4\ra</mrow>
+          </md>
+        </p>
+
+        <p>We immediately see that Object 1 has constant acceleration, whereas Object 2 does not.</p>
+
+        <p>At <m>t=-1</m>, we have <m>\vec v_1(-1) = \la 1,-2\ra</m> and <m>\vec v_2(-1) = \la 3,-6\ra</m>; the velocity of Object 2 is three times that of Object 1 and so it follows that the speed of Object 2 is three times that of Object 1 (<m>3\sqrt{5}</m> ft/s compared to <m>\sqrt{5}</m> ft/s.)</p>
+
+        <figure xml:id="fig_motion2a" >
+          <caption>Plotting velocity and acceleration vectors for Object 1 in <xref ref="ex_motion2">Example</xref>.</caption>
+          <!-- START figures/fig_motion2a.tex -->
+          <image xml:id="img_motion2a" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}[>=stealth]
+              \begin{axis}[%
+              %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-6,-4,-2,2,4,6},
+			%minor x tick num=4,%
+              %			extra x ticks={.33},
+              %			extra x tick labels={$1/3$},
+			%ytick={-1,1},
+			%minor y tick num=4,%extra y ticks={-5,-3,...,7},%
+			ymin=-1.1,ymax=3.1,%
+			xmin=-2.1,xmax=2.1%
+              ]
+
+
+              \addplot [thick,{\colorone}, smooth,domain=-1:1,samples=20] ({x},{x^2});
+
+              \filldraw (axis cs:-1.,1.) circle (1.5pt);\filldraw (axis cs:-0.5,0.25) circle (1.5pt);\filldraw (axis cs:0.,0.) circle (1.5pt);\filldraw (axis cs:0.5,0.25) circle (1.5pt);\filldraw (axis cs:1.,1.) circle (1.5pt);
+
+              \draw [thick,->,{\colortwo}] (axis cs:-1.,1.)--(axis cs:0.,-1.);
+              \draw [thick,->,{\colortwo}] (axis cs:-0.5,0.25)--(axis cs:0.5,-0.75);
+              \draw [thick,->,{\colortwo}] (axis cs:0.,0.)--(axis cs:1.,0.);
+              \draw [thick,->,{\colortwo}] (axis cs:0.5,0.25)--(axis cs:1.5,1.25);
+              \draw [thick,->,{\colortwo}] (axis cs:1.,1.)--(axis cs:2.,3.);
+
+              \draw [thick,->] (axis cs:-1.,1.)--(axis cs:-1.,3.);
+              \draw [thick,->] (axis cs:-0.5,0.25)--(axis cs:-0.5,2.25);\draw [thick,->] (axis cs:0.,0.)--(axis cs:0.,2.);\draw [thick,->] (axis cs:0.5,0.25)--(axis cs:0.5,2.25);\draw [thick,->] (axis cs:1.,1.)--(axis cs:1.,3.);
+
+              \draw [thick,->,{\colorone}] (axis cs:-.9,.81) -- (axis cs: -.89,.7921);
+
+
+              \end{axis}
+
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_motion2a.tex END -->
+        </figure>
+
+        <p>At <m>t=0</m>, the velocity of Object 1 is <m>\vec v(1) = \la 1,0\ra</m> and the velocity of Object 2 is <m>\vec 0</m>! This tells us that Object 2 comes to a complete stop at <m>t=0</m>.</p>
+
+        <p>In <xref ref="fig_motion2a">Figure</xref>, we see the velocity and acceleration vectors for Object 1 plotted for <m>t=-1, -1/2, 0, 1/2</m> and <m>t=1</m>. Note again how the constant acceleration vector seems to <q>pull</q> the velocity vector from pointing down, right to up, right. We could plot the analogous picture for Object 2, but the velocity and acceleration vectors are rather large (<m>\vec a_2(-1) = \la -6,30\ra</m>!)</p>
+
+        <p>Instead, we simply plot the locations of Object 1 and 2 on intervals of <m>1/10^{\text{ th } }</m> of a second, shown in <xref ref="fig_motion2b">Figure</xref>(a) and (b). Note how the <m>x</m>-values of Object 1 increase at a steady rate. This is because the <m>x</m>-component of <m>\vec a(t)</m> is 0; there is no acceleration in the <m>x</m>-component. The dots are not evenly spaced; the object is moving faster near <m>t=-1</m> and <m>t=1</m> than near <m>t=0</m>.</p>
+
+        <figure xml:id="fig_motion2b" >
+        <caption>Comparing the positions of Objects 1 and 2 in <xref ref="ex_motion2">Example</xref>.</caption>
+        <sidebyside>
+          <figure>
+            <caption>(a)</caption>
+            <!-- START figures/fig_motion2c.tex -->
+            <image xml:id="img_motion2c" >
+              <description></description>
+              <latex-image-code>
+                <![CDATA[
+                \begin{tikzpicture}[>=stealth]
+                \begin{axis}[%
+                %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-6,-4,-2,2,4,6},
+			%minor x tick num=4,%
+                %			extra x ticks={.33},
+                %			extra x tick labels={$1/3$},
+			%ytick={-1,1},
+			%minor y tick num=4,%extra y ticks={-5,-3,...,7},%
+			ymin=-.1,ymax=1.1,%
+			xmin=-1.1,xmax=1.1%
+                ]
+
+
+                \addplot [thick,{\colorone}, smooth,domain=-1:1,samples=20] ({x},{x^2});
+
+                \filldraw (axis cs:-1.,1.) circle (1.5pt);\filldraw (axis cs:-0.8,0.64) circle (1.5pt);\filldraw (axis cs:-0.6,0.36) circle (1.5pt);\filldraw (axis cs:-0.4,0.16) circle (1.5pt);\filldraw (axis cs:-0.2,0.04) circle (1.5pt);\filldraw (axis cs:0.,0.) circle (1.5pt);\filldraw (axis cs:0.2,0.04) circle (1.5pt);\filldraw (axis cs:0.4,0.16) circle (1.5pt);\filldraw (axis cs:0.6,0.36) circle (1.5pt);\filldraw (axis cs:0.8,0.64) circle (1.5pt);\filldraw (axis cs:1.,1.) circle (1.5pt);
+                %
+                %\draw [thick,->,{\colortwo}] (axis cs:-1.,1.)--(axis cs:0.,-1.);
+                %\draw [thick,->,{\colortwo}] (axis cs:-0.5,0.25)--(axis cs:0.5,-0.75);
+                %\draw [thick,->,{\colortwo}] (axis cs:0.,0.)--(axis cs:1.,0.);
+                %\draw [thick,->,{\colortwo}] (axis cs:0.5,0.25)--(axis cs:1.5,1.25);
+                %\draw [thick,->,{\colortwo}] (axis cs:1.,1.)--(axis cs:2.,3.);
+                %
+                %\draw [thick,->] (axis cs:-1.,1.)--(axis cs:-1.,3.);
+                %\draw [thick,->] (axis cs:-0.5,0.25)--(axis cs:-0.5,2.25);\draw [thick,->] (axis cs:0.,0.)--(axis cs:0.,2.);\draw [thick,->] (axis cs:0.5,0.25)--(axis cs:0.5,2.25);\draw [thick,->] (axis cs:1.,1.)--(axis cs:1.,3.);
+                %
+                \draw [thick,->,{\colorone}] (axis cs:-.9,.81) -- (axis cs: -.89,.7921);
+
+                \draw (axis cs: .5,.6) node {\scriptsize $\vec r_1(t)$};
+                \end{axis}
+
+
+
+
+
+                \end{tikzpicture}
+                ]]>
+              </latex-image-code>
+            </image>
+            <!-- figures/fig_motion2c.tex END -->
+          </figure>
+
+          <figure>
+            <caption>(b)</caption>
+            <!-- START figures/fig_motion2b.tex -->
+            <image xml:id="img_motion2b" >
+              <description></description>
+              <latex-image-code>
+                <![CDATA[
+                \begin{tikzpicture}[>=stealth]
+                \begin{axis}[%
+                %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-6,-4,-2,2,4,6},
+			%minor x tick num=4,%
+                %			extra x ticks={.33},
+                %			extra x tick labels={$1/3$},
+			%ytick={-1,1},
+			%minor y tick num=4,%extra y ticks={-5,-3,...,7},%
+			ymin=-.1,ymax=1.1,%
+			xmin=-1.1,xmax=1.1%
+                ]
+
+
+                \addplot [thick,{\colorone}, smooth,domain=-1:1,samples=20] ({x},{x^2});
+
+                \filldraw (axis cs:-1.,1.) circle (1.5pt);\filldraw (axis cs:-0.512,0.262144) circle (1.5pt);\filldraw (axis cs:-0.216,0.046656) circle (1.5pt);\filldraw (axis cs:-0.064,0.004096) circle (1.5pt);\filldraw (axis cs:-0.008,0.000064) circle (1.5pt);\filldraw (axis cs:0.,0.) circle (1.5pt);\filldraw (axis cs:0.008,0.000064) circle (1.5pt);\filldraw (axis cs:0.064,0.004096) circle (1.5pt);\filldraw (axis cs:0.216,0.046656) circle (1.5pt);\filldraw (axis cs:0.512,0.262144) circle (1.5pt);\filldraw (axis cs:1.,1.) circle (1.5pt);
+
+                %%\draw [thick,->,{\colortwo}] (axis cs:-1.,1.)--(axis cs:2.,-5.);
+                %\draw [thick,->,{\colortwo}] (axis cs:-0.125,0.015625)--(axis cs:0.625,-0.171875);\draw [thick,->,{\colortwo}] (axis cs:0.,0.)--(axis cs:0.,0.);\draw [thick,->,{\colortwo}] (axis cs:0.125,0.015625)--(axis cs:0.875,0.203125);
+                %%\draw [thick,->,{\colortwo}] (axis cs:1.,1.)--(axis cs:4.,7.);
+                %
+                %%\draw [thick,->] (axis cs:-1.,1.)--(axis cs:-7.,31.);
+                %\draw [thick,->] (axis cs:-0.125,0.015625)--(axis cs:-3.125,1.89063);\draw [thick,->] (axis cs:0.,0.)--(axis cs:0.,0.);\draw [thick,->] (axis cs:0.125,0.015625)--(axis cs:3.125,1.89063);
+                %%\draw [thick,->] (axis cs:1.,1.)--(axis cs:7.,31.);
+
+                \draw [thick,->,{\colorone}] (axis cs:-.9,.81) -- (axis cs: -.89,.7921);
+
+                \draw (axis cs: .5,.6) node {\scriptsize $\vec r_2(t)$};
+                \end{axis}
+
+
+
+
+                \end{tikzpicture}
+                ]]>
+              </latex-image-code>
+            </image>
+            <!-- figures/fig_motion2b.tex END -->
+          </figure>
+        </sidebyside>
+
+        </figure>
+
+        <p>In part (b) of the Figure, we see the points plotted for Object 2. Note the large change in position from <m>t=-1</m> to <m>t=-0.9</m>; the object starts moving very quickly. However, it slows considerably at it approaches the origin, and comes to a complete stop at <m>t=0</m>. While it looks like there are 3 points near the origin, there are in reality 5 points there.</p>
+
+        <p>Since the objects begin and end at the same location, the have the same displacement. Since they begin and end at the same time, with the same displacement, they have they have the same average rate of change (i.e, they have the same average velocity). Since they follow the same path, they have the same distance traveled. Even though these three measurements are the same, the objects obviously travel the path in very different ways.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_motion3">
+      <title>Analyzing the motion of a whirling ball on a string</title>
+      <statement>
+        <p>A young boy whirls a ball, attached to a string, above his head in a counter-clockwise circle. The ball follows a circular path and makes 2 revolutions per second. The string has length 2ft.</p>
+
+        <ol>
+          <li><p>Find the position function <m>\vec r(t)</m> that describes this situation.</p></li>
+
+          <li><p>Find the acceleration of the ball and derive a physical interpretation of it.</p></li>
+
+          <li><p>A tree stands 10ft in front of the boy. At what <m>t</m>-values should the boy release the string so that the ball hits the tree?</p></li>
+        </ol>
+      </statement>
+      <solution>
+        <ol>
+          <li><p>The ball whirls in a  circle. Since the string is 2ft long, the radius of the circle is 2. The position function <m>\vrt = \la 2\cos(t) , 2\sin(t) \ra</m> describes a circle with radius 2, centered at the origin, but makes a full revolution every <m>2\pi</m> seconds, not two revolutions per second. We modify the period of the trigonometric functions to be 1/2 by multiplying <m>t</m> by <m>4\pi</m>. The final position function is thus
+              <me>
+                \vrt = \la 2\cos(4\pi t), 2\sin(4\pi t)\ra.
+              </me>
+              (Plot this for <m>0\leq t\leq 1/2</m> to verify that one revolution is made in 1/2 a second.)</p></li>
+
+          <li><p>To find <m>\vat</m>, we derive <m>\vrt</m> twice.
+              <md>
+                <mrow>\vvt = \vrp(t) \amp = \la -8\pi \sin(4\pi t), 8\pi \cos(4\pi t)\ra</mrow>
+                <mrow>\vat =\vrp'(t) \amp = \la -32\pi^2 \cos(4\pi t), -32\pi^2 \sin(4\pi t) \ra</mrow>
+                <mrow>\amp = -32\pi^2\la \cos(4\pi t), \sin(4\pi t)\ra.</mrow>
+              </md>
+              Note how <m>\vat</m> is parallel to \vrt, but has a different magnitude and points in the opposite direction. Why is this?
+	
+	Recall the classic physics equation, <q>Force <m>=</m> mass <times /> acceleration.</q> A force acting on a mass induces acceleration (i.e., the mass moves); acceleration acting on a mass induces a force (gravity gives our mass a <em>weight</em>). Thus force and acceleration are closely related. A moving ball <q>wants</q> to travel in a straight line. Why does the ball in our example move in a circle? It is attached to the boy's hand by a string. The string applies a force to the ball, affecting it's motion: the string <em>accelerates</em> the ball. This is not acceleration in the sense of <q>it travels faster;</q> rather, this acceleration is changing the velocity of the ball. In what direction is this force/acceleration being applied? In the direction of the string, towards the boy's hand.
+	
+	The magnitude of the acceleration is related to the speed at which the ball is traveling. A ball whirling quickly is rapidly changing direction/velocity. When velocity is changing rapidly, the acceleration must be <q>large.</q></p></li>
+
+          <li><p>When the boy releases the string, the string no longer applies a force to the ball, meaning acceleration is <m>\vec 0</m> and the ball can now move in a straight line in the direction of <m>\vec v(t)</m>.
+	
+	
+	Let <m>t=t_0</m> be the time when the boy lets go of the string. The ball will be at <m>\vec r(t_0)</m>, traveling in the direction of <m>\vec v(t_0)</m>. We want to find <m>t_0</m> so that this line contains the point <m>(0,10)</m> (since the tree is 10ft directly in front of the boy).
+
+              <figure xml:id="fig_motion3" >
+                <caption>Modeling the flight of a ball in <xref ref="ex_motion3">Example</xref>.</caption>
+                <!-- START figures/fig_motion3.tex -->
+                <image xml:id="img_motion3" >
+                  <description></description>
+                  <latex-image-code>
+                    <![CDATA[
+                    \begin{tikzpicture}[>=latex,scale=.75]
+
+
+
+
+                    \begin{scope}[scale=.5,shift={(0,10)}]
+                     \ifthenelse{\boolean{colorprint}}{\draw[fill=brown,ultra thick] }
+                    {\draw[ultra thick,fill=white]}
+                       (.75,-1)  ..  controls (.5,.5)  and   (.5,3)    .. (0.5,4)
+                    -- (-0.5,4)  ..  controls (-.5,3) and (-.5,.5)     .. (-.75,-1) ;
+                    \ifthenelse{\boolean{colorprint}}{\draw[ultra thick,fill=green!50!black] }
+                    {\draw[ultra thick,fill=white]}
+                          (0,10) .. controls  (0,8)     and   (1,7)    .. (1.5,7)
+                                 ..  controls (1,7)     and   (1,7)    .. (0.5,7.25)
+                                 ..  controls (1.5,5)   and   (2.5,4)  .. (3,4)
+                                 ..  controls (2,4)     and   (1.25,4) .. (1,4.5)
+                                 ..  controls (2,2)     and   (3.5,2)  .. (4,2)
+                                 ..  controls (1,1)     and   (-1,1)   .. (-4,2)
+                                 ..  controls (-3.5,2)  and   (-2,2)   .. (-1,4.5)
+                                 ..  controls (-1.25,4) and   (-2,4)   .. (-3,4)
+                                 ..  controls (-2.5,4)  and   (-1.5,5) .. (-0.5,7.25)
+                                 ..  controls  (-1,7)   and   (-1,7)   .. (-1.5,7)
+                                 ..  controls  (-1,7)   and   (0,8)    .. (0,10)
+                                  ;
+                    \end{scope}	
+
+                    \begin{scope}[scale=.5]
+                    \coordinate (ball) at (215:2cm);
+                    \coordinate (release) at (11.5:2cm);
+
+
+                    \draw [rotate=11.5] (0,0) -- (1.9,0) node [above,sloped,pos=.5] {\scriptsize 2ft};
+                    \draw [thick,dashed] (0,0) circle (2cm);
+                    \draw [thick,->] (ball) arc (215:225:2cm);
+
+                    \draw (0,10) circle (2pt);
+                    \draw[dotted,thick] (release) -- (0,10) node [sloped, pos=.5, above] {\scriptsize $\langle 0,10\rangle - \vec r(t_0)$};
+                    \filldraw[draw=black,fill=white,thick] (release) circle (.1);
+                    \end{scope}
+                    \end{tikzpicture}
+                    ]]>
+                  </latex-image-code>
+                </image>
+                <!-- figures/fig_motion3.tex END -->
+              </figure>
+
+              There are many ways to find this time value. We choose one that is relatively simple computationally. As shown in <xref ref="fig_motion3">Figure</xref>, the vector from the release point to the tree is <m>\la 0,10\ra - \vec r(t_0)</m>. This line segment is tangent to the circle, which means it is also perpendicular to <m>\vec r(t_0)</m> itself, so their dot product is 0.
+              <md>
+                <mrow>\vec r(t_0) \cdot \big(\la 0,10\ra - \vec r(t_0)\big) \amp =0</mrow>
+                <mrow>\la 2\cos(4\pi t_0), 2\sin(4\pi t_0)\ra \cdot \la -2\cos(4\pi t_0),10-2\sin(4\pi t_0)\ra \amp =0</mrow>
+                <mrow>-4\cos^2(4\pi t_0) + 20\sin(4\pi t_0)-4\sin^2(4\pi t_0) \amp = 0</mrow>
+                <mrow>20\sin(4\pi t_0) - 4 \amp =0</mrow>
+                <mrow>\sin(4\pi t_0) \amp =1/5</mrow>
+                <mrow>4\pi t_0 \amp = \sin^{-1}(1/5)</mrow>
+                <mrow>4\pi t_0 \amp \approx 0.2 + 2\pi n,</mrow>
+                <intertext>where <m>n</m> is an integer. Solving for <m>t_0</m> we have:</intertext>
+                <mrow>t_0 \amp \approx 0.016 + n/2</mrow>
+              </md>
+              This is a wonderful formula. Every 1/2 second after <m>t=0.016</m>s the boy can release the string (since the ball makes 2 revolutions per second, he has two chances each second to release the ball).</p></li>
+        </ol>
+      </solution>
+    </example>
+
+    <example xml:id="ex_motion4">
+      <title>Analyzing motion in space</title>
+      <statement>
+        <p>An object moves in a spiral with position function <m>\vrt = \la \cos(t) , \sin(t) , t\ra</m>, where distances are measured in meters and time is in minutes. Describe the object's speed and acceleration at time <m>t</m>.</p>
+      </statement>
+      <solution>
+        <p>With <m>\vrt = \la \cos(t) ,\sin(t) , t\ra</m>, we have:
+          <md>
+            <mrow>\vvt \amp = \la -\sin(t) , \cos(t) , 1\ra  \text{ and }</mrow>
+            <mrow>\vat \amp = \la -\cos(t) , -\sin(t) , 0\ra.</mrow>
+          </md>
+        </p>
+
+        <p>The speed of the object is <m>\norm{\vvt} = \sqrt{(-\sin(t) )^2+\cos^2(t) +1} = \sqrt{2}</m>m/min; it moves at a constant speed. Note that the object does not accelerate in the <m>z</m>-direction, but rather moves up at a constant rate of 1m/min.</p>
+      </solution>
+    </example>
+
+    <p>The objects in <xref ref="ex_motion3">Examples</xref> and <xref ref="ex_motion4"></xref> traveled at a constant speed. That is, <m>\norm{\vvt} = c</m> for some constant <m>c</m>. Recall <xref ref="thm_vects_of_constant_length">Theorem</xref>, which states that if a vector<ndash />valued function <m>\vrt</m> has constant length, then <m>\vrt</m> is perpendicular to its derivative: <m>\vrt\cdot\vrp(t) = 0</m>. In these examples, the velocity function has constant length, therefore we can conclude that the velocity is perpendicular to the acceleration: <m>\vvt\cdot\vat = 0</m>. A quick check verifies this.<index><main>vector<ndash />valued function</main><sub>of constant length</sub></index></p>
+
+    <p>There is an intuitive understanding of this. If acceleration is parallel to velocity, then it is only affecting the object's speed; it does not change the direction of travel. (For example, consider a dropped stone. Acceleration and velocity are parallel <mdash /> straight down <mdash /> and the direction of velocity never changes, though speed does increase.) If acceleration is not perpendicular to velocity, then there is some acceleration in the direction of travel, influencing the speed. If speed is constant, then acceleration must be orthogonal to velocity, as it then only affects direction, and not speed.</p>
+
+    <insight xml:id="idea_constant_speed">
+      <title>Objects With Constant Speed</title>
+      <p>If an object moves with constant speed, then its velocity and acceleration vectors are orthogonal. That is, <m>\vvt\cdot\vat=0</m>.
+        <index><main>vector<ndash />valued function</main><sub>of constant length</sub></index></p>
+    </insight>
+  </introduction>
+
+  <subsection>
+    <title>Projectile Motion</title>
+    <p>An important application of vector<ndash />valued position functions is <em>projectile motion</em>: the motion of objects under only the influence of gravity. We will measure time in seconds, and distances will either be in meters or feet. We will show that we can completely describe the path of such an object knowing its initial position and initial velocity (i.e., where it <em>is</em> and where it <em>is going.</em>)
+      <index><main>vector<ndash />valued function</main><sub>projectile motion</sub></index><index><main>projectile motion</main></index></p>
+
+    <p>Suppose an object has initial position <m>\vec r(0) = \la x_0,y_0\ra</m> and initial velocity <m>\vec v(0) = \la v_x,v_y\ra</m>. It is customary to rewrite <m>\vec v(0)</m> in terms of its speed <m>v_0</m> and direction <m>\vec u</m>, where <m>\vec u</m> is a unit vector. Recall all unit vectors in <m>\mathbb{R}^2</m> can be written as <m>\la \cos(\theta) ,\sin(\theta) \ra</m>, where <m>\theta</m> is an angle measure counter<ndash />clockwise from the <m>x</m>-axis. (We refer to <m>\theta</m> as the <em>angle of elevation.</em><index><main>angle of elevation</main></index>) Thus <m>\vec v(0) = v_0\la \cos(\theta) ,\sin(\theta) \ra</m>.</p>
+
+    <p>Since the acceleration of the object is known, namely <m>\vat = \la 0,-g\ra</m>, where <m>g</m> is the gravitational constant, we can find <m>\vrt</m> knowing our two initial conditions. We first find <m>\vvt</m>:</p>
+
+    <aside>
+      <p>In this text we use <m>g=32</m>ft/s when using Imperial units, and <m>g=9.8</m>m/s when using SI units.</p>
+    </aside>
+
+    <md>
+      <mrow>\vec v(t) \amp = \int \vat \ dt</mrow>
+      <mrow>\vvt \amp = \int \la 0,-g\ra \ dt</mrow>
+      <mrow>\vvt \amp = \la 0,-gt\ra + \vec C.</mrow>
+    </md>
+    <p>Knowing <m>\vec v(0) = v_0\la \cos(\theta) ,\sin(\theta) \ra</m>, we have <m>\vec C = v_0\la \cos(t) ,\sin(t) \ra</m> and so
+      <me>
+        \vec v(t) = \la v_0\cos(\theta) , -gt+v_0\sin(\theta) \ra.
+      </me>
+    </p>
+
+    <p>We integrate once more to find <m>\vrt</m>:
+      <md>
+        <mrow>\vrt \amp = \int \vvt\ dt</mrow>
+        <mrow>\vrt \amp = \int \la  v_0\cos(\theta) , -gt+v_0\sin(\theta) \ra\ dt</mrow>
+        <mrow>\vrt \amp = \la  \big(v_0\cos(\theta) \big)t, -\frac12gt^2+\big(v_0\sin(\theta) \big)t\ra + \vec C.</mrow>
+        <intertext>Knowing <m>\vec r(0) = \la x_0,y_0\ra</m>, we conclude <m>\vec C = \la x_0,y_0\ra</m> and</intertext>
+        <mrow>\vrt \amp = \la \big(v_0\cos(\theta) \big)t+x_0\ , -\frac12gt^2+\big(v_0\sin(\theta) \big)t+y_0\ \ra.</mrow>
+      </md>
+    </p>
+
+    <insight xml:id="idea_projectile">
+      <title>Projectile Motion</title>
+      <p>The position function of a projectile propelled from an initial position of <m>\vec r_0=\la x_0,y_0\ra</m>, with initial speed <m>v_0</m>, with angle of elevation <m>\theta</m> and neglecting all accelerations but gravity is
+        <index><main>vector<ndash />valued function</main><sub>projectile motion</sub></index><index><main>projectile motion</main></index>
+        <me>
+          \vrt = \la \big(v_0\cos(\theta) \big)t+x_0\ , -\frac12gt^2+\big(v_0\sin(\theta) \big)t+y_0\ \ra.
+        </me>
+      </p>
+
+      <p>Letting <m>\vec v_0 = v_0\la \cos(\theta) ,\sin(\theta) \ra</m>, <m>\vrt</m> can be written as
+        <me>
+          \vrt = \la 0,-\frac12gt^2\ra + \vec v_0t+\vec r_0.
+        </me>
+      </p>
+    </insight>
+
+    <p>We demonstrate how to use this position function in the next two examples.</p>
+
+    <example xml:id="ex_motion5">
+      <title>Projectile Motion</title>
+      <statement>
+        <p>Sydney shoots her Red Ryder\textregistered<nbsp />bb gun across level ground from an elevation of 4ft, where the barrel of the gun makes a <m>5^\circ</m> angle with the horizontal. Find how far the bb travels before landing, assuming the bb is fired at the advertised rate of 350ft/s and ignoring air resistance.</p>
+      </statement>
+      <solution>
+        <p>A direct application of <xref ref="idea_projectile">Key Idea</xref> gives
+          <md>
+            <mrow>\vrt \amp = \la (350\cos(5^\circ) )t, -16t^2 + (350\sin(5^\circ) )t + 4\ra</mrow>
+            <mrow>\amp \approx \la 346.67t, -16t^2+30.50t+4\ra,</mrow>
+          </md>
+          where we set her initial position to be <m>\la 0,4\ra</m>.
+          We need to find <em>when</em> the bb lands, then we can find <em>where</em>. We accomplish this by setting the <m>y</m>-component equal to 0 and solving for <m>t</m>:
+          <md>
+            <mrow>-16t^2+30.50t+4 \amp = 0</mrow>
+            <mrow>t \amp = \frac{-30.50 \pm \sqrt{30.50^2-4(-16)(4)}}{-32}</mrow>
+            <mrow>t \amp \approx 2.03s.</mrow>
+          </md>
+        </p>
+
+        <p>(We discarded a negative solution that resulted from our quadratic equation.)</p>
+
+        <p>We have found that the bb lands 2.03s after firing; with <m>t=2.03</m>, we find the <m>x</m>-component of our position function is <m>346.67(2.03) = 703.74</m>ft. The bb lands about 704 feet away.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_motion61">
+      <title>Projectile Motion</title>
+      <statement>
+        <p>Alex holds his sister's bb gun at a height of 3ft and wants to shoot a target that is 6ft above the ground, 25ft away. At what angle should he hold the gun to hit his target? (We still assume the muzzle velocity is 350ft/s.)</p>
+      </statement>
+      <solution>
+        <p>The position function for the path of Alex's bb is
+          <me>
+            \vrt = \la (350\cos(\theta) )t, -16t^2+(350\sin(\theta) )t+3\ra.
+          </me>
+        </p>
+
+        <p>We need to find <m>\theta</m> so that <m>\vrt =\la 25,6\ra</m> for some value of <m>t</m>. That is, we want to find <m>\theta</m> and <m>t</m> such that
+          <me>
+            (350\cos(\theta) )t = 25  \text{ and }  -16t^2+(350\sin(\theta) )t+3 = 6.
+          </me>
+        </p>
+
+        <p>This is not trivial (though not <q>hard</q>). We start by solving each equation for <m>\cos(\theta)</m> and <m>\sin(\theta)</m>, respectively.
+          <me>
+            \cos(\theta) = \frac{25}{350t}  \text{ and }   \sin(\theta) = \frac{3+16t^2}{350t}.
+          </me>
+        </p>
+
+        <p>Using the Pythagorean Identity <m>\cos^2(\theta) +\sin^2(\theta) =1</m>, we have
+          <md>
+            <mrow>\left(\frac{25}{350t}\right)^2 + \left(\frac{3+16t^2}{350t}\right)^2 \amp =1</mrow>
+            <intertext>Multiply both sides by <m>(350t)^2</m>:</intertext>
+            <mrow>25^2 + (3+16t^2)^2 \amp =350^2t^2</mrow>
+            <mrow>256t^4-122,404t^2+634 \amp =0.</mrow>
+            <intertext>This is a quadratic <em>in</em> <m>t^2</m>. That is, we can apply the quadratic formula  to find <m>t^2</m>, then solve for <m>t</m> itself.</intertext>
+            <mrow>t^2 \amp = \frac{122,404\pm\sqrt{122,404^2-4(256)(634)}}{512}</mrow>
+            <mrow>t^2 \amp = 0.0052,\ 478.135</mrow>
+            <mrow>t \amp =  \pm 0.072,\ \pm 21.866</mrow>
+          </md>
+        </p>
+
+        <p>Clearly the negative <m>t</m> values do not fit our context, so we have <m>t=0.072</m> and <m>t=21.866</m>. Using <m>\cos(\theta) = 25/(350 t)</m>, we can solve for <m>\theta</m>:
+          <md>
+            <mrow>\theta \amp = \cos^{-1}\left(\frac{25}{350\cdot 0.072}\right) \text{ and }  \cos^{-1}\left(\frac{25}{350\cdot 21.866}\right)</mrow>
+            <mrow>\theta \amp = 7.03^\circ  \text{ and }   89.8^\circ.</mrow>
+          </md>
+        </p>
+
+        <p>Alex has two choices of angle. He can hold the rifle at an angle of about <m>7^\circ</m> with the horizontal and hit his target <m>0.07</m>s after firing, or he can hold his rifle almost straight up, with an angle of <m>89.8^\circ</m>, where he'll hit his target about 22s later. The first option is clearly the option he should choose.</p>
+      </solution>
+    </example>
+  </subsection>
+
+  <subsection>
+    <title>Distance Traveled</title>
+    <p>Consider a driver who sets her cruise<ndash />control to 60mph, and travels at this speed for an hour. We can ask:</p>
+
+    <ol>
+      <li><p>How far did the driver travel?</p></li>
+
+      <li><p>How far from her starting position is the driver?</p></li>
+    </ol>
+
+    <p>The first is easy to answer: she traveled 60 miles. The second is impossible to answer with the given information. We do not know if she traveled in a straight line, on an oval racetrack, or along a slowly<ndash />winding highway.</p>
+
+    <p>This highlights an important fact: to compute distance traveled, we need only to know the speed, given by <m>\norm{\vvt}</m>.</p>
+
+    <theorem xml:id="thm_distance_traveled">
+      <title>Distance Traveled</title>
+      <statement>
+        <p>Let <m>\vvt</m> be a velocity function for a moving object. The distance traveled by the object on <m>[a,b]</m> is:
+          <index><main>distance</main><sub>traveled</sub></index><index><main>vector<ndash />valued function</main><sub>distance traveled</sub></index><index><main>integration</main><sub>distance traveled</sub></index>
+          <me>
+            \text{ distance traveled }  = \int_a^b \norm{\vvt}\ dt.
+          </me>
+        </p>
+      </statement>
+    </theorem>
+
+    <p>Note that this is just a restatement of <xref ref="thm_vvf_arc_length">Theorem</xref>: arc length is the same as distance traveled, just viewed in a different context.</p>
+
+    <example xml:id="ex_motion6">
+      <title>Distance Traveled, Displacement, and Average Speed</title>
+      <statement>
+        <p>A particle moves in space with position function <m>\vrt = \la t,t^2,\sin(\pi t)\ra</m> on <m>[-2,2]</m>, where <m>t</m> is measured in seconds and distances are in meters. Find:</p>
+
+        <ol>
+          <li><p>The distance traveled by the particle on <m>[-2,2]</m>.</p></li>
+
+          <li><p>The displacement of the particle on <m>[-2,2]</m>.</p></li>
+
+          <li><p>The particle's average speed.</p></li>
+        </ol>
+      </statement>
+      <solution>
+        <ol>
+          <li><p>We use <xref ref="thm_distance_traveled">Theorem</xref> to establish the integral:
+              <md>
+                <mrow>\text{ distance traveled }  \amp = \int_{-2}^2 \norm{\vvt}\ dt</mrow>
+                <mrow>\amp = \int_{-2}^2 \sqrt{1+(2t)^2+ \pi^2\cos^2(\pi t)}\ dt.</mrow>
+              </md>
+              This cannot be solved in terms of elementary functions so we turn to numerical integration, finding the distance to be 12.88m.</p></li>
+
+          <li><p>The displacement is the vector
+              <me>
+                \vec r(2)-\vec r(-2) = \la 2,4,0\ra - \la -2,4,0\ra = \la 4,0,0\ra.
+              </me>
+              That is, the particle ends with an <m>x</m>-value increased by 4 and with <m>y</m>- and <m>z</m>-values the same (see <xref ref="fig_motion6">Figure</xref>).</p></li>
+
+          <li><p>We found above that the particle traveled 12.88m over 4 seconds. We can compute average speed by dividing: 12.88/4 = 3.22m/s.
+
+              <figure xml:id="fig_motion6" >
+                <caption>The path of the particle in <xref ref="ex_motion6">Example</xref>.</caption>
+                <!--
+                 \includemedia[width=125pt,3Dmenu,activate=onclick,deactivate=onclick,
+                3Droll=-1.3988262638349023,
+                3Dortho=0.004399999976158142,
+                3Dc2c=0.5026575922966003 0.7320348024368286 0.4598483145236969,
+                3Dcoo=-14.488340377807617 25.037630081176758 5.939126491546631,
+                3Droo=150.0000062372992,
+                3Dlights=Headlamp,add3Djscript=asylabels.js]
+                 -->
+
+
+                <!-- START figures/figmotion6_3D.asy -->
+                <image xml:id="img_motion6" >
+                  <asymptote>
+                    <![CDATA[
+                    import graph3;
+
+                    //ASY file for figmotion63D.asy in Chapter 11
+
+                    size(200,200,IgnoreAspect);
+                    //currentprojection=perspective(7,2,1);
+                    currentprojection=orthographic(5.6,10.7,4);
+                    defaultrender.merge=true;
+
+                    usepackage("mathspec");
+                    texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+                    texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+                    texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+                    texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+                    // setup and draw the axes
+                    real[] myxchoice={-2,2};
+                    real[] myychoice={2,4};
+                    real[] myzchoice={-1,1};
+                    defaultpen(0.5mm);
+                    pair xbounds=(-3,3);
+                    pair ybounds=(-1,5);
+                    pair zbounds=(-1.5,1.5);
+
+                    xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+                    yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+                    zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+                    label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+                    label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+                    label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+                    //Draw the curve <t,t^2,sin(pi*t)> for t from -2 to 2
+                    triple g(real t) {return (t,t^2,sin(pi*t));}
+                    path3 mypath=graph(g,-2,2,operator ..); draw(mypath,blue);
+                    path3 mypath=graph(g,-2,-1.2,operator ..); draw(mypath,blue,Arrow3(size=5mm));
+                    //path3 mypath=graph(g,-2,-0.4,operator ..); draw(mypath,blue,Arrow3(size=5mm));
+                    //path3 mypath=graph(g,-2,0.8,operator ..); draw(mypath,blue,Arrow3(size=5mm));
+                    //path3 mypath=graph(g,-2,1.6,operator ..); draw(mypath,blue,Arrow3(size=5mm));
+
+
+
+
+
+                    // ////////////////////////////////////
+                    //    SAMPLE CODE
+
+                    // defaultpen(fontsize(10pt));
+
+                    //Draw the parabola z=y^2 for t from -2 to 2
+                    //triple g(real t) {return (0,t,t^2);}
+                    //path3 mypath=graph(g,-2,2,operator ..); draw(mypath,blue);
+
+                    //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+                    //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+
+                    //triple f(pair t) {
+                    //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+                    //}
+                    //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+
+                    //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+                    //path3 mypath=graph(g,-2,2,operator ..);
+
+                    //pen p=rgb(0,0,1);
+                    //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+
+                    //draw(s,paleblue);
+                    //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+                    //draw(mypath,2bp+blue);
+                    ]]>
+                  </asymptote>
+                </image>
+                <!-- figures/figmotion6_3D.asy END -->
+              </figure>
+
+              We should also consider <xref ref="def_av_val">Definition</xref> of <xref ref="sec_FTC">Section</xref>, which says that the average value of a function <m>f</m> on <m>[a,b]</m> is <m>\frac{1}{b-a}\int_a^b f(x)\ dx</m>. In our context, the average value of the speed is
+              <me>
+                \text{ average speed }  = \frac{1}{2-(-2)}\int_{-2}^2 \norm{\vvt}\ dt \approx \frac14 12.88 = 3.22\text{ m/s } .
+              </me>
+              Note how the physical context of a particle traveling gives meaning to a more abstract concept learned earlier.</p></li>
+        </ol>
+      </solution>
+    </example>
+
+    <p>In <xref ref="def_av_val">Definition</xref> of <xref ref="chapter_integration">Chapter</xref> we defined the average value of a function <m>f(x)</m> on <m>[a,b]</m> to be
+      <me>
+        \frac{1}{b-a}\int_a^bf(x)\ dx.
+      </me>
+    </p>
+
+    <p>Note how in <xref ref="ex_motion6">Example</xref> we computed the average speed as
+      <me>
+        \frac{\text{ distance traveled } }{\text{ travel time } } = \frac1{2-(-2)}\int_{-2}^2\norm{\vvt}\ dt;
+      </me>
+      that is, we just found the average value of <m>\norm{\vvt}</m> on <m>[-2,2]</m>.</p>
+
+    <p>Likewise, given position function <m>\vrt</m>, the average velocity on <m>[a,b]</m> is
+      <me>
+        \frac{\text{ displacement } }{\text{ travel time } } = \frac1{b-a}\int_a^b \vec{r}\,'(t)\ dt = \frac{\vec r(b)-\vec r(a)}{b-a};
+      </me>
+      that is, it is the average value of <m>\vec r\,'(t)</m>, or <m>\vvt</m>, on <m>[a,b]</m>.</p>
+
+    <insight xml:id="idea_average_speed_velocity">
+      <title>Average Speed, Average Velocity</title>
+      <p>Let <m>\vec r(t)</m> be a continuous position function on an open interval <m>I</m> containing <m>a\lt b</m>.</p>
+
+      <p>The <term>average speed</term> is:
+        <me>
+          \frac{\text{ distance traveled } }{\text{ travel time } } = \frac{\int_a^b \norm{\vvt}\ dt}{b-a} = \frac1{b-a}\int_a^b\norm{\vvt}\ dt.
+        </me>
+      </p>
+
+      <p>The <term>average velocity</term> is:
+        <me>
+          \frac{\text{ displacement } }{\text{ travel time } } = \frac{\int_a^b \vec{r}\,'(t)\ dt}{b-a} = \frac1{b-a}\int_a^b\vec{r}\,'(t)\ dt.
+        </me>
+      </p>
+    </insight>
+
+    <p>The next two sections investigate more properties of the graphs of vector<ndash />valued functions and we'll apply these new ideas to what we just learned about motion.</p>
+  </subsection>
+
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>How is <em>velocity</em> different from <em>speed</em>?</p>
+          </statement>
+          <solution>
+            <p>Velocity is a vector, indicating an objects direction of travel and its rate of distance change (i.e., its speed). Speed is a scalar.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>What is the difference between <em>displacement</em> and <em>distance traveled</em>?</p>
+          </statement>
+          <solution>
+            <p>Displacement is a vector, indicating the difference between the starting and ending positions of an object. Distance traveled is a scalar, indicating the arc length of the path followed.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>What is the difference between <em>average velocity</em> and <em>average speed</em>?</p>
+          </statement>
+          <solution>
+            <p>The average velocity is found by dividing the displacement by the time traveled <mdash /> it is a vector. The average speed is found by dividing the distance traveled by the time traveled <mdash /> it is a scalar.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><em>Distance traveled</em> is the same as <fillin /> <fillin />, just viewed in a different context.</p>
+          </statement>
+          <solution>
+            <p>arc length</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Describe a scenario where an object's average speed is a large number, but the magnitude of the average velocity is not a large number.</p>
+          </statement>
+          <solution>
+            <p>One example is traveling at a constant speed <m>s</m> in a circle, ending at the starting position. Since the displacement is <m>\vec 0</m>, the average velocity is <m>\vec 0</m>, hence <m>\vnorm 0=0</m>. But traveling at constant speed <m>s</m> means the average speed is also <m>s >0</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Explain why it is not possible to have an average velocity with a large magnitude but a small average speed.</p>
+          </statement>
+          <solution>
+            <p>Distance traveled is always greater than or equal to the magnitude of displacement, therefore average speed will always be at least as large as the magnitude of the average velocity.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, a position function <m>\vrt</m> is given. Find <m>\vvt</m> and <m>\vat</m>.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\vrt = \la 2t+1, 5t-2, 7\ra</m></p>
+          </statement>
+          <solution>
+            <p><m>\vvt = \la 2,5,0\ra</m>, <m>\vat = \la 0,0,0\ra</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$velocity">
+              <static>\langle6t-2,-2t+1\rangle</static>
+            </var>
+            <var name="$acceleration">
+              <static>\langle6,-2\rangle</static>
+            </var>
+            <pg-code>
+              Context("Vector2D");
+              Context()->variables->are(t=>'Real');
+              $velocity=Vector("&lt;6t-2,-2t+1>");
+              $acceleration=Vector("&lt;6,-2>");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>A position function <m>\vrt</m> is <m>\la 3t^2-2t+1, -t^2+t+14\ra</m>.</p>
+            <p>The velocity function <m>\vvt</m> is <var name="$velocity" width="30" />.</p>
+            <p>The acceleration function <m>\vat</m> is <var name="$acceleration" width="30" />.</p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\vrt = \la \cos(t) ,\sin(t) \ra</m></p>
+          </statement>
+          <solution>
+            <p><m>\vvt = \la -\sin(t) , \cos(t) \ra</m>, <m>\vat = \la -\cos(t) , -\sin(t) \ra</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$velocity">
+              <static>\langle\frac{1}{10},\sin(t),\cos(t)\rangle</static>
+            </var>
+            <var name="$acceleration">
+              <static>\langle0,\cos(t),-\sin(t)\rangle</static>
+            </var>
+            <pg-code>
+              Context("Vector");
+              Context()->variables->are(t=>'Real');
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $velocity=Vector("&lt;1/10,sin(t),cos(t)>");
+              $acceleration=Vector("&lt;0,cos(t),-sin(t)>");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>A position function <m>\vrt</m> is <m>\la t/10,-\cos(t) ,\sin(t) \ra</m>.</p>
+            <p>The velocity function <m>\vvt</m> is <var name="$velocity" width="30" />.</p>
+            <p>The acceleration function <m>\vat</m> is <var name="$acceleration" width="30" />.</p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, a position function <m>\vrt</m> is given. Sketch <m>\vrt</m> on the indicated interval. Find <m>\vvt</m> and <m>\vat</m>, then add <m>\vec v(t_0)</m> and <m>\vec a(t_0)</m> to your sketch, with their initial points at <m>\vec r(t_0)</m>, for the given value of <m>t_0</m>.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \vrt = \la t,\sin(t) \ra</m> on <m>[0,\pi/2]</m>; <m>t_0= \pi/4</m></p>
+          </statement>
+          <solution>
+            <p><m>\vvt = \la 1,\cos(t) \ra</m>, <m>\vat = \la 0,-\sin(t) \ra</m></p>
+
+            <!-- START\1END -->
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \vrt = \la t^2,\sin(t^2) \ra</m> on <m>[0,\pi/2]</m>; <m>t_0=\sqrt{\pi/4}</m></p>
+          </statement>
+          <solution>
+            <p><m>\vvt = \la 2 t,2 t \cos\left(t^2\right)\ra</m>, <m>\vat = \la 2,2 \left(\cos\left(t^2\right)-2 t^2 \sin\left(t^2\right)\right)\ra</m></p>
+
+            <!-- START\1END -->
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \vrt = \la t^2+t,-t^2+2t \ra</m> on <m>[-2,2]</m>; <m>t_0=1</m></p>
+          </statement>
+          <solution>
+            <p><m>\vvt = \la 2t+1,-2t+2\ra</m>, <m>\vat = \la 2,-2\ra</m></p>
+
+            <!-- START\1END -->
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \vrt = \la \frac{2t+3}{t^2+1},t^2\ra</m> on <m>[-1,1]</m>; <m>t_0= 0</m></p>
+          </statement>
+          <solution>
+            <p><m>\vvt = \la -\frac{2 \left(t^2+3 \
+              t-1\right)}{\left(t^2+1\right)^2},2 t\ra</m>, <m>\vat = \la \frac{2 \left(2 t^3+9 t^2-6 t-3\right)}{\left(t^2+1\right)^3},2\ra</m></p>
+
+            <!-- START\1END -->
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, a position function <m>\vrt</m> of an object is given. Find the speed of the object in terms of <m>t</m>, and find where the speed is minimized/maximized on the indicated interval.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \vrt = \la t^2,t \ra</m> on <m>[-1,1]</m></p>
+          </statement>
+          <solution>
+            <p><m>\norm{\vvt} = \sqrt{4t^2+1}</m>.</p>
+
+            <p>Min at <m>t=0</m>; Max at <m>t=\pm 1</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$speed">
+              <static>\norm{\vvt} = \abs{t}\sqrt{9t^2-12t+8}</static>
+            </var>
+            <var name="$mins">
+              <static>0</static>
+            </var>
+            <var name="$maxs">
+              <static>-1</static>
+            </var>
+            <pg-code>
+              Context()->variables->are(t=>'Real');
+              $speed=Formula("|t| sqrt(9t^2-12t+8)");
+              $mins=List("0");
+              $maxs=List("-1");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>A position function <m>\vrt</m> is <m>\la t^2,t^2-t^3 \ra</m>. Find the speed of the object in terms of <m>t</m>.</p>
+            <p><var name="$speed" width="30" /></p>
+            <p>On <m>[-1,1]</m>, the speed is minimized at what times?</p>
+            <p><var name="$mins" width="10" /></p>
+            <p>And the speed is maximized at what times?</p>
+            <p><var name="$maxs" width="10" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \vrt = \la 5\cos(t) ,5\sin(t) \ra</m> on <m>[0,2\pi]</m></p>
+          </statement>
+          <solution>
+            <p><m>\norm{\vvt} = 5</m>.</p>
+
+            <p>Speed is constant, so there is no difference between min/max</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \vrt = \la 2\cos(t) ,5\sin(t) \ra</m> on <m>[0,2\pi]</m></p>
+          </statement>
+          <solution>
+            <p><m>\norm{\vvt} = \sqrt{4\sin^2(t) +25\cos^2(t) }</m>.</p>
+
+            <p>min: <m>t=\pi/2,\ 3\pi/2</m>; max: <m>t=0,\ 2\pi</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$speed">
+              <static>\norm{\vvt} = \abs{\sec(t) }\sqrt{\tan^2(t) +\sec^2(t) }</static>
+            </var>
+            <var name="$mins">
+              <static>0</static>
+            </var>
+            <var name="$maxs">
+              <static>\pi/4</static>
+            </var>
+            <pg-code>
+              Context()->variables->are(t=>'Real');
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $speed=Formula("|sec(t)| sqrt(tan^2(t)+sec^2(t))");
+              $mins=List("0");
+              $maxs=Compute("pi/4");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>A position function <m>\vrt</m> is <m>\la \sec(t) ,\tan(t) \ra</m>. Find the speed of the object in terms of <m>t</m>.</p>
+            <p><var name="$speed" width="30" /></p>
+            <p>On <m>[0,\pi/4]</m>, the speed is minimized at what times?</p>
+            <p><var name="$mins" width="10" /></p>
+            <p>And the speed is maximized at what times?</p>
+            <p><var name="$maxs" width="10" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \vrt = \la t+\cos(t) ,1-\sin(t) \ra</m> on <m>[0,2\pi]</m></p>
+          </statement>
+          <solution>
+            <p><m>\norm{\vvt} = \sqrt{2-2\sin(t) }</m>.</p>
+
+            <p>min: <m>t=\pi/2</m>; max: <m>t=3\pi/2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \vrt = \la 12t,5\cos(t) ,5\sin(t) \ra</m> on <m>[0,4\pi]</m></p>
+          </statement>
+          <solution>
+            <p><m>\norm{\vvt} = 13</m>.</p>
+
+            <p>speed is constant, so there is no difference between min/max</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$speed">
+              <static>\norm{\vvt} = \sqrt{8t^2+3}</static>
+            </var>
+            <var name="$mins">
+              <static>0</static>
+            </var>
+            <var name="$maxs">
+              <static>\pi/4</static>
+            </var>
+            <pg-code>
+              Context()->variables->are(t=>'Real');
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $speed=Formula("sqrt(8t^2+3)");
+              $mins=List("0");
+              $maxs=Compute("1");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>A position function <m>\vrt</m> is <m>\la t^2-t,t^2+t,t \ra</m>. Find the speed of the object in terms of <m>t</m>.</p>
+            <p><var name="$speed" width="30" /></p>
+            <p>On <m>[0,1]</m>, the speed is minimized at what times?</p>
+            <p><var name="$mins" width="10" /></p>
+            <p>And the speed is maximized at what times?</p>
+            <p><var name="$maxs" width="10" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \vrt = \la t,t^2,\sqrt{1-t^2}\ra</m> on <m>[-1,1]</m></p>
+          </statement>
+          <solution>
+            <p><m>\norm{\vvt} = \sqrt{4t^2+1+t^2/(1-t^2)}</m>.</p>
+
+            <p>min: <m>t=0</m>; max: there is no max; speed approaches <m>\infty</m> as <m>t\to\pm 1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><em>Projectile Motion:</em>
+              <m>\ds \vrt = \la (v_0\cos(\theta) )t,-\frac12gt^2+(v_0\sin(\theta) )t \ra</m> on <m>\ds \left[0,\frac{2v_0\sin(\theta) }g\right]</m></p>
+          </statement>
+          <solution>
+            <p><m>\norm{\vvt} = \sqrt{g^2t^2-(2gv_0\sin(\theta) )t+v_0^2}</m>.</p>
+
+            <p>min: <m>t=(v_0\sin(\theta) )/g</m>; max: <m>t=0</m>, <m>t=(2v_0\sin(\theta) )/g</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, position functions <m>\vec r_1(t)</m> and <m>\vec r_2(s)</m> for two objects are given that follow the same path on the respective intervals.</p>
+        <p><ol label="a">
+          <li>
+            <p>Show that the positions are the same at the indicated <m>t_0</m> and <m>s_0</m> values; i.e., show <m>\vec r_1(t_0) = \vec r_2(s_0)</m>.</p>
+          </li>
+          <li>
+            <p>Find the velocity, speed and acceleration of the two objects at <m>t_0</m> and <m>s_0</m>, respectively.</p>
+          </li>
+        </ol></p>
+      </introduction>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\vec r_1(t) = \la t,t^2\ra</m> on <m>[0,1]</m>; <m>t_0 = 1</m></p>
+
+            <p><m>\vec r_2(s) = \la s^2,s^4\ra</m> on <m>[0,1]</m>; <m>s_0 = 1</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>\vec r_1(1) = \la 1,1\ra</m>; <m>\vec r_2(1) = \la 1,1\ra</m></p></li>
+
+              <li><p><m>\vec v_1(1) = \la 1,2\ra</m>; <m>\norm{\vec v_1(1)} = \sqrt{5}</m>; <m>\vec a_1(1) = \la 0,2\ra</m>
+
+			<m>\vec v_2(1) = \la 2,4\ra</m>; <m>\norm{\vec v_2(1)} = 2\sqrt{5}</m>; <m>\vec a_2(1) = \la 2,12\ra</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\vec r_1(t) = \la 3\cos(t) ,3\sin(t) \ra</m> on <m>[0,2\pi]</m>; <m>t_0 = \pi/2</m></p>
+
+            <p><m>\vec r_2(s) = \la 3\cos(4s),3\sin(4s)\ra</m> on <m>[0,\pi/2]</m>; <m>s_0 = \pi/8</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>\vec r_1(\pi/2) = \la0,3\ra</m>; <m>\vec r_2(\pi/8) = \la 0,3\ra</m></p></li>
+
+              <li><p><m>\vec v_1(\pi/2) = \la -3,0\ra</m>; <m>\norm{\vec v_1(\pi/2)} = 3</m>; <m>\vec a_1(\pi/2) = \la 0,-3\ra</m>
+
+			<m>\vec v_2(\pi/8) = \la -12,0\ra</m>; <m>\norm{\vec v_2(\pi/8)} = 12</m>; <m>\vec a_2(\pi/8) = \la 0,-48\ra</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\vec r_1(t) = \la 3t,2t\ra</m> on <m>[0,2]</m>; <m>t_0 = 2</m></p>
+
+            <p><m>\vec r_2(s) = \la 6t-6,4t-4\ra</m> on <m>[1,2]</m>; <m>s_0 = 2</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>\vec r_1(2) = \la6,4\ra</m>; <m>\vec r_2(2) = \la 6,4\ra</m></p></li>
+
+              <li><p><m>\vec v_1(2) = \la 3,2\ra</m>; <m>\norm{\vec v_1(2)} = \sqrt{13}</m>; <m>\vec a_1(2) = \la 0,0\ra</m>
+
+			<m>\vec v_2(2) = \la 6,4\ra</m>; <m>\norm{\vec v_2(2)} = 2\sqrt{13}</m>; <m>\vec a_2(2) = \la 0,0\ra</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\vec r_1(t) = \la t,\sqrt{t}\ra</m> on <m>[0,1]</m>; <m>t_0 = 1</m></p>
+
+            <p><m>\vec r_2(s) = \la \sin(t) ,\sqrt{\sin(t) }\ra</m> on <m>[0,\pi/2]</m>; <m>s_0 = \pi/2</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>\vec r_1(1) = \la 1,1\ra</m>; <m>\vec r_2(\pi/2) = \la 1,1\ra</m></p></li>
+
+              <li><p><m>\vec v_1(1) = \la 1,1/2\ra</m>; <m>\norm{\vec v_1(1)} = \sqrt{5}/2</m>; <m>\vec a_1(1) = \la 0,-1/4\ra</m>
+
+			<m>\vec v_2(\pi/2) = \la 0,0\ra</m>; <m>\norm{\vec v_2(\pi/2)} = 0</m>; <m>\vec a_2(\pi/2) = \la -1,-1/2\ra</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, find the position function of an object given its acceleration and initial velocity and position.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\vat = \la 2,3\ra</m>;<m>\vec v(0) = \la 1,2\ra</m>,<m>\vec r(0) = \la 5,-2\ra</m></p>
+          </statement>
+          <solution>
+            <p><m>\vvt = \la 2t+1,3t+2\ra</m>, <m>\vrt = \la t^2+t+5,3t^2/2+2t-2\ra</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$pos">
+              <static>\la t^2-t+5,3t^2/2-t-5/2\ra</static>
+            </var>
+            <pg-code>
+              Context("Vector2D");
+              Context()->variables->are(t=>'Real');
+              $pos=Compute("&lt;t^2-t+5,3t^2/2-t-5/2>");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Given <m>\vat = \la 2,3\ra</m>, <m>\vec v(1) = \la 1,2\ra</m>, and <m>\vec r(1) = \la 5,-2\ra</m>, find the position function <m>\vrt</m>.</p>
+            <p><var name="$pos" width="30" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\vat = \la \cos(t) ,-\sin(t) \ra</m>;<m>\vec v(0) = \la 0,1\ra</m>,<m>\vec r(0) = \la 0,0\ra</m></p>
+          </statement>
+          <solution>
+            <p><m>\vvt = \la \sin(t) ,\cos(t) \ra</m>, <m>\vrt = \la 1-\cos(t) ,\sin(t) \ra</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$pos">
+              <static>\la 10t,-16t^2+50t\ra</static>
+            </var>
+            <pg-code>
+              Context("Vector2D");
+              Context()->variables->are(t=>'Real');
+              $pos=Compute("&lt;10t,-16t^2+50t>");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Given <m>\vat =\la 0,-32\ra</m>, <m>\vec v(0) = \la 10,50\ra</m>, and <m>\vec r(0) = \la 0,0\ra</m>, find the position function <m>\vrt</m>.</p>
+            <p><var name="$pos" width="30" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, find the displacement, distance traveled, average velocity and average speed of the described object on the given interval.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>An object with position function <m>\vrt = \la 2\cos(t) ,2\sin(t) , 3t\ra</m>, where distances are measured in feet and time is in seconds, on <m>[0,2\pi]</m>.</p>
+          </statement>
+          <solution>
+            <p>Displacement: <m>\la 0,0,6\pi\ra</m>; distance traveled: <m>2\sqrt{13}\pi \approx 22.65</m>ft; average velocity: <m>\la 0,0,3\ra</m>; average speed: <m>\sqrt{13} \approx 3.61</m>ft/s</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$disp">
+              <static>\langle-10,0\rangle</static>
+            </var>
+            <var name="$dist">
+              <static>5\pi</static>
+            </var>
+            <var name="$avvel">
+              <static>\langle-10/\pi,0\rangle</static>
+            </var>
+            <var name="$avspe">
+              <static>5</static>
+            </var>
+            <pg-code>
+              Context("Vector2D");
+              $disp=Compute("&lt;-10,0>");
+              $dist=Compute("5pi");
+              $avvel=Compute("&lt;-10/pi,0>");
+              $avspe=Compute("5");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>An object has position function <m>\vrt = \la 5\cos(t) ,-5\sin(t) \ra</m>, where distances are measured in feet and time is in seconds. Over <m>[0,\pi]</m>:<ol label="a">
+              <li>
+                <p>What is the displacement? <var name="$disp" width="20" /></p>
+              </li>
+              <li>
+                <p>What is the distance traveled? <var name="$dist" width="20" /></p>
+              </li>
+              <li>
+                <p>What is the average velocity? <var name="$avvel" width="20" /></p>
+              </li>
+              <li>
+                <p>What is the average speed? <var name="$avspe" width="20" /></p>
+              </li>
+            </ol></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>An object with velocity function <m>\vvt = \la \cos(t) ,\sin(t) \ra</m>, where distances are measured in feet and time is in seconds, on <m>[0,2\pi]</m>.</p>
+          </statement>
+          <solution>
+            <p>Displacement: <m>\la 0,0\ra</m>; distance traveled: <m>2\pi \approx 6.28</m>ft; average velocity: <m>\la 0,0\ra</m>; average speed: <m>1</m>ft/s</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$disp">
+              <static>\langle10,20,-10\rangle</static>
+            </var>
+            <var name="$dist">
+              <static>10\sqrt{6}</static>
+            </var>
+            <var name="$avvel">
+              <static>\langle1,2,-1\rangle</static>
+            </var>
+            <var name="$avspe">
+              <static>\sqrt(6)</static>
+            </var>
+            <pg-code>
+              Context("Vector");
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $disp=Compute("&lt;10,20,-10>");
+              $dist=Compute("10sqrt(6)");
+              $avvel=Compute("&lt;1,2,-1>");
+              $avspe=Compute("sqrt(6)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>An object has velocity function <m>\vvt = \la 1,2,-1 \ra</m>, where distances are measured in feet and time is in seconds. Over <m>[0,10]</m>:<ol label="a">
+              <li>
+                <p>What is the displacement? <var name="$disp" width="20" /></p>
+              </li>
+              <li>
+                <p>What is the distance traveled? <var name="$dist" width="20" /></p>
+              </li>
+              <li>
+                <p>What is the average velocity? <var name="$avvel" width="20" /></p>
+              </li>
+              <li>
+                <p>What is the average speed? <var name="$avspe" width="20" /></p>
+              </li>
+            </ol></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>The following exercises ask you to solve a variety of problems based on the principles of projectile motion.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>A boy whirls a ball, attached to a 3ft string, above his head in a counter<ndash />clockwise circle. The ball makes 2 revolutions per second.</p>
+
+            <p>At what <m>t</m>-values should the boy release the string so that the ball heads directly for a tree standing 10ft in front of him?</p>
+          </statement>
+          <solution>
+            <p>At <m>t</m>-values of <m>\sin^{-1}(9/30)/(4\pi) + n/2 \approx 0.024 + n/2</m> seconds, where <m>n</m> is an integer.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>David faces Goliath with only a stone in a 3ft sling, which he whirls above his head at 4 revolutions per second. They stand 20ft apart.</p>
+
+            <ol>
+              <li>
+                <title>(a)</title>
+                <p>At what <m>t</m>-values must David release the stone in his sling in order to hit Goliath?</p></li>
+
+              <li>
+                <title>(b)</title>
+                <p>What is the speed at which the stone is traveling when released?</p></li>
+
+              <li>
+                <title>(c)</title>
+                <p>Assume David releases the stone from a height of 6ft and Goliath's forehead is 9ft above the ground. What angle of elevation must David apply to the stone to hit Goliath's head?</p></li>
+            </ol>
+          </statement>
+          <solution>
+            <p>The stone, while whirling, can be modeled by <m>\vrt = \la 3\cos(8\pi t),3\sin(8\pi t)\ra</m>.</p>
+
+            <ol>
+              <li><p>For <m>t</m>-values <m>t=\sin^{-1}(3/20)/(8\pi) + n/4 \approx 0.006 + n/4</m>, where <m>n</m> is an integer.</p></li>
+
+              <li><p><m>\norm{\vrp(t)} = 24\pi\approx 51.4</m>ft/s</p></li>
+
+              <li><p>At <m>t=0.006</m>, the stone is approximately <m>19.77</m>ft from Goliath. Using the formula for projectile motion, we want the angle of elevation that lets a projectile starting at <m>\la 0,6\ra</m> with a initial velocity of <m>51.4</m>ft/s arrive at <m>\la 19.77,9\ra</m>. The desired angle is <m>0.27</m> radians, or <m>15.69^\circ</m>.</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$angle">
+              <static></static>
+            </var>
+            <var name="$lead">
+              <static></static>
+            </var>
+            <pg-code>
+              Context()->flags->set(tolerance=>0.005);
+              $angle=NumberWithUnits("0.013 radians");
+              $lead=NumberWithUnits("11.7 ft");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>A hunter aims at a deer which is <m>40</m> yards away. Her crossbow is at a height of <m>5</m> ft, and she aims for a spot on the deer <m>4</m> ft above the ground. The crossbow fires her arrows at <m>300</m> ft/s.</p>
+
+            <p><ol label="a">
+              <li>
+                <p>At what angle of elevation should she hold the crossbow to hit her target?</p>
+                <p><var name="$angle" width="15" /></p>
+              </li>
+              <li>
+                <p>If the deer is moving perpendicularly to her line of sight at a rate of <m>20</m> mph, by approximately how much should she lead the deer in order to hit it in the desired location? (How far ahead of the deer should she aim?)</p>
+                <p><var name="$lead" width="15" /></p>
+              </li>
+            </ol></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>A baseball player hits a ball at 100mph, with an initial height of 3ft and an angle of elevation of <m>20^\circ</m>, at Boston's Fenway Park. The ball flies towards the famed <q>Green Monster,</q> a wall 37ft high located 310ft from home plate.</p>
+
+            <ol>
+              <li>
+                <title>(a)</title>
+                <p>Show that as hit, the ball hits the wall.</p></li>
+
+              <li>
+                <title>(b)</title>
+                <p>Show that if the angle of elevation is <m>21^\circ</m>, the ball clears the Green Monster.</p></li>
+            </ol>
+          </statement>
+          <solution>
+            <p>The position function of the ball is <m>\vrt = \la (146.67\cos(\theta) )t,-16t^2+(146.67\sin(\theta) )t+3\ra</m>, where <m>\theta</m> is the angle of elevation.</p>
+
+            <ol>
+              <li><p>With <m>\theta=20^\circ</m>, the ball reaches 310ft from home plate in 2.25 seconds; at this time, the height of the ball is 34.9ft, not enough to clear the Green Monster.</p></li>
+
+              <li><p>With <m>\theta=21^\circ</m>, the ball reaches 310ft from home plate in 2.26s, with a height of 40ft, clearing the wall.</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>A Cessna flies at 1000ft at 150mph and drops a box of supplies to the professor (and his wife) on an island. Ignoring wind resistance, how far horizontally will the supplies travel before they land?</p>
+          </statement>
+          <solution>
+            <p>The position function is <m>\vrt = \la 220t,-16t^2+1000\ra</m>. The <m>y</m>-component is 0 when <m>t=7.9</m>; <m>\vec r(7.9) = \la 1739.25,0\ra</m>, meaning the box will travel about 1740ft horizontally before it lands.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>A football quarterback throws a pass from a height of 6ft, intending to hit his receiver 20yds away at a height of 5ft.</p>
+
+            <ol>
+              <li>
+                <title>(a)</title>
+                <p>If the ball is thrown at a rate of 50mph, what angle of elevation is needed to hit his intended target?</p></li>
+
+              <li>
+                <title>(b)</title>
+                <p>If the ball is thrown at with an angle of elevation of <m>8^\circ</m>, what initial ball speed is needed to hit his target?</p></li>
+            </ol>
+          </statement>
+          <solution>
+            <p>The position function of the ball is <m>\vrt = \la (v_0\cos(\theta) )t,-16t^2+(v_0\sin(\theta) )t+6\ra</m>, where <m>\theta</m> is the angle of elevation and <m>v_0</m> is the initial ball speed.</p>
+
+            <ol>
+              <li><p>With <m>v_0 = 73.33</m>ft/s, there are two angles of elevation possible. An angle of <m>\theta = 9.47^\circ</m> delivers the ball in 0.83s, while an angle of <m>79.57^\circ</m> delivers the ball in <m>4.5</m>s.</p></li>
+
+              <li><p>With <m>\theta=8^\circ</m>, the initial speed must be 53.8mph<m>\approx 78.9</m>ft/s.</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

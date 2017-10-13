@@ -1,0 +1,1552 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_concavity">
+  <title>Concavity and the Second Derivative</title>
+  <introduction>
+    <p>Our study of <q>nice</q> functions continues. The previous section showed how the first derivative of a function, <m>\fp</m>, can relay important information about <m>f</m>. We now apply the same technique to <m>\fp</m> itself, and learn what this tells us about <m>f</m>.</p>
+
+    <p>The key to studying <m>\fp</m> is to consider its derivative, namely <m>\fp'</m>, which is the second derivative of <m>f</m>. When <m>\fp'>0</m>, <m>\fp</m> is increasing. When <m>\fp'\lt 0</m>, <m> \fp </m>is decreasing. <m>\fp</m> has relative maxima and minima where <m>\fp'=0</m> or is undefined.</p>
+
+    <p>This section explores how knowing information about <m>\fpp</m> gives information about <m>f</m>.</p>
+  </introduction>
+
+  <subsection>
+    <title>Concavity</title>
+    <p>We begin with a definition, then explore its meaning.</p>
+
+    <definition xml:id="def_concavity">
+      <title>Concave Up and Concave Down</title>
+      <statement>
+        <p>Let <m>f</m> be differentiable on an interval <m>I</m>. The graph of <m>f</m> is <term>concave up</term> on <m>I</m> if <m>\fp</m> is increasing. The graph of <m>f</m> is <term>concave down</term> on <m>I</m> if <m>\fp</m> is decreasing. If <m>\fp</m> is constant then the graph of <m>f</m> is said to have <term>no concavity</term>.<index><main>concavity</main></index><index><main>concave up</main></index><index><main>concave down</main></index></p>
+      </statement>
+    </definition>
+
+    <aside>
+      <title>Loose Language</title>
+      <p>We often state that <q><m>f</m> is concave up</q> instead of <q>the graph of <m>f</m> is concave up</q> for simplicity.</p>
+    </aside>
+
+    <p>The graph of a function <m>f</m> is <em>concave up</em> when <m> \fp </m>is <em>increasing.</em> That means as one looks at a concave up graph from left to right, the slopes of the tangent lines will be increasing. Consider <xref ref="fig_concavity1">Figure</xref>, where a concave up graph is shown along with some tangent lines. Notice how the tangent line on the left is steep, downward, corresponding to a lesser (large negative) value of <m>\fp</m>. On the right, the tangent line is steep, upward, corresponding to a greater (large positive) value of <m>\fp</m>.</p>
+
+    <figure xml:id="fig_concavity1" >
+      <caption>A function <m>f</m> with a concave up graph. Notice how the slopes of the tangent lines, when looking from left to right, are increasing. (The slope values pictured are <m>-12, -6, 6 </m>  and <m>12</m>).</caption>
+      <!-- START figures/fig_concavity1.tex -->
+      <image xml:id="img_concavity1"  width="47%">
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+            \begin{axis}[xmin=-3.5,xmax=3.5,
+                        ymin=-1,ymax=35,]
+              \addplot+[domain=-3:3] {3*x^2+5};
+              \addplot [tangentlineseg,domain =-3:-1] {-12*(x+2)+17};
+              \addplot [tangentlineseg,domain =1:3] {12*(x-2)+17} ;
+              \addplot [tangentlineseg,domain =-2.5:.5] {-6*(x+1)+8};
+              \addplot [tangentlineseg,domain =-.5:2.5] {6*(x-1)+8} ;
+            \end{axis}
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_concavity1.tex END -->
+    </figure>
+
+    <p>If a function is decreasing and concave up, then its rate of decrease is slowing; it is <q>leveling off.</q> You can see this in the left side of <xref ref="fig_concavity1">Figure</xref>. If the function is increasing and concave up, then the <em>rate</em> of increase is increasing. The function is increasing at a faster and faster rate. You can see this in the right side of <xref ref="fig_concavity1">Figure</xref>.</p>
+
+    <p>Now consider a function which is concave down. We essentially repeat the above paragraphs with slight variation.</p>
+
+    <p>The graph of a function <m>f</m> is <em>concave down</em> when <m> \fp </m>is <em>decreasing.</em> That means as one looks at a concave down graph from left to right, the slopes of the tangent lines will be decreasing. Consider <xref ref="fig_concavity2">Figure</xref>, where a concave down graph is shown along with some tangent lines. Notice how the tangent line on the left is steep, upward, corresponding to a greater (large positive) value of <m>\fp</m>. On the right, the tangent line is steep, downward, corresponding to a lesser (large negative) value of <m>\fp</m>.</p>
+
+    <figure xml:id="fig_concavity2" >
+      <caption>A function <m>f</m> with a concave down graph. Notice how the slopes of the tangent lines, when looking from left to right, are decreasing.</caption>
+      <!-- START figures/fig_concavity2.tex -->
+      <image xml:id="img_concavity2"  width="47%">
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+            \begin{axis}[xmin=-3.5,xmax=3.5,
+                			 ymin=-1,ymax=35,]
+              \addplot+[domain=-3:3] {-3*x^2+31};
+              \addplot [tangentlineseg, domain =-3:-1] {12*(x+2)+19};
+              \addplot [tangentlineseg, domain =1:3] {-12*(x-2)+19} ;
+              \addplot [tangentlineseg, domain =-2.5:-.2] {6*(x+1)+28};
+              \addplot [tangentlineseg, domain =.2:2.5] {-6*(x-1)+28} ;
+            \end{axis}
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_concavity2.tex END -->
+    </figure>
+
+    <p>If a function is increasing and concave down, then its rate of increase is slowing; it is <q>leveling off.</q> If the function is decreasing and concave down, then the <em>rate</em> of decrease is decreasing. The function is decreasing at a faster and faster rate.</p>
+
+    <aside>
+      <title>Concavity Depravity</title>
+      <p>A mnemonic for remembering what concave up/down means is: <q>Concave up is like a cup; concave down is like a frown.</q> It is admittedly terrible, but it works.</p>
+    </aside>
+
+    <p>Our definition of concave up and concave down is given in terms of when the first derivative is increasing or decreasing. We can apply the results of the previous section to find intervals on which a graph is concave up or down. That is, we recognize that <m>\fp</m> is increasing when <m>\fpp>0</m>, etc.</p>
+
+    <theorem xml:id="thm_concavity">
+      <title>Test for Concavity</title>
+      <statement>
+        <p>Let <m>f</m> be twice differentiable on an interval <m>I</m>. The graph of <m>f</m> is concave up if <m>\fpp>0</m> on <m>I</m>, and is concave down if <m>\fpp\lt 0</m> on <m>I</m>. <index><main>concavity</main><sub>test for</sub></index><index><main>concavity</main><sub>inflection point</sub></index></p>
+      </statement>
+    </theorem>
+
+    <!-- Known issue: numbering is off here -->
+
+    <sbsgroup xml:id="fig_concavity3" widths="20% 20%" margins="15%">
+      <caption>Demonstrating the four ways that concavity interacts with increasing/decreasing, along with the relationships with the first and second derivatives.</caption>
+      <sidebyside>
+        <figure>
+          <caption><m>\fp>0</m>, <m>f</m> increasing; <m>\fpp\lt0</m>, <m>f</m> is concave down</caption>
+          <image>
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+                \draw [thick] (0,0) arc (180:90:2);
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+        </figure>
+        <figure>
+          <caption><m>\fp\lt0</m>, <m>f</m> decreasing; <m>\fpp\lt0</m>, <m>f</m> is concave down</caption>
+          <image>
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+                \draw [thick] (0,0) arc (90:0:2);
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+        </figure>
+      </sidebyside>
+      <sidebyside>
+        <figure>
+          <caption><m>\fp\lt0</m>, <m>f</m> decreasing; <m>\fpp>0</m>, <m>f</m> is concave up</caption>
+          <image>
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+                \draw [thick] (0,0) arc (180:270:2);
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+        </figure>
+        <figure>
+          <caption><m>\fp>0</m>, <m>f</m> increasing; <m>\fpp>0</m>, <m>f</m> is concave up</caption>
+          <image>
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+                \draw [thick] (0,0) arc (0:-90:2);
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+        </figure>
+      </sidebyside>
+    </sbsgroup>
+
+    <aside>
+      <title>Geometric Concavity</title>
+      <p>Geometrically speaking, a function is concave up if its graph lies above its tangent lines and below secant line segments. A function is concave down if its graph lies below its tangent lines and above secant line segments.</p>
+    </aside>
+
+    <p>If knowing where a graph is concave up/down is important, it makes sense that the places where the graph changes from one to the other is also important. This leads us to a definition.</p>
+
+    <definition xml:id="def_infl">
+      <title>Point of Inflection</title>
+      <statement>
+        <p>A <term>point of inflection</term> is a point on the graph of <m>f</m> at which the concavity of <m>f</m> changes.<index><main>point of inflection</main></index><index><main>inflection point</main></index></p>
+      </statement>
+    </definition>
+
+    <p><xref ref="fig_concavity4">Figure</xref> shows a graph of a function with inflection points labeled.</p>
+
+    <figure xml:id="fig_concavity4" >
+      <caption>A graph of a function with its inflection points marked. The intervals where concave up/down are also indicated.</caption>
+      <!-- START figures/fig_concavity4.tex -->
+      <image xml:id="img_concavity4" width="47%">
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+            \begin{axis}[xmin=-.5,xmax=4.5,
+                        ymin=-1,ymax=16,]
+              \addplot+[domain=.7:4.2, samples=40] {2*(x-1)*(x-2)*(x-3)*(x-4)+5};
+              \addplot[soliddot] coordinates {(1.85,4.39) (3.15, 4.39)};
+              \addplot[guideline] coordinates {(1.85,-1) (1.85,16)} node[left, anchor=north east] {\parbox{4em}{\flushright$\fpp>0$, $f$ is concave up}};
+              \addplot[guideline] coordinates {(3.15,-1) (3.15,16)} node[right, anchor=north west] {\parbox{4em}{\flushleft$\fpp>0$, $f$ is concave up}};
+              \draw (axis cs:2.5,16) node[anchor=north] {\parbox{4em}{\centering$\fpp<0$, $f$ is concave down}};
+            \end{axis}
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_concavity4.tex END -->
+    </figure>
+
+    <p>If the concavity of <m>f</m> changes at a point <m>(c,f(c))</m>, then <m> \fp </m>is changing from increasing to decreasing (or, decreasing to increasing) at <m>x=c</m>. That means that the sign of <m>\fpp</m>is changing from positive to negative (or, negative to positive) at <m>x=c</m>. A sign change <em>may</em> occur when <m>\fpp=0</m> or <m>\fpp</m> is undefined. This leads to the following theorem.</p>
+
+    <theorem xml:id="thm_inflection">
+      <title>Points of Inflection</title>
+      <statement>
+        <p>If <m>(c,f(c))</m> is a point of inflection on the graph of <m>f</m>, then either <m>\fpp=0</m> or <m>\fpp</m> is not defined at <m>c</m>.</p>
+      </statement>
+    </theorem>
+
+    <p>We have identified the concepts of concavity and points of inflection. It is now time to practice using these concepts; given a function, we should be able to find its points of inflection and identify intervals on which it is concave up or down. We do so in the following examples.</p>
+
+    <example xml:id="ex_conc1">
+      <title>Finding intervals of concave up/down, inflection points</title>
+      <statement>
+        <p>Let <m>f(x)=x^3-3x+1</m>. Find the inflection points of <m>f</m> and the intervals on which it is concave up/down.</p>
+      </statement>
+      <solution>
+        <p>We start by finding <m>\fp(x)=3x^2-3</m> and <m>\fpp(x)=6x</m>. To find the inflection points, we use <xref ref="thm_inflection">Theorem</xref> and find where <m>\fpp(x)=0</m> or where <m> \fpp </m>is undefined. We find <m> \fpp </m>is always defined, and is <m>0</m> only when <m>x=0</m>. So the point <m>(0,f(0))=(0,1)</m> is the only possible point of inflection.</p>
+
+        <p>This possible inflection point divides the real line into two intervals, <m>(-\infty,0)</m> and <m>(0,\infty)</m>. We use a process similar to the one used in the previous section to determine increasing/decreasing. Pick any <m>c\lt 0</m>; <m>\fpp(c)\lt 0</m> so <m>f</m> is concave down on <m>(-\infty,0)</m>. Pick any <m>c>0</m>; <m>\fpp(c)>0</m> so <m>f</m> is concave up on <m>(0,\infty)</m>. Since the concavity changes at <m>x=0</m>, the point <m>(0,1)</m> is an inflection point.</p>
+
+        <p>The number line in <xref ref="fig_concline1">Figure</xref> illustrates the process of determining concavity; <xref ref="fig_conc1">Figure</xref> shows a graph of <m>f</m> and <m>\fpp</m>, confirming our results. Notice how <m>f</m> is concave down precisely when <m>\fpp(x)\lt 0</m> and concave up when <m>\fpp(x)>0</m>.</p>
+
+        <figure xml:id="fig_concline1" >
+          <caption>A number line determining the concavity of <m>f</m> in <xref ref="ex_conc1">Example</xref>.</caption>
+          <!-- START figures/fig_concline1.tex -->
+          <image xml:id="img_concline1"  width="67%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+                \begin{axis}[numberline,
+                            xmin=-0.9,xmax=0.9,
+                            after end axis/.code={
+                                            \path (axis cs:0,0)
+                                            node [anchor=north,yshift=-0.075cm] {\footnotesize 0};
+                                          },]
+                    \addplot[guideline] coordinates {(0,0) (0,2)};
+                    \addplot[mark=none] coordinates {(-0.5,1)} node {\parbox{8em}{\centering \small $\fpp<0$\\$f$ is concave down}};
+                    \addplot[mark=none] coordinates {(0.5,1)} node {\parbox{8em}{\centering \small $\fpp>0$\\$f$ is concave up}};
+                \end{axis}
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_concline1.tex END -->
+        </figure>
+
+        <figure xml:id="fig_conc1" >
+          <caption>A graph of <m>f(x)</m> used in <xref ref="ex_conc1">Example</xref>.</caption>
+          <!-- START figures/fig_conc1.tex -->
+          <image xml:id="img_conc1"  width="47%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+                \begin{axis}[xmin=-2.2,xmax=2.2,
+                      			ymin=-3.5,ymax=3.5,]
+                  \addplot+[domain=-2.1:2,samples=60] {x^3-x*3+1} node[below right, pos=0.2] {$f(x)$}  ;
+                  \addplot+[domain=-.5:.5] {6*x} node[below right]{$\fpp(x)$};
+                \end{axis}
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_conc1.tex END -->
+        </figure>
+      </solution>
+    </example>
+
+    <example xml:id="ex_conc2">
+      <title>Finding intervals of concave up/down, inflection points</title>
+      <statement>
+        <p>Let <m>f(x)=x/(x^2-1)</m>. Find the inflection points of <m>f</m> and the intervals on which it is concave up/down.</p>
+      </statement>
+      <solution>
+        <p>We need to find <m>\fp</m>and <m>\fpp</m>. Using the <xref ref="thm_QuotientRule">Quotient Rule</xref> and simplifying, we find
+          <md>
+            <mrow>\fp(x)\amp=\frac{-(1+x^2)}{(x^2-1)^2}\amp\fpp(x)\amp= \frac{2x(x^2+3)}{(x^2-1)^3}</mrow>
+          </md>.
+        </p>
+
+        <p>To find the possible points of inflection, we seek to find where <m>\fpp(x)=0</m> and where <m>\fpp</m> is not defined. Solving <m>\fpp(x)=0</m> reduces to solving <m>2x(x^2+3)=0</m>; we find <m>x=0</m>. We find that <m> \fpp </m>is not defined when <m>x=\pm 1</m>, for then the denominator of <m> \fpp </m>is <m>0</m>. We also note that <m>f</m> itself is not defined at <m>x=\pm1</m>, having a domain of <m>(-\infty,-1)\cup(-1,1)\cup(1,\infty)</m>. Since the domain of <m>f</m> is the union of three intervals, it makes sense that the concavity of <m>f</m> could switch across intervals. We technically cannot say that <m>f</m> has a point of inflection at <m>x=\pm1</m> as they are not part of the domain, but we must still consider these <m>x</m>-values to be important and will include them in our number line.</p>
+
+        <p>The important <m>x</m>-values at which concavity might switch are <m>x=-1</m>, <m>x=0</m> and <m>x=1</m>, which split the number line into four intervals as shown in <xref ref="fig_concline2">Figure</xref>. We determine the concavity on each. Keep in mind that all we are concerned with is the <em>sign</em> of <m> \fpp </m>on the interval.</p>
+
+        <p><dl>
+          <li>
+            <title>Interval 1: <m>(-\infty,-1)</m></title>
+            <p>Select a number <m>c</m> in this interval with a large magnitude (for instance, <m>c=-100</m>). The denominator of <m>\fp'(x)</m> will be positive. In the numerator, the <m>\left(c^2+3\right)</m> factor will be positive and the <m>2c</m> factor will be negative. Thus the numerator is negative and <m>\fpp(c)</m> is negative. We conclude <m>f</m> is concave down on <m>(-\infty,-1)</m>.</p>
+          </li>
+          <li>
+            <title>Interval 2: <m>(-1,0)</m></title>
+            <p>For any number <m>c</m> in this interval, the factor <m>2c</m> in the numerator will be negative, the factor <m>\left(c^2+3\right)</m> in the numerator will be positive, and the factor <m>\left(c^2-1\right)^3</m> in the denominator will be negative. Thus <m>\fpp(c)>0</m> and <m>f</m> is concave up on this interval.</p>
+          </li>
+          <li>
+            <title>Interval 3: <m>(0,1)</m></title>
+            <p>Any number <m>c</m> in this interval will be positive and <q>small.</q> Thus the numerator is positive while the denominator is negative. Thus <m>\fpp(c)\lt 0</m> and <m>f</m> is concave down on this interval.</p>
+          </li>
+          <li>
+            <title>Interval 4: <m>(1,\infty)</m></title>
+            <p>Choose a large value for <m>c</m>. It is evident that <m>\fpp(c)>0</m>, so we conclude that <m>f</m> is concave up on <m>(1,\infty)</m>.</p>
+          </li>
+        </dl></p>
+
+        <figure xml:id="fig_concline2">
+          <caption></caption>
+          <!-- START figures/fig_concline2.tex -->
+          <image xml:id="img_concline2"  width="80%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+                \begin{axis}[numberline,
+                            xmin=-2,xmax=2,
+                            extra x ticks={-1, 1, 0},
+                            extra x tick labels={$-1$,$1$, $0$},]
+                    \addplot[guideline] coordinates {(-1,0) (-1,2)};
+                    \addplot[guideline] coordinates {(0,0) (0,2)};
+                    \addplot[guideline] coordinates {(1,0) (1,2)};
+                    \addplot[mark=none] coordinates {(-1.5,1.5)} node {\parbox{3em}{\centering \small  $\fpp\lt0$\\$f$ conc down}};
+                    \addplot[mark=none] coordinates {(-0.5,1.5)} node {\parbox{3em}{\centering \small  $\fpp>0$\\$f$ conc up}};
+                    \addplot[mark=none] coordinates {(0.5,1.5)} node {\parbox{3em}{\centering \small  $\fpp\lt0$\\$f$ conc down}};
+                    \addplot[mark=none] coordinates {(1.5,1.5)} node {\parbox{3em}{\centering \small  $\fpp>0$\\$f$ conc up}};
+                \end{axis}
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_concline2.tex END -->
+        </figure>
+
+        <p>We conclude that <m>f</m> is concave up on <m>(-1,0)</m> and on <m>(1,\infty)</m> and concave down on <m>(-\infty,-1)</m> and on <m>\cup(0,1)</m>. There is only one point of inflection, <m>(0,0)</m>, as <m>f</m> is not defined at <m>x=\pm 1</m>. Our work is confirmed by the graph of <m>f</m> in <xref ref="fig_conc2">Figure</xref>. Notice how <m>f</m> is concave up whenever <m>\fpp</m>is positive, and concave down when <m>\fpp</m>is negative. The inflection in <m>f</m> occurs where <m>\fpp</m> changes sign.</p>
+
+        <figure xml:id="fig_conc2" >
+          <caption>A graph of <m>f(x)</m> and <m>\fpp(x)</m> in <xref ref="ex_conc2">Example</xref>.</caption>
+          <!-- START figures/fig_conc2.tex -->
+          <image xml:id="img_conc2"  width="47%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+                \begin{axis}[xmin=-3.2,xmax=3.2,
+                      			ymin=-11,ymax=11,]
+                  \addplot[firstcurvestyle, samples=25, domain=-3.1:-1.05] {x/(x^2-1)};
+                  \addplot[firstcurvestyle, samples=25, domain=-.95:.95] {x/(x^2-1)} node[left, pos=0.1]{$f(x)$};
+                  \addplot[firstcurvestyle, samples=25, domain=1.05:3.1] {x/(x^2-1)};
+
+                  \addplot[secondcurvestyle, samples=25, domain=-3.1:-1.5] {(2*x*(x^2+3))/((x^2-1)^3)};
+                  \addplot[secondcurvestyle, samples=25, domain=-.5:.5] {(2*x*(x^2+3))/((x^2-1)^3)};
+                  \addplot[secondcurvestyle, domain=1.5:3.1] {(2*x*(x^2+3))/((x^2-1)^3)} node[right, pos=0.1] {$\fpp(x)$};
+                \end{axis}
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_conc2.tex END -->
+        </figure>
+      </solution>
+    </example>
+
+    <p>Recall that relative maxima and minima of <m>f</m> are found at critical points of <m>f</m>; that is, they are found when <m>\fp(x)=0</m> or when <m>\fp</m> is undefined. Likewise, the relative maxima and minima of <m> \fp </m>are found when <m>\fpp(x)=0</m> or when <m> \fpp </m>is undefined; note that these are the inflection points of <m>f</m>.</p>
+
+    <p>What does a <q>relative maximum of <m>\fp</m></q> <em>mean</em>? The derivative measures the rate of change of <m>f</m>; maximizing <m>\fp</m>means finding the where <m>f</m> is increasing the most <mdash /> where <m>f</m> has the steepest tangent line. A similar statement can be made for minimizing <m>\fp</m>; it corresponds to where <m>f</m> has the steepest negatively-sloped tangent line.</p>
+
+    <p>We utilize this concept in the next example.</p>
+
+    <example xml:id="ex_conc3">
+      <title>Understanding inflection points</title>
+      <statement>
+        <p>The sales of a certain product over a three-year span are modeled by <m>S(t)= t^4-8t^2+20</m>, where <m>t</m> is the time in years, shown in <xref ref="fig_conc3">Figure</xref>. Over the first two years, sales are decreasing. Find the point at which sales are decreasing at their greatest rate.</p>
+
+        <figure xml:id="fig_conc3" >
+          <caption>A graph of <m>S(t)</m> in <xref ref="ex_conc3">Example</xref>, modeling the sale of a product over time.</caption>
+          <!-- START figures/fig_conc3.tex -->
+          <image xml:id="img_conc3"  width="47%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+                \begin{axis}[xmin=-.2,xmax=3.2,
+                        		ymin=-1,ymax=21,
+                            xlabel={$t$},
+                            ]
+                  \addplot+[rightarrow, domain=0:2.8, samples=40] {x^4-8*x^2+20} node[above right, pos=0.3]{$S(t)$};
+                \end{axis}
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_conc3.tex END -->
+        </figure>
+      </statement>
+      <solution>
+        <p>We want to maximize the rate of decrease, which is to say, we want to find where <m>S'</m> has a minimum. To do this, we find where <m>S''</m> is <m>0</m> and <m>S''</m> changes from negative to positive. We find <m>S'(t)=4t^3-16t</m> and <m>S''(t)=12t^2-16</m>. Setting <m>S''(t)=0</m> and solving, we get <m>t=\sqrt{4/3}\approx 1.16</m> (we ignore the negative solution for <m>t</m> since it does not lie in the domain of our function <m>S</m>).</p>
+
+        <p>Since <m>S''(1)=-4\lt 0</m> and <m>S''(2)=32\gt 0</m>, we can say <m>S'(\sqrt{4/3})</m> is a local minimum of <m>S'</m>. This is both the inflection point and the point of maximum decrease. This is the point at which things first start looking up for the company. After the inflection point, sales are still decreasing, but not decreasing quite as quickly as they had been.</p>
+
+        <p>A graph of <m>S(t)</m> and <m>S'(t)</m> is given in <xref ref="fig_conc3b">Figure</xref>. When <m>S'(t)\lt 0</m>, sales are decreasing; note how at <m>t\approx 1.16</m>, <m>S'(t)</m> is minimized. That is, sales are decreasing at the fastest rate at <m>t\approx 1.16</m>. On the interval of <m>(1.16,2)</m>, <m>S</m> is decreasing but concave up, so the decline in sales is <q>leveling off.</q></p>
+
+        <figure xml:id="fig_conc3b" >
+          <caption>A graph of <m>S(t)</m> in <xref ref="ex_conc3">Example</xref>, modeling the sale of a product over time.</caption>
+          <!-- START figures/fig_conc3b.tex -->
+          <image xml:id="img_conc3b"  width="47%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+                \begin{axis}[xmin=-.2,xmax=3.2,
+                            ymin=-16,ymax=21,
+                            xlabel={$t$},
+                           ]
+                  \addplot+[rightarrow,domain=0:2.8, samples=40] {x^4-8*x^2+20} node[above right, pos=0.3]{$S(t)$};
+                  \addplot+[-,domain=0:3, samples=40] {4*x^3-16*x} node[below right, pos=0.2]{$S'(t)$};
+                  \addplot[soliddot] coordinates {(1.16,11.04) (1.16,-12.32)};
+                \end{axis}
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_conc3.tex END -->
+        </figure>
+      </solution>
+    </example>
+
+    <p>Not every critical point corresponds to a relative extrema; <m>f(x)=x^3</m> has a critical point at <m>(0,0)</m> but no relative maximum or minimum. Likewise, just because <m>\fpp(x)=0</m> we cannot conclude concavity changes at that point. We were careful before to use terminology <q><em>possible</em> point of inflection</q> since we needed to check to see if the concavity changed. The canonical example of <m>\fpp(x)=0</m> <em>without</em> concavity changing is <m>f(x)=x^4</m>. At <m>x=0</m>, <m>\fpp(x)=0</m> but <m>f</m> is always concave up, as shown in <xref ref="fig_concavity5">Figure</xref>.</p>
+
+
+    <figure xml:id="fig_concavity5" >
+      <caption>A graph of <m>f(x) = x^4</m>. Clearly <m>f</m> is always concave up, despite the fact that <m>\fpp(x) = 0</m> when <m>x=0</m>. It this example, the <em>possible</em> point of inflection <m>(0,0)</m> is not a point of inflection.</caption>
+      <!-- START figures/fig_concavity5.tex -->
+      <image xml:id="img_concavity5"  width="47%">
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+            \begin{axis}[xmin=-1.1,xmax=1.1,
+                        ymin=-.1,ymax=1.1,]
+              \addplot+[domain=-1:1] {x^4};
+            \end{axis}
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_concavity5.tex END -->
+    </figure>
+  </subsection>
+
+  <subsection>
+    <title>The Second Derivative Test</title>
+    <p>The first derivative of a function gave us a test to find if a critical value corresponded to a relative maximum, minimum, or neither. The second derivative gives us another way to test if a critical point is a local maximum or minimum. The following theorem officially states something that is intuitive: if a critical value occurs in a region where a function <m>f</m> is concave up, then that critical value must correspond to a relative minimum of <m>f</m>, etc. See <xref ref="fig_concavity6">Figure</xref> for a visualization of this.</p>
+
+    <figure xml:id="fig_concavity6" >
+      <caption>Demonstrating the fact that relative maxima occur when the graph is concave down and relative minima occur when the graph is concave up.</caption>
+      <!-- START figures/fig_concavity6.tex -->
+      <image xml:id="img_concavity6"  width="47%">
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+            \begin{axis}[xmin=-2.1,xmax=2.1,
+                        ymin=-11,ymax=11,
+                        ]
+              \addplot+[domain=-2:2, samples=50] {5*x^3-15*x};
+              \addplot[soliddot] coordinates {(-1,10) (1,-10)};
+              \addplot[mark=none] coordinates {(-1,7.5)} node {\parbox{6em}{\centering concave down\\$\implies$ rel max}};
+              \addplot[mark=none] coordinates {(1,-7.5)} node {\parbox{6em}{\centering concave up\\$\implies$ rel min}};
+            \end{axis}
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_concavity6.tex END -->
+    </figure>
+
+    <theorem xml:id="thm_second_der">
+      <title>The Second Derivative Test</title>
+      <statement>
+        <p>Let <m>c</m> be a critical value of <m>f</m> where <m>\fpp(c)</m> is defined. <index><main>derivative</main><sub>Second Deriv. Test</sub></index><index><main>Second Derivative Test</main></index><index><main>extrema</main><sub>and Second Deriv. Test</sub></index><index><main>maximum</main><sub>and Second Deriv. Test</sub></index><index><main>minimum</main><sub>and First Deriv. Test</sub></index></p>
+
+        <p><ol>
+          <li>
+            <p>If <m>\fpp(c)>0</m>, then <m>f</m> has a local minimum at <m>(c,f(c))</m>.</p>
+          </li>
+          <li>
+            <p>If <m>\fpp(c)\lt 0</m>, then <m>f</m> has a local maximum at <m>(c,f(c))</m>.</p>
+          </li>
+        </ol></p>
+      </statement>
+    </theorem>
+
+    <aside>
+      <title>Use Wisely</title>
+      <p>The second derivative test can only be used on a function that is twice differentiable at <m>c</m>. For functions that are not twice differentiable at <m>c</m>, you will need to use the <xref ref="thm_first_der" autoname="title"/>.</p>
+    </aside>
+
+    <p>The Second Derivative Test relates to the <xref ref="thm_first_der" autoname="title"/> in the following way. If <m>\fpp(c)>0</m>, then the graph is concave up at a critical point <m>c</m> and <m>\fp</m> itself is growing. Since <m>\fp(c)=0</m> and <m>\fp</m> is growing at <m>c</m>, then it must go from negative to positive at <m>c</m>. This means the function goes from decreasing to increasing, indicating a local minimum at <m>c</m>.</p>
+
+    <example xml:id="ex_conc4">
+      <title>Using the Second Derivative Test</title>
+      <statement>
+        <p>Let <m>f(x)=100/x + x</m>. Find the critical points of <m>f</m> and use the <xref ref="thm_second_der" autoname="title"/> to label them as relative maxima or minima.</p>
+      </statement>
+      <solution>
+        <p>We find <m>\fp(x)=-100/x^2+1</m> and <m>\fpp(x) = 200/x^3</m>. We set <m>\fp(x)=0</m> and solve for <m>x</m> to find the critical values (note that <m>\fp</m> is not defined at <m>x=0</m>, but neither is <m>f</m> so this is not a critical value.) We find the critical values are <m>x=\pm 10</m>. We now evaluate the second derivative at these critical numbers. Evaluating <m> \fpp(10)=0.1>0</m>, so there is a local minimum at <m>x=10</m>. Evaluating <m>\fpp(-10)=-0.1\lt 0</m>, determining a relative maximum at <m>x=-10</m>. These results are confirmed in <xref ref="fig_conc4">Figure</xref>.</p>
+
+        <figure xml:id="fig_conc4">
+          <caption>A graph of <m>f(x)</m> in <xref ref="ex_conc4">Example</xref>. The second derivative is evaluated at each critical point. When the graph is concave up, the critical point represents a local minimum; when the graph is concave down, the critical point represents a local maximum.</caption>
+          <!-- START figures/fig_conc4.tex -->
+          <image xml:id="img_conc4"  width="47%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+                \begin{axis}[xmin=-21,xmax=21,
+                            ymin=-51,ymax=51,]
+                  \addplot+[domain=-20:-2.2] {100/x+x};
+                  \addplot[firstcurvestyle,domain=2.2:20] {100/x+x};
+                  \addplot[soliddot] coordinates{(10,20)} node [below] {$\fpp(10)>0$};
+                  \addplot[soliddot] coordinates{(-10,-20)} node [above] {$\fpp(-10)\lt0$};
+                \end{axis}
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_conc4.tex END -->
+        </figure>
+      </solution>
+    </example>
+
+    <p>We have been learning how the first and second derivatives of a function relate information about the graph of that function. We have found intervals of increasing and decreasing, intervals where the graph is concave up and down, along with the locations of relative extrema and inflection points. In <xref ref="chapter_limits">Chapter</xref> we saw how limits explained asymptotic behavior. In the next section we combine all of this information to produce accurate sketches of functions.</p>
+  </subsection>
+
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Sketch a graph of a function <m>f(x)</m> that is concave up on <m>(0,1)</m> and is concave down on <m>(1,2)</m>.</p>
+          </statement>
+          <solution>
+            <p>Answers will vary.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Sketch a graph of a function <m>f(x)</m> that is:</p>
+
+            <p><ol>
+              <li>
+                <p>Increasing, concave up on <m>(0,1)</m>,</p>
+              </li>
+
+              <li>
+                <p>increasing, concave down on <m>(1,2)</m>,</p>
+              </li>
+
+              <li>
+                <p>decreasing, concave down on <m>(2,3)</m> and</p>
+              </li>
+
+              <li>
+                <p>increasing, concave down on <m>(3,4)</m>.</p>
+              </li>
+            </ol></p>
+          </statement>
+          <solution>
+            <p>Answers will vary.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Is is possible for a function to be increasing and concave down on <m>(0,\infty)</m> with a horizontal asymptote of <m>y=1</m>? If so, give a sketch of such a function.</p>
+          </statement>
+          <solution>
+            <p>Yes; Answers will vary.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Is is possible for a function to be increasing and concave up on <m>(0,\infty)</m> with a horizontal asymptote of <m>y=1</m>? If so, give a sketch of such a function.</p>
+          </statement>
+          <solution>
+            <p>No.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, a function <m>f(x)</m> is given.</p>
+
+        <p><ol label="a">
+          <li>
+            <p>Compute <m>\fpp(x)</m>.</p>
+          </li>
+          <li>
+            <p>Graph <m>f</m> and <m>\fpp</m> on the same axes (using technology is permitted) and verify <xref ref="thm_concavity">Theorem</xref>.</p>
+          </li>
+        </ol></p>
+      </introduction>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = -7x+3</m></p>
+          </statement>
+          <solution>
+            <p>Graph and verify.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = -4x^2+3x-8</m></p>
+          </statement>
+          <solution>
+            <p>Graph and verify.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = 4x^2+3x-8</m></p>
+          </statement>
+          <solution>
+            <p>Graph and verify.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = x^3-3x^2+x-1</m></p>
+          </statement>
+          <solution>
+            <p>Graph and verify.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = -x^3+x^2-2x+5</m></p>
+          </statement>
+          <solution>
+            <p>Graph and verify.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \cos(x)</m></p>
+          </statement>
+          <solution>
+            <p>Graph and verify.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \sin(x)</m></p>
+          </statement>
+          <solution>
+            <p>Graph and verify.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \tan(x)</m></p>
+          </statement>
+          <solution>
+            <p>Graph and verify.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \frac{1}{x^2+1}</m></p>
+          </statement>
+          <solution>
+            <p>Graph and verify.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \frac{1}{x}</m></p>
+          </statement>
+          <solution>
+            <p>Graph and verify.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \frac{1}{x^2}</m></p>
+          </statement>
+          <solution>
+            <p>Graph and verify.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, a function <m>f(x)</m> is given.</p>
+
+        <p><ol label="a">
+          <li>
+            <p>Find the possible points of inflection of <m>f</m>.</p>
+          </li>
+          <li>
+            <p>Create a number line to determine the intervals on which <m>f</m> is concave up or concave down.</p>
+          </li>
+        </ol></p>
+      </introduction>
+
+      <exercise xml:id="exer_03_04_ex_16">
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = x^2-2x+1</m></p>
+          </statement>
+          <solution>
+            <p>Possible points of inflection: none;
+              concave up on <m>(-\infty,\infty)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = -x^2-5x+7</m></p>
+          </statement>
+          <solution>
+            <p>Possible points of inflection: none;
+              concave down on <m>(-\infty,\infty)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = x^3-x+1</m></p>
+          </statement>
+          <solution>
+            <p>Possible points of inflection: <m>x=0</m>;
+              concave down on <m>(-\infty,0)</m>;
+              concave up on <m>(0,\infty)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = 2x^3-3x^2+9x+5</m></p>
+          </statement>
+          <solution>
+            <p>Possible points of inflection: <m>x=1/2</m>;
+              concave down on <m>(-\infty,1/2)</m>;
+              concave up on <m>(1/2,\infty)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \frac{x^4}{4}+\frac{x^3}{3}-2 x+3</m></p>
+          </statement>
+          <solution>
+            <p>Possible points of inflection: <m>x=-2/3,0</m>;
+              concave down on <m>(-2/3,0)</m>;
+              concave up on <m>(-\infty,-2/3)\cup(0,\infty)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = -3 x^4+8 x^3+6 x^2-24 x+2</m></p>
+          </statement>
+          <solution>
+            <p>Possible points of inflection: <m>x=(1/3)(2\pm\sqrt{7})</m>;
+              concave up on <m>((1/3)(2-\sqrt{7}),(1/3)(2+\sqrt{7}))</m>;
+              concave down on <m>(-\infty,(1/3)(2-\sqrt{7}))\cup((1/3)(2+\sqrt{7}),\infty)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = x^4-4x^3+6x^2-4x+1</m></p>
+          </statement>
+          <solution>
+            <p>Possible points of inflection: <m>x=1</m>;
+              concave up on <m>(-\infty,\infty)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \frac{1}{x^2+1}</m></p>
+          </statement>
+          <solution>
+            <p>Possible points of inflection: <m>x=\pm1/\sqrt{3}</m>;
+              concave down on <m>(-1/\sqrt{3},1/\sqrt{3})</m>;
+              concave up on <m>(-\infty,-1/\sqrt{3}) \cup (1/\sqrt{3},\infty)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \frac{x}{x^2-1}</m></p>
+          </statement>
+          <solution>
+            <p>Possible points of inflection: <m>x=0,\pm 1</m>;
+              concave down on <m>(-\infty,-1)\cup (0,1)</m>
+              concave up on <m>(-1,0) \cup (1,\infty)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \sin(x) + \cos(x)</m> on <m>(-\pi,\pi)</m></p>
+          </statement>
+          <solution>
+            <p>Possible points of inflection: <m>x=-\pi/4,3\pi/4</m>;
+              concave down on <m>(-\pi/4,3\pi/4)</m>
+              concave up on <m>(-\pi,-\pi/4) \cup (3\pi/4,\pi)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = x^2e^x</m></p>
+          </statement>
+          <solution>
+            <p>Possible points of inflection: <m>x=-2\pm\sqrt{2}</m>;
+              concave down on <m>(-2-\sqrt{2},-2+\sqrt{2})</m>
+              concave up on <m>(-\infty,-2-\sqrt{2}) \cup (-2+\sqrt{2},\infty)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = x^2\ln(x)</m></p>
+          </statement>
+          <solution>
+            <p>Possible points of inflection: <m>x=1/e^{3/2}</m>;
+              concave down on <m>(0,1/e^{3/2})</m>
+              concave up on <m>(1/e^{3/2},\infty)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise xml:id="exer_03_04_ex_28">
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = e^{-x^2}</m></p>
+          </statement>
+          <solution>
+            <p>Possible points of inflection: <m>x=\pm 1/\sqrt{2}</m>;
+              concave down on <m>(- 1/\sqrt{2}, 1/\sqrt{2})</m>
+              concave up on <m>(-\infty,- 1/\sqrt{2})\cup( 1/\sqrt{2},\infty)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, a function <m>f(x)</m> is given. Find the critical points of <m>f</m> and use the Second Derivative Test, when possible, to determine the relative extrema. (Note: these are the same functions as in <xref ref="exer_03_04_ex_16">Exercises</xref> <mdash /> <xref ref="exer_03_04_ex_28"></xref>.)</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) =x^2-2x+1</m></p>
+          </statement>
+          <solution>
+            <p>min: <m>x=1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) =-x^2-5x+7</m></p>
+          </statement>
+          <solution>
+            <p>max: <m>x=-5/2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) =x^3-x+1</m></p>
+          </statement>
+          <solution>
+            <p>max: <m>x=-1/\sqrt{3}</m>
+              min: <m>x=1/\sqrt{3}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) =2 x^3-3 x^2+9 x+5</m></p>
+          </statement>
+          <solution>
+            <p>No relative extrema</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \frac{x^4}{4}+\frac{x^3}{3}-2 x+3</m></p>
+          </statement>
+          <solution>
+            <p>min: <m>x=1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = -3 x^4+8 x^3+6 x^2-24 x+2</m></p>
+          </statement>
+          <solution>
+            <p>max: <m>x=-1,2</m>;
+              min: <m>x=1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = x^4-4x^3+6x^2-4x+1</m></p>
+          </statement>
+          <solution>
+            <p>min: <m>x=1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \frac{1}{x^2+1}</m></p>
+          </statement>
+          <solution>
+            <p>max: <m>x=0</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \frac{x}{x^2-1}</m></p>
+          </statement>
+          <solution>
+            <p>critical values: <m>x=-1,1</m>; no max/min</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \sin(x) + \cos(x)</m> on <m>(-\pi,\pi)</m></p>
+          </statement>
+          <solution>
+            <p>max: <m>x=\pi/4</m>;
+              min: <m>x=-3\pi/4</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = x^2e^x</m></p>
+          </statement>
+          <solution>
+            <p>max: <m>x=-2</m>;
+              min: <m>x=0</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = x^2\ln(x)</m></p>
+          </statement>
+          <solution>
+            <p>min: <m>x=1/\sqrt{e}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = e^{-x^2}</m></p>
+          </statement>
+          <solution>
+            <p>max: <m>x=0</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, a function <m>f(x)</m> is given. Find the <m>x</m> values where <m>\fp(x)</m> has a relative maximum or minimum. (Note: these are the same functions as in <xref ref="exer_03_04_ex_16">Exercises</xref> <mdash /> <xref ref="exer_03_04_ex_28"></xref>.)</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = x^2-2x+1</m></p>
+          </statement>
+          <solution>
+            <p><m>\fp</m> has no maximal or minimal value.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = -x^2-5x+7</m></p>
+          </statement>
+          <solution>
+            <p><m>\fp</m> has no maximal or minimal value</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = x^3-x+1</m></p>
+          </statement>
+          <solution>
+            <p><m>\fp</m> has a minimal value at <m>x=0</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = 2x^3-3x^2+9x+5</m></p>
+          </statement>
+          <solution>
+            <p><m>\fp</m> has a minimal value at <m>x=1/2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \frac{x^4}{4}+\frac{x^3}{3}-2 x+3</m></p>
+          </statement>
+          <solution>
+            <p>Possible points of inflection: <m>x=-2/3,0</m>;
+              <m>\fp</m> has a relative min at: <m>x=0</m> ;
+              relative max at: <m>x=-2/3</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = -3 x^4+8 x^3+6 x^2-24 x+2</m></p>
+          </statement>
+          <solution>
+            <p><m>\fp</m> has a relative max at: <m>x=(1/3)(2+\sqrt{7})</m>
+              relative min at: <m>x= (1/3)(2-\sqrt{7})</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = x^4-4x^3+6x^2-4x+1</m></p>
+          </statement>
+          <solution>
+            <p><m>\fp</m> has no relative extrema</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \frac{1}{x^2+1}</m></p>
+          </statement>
+          <solution>
+            <p><m>\fp</m> has a relative max at <m>x = -1/\sqrt{3}</m>;
+              relative min at <m>x=1/\sqrt{3}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \frac{x}{x^2-1}</m></p>
+          </statement>
+          <solution>
+            <p><m>\fp</m> has a relative max at <m>x=0</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \sin(x) + \cos(x)</m> on <m>(-\pi,\pi)</m></p>
+          </statement>
+          <solution>
+            <p><m>\fp</m> has a relative min at <m>x=3\pi/4</m>;
+              relative max at <m>x=-\pi/4</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = x^2e^x</m></p>
+          </statement>
+          <solution>
+            <p><m>\fp</m> has a relative max at <m>x=-2-\sqrt{2}</m>;
+              relative min at <m>x=-2+\sqrt{2}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = x^2\ln(x)</m></p>
+          </statement>
+          <solution>
+            <p><m>\fp</m> has a relative min at <m>x= 1/\sqrt{e^3}=e^{-3/2}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = e^{-x^2}</m></p>
+          </statement>
+          <solution>
+            <p><m>\fp</m> has a relative max at <m>x=-1/\sqrt{2}</m>; a relative min at <m>x=1/\sqrt{2}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

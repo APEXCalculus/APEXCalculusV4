@@ -1,0 +1,1440 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_limits_one_sided">
+  <title>One-Sided Limits</title>
+<!--  <introduction>-->
+    <p>We introduced the concept of a limit gently, approximating their values graphically and numerically. Next came the rigorous definition of the limit, along with an admittedly tedious method for evaluating them. <xref ref="sec_limit_analytically">Section</xref> gave us tools (which we call theorems) that allow us to compute limits with greater ease. Chief among the results were the facts that polynomials and rational, trigonometric, exponential and logarithmic functions (and their sums, products, etc.) all behave <q>nicely.</q> In this section we rigorously define what we mean by <q>nicely.</q></p>
+
+    <p>In <xref ref="sec_limit_intro">Section</xref> we explored the three ways in which limits of functions failed to exist:<ol>
+      <li xml:id="lim_DNE_lr"><p>The function approached different values from the left and right.</p></li>
+      <li><p>The function grows without bound.</p></li>
+      <li><p>The function oscillates.</p></li>
+    </ol></p>
+
+    <p>In this section we explore in depth the concepts behind <xref ref="lim_DNE_lr" /> by introducing the <em>one-sided limit</em>. We begin with formal definitions that are very similar to the definition of the limit given in <xref ref="sec_limit_def">Section</xref>, but the notation is slightly different and <q><m>x\neq c</m></q> is replaced with either <q><m>x\lt c</m></q> or <q><m>x>c</m>.</q></p>
+
+    <definition xml:id="def_onesidedlimit">
+      <title>One-Sided Limits</title>
+      <statement>
+        <p>There is a slighlty different definition for a left-hand limit, than for a right-hand limit, but both have a lot in common with <xref ref="def_limit" />.</p>
+
+        <p><dl width="narrow">
+          <li><title>Left-Hand Limit</title><index><main>limit</main><sub>one sided</sub></index><index><main>limit</main><sub>left-handed</sub></index>
+            <p>Let <m>I=(a,c)</m> be an open interval, and let <m>f</m> be a function defined on <m>I</m>. The statement that the <term>limit of <m>f(x)</m>, as <m>x</m> approaches <m>c</m> from the left, is <m>L</m></term>, (alternatively, that <term>the left-hand limit of <m>f</m> at <m>c</m> is <m>L</m></term>) is denoted by <me>\lim_{x\to c^-} f(x) = L\text{,}</me> and means that for any <m>\varepsilon \gt 0</m>, there exists <m>\delta \gt 0</m> such that for all <m>x\in I</m>, <m>x\lt  c</m>, if <m>\abs{x - c} \lt  \delta</m>, then <m>\abs{f(x) - L} \lt  \varepsilon</m>.</p></li>
+
+          <li><title>Right-Hand Limit</title><index><main>limit</main><sub>one sided</sub></index><index><main>limit</main><sub>right-handed</sub></index>
+            <p>Let <m>I=(c,b)</m> be an open interval, and let <m>f</m> be a function defined on <m>I</m>. The statement that the <term>limit of <m>f(x)</m>, as <m>x</m> approaches <m>c</m> from the right, is <m>L</m></term>, (alternatively, that <term>the right-hand limit of <m>f</m> at <m>c</m> is <m>L</m></term>) is denoted by <me>\lim_{x\to c^+} f(x) = L\text{,}</me> and means that for any <m>\varepsilon \gt 0</m>, there exists <m>\delta \gt 0</m> such that for all <m>x\in I</m>, <m>x\gt  c</m>, if <m>\abs{x - c} \lt  \delta</m>, then <m>\abs{f(x) - L} \lt  \varepsilon</m>.</p></li>
+        </dl></p>
+      </statement>
+    </definition>
+
+    <p>Practically speaking, when evaluating a left-hand limit, we consider only values of <m>x</m> <q>to the left of <m>c</m>,</q> i.e., where <m>x\lt c</m>. The admittedly imperfect notation <m>x\to c^-</m> is used to imply that we look at values of <m>x</m> to the left of <m>c</m>. The notation has nothing to do with positive or negative values of either <m>x</m> or <m>c</m>. It's more like you are adding very small negative values to <m>c</m> to get values for <m>x</m>. A similar statement holds for evaluating right-hand limits; there we consider only values of <m>x</m> to the right of <m>c</m>, i.e., <m>x>c</m>. We can use the theorems from previous sections to help us evaluate these limits; we just restrict our view to one side of <m>c</m>.</p>
+
+    <p>We practice evaluating left and right-hand limits through a series of examples.</p>
+    <example xml:id="ex_onesidea">
+      <title>Evaluating one sided limits</title>
+      <statement>
+        <p>Let <m> f(x) = \begin{cases} x \amp  0\leq x\leq 1 \\ 3-x \amp  1\lt x\lt 2
+          \end{cases}</m>, as shown in <xref ref="fig_onesided1">Figure</xref>. Find each of the following:<ol cols="2" >
+          <li><p><m>\lim\limits_{x\to 1^-} f(x)</m></p></li>
+
+          <li><p><m>\lim\limits_{x\to 1^+} f(x)</m></p></li>
+
+          <li><p><m>\lim\limits_{x\to 1} f(x)</m></p></li>
+
+          <li><p><m>f(1)</m></p></li>
+
+          <li><p><m>\lim\limits_{x\to 0^+} f(x)</m></p></li>
+
+          <li><p><m>f(0)</m></p></li>
+
+          <li><p><m>\lim\limits_{x\to 2^-} f(x)</m></p></li>
+
+          <li><p><m>f(2)</m></p></li>
+        </ol></p>
+
+        <figure xml:id="fig_onesided1" >
+          <caption>A graph of <m>f</m> in <xref ref="ex_onesidea">Example</xref>.</caption>
+          <!-- START figures/fig_one_sidedlimit1.tex -->
+          <image xml:id="img_onesided1" width="47%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+                \begin{axis}[xmin=-.4,xmax=2.4,
+                            ymin=-.4,ymax=2.4,]
+                    \addplot[firstcurvestyle,-] coordinates {(0,0) (1,1)};
+                    \addplot[firstcurvestyle,-] coordinates {(1,2) (2,1)};
+                    \addplot[soliddot] coordinates {(0,0) (1,1)};
+                    \addplot[hollowdot] coordinates {(1,2) (2,1)};
+                \end{axis}
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_one_sidedlimit1.tex END -->
+        </figure>
+      </statement>
+
+      <solution>
+        <p>For these problems, the visual aid of the graph is likely more effective in evaluating the limits than using <m>f</m> itself. Therefore we will refer often to the graph.</p>
+
+        <p><ol>
+          <li>
+            <p>As <m>x</m> goes to <m>1</m> <em>from the left</em>, we see that <m>f(x)</m> is approaching the value of <m>1</m>. Therefore <m>\lim\limits_{x\to 1^-} f(x) =1</m>.</p>
+            <p>We could of course evaluate this limit symbolically by examining the defintion of <m>f</m>. Since we are approaching <m>1</m> from the left, we would choose the first <q>piece</q> of the function, that is the one with domain <m>0 \leq x \leq 1</m>. So <m>\lim\limits_{x\to 1^-} x =1</m>.</p>
+          </li>
+
+          <li>
+            <p>As <m>x</m> goes to <m>1</m> <em>from the right</em>, we see that <m>f(x)</m> is approaching the value of <m>2</m>. Recall that it does not matter that there is an <q>open circle</q> there; we are evaluating a limit, not the value of the function. Therefore <m>\lim\limits_{x\to 1^+} f(x)=2</m>.</p>
+          </li>
+
+          <li>
+            <p><em>The</em> limit of <m>f</m> as <m>x</m> approaches <m>1</m> does not exist, as discussed in <xref ref="sec_limit_intro">Section</xref>. The function does not approach one particular value, but two different values from the left and the right.</p>
+          </li>
+
+          <li>
+            <p>Using the definition and by looking at the graph we see that <m>f(1) = 1</m>.</p>
+          </li>
+
+          <li>
+            <p>As <m>x</m> goes to <m>0</m> from the right, we see that <m>f(x)</m> is approaching <m>0</m>. Therefore <m>\lim\limits_{x\to 0^+} f(x)=0</m>. Note we cannot consider a left-hand limit at <m>0</m> as <m>f</m> is not defined for values of <m>x\lt 0</m>.</p>
+          </li>
+
+          <li>
+            <p>Using the definition and the graph, <m>f(0) = 0</m>.</p>
+          </li>
+
+          <li>
+            <p>As <m>x</m> goes to <m>2</m> from the left, we see that <m>f(x)</m> is approaching the value of <m>1</m>. Therefore <m>\lim\limits_{x\to 2^-} f(x)=1</m>.</p>
+          </li>
+
+          <li>
+            <p>The graph and the definition of the function show that <m>f(2)</m> is not defined.</p>
+          </li>
+        </ol></p>
+      </solution>
+    </example>
+
+    <p>Note how the left- and right-hand limits were different at <m>x=1</m>. This, of course, causes <em>the</em> limit to not exist. The following theorem states what is fairly intuitive: <em>the</em> limit exists precisely when the left- and right-hand limits are equal.</p>
+
+    <theorem xml:id="thm_leftrightlimits">
+      <title>Limits and One-Sided Limits</title>
+      <statement>
+        <p>Let <m>f</m> be a function defined on an open interval <m>I</m> containing <m>c</m>. <index><main>limit</main><sub>does not exist</sub></index> Then <me>\lim_{x\to c}f(x) = L</me> if, and only if, <me>\lim_{x\to c^-}f(x) = L  \text{ and }   \lim_{x\to c^+}f(x) = L\text{.}</me></p>
+      </statement>
+    </theorem>
+
+    <p>The phrase <q>if, and only if</q> means the two statements are <em>equivalent</em>: they are either both true or both false. If the limit equals <m>L</m>, then the left and right hand limits both equal <m>L</m>. If the limit is not equal to <m>L</m>, then at least one of the left and right-hand limits is not equal to <m>L</m> (it may not even exist).</p>
+			
+      <p>One thing to consider in <xref ref="ex_onesidea">Examples</xref><ndash /><xref ref="ex_onesided"></xref> is that the value of the function may/may not be equal to the value(s) of its left/right-hand limits, even when these limits agree.</p>
+
+    <example xml:id="ex_onesideb">
+      <title>Evaluating limits of a piecewise-defined function</title>
+      <statement>
+        <p>Let <m>f(x) =\begin{cases} 2-x \amp  0\lt x\lt 1 \\ (x-2)^2 \amp  1\lt x\lt 2
+          \end{cases}</m> as shown in <xref ref="fig_onesidedb">Figure</xref>. Evaluate the following:<ol cols="2" >
+          <li><p><m>\lim\limits_{x\to 1^-} f(x)</m></p></li>
+
+          <li><p><m>\lim\limits_{x\to 1^+} f(x)</m></p></li>
+
+          <li><p><m>\lim\limits_{x\to 1} f(x)</m></p></li>
+
+          <li><p><m>f(1)</m></p></li>
+
+          <li><p><m>\lim\limits_{x\to 0^+} f(x)</m></p></li>
+
+          <li><p><m>f(0)</m></p></li>
+
+          <li><p><m>\lim\limits_{x\to 2^-} f(x)</m></p></li>
+
+          <li><p><m>f(2)</m></p></li>
+        </ol></p>
+
+        <figure xml:id="fig_onesidedb" >
+          <caption>A graph of <m>f</m> from <xref ref="ex_onesideb">Example</xref></caption>
+          <!-- START figures/fig_one_sidedlimit2.tex -->
+          <image xml:id="img_onesidedb" width="47%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}[declare function = {func(\x) = (\x<1) * (2 - x) + (\x >= 1) * ((x - 2)^2);}]
+                \begin{axis}[xmin=-.4,xmax=2.4,
+                            ymin=-.4,ymax=2.4]
+                    \addplot+[domain=0:2,-] {func(x)};
+                    \addplot[hollowdot] coordinates {(0,2) (1,1) (2,0)};
+                \end{axis}
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_one_sidedlimit2.tex END -->
+        </figure>
+      </statement>
+
+      <solution>
+        <p>Again we will evaluate each using both the definition of <m>f</m> and its graph.</p>
+
+        <p><ol>
+          <li><p>As <m>x</m> approaches <m>1</m> from the left, we see that <m>f(x)</m> approaches <m>1</m>. Therefore <m>\lim\limits_{x\to 1^-} f(x)=1</m>.</p></li>
+
+          <li><p>As <m>x</m> approaches <m>1</m> from the right, we see that again <m>f(x)</m> approaches <m>1</m>. Therefore <m>\lim\limits_{x\to 1+} f(x)=1</m>.</p></li>
+
+          <li><p><em>The</em> limit of <m>f</m> as <m>x</m> approaches <m>1</m> exists and is <m>1</m>, as <m>f</m> approaches <m>1</m> from both the right and left. Therefore <m>\lim\limits_{x\to 1} f(x)=1</m>.</p></li>
+
+          <li><p><m>f(1)</m> is not defined. Note that <m>1</m> is not in the domain of <m>f</m> as defined by the problem, which is indicated on the graph by an open circle when <m>x=1</m>.</p></li>
+
+          <li><p>As <m>x</m> goes to <m>0</m> from the right, <m>f(x)</m> approaches <m>2</m>. So <m>\lim\limits_{x\to 0^+} f(x)=2</m>.</p></li>
+
+          <li><p><m>f(0)</m>  is not defined as <m>0</m> is not in the domain of <m>f</m>.</p></li>
+
+          <li><p>As <m>x</m> goes to <m>2</m> from the left, <m>f(x)</m> approaches <m>0</m>. So <m>\lim\limits_{x\to 2^-} f(x)=0</m>.</p></li>
+
+          <li><p><m>f(2)</m>  is not defined as <m>2</m> is not in the domain of <m>f</m>.</p></li>
+        </ol></p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_onesidec">
+      <title>Evaluating limits of a piecewise-defined function</title>
+      <statement>
+        <p>Let <m>f(x) =\begin{cases} (x-1)^2 \amp  0\leq x\leq 2, x\neq 1\\ 1 \amp  x=1
+          \end{cases}</m> as shown in <xref ref="fig_onesidedc">Figure</xref>. Evaluate the following:<ol cols="2" >
+          <li><p><m>\lim\limits_{x\to 1^-} f(x)</m></p></li>
+
+          <li><p><m>\lim\limits_{x\to 1^+} f(x)</m></p></li>
+
+          <li><p><m>\lim\limits_{x\to 1} f(x)</m></p></li>
+
+          <li><p><m>f(1)</m></p></li>
+        </ol></p>
+
+        <figure xml:id="fig_onesidedc" >
+          <caption>Graphing <m>f</m> in <xref ref="ex_onesidec">Example</xref></caption>
+          <!-- START figures/fig_one_sidedlimit3.tex -->
+          <image xml:id="img_onesidedc" width="47%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+                \begin{axis}[xmin=-.4,xmax=2.4,
+                            ymin=-.4,ymax=1.4]
+                    \addplot+[domain=0:2,-] {(x-1)^2};
+                    \addplot[soliddot] coordinates {(0,1) (1,1) (2,1)};
+                    \addplot[hollowdot] coordinates {(1,0)};
+                \end{axis}
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_one_sidedlimit3.tex END -->
+        </figure>
+      </statement>
+
+      <solution>
+        <p>It is clear by looking at the graph that both the left- and right-hand limits of <m>f</m>, as <m>x</m> approaches <m>1</m>, is <m>0</m>. Thus it is also clear that <em>the</em> limit is <m>0</m>; i.e., <m>\lim\limits_{x\to 1} f(x) = 0</m>. It is also clearly stated that <m>f(1) = 1</m>.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_onesided">
+      <title>Evaluating limits of a piecewise-defined function</title>
+      <statement>
+        <p>Let <m>f(x) = \begin{cases} x^2 \amp  0\leq x\leq 1 \\ 2-x \amp  1\lt x\leq 2
+          \end{cases}</m> as shown in <xref ref="fig_onesidedd">Figure</xref>. Evaluate the following:<ol cols="2" >
+          <li><p><m>\lim\limits_{x\to 1^-} f(x)</m></p></li>
+
+          <li><p><m>\lim\limits_{x\to 1^+} f(x)</m></p></li>
+
+          <li><p><m>\lim\limits_{x\to 1} f(x)</m></p></li>
+
+          <li><p><m>f(1)</m></p></li>
+        </ol></p>
+
+        <figure xml:id="fig_onesidedd" >
+          <caption>Graphing <m>f</m> in <xref ref="ex_onesided">Example</xref></caption>
+          <!-- START figures/fig_one_sidedlimit4.tex -->
+          <image xml:id="img_onesidedd" width="47%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}[declare function = {func(\x) = (\x<1) * (x^2) + (\x>1) * (2-x);}]
+                \begin{axis}[xmin=-.4,xmax=2.4,
+                            ymin=-.4,ymax=1.4]
+                    \addplot+[domain=0:2,-] {func(x)};
+                    \addplot[soliddot] coordinates {(0,0) (1,1) (2,0)};
+                \end{axis}
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_one_sidedlimit4.tex END -->
+        </figure>
+      </statement>
+
+      <solution>
+        <p>It is clear from the definition of the function and its graph that all of the following are equal:<me>\lim_{x\to 1^-} f(x) = \lim_{x\to 1^+} f(x) =\lim_{x\to 1} f(x) =f(1) = 1.</me></p>
+
+
+      </solution>
+    </example>
+
+    <p>In <xref ref="ex_onesidea">Examples</xref><ndash /><xref ref="ex_onesided"></xref> we were asked to find both <m>\lim\limits_{x\to 1}f(x)</m> and <m>f(1)</m>. Consider the following table:</p>
+    <table>
+      <tabular>
+        <row bottom="medium">
+          <cell></cell>
+          <cell><m>\lim\limits_{x\to 1}f(x)</m></cell>
+          <cell><m>f(1)</m></cell>
+        </row>
+        <row>
+          <cell><xref ref="ex_onesidea">Example</xref></cell>
+          <cell>does not exist</cell>
+          <cell><m>1</m></cell>
+        </row>
+        <row>
+          <cell><xref ref="ex_onesideb">Example</xref></cell>
+          <cell><m>1</m></cell>
+          <cell>not defined</cell>
+        </row>
+        <row>
+          <cell><xref ref="ex_onesidec">Example</xref></cell>
+          <cell><m>0</m></cell>
+          <cell><m>1</m></cell>
+        </row>
+        <row>
+          <cell><xref ref="ex_onesided">Example</xref></cell>
+          <cell><m>1</m></cell>
+          <cell><m>1</m></cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>Only in <xref ref="ex_onesided">Example</xref> do both the function and the limit exist and agree. This seems <q>nice;</q> in fact, it seems <q>normal.</q> This is in fact an important situation which we explore in <xref ref="sec_continuity">Section</xref> entitled <q>Continuity.</q> In short, a <term>continuous function</term> is one in which when a function approaches a value as <m>x\to c</m> (i.e., when <m>\lim\limits_{x\to c} f(x) = L</m>), it actually <em>attains</em> that value at <m>c</m>. Such functions behave nicely as they are very predictable.</p>
+  <!--</introduction>-->
+
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <statement>
+            <p>What are the three ways in which a limit may fail to exist?</p>
+
+            <p><var form="essay" /></p>
+          </statement>
+          <solution>
+            <p>The function approaches different values from the left and right; the function grows without bound; the function oscillates.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$truefalse">
+              <set>
+                <member>True</member>
+                <member correct="yes">False</member>
+              </set>
+            </var>
+            <pg-code>
+              $truefalse=PopUp(['?','True','False'],'False');
+            </pg-code>
+          </setup>
+          <statement>
+            <p>True or False? If <m>\lim\limits_{x\to 1^-}f(x)=5</m>, then <m>\lim\limits_{x\to 1}f(x)=5</m>. <var name="$truefalse" form="popup"/></p>
+          </statement>
+          <solution>
+            <p><var name="$truefalse" /></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$truefalse">
+              <set>
+                <member>True</member>
+                <member correct="yes">False</member>
+              </set>
+            </var>
+            <pg-code>
+              $truefalse=PopUp(['?','True','False'],'False');
+            </pg-code>
+          </setup>
+          <statement>
+            <p>True or False? If <m>\lim\limits_{x\to 1^-}f(x)=5</m>, then <m>\lim\limits_{x\to 1^+}f(x)=5</m>. <var name="$truefalse" form="popup"/></p>
+          </statement>
+          <solution>
+            <p><var name="$truefalse" /></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$truefalse">
+              <set>
+                <member correct="yes">True</member>
+                <member>False</member>
+              </set>
+            </var>
+            <pg-code>
+              $truefalse=PopUp(['?','True','False'],'True');
+            </pg-code>
+          </setup>
+          <statement>
+            <p>True or False? If <m>\lim\limits_{x\to 1}f(x)=5</m>, then <m>\lim\limits_{x\to 1^-}f(x)=5</m>. <var name="$truefalse" form="popup"/></p>
+          </statement>
+          <solution>
+            <p><var name="$truefalse" /></p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, evaluate each expression using the given graph of <m>f(x)</m>.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$a">
+              <static>1</static>
+            </var>
+            <var name="$b">
+              <static>0</static>
+            </var>
+            <var name="$L[0]" category="number">
+              <static>2</static>
+            </var>
+            <var name="$L[1]" category="number">
+              <static>2</static>
+            </var>
+            <var name="$L[2]" category="number">
+              <static>2</static>
+            </var>
+            <var name="$L[3]" category="number">
+              <static>1</static>
+            </var>
+            <var name="$L[4]" category="number">
+              <static>\text{DNE}</static>
+            </var>
+            <var name="$L[5]" category="number">
+              <static>1</static>
+            </var>
+            <pg-code>
+                @x=(0,random(1,3,1));
+                $x[2]=$x[1]+random(1,2,1);
+                @y=NchooseK(5,3,1);
+                do{$z=random(1,4,1);}until($z!=$y[1]);
+                $b=$x[random(0,2,2)];
+                if($envir{problemSeed}==1){@x=(0,1,2);@y=(1,2,0);$z=1;$b=0;};
+                $a=$x[1];
+                $f=Formula("($y[1]-$y[0])/($x[1]-$x[0])*(x-$x[0])+$y[0]");
+                $g=Formula("($y[1]-$y[2])/($x[1]-$x[2])^2*(x-$x[2])^2+$y[2]");
+                $xmin=min(@x)-1;$xmax=max(@x)+1;$ymin=min(@y,$z)-1;$ymax=max(@y,$z)+1;
+                $gr=init_graph($xmin,$ymin,$xmax,$ymax,axes=>[0,0],grid=>[$xmax-$xmin,$ymax-$ymin],size=>[400,400]);
+                add_functions($gr,"$f for x in [$x[0],$x[1]) using color:blue and weight:2");
+                add_functions($gr,"$g for x in ($x[1],$x[2]] using color:blue and weight:2");
+                $gr->stamps(closed_circle($x[1],$z,'blue'));
+                @L=($y[1],$y[1],$y[1],$z);
+                ($L[4],$L[5])=($b==0)?(Compute("DNE"),$y[0]):($y[2],Compute("DNE"));
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Evaluate each expression using the given graph of <m>f</m>.</p>
+            <figure>
+              <image pg-name="$gr" />
+            </figure>
+            <p><ol cols="2" >
+              <li><p><m>\lim\limits_{x\to <var name="$a" />^-} f(x)=</m><var name="$L[0]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to <var name="$a" />^+} f(x)=</m><var name="$L[1]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to <var name="$a" />} f(x)=</m><var name="$L[2]" width="10" /></p></li>
+              <li><p><m>f(<var name="$a" />)=</m><var name="$L[3]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to <var name="$b" />^-} f(x)=</m><var name="$L[4]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to <var name="$b" />^+} f(x)=</m><var name="$L[5]" width="10" /></p></li>
+            </ol></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$a">
+              <static>1</static>
+            </var>
+            <var name="$b">
+              <static>2</static>
+            </var>
+            <var name="$L[0]" category="number">
+              <static>1</static>
+            </var>
+            <var name="$L[1]" category="number">
+              <static>2</static>
+            </var>
+            <var name="$L[2]" category="number">
+              <static>\text{DNE}</static>
+            </var>
+            <var name="$L[3]" category="number">
+              <static>2</static>
+            </var>
+            <var name="$L[4]" category="number">
+              <static>0</static>
+            </var>
+            <var name="$L[5]" category="number">
+              <static>\text{DNE}</static>
+            </var>
+            <pg-code>
+                @x=(0,random(1,3,1));
+                $x[2]=$x[1]+random(1,2,1);
+                @y=NchooseK(5,3,1);
+                do{$z=random(1,4,1);}until($z!=$y[1]);
+                $b=$x[random(0,2,2)];
+                if($envir{problemSeed}==1){@x=(0,1,2);@y=(0,1,0);$z=2;$b=2;};
+                $a=$x[1];
+                $f=Formula("($y[1]-$y[0])/($x[1]-$x[0])*(x-$x[0])+$y[0]");
+                $g=Formula("($z-$y[2])/($x[1]-$x[2])*(x-$x[2])+$y[2]");
+                $xmin=min(@x)-1;$xmax=max(@x)+1;$ymin=min(@y,$z)-1;$ymax=max(@y,$z)+1;
+                $gr=init_graph($xmin,$ymin,$xmax,$ymax,axes=>[0,0],grid=>[$xmax-$xmin,$ymax-$ymin],size=>[400,400]);
+                add_functions($gr,"$f for x in [$x[0],$x[1]) using color:blue and weight:2");
+                add_functions($gr,"$g for x in [$x[1],$x[2]] using color:blue and weight:2");
+                @L=($y[1],$z,Compute("DNE"),$z);
+                ($L[4],$L[5])=($b==0)?(Compute("DNE"),$y[0]):($y[2],Compute("DNE"));
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Evaluate each expression using the given graph of <m>f</m>.</p>
+            <figure>
+              <image pg-name="$gr" />
+            </figure>
+            <p><ol cols="2" >
+              <li><p><m>\lim\limits_{x\to <var name="$a" />^-} f(x)=</m><var name="$L[0]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to <var name="$a" />^+} f(x)=</m><var name="$L[1]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to <var name="$a" />} f(x)=</m><var name="$L[2]" width="10" /></p></li>
+              <li><p><m>f(<var name="$a" />)=</m><var name="$L[3]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to <var name="$b" />^-} f(x)=</m><var name="$L[4]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to <var name="$b" />^+} f(x)=</m><var name="$L[5]" width="10" /></p></li>
+            </ol></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$a">
+              <static>1</static>
+            </var>
+            <var name="$b">
+              <static>2</static>
+            </var>
+            <var name="$c">
+              <static>0</static>
+            </var>
+            <var name="$L[0]" category="number">
+              <static>\text{DNE}</static>
+            </var>
+            <var name="$L[1]" category="number">
+              <static>\text{DNE}</static>
+            </var>
+            <var name="$L[2]" category="number">
+              <static>\text{DNE}</static>
+            </var>
+            <var name="$L[3]" category="number">
+              <static>\text{DNE}</static>
+            </var>
+            <var name="$L[4]" category="number">
+              <static>0</static>
+            </var>
+            <var name="$L[5]" category="number">
+              <static>0</static>
+            </var>
+            <pg-code>
+                @x=(0,random(1,3,1));
+                $x[2]=$x[1]+random(1,2,1);
+                @y=(random(0,3,1),Compute("inf"),random(0,3,1));
+                $b=$x[random(0,2,2)];
+                if($envir{problemSeed}==1){@x=(0,1,2);@y=(0,Compute("inf"),0);$b=2;};
+                $a=$x[1];
+                $c=$x[2]-$b;
+                $f=Formula("sec((x-$x[0])/($x[1]-$x[0])*pi/2)-1+$y[0]");
+                $g=Formula("sec((x-$x[2])/($x[1]-$x[2])*pi/2)-1+$y[2]");
+                $xmin=min(@x)-1;$xmax=max(@x)+1;$ymin=-1;$ymax=max($y[0],$y[2])+4;
+                $gr=init_graph($xmin,$ymin,$xmax,$ymax,axes=>[0,0],grid=>[$xmax-$xmin,$ymax-$ymin],size=>[400,400]);
+                $xmidlow=$x[1]-0.1;$xmidhigh=$x[1]+0.1;
+                add_functions($gr,"$f for x in [$x[0],$xmidlow) using color:blue and weight:2");
+                add_functions($gr,"$g for x in ($xmidhigh,$x[2]] using color:blue and weight:2");
+                $gr->moveTo($x[1],$ymin);$gr->lineTo($x[1],$ymax,'gray',2,'dashed');
+                @L=(OneOf(Compute("DNE"),Compute("INF")),OneOf(Compute("DNE"),Compute("INF")),OneOf(Compute("DNE"),Compute("INF")),Compute("DNE"));
+                ($L[4],$L[5])=($b==0)?(Compute("DNE"),Compute("DNE")):($y[2],$y[0]);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Evaluate each expression using the given graph of <m>f</m>.</p>
+            <figure>
+              <image pg-name="$gr" />
+            </figure>
+            <p><ol cols="2" >
+              <li><p><m>\lim\limits_{x\to <var name="$a" />^-} f(x)=</m><var name="$L[0]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to <var name="$a" />^+} f(x)=</m><var name="$L[1]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to <var name="$a" />} f(x)=</m><var name="$L[2]" width="10" /></p></li>
+              <li><p><m>f(<var name="$a" />)=</m><var name="$L[3]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to <var name="$b" />^-} f(x)=</m><var name="$L[4]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to <var name="$c" />^+} f(x)=</m><var name="$L[5]" width="10" /></p></li>
+            </ol></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$a">
+              <static>1</static>
+            </var>
+            <var name="$L[0]" category="number">
+              <static>2</static>
+            </var>
+            <var name="$L[1]" category="number">
+              <static>0</static>
+            </var>
+            <var name="$L[2]" category="number">
+              <static>\text{DNE}</static>
+            </var>
+            <var name="$L[3]" category="number">
+              <static>1</static>
+            </var>
+            <pg-code>
+                @x=(0,random(1,3,1));
+                $x[2]=$x[1]+random(1,2,1);
+                @y=NchooseK(5,3,1);
+                do{$z=random(1,4,1);}until($z!=$y[1]);
+                do{$w=random(1,4,1);}until(($w!=$y[1])and($w!=$z));
+                if($envir{problemSeed}==1){@x=(0,1,2);@y=(1,0,2);$z=2;$w=1;};
+                $a=$x[1];
+                $f=Formula("($z-$y[0])/($x[1]-$x[0])*(x-$x[0])+$y[0]");
+                $g=Formula("($y[2]-$y[1])/($x[2]-$x[1])^2*(x-$x[1])^2+$y[1]");
+                $xmin=min(@x)-1;$xmax=max(@x)+1;$ymin=min(@y,$z,$w)-1;$ymax=max(@y,$z,$w)+1;
+                $gr=init_graph($xmin,$ymin,$xmax,$ymax,axes=>[0,0],grid=>[$xmax-$xmin,$ymax-$ymin],size=>[400,400]);
+                add_functions($gr,"$f for x in [$x[0],$x[1]) using color:blue and weight:2");
+                add_functions($gr,"$g for x in ($x[1],$x[2]] using color:blue and weight:2");
+                $gr->stamps(closed_circle($x[1],$w,'blue'));
+                @L=($z,$y[1],Compute("DNE"),$w);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Evaluate each expression using the given graph of <m>f</m>.</p>
+            <figure>
+              <image pg-name="$gr" />
+            </figure>
+            <p><ol cols="2" >
+              <li><p><m>\lim\limits_{x\to <var name="$a" />^-} f(x)=</m><var name="$L[0]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to <var name="$a" />^+} f(x)=</m><var name="$L[1]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to <var name="$a" />} f(x)=</m><var name="$L[2]" width="10" /></p></li>
+              <li><p><m>f(<var name="$a" />)=</m><var name="$L[3]" width="10" /></p></li>
+            </ol></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$a">
+              <static>1</static>
+            </var>
+            <var name="$L[0]" category="number">
+              <static>2</static>
+            </var>
+            <var name="$L[1]" category="number">
+              <static>2</static>
+            </var>
+            <var name="$L[2]" category="number">
+              <static>2</static>
+            </var>
+            <var name="$L[3]" category="number">
+              <static>2</static>
+            </var>
+            <pg-code>
+                @x=(0,random(1,3,1));
+                $x[2]=$x[1]+random(1,2,1);
+                @y=NchooseK(5,2,1);
+                do{$y[2]=random(0,4,1);}until($y[2]!=$y[1]);
+                if($envir{problemSeed}==1){@x=(0,1,2);@y=(0,2,0);};
+                $a=$x[1];
+                $f=Formula("($y[0]-$y[1])/($x[0]-$x[1])^2*(x-$x[1])^2+$y[1]");
+                $g=Formula("($y[2]-$y[1])/($x[2]-$x[1])*(x-$x[1])+$y[1]");
+                $xmin=min(@x)-1;$xmax=max(@x)+1;$ymin=min(@y)-1;$ymax=max(@y)+1;
+                $gr=init_graph($xmin,$ymin,$xmax,$ymax,axes=>[0,0],grid=>[$xmax-$xmin,$ymax-$ymin],size=>[400,400]);
+                add_functions($gr,"$f for x in [$x[0],$x[1]] using color:blue and weight:2");
+                add_functions($gr,"$g for x in [$x[1],$x[2]] using color:blue and weight:2");
+                @L=($y[1],$y[1],$y[1],$y[1]);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Evaluate each expression using the given graph of <m>f</m>.</p>
+            <figure>
+              <image pg-name="$gr" />
+            </figure>
+            <p><ol cols="2" >
+              <li><p><m>\lim\limits_{x\to <var name="$a" />^-} f(x)=</m><var name="$L[0]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to <var name="$a" />^+} f(x)=</m><var name="$L[1]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to <var name="$a" />} f(x)=</m><var name="$L[2]" width="10" /></p></li>
+              <li><p><m>f(<var name="$a" />)=</m><var name="$L[3]" width="10" /></p></li>
+            </ol></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$a">
+              <static>1</static>
+            </var>
+            <var name="$L[0]" category="number">
+              <static>4</static>
+            </var>
+            <var name="$L[1]" category="number">
+              <static>-4</static>
+            </var>
+            <var name="$L[2]" category="number">
+              <static>\text{DNE}</static>
+            </var>
+            <var name="$L[3]" category="number">
+              <static>0</static>
+            </var>
+            <pg-code>
+                $x[0]=random(-6,-2,1);
+                $x[1]=$x[0]+random(3,5,1);
+                $x[2]=$x[1]+random(3,5,1);
+                ($y[1],$y[2],$y[3])=map{$_-6}NchooseK(13,3);
+                do{$y[0]=random(-6,6,1);}until($y[0]!=$y[1]);
+                do{$y[4]=random(-6,6,1);}until($y[4]!=$y[3]);
+                if($envir{problemSeed}==1){@x=(-4,0,4);@y=(-4,4,0,-4,4);};
+                $a=$x[1];
+                $f=Formula("($y[1]-$y[0])/2*cos((x-$x[1])/($x[0]-$x[1])*pi)+($y[0]+$y[1])/2");
+                $g=Formula("($y[4]-$y[3])/2*cos((x-$x[2])/($x[1]-$x[2])*pi)+($y[3]+$y[4])/2");
+                $xmin=min(@x)-1;$xmax=max(@x)+1;$ymin=min(@y)-1;$ymax=max(@y)+1;
+                $gr=init_graph($xmin,$ymin,$xmax,$ymax,axes=>[0,0],grid=>[$xmax-$xmin,$ymax-$ymin],size=>[400,400]);
+                add_functions($gr,"$f for x in [$x[0],$x[1]) using color:blue and weight:2");
+                add_functions($gr,"$g for x in ($x[1],$x[2]] using color:blue and weight:2");
+                $gr->stamps(closed_circle($x[1],$y[2],'blue'));
+                @L=($y[1],$y[3],Compute("DNE"),$y[2]);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Evaluate each expression using the given graph of <m>f</m>.</p>
+            <figure>
+              <image pg-name="$gr" />
+            </figure>
+            <p><ol cols="2" >
+              <li><p><m>\lim\limits_{x\to <var name="$a" />^-} f(x)=</m><var name="$L[0]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to <var name="$a" />^+} f(x)=</m><var name="$L[1]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to <var name="$a" />} f(x)=</m><var name="$L[2]" width="10" /></p></li>
+              <li><p><m>f(<var name="$a" />)=</m><var name="$L[3]" width="10" /></p></li>
+            </ol></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$L[0]" category="number">
+              <static>2</static>
+            </var>
+            <var name="$L[1]" category="number">
+              <static>2</static>
+            </var>
+            <var name="$L[2]" category="number">
+              <static>2</static>
+            </var>
+            <var name="$L[3]" category="number">
+              <static>0</static>
+            </var>
+            <var name="$L[4]" category="number">
+              <static>2</static>
+            </var>
+            <var name="$L[5]" category="number">
+              <static>2</static>
+            </var>
+            <var name="$L[6]" category="number">
+              <static>2</static>
+            </var>
+            <var name="$L[7]" category="number">
+              <static>\text{DNE}</static>
+            </var>
+            <pg-code>
+                $gr=init_graph(-5,-4,5,4,axes=>[0,0],grid=>[10,8],size=>[400,400]);
+                add_functions($gr,"x+4 for x in [-4,-2) using color:blue and weight:2");
+                add_functions($gr,"-x for x in (-2,0] using color:blue and weight:2");
+                add_functions($gr,"x for x in [0,2) using color:blue and weight:2");
+                add_functions($gr,"4-x for x in (2,4] using color:blue and weight:2");
+                $gr->stamps(closed_circle(-2,0,'blue'));
+                @L=(2,2,2,0,2,2,2,Compute("DNE"));
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Evaluate each expression using the given graph of <m>f</m>.</p>
+            <figure>
+              <image pg-name="$gr" />
+            </figure>
+            <p><ol cols="2" >
+              <li><p><m>\lim\limits_{x\to -2^-} f(x)=</m><var name="$L[0]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to -2^+} f(x)=</m><var name="$L[1]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to -2} f(x)=</m><var name="$L[2]" width="10" /></p></li>
+              <li><p><m>f(-2)=</m><var name="$L[3]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to 2^-} f(x)=</m><var name="$L[4]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to 2^+} f(x)=</m><var name="$L[5]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to 2} f(x)=</m><var name="$L[6]" width="10" /></p></li>
+              <li><p><m>f(2)=</m><var name="$L[7]" width="10" /></p></li>
+            </ol></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$L[0]" category="number">
+              <static>a-1</static>
+            </var>
+            <var name="$L[1]" category="number">
+              <static>a</static>
+            </var>
+            <var name="$L[2]" category="number">
+              <static>\text{DNE}</static>
+            </var>
+            <var name="$L[3]" category="number">
+              <static>a</static>
+            </var>
+            <pg-code>
+                $gr=init_graph(-5,-5,5,5,axes=>[0,0],grid=>[10,10],size=>[400,400]);
+                for my $i(-4..3) {$ip1=$i+1;add_functions($gr,"$i for x in [$i,$ip1) using color:blue and weight:2");};
+                Context()->variables->are(a=>'Real');
+                @L=(Formula("a-1"),Formula("a"),Compute("DNE"),Formula("a"));
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Evaluate each expression using the given graph of <m>f</m>.</p>
+            <figure>
+              <image pg-name="$gr" />
+            </figure>
+            <p>Let <m>a</m> be an integer with <m>-3\leq a\leq3</m>.</p>
+            <p><ol cols="2" >
+              <li><p><m>\lim\limits_{x\to a^-} f(x)=</m><var name="$L[0]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to a^+} f(x)=</m><var name="$L[1]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to a} f(x)=</m><var name="$L[2]" width="10" /></p></li>
+              <li><p><m>f(a)=</m><var name="$L[3]" width="10" /></p></li>
+            </ol></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, evaluate the given limits of the piecewise defined functions <m>f</m>.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$g">
+              <static>\begin{cases}x+1\amp x\leq1\\x^2-5\amp x\gt1\end{cases}</static>
+            </var>
+            <var name="$a">
+              <static>1</static>
+            </var>
+            <var name="$L[0]" category="number">
+              <static>2</static>
+            </var>
+            <var name="$L[1]" category="number">
+              <static>-4</static>
+            </var>
+            <var name="$L[2]" category="number">
+              <static>\text{DNE}</static>
+            </var>
+            <var name="$L[3]" category="number">
+              <static>2</static>
+            </var>
+            <pg-code>
+              $a=random(-2,4,1);
+              $b=non_zero_random(-5,5,1);
+              do{$c=non_zero_random(-5,5,1);}until($a+$b!=$a**2+$c);
+              if($envir{problemSeed}==1){$a=1;$b=1;$c=-5};
+              @f=(Formula("x+$b")->reduce,Formula("x^2+$c")->reduce);
+              Context("PiecewiseFunction");
+              $g=PiecewiseFunction("x &lt;= $a" => "$f[0]", "x > $a" => "$f[1]");
+              @L=($f[0]->eval(x=>$a),$f[1]->eval(x=>$a));
+              $L[2]=($L[0]==$L[1])?$L[0]:Compute("DNE");
+              $L[3]=$g->eval(x=>$a);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Evaluate the given limits of the piecewise defined function.</p>
+
+            <p><m>f(x) =<var name="$g" /></m></p>
+
+            <p><ol cols="2" >
+              <li><p><m>\lim\limits_{x\to <var name="$a" />^-} f(x)=</m><var name="$L[0]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to <var name="$a" />^+} f(x)=</m><var name="$L[1]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to <var name="$a" />} f(x)=</m><var name="$L[2]" width="10" /></p></li>
+              <li><p><m>f(<var name="$a" />)=</m><var name="$L[3]" width="10" /></p></li>
+            </ol></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$g">
+              <static>\begin{cases}2x^2+5x-1\amp x\lt0\\\sin(x)\amp x\geq0\end{cases}</static>
+            </var>
+            <var name="$a">
+              <static>0</static>
+            </var>
+            <var name="$L[0]" category="number">
+              <static>-1</static>
+            </var>
+            <var name="$L[1]" category="number">
+              <static>0</static>
+            </var>
+            <var name="$L[2]" category="number">
+              <static>\text{DNE}</static>
+            </var>
+            <var name="$L[3]" category="number">
+              <static>0</static>
+            </var>
+            <pg-code>
+              $a=random(-2,4,1);
+              $b=non_zero_random(-2,2,1);
+              $c=non_zero_random(-5,5,1);
+              $d=non_zero_random(-5,5,1);
+              if($envir{problemSeed}==1){$a=0;$b=2;$c=5;$d=-1;};
+              @f=(Formula("$b x^2 + $c x+$d")->reduce,Formula("sin(x-$a)")->reduce);
+              Context("PiecewiseFunction");
+              $g=PiecewiseFunction("x &lt; $a" => "$f[0]", "x >= $a" => "$f[1]");
+              @L=($f[0]->eval(x=>$a),$f[1]->eval(x=>$a));
+              $L[2]=($L[0]==$L[1])?$L[0]:Compute("DNE");
+              $L[3]=$g->eval(x=>$a);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Evaluate the given limits of the piecewise defined function.</p>
+
+            <p><m>f(x) =<var name="$g" /></m></p>
+
+            <p><ol cols="2" >
+              <li><p><m>\lim\limits_{x\to <var name="$a" />^-} f(x)=</m><var name="$L[0]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to <var name="$a" />^+} f(x)=</m><var name="$L[1]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to <var name="$a" />} f(x)=</m><var name="$L[2]" width="10" /></p></li>
+              <li><p><m>f(<var name="$a" />)=</m><var name="$L[3]" width="10" /></p></li>
+            </ol></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$g">
+              <static>\begin{cases}x^2-1\amp x\lt-1\\x^3+1\amp -1\leq x\leq1\\x^2+1\amp x\gt1\end{cases}</static>
+            </var>
+            <var name="$a">
+              <static>-1</static>
+            </var>
+            <var name="$b">
+              <static>1</static>
+            </var>
+            <var name="$L[0]" category="number">
+              <static>0</static>
+            </var>
+            <var name="$L[1]" category="number">
+              <static>0</static>
+            </var>
+            <var name="$L[2]" category="number">
+              <static>0</static>
+            </var>
+            <var name="$L[3]" category="number">
+              <static>0</static>
+            </var>
+            <var name="$L[4]" category="number">
+              <static>2</static>
+            </var>
+            <var name="$L[5]" category="number">
+              <static>2</static>
+            </var>
+            <var name="$L[6]" category="number">
+              <static>2</static>
+            </var>
+            <var name="$L[7]" category="number">
+              <static>2</static>
+            </var>
+            <pg-code>
+              $a=random(-3,-1,1);
+              $b=$a+random(4,5,1);
+              if($envir{problemSeed}==1){$a=-1;$b=1;};
+              @f=(Formula("x^2 + ($a+1) x+($a)^3+1-($a)^2-($a+1)*$a")->reduce,Formula("x^3+1")->reduce,Formula("x^2 + ($b-1) x+($b)^3+1-($b)^2-($b-1)*$b")->reduce);
+              Context("PiecewiseFunction");
+              $g=PiecewiseFunction("x &lt; $a" => "$f[0]", "$a &lt;= x &lt;= $b" => "$f[1]", "x > $b" => $f[2]);
+              @L=($f[0]->eval(x=>$a),$f[1]->eval(x=>$a));
+              $L[2]=($L[0]==$L[1])?$L[0]:Compute("DNE");
+              $L[3]=$g->eval(x=>$a);
+              ($L[4],$L[5])=($f[1]->eval(x=>$b),$f[2]->eval(x=>$b));
+              $L[6]=($L[4]==$L[5])?$L[4]:Compute("DNE");
+              $L[7]=$g->eval(x=>$b);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Evaluate the given limits of the piecewise defined function.</p>
+
+            <p><m>f(x) =<var name="$g" /></m></p>
+
+            <p><ol cols="2" >
+              <li><p><m>\lim\limits_{x\to <var name="$a" />^-} f(x)=</m><var name="$L[0]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to <var name="$a" />^+} f(x)=</m><var name="$L[1]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to <var name="$a" />} f(x)=</m><var name="$L[2]" width="10" /></p></li>
+              <li><p><m>f(<var name="$a" />)=</m><var name="$L[3]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to <var name="$b" />^-} f(x)=</m><var name="$L[4]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to <var name="$b" />^+} f(x)=</m><var name="$L[5]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to <var name="$b" />} f(x)=</m><var name="$L[6]" width="10" /></p></li>
+              <li><p><m>f(<var name="$b" />)=</m><var name="$L[7]" width="10" /></p></li>
+            </ol></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f[0]">
+              <static>\cos(x)</static>
+            </var>
+            <var name="$f[1]">
+              <static>\sin(x)</static>
+            </var>
+            <var name="$L[0]" category="number">
+              <static>-1</static>
+            </var>
+            <var name="$L[1]" category="number">
+              <static>0</static>
+            </var>
+            <var name="$L[2]" category="number">
+              <static>\text{DNE}</static>
+            </var>
+            <var name="$L[3]" category="number">
+              <static>0</static>
+            </var>
+            <pg-code>
+              @f=($envir{problemSeed}%2==1)?(Formula("cos(x)"),Formula("sin(x)")):(Formula("sin(x)"),Formula("cos(x)"));
+              @L=($f[0]->eval(x=>pi),$f[1]->eval(x=>pi));
+              $L[2]=($L[0]==$L[1])?$L[0]:Compute("DNE");
+              $L[3]=$L[1];
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Evaluate the given limits of the piecewise defined function.</p>
+
+            <p><m>f(x) = \begin{cases}<var name="$f[0]" />\amp x\lt\pi\\ <var name="$f[1]" />\amp x\geq\pi\end{cases}</m></p>
+
+            <p><ol cols="2" >
+              <li><p><m>\lim\limits_{x\to\pi^-} f(x)=</m><var name="$L[0]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to\pi^+} f(x)=</m><var name="$L[1]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to\pi} f(x)=</m><var name="$L[2]" width="10" /></p></li>
+              <li><p><m>f(\pi)=</m><var name="$L[3]" width="10" /></p></li>
+            </ol></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$L[0]" category="number">
+              <static>1-\cos^2(a)</static>
+            </var>
+            <var name="$L[1]" category="number">
+              <static>\sin^2(a)</static>
+            </var>
+            <var name="$L[2]" category="number">
+              <static>1-\cos^2(a),\text{ which equals }\sin^2(a)</static>
+            </var>
+            <var name="$L[3]" category="number">
+              <static>\sin^2(a)</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(a=>'Real');
+              @L=(Formula("1-cos^2(a)"),Formula("sin^2(a)"),OneOf(Formula("1-cos^2(a)"),Formula("sin^2(a)")),Formula("sin^2(a)"));
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Evaluate the given limits of the piecewise defined function.</p>
+
+            <p><m>f(x) = \begin{cases}1-\cos^2(x)\amp x&lt;a\\\sin^2(x)\amp x\geq a\end{cases}</m></p>
+
+            <p>where <m>a</m> is a real number.</p>
+
+            <p><ol cols="2" >
+              <li><p><m>\lim\limits_{x\to a^-} f(x)=</m><var name="$L[0]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to a^+} f(x)=</m><var name="$L[1]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to a} f(x)=</m><var name="$L[2]" width="10" /></p></li>
+              <li><p><m>f(a)=</m><var name="$L[3]" width="10" /></p></li>
+            </ol></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$g">
+              <static>\begin{cases}x+1\amp x\lt1\\1\amp x=1\\x-1\amp x\gt1\end{cases}</static>
+            </var>
+            <var name="$a">
+              <static>1</static>
+            </var>
+            <var name="$L[0]" category="number">
+              <static>2</static>
+            </var>
+            <var name="$L[1]" category="number">
+              <static>0</static>
+            </var>
+            <var name="$L[2]" category="number">
+              <static>\text{DNE}</static>
+            </var>
+            <var name="$L[3]" category="number">
+              <static>1</static>
+            </var>
+            <pg-code>
+              $a=random(-3,3,1);
+              @y=map{$_-2}NchooseK(5,3);
+              if($envir{problemSeed}==1){$a=1;@y=(1,0,-1);};
+              @f=(Formula("x+$y[0]")->reduce,Formula("x+$y[1]")->reduce,Formula("x+$y[2]")->reduce);
+              Context("PiecewiseFunction");
+              $g=PiecewiseFunction("x &lt; $a" => "$f[0]", "x = $a" => "$f[1]", "x > $a" => $f[2]);
+              @L=($f[0]->eval(x=>$a),$f[2]->eval(x=>$a));
+              $L[2]=($L[0]==$L[1])?$L[0]:Compute("DNE");
+              $L[3]=$g->eval(x=>$a);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Evaluate the given limits of the piecewise defined function.</p>
+
+            <p><m>f(x) =<var name="$g" /></m></p>
+
+            <p><ol cols="2" >
+              <li><p><m>\lim\limits_{x\to <var name="$a" />^-} f(x)=</m><var name="$L[0]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to <var name="$a" />^+} f(x)=</m><var name="$L[1]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to <var name="$a" />} f(x)=</m><var name="$L[2]" width="10" /></p></li>
+              <li><p><m>f(<var name="$a" />)=</m><var name="$L[3]" width="10" /></p></li>
+            </ol></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$g">
+              <static>\begin{cases}x^2\amp x\lt2\\x+1\amp x=2\\-x^2+2x+4\amp x\gt2\end{cases}</static>
+            </var>
+            <var name="$a">
+              <static>2</static>
+            </var>
+            <var name="$L[0]" category="number">
+              <static>4</static>
+            </var>
+            <var name="$L[1]" category="number">
+              <static>4</static>
+            </var>
+            <var name="$L[2]" category="number">
+              <static>4</static>
+            </var>
+            <var name="$L[3]" category="number">
+              <static>3</static>
+            </var>
+            <pg-code>
+              $a=random(-3,3,1);
+              @y=map{$_-2}NchooseK(5,2);
+              if($envir{problemSeed}==1){$a=2;@y=(4,3);};
+              @f=(Formula("x^2+($y[0]-2*$a)x+($y[0]-($a)^2-($y[0]-2*$a)*$a)")->reduce->reduce,Formula("x+($y[1]-$a)")->reduce,Formula("-x^2+$a*x+$y[0]")->reduce);
+              Context("PiecewiseFunction");
+              $g=PiecewiseFunction("x &lt; $a" => "$f[0]", "x = $a" => "$f[1]", "x > $a" => $f[2]);
+              @L=($f[0]->eval(x=>$a),$f[2]->eval(x=>$a));
+              $L[2]=($L[0]==$L[1])?$L[0]:Compute("DNE");
+              $L[3]=$g->eval(x=>$a);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Evaluate the given limits of the piecewise defined function.</p>
+
+            <p><m>f(x) =<var name="$g" /></m></p>
+
+            <p><ol cols="2" >
+              <li><p><m>\lim\limits_{x\to <var name="$a" />^-} f(x)=</m><var name="$L[0]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to <var name="$a" />^+} f(x)=</m><var name="$L[1]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to <var name="$a" />} f(x)=</m><var name="$L[2]" width="10" /></p></li>
+              <li><p><m>f(<var name="$a" />)=</m><var name="$L[3]" width="10" /></p></li>
+            </ol></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$L" category="number">
+              <static>c</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(c=>'Real');
+              $L=Formula("c");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Evaluate the given limits of the piecewise defined function.</p>
+
+            <p><m>f(x) = \begin{cases}a(x-b)^2+c\amp x\lt b\\a(x-b)+c\amp x\geq b\end{cases}</m></p>
+
+            <p><ol cols="2" >
+              <li><p><m>\lim\limits_{x\to b^-} f(x)=</m><var name="$L" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to b^+} f(x)=</m><var name="$L" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to b} f(x)=</m><var name="$L" width="10" /></p></li>
+              <li><p><m>f(b)=</m><var name="$L" width="10" /></p></li>
+            </ol></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$L[0]" category="number">
+              <static>-1</static>
+            </var>
+            <var name="$L[1]" category="number">
+              <static>1</static>
+            </var>
+            <var name="$L[2]" category="number">
+              <static>\text{DNE}</static>
+            </var>
+            <var name="$L[3]" category="number">
+              <static>0</static>
+            </var>
+            <pg-code>
+              @L=(-1,1,Compute("DNE"),0);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Evaluate the given limits of the piecewise defined function.</p>
+
+            <p><m>f(x) = \begin{cases}\frac{\abs{x}}{x}\amp x\neq0\\0\amp x=0\end{cases}</m></p>
+
+            <p><ol cols="2" >
+              <li><p><m>\lim\limits_{x\to 0^-} f(x)=</m><var name="$L[0]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to 0^+} f(x)=</m><var name="$L[1]" width="10" /></p></li>
+              <li><p><m>\lim\limits_{x\to 0} f(x)=</m><var name="$L[2]" width="10" /></p></li>
+              <li><p><m>f(0)=</m><var name="$L[3]" width="10" /></p></li>
+            </ol></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>The following exercises are review from prior sections.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$r">
+              <static>\frac{x^2+5x+4}{x^2-3x-4}</static>
+            </var>
+            <var name="$a">
+              <static>-1</static>
+            </var>
+            <var name="$L" category="number">
+              <static>-\frac{3}{5}</static>
+            </var>
+            <pg-code>
+              ($a,$b,$c)=map{($_+1)*random(-1,1,2)}NchooseK(9,3);
+              if($envir{problemSeed}==1){$a=-1;$b=-4;$c=4;};
+              $f=Formula("x^2-($a+$b)x+$a*$b")->reduce;
+              $g=Formula("x^2-($a+$c)x+$a*$c")->reduce;
+              $r=$f/$g;
+              Context("Fraction");
+              $L=Fraction($a-$b,$a-$c);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Use limit theorems to evaluate the limit.</p>
+            <p><m>\lim\limits_{x\to <var name="$a" />}<var name="$r" /></m></p>
+            <p><var name="$L" width="20" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$r">
+              <static>\frac{x^2-16}{x^2-4x-32}</static>
+            </var>
+            <var name="$a">
+              <static>-4</static>
+            </var>
+            <var name="$L" category="number">
+              <static>\frac{2}{3}</static>
+            </var>
+            <pg-code>
+              ($a,$b,$c)=map{($_+1)*random(-1,1,2)}NchooseK(9,3);
+              if($envir{problemSeed}==1){$a=-4;$b=4;$c=8;};
+              $f=Formula("x^2-($a+$b)x+$a*$b")->reduce;
+              $g=Formula("x^2-($a+$c)x+$a*$c")->reduce;
+              $r=$f/$g;
+              Context("Fraction");
+              $L=Fraction($a-$b,$a-$c);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Use limit theorems to evaluate the limit.</p>
+            <p><m>\lim\limits_{x\to <var name="$a" />}<var name="$r" /></m></p>
+            <p><var name="$L" width="20" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$r">
+              <static>\frac{x^2-15x+54}{x^2-6x}</static>
+            </var>
+            <var name="$a[0]">
+              <static>-6</static>
+            </var>
+            <var name="$L" category="number">
+              <static>\frac{5}{2}</static>
+            </var>
+            <pg-code>
+              @a=map{($_-9)}NchooseK(18,4);
+              if($envir{problemSeed}==1){@a=(-6,6,9,0)};
+              $f=Formula("x^2-($a[1]+$a[2])x+$a[1]*$a[2]")->reduce;
+              $g=Formula("x^2-($a[1]+$a[3])x+$a[1]*$a[3]")->reduce;
+              $r=$f/$g;
+              Context("Fraction");
+              $L=Fraction($a[0]-$a[2],$a[0]-$a[3]);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Use limit theorems to evaluate the limit.</p>
+            <p><m>\lim\limits_{x\to <var name="$a[0]" />}<var name="$r" /></m></p>
+            <p><var name="$L" width="20" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$r">
+              <static>\frac{x^2-4.4x+1.6}{x^2-0.4x}</static>
+            </var>
+            <var name="$a">
+              <static>0.4</static>
+            </var>
+            <var name="$L" category="number">
+              <static>-9</static>
+            </var>
+            <pg-code>
+              ($a,$b,$c)=map{$_*random(-1,1,2)/10}NchooseK(99,3);
+              if($envir{problemSeed}==1){$a=0.4;$b=4;$c=0;};
+              $f=Formula("x^2-($a+$b)x+$a*$b")->reduce;
+              $g=Formula("x^2-($a+$c)x+$a*$c")->reduce;
+              $r=$f/$g;
+              $L=Real(($a-$b)/($a-$c));
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Approximate the limit numerically.</p>
+            <p><m>\lim\limits_{x\to <var name="$a" />}<var name="$r" /></m></p>
+            <p><var name="$L" width="20" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$r">
+              <static>\frac{x^2+5.8x-1.2}{x^2-4.2x+0.8}</static>
+            </var>
+            <var name="$a">
+              <static>0.2</static>
+            </var>
+            <var name="$L" category="number">
+              <static>-1.63</static>
+            </var>
+            <pg-code>
+              ($a,$b,$c)=map{$_*random(-1,1,2)/10}NchooseK(99,3);
+              if($envir{problemSeed}==1){$a=0.2;$b=-6;$c=4;};
+              $f=Formula("x^2-($a+$b)x+$a*$b")->reduce;
+              $g=Formula("x^2-($a+$c)x+$a*$c")->reduce;
+              $r=$f/$g;
+              $L=Real(($a-$b)/($a-$c));
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Approximate the limit numerically.</p>
+            <p><m>\lim\limits_{x\to <var name="$a" />}<var name="$r" /></m></p>
+            <p><var name="$L" width="20" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

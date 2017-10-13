@@ -1,0 +1,2199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_substitution">
+  <title>Substitution</title>
+  <introduction>
+    <p>We motivate this section with an example. Let <m>f(x) = (x^2+3x-5)^{10}</m>. We can compute <m>\fp(x)</m> using the Chain Rule. It is:
+      <md>
+        <mrow>\fp(x) \amp = 10(x^2+3x-5)^9\cdot(2x+3)</mrow>
+         <mrow>\amp = (20x+30)(x^2+3x-5)^9</mrow>
+       </md>.
+    </p>
+
+    <p>Now consider this: What is <m>\int (20x+30)(x^2+3x-5)^9\ dx</m>? We have the answer in front of us;
+      <me>
+        \int (20x+30)(x^2+3x-5)^9\ dx = (x^2+3x-5)^{10}+C.
+      </me>
+    </p>
+
+    <p>How would we have evaluated this indefinite integral without starting with <m>f(x)</m> as we did?</p>
+
+    <p>This section explores <em>integration by substitution.</em> It allows us to <q>undo the Chain Rule.</q> Substitution allows us to evaluate the above integral without knowing the original function first.</p>
+
+    <p>The underlying principle is to rewrite a <q>complicated</q> integral of the form <m>\int f(x)\ dx</m> as a not<ndash />so<ndash />complicated integral <m>\int h(u)\ du</m>. We'll formally establish later how this is done. First, consider again our introductory indefinite integral, <m>\int (20x+30)(x^2+3x-5)^9\ dx</m>. Arguably the most <q>complicated</q> part of the integrand is <m>(x^2+3x-5)^9</m>. We wish to make this simpler; we do so through a substitution. Let <m>u=x^2+3x-5</m>. Thus
+      <me>
+        (x^2+3x-5)^9 = u^9.
+      </me>
+    </p>
+
+    <p>We have established <m>u</m> as a function of <m>x</m>, so now consider the differential of <m>u</m>:
+      <me>
+        du = (2x+3)dx.
+      </me>
+    </p>
+
+    <p>Keep in mind that <m>(2x+3)</m> and <m>dx</m> are multiplied; the <m>dx</m> is not <q>just sitting there.</q></p>
+
+    <p>Return to the original integral and do some substitutions through algebra:
+      <md>
+        <mrow>\int (20x+30)(x^2+3x-5)^9\ dx 	\amp =	\int 10(2x+3)(x^2+3x-5)^9\ dx</mrow>
+        <mrow>\amp =\int 10(\underbrace{x^2+3x-5}_u)^9\underbrace{(2x+3)\ dx}_{du}</mrow>
+        <mrow>\amp =\int 10u^9\ du</mrow>
+        <mrow>\amp = u^{10} + C  \quad \text{(replace \(u\) with \(x^2+3x-5\)) }</mrow>
+        <mrow>\amp = (x^2+3x-5)^{10} +C</mrow>
+      </md>
+    </p>
+
+    <p>One might well look at this and think <q>I (sort of) followed how that worked, but I could never come up with that on my own,</q> but the process is learnable. This section contains numerous examples through which the reader will gain understanding and mathematical maturity enabling them to regard substitution as a natural tool when evaluating integrals.</p>
+
+    <p>We stated before that integration by substitution <q>undoes</q> the Chain Rule. Specifically, let <m>F(x)</m> and <m>g(x)</m> be differentiable functions and consider the derivative of their composition:
+      <me>
+        \frac{d}{dx}\Big(F\big(g(x)\big)\Big) = \Fp(g(x))g'(x).
+      </me>
+    </p>
+
+    <p>Thus
+      <me>
+        \int \Fp(g(x))g'(x)\ dx = F(g(x)) + C.
+      </me>
+    </p>
+
+    <p>Integration by substitution works by recognizing the <q>inside</q> function <m>g(x)</m> and replacing it with a variable. By setting <m>u=g(x)</m>, we can rewrite the derivative as
+      <me>
+        \frac{d}{dx}\Big(F\big(u\big)\Big) = \Fp(u)u'.
+      </me>
+    </p>
+
+    <p>Since <m>du = g'(x)dx</m>, we can rewrite the above integral as
+      <me>
+        \int \Fp(g(x))g'(x)\ dx = \int \Fp(u) du = F(u)+C = F(g(x))+ C.
+      </me>
+    </p>
+
+    <p>This concept is important so we restate it in the context of a theorem.</p>
+
+    <theorem xml:id="thm_subst">
+      <title>Integration by Substitution</title>
+      <statement>
+        <p>Let <m>F</m> and <m>g</m> be differentiable functions, where the range of <m>g</m> is an interval <m>I</m> contained in the domain of <m>F</m>. Then <index><main>integration</main><sub>by substitution</sub></index>
+          <me>
+            \int \Fp(g(x))g'(x)\ dx = F(g(x)) + C.
+          </me>
+        </p>
+
+        <p>If <m>u = g(x)</m>, then <m>du = g'(x)dx</m> and
+          <me>
+            \int \Fp(g(x))g'(x)\ dx = \int \Fp(u)\ du = F(u)+C = F(g(x))+C.
+          </me>
+        </p>
+      </statement>
+    </theorem>
+
+    <p>The point of substitution is to make the integration step easy. Indeed, the step <m>\int \Fp(u)\ du = F(u) + C</m> looks easy, as the antiderivative of the derivative of <m>F</m> is just <m>F</m>, plus a constant. The <q>work</q> involved is making the proper substitution. There is not a step<ndash />by<ndash />step process that one can memorize; rather, experience will be one's guide. To gain experience, we now embark on many examples.</p>
+
+    <example xml:id="ex_sub1">
+      <title>Integrating by substitution</title>
+      <statement>
+        <p>Evaluate <m>\ds \int x\sin(x^2+5)\ dx</m>.</p>
+      </statement>
+      <solution>
+        <p>Knowing that substitution is related to the Chain Rule, we choose to let <m>u</m> be the <q>inside</q> function of <m>\sin(x^2+5)</m>. (This is not <em>always</em> a good choice, but it is often the best place to start.)</p>
+
+        <p>Let <m>u = x^2+5</m>, hence <m>du = 2x\,dx</m>. The integrand has an <m>x\,dx</m> term, but not a <m>2x\,dx</m> term. (Recall that multiplication is commutative, so the <m>x</m> does not physically have to be next to <m>dx</m> for there to be an <m>x\,dx</m> term.) We can divide both sides of the <m>du</m> expression by 2:
+          <me>
+            du = 2x\,dx  \Rightarrow  \frac12du = x\,dx.
+          </me>
+        </p>
+
+        <p>We can now substitute.
+          <md>
+            <mrow>\int x\sin(x^2+5)\ dx \amp = \int \sin(\underbrace{x^2+5}_u) \underbrace{x\ dx}_{\frac12du}</mrow>
+            <mrow>\amp = \int \frac12\sin(u) \ du</mrow>
+            <mrow>\amp = -\frac12\cos(u) + C \quad \text{ (now replace \(u\) with \(x^2+5\)) }</mrow>
+            <mrow>\amp =-\frac12\cos(x^2+5) + C.</mrow>
+          </md>
+        </p>
+
+        <p>Thus <m>\int x\sin(x^2+5)\ dx = -\frac12\cos(x^2+5)+C</m>. We can check our work by evaluating the derivative of the right hand side.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_sub2">
+      <title>Integrating by substitution</title>
+      <statement>
+        <p>Evaluate <m>\ds \int \cos(5x)\ dx</m>.</p>
+      </statement>
+      <solution>
+        <p>Again let <m>u</m> replace the <q>inside</q> function. Letting <m>u = 5x</m>, we have <m>du = 5\ dx</m>. Since our integrand does not have a <m>5\ dx</m> term, we can divide the previous equation by <m>5</m> to obtain <m>\frac15du = dx</m>. We can now substitute.
+          <md>
+            <mrow>\int \cos(5x)\ dx \amp = \int \cos(\underbrace{5x}_u) \underbrace{dx}_{\frac15du}</mrow>
+            <mrow>\amp =	\int \frac15\cos(u) \ du</mrow>
+            <mrow>\amp = \frac15\sin(u) + C</mrow>
+            <mrow>\amp = \frac15\sin(5x)+C.</mrow>
+          </md>
+        </p>
+
+        <p>We can again check our work through differentiation.</p>
+      </solution>
+    </example>
+
+    <p>The previous example exhibited a common, and simple, type of substitution. The <q>inside</q> function was a linear function (in this case, <m>y = 5x</m>). When the inside function is linear, the resulting integration is very predictable, outlined here.</p>
+
+    <insight xml:id="idea_linearsub">
+      <title>Substitution With A Linear Function</title>
+      <p>Consider <m>\int \Fp(ax+b)\ dx</m>, where <m>a\neq 0</m> and <m>b</m> are constants. Letting <m>u = ax+b</m> gives <m>du = a\cdot dx</m>, leading to the result
+        <me>
+          \int \Fp(ax+b)\ dx = \frac{1}{a}F(ax+b) + C.
+        </me>
+      </p>
+    </insight>
+
+    <p>Thus <m>\int \sin(7x-4)\ dx = -\frac17\cos(7x-4)+C</m>. Our next example can use <xref ref="idea_linearsub">Key Idea</xref>, but we will only employ it after going through all of the steps.</p>
+
+    <example xml:id="ex_sub3">
+      <title>Integrating by substituting a linear function</title>
+      <statement>
+        <p>Evaluate <m>\ds \int \frac{7}{-3x+1}\ dx</m>.</p>
+      </statement>
+      <solution>
+        <p>View this a composition of functions <m>f(g(x))</m>, where <m>f(x) = 7/x</m> and <m>g(x) = -3x+1</m>. Employing our understanding of substitution, we let <m>u = -3x+1</m>, the inside function. Thus <m>du = -3\ dx</m>. The integrand lacks a <m>-3</m>; hence divide the previous equation by <m>-3</m> to obtain <m>-du/3 = dx</m>. We can now evaluate the integral through substitution.
+          <md>
+            <mrow>\int \frac{7}{-3x+1}\ dx \amp =	\int \frac{7}{u}\frac{du}{-3}</mrow>
+            <mrow>\amp = \frac{-7}3\int \frac{du}{u}</mrow>
+            <mrow>\amp =	\frac{-7}3\ln\abs{u} + C</mrow>
+            <mrow>\amp =-\frac73\ln\abs{-3x+1} + C.</mrow>
+          </md>
+        </p>
+
+        <p>Using <xref ref="idea_linearsub">Key Idea</xref> is faster, recognizing that <m>u</m> is linear and <m>a = -3</m>. One may want to continue writing out all the steps until they are comfortable with this particular shortcut.</p>
+      </solution>
+    </example>
+
+    <p>Not all integrals that benefit from substitution have a clear <q>inside</q> function. Several of the following examples will demonstrate ways in which this occurs.</p>
+
+    <example xml:id="ex_sub10">
+      <title>Integrating by substitution</title>
+      <statement>
+        <p>Evaluate <m>\ds \int \sin(x) \cos(x) \ dx</m>.</p>
+      </statement>
+      <solution>
+        <p>There is not a composition of function here to exploit; rather, just a product of functions. Do not be afraid to experiment; when given an integral to evaluate, it is often beneficial to think <q>If I let <m>u</m> be <em>this</em>, then <m>du</m> must be <em>that</em> <ellipsis /></q> and see if this helps simplify the integral at all.</p>
+
+        <p>In this example, let's set <m>u = \sin(x)</m>. Then <m>du = \cos(x) \ dx</m>, which we have as part of the integrand! The substitution becomes very straightforward:
+          <md>
+            <mrow>\int \sin(x) \cos(x) \ dx \amp =	\int u\ du</mrow>
+            <mrow>\amp = \frac12u^2+ C</mrow>
+            <mrow>\amp = \frac12\sin^2(x) + C.</mrow>
+          </md>
+        </p>
+
+        <p>One would do well to ask <q>What would happen if we let <m>u = \cos(x)</m>?</q> The result is just as easy to find, yet looks very different. The challenge to the reader is to evaluate the integral letting <m>u = \cos(x)</m> and discover why the answer is the same, yet looks different.</p>
+      </solution>
+    </example>
+
+    <p>Our examples so far have required <q>basic substitution.</q> The next example demonstrates how substitutions can be made that often strike the new learner as being <q>nonstandard.</q></p>
+
+    <example xml:id="ex_sub4">
+      <title>Integrating by substitution</title>
+      <statement>
+        <p>Evaluate <m>\ds\int x\sqrt{x+3}\ dx</m>.</p>
+      </statement>
+      <solution>
+        <p>Recognizing the composition of functions, set <m>u = x+3</m>. Then <m>du = dx</m>, giving what seems initially to be a simple substitution. But at this stage, we have:
+          <me>
+            \int x\sqrt{x+3}\ dx = \int x\sqrt{u}\ du.
+          </me>
+        </p>
+
+        <p>We cannot evaluate an integral that has both an <m>x</m> and an <m>u</m> in it. We need to convert the <m>x</m> to an expression involving just <m>u</m>.</p>
+
+        <p>Since we set <m>u = x+3</m>, we can also state that <m>u-3 = x</m>. Thus we can replace <m>x</m> in the integrand with <m>u-3</m>. It will also be helpful to rewrite <m>\sqrt{u}</m> as <m>u^\frac12</m>.
+          <md>
+            <mrow>\int x\sqrt{x+3} \ dx \amp = \int (u-3)u^\frac12\ du</mrow>
+            <mrow>\amp = \int \big(u^\frac32 - 3u^\frac12\big) \ du</mrow>
+            <mrow>\amp = \frac25u^\frac52 - 2u^\frac32 + C</mrow>
+            <mrow>\amp = \frac25(x+3)^\frac52 - 2(x+3)^\frac32 + C.</mrow>
+          </md>
+        </p>
+
+        <p>Checking your work is always a good idea. In this particular case, some algebra will be needed to make one's answer match the integrand in the original problem.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_sub5">
+      <title>Integrating by substitution</title>
+      <statement>
+        <p>Evaluate <m>\ds \int \frac{1}{x\ln(x) }\ dx</m>.</p>
+      </statement>
+      <solution>
+        <p>This is another example where there does not seem to be an obvious composition of functions. The line of thinking used in <xref ref="ex_sub4">Example</xref> is useful here: choose something for <m>u</m> and consider what this implies <m>du</m> must be. If <m>u</m> can be chosen such that <m>du</m> also appears in the integrand, then we have chosen well.</p>
+
+        <p>Choosing <m>u = 1/x</m> makes <m>du = -1/x^2\ dx</m>; that does not seem helpful. However, setting <m>u = \ln(x)</m> makes <m>du = 1/x\ dx</m>, which is part of the integrand. Thus:
+          <md>
+            <mrow>\int \frac1{x\ln(x) }\ dx 	\amp =	\int {\underbrace{\frac{1}{\ln(x)} }_{1/u}}\underbrace{\frac1x\ dx}_{du}</mrow>
+            <mrow>\amp = \int \frac1u\ du</mrow>
+            <mrow>\amp = \ln\abs{u} + C</mrow>
+            <mrow>\amp = \ln\abs{ \ln(x) } + C.</mrow>
+          </md>
+        </p>
+
+        <p>The final answer is interesting; the natural log of the natural log. Take the derivative to confirm this answer is indeed correct.</p>
+      </solution>
+    </example>
+  </introduction>
+
+  <subsection>
+    <title>Integrals Involving Trigonometric Functions</title>
+    <p><xref ref="sec_trigint">Section</xref> delves deeper into integrals of a variety of trigonometric functions; here we use substitution to establish a foundation that we will build upon.</p>
+
+    <p>The next three examples will help fill in some missing pieces of our antiderivative knowledge. We know the antiderivatives of the sine and cosine functions; what about the other standard functions tangent, cotangent, secant and cosecant? We discover these next.</p>
+
+    <example xml:id="ex_sub6">
+      <title>Integration by substitution: antiderivatives of <m>\tan(x)</m></title>
+      <statement>
+        <p>Evaluate <m>\ds \int \tan(x) \ dx</m>.</p>
+      </statement>
+      <solution>
+        <p>The previous paragraph established that we did not know the antiderivatives of tangent, hence we must assume that we have learned something in this section that can help us evaluate this indefinite integral.</p>
+
+        <p>Rewrite <m>\tan(x)</m> as <m>\sin(x) /\cos(x)</m>. While the presence of a composition of functions may not be immediately obvious, recognize that <m>\cos(x)</m> is <q>inside</q> the <m>1/x</m> function. Therefore, we see if setting <m>u = \cos(x)</m> returns usable results. We have that <m>du = -\sin(x) \ dx</m>, hence <m>-du = \sin(x) \ dx</m>. We can integrate:
+          <md>
+            <mrow>\int \tan(x) \ dx \amp = \int \frac{\sin(x) }{\cos(x) }\ dx</mrow>
+            <mrow>\amp = \int \frac1{\underbrace{\cos(x) }_u}\underbrace{\sin(x) \ dx}_{-du}</mrow>
+            <mrow>\amp = \int \frac {-1}u \ du</mrow>
+            <mrow>\amp = -\ln\abs{u} + C</mrow>
+            <mrow>\amp = -\ln\abs{\cos(x) } + C.</mrow>
+          </md>
+        </p>
+
+        <p>Some texts prefer to bring the <m>-1</m> inside the logarithm as a power of <m>\cos(x)</m>, as in:
+          <md>
+            <mrow>-\ln\abs{\cos(x) } + C \amp = \ln\abs{(\cos(x) )^{-1}} + C</mrow>
+            <mrow>\amp = \ln\abs{ \frac{1}{\cos(x) }} + C</mrow>
+            <mrow>\amp = \ln\abs{\sec(x) } + C.</mrow>
+          </md>
+        </p>
+
+        <p>Thus the result they give is <m>\int \tan(x) \ dx = \ln\abs{\sec(x) } + C</m>. These two answers are equivalent.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_sub7">
+      <title>Integrating by substitution: antiderivatives of <m>\sec(x)</m></title>
+      <statement>
+        <p>Evaluate <m>\ds\int \sec(x) \ dx</m>.</p>
+      </statement>
+      <solution>
+        <p>This example employs a wonderful trick: multiply the integrand by <q>1</q> so that we see how to integrate more clearly. In this case, we write <q>1</q> as
+          <me>
+            1 = \frac{\sec(x) + \tan(x) }{\sec(x) + \tan(x) }.
+          </me>
+        </p>
+
+        <p>This may seem like it came out of left field, but it works beautifully. Consider:
+          <md>
+            <mrow>\int \sec(x) \ dx	\amp =	\int \sec(x) \cdot \frac{\sec(x) + \tan(x) }{\sec(x) + \tan(x) }\ dx</mrow>
+            <mrow>\amp = \int \frac{\sec^2(x) + \sec(x) \tan(x) }{\sec(x) + \tan(x) }\ dx.</mrow>
+            <intertext>Now let <m>u = \sec(x) +\tan(x)</m>; this means <m>du = (\sec(x) \tan(x) + \sec^2(x) )\ dx</m>, which is our numerator. Thus:</intertext>
+            <mrow>\amp = \int \frac{du}{u}</mrow>
+            <mrow>\amp = \ln\abs{u} + C</mrow>
+            <mrow>\amp = \ln\abs{\sec(x) +\tan(x) } + C.</mrow>
+          </md>
+        </p>
+      </solution>
+    </example>
+
+    <p>We can use similar techniques to those used in <xref ref="ex_sub6">Examples</xref> and <xref ref="ex_sub7"></xref> to find antiderivatives of <m>\cot(x)</m> and <m>\csc(x)</m> (which the reader can explore in the exercises.) We summarize our results here.</p>
+
+    <theorem xml:id="thm_triganti">
+      <title>Antiderivatives of Trigonometric Functions</title>
+      <statement>
+      
+          <index><main>integration</main><sub>of trig. functions</sub></index>
+          <todo>Fix the column spacing. I don't know how to do it.</todo>
+          <ol cols="2">
+            <li><p><m>\ds \int \sin(x) \ dx = -\cos(x) +C</m></p></li>
+
+            <li><p><m>\ds\int \cos(x) \ dx = \sin(x) + C</m></p></li>
+
+            <li><p><m>\ds \int \tan(x) \ dx = -\ln\abs{\cos(x) }+C</m></p></li>
+
+            <li><p><m>\ds \int \csc(x) \ dx = -\ln\abs{\csc(x) +\cot(x) } +C</m></p></li>
+
+            <li><p><m>\ds\int \sec(x) \ dx = \ln\abs{\sec(x) +\tan(x) } + C</m></p></li>
+
+            <li><p><m>\ds \int \cot(x) \ dx = \ln\abs{\sin(x) }+C</m></p></li>
+          </ol>
+        
+      </statement>
+    </theorem>
+
+    <p>We explore one more common trigonometric integral.</p>
+
+    <example xml:id="ex_sub8">
+      <title>Integration by substitution: powers of <m>\cos(x)</m> and <m>\sin(x)</m></title>
+      <statement>
+        <p>Evaluate <m>\ds \int \cos^2(x) \ dx</m>.</p>
+      </statement>
+      <solution>
+        <p>We have a composition of functions as <m>\cos^2(x) = \big(\cos(x) \big)^2</m>.
+          However, setting <m>u = \cos(x)</m> means <m>du = -\sin(x) \ dx</m>, which we do not have in the integral. Another technique is needed.</p>
+
+        <p>The process we'll employ is to use a Power Reducing formula for <m>\cos^2(x)</m> (perhaps consult the back of this text for this formula), which states
+        <todo>Make an xref to the refence pages, which are where????</todo>
+          <me>
+            \cos^2(x) = \frac{1+\cos(2x)}{2}.
+          </me>
+        </p>
+
+        <p>The right hand side of this equation is not difficult to integrate. We have:
+          <md>
+            <mrow>\int \cos^2(x) \ dx \amp = \int \frac{1+\cos(2x)}2\ dx</mrow>
+            <mrow>\amp =	\int \left( \frac12 + \frac12\cos(2x)\right)\ dx.</mrow>
+            <intertext>Now use <xref ref="idea_linearsub">Key Idea</xref>:</intertext>
+            <mrow>\amp = \frac12x + \frac12\frac{\sin(2x)}{2} + C</mrow>
+            <mrow>\amp = \frac12x + \frac{\sin(2x)}4 + C.</mrow>
+          </md>
+        </p>
+
+        <p>We'll make significant use of this power<ndash />reducing technique in future sections.</p>
+      </solution>
+    </example>
+  </subsection>
+
+  <subsection>
+    <title>Simplifying the Integrand</title>
+    <p>It is common to be reluctant to manipulate the integrand of an integral; at first, our grasp of integration is tenuous and one may think that working with the integrand will improperly change the results. Integration by substitution works using a different logic: as long as <em>equality</em> is maintained, the integrand can be manipulated so that its <em>form</em> is easier to deal with. The next two examples demonstrate common ways in which using algebra first makes the integration easier to perform.</p>
+
+    <example xml:id="ex_sub9">
+      <title>Integration by substitution: simplifying first</title>
+      <statement>
+        <p>Evaluate <m>\ds\int \frac{x^3+4x^2+8x+5}{x^2+2x+1}\ dx</m>.</p>
+      </statement>
+      <solution>
+        <p>One may try to start by setting <m>u</m> equal to either the numerator or denominator; in each instance, the result is not workable.</p>
+
+        <p>When dealing with rational functions (i.e., quotients made up of polynomial functions), it is an almost universal rule that everything works better when the degree of the numerator is less than the degree of the denominator. Hence we use polynomial division.</p>
+
+        <p>We skip the specifics of the steps, but note that when <m>x^2+2x+1</m> is divided into <m>x^3+4x^2+8x+5</m>, it goes in <m>x+2</m> times with a remainder of <m>3x+3</m>. (You can get this same result by using the expand() command in a computer algebra system). Thus
+          <me>
+            \frac{x^3+4x^2+8x+5}{x^2+2x+1} = x+2 + \frac{3x+3}{x^2+2x+1}.
+          </me>
+        </p>
+
+        <p>Integrating <m>x+2</m> is simple. The fraction can be integrated by setting <m>u = x^2+2x+1</m>, giving <m>du = (2x+2)\ dx</m>. This is very similar to the numerator. Note that <m>du/2 = (x+1)\ dx</m> and then consider the following:
+          <md>
+            <mrow>\int \frac{x^3+4x^2+8x+5}{x^2+2x+1}\ dx \amp  = \int \left(x+2 + \frac{3x+3}{x^2+2x+1}\right)\ dx</mrow>
+            <mrow>\amp = \int (x+2)\ dx + \int \frac{3(x+1)}{x^2+2x+1}\ dx</mrow>
+            <mrow>\amp  = \frac12x^2+2x+C_1 + \int \frac{3}{u}\frac{du}{2}</mrow>
+            <mrow>\amp = \frac12x^2+2x+C_1 + \frac32\ln\abs{u} + C_2</mrow>
+            <mrow>\amp = \frac12x^2+2x+\frac32\ln\abs{x^2+2x+1} + C.</mrow>
+          </md>
+        </p>
+
+        <p>In some ways, we <q>lucked out</q> in that after dividing, substitution was able to be done. In later sections we'll develop techniques for handling rational functions where substitution is not directly feasible.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_sub11">
+      <title>Integration by alternate methods</title>
+      <statement>
+        <p>Evaluate <m>\ds\int \frac{x^2+2x+3}{\sqrt{x}}\ dx</m> with, and without, substitution.</p>
+      </statement>
+      <solution>
+        <p>We already know how to integrate this particular example. Rewrite <m>\sqrt{x}</m> as <m>x^\frac12</m> and simplify the fraction:
+          <me>
+            \frac{x^2+2x+3}{x^{1/2}} = x^\frac32 + 2x^\frac12 + 3x^{-\frac12}.
+          </me>
+        </p>
+
+        <p>We can now integrate using the Power Rule:
+          <md>
+            <mrow>\int \frac{x^2+2x+3}{x^{1/2}}\ dx \amp = \int\left(x^\frac32 + 2x^\frac12 + 3x^{-\frac12}\right)\ dx</mrow>
+            <mrow>\amp =	\frac25x^\frac52 + \frac43x^\frac32 + 6x^\frac12 + C</mrow>
+          </md>
+        </p>
+
+        <p>This is a perfectly fine approach. We demonstrate how this can also be solved using substitution as its implementation is rather clever.</p>
+
+        <p>Let <m>u = \sqrt{x} = x^\frac12</m>; therefore
+          <me>
+            du = \frac{1}{2\sqrt{x}}\ dx  \Rightarrow  2du = \frac{1}{\sqrt{x}}\ dx
+          </me>.
+        </p>
+
+        <p>This gives us <m>\ds \int \frac{x^2+2x+3}{\sqrt{x}}\ dx = \int (x^2+2x+3)\cdot2\ du</m>. What are we to do with the other <m>x</m> terms? Since <m>u = x^\frac12</m>, <m>u^2 = x</m>, etc. We can then replace <m>x^2</m> and <m>x</m> with appropriate powers of <m>u</m>. We thus have
+          <md>
+            <mrow>\int \frac{x^2+2x+3}{\sqrt{x}}\ dx \amp = \int (x^2+2x+3)\cdot2\ du</mrow>
+            <mrow>\amp = \int 2(u^4 + 2u^2 + 3)\ du</mrow>
+            <mrow>\amp = \frac25u^5 + \frac43u^3 + 6u + C</mrow>
+            <mrow>\amp = \frac25x^\frac52 + \frac43x^\frac32 + 6x^\frac12+C</mrow>,
+          </md>
+          which is obviously the same answer we obtained before. In this situation, substitution is arguably more work than our other method. The fantastic thing is that it works. It demonstrates how flexible integration is.</p>
+      </solution>
+    </example>
+  </subsection>
+
+  <subsection>
+    <title>Substitution and Inverse Trigonometric Functions</title>
+    <p>When studying derivatives of inverse functions, we learned that
+      <me>
+        \frac{d}{dx}\big(\tan^{-1}(x) \big) = \frac{1}{1+x^2}.
+      </me>
+    </p>
+
+    <p>Applying the Chain Rule to this is not difficult; for instance,
+      <me>
+        \frac{d}{dx}\big(\tan^{-1}(5x) \big) = \frac{5}{1+25x^2}.
+      </me>
+    </p>
+
+    <p>We now explore how Substitution can be used to <q>undo</q> certain derivatives that are the result of the Chain Rule applied to Inverse Trigonometric functions. We begin with an example.</p>
+
+    <example xml:id="ex_subst14">
+      <title>Integrating by substitution: inverse trigonometric functions</title>
+      <statement>
+        <p>Evaluate <m>\ds \int \frac{1}{25+x^2}\ dx</m>.</p>
+      </statement>
+      <solution>
+        <p>The integrand looks similar to the derivative of the arctangent function. Note:
+          <md>
+            <mrow>\frac{1}{25+x^2} \amp = \frac{1}{25\left(1+\frac{x^2}{25}\right)}</mrow>
+            <mrow>\amp = \frac{1}{25(1+\left(\frac{x}{5}\right)^2)}</mrow>
+            <mrow>\amp = \frac{1}{25}\frac{1}{1+\left(\frac{x}{5}\right)^2}\ </mrow>
+          </md>.
+        </p>
+
+        <p>Thus
+          <me>
+            \int\frac{1}{25+x^2}\ dx = \frac{1}{25}\int \frac{1}{1+\left(\frac{x}{5}\right)^2}\ dx.
+          </me>
+        </p>
+
+        <p>This can be integrated using Substitution. Set <m>u = x/5</m>, hence <m>du = dx/5</m> or <m>dx=5\ du</m>. Thus
+          <md>
+            <mrow>\int\frac{1}{25+x^2}\ dx \amp = \frac{1}{25}\int \frac{1}{1+\left(\frac{x}{5}\right)^2}\ dx</mrow>
+            <mrow>\amp = \frac15\int \frac{1}{1+u^2}\ du</mrow>
+            <mrow>\amp = \frac15\tan^{-1}(u) + C</mrow>
+            <mrow>\amp = \frac15\tan^{-1}\left(\frac x5\right)+C</mrow>
+          </md>
+        </p>
+      </solution>
+    </example>
+
+    <p><xref ref="ex_subst14">Example</xref> demonstrates a general technique that can be applied to other integrands that result in inverse trigonometric functions. The results are summarized here.</p>
+
+    <theorem xml:id="thm_int_inverse_trig">
+      <title>Integrals Involving Inverse Trigonomentric Functions</title>
+      <statement>
+        <p>Let <m>a>0</m>.</p>
+
+        <ol>
+          <li><p><m>\ds \int \frac{1}{a^2+x^2}\ dx = \frac1a\tan^{-1}\left(\frac{x}{a}\right) + C</m></p></li>
+
+          <li><p><m>\ds \int \frac{1}{\sqrt{a^2-x^2}}\ dx = \sin^{-1}\left(\frac{x}{a}\right)+C</m></p></li>
+
+          <li><p><m>\ds \int \frac{1}{x\sqrt{x^2-a^2}}\ dx = \frac1a\sec^{-1}\left(\frac{\abs{x}}{a}\right)+C</m></p></li>
+        </ol>
+      </statement>
+    </theorem>
+
+    <p>Let's practice using <xref ref="thm_int_inverse_trig">Theorem</xref>.</p>
+
+    <example xml:id="ex_subst15">
+      <title>Integrating by substitution: inverse trigonometric functions</title>
+      <statement>
+        <p>Evaluate the given indefinite integrals.
+          <me>
+            \int \frac{1}{9+x^2}\ dx, \int \frac{1}{x\sqrt{x^2-\frac{1}{100}}}\ dx \text{ and }   \int \frac{1}{\sqrt{5-x^2}}\ dx.
+          </me>
+        </p>
+      </statement>
+      <solution>
+        <p>Each can be answered using a straightforward application of <xref ref="thm_int_inverse_trig">Theorem</xref>.</p>
+
+        <p><m>\ds \int \frac{1}{9+x^2}\ dx = \frac13\tan^{-1}\left(\frac x3\right) + C</m>, as <m>a = 3</m>.<m>\ds \int  \frac{1}{x\sqrt{x^2-\frac{1}{100}}}\ dx = 10\sec^{-1}(10x) + C</m>, as <m>a = \frac1{10}</m>.<m>\ds \int \frac{1}{\sqrt{5-x^2}} = \sin^{-1}\left(\frac{x}{\sqrt{5}}\right)+C</m>, as <m>a = \sqrt{5}</m>.</p>
+      </solution>
+    </example>
+
+    <p>Most applications of <xref ref="thm_int_inverse_trig">Theorem</xref> are not as straightforward. The next examples show some common integrals that can still be approached with this theorem.</p>
+
+    <example xml:id="ex_subst16">
+      <title>Integrating by substitution: completing the square</title>
+      <statement>
+        <p>Evaluate <m>\ds \int\frac{1}{x^2-4x+13}\ dx</m>.</p>
+      </statement>
+      <solution>
+        <p>Initially, this integral seems to have nothing in common with the integrals in <xref ref="thm_int_inverse_trig">Theorem</xref>. As it lacks a square root, it almost certainly is not related to arcsine or arcsecant. It is, however, related to the arctangent function.</p>
+
+        <p>We see this by <em>completing the square</em> in the denominator. We give a brief reminder of the process here.</p>
+
+        <p>Start with a quadratic with a leading coefficient of 1. It will have the form of <m>x^2 + bx + c</m>. Take 1/2 of <m>b</m>, square it, and add/subtract it back into the expression. I.e.,
+          <md>
+            <mrow>x^2+bx+ c \amp = \underbrace{x^2 + bx + \frac{b^2}4}_{(x+b/2)^2} - \frac{b^2}4 + c</mrow>
+            <mrow>\amp = \left(x+\frac b2\right)^2 + c-\frac{b^2}4</mrow>
+          </md>
+        </p>
+
+        <p>In our example, we take half of <m>-4</m> and square it, getting <m>4</m>. We add/subtract it into the denominator as follows:
+          <md>
+            <mrow>\frac{1}{x^2-4x+13} \amp = \frac{1}{\underbrace{x^2-4x+4}_{(x-2)^2}-4+13}</mrow>
+            <mrow>\amp =\frac{1}{(x-2)^2 + 9}</mrow>
+          </md>
+        </p>
+
+        <p>We can now integrate this using the arctangent rule. Technically, we need to substitute first with <m>u=x-2</m>, but we can employ <xref ref="idea_linearsub">Key Idea</xref> instead. Thus we have
+          <md>
+            <mrow> \int \frac{1}{x^2-4x+13}\ dx \amp = \int \frac{1}{(x-2)^2+9}\ dx </mrow>
+            <mrow>\amp = \frac13\tan^{-1}\frac{x-2}{3}+C</mrow>
+           .
+          </md>
+        </p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_subst17">
+      <title>Integrals requiring multiple methods</title>
+      <statement>
+        <p>Evaluate <m>\ds \int \frac{4-x}{\sqrt{16-x^2}}\ dx</m>.</p>
+      </statement>
+      <solution>
+        <p>This integral requires two different methods to evaluate it. We get to those methods by splitting up the integral:
+          <me>
+            \int \frac{4-x}{\sqrt{16-x^2}}\ dx = \int \frac{4}{\sqrt{16-x^2}}\ dx - \int \frac{x}{\sqrt{16-x^2}}\ dx.
+          </me>
+        </p>
+
+        <p>We handle each separately. The first integral is handled using a straightforward application of <xref ref="thm_int_inverse_trig">Theorem</xref>: </p>
+
+        <p><m>\ds \int \frac{4}{\sqrt{16-x^2}}\ dx = 4\sin^{-1}\frac{x}{4} + C</m>.</p>
+
+        <p>The second integral is handled by substitution, with <m>u = 16-x^2</m>. 
+          <m>\ds \int\frac{x}{\sqrt{16-x^2}}\ dx</m>: Set <m>u = 16-x^2</m>, so <m>du = -2x\ dx</m> and <m>x\ dx = -du/2</m>. We have
+          <md>
+            <mrow>\int\frac{x}{\sqrt{16-x^2}}\ dx \amp = \int\frac{-du/2}{\sqrt{u}}</mrow>
+            <mrow>\amp = -\frac12\int \frac{1}{\sqrt{u}}\ du</mrow>
+            <mrow>\amp = - \sqrt{u} + C</mrow>
+            <mrow>\amp = -\sqrt{16-x^2} + C.</mrow>
+          </md>
+        </p>
+
+        <p>Combining these together, we have
+          <me>
+            \int \frac{4-x}{\sqrt{16-x^2}}\ dx = 4\sin^{-1}\frac x4 + \sqrt{16-x^2}+C.
+          </me>
+          As with all definite integrals, you can check your work by differentiation.
+        </p>
+      </solution>
+    </example>
+  </subsection>
+
+  <subsection>
+    <title>Substitution and Definite Integration</title>
+    <p>This section has focused on evaluating indefinite integrals as we are learning a new technique for finding antiderivatives. However, much of the time integration is used in the context of a definite integral. Definite integrals that require substitution can be calculated using the following workflow:</p>
+
+    <ol>
+      <li><p>Start with a definite integral <m>\ds \int_a^b f(x)\ dx</m> that requires substitution.</p></li>
+
+      <li><p>Ignore the bounds; use substitution to evaluate <m>\ds \int f(x)\ dx</m> and find an antiderivative <m>F(x)</m>.</p></li>
+
+      <li><p>Evaluate <m>F(x)</m> at the bounds; that is, evaluate <m>F(x)\Big|_a^b = F(b) - F(a)</m>.</p></li>
+    </ol>
+
+    <p>This workflow works fine, but substitution offers an alternative that is powerful and amazing (and a little time saving).</p>
+
+    <p>At its heart, (using the notation of <xref ref="thm_subst">Theorem</xref>) substitution converts integrals of the form <m>\int \Fp(g(x))g'(x)\ dx</m> into an integral of the form <m>\int \Fp(u)\ du</m> with the substitution of <m>u = g(x)</m>. The following theorem states how the bounds of a definite integral can be changed as the substitution is performed.</p>
+
+    <theorem xml:id="thm_subst_def_int">
+      <title>Substitution with Definite Integrals</title>
+      <statement>
+        <p>Let <m>F</m> and <m>g</m> be differentiable functions, where the range of <m>g</m> is an interval <m>I</m> that is contained in the domain of <m>F</m> and <m>u=g(x)</m>. Then <index><main>integration</main><sub>definite!and substitution</sub></index><index><main>definite integral</main><sub>and substitution</sub></index>
+          <me>
+            \int_a^b \Fp\big(g(x)\big)g'(x)\ dx = \int_{g(a)}^{g(b)} \Fp(u)\ du.
+          </me>
+        </p>
+      </statement>
+    </theorem>
+
+    <p>In effect, <xref ref="thm_subst_def_int">Theorem</xref> states that once you convert to integrating with respect to <m>u</m>, you do not need to switch back to evaluating with respect to <m>x</m>. A few examples will help one understand.</p>
+
+    <example xml:id="ex_sub12">
+      <title>Definite integrals and substitution: changing the bounds</title>
+      <statement>
+        <p>Evaluate <m>\ds\int_0^2 \cos(3x-1)\ dx</m> using <xref ref="thm_subst_def_int">Theorem</xref>.</p>
+      </statement>
+      <solution>
+        <p>Observing the composition of functions, let <m>u=3x-1</m>, hence <m>du = 3\ dx</m>. As <m>3\ dx</m> does not appear in the integrand, divide the latter equation by 3 to get <m>du/3 = dx</m>.</p>
+
+        <p>By setting <m>u = 3x-1</m>, we are implicitly stating that <m>g(x) = 3x-1</m>. <xref ref="thm_subst_def_int">Theorem</xref> states that the new lower bound is <m>g(0) = -1</m>; the new upper bound is <m>g(2) = 5</m>. We now evaluate the definite integral:
+          <md>
+            <mrow>\int_1^2 \cos(3x-1) \ dx \amp =	\int_{-1}^5 \cos(u) \frac{du}{3}</mrow>
+            <mrow>\amp = \frac{1}{3} \sin(u) \Big|_{-1}^5</mrow>
+            <mrow>\amp = \frac{1}{3}\big(\sin(5) - \sin(-1)\big)</mrow>
+            <mrow>\amp \approx -0.039.</mrow>
+          </md>
+        </p>
+
+        <p>Notice how once we converted the integral to be in terms of <m>u</m>, we never went back to using <m>x</m>.</p>
+
+<sidebyside xml:id="fig_subst12" widths="47% 47%">
+        <caption>Graphing the areas defined by the definite integrals of <xref ref="ex_sub12">Example</xref>.</caption>
+        <figure xml:id="fig_subst12a">
+          <caption/>
+          <!-- START figures/fig_subst12a.tex -->
+          <image xml:id="img_subst12a">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[axis on top,
+                          xtick={-1,1,2,3,4,5},
+                          ymin=-1.1,ymax=1.1,
+                          xmin=-1.5,xmax=5.5]
+
+              \addplot+[domain=-1.5:5.5,smooth,thick,samples=50] {cos(deg(3*x-1))} node[pos=0.54, above right]{\scriptsize $y=\cos(3x-1)$};
+              \addplot [{\coloronefill},thick,fill={\coloronefill},domain=0:2] {cos(deg(3*x-1))} \closedcycle;
+              \end{axis}
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+        </figure>
+          <!-- figures/fig_subst12a.tex END -->
+      <figure xml:id="fig_subst12b">
+        <caption/>
+          <!-- START figures/fig_subst12b.tex -->
+          <image xml:id="img_subst12b">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[axis on top,
+                           xtick={-1,1,2,3,4,5},
+                           ymin=-1.1,ymax=1.1,
+                           xmin=-1.5,xmax=5.5,
+                           xlabel={$u$},]
+
+              \addplot+[smooth,thick,domain=-1.5:5.5] {cos(deg(x))/3} node[pos=0.45, above right]{\scriptsize $y=\frac13\cos(u)$};
+              \addplot [{\coloronefill},thick,fill={\coloronefill},domain=-1:5] {cos(deg(x))/3} \closedcycle;
+              \end{axis}
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_subst12b.tex END -->
+        </figure>
+</sidebyside>
+       
+
+        <p>The graphs in <xref ref="fig_subst12">Figure</xref> tell more of the story. In <xref ref="fig_subst12a">Figure</xref> the area defined by the original integrand is shaded, whereas in <xref ref="fig_subst12b">Figure </xref> the area defined by the new integrand is shaded. In this particular situation, the areas look very similar; the new region is <q>shorter</q> but <q>wider,</q> giving the same area.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_subst13">
+      <title>Definite integrals and substitution: changing the bounds</title>
+      <statement>
+        <p>Evaluate <m>\ds \int_0^{\pi/2} \sin(x) \cos(x) \ dx</m> using <xref ref="thm_subst_def_int">Theorem</xref>.</p>
+      </statement>
+      <solution>
+        <p>We saw the corresponding indefinite integral in <xref ref="ex_sub10">Example</xref>. In that example we set <m>u = \sin(x)</m> but stated that we could have let <m>u = \cos(x)</m>. For variety, we do the latter here.</p>
+
+        <p>Let <m>u = g(x) = \cos(x)</m>, giving <m>du = -\sin(x) \ dx</m> and hence <m>\sin(x) \ dx = -du</m>. The new upper bound is <m>g(\pi/2) = 0</m>; the new lower bound is <m>g(0) = 1</m>. Note how the lower bound is actually larger than the upper bound now. We have
+          <md>
+            <mrow>\int_0^{\pi/2} \sin(x) \cos(x) \ dx \amp = \int_1^0 -u\ du \quad \text{(switch bounds and change sign) }</mrow>
+            <mrow>\amp =	\int_0^1 u\ du</mrow>
+            <mrow>\amp = \frac12u^2\Big|_0^1= 1/2.</mrow>
+          </md>
+        </p>
+
+        <p>In <xref ref="fig_subst13">Figure</xref> we have again graphed the two regions defined by our definite integrals. Unlike the previous example, they bear no resemblance to each other. However, <xref ref="thm_subst_def_int">Theorem</xref> guarantees that they have the same area.</p>
+
+    <sidebyside xml:id="fig_subst13" widths="47% 47%">
+        <caption>Graphing the areas defined by the definite integrals of <xref ref="ex_subst13">Example</xref>.</caption>
+        <figure xml:id="fig_subst13a">
+          <caption/>
+          <!-- START figures/fig_subst13a.tex -->
+          <image xml:id="img_subst13a" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[axis on top,
+                           xtick=\empty,
+                           extra x ticks={1.57},
+                           extra x tick labels={$\frac{\pi}{2}$},
+                           ymin=-.6,ymax=1.1,
+                           xmin=-.5,xmax=2]
+
+              \addplot+[smooth,thick,domain=-.5:2] {cos(deg(x))*sin(deg(x)} node[pos=0.5, above right]{\scriptsize $y=\sin(x) \cos(x)$};
+              \addplot [{\coloronefill},thick,fill={\coloronefill},domain=0:1.57] {cos(deg(x))*sin(deg(x)}\closedcycle;
+              \end{axis}
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+        </figure>
+          <!-- figures/fig_subst13a.tex END -->
+         
+         <figure xml:id="fig_subst13b">
+          <!-- START figures/fig_subst13b.tex -->
+          <image xml:id="img_subst13b" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[axis on top,			
+                           xtick={1},
+                           extra x ticks={1.57},
+                           extra x tick labels={$\frac{\pi}{2}$},ymin=-.6,ymax=1.1,
+                           xmin=-.5,xmax=2,
+                           xlabel={$u$},]
+              \addplot+[smooth,thick,domain=-.5:1.1]{x} node[pos=0.9, right]{\scriptsize $y=u$};
+              \addplot [{\coloronefill},thick,fill={\coloronefill},domain=0:1] {x} \closedcycle;
+              \end{axis}
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_subst13b.tex END -->
+        </figure>
+      </sidebyside>
+      </solution>
+    </example>
+
+    <p>Integration by substitution is a powerful and useful integration technique. The next section introduces another technique, called Integration by Parts. As substitution <q>undoes</q> the Chain Rule, integration by parts <q>undoes</q> the Product Rule. Together, these two techniques provide a strong foundation on which most other integration techniques are based.</p>
+  </subsection>
+
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Substitution <q>undoes</q> what derivative rule?</p>
+          </statement>
+          <solution>
+            <p>Chain Rule.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>T/F: One can use algebra to rewrite the integrand of an integral to make it easier to evaluate.</p>
+          </statement>
+          <solution>
+            <p>T</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, evaluate the indefinite integral to develop an understanding of Substitution.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int 3 x^2 \left(x^3-5\right)^7 dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac18(x^3-5)^8+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int (2 x-5) \left(x^2-5 x+7\right)^3 dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac14(x^2-5x+7)^4+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int x \left(x^2+1\right)^8 dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{1}{18} \left(x^2+1\right)^9+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int (12 x+14) \left(3 x^2+7 x-1\right)^5 dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac13(3 x^2+7 x-1)^6+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{1}{2 x+7} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{1}{2} \ln\abs{2 x+7}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{1}{\sqrt{2 x+3}} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\sqrt{2 x+3}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{x}{\sqrt{x+3}} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac23(x+3)^{3/2}-6(x+3)^{1/2}+C = \frac{2}{3} (x-6) \sqrt{x+3}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{x^3-x}{\sqrt{x}} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{2}{21} x^{3/2} \left(3 x^2-7\right)+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{e^{\sqrt{x}}}{\sqrt{x}} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>2 e^{\sqrt{x}}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{x^4}{\sqrt{x^5+1}} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{2 \sqrt{x^5+1}}{5}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{\frac{1}{x}+1}{x^2} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>-\frac{1}{2 x^2}-\frac{1}{x}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{\ln(x)}{x} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{\ln^2(x)}{2}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, use Substitution to evaluate the indefinite integral involving trigonometric functions.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \sin^2(x) \cos(x) dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{\sin^3(x)}{3}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \cos(3-6 x) dx</m></p>
+          </statement>
+          <solution>
+            <p><m>-\frac16\sin(3-6x)+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \sec^2(4-x) dx</m></p>
+          </statement>
+          <solution>
+            <p><m>-\tan(4-x)+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \sec(2 x) dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{1}{2} \ln\abs{\sec(2x)+\tan(2x)}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \tan^2(x) \sec^2(x) dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{\tan^3(x)}{3}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int x \cos\left(x^2\right) dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{\sin\left(x^2\right)}{2}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \tan^2(x) dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\tan(x)-x+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \cot(x) \ dx</m>. Do not just refer to <xref ref="thm_triganti">Theorem</xref> for the answer; justify it through Substitution.</p>
+          </statement>
+          <solution>
+            <p>The key is to rewrite <m>\cot(x)</m> as <m>\cos(x) /\sin(x)</m>, and let <m>u=\sin(x)</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \csc(x) \ dx</m>. Do not just refer to <xref ref="thm_triganti">Theorem</xref> for the answer; justify it through Substitution.</p>
+          </statement>
+          <solution>
+            <p>The key is to multiply <m>\csc(x)</m> by 1 in the form <m>(\csc(x) +\cot(x) )/(\csc(x) +\cot(x) )</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, use Substitution to evaluate the indefinite integral involving exponential functions.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int e^{3 x-1} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{1}{3} e^{3 x-1}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int e^{x^3} x^2 dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{e^{x^3}}{3}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int e^{x^2-2 x+1} (x-1) dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{1}{2} e^{(x-1)^2}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{e^x+1}{e^x} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>x-e^{-x}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{e^x-e^{-x}}{e^{2x}} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{e^{-3 x}}{3}-e^{-x}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int 3^{3 x} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{27^x}{\ln(27) }+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int 4^{2 x} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{16^x}{\ln(16)}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, use Substitution to evaluate the indefinite integral involving logarithmic functions.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{\ln(x) }{x} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac12\ln^2(x)+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{\big(\ln(x) \big)^2}{x} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{\big(\ln(x) \big)^3}{3}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{\ln\left(x^3\right)}{x} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{1}{6} \ln^2\left(x^3\right)+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{1}{x \ln\left(x^2\right)} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{1}{2} \ln\left(\ln\left(x^2\right)\right)+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, use Substitution to evaluate the indefinite integral involving rational functions.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{x^2+3 x+1}{x} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{x^2}{2}+3 x+\ln\abs{x}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{x^3+x^2+x+1}{x} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{x^3}{3}+\frac{x^2}{2}+x+\ln\abs{x}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{x^3-1}{x+1} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{x^3}{3}-\frac{x^2}{2}+x-2 \ln\abs{x+1}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{x^2+2 x-5}{x-3} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{1}{2} \left(x^2+10 x+20 \ln\abs{x-3}\right)+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{3 x^2-5 x+7}{x+1} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{3}{2}x^2-8x+15 \ln\abs{x+1}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{x^2+2 x+1}{x^3+3 x^2+3 x} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{1}{3} \ln\abs{x^2+3 x+3}+\frac{\ln\abs{x}}{3}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, use Substitution to evaluate the indefinite integral involving inverse trigonometric functions.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{7}{x^2+7} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\sqrt{7} \tan^{-1}\left(\frac{x}{\sqrt{7}}\right)+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{3}{\sqrt{9-x^2}} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>3 \sin^{-1}\left(\frac{x}{3}\right)+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{14}{\sqrt{5-x^2}} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>14 \sin^{-1}\left(\frac{x}{\sqrt{5}}\right)+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{2}{x \sqrt{x^2-9}} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac23\sec^{-1}(\abs{x}/3)+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{5}{\sqrt{x^4-16 x^2}} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac54\sec^{-1}(\abs{x}/4)+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{x}{\sqrt{1-x^4}} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{1}{2} \sin^{-1}\left(x^2\right)+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{1}{x^2-2 x+8} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{\tan^{-1}\left(\frac{x-1}{\sqrt{7}}\right)}{\sqrt{7}}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{2}{\sqrt{-x^2+6 x+7}} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>2 \sin^{-1}\left(\frac{x-3}{4}\right)+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{3}{\sqrt{-x^2+8 x+9}} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>3 \sin^{-1}\left(\frac{x-4}{5}\right)+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{5}{x^2+6 x+34} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\tan^{-1}\left(\frac{x+3}{5}\right)+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, evaluate the indefinite integral.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{x^2}{\left(x^3+3\right)^2} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>-\frac{1}{3 \left(x^3+3\right)}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \left(3 x^2+2 x\right) \left(5 x^3+5 x^2+2\right)^8 dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{1}{45}(5x^3+5x^2+2)^9+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{x}{\sqrt{1-x^2}} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>-\sqrt{1-x^2}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int x^2 \csc^2\left(x^3+1\right) dx</m></p>
+          </statement>
+          <solution>
+            <p><m>-\frac{1}{3} \cot\left(x^3+1\right)+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \sin(x) \sqrt{\cos(x)} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>-\frac{2}{3} \cos^{\frac{3}{2}}(x)+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{1}{x-5} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\ln\abs{x-5}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{7}{3 x+2} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{7}{3} \ln\abs{3 x+2}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{3 x^3+4 x^2+2 x-22}{x^2+3 x+5} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{3 x^2}{2}+\ln\abs{x^2+3 x+5}-5 x+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{2 x+7}{x^2+7 x+3} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\ln\abs{x^2+7 x+3}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{9 (2 x+3)}{3 x^2+9 x+7} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>3 \ln\abs{3 x^2+9 x+7}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{-x^3+14 x^2-46 x-7}{x^2-7 x+1} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>-\frac{x^2}{2}+2 \ln\abs{x^2-7 x+1}+7 x+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{x}{x^4+81} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{1}{18} \tan^{-1}\left(\frac{x^2}{9}\right)+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{2}{4 x^2+1} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\tan^{-1}(2 x)+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{1}{x \sqrt{4 x^2-1}} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\sec^{-1}(\abs{2x})+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{1}{\sqrt{16-9 x^2}} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{1}{3} \sin^{-1}\left(\frac{3 x}{4}\right)+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{3 x-2}{x^2-2 x+10} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{3}{2} \ln\abs{x^2-2 x+10}+\frac{1}{3} \tan^{-1}\left(\frac{x-1}{3}\right)+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{7-2 x}{x^2+12 x+61} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{19}{5} \tan^{-1}\left(\frac{x+6}{5}\right)-\ln\abs{x^2+12 x+61}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{x^2+5 x-2}{x^2-10 x+32} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{15}{2} \ln\abs{x^2-10 x+32}+x+\frac{41 \tan^{-1}\left(\frac{x-5}{\sqrt{7}}\right)}{\sqrt{7}}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{x^3}{x^2+9} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{x^2}{2}-\frac{9}{2} \ln\abs{x^2+9}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{x^3-x}{x^2+4 x+9} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{x^2}{2}+3 \ln\abs{x^2+4 x+9}-4 x+\frac{24 \tan^{-1}\left(\frac{x+2}{\sqrt{5}}\right)}{\sqrt{5}}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{\sin(x)}{\cos^2(x)+1} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>-\tan^{-1}(\cos(x))+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{\cos(x)}{\sin^2(x)+1} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\tan^{-1}(\sin(x))+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{\cos(x)}{1-\sin^2(x)} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\ln\abs{\sec(x) +\tan(x) }+C</m> (integrand simplifies to <m>\sec(x)</m>)</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{3 x-3}{\sqrt{x^2-2 x-6}} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>3 \sqrt{x^2-2 x-6}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{x-3}{\sqrt{x^2-6 x+8}} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\sqrt{x^2-6 x+8}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, evaluate the definite integral.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_1^3 \frac{1}{x-5} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>-\ln(2)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_2^6 x\sqrt{x-2} dx</m></p>
+          </statement>
+          <solution>
+            <p><m>352/15</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{-\pi/2}^{\pi/2} \sin^2(x) \cos(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>2/3</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{0}^{1} 2x(1-x^2)^4\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>1/5</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{-2}^{-1} (x+1)e^{x^2+2x+1}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>(1-e)/2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{-1}^{1} \frac{1}{1+x^2}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\pi/2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{2}^{4} \frac{1}{x^2-6x+10}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\pi/2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{1}^{\sqrt{3}} \frac{1}{\sqrt{4-x^2}}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\pi/6</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

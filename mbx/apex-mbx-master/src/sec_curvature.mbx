@@ -1,0 +1,1679 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_curvature">
+  <title>The Arc Length Parameter and Curvature</title>
+  <introduction>
+    <p>In normal conversation we describe position in terms of both <em>time</em> and <em>distance</em>. For instance, imagine driving to visit a friend. If she calls and asks where you are, you might answer <q>I am 20 minutes from your house,</q> or you might say <q>I am 10 miles from your house.</q> Both answers provide your friend with a general idea of where you are.</p>
+
+    <p>Currently, our vector<ndash />valued functions have defined points with a parameter <m>t</m>, which we often take to represent time. Consider <xref ref="fig_vvfarc_intro1">Figure</xref>(a), where <m>\vrt = \la t^2-t,t^2+t\ra</m> is graphed and the points corresponding to <m>t=0,\ 1</m> and <m>2</m> are shown. Note how the arc length between <m>t=0</m> and <m>t=1</m> is smaller than the arc length between <m>t=1</m> and <m>t=2</m>; if the parameter <m>t</m> is time and <m>\vec r</m> is position, we can say that the particle traveled faster on <m>[1,2]</m> than on <m>[0,1]</m>.</p>
+
+    <figure xml:id="fig_vvfarc_intro1" >
+    <caption>Introducing the arc length parameter.</caption>
+    <sidebyside>
+      <figure>
+        <caption>(a)</caption>
+        <!-- START figures/fig_vvfarc_intro1.tex -->
+        <image xml:id="img_vvfarc_intro1" >
+          <description></description>
+          <latex-image-code>
+            <![CDATA[
+            \begin{tikzpicture}[>=stealth]
+            \begin{axis}[%
+            %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-6,-4,-2,2,4,6},
+			%minor x tick num=4,%
+            %			extra x ticks={.33},
+            %			extra x tick labels={$1/3$},
+			%ytick={-1,1},
+			%minor y tick num=4,%extra y ticks={-5,-3,...,7},%
+			ymin=-1.1,ymax=6.5,%
+			xmin=-2.1,xmax=7%
+            ]
+
+
+            \addplot [thick,{\colorone}, smooth,domain=-2:2.1,samples=30] ({x^2-x},{x^2+x});
+
+            \filldraw [{\colortwo}](axis cs: 0,0) circle (1.5pt) node [black,above right] {\scriptsize $t=0$};
+            \filldraw [{\colortwo}](axis cs: 0,2) circle (1.5pt) node [black, right] {\scriptsize $t=1$};
+            \filldraw [{\colortwo}](axis cs: 2,6) circle (1.5pt) node [black, right] {\scriptsize $t=2$};
+
+            %\filldraw [{\colortwo}](axis cs: -.24,.94) circle (1.5pt) node [black, right] {\scriptsize $s=1$};
+            %\filldraw [{\colortwo}](axis cs: -.03,1.91) circle (1.5pt) node [black, right] {\scriptsize $s=2$};
+            %\filldraw [{\colortwo}](axis cs: .33,2.84) circle (1.5pt) node [black, right] {\scriptsize $s=3$};
+
+            \draw [thick,->,{\colorone}] (axis cs:3.79,.77)--(axis cs:3.75,.75) node [above ,black] {\scriptsize $\vec r(t)$};
+            \end{axis}
+
+
+
+
+            \end{tikzpicture}
+            ]]>
+          </latex-image-code>
+        </image>
+        <!-- figures/fig_vvfarc_intro1.tex END -->
+      </figure>
+
+      <figure>
+        <caption>(b)</caption>
+        <!-- START figures/fig_vvfarc_intro1b.tex -->
+        <image xml:id="img_vvfarc_intro1b" >
+          <description></description>
+          <latex-image-code>
+            <![CDATA[
+            \begin{tikzpicture}[>=stealth]
+            \begin{axis}[%
+            %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-6,-4,-2,2,4,6},
+			%minor x tick num=4,%
+            %			extra x ticks={.33},
+            %			extra x tick labels={$1/3$},
+			%ytick={-1,1},
+			%minor y tick num=4,%extra y ticks={-5,-3,...,7},%
+			ymin=-1.1,ymax=6.5,%
+			xmin=-2.1,xmax=7%
+            ]
+
+
+            \addplot [thick,{\colorone}, smooth,domain=-2:2.1,samples=30] ({x^2-x},{x^2+x});
+
+            \filldraw [{\colortwo}](axis cs: 0,0) circle (1.5pt) node [black,above right] {\scriptsize $s=0$};
+            %\filldraw [{\colortwo}](axis cs: 0,2) circle (1.5pt) node [black, right] {\scriptsize $t=1$};
+            %\filldraw [{\colortwo}](axis cs: 2,6) circle (1.5pt) node [black, right] {\scriptsize $t=2$};
+
+            \filldraw [{\colortwo}](axis cs: -.24,.94) circle (1.5pt) node [black, right] {\scriptsize $s=1$};
+            \filldraw [{\colortwo}](axis cs: -.03,1.91) circle (1.5pt) node [black, right] {\scriptsize $s=2$};
+            \filldraw [{\colortwo}](axis cs: .33,2.84) circle (1.5pt) node [black, right] {\scriptsize $s=3$};
+            \filldraw [{\colortwo}](axis cs: .75,3.75) circle (1.5pt) node [black, right] {\scriptsize $s=4$};
+            \filldraw [{\colortwo}](axis cs: 1.21,4.63) circle (1.5pt) node [black, right] {\scriptsize $s=5$};
+            \filldraw [{\colortwo}](axis cs: 1.71, 5.51) circle (1.5pt) node [black, right] {\scriptsize $s=6$};
+
+
+            \draw [thick,->,{\colorone}] (axis cs:3.79,.77)--(axis cs:3.75,.75)node [above ,black] {\scriptsize $\vec r(s)$};
+
+            \end{axis}
+
+
+
+
+            \end{tikzpicture}
+            ]]>
+          </latex-image-code>
+        </image>
+        <!-- figures/fig_vvfarc_intro1b.tex END -->
+      </figure>
+    </sidebyside>
+
+    </figure>
+
+    <p>Now consider <xref ref="fig_vvfarc_intro1">Figure</xref>(b), where the same graph is parametrized by a different variable <m>s</m>. Points corresponding to <m>s=0</m> through <m>s=6</m> are plotted. The arc length of the graph between each adjacent pair of points is 1. We can view this parameter <m>s</m> as distance; that is, the arc length of the graph from <m>s=0</m> to <m>s=3</m> is 3, the arc length from <m>s=2</m> to <m>s=6</m> is 4, etc. If one wants to find the point 2.5 units from an initial location (i.e., <m>s=0</m>), one would compute <m>\vec r(2.5)</m>. This parameter <m>s</m> is very useful, and is called the <em>arc length parameter</em>.<index><main>arc length parameter</main></index><index><main>arc length</main></index></p>
+
+    <p>How do we find the arc length parameter?</p>
+
+    <p>Start with any parametrization of <m>\vec r</m>. We can compute the arc length of the graph of <m>\vec r</m> on the interval <m>[0,t]</m> with
+      <me>
+        \text{ arc length }  = \int_0^t\norm{\vec r\,'(u)}\ du.
+      </me>
+    </p>
+
+    <p>We can turn this into a function: as <m>t</m> varies, we find the arc length <m>s</m> from <m>0</m> to <m>t</m>. This function is
+      <men xml:id="eq_vvfarc" >
+        s(t) = \int_0^t \norm{\vec r\,'(u)}\ du.
+      </men>
+    </p>
+
+    <p>This establishes a relationship between <m>s</m> and <m>t</m>. Knowing this relationship explicitly, we can rewrite <m>\vec r(t)</m> as a function of <m>s</m>: <m>\vec r(s)</m>. We demonstrate this in an example.</p>
+
+    <example xml:id="ex_vvfarc1">
+      <title>Finding the arc length parameter</title>
+      <statement>
+        <p>Let <m>\vec r(t) = \la 3t-1,4t+2\ra</m>. Parametrize <m>\vec r</m> with the arc length parameter <m>s</m>.</p>
+      </statement>
+      <solution>
+        <p>Using Equation <xref ref="eq_vvfarc" />, we write
+          <me>
+            s(t) = \int_0^t \norm{\vec r\,'(u)}\ du.
+          </me>
+        </p>
+
+        <p>We can integrate this, explicitly finding a relationship between <m>s</m> and <m>t</m>:
+          <md>
+            <mrow>s(t) \amp = \int_0^t \norm{\vec r\,'(u)}\ du</mrow>
+            <mrow>\amp = \int_0^t \sqrt{3^2+4^2}\ du</mrow>
+            <mrow>\amp = \int_0^t 5\ du</mrow>
+            <mrow>\amp = 5t.</mrow>
+          </md>
+        </p>
+
+        <p>Since <m>s=5t</m>, we can write <m>t=s/5</m> and replace <m>t</m> in <m>\vec r(t)</m> with <m>s/5</m>:
+          <me>
+            \vec r(s) = \la 3(s/5)-1, 4(s/5)+2\ra = \la \frac35s-1,\frac45s+2\ra.
+          </me>
+        </p>
+
+        <p>Clearly, as shown in <xref ref="fig_vvfarc1">Figure</xref>, the graph of <m>\vec r</m> is a line, where <m>t=0</m> corresponds to the point <m>(-1,2)</m>. What point on the line is 2 units away from this initial point? We find it with <m>s(2) = \la 1/5, 18/5\ra</m>.</p>
+
+        <figure xml:id="fig_vvfarc1" >
+          <caption>Graphing <m>\vec r</m> in <xref ref="ex_vvfarc1">Example</xref> with parameters <m>t</m> and <m>s</m>.</caption>
+          <!-- START figures/fig_vvfarc1.tex -->
+          <image xml:id="img_vvfarc1" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}[>=stealth]
+              \begin{axis}[%
+              %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={1,2,-1,-2},
+			%minor x tick num=4,%
+              %			extra x ticks={.33},
+              %			extra x tick labels={$1/3$},
+			%ytick={-3,-2,-1,1,2,3},
+			%minor y tick num=4,%extra y ticks={-5,-3,...,7},%
+			ymin=-1.1,ymax=6.5,%
+			xmin=-2.1,xmax=2.9%
+              ]
+
+              %\draw (axis cs:4,-1) node (A) {}
+			%(axis cs:4,3) node (B) {} ;
+              %\draw [->,>=latex] (A) parabola bend (axis cs:0,1) (B);
+              \addplot [thick,{\colorone}, smooth,domain=-2.5:2.5] ({3*x-1},{4*x+2});
+
+              \filldraw (axis cs:-1,2) circle (1.5pt) node [left] {\scriptsize $t=0$}
+					(axis cs:2,6) circle (1.5pt) node [left] {\scriptsize $t=1$}
+					%(axis cs: 5,10) circle (1.5pt) node [right] {\scriptsize $t=2$}
+					%(axis cs: -4,-2) circle (1.5pt) node [right] {\scriptsize $t=-1$}
+					%(axis cs: -7,-6) circle (1.5pt) node [right] {\scriptsize $t=-2$}
+					(axis cs: -.4,2.8) circle (1.5pt) node [right,{\colortwo}] {\scriptsize $s=1$}
+					(axis cs: .2,3.6) circle (1.5pt) node [right,{\colortwo}] {\scriptsize $s=2$}
+					(axis cs: .8,4.4) circle (1.5pt) node [right,{\colortwo}] {\scriptsize $s=3$}
+					(axis cs: 1.4,5.2) circle (1.5pt) node [right,{\colortwo}] {\scriptsize $s=4$}
+					(axis cs: 2,6) circle (1.5pt) node [right,{\colortwo}] {\scriptsize $s=5$};
+					
+
+              \draw (axis cs:-1,2) node [{\colortwo},shift={(10pt,-5pt)}]  {\scriptsize $s=0$};
+
+              %\filldraw
+
+
+              \end{axis}
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_vvfarc1.tex END -->
+        </figure>
+
+        <p>Is the point <m>(1/5,18/5)</m> really 2 units away from <m>(-1,2)</m>? We use the Distance Formula to check:
+          <me>
+            d = \sqrt{\left(\frac15-(-1)\right)^2+ \left(\frac{18}5-2\right)^2} = \sqrt{\frac{36}{25}+\frac{64}{25}} = \sqrt{4}=2.
+          </me>
+        </p>
+
+        <p>Yes, <m>s(2)</m> is indeed 2 units away, in the direction of travel, from the initial point.</p>
+      </solution>
+    </example>
+
+    <p>Things worked out very nicely in <xref ref="ex_vvfarc1">Example</xref>; we were able to establish directly that <m>s=5t</m>. Usually, the arc length parameter is much more difficult to describe in terms of <m>t</m>, a result of integrating a square<ndash />root. There are a number of things that we can learn about the arc length parameter from Equation <xref ref="eq_vvfarc" />, though, that are incredibly useful.</p>
+
+    <p>First,
+      take the derivative of <m>s</m> with respect to <m>t</m>. The Fundamental Theorem of Calculus (see <xref ref="thm_FTC1">Theorem</xref>) states that
+      <men xml:id="eq_vvfarc3" >
+        \frac{ds}{dt}=s\,'(t) = \norm{\vrp(t)}.
+      </men>
+    </p>
+
+    <p>Letting <m>t</m> represent time and <m>\vec r(t)</m> represent position, we see that the rate of change of <m>s</m> with respect to <m>t</m> is speed; that is, the rate of change of <q>distance traveled</q> is speed, which should match our intuition.</p>
+
+    <p>The Chain Rule states that
+      <md>
+        <mrow>\frac{d\vec r}{dt} \amp = \frac{d\vec r}{ds}\cdot\frac{ds}{dt}</mrow>
+        <mrow>\vrp(t) \amp = \vrp(s)\cdot \norm{\vrp(t)}.</mrow>
+      </md>
+    </p>
+
+    <p>Solving for <m>\vrp(s)</m>, we have
+      <men xml:id="eq_vvfarc2" >
+        \vrp(s) = \frac{\vrp(t)}{\norm{\vrp(t)}} = \vec T(t),
+      </men>
+      where <m>\vec T(t)</m> is the unit tangent vector. <xref ref="eq_vvfarc2">Equation</xref> is often misinterpreted, as one is tempted to think it states <m>\vrp(t) = \vec T(t)</m>, but there is a big difference between <m>\vrp(s)</m> and <m>\vrp(t)</m>. The key to take from it is that <m>\vrp(s)</m> is a unit vector. In fact, the following theorem states that this characterizes the arc length parameter.</p>
+
+    <theorem xml:id="thm_arclengthparam">
+      <title>Arc Length Parameter</title>
+      <statement>
+        <p>Let <m>\vec r(s)</m> be a vector<ndash />valued function. The parameter <m>s</m> is the arc length parameter if, and only if, <m>\norm{\vrp(s)} = 1</m>.<index><main>arc length parameter</main></index></p>
+      </statement>
+    </theorem>
+  </introduction>
+
+  <subsection>
+    <title>Curvature</title>
+    <p>Consider points <m>A</m> and <m>B</m> on the curve graphed in <xref ref="fig_curvatureintro">Figure</xref>(a). One can readily argue that the curve curves more sharply at <m>A</m> than at <m>B</m>. It is useful to use a number to describe how sharply the curve bends; that number is the <em>curvature</em> of the curve.</p>
+
+    <figure xml:id="fig_curvatureintro" >
+    <caption>Establishing the concept of curvature.</caption>
+    <sidebyside>
+      <figure>
+        <caption>(a)</caption>
+        <!-- START figures/fig_curvature_intro.tex -->
+        <image xml:id="img_curvature_intro" >
+          <description></description>
+          <latex-image-code>
+            <![CDATA[
+            \begin{tikzpicture}[>=stealth]
+            \begin{axis}[%
+            %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={1,2,-1,-2},
+			%minor x tick num=4,%
+            %			extra x ticks={.33},
+            %			extra x tick labels={$1/3$},
+			%ytick={-3,-2,-1,1,2,3},
+			%minor y tick num=4,%extra y ticks={-5,-3,...,7},%
+			ymin=-.1,ymax=2.9,%
+			xmin=-.1,xmax=3.5%
+            ]
+
+            %\draw (axis cs:4,-1) node (A) {}
+			%(axis cs:4,3) node (B) {} ;
+            %\draw [->,>=latex] (A) parabola bend (axis cs:0,1) (B);
+            \addplot [thick,{\colorone}, smooth,domain=-1:1.5] ({x^2-x+1},{x^3+1});
+
+
+					%(axis cs: 1.2684, 0.989352) circle (1.5pt);
+					
+
+            %\draw[->,{\colortwo},thick] (axis cs:0.8461, 1.53144)  -- (axis cs:1.14654, 2.48524);
+            %\draw[->,{\colortwo},thick] (axis cs:1.2684, 0.989352)  -- (axis cs:0.273445, 1.08968);
+            %\draw[->,{\colortwo},thick] (axis cs:2.20203, 0.649597)  -- (axis cs:1.35163, 1.17574);
+
+            \draw[->,{\colorone},thick] (axis cs:2.44, 0.488) -- (axis cs: 2.4141, 0.506961);
+
+            \filldraw (axis cs:.77,1.04) circle (1.5pt) node [below] {\scriptsize $A$}
+					%(axis cs:0.8461, 1.53144) circle (1.5pt)
+					%(axis cs: 1.2684, 0.989352) circle (1.5pt)
+					(axis cs: 1.75, 0.875) circle (1.5pt) node [below] {\scriptsize $B$};
+					%(axis cs: 2.20203, 0.649597) circle (1.5pt);
+
+            \end{axis}
+
+
+
+            \end{tikzpicture}
+            ]]>
+          </latex-image-code>
+        </image>
+        <!-- figures/fig_curvature_intro.tex END -->
+      </figure>
+
+      <figure>
+        <caption>(b)</caption>
+        <!-- START figures/fig_curvature_introb.tex -->
+        <image xml:id="img_curvature_introb" >
+          <description></description>
+          <latex-image-code>
+            <![CDATA[
+            \begin{tikzpicture}[>=stealth]
+            \begin{axis}[%
+            %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={1,2,-1,-2},
+			%minor x tick num=4,%
+            %			extra x ticks={.33},
+            %			extra x tick labels={$1/3$},
+			%ytick={-3,-2,-1,1,2,3},
+			%minor y tick num=4,%extra y ticks={-5,-3,...,7},%
+			ymin=-.1,ymax=2.9,%
+			xmin=-.1,xmax=3.5%
+            ]
+
+            %\draw (axis cs:4,-1) node (A) {}
+			%(axis cs:4,3) node (B) {} ;
+            %\draw [->,>=latex] (A) parabola bend (axis cs:0,1) (B);
+            \addplot [thick,{\colorone}, smooth,domain=-1:1.5] ({x^2-x+1},{x^3+1});
+
+
+					%(axis cs: 1.2684, 0.989352) circle (1.5pt);
+					
+
+            \draw[->,{\colortwo},thick] (axis cs:0.8461, 1.53144)  -- (axis cs:1.14654, 2.48524);
+            \draw[->,{\colortwo},thick] (axis cs:1.2684, 0.989352)  -- (axis cs:0.273445, 1.08968);
+            \draw[->,{\colortwo},thick] (axis cs:2.20203, 0.649597)  -- (axis cs:1.35163, 1.17574);
+
+            \draw[->,{\colorone},thick] (axis cs:2.44, 0.488) -- (axis cs: 2.4141, 0.506961);
+
+            \filldraw (axis cs:.77,1.04) circle (1.5pt) node [below] {\scriptsize $A$}
+					(axis cs:0.8461, 1.53144) circle (1.5pt)
+					(axis cs: 1.2684, 0.989352) circle (1.5pt)
+					(axis cs: 1.75, 0.875) circle (1.5pt) node [below] {\scriptsize $B$}
+					(axis cs: 2.20203, 0.649597) circle (1.5pt);
+
+            \end{axis}
+
+
+
+            \end{tikzpicture}
+            ]]>
+          </latex-image-code>
+        </image>
+        <!-- figures/fig_curvature_introb.tex END -->
+      </figure>
+    </sidebyside>
+
+    </figure>
+
+    <p>We derive this number in the following way. Consider <xref ref="fig_curvatureintro">Figure</xref>(b), where unit tangent vectors are graphed around points <m>A</m> and <m>B</m>. Notice how the direction of the unit tangent vector changes quite a bit near <m>A</m>, whereas it does not change as much around <m>B</m>. This leads to an important concept: measuring the rate of change of the unit tangent vector with respect to arc length gives us a measurement of curvature.</p>
+
+    <definition xml:id="def_curvature">
+      <title>Curvature</title>
+      <statement>
+        <p>Let <m>\vec r(s)</m> be a vector<ndash />valued function where <m>s</m> is the arc length parameter. The curvature <m>\kappa</m> of the graph of <m>\vec r(s)</m> is
+          <index><main>curvature</main></index><index><main>unit tangent vector</main><sub>and curvature</sub></index>
+          <me>
+            \kappa = \snorm{\frac{d\vec T}{ds}} = \snorm{\vec T\,'(s)}.
+          </me>
+        </p>
+      </statement>
+    </definition>
+
+    <p>If <m>\vec r(s)</m> is parametrized by the arc length parameter, then
+      <me>
+        \vec T(s) = \frac{\vrp(s)}{\norm{\vrp(s)}}  \text{ and }  \vec N(s) = \frac{\vec T\,'(s)}{\norm{\vec T\,'(s)}}.
+      </me>
+    </p>
+
+    <p>Having defined <m>\norm{\vec T\,'(s)} =\kappa</m>, we can rewrite the second equation as
+      <men xml:id="eq_curvature" >
+        \vec T\,'(s) = \kappa\vec N(s).
+      </men>
+    </p>
+
+    <p>We already knew that <m>\vec T\,'(s)</m> is in the same direction as <m>\vec N(s)</m>; that is, we can think of <m>\vec T(s)</m> as being <q>pulled</q> in the direction of <m>\vec N(s)</m>. How <q>hard</q> is it being pulled? By a factor of <m>\kappa</m>. When the curvature is large, <m>\vec T(s)</m> is being <q>pulled hard</q> and the direction of <m>\vec T(s)</m> changes rapidly. When <m>\kappa</m> is small, <m>T(s)</m> is not being pulled hard and hence its direction is not changing rapidly.</p>
+
+    <p>We use <xref ref="def_curvature">Definition</xref> to find the curvature of the line in <xref ref="ex_vvfarc1">Example</xref>.</p>
+
+    <example xml:id="ex_curvature1">
+      <title>Finding the curvature of a line</title>
+      <statement>
+        <p>Use <xref ref="def_curvature">Definition</xref> to find the curvature of <m>\vrt = \la 3t-1,4t+2\ra</m>.</p>
+      </statement>
+      <solution>
+        <p>In <xref ref="ex_vvfarc1">Example</xref>, we found that the arc length parameter was defined by <m>s=5t</m>, so <m>\vec r(s) =\la 3t/5-1, 4t/5+2\ra</m> parametrized <m>\vec r</m> with the arc length parameter. To find <m>\kappa</m>, we need to find <m>\vec T\,'(s)</m>.
+          <md>
+            <mrow>\vec T(s) \amp = \vrp(s) \text{ (recall this is a unit vector) }</mrow>
+            <mrow>\amp = \la 3/5, 4/5\ra.</mrow>
+            <intertext>Therefore</intertext>
+            <mrow>\vec T\,'(s) \amp = \la 0,0\ra</mrow>
+            <intertext>and</intertext>
+            <mrow>\kappa\amp =\snorm{\vec T\,'(s)} = 0.</mrow>
+          </md>
+        </p>
+
+        <p>It probably comes as no surprise that the curvature of a line is 0. (How <q>curvy</q> is a line? It is not curvy at all.)</p>
+      </solution>
+    </example>
+
+    <p>While the definition of curvature is a beautiful mathematical concept, it is nearly impossible to use most of the time; writing <m>\vec r</m> in terms of the arc length parameter is generally very hard. Fortunately, there are other methods of calculating this value that are much easier. There is a tradeoff: the definition is <q>easy</q> to understand though hard to compute, whereas these other formulas are easy to compute though it may be hard to understand why they work.</p>
+
+    <theorem xml:id="thm_curvature_formulas">
+      <title>Formulas for Curvature</title>
+      <statement>
+        <p>Let <m>C</m> be a smooth curve on an open interval <m>I</m> in the plane or in space.
+          <index><main>curvature</main><sub>equations for</sub></index></p>
+
+        <ol>
+          <li><p>If <m>C</m> is defined by <m>y=f(x)</m>, then
+              <me>
+                \kappa = \frac{\abs{\fp'(x)}}{\Big(1+\big(\fp(x)\big)^2\Big)^{3/2}}.
+              </me>
+            </p></li>
+
+          <li><p>If <m>C</m> is defined as a vector<ndash />valued function in the plane, <m>\vec r(t) = \la x(t), y(t)\ra</m>, then
+              <me>
+                \kappa = \frac{\abs{x'y''-x''y'}}{\big((x')^2+(y')^2\big)^{3/2}}.
+              </me>
+            </p></li>
+
+          <li><p>If <m>C</m> is defined in space by a vector<ndash />valued function <m>\vec r(t)</m>, then
+              <me>
+                \kappa = \frac{\norm{\vec T\,'(t)}}{\norm{\vrp(t)}} = \frac{\norm{\vrp(t)\times\vrp'(t)}}{\norm{\vrp(t)}^3} = \frac{\vec a(t)\cdot \vec N(t)}{\norm{\vec v(t)}^2}.
+              </me>
+            </p></li>
+        </ol>
+      </statement>
+    </theorem>
+
+    <p>We practice using these formulas.</p>
+
+    <example xml:id="ex_curvature2">
+      <title>Finding the curvature of a circle</title>
+      <statement>
+        <p>Find the curvature of a circle with radius <m>r</m>, defined by <m>\vec c(t) = \la r\cos(t) ,r\sin(t) \ra</m>.
+          <index><main>curvature</main><sub>of circle</sub></index></p>
+      </statement>
+      <solution>
+        <p>Before we start, we should expect the curvature of a circle to be constant, and not dependent on <m>t</m>. (Why?)</p>
+
+        <p>We compute <m>\kappa</m> using the second part of <xref ref="thm_curvature_formulas">Theorem</xref>.
+          <md>
+            <mrow>\kappa \amp = \frac{\abs{(-r\sin(t) )(-r\sin(t) ) - (-r\cos(t) )(r\cos(t) )}}{\big( (-r\sin(t) )^2+(r\cos(t) )^2\big)^{3/2}}</mrow>
+            <mrow>\amp = \frac{r^2(\sin^2(t) +\cos^2(t) )}{\big(r^2(\sin^2(t) +\cos^2(t) )\big)^{3/2}}</mrow>
+            <mrow>\amp = \frac{r^2}{r^3} = \frac1r.</mrow>
+          </md>
+        </p>
+
+        <p>We have found that a circle with radius <m>r</m> has curvature <m>\kappa = 1/r</m>.</p>
+      </solution>
+    </example>
+
+    <p><xref ref="ex_curvature2">Example</xref> gives a great result. Before this example, if we were told <q>The curve has a curvature of 5 at point <m>A</m>,</q> we would have no idea what this really meant. Is 5 <q>big</q> <mdash /> does is correspond to a really sharp turn, or a not-so-sharp turn? Now we can think of 5 in terms of a circle with radius 1/5. Knowing the units (inches vs.<nbsp />miles, for instance) allows us to determine how sharply the curve is curving.</p>
+
+    <p>Let a point <m>P</m> on a smooth curve <m>C</m> be given, and let <m>\kappa</m> be the curvature of the curve at <m>P</m>. A circle that:</p>
+
+    <ul>
+      <li><p>passes through <m>P</m>,</p></li>
+
+      <li><p>lies on the concave side of <m>C</m>,</p></li>
+
+      <li><p>has a common tangent line as <m>C</m> at <m>P</m> and</p></li>
+
+      <li><p>has radius <m>r=1/\kappa</m> (hence has curvature <m>\kappa</m>)</p></li>
+    </ul>
+
+    <p>is the <em>osculating circle</em>, or <em>circle of curvature</em>, to <m>C</m> at <m>P</m>, and <m>r</m> is the <em>radius of curvature</em>. <index><main>curvature</main><sub>of circle</sub></index><index><main>osculating circle</main></index><index><main>circle of curvature</main></index><index><main>radius of curvature</main></index><index><main>curvature</main><sub>radius of</sub></index><xref ref="fig_curvature_osculate">Figure</xref> shows the graph of the curve seen earlier in <xref ref="fig_curvatureintro">Figure</xref> and its osculating circles at <m>A</m> and <m>B</m>. A sharp turn corresponds to a circle with a small radius; a gradual turn corresponds to a circle with a large radius. Being able to think of curvature in terms of the radius of a circle is very useful.</p>
+
+    <figure xml:id="fig_curvature_osculate" >
+      <caption>Illustrating the osculating circles for the curve seen in <xref ref="fig_curvatureintro">Figure</xref>.</caption>
+      <!-- START figures/fig_curvature_introc.tex -->
+      <image xml:id="img_curvature_osculate" >
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}[>=stealth]
+          \begin{axis}[%
+          %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={1,2,-1,-2},
+			%minor x tick num=4,%
+          %			extra x ticks={.33},
+          %			extra x tick labels={$1/3$},
+			%ytick={-3,-2,-1,1,2,3},
+			%minor y tick num=4,%extra y ticks={-5,-3,...,7},%
+			ymin=-.1,ymax=2.9,%
+			xmin=-.1,xmax=3.5%
+          ]
+
+          %\draw (axis cs:4,-1) node (A) {}
+			%(axis cs:4,3) node (B) {} ;
+          %\draw [->,>=latex] (A) parabola bend (axis cs:0,1) (B);
+          \addplot [thick,{\colorone}, smooth,domain=-1:1.5] ({x^2-x+1},{x^3+1});
+
+          \addplot[thick,{\colortwo},smooth,domain=0:360] ({.08*cos(x)+.83},{.08*sin(x)+1.09});
+
+          \addplot[thick,{\colortwo},smooth,domain=0:360] ({2.17*cos(x)+.99},{2.17*sin(x)+-1.15});
+
+					%(axis cs: 1.2684, 0.989352) circle (1.5pt);
+					
+
+          %\draw[->,{\colortwo},thick] (axis cs:0.8461, 1.53144)  -- (axis cs:1.14654, 2.48524);
+          %\draw[->,{\colortwo},thick] (axis cs:1.2684, 0.989352)  -- (axis cs:0.273445, 1.08968);
+          %\draw[->,{\colortwo},thick] (axis cs:2.20203, 0.649597)  -- (axis cs:1.35163, 1.17574);
+
+          \draw[->,{\colorone},thick] (axis cs:2.44, 0.488) -- (axis cs: 2.4141, 0.506961);
+
+          \filldraw (axis cs:.77,1.04) circle (1.5pt) node [below] {\scriptsize $A$}
+					%(axis cs:0.8461, 1.53144) circle (1.5pt)
+					%(axis cs: 1.2684, 0.989352) circle (1.5pt)
+					(axis cs: 1.75, 0.875) circle (1.5pt) node [below] {\scriptsize $B$};
+					%(axis cs: 2.20203, 0.649597) circle (1.5pt);
+
+          \end{axis}
+
+
+
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_curvature_introc.tex END -->
+    </figure>
+
+    <p>(The word <q>osculating</q> comes from a Latin word related to kissing; an osculating circle <q>kisses</q> the graph at a particular point. Many beautiful ideas in mathematics have come from studying the osculating circles to a curve.)</p>
+
+    <example xml:id="ex_curvature3">
+      <title>Finding curvature</title>
+      <statement>
+        <p>Find the curvature of the parabola defined by <m>y=x^2</m> at the vertex and at <m>x=1</m>.</p>
+      </statement>
+      <solution>
+        <p>We use the first formula found in <xref ref="thm_curvature_formulas">Theorem</xref>.
+          <md>
+            <mrow>\kappa(x) \amp = \frac{\abs{2}}{\big(1+(2x)^2\big)^{3/2}}</mrow>
+            <mrow>\amp = \frac2{\big(1+4x^2\big)^{3/2}}.</mrow>
+          </md>
+        </p>
+
+        <figure xml:id="fig_curvature3" >
+          <caption>Examining the curvature of <m>y=x^2</m>.</caption>
+          <!-- START figures/fig_curvature3.tex -->
+          <image xml:id="img_curvature3" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}[>=stealth]
+              \begin{axis}[%
+              %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={1,2,-1,-2},
+			%minor x tick num=4,%
+              %			extra x ticks={.33},
+              %			extra x tick labels={$1/3$},
+			%ytick={-3,-2,-1,1,2,3},
+			%minor y tick num=4,%extra y ticks={-5,-3,...,7},%
+			ymin=-2.5,ymax=10.1,%
+			xmin=-10.2,xmax=4.9%
+              ]
+
+              %\draw (axis cs:4,-1) node (A) {}
+			%(axis cs:4,3) node (B) {} ;
+              %\draw [->,>=latex] (A) parabola bend (axis cs:0,1) (B);
+              \addplot [thick,{\colorone}, smooth,domain=-3.2:3.2] ({x},{x^2});
+
+              \addplot[thick,{\colortwo},smooth,domain=0:360] ({.5*cos(x)},{.5*sin(x)+.5});
+
+              \addplot[thick,{\colortwo},smooth,domain=0:360,samples=60] ({5.6*cos(x)-4},{5.6*sin(x)+3.5});
+
+					%(axis cs: 1.2684, 0.989352) circle (1.5pt);
+					
+
+              %\draw[->,{\colortwo},thick] (axis cs:0.8461, 1.53144)  -- (axis cs:1.14654, 2.48524);
+              %\draw[->,{\colortwo},thick] (axis cs:1.2684, 0.989352)  -- (axis cs:0.273445, 1.08968);
+              %\draw[->,{\colortwo},thick] (axis cs:2.20203, 0.649597)  -- (axis cs:1.35163, 1.17574);
+
+              %\draw[->,{\colorone},thick] (axis cs:2.44, 0.488) -- (axis cs: 2.4141, 0.506961);
+
+              %\filldraw (axis cs:.77,1.04) circle (1.5pt) node [below] {\scriptsize $A$}
+					%%(axis cs:0.8461, 1.53144) circle (1.5pt)
+					%%(axis cs: 1.2684, 0.989352) circle (1.5pt)
+					%(axis cs: 1.75, 0.875) circle (1.5pt) node [below] {\scriptsize $B$};
+					%%(axis cs: 2.20203, 0.649597) circle (1.5pt);
+
+              \end{axis}
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_curvature3.tex END -->
+        </figure>
+
+        <p>At the vertex (<m>x=0</m>), the curvature is <m>\kappa = 2</m>. At <m>x=1</m>, the curvature is <m>\kappa = 2/(5)^{3/2} \approx 0.179</m>. So at <m>x=0</m>, the curvature of <m>y=x^2</m> is that of a circle of radius <m>1/2</m>; at <m>x=1</m>, the curvature is that of a circle with radius <m>\approx 1/0.179 \approx 5.59</m>. This is illustrated in <xref ref="fig_curvature3">Figure</xref>. At <m>x=3</m>, the curvature is <m>0.009</m>; the graph is nearly straight as the curvature is very close to 0.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_curvature4">
+      <title>Finding curvature</title>
+      <statement>
+        <p>Find where the curvature of <m>\vec r(t) = \la t, t^2, 2t^3\ra</m> is maximized.</p>
+      </statement>
+      <solution>
+        <p>We use the third formula in <xref ref="thm_curvature_formulas">Theorem</xref> as <m>\vrt</m> is defined in space. We leave it to the reader to verify that
+          <me>
+            \vrp(t) =\la 1,2t,6t^2\ra, \vrp'(t) = \la 0,2,12t\ra, \text{ and }  \vrp(t)\times \vrp'(t) = \la 12t^2,-12t,2\ra.
+          </me>
+        </p>
+
+        <figure xml:id="fig_curvature4" >
+        <caption>Understanding the curvature of a curve in space.</caption>
+        <sidebyside>
+          <figure>
+            <caption>(a)</caption>
+            <!-- START figures/fig_curvature4a.tex -->
+            <image xml:id="img_curvature4a" >
+              <description></description>
+              <latex-image-code>
+                <![CDATA[
+                \begin{tikzpicture}[>=stealth]
+                \begin{axis}[%
+                %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={1,2,-1,-2},
+			%minor x tick num=4,%
+                %			extra x ticks={.33},
+                %			extra x tick labels={$1/3$},
+			%ytick={-3,-2,-1,1,2,3},
+			%minor y tick num=4,%extra y ticks={-5,-3,...,7},%
+			ymin=-.1,ymax=2.5,%
+			xmin=-2.1,xmax=2.1%
+                ]
+
+
+                \addplot [thick,{\colorone}, smooth] coordinates {(-1.5,0.0122)(-1.45,0.01404)(-1.4,0.01623)(-1.35,0.01887)(-1.3,0.02207)(-1.25,0.02596)(-1.2,0.03074)(-1.15,0.03666)(-1.1,0.04403)(-1.05,0.05331)(-1.,0.06509)(-0.95,0.08019)(-0.9,0.09974)(-0.85,0.1253)(-0.8,0.159)(-0.75,0.204)(-0.7,0.2643)(-0.65,0.3457)(-0.6,0.4557)(-0.55,0.6035)(-0.5,0.7989)(-0.45,1.049)(-0.4,1.352)(-0.35,1.686)(-0.3,2.006)(-0.25,2.246)(-0.2,2.353)(-0.15,2.318)(-0.1,2.191)(-0.05,2.057)(0,2.)(0.05,2.057)(0.1,2.191)(0.15,2.318)(0.2,2.353)(0.25,2.246)(0.3,2.006)(0.35,1.686)(0.4,1.352)(0.45,1.049)(0.5,0.7989)(0.55,0.6035)(0.6,0.4557)(0.65,0.3457)(0.7,0.2643)(0.75,0.204)(0.8,0.159)(0.85,0.1253)(0.9,0.09974)(0.95,0.08019)(1.,0.06509)(1.05,0.05331)(1.1,0.04403)(1.15,0.03666)(1.2,0.03074)(1.25,0.02596)(1.3,0.02207)(1.35,0.01887)(1.4,0.01623)(1.45,0.01404)(1.5,0.0122)};
+
+                \end{axis}
+
+
+
+                \end{tikzpicture}
+                ]]>
+              </latex-image-code>
+            </image>
+            <!-- figures/fig_curvature4a.tex END -->
+          </figure>
+
+          <figure>
+            <caption>(b)</caption>
+            <!--
+             \includemedia[width=125pt,3Dmenu,activate=onclick,deactivate=onclick,
+            3Droll=0,
+            3Dortho=0.004910729825496674,
+            3Dc2c=0.6666666865348816 0.6666666865348816 0.3333333432674408,
+            3Dcoo=-0.0000029802322387695312 -0.0000029802322387695312 -0.0000014901161193847656,
+            3Droo=150,
+            3Dlights=Headlamp,add3Djscript=asylabels.js]
+             -->
+
+
+            <!-- START figures/figcurvature4_3D.asy -->
+            <image xml:id="img_curvature4_3D" >
+              <asymptote>
+                <![CDATA[
+                import graph3;
+
+                //ASY file for figcurvature43D.asy in Chapter 11
+
+                size(200,200,IgnoreAspect);
+                //currentprojection=perspective(7,2,1);
+                currentprojection=orthographic(4,4,2);
+                defaultrender.merge=true;
+
+                usepackage("mathspec");
+                texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+                texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+                texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+                texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+
+                // setup and draw the axes
+                real[] myxchoice={};
+                real[] myychoice={};
+                real[] myzchoice={};
+                defaultpen(0.5mm);
+                pair xbounds=(-2,2);
+                pair ybounds=(-1,2);
+                pair zbounds=(-2,2);
+
+                xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+                yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+                zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+                label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+                label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+                label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+                //Draw the curve <t, t^2, 2*t^3> for t from -1 to 1
+                triple g(real t) {return (t, t^2, 2*t^3);}
+                path3 mypath=graph(g,-1,1,operator ..); draw(mypath,blue);
+                //path3 mypath=graph(g,-1,-0.9,operator ..); draw(mypath,blue,Arrow3(size=4mm));
+                path3 mypath=graph(g,-1,-0.7,operator ..); draw(mypath,blue,Arrow3(size=4mm));
+                //path3 mypath=graph(g,-1,0.7,operator ..); draw(mypath,blue,Arrow3(size=4mm));
+                //path3 mypath=graph(g,-1,0.9,operator ..); draw(mypath,blue,Arrow3(size=4mm));
+
+                //Draw points of maximum curvature (0.189,(0.189)^2,2*(0.189)^3)
+                // cooresponding to values t=+/-0.189
+                dotfactor=4;
+                dot(((0.189,(0.189)^2,2*(0.189)^3)),red);
+                dot(((-0.189,(-0.189)^2,2*(-0.189)^3)),red);
+
+
+                // ////////////////////////////////////
+                //    SAMPLE CODE
+
+                // defaultpen(fontsize(10pt));
+
+                //Draw the parabola z=y^2 for t from -2 to 2
+                //triple g(real t) {return (0,t,t^2);}
+                //path3 mypath=graph(g,-2,2,operator ..); draw(mypath,blue);
+
+                //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+                //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+
+                //triple f(pair t) {
+                //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+                //}
+                //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+
+                //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+                //path3 mypath=graph(g,-2,2,operator ..);
+
+                //pen p=rgb(0,0,1);
+                //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+
+                //draw(s,paleblue);
+                //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+                //draw(mypath,2bp+blue);
+                ]]>
+              </asymptote>
+            </image>
+            <!-- figures/figcurvature4_3D.asy END -->
+          </figure>
+        </sidebyside>
+
+        </figure>
+
+        <p>Thus
+          <md>
+            <mrow>\kappa(t) \amp = \frac{\norm{\vrp(t)\times\vrp'(t)}}{\norm{\vrp(t)}^3}</mrow>
+            <mrow>\amp = \frac{\norm{\la 12t^2,-12t,2\ra}}{\norm{\la 1,2t,6t^2\ra}^3}</mrow>
+            <mrow>\amp = \frac{\sqrt{144t^4+144t^2+4}}{\left(\sqrt{1+4t^2+36t^4\ }\right)^3}</mrow>
+          </md>
+        </p>
+
+        <p>While this is not a particularly <q>nice</q> formula, it does explictly tell us what the curvature is at a given <m>t</m> value. To maximize <m>\kappa(t)</m>, we should solve <m>\kappa'(t)=0</m> for <m>t</m>. This is doable, but <em>very</em> time consuming. Instead, consider the graph of <m>\kappa(t)</m> as given in <xref ref="fig_curvature4">Figure</xref>(a). We see that <m>\kappa</m> is maximized at two <m>t</m> values; using a numerical solver, we find these values are <m>t\approx\pm 0.189</m>. In part (b) of the figure we graph <m>\vrt</m> and indicate the points where curvature is maximized.</p>
+      </solution>
+    </example>
+  </subsection>
+
+  <subsection>
+    <title>Curvature and Motion</title>
+    <p>Let <m>\vec r(t)</m> be a position function of an object, with velocity <m>\vvt = \vrp(t)</m> and acceleration <m>\vec a(t)=\vrp'(t)</m>. In <xref ref="sec_tan_norm">Section</xref> we established that acceleration is in the plane formed by <m>\vec T(t)</m> and <m>\vec N(t)</m>, and that we can find scalars <m>a_\text{T}</m> and <m>a_\text{N}</m> such that
+      <index><main>curvature</main><sub>and motion</sub></index><index><main>unit tangent vector</main><sub>and curvature</sub></index><index><main>unit normal vector</main><sub>and curvature</sub></index><index><main>at@<m>a_\text{T}</m></main></index><index><main>an@<m>a_\text{N}</m></main></index>
+      <me>
+        \vat = a_\text{T} \vec T(t) + a_\text{N} \vec N(t).
+      </me>
+    </p>
+
+    <p><xref ref="thm_acc_plane">Theorem</xref> gives formulas for <m>a_\text{T}</m> and <m>a_\text{N}</m>:
+      <me>
+        a_\text{T}  = \frac{d}{dt}\Big(\norm{\vvt}\Big)  \text{ and }   a_\text{N}  = \frac{\norm{\vvt\times \vat}}{\norm{\vvt}}.
+      </me>
+    </p>
+
+    <p>We understood that the amount of acceleration in the direction of <m>\vec T</m> relates only to how the speed of the object is changing, and that the amount of acceleration in the direction of <m>\vec N</m> relates to how the direction of travel of the object is changing. (That is, if the object travels at constant speed, <m>a_\text{T} =0</m>; if the object travels in a constant direction, <m>a_\text{N} =0</m>.)</p>
+
+    <p>In Equation <xref ref="eq_vvfarc3" /> at the beginning of this section, we found
+      <m>s\,'(t) = \norm{\vvt}</m>. We can combine this fact with the above formula for <m>a_\text{T}</m> to write
+      <me>
+        a_\text{T}  = \frac{d}{dt}\Big(\norm{\vvt}\Big) = \frac{d}{dt}\big( s\,'(t)\big) = s\,''(t).
+      </me>
+    </p>
+
+    <p>Since <m>s\,'(t)</m> is speed, <m>s\,''(t)</m> is the rate at which speed is changing with respect to time. We see once more that the component of acceleration in the direction of travel relates only to speed, not to a change in direction.</p>
+
+    <p>Now compare the formula for <m>a_\text{N}</m> above to the formula for curvature in <xref ref="thm_curvature_formulas">Theorem</xref>:
+      <me>
+        a_\text{N}  = \frac{\norm{\vvt\times \vat}}{\norm{\vvt}} \text{ and }  \kappa = \frac{\norm{\vrp(t)\times\vrp'(t)}}{\norm{\vrp(t)}^3}=\frac{\norm{\vvt\times \vat}}{\norm{\vvt}^3} .
+      </me>
+    </p>
+
+    <p>Thus
+      <md>
+        <mrow>a_\text{N}  \amp = \kappa \norm{\vvt}^2</mrow>
+        <mrow>\amp = \kappa\Big(s\,'(t)\Big)^2</mrow>
+      </md>
+    </p>
+
+    <p>This last equation shows that the component of acceleration that changes the object's direction is dependent on two things: the curvature of the path and the speed of the object.</p>
+
+    <p>Imagine driving a car in a clockwise circle. You will naturally feel a force pushing you towards the door (more accurately, the door is pushing you as the car is turning and you want to travel in a straight line). If you keep the radius of the circle constant but speed up (i.e., increasing <m>s\,'(t)</m>), the door pushes harder against you (<m>a_\text{N}</m> has increased). If you keep your speed constant but tighten the turn (i.e., increase <m>\kappa</m>), once again the door will push harder against you.</p>
+
+    <p>Putting our new formulas for <m>a_\text{T}</m> and <m>a_\text{N}</m> together, we have
+      <me>
+        \vat = s\,''(t)\vec T(t) + \kappa\norm{\vvt}^2\vec N(t).
+      </me>
+    </p>
+
+    <p>This is not a particularly practical way of finding <m>a_\text{T}</m> and <m>a_\text{N}</m>, but it reveals some great concepts about how acceleration interacts with speed and the shape of a curve.</p>
+
+    <example xml:id="ex_curvature5">
+      <title>Curvature and road design</title>
+      <statement>
+        <p>The minimum radius of the curve in a highway cloverleaf is determined by the operating speed, as given in the table in <xref ref="fig_curvature5">Figure</xref>. For each curve and speed, compute <m>a_\text{N}</m>.</p>
+      </statement>
+      <solution>
+        <table xml:id="fig_curvature5" >
+          <caption>Operating speed and minimum radius in highway cloverleaf design.</caption>
+          <tabular>
+            <row>
+              <cell>\text{ Operating</cell>
+            </row>
+            <row>
+              <cell>Speed (mph) }</cell>
+              <cell>\text{ Minimum</cell>
+            </row>
+            <row>
+              <cell>Radius (ft) }</cell>
+            </row>
+            <row bottom="minor">
+              <cell></cell>
+              <cell></cell>
+            </row>
+            <row>
+              <cell><m>35</m></cell>
+              <cell><m>310</m></cell>
+            </row>
+            <row>
+              <cell><m>40</m></cell>
+              <cell><m>430</m></cell>
+            </row>
+            <row>
+              <cell><m>45</m></cell>
+              <cell><m>540</m></cell>
+            </row>
+          </tabular>
+        </table>
+
+        <p>Using Equation <xref ref="eq_curvature_an" />, we can compute the acceleration normal to the curve in each case. We start by converting each speed from <q>miles per hour</q> to <q>feet per second</q> by multiplying by <m>5280/3600</m>.
+          <md>
+            <mrow>\text{ 35mph, 310ft }  \amp \Rightarrow 51.33\text{ ft/s } , \kappa = 1/310</mrow>
+            <mrow>a_\text{N} \amp = \kappa\ \norm{\vvt}^2</mrow>
+            <mrow>\amp = \frac1{310}\big(51.33\big)^2</mrow>
+            <mrow>\amp = 8.50\text{ ft/s } ^2.</mrow>
+          </md>
+          <md>
+            <mrow>\text{ 40mph, 430ft }  \amp \Rightarrow 58.67\text{ ft/s } , \kappa = 1/430</mrow>
+            <mrow>a_\text{N} \amp = \frac1{430}\big(58.67\big)^2</mrow>
+            <mrow>\amp = 8.00\text{ ft/s } ^2.</mrow>
+          </md>
+          <md>
+            <mrow>\text{ 45mph,540ft }  \amp \Rightarrow 66\text{ ft/s } , \kappa = 1/540</mrow>
+            <mrow>a_\text{N} \amp = \frac1{540}\big(66\big)^2</mrow>
+            <mrow>\amp = 8.07\text{ ft/s } ^2.</mrow>
+          </md>
+        </p>
+
+        <p>Note that each acceleration is similar; this is by design. Considering the classic <q>Force <m>=</m> mass <times /> acceleration</q> formula, this acceleration must be kept small in order for the tires of a vehicle to keep a <q>grip</q> on the road. If one travels on a turn of radius 310ft at a rate of 50mph, the acceleration is double, at 17.35ft/s<m>^2</m>. If the acceleration is too high, the frictional force created by the tires may not be enough to keep the car from sliding. Civil engineers routinely compute a <q>safe</q> design speed, then subtract 5-10mph to create the posted speed limit for additional safety.</p>
+      </solution>
+    </example>
+
+    <p>We end this chapter with a reflection on what we've covered. We started with vector<ndash />valued functions, which may have seemed at the time to be just another way of writing parametric equations. However, we have seen that the vector perspective has given us great insight into the behavior of functions and the study of motion. Vector<ndash />valued position functions convey displacement, distance traveled, speed, velocity, acceleration and curvature information, each of which has great importance in science and engineering.</p>
+  </subsection>
+
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>It is common to describe position in terms of both <fillin /> and/or <fillin />.</p>
+          </statement>
+          <solution>
+            <p>time and/or distance</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>A measure of the <q>curviness</q> of a curve is <fillin />.</p>
+          </statement>
+          <solution>
+            <p>curvature</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Give two shapes with constant curvature.</p>
+          </statement>
+          <solution>
+            <p>Answers may include lines, circles, helixes</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Describe in your own words what an <q>osculating circle</q> is.</p>
+          </statement>
+          <solution>
+            <p>Answers will vary; they should mention the circle is tangent to the curve and has the same curvature as the curve at that point.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Complete the identity: <m>\vec T\,'(s) = \underline{}\vec N(s)</m>.</p>
+          </statement>
+          <solution>
+            <p><m>\kappa</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Given a position function \vrt, how are <m>a_{\text{T} }</m> and <m>a_{\text{N} }</m> affected by the curvature?</p>
+          </statement>
+          <solution>
+            <p><m>a_{\text{T} }</m> is not affected by curvature; the greater the curvature, the larger <m>a_{\text{N} }</m> becomes.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, a position function \vrt<nbsp />is given, where <m>t=0</m> corresponds to the initial position. Find the arc length parameter <m>s</m>, and rewrite \vrt<nbsp />in terms of <m>s</m>; that is, find <m>\vec r(s)</m>.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\vrt = \la 2t, t, -2t\ra</m></p>
+          </statement>
+          <solution>
+            <p><m>s = 3t</m>, so <m>\vec r(s)  = \la 2s/3, s/3, -2s/3\ra</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$s">
+              <static>7t</static>
+            </var>
+            <var name="$rs">
+              <static>\la 7\cos(s/7), 7\sin(s/7)\ra</static>
+            </var>
+            <pg-code>
+              Context("Vector2D");
+              Context()->variables->are(s=>'Real',t=>'Real');
+              $s=Formula("7t");
+              $rs=Compute("&lt;7cos(s/7),7sin(s/7)>");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Given <m>\vrt = \la 7\cos(t) ,7\sin(t) \ra</m>, find the arc length paramter <m>s</m>.</p>
+            <p><m>s=</m><var name="$s" width="20" /></p>
+            <p>Rewrite <m>\vrt</m> in terms of <m>s</m>.</p>
+            <p><m>\vec{r}(s)=</m><var name="$rs" width="20" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\vrt = \la 3\cos(t) ,3\sin(t) , 2t\ra</m></p>
+          </statement>
+          <solution>
+            <p><m>s = \sqrt{13}t</m>, so <m>\vec r(s)  = \la 3\cos(s/\sqrt{13}), 3\sin(s/\sqrt{13}), 2s/\sqrt{13}\ra</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$s">
+              <static>13t</static>
+            </var>
+            <var name="$rs">
+              <static>\la 5\cos(s/13), 13\sin(s/13), 12\cos(s/13)\ra</static>
+            </var>
+            <pg-code>
+              Context("Vector");
+              Context()->variables->are(s=>'Real',t=>'Real');
+              $s=Formula("13t");
+              $rs=Compute("&lt;5cos(s/13),13sin(s/13),12cos(s/13)>");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Given <m>\vrt = \vrt = \la 5\cos(t) ,13\sin(t) , 12\cos(t) \ra</m>, find the arc length paramter <m>s</m>.</p>
+            <p><m>s=</m><var name="$s" width="30" /></p>
+            <p>Rewrite <m>\vrt</m> in terms of <m>s</m>.</p>
+            <p><m>\vec{r}(s)=</m><var name="$rs" width="30" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, a curve <m>C</m> is described along with 2 points on <m>C</m>.</p>
+        <p><ol>
+          <li>
+            <title>(a)</title>
+            <p>Using a sketch, determine at which of these points the curvature is greater.</p></li>
+
+          <li>
+            <title>(b)</title>
+            <p>Find the curvature <m>\kappa</m> of <m>C</m>, and evaluate <m>\kappa</m> at each of the 2 given points.</p></li>
+        </ol></p>
+      </introduction>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>C</m> is defined by <m>y = x^3-x</m>; points given at <m>x=0</m> and <m>x=1/2</m>.</p>
+          </statement>
+          <solution>
+            <p><m>\kappa = \frac{\abs{6x}}{\left(1+(3x^2-1)^2\right)^{3/2}}</m>;</p>
+
+            <p><m>\kappa(0) = 0</m>, <m>\kappa(1/2) = \frac{192}{17\sqrt{17}} \approx 2.74</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$comp">
+              <set>
+                <member correct="yes">\text{greater than}</member>
+                <member>\text{equal to}</member>
+                <member>\text{less than}</member>
+              </set>
+            </var>
+            <var name="$kappa">
+              <static>\frac{\left(6x^2-2\right)/\left(x^2+1\right)^3}{\left(1+\frac{4x^2}{\left(x^2+1\right)^4}\right)^{3/2}}</static>
+            </var>
+            <var name="$k[0]">
+              <static>2</static>
+            </var>
+            <var name="$k[1]">
+              <static>\frac{2750}{641^{3/2}}</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $comp=PopUp(['?','greater than', 'equal to', 'less than'],1);
+              $kappa=Compute("|(6x^2-2)/(x^2+1)^3|/(1+4x^2/(x^2+1)^4)^(3/2)");
+              $k[0]=Compute("2");
+              $k[1]=Formula("2750/641^(3/2)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>C</m> is defined by <m>y=\frac{1}{x^2+1}</m>. Based on a <em>sketch</em>, the curvature at <m>x=0</m> is <var name="$comp" form="popup"/> the curvature at <m>x=2</m>.</p>
+            <p><m>\kappa=</m><var name="$kappa" width="40" /></p>
+            <p><m>\kappa(0)=</m><var name="$k[0]" width="15" /> and <m>\kappa(2)=</m><var name="$k[1]" width="15" />.</p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>C</m> is defined by <m>\ds y = \cos(x)</m>; points given at <m>x=0</m> and <m>x=\pi/2</m>.</p>
+          </statement>
+          <solution>
+            <p><m>\kappa = \frac{\abs{\cos(x) }}{\left(1+\sin^2(x) \right)^{3/2}}</m>;</p>
+
+            <p><m>\kappa(0) = 1</m>, <m>\kappa(\pi/2) = 0</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>C</m> is defined by <m>\ds y = \sqrt{1-x^2}</m> on <m>(-1,1)</m>; points given at <m>x=0</m> and <m>x=1/2</m>.</p>
+          </statement>
+          <solution>
+            <p><m>\kappa = 1</m>;</p>
+
+            <p><m>\kappa(0) = 1</m>, <m>\kappa(1/2) = 1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$comp">
+              <set>
+                <member>\text{greater than}</member>
+                <member>\text{equal to}</member>
+                <member correct="yes">\text{less than}</member>
+              </set>
+            </var>
+            <var name="$kappa">
+              <static>\frac{\abs{2\cos(t) \cos(2t)+4\sin(t) \sin(2t)}}{\left(4\cos^2(2t)+\sin^2(t) \right)^{3/2}}</static>
+            </var>
+            <var name="$k[0]">
+              <static>1/4</static>
+            </var>
+            <var name="$k[1]">
+              <static>8</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              Context()->variables->are(t=>'Real');
+              $comp=PopUp(['?','greater than', 'equal to', 'less than'],3);
+              $kappa=Compute("|2cos(t)cos(2t)+4sin(t)sin(2t)|/(4cos^2(2t)+sin^2(t))^(3/2)");
+              $k[0]=Formula("1/4");
+              $k[1]=Formula("8");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>C</m> is defined by <m>\vrt = \la \cos(t) , \sin(2t)\ra</m>. Based on a <em>sketch</em>, the curvature at <m>t=0</m> is <var name="$comp" form="popup"/> the curvature at <m>t=\pi/4</m>.</p>
+            <p><m>\kappa=</m><var name="$kappa" width="40" /></p>
+            <p><m>\kappa(0)=</m><var name="$k[0]" width="15" /> and <m>\kappa(\pi/4)=</m><var name="$k[1]" width="15" />.</p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>C</m> is defined by <m>\ds \vrt = \la \cos^2(t) , \sin(t) \cos(t) \ra</m>; points given at <m>t=0</m> and <m>t=\pi/3</m>.</p>
+          </statement>
+          <solution>
+            <p><m>\kappa = 2</m>;</p>
+
+            <p><m>\kappa(0) = 2</m>, <m>\kappa(\pi/3) = 2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>C</m> is defined by <m>\ds \vrt = \la t^2-1,t^3-t\ra</m>; points given at <m>t=0</m> and <m>t=5</m>.</p>
+          </statement>
+          <solution>
+            <p><m>\kappa = \frac{\abs{6t^2+2}}{\left(4t^2+(3t^2-1)^2\right)^{3/2}}</m>;</p>
+
+            <p><m>\kappa(0) = 2</m>, <m>\kappa(5) = \frac{19}{1394\sqrt{1394}}\approx 0.0004</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$comp">
+              <set>
+                <member>\text{greater than}</member>
+                <member>\text{equal to}</member>
+                <member correct="yes">\text{less than}</member>
+              </set>
+            </var>
+            <var name="$kappa">
+              <static>\frac{\abs{\sec^3(t) }}{\left(\sec^4(t) +\sec^2(t) \tan^2(t) \right)^{3/2}}</static>
+            </var>
+            <var name="$k[0]">
+              <static>1</static>
+            </var>
+            <var name="$k[1]">
+              <static>\frac{3\sqrt{3}}{5\sqrt{5}}</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              Context()->variables->are(t=>'Real');
+              $comp=PopUp(['?','greater than', 'equal to', 'less than'],3);
+              $kappa=Compute("|sec^3(t)|/(sec^4(t)+sec^2(t)tan^2(t))^(3/2)");
+              $k[0]=Formula("1");
+              $k[1]=Formula("3sqrt(3)/(5sqrt(5))");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>C</m> is defined by <m>\vrt = \la \tan(t) ,\sec(t) \ra</m>. Based on a <em>sketch</em>, the curvature at <m>t=0</m> is <var name="$comp" form="popup"/> the curvature at <m>t=\pi/6</m>.</p>
+            <p><m>\kappa=</m><var name="$kappa" width="40" /></p>
+            <p><m>\kappa(0)=</m><var name="$k[0]" width="15" /> and <m>\kappa(\pi/6)=</m><var name="$k[1]" width="15" />.</p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>C</m> is defined by <m>\ds \vrt = \la 4t+2,3t-1,2t+5\ra</m>; points given at <m>t=0</m> and <m>t=1</m>.</p>
+          </statement>
+          <solution>
+            <p><m>\kappa = 0</m>;</p>
+
+            <p><m>\kappa(0) = 0</m>, <m>\kappa(1) = 0</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$comp">
+              <set>
+                <member correct="yes">\text{greater than}</member>
+                <member>\text{equal to}</member>
+                <member>\text{less than}</member>
+              </set>
+            </var>
+            <var name="$kappa">
+              <static>\frac{2 \sqrt{18 t^4+15t^2+1}}{\left(18 t^4-2t^2+1\right)^{3/2}}</static>
+            </var>
+            <var name="$k[0]">
+              <static>2</static>
+            </var>
+            <var name="$k[1]">
+              <static>\frac{2\sqrt{2}}{17}</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              Context()->variables->are(t=>'Real');
+              $comp=PopUp(['?','greater than', 'equal to', 'less than'],1);
+              $kappa=Compute("2sqrt(18t^4+15t^2+1)/(18t^4-2t^2+1)^(3/2)");
+              $k[0]=Formula("2");
+              $k[1]=Formula("2sqrt(2)/17");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>C</m> is defined by <m>\vrt = \la t^3-t,t^3-4,t^2-1\ra</m>. Based on a <em>sketch</em>, the curvature at <m>t=0</m> is <var name="$comp" form="popup"/> the curvature at <m>t=1</m>.</p>
+            <p><m>\kappa=</m><var name="$kappa" width="40" /></p>
+            <p><m>\kappa(0)=</m><var name="$k[0]" width="15" /> and <m>\kappa(1)=</m><var name="$k[1]" width="15" />.</p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>C</m> is defined by <m>\ds \vrt = \la 3\cos(t) ,3\sin(t) , 2t\ra</m>; points given at <m>t=0</m> and <m>t=\pi/2</m>.</p>
+          </statement>
+          <solution>
+            <p><m>\kappa = \frac{3}{13}</m>;</p>
+
+            <p><m>\kappa(0) = 3/13</m>, <m>\kappa(\pi/2) = 3/13</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$comp">
+              <set>
+                <member>\text{greater than}</member>
+                <member correct="yes">\text{equal to}</member>
+                <member>\text{less than}</member>
+              </set>
+            </var>
+            <var name="$kappa">
+              <static>\frac{1}{13}</static>
+            </var>
+            <var name="$k[0]">
+              <static>\frac{1}{13}</static>
+            </var>
+            <var name="$k[1]">
+              <static>\frac{1}{13}</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              Context()->variables->are(t=>'Real');
+              $comp=PopUp(['?','greater than', 'equal to', 'less than'],2);
+              $kappa=Formula("1/13");
+              $k[0]=Formula("1/13");
+              $k[1]=Formula("1/13");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>C</m> is defined by <m>\vrt = \la 5\cos(t) ,13\sin(t) , 12\cos(t) \ra</m>. Based on a <em>sketch</em>, the curvature at <m>t=0</m> is <var name="$comp" form="popup"/> the curvature at <m>t=\pi/2</m>.</p>
+            <p><m>\kappa=</m><var name="$kappa" width="40" /></p>
+            <p><m>\kappa(0)=</m><var name="$k[0]" width="15" /> and <m>\kappa(\pi/2)=</m><var name="$k[1]" width="15" />.</p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, find the value of <m>x</m> or <m>t</m> where curvature is maximized.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <pg-macros>
+            <macro-file>parserRoot.pl</macro-file>
+          </pg-macros>
+          <setup>
+            <var name="$max">
+              <static>\pm \frac{\sqrt{2}}{\sqrt[4]{5}}</static>
+            </var>
+            <pg-code>
+              parser::Root->Enable;
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $max=List(Formula("sqrt(2)/root(4,5)"), Formula("-sqrt(2)/root(4,5)"));
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find the value(s) of <m>x</m> where the curvature of <m>y=\frac{1}{6}x^3</m> is maximized.</p>
+            <p><var name="$max" width="30" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds y=\sin(x)</m></p>
+          </statement>
+          <solution>
+            <p>maximized at <m>x=\ldots -3\pi/2, -\pi/2, \pi/2, \ldots</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$max">
+              <static>1/4</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $max=Formula("1/4");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find the value(s) of <m>t</m> where the curvature of <m>\vrt = \la t^2+2t,3t-t^2\ra</m> is maximized.</p>
+            <p><var name="$max" width="30" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$max">
+              <static>\pm \sqrt{5}</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $max=List(Formula("sqrt(5)"),Formula("-sqrt(5)"));
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find the value(s) of <m>t</m> where the curvature of <m>\vrt = \la t, 4/t, 3/t\ra</m> is maximized.</p>
+            <p><var name="$max" width="30" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, find the radius of curvature at the indicated value.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>y=\tan(x)</m>, at <m>x=\pi/4</m></p>
+          </statement>
+          <solution>
+            <p>radius of curvature is <m>5\sqrt{5}/4</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$radius">
+              <static>5\sqrt{10}</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $radius=Formula("5sqrt(10)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find the radius of curvature on <m>y=x^2+x-3</m> at <m>x=1</m>.</p>
+            <p><var name="$radius" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\vrt = \la \cos(t) , \sin(3t)\ra</m>, at <m>t=0</m></p>
+          </statement>
+          <solution>
+            <p>radius of curvature is <m>9</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$radius">
+              <static>1/45</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $radius=Formula("1/45");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find the radius of curvature on <m>\vrt = \la 5\cos(3 t), t\ra</m> at <m>t=0</m>.</p>
+            <p><var name="$radius" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, find the equation of the osculating circle to the curve at the indicated <m>t</m>-value.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\vrt = \la t,t^2\ra</m>, at <m>t=0</m></p>
+          </statement>
+          <solution>
+            <p><m>x^2+(y-1/2)^2 = 1/4</m>, or <m>\vec c(t) = \la 1/2\cos(t) , 1/2\sin(t) + 1/2\ra</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$osc">
+              <static>\left(x-8/3\right)^2+y^2 = 1/9</static>
+            </var>
+            <pg-code>
+              Context("ImplicitEquation");
+              Context()->variables->set(x=>{limits=>[2,4]});
+              Context()->variables->set(y=>{limits=>[-1,1]});
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $osc=ImplicitEquation("(x-8/3)^2+y^2 = 1/9");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find the equation of the osculating circle to <m>\vrt = \la 3\cos(t) , \sin(t) \ra</m> at <m>t=0</m>.</p>
+            <p><var name="$osc" width="40" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\vrt = \la 3\cos(t) , \sin(t) \ra</m>, at <m>t=\pi/2</m></p>
+          </statement>
+          <solution>
+            <p><m>x^2+(y+8)^2 = 81</m>, or <m>\vec c(t) = \la 9\cos(t) , 9\sin(t) -8\ra</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$osc">
+              <static>(x-1/2)^2+(y-1/2)^2 = 1/2</static>
+            </var>
+            <pg-code>
+              Context("ImplicitEquation");
+              Context()->variables->set(x=>{limits=>[-1,2]});
+              Context()->variables->set(y=>{limits=>[-1,2]});
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $osc=ImplicitEquation("(x-1/2)^2+(y-1/2)^2 = 1/2");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find the equation of the osculating circle to <m>\vrt = \la t^2-t,t^2+t\ra</m> at <m>t=0</m>.</p>
+            <p><var name="$osc" width="40" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

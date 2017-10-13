@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<chapter xmlns:xi="http://www.w3.org/2001/XInclude"  xml:id="chapter_app_of_int">
+  <title>Applications of Integration</title>
+  <introduction>
+    <p>We begin this chapter with a reminder of a few key concepts from <xref ref="chapter_integration">Chapter</xref>. Let <m>f</m> be a continuous function on <m>[a,b]</m> which is partitioned into <m>n</m> equally spaced subintervals as
+      <me>
+        a\lt x_1 \lt  x_2 \lt  \cdots \lt  x_n\lt x_{n+1}=b.
+      </me>
+    </p>
+
+    <p>Let <m>\dx=(b-a)/n</m> denote the length of the subintervals, and let <m>c_i</m> be any <m>x</m>-value in the <m>i^\text{ th }</m> subinterval. <xref ref="def_rie_sum">Definition</xref> states that the sum
+      <me>
+        \sum_{i=1}^n f(c_i)\dx
+      </me>
+      is a <em>Riemann Sum.</em> Riemann Sums are often used to approximate some quantity (area, volume, work, pressure, etc.). The <em>approximation</em> becomes <em>exact</em> by taking the limit
+      <me>
+        \lim_{n\to\infty} \sum_{i=1}^n f(c_i)\dx.
+      </me>
+    </p>
+
+    <p><xref ref="thm_riemann_sum">Theorem</xref> connects limits of Riemann Sums to definite integrals:
+      <me>
+        \lim_{n\to\infty} \sum_{i=1}^n f(c_i)\dx = \int_a^b f(x)\ dx.
+      </me>
+    </p>
+
+    <p>Finally, the Fundamental Theorem of Calculus states how definite integrals can be evaluated using antiderivatives.</p>
+
+    <p>This chapter employs the following technique to a variety of applications. Suppose the value <m>Q</m> of a quantity is to be calculated. We first approximate the value of <m>Q</m> using a Riemann Sum, then find the exact value via a definite integral. We spell out this technique in the following Key Idea.</p>
+
+    <insight xml:id="idea_app_of_defint">
+      <title>Application of Definite Integrals Strategy</title>
+      <p>Let a quantity be given whose value <m>Q</m> is to be computed.<index><main>integration</main><sub>general application technique</sub></index></p>
+
+      <ol>
+        <li><p>Divide the quantity into <m>n</m> smaller <q>subquantities</q> of value <m>Q_i</m>.</p></li>
+
+        <li><p>Identify a variable <m>x</m> and function <m>f(x)</m> such that each subquantity can be approximated with the product <m>f(c_i)\dx</m>, where <m>\dx</m> represents a small change in <m>x</m>. Thus <m>Q_i \approx f(c_i)\dx</m>. A sample approximation <m>f(c_i)\dx</m> of <m>Q_i</m> is called a <em>differential element</em>.</p></li>
+
+        <li><p>Recognize that <m>\ds Q= \sum_{i=1}^n Q_i \approx \sum_{i=1}^n f(c_i)\dx</m>, which is a Riemann Sum.</p></li>
+
+        <li><p>Taking the appropriate limit gives <m>\ds Q = \int_a^b f(x)\ dx</m></p></li>
+      </ol>
+    </insight>
+
+    <p>This Key Idea will make more sense after we have had a chance to use it several times. We begin with Area Between Curves, which we addressed briefly in <xref ref="chapter_integration">Section</xref>. <xref ref="sec_FTC"></xref>.</p>
+  </introduction>
+  <xi:include  href="sec_ABC.mbx" />
+  <xi:include  href="sec_disk.mbx" />
+  <xi:include  href="sec_shell_method.mbx" />
+  <xi:include  href="sec_arc_length.mbx" />
+  <xi:include  href="sec_work.mbx" />
+  <xi:include  href="sec_fluid_force.mbx" />
+</chapter>

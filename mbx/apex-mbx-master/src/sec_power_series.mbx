@@ -1,0 +1,1129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_power_series">
+  <title>Power Series</title>
+  <introduction>
+    <p>So far, our study of series has examined the question of <q>Is the sum of these infinite terms finite?,</q> i.e., <q>Does the series converge?</q> We now approach series from a different perspective: as a function. Given a value of <m>x</m>, we evaluate <m>f(x)</m> by finding the sum of a particular series that depends on <m>x</m> (assuming the series converges). We start this new approach to series with a definition.</p>
+
+    <definition xml:id="def_power_series">
+      <title>Power Series</title>
+      <statement>
+        <p>Let <m>\{a_n\}</m> be a sequence, let <m>x</m> be a variable, and let <m>c</m> be a real number.
+          <index><main>power series</main></index><index><main>series</main><sub>power</sub></index></p>
+
+        <ol>
+          <li><p>The <em>power series in <m>x</m></em> is the series
+              <me>
+                \infser[0] a_nx^n = a_0+a_1x+a_2x^2+a_3x^3+\ldots
+              </me>
+            </p></li>
+
+          <li><p>The <em>power series in <m>x</m> centered at <m>c</m></em> is the series
+              <me>
+                \infser[0] a_n(x-c)^n = a_0+a_1(x-c)+a_2(x-c)^2+a_3(x-c)^3+\ldots
+              </me>
+            </p></li>
+        </ol>
+      </statement>
+    </definition>
+
+    <example xml:id="ex_ps1">
+      <title>Examples of power series</title>
+      <statement>
+        <p>Write out the first five terms of the following power series:</p>
+
+        <p><m>\ds 1.\ \infser[0] x^n \qquad\qquad 2.\ \infser (-1)^{n+1}\frac{(x+1)^n}n\qquad\qquad 3.\ \infser[0] (-1)^{n+1} \frac{(x-\pi)^{2n}}{(2n)!}</m>.</p>
+      </statement>
+      <solution>
+        <ol>
+          <li><p>One of the conventions we adopt is that <m>x^0=1</m> regardless of the value of <m>x</m>. Therefore
+              <me>
+                \infser[0] x^n = 1+x+x^2+x^3+x^4+\ldots
+              </me>
+              This is a geometric series in <m>x</m> with <m>r=x</m>.</p></li>
+
+          <li><p>This series is centered at <m>c=-1</m>. Note how this series starts with <m>n=1</m>. We could rewrite this series starting at <m>n=0</m> with the understanding that <m>a_0=0</m>, and hence the first term is <m>0</m>.
+              <md>
+                <mrow>\amp \infser (-1)^{n+1}\frac{(x+1)^n}n</mrow>
+                <mrow>\amp =(x+1) - \frac{(x+1)^2}{2} + \frac{(x+1)^3}{3} - \frac{(x+1)^4}{4}+\frac{(x+1)^5}{5}\ldots</mrow>
+                 
+              </md>
+            </p></li>
+
+          <li><p>This series is centered at <m>c=\pi</m>. Recall that <m>0!=1</m>.
+              <md>
+                <mrow>\amp \infser[0] (-1)^{n+1} \frac{(x-\pi)^{2n}}{(2n)!} </mrow>
+                <mrow>\amp = -1+\frac{(x-\pi)^2}{2} - \frac{(x-\pi)^4}{24}+ \frac{(x-\pi)^6}{6!}-\frac{(x-\pi)^8}{8!}\ldots</mrow>
+              
+              </md>
+            </p></li>
+        </ol>
+      </solution>
+    </example>
+
+    <p>We introduced power series as a type of function, where a value of <m>x</m> is given and the sum of a series is returned. Of course, not every series converges. For instance, in part 1 of <xref ref="ex_ps1">Example</xref>, we recognized the series <m>\ds \infser[0] x^n</m> as a geometric series in <m>x</m>. <xref ref="thm_geom_series">Theorem</xref> states that this series converges only when <m>\abs{x}\lt 1</m>.</p>
+
+    <p>This raises the question: <q>For what values of <m>x</m> will a given power series converge?,</q> which leads us to a theorem and definition.</p>
+
+    <theorem xml:id="thm_radius_converge">
+      <title>Convergence of Power Series</title>
+      <statement>
+        <p>Let a power series <m>\ds \infser[0] a_n(x-c)^n</m> be given. Then one of the following is true:
+          <index><main>convergence</main><sub>of power series</sub></index><index><main>power series</main><sub>convergence</sub></index><index><main>series</main><sub>power</sub></index></p>
+
+        <ol>
+          <li><p>The series converges only at <m>x=c</m>.</p></li>
+
+          <li><p>There is an <m>R>0</m> such that the series converges for all <m>x</m> in
+	
+	<m>(c-R,c+R)</m> and diverges for all <m>x\lt c-R</m> and <m>x>c+R</m>.</p></li>
+
+          <li><p>The series converges for all <m>x</m>.</p></li>
+        </ol>
+      </statement>
+    </theorem>
+
+    <p>The value of <m>R</m> is important when understanding a power series, hence it is given a name in the following definition. Also, note that part 2 of <xref ref="thm_radius_converge">Theorem</xref> makes a statement about the interval <m>(c-R,c+R)</m>, but the not the endpoints of that interval. A series may/may not converge at these endpoints.</p>
+
+    <definition xml:id="def_radius_converge">
+      <title>Radius and Interval of Convergence</title>
+      <statement>
+        <ol>
+          <li><p>The number <m>R</m> given in <xref ref="thm_radius_converge">Theorem</xref> is the <em>radius of convergence</em> of a given series. When a series converges for only <m>x=c</m>, we say the radius of convergence is 0, i.e.,  <m>R=0</m>. When a series converges for all <m>x</m>, we say the series has an infinite radius of convergence, i.e., <m>R=\infty</m>.</p></li>
+
+          <li><p>The <em>interval of convergence</em> is the set of all values of <m>x</m> for which the series converges.
+			<index><main>convergence</main><sub>radius of</sub></index><index><main>convergence</main><sub>interval of</sub></index><index><main>radius of convergence</main></index><index><main>interval of convergence</main></index><index><main>series</main><sub>radius of convergence</sub></index><index><main>series</main><sub>interval of convergence</sub></index></p></li>
+        </ol>
+      </statement>
+    </definition>
+
+    <p>To find the values of <m>x</m> for which a given series converges, we will use the convergence tests we studied previously (especially the Ratio Test). However, the tests all required that the terms of a series be positive. The following theorem gives us a work<ndash />around to this problem.</p>
+
+    <theorem xml:id="thm_abs_power">
+      <title>The Radius of Convergence of a Series and Absolute Convergence</title>
+      <statement>
+        <p>The series <m>\ds \infser[0] a_n(x-c)^n</m> and <m>\ds \infser[0] \abs{a_n(x-c)^n}</m> have the same radius of convergence <m>R</m>.</p>
+      </statement>
+    </theorem>
+
+    <p><xref ref="thm_abs_power">Theorem</xref> allows us to find the radius of convergence <m>R</m> of a series by applying the Ratio Test (or any applicable test) to the absolute value of the terms of the series. We practice this in the following example.</p>
+
+    <example xml:id="ex_ps2">
+      <title>Determining the radius and interval of convergence.</title>
+      <statement>
+        <p>Find the radius and interval of convergence for each of the following series:</p>
+        <ol cols="4">
+          <li><p><m>\ds \infser[0] \frac{x^n}{n!}</m></p></li>
+          <li><p><m>\ds \infser (-1)^{n+1}\frac{x^n}{n} </m></p></li>
+          <li><p><m>\ds \infser[0] 2^n(x-3)^n </m></p></li>
+          <li><p><m>\ds \infser[0] \abs{\frac{x^n}{n!}}</m></p></li>
+        </ol>
+
+      </statement>
+      <solution>
+        <ol>
+          <li><p>We apply the Ratio Test to the series <m>\ds \infser \abs{\frac{x^n}{n!}}</m>:
+              <md>
+                <mrow>\lim_{n\to\infty} \frac{\abs{x^{n+1}/(n+1)!}}{\abs{x^n/n!}} \amp = \lim_{n\to\infty} \abs{\frac{x^{n+1}}{x^n}\cdot\frac{n!}{(n+1)!}}</mrow>
+                <mrow>\amp = \lim_{n\to\infty} \abs{\frac x{n+1}}</mrow>
+                <mrow>\amp = 0 \text{ for all }  x.</mrow>
+              </md>
+              The Ratio Test shows us that regardless of the choice of <m>x</m>, the series converges. Therefore the radius of convergence is <m>R=\infty</m>, and the interval of convergence is <m>(-\infty,\infty)</m>.</p></li>
+
+          <li><p>We apply the Ratio Test to the series <m>\ds \infser \abs{(-1)^{n+1}\frac{x^n}{n}} = \infser \abs{\frac{x^n}{n}}</m>:
+              <md>
+                <mrow>\lim_{n\to\infty} \frac{\abs{x^{n+1}/(n+1)}}{\abs{x^n/n}} \amp = \lim_{n\to\infty} \abs{\frac{x^{n+1}}{x^n}\cdot \frac{n}{n+1}}</mrow>
+                <mrow>\amp = \lim_{n\to\infty} n!x^n</mrow>
+                <mrow>\amp = \abs{x}.</mrow>
+              </md>
+              The Ratio Test states a series converges if the limit of <m>\abs{a_{n+1}/a_n} = L\lt 1</m>. We found the limit above to be <m>\abs{x}</m>; therefore, the power series converges when <m>\abs{x} \lt 1</m>, or when <m>x</m> is in <m>(-1,1)</m>. Thus the radius of convergence is <m>R=1</m>.
+	
+	
+	To determine the interval of convergence, we need to check the endpoints of <m>(-1,1)</m>. When <m>x=-1</m>, we have the opposite of the Harmonic Series:
+              <md>
+                <mrow>\infser (-1)^{n+1}\frac{(-1)^n}{n} \amp = \infser \frac{-1}{n}</mrow>
+                <mrow>\amp = -\infty.</mrow>
+              </md>
+              The series diverges when <m>x=-1</m>.
+	
+	When <m>x=1</m>, we have the series <m>\ds \infser (-1)^{n+1}\frac{(1)^n}{n}</m>, which is the Alternating Harmonic Series, which converges. Therefore the interval of convergence is <m>(-1,1]</m>.</p></li>
+
+          <li><p>We apply the Ratio Test to the series <m>\ds\infser[0] \abs{2^n(x-3)^n}</m>:
+              <md>
+                <mrow>\lim_{n\to\infty} \frac{\abs{ 2^{n+1}(x-3)^{n+1}}}{\abs{2^n(x-3)^n}} \amp = \lim_{n\to\infty} \abs{\frac{2^{n+1}}{2^n}\cdot\frac{(x-3)^{n+1}}{(x-3)^n}}</mrow>
+                <mrow>\amp =\lim_{n\to\infty} \abs{2(x-3)}.</mrow>
+              </md>
+              According to the Ratio Test, the series converges when <m>\abs{2(x-3)}\lt 1 \implies \abs{x-3} \lt  1/2</m>. The series is centered at 3, and <m>x</m> must be within <m>1/2</m> of 3 in order for the series to converge. Therefore the radius of convergence is <m>R=1/2</m>, and we know that the series converges absolutely for all <m>x</m> in <m>(3-1/2,3+1/2) = (2.5, 3.5)</m>.
+
+              We check for convergence at the endpoints to find the interval of convergence. When <m>x=2.5</m>, we have:
+              <md>
+                <mrow>\infser[0] 2^n(2.5-3)^n \amp = \infser[0] 2^n(-1/2)^n</mrow>
+                <mrow>\amp =\infser[0] (-1)^n,</mrow>
+              </md>
+              which diverges. A similar process shows that the series also diverges at <m>x=3.5</m>. Therefore the interval of convergence is <m>(2.5, 3.5)</m>.</p></li>
+
+          <li><p>We apply the Ratio Test to <m>\ds \infser[0] \abs{n!x^n}</m>:
+              <md>
+                <mrow>\lim_{n\to\infty} \frac{\abs{ (n+1)!x^{n+1}}}{\abs{n!x^n}} \amp = \lim_{n\to\infty} \abs{(n+1)x}</mrow>
+                <mrow>\amp = \infty\ \text{ for all \(x\), except \(x=0\). }</mrow>
+              </md>
+              The Ratio Test shows that the series diverges for all <m>x</m> except <m>x=0</m>. Therefore the radius of convergence is <m>R=0</m>.</p></li>
+        </ol>
+      </solution>
+    </example>
+
+    <p>We can use a power series to define a function:
+      <me>
+        f(x) = \infser[0] a_nx^n
+      </me>
+      where the domain of <m>f</m> is a subset of the interval of convergence of the power series. One can apply calculus techniques to such functions; in particular, we can find derivatives and antiderivatives.</p>
+
+    <theorem xml:id="thm_calc_power_series">
+      <title>Derivatives and Indefinite Integrals of Power Series Functions</title>
+      <statement>
+        <p>Let <m>\ds f(x) = \infser[0] a_n(x-c)^n</m> be a function defined by a power series, with radius of convergence <m>R</m>.</p>
+
+        <ol>
+          <li><p><m>f(x)</m> is continuous and differentiable on <m>(c-R,c+R)</m>.</p></li>
+
+          <li><p><m>\ds \fp(x) = \infser a_n\cdot n\cdot (x-c)^{n-1}</m>, with radius of convergence <m>R</m>.</p></li>
+
+          <li><p><m>\ds \int f(x)\ dx = C+\infser[0] a_n\frac{(x-c)^{n+1}}{n+1}</m>, with radius of convergence <m>R</m>.
+		<index><main>series</main><sub>power!derivatives and integrals</sub></index><index><main>integration</main><sub>of power series</sub></index><index><main>derivative</main><sub>power series</sub></index><index><main>power series</main><sub>derivatives and integrals</sub></index></p></li>
+        </ol>
+      </statement>
+    </theorem>
+
+    <p>A few notes about <xref ref="thm_calc_power_series">Theorem</xref>:</p>
+
+    <ol>
+      <li><p>The theorem states that differentiation and integration do not change the radius of convergence. It does not state anything about the <em>interval</em> of convergence. They are not always the same.</p></li>
+
+      <li><p>Notice how the summation for <m>\fp(x)</m> starts with <m>n=1</m>. This is because the constant term <m>a_0</m> of <m>f(x)</m> becomes <m>0</m> through differentiation.</p></li>
+
+      <li><p>Differentiation and integration are simply calculated term<ndash />by<ndash />term using the Power Rules.</p></li>
+    </ol>
+
+    <example xml:id="ex_ps3">
+      <title>Derivatives and indefinite integrals of power series</title>
+      <statement>
+        <p>Let <m>\ds f(x) = \infser[0] x^n</m>. Find <m>\fp(x)</m> and <m>\ds F(x) =\int f(x)\ dx</m>, along with their respective intervals of convergence.</p>
+      </statement>
+      <solution>
+        <p>We find the derivative and indefinite integral of <m>f(x)</m>, following <xref ref="thm_calc_power_series">Theorem</xref>.</p>
+
+        <ol>
+          <li><p>
+            <md>
+              <mrow>\fp(x) \amp = \infser nx^{n-1} = 1+2x+3x^2+4x^3+\cdots</mrow>
+              <mrow>\amp = \infser[0](n+1)x^n</mrow>
+          </md>.
+
+              In <xref ref="ex_ps1">Example</xref>, we recognized that <m>\ds \infser[0] x^n</m> is a geometric series in <m>x</m>. We know that such a geometric series converges when <m>\abs{x}\lt 1</m>; that is, the interval of convergence is <m>(-1,1)</m>.
+
+              To determine the interval of convergence of <m>\fp(x)</m>, we consider the endpoints of <m>(-1,1)</m>:
+              <me>
+                \fp(-1) =  1-2+3-4+\cdots, \text{ which diverges. }
+              </me>
+              <me>
+                \fp(1) = 1+2+3+4+\cdots, \text{ which diverges. }
+              </me>
+              Therefore, the interval of convergence of <m>\fp(x)</m> is <m>(-1,1)</m>.</p></li>
+
+          <li><p><m>\ds F(x) = \int f(x)\ dx = C+\infser[0] \frac{x^{n+1}}{n+1} = C+ x+\frac{x^2}{2}+\frac{x^3}3+\cdots</m>
+
+              To find the interval of convergence of <m>F(x)</m>, we again consider the endpoints of <m>(-1,1)</m>:
+              <me>
+                F(-1) = C-1+1/2-1/3+1/4+\cdots
+              </me>
+              The value of <m>C</m> is irrelevant; notice that the rest of the series is an Alternating Series that whose terms converge to 0. By the Alternating Series Test, this series converges. (In fact, we can recognize that the terms of the series after <m>C</m> are the opposite of the Alternating Harmonic Series. We can thus say that <m>F(-1) = C-\ln(2)</m>.)
+              <me>
+                F(1) = C+1+1/2+1/3+1/4+\cdots
+              </me>
+              Notice that this summation is <m>C\ +</m> the Harmonic Series, which diverges. Since <m>F</m> converges for <m>x=-1</m> and diverges for <m>x=1</m>, the interval of convergence of <m>F(x)</m> is <m>[-1,1)</m>.</p></li>
+        </ol>
+      </solution>
+    </example>
+
+    <p>The previous example showed how to take the derivative and indefinite integral of a power series without motivation for why we care about such operations. We may care for the sheer mathematical enjoyment <q>that we can</q>, which is motivation enough for many. However, we would be remiss to not recognize that we can learn a great deal from taking derivatives and indefinite integrals.</p>
+
+    <p>Recall that <m>\ds f(x) = \infser[0] x^n</m> in <xref ref="ex_ps3">Example</xref> is a geometric series. According to <xref ref="thm_geom_series">Theorem</xref>, this series converges to <m>1/(1-x)</m> when <m>\abs{x}\lt 1</m>. Thus we can say
+      <me>
+        f(x) = \infser[0] x^n = \frac 1{1-x}, \text{ on }  (-1,1).
+      </me>
+    </p>
+
+    <p>Integrating the power series, (as done in <xref ref="ex_ps3">Example</xref>,) we find
+      <men xml:id="eq_ps3a" >
+        F(x)  = C_1+\infser[0] \frac{x^{n+1}}{n+1},
+      </men>
+      while integrating the function <m>f(x) = 1/(1-x)</m> gives
+      <men xml:id="eq_ps3b" >
+        F(x)  = -\ln\abs{1-x} + C_2.
+      </men>
+    </p>
+
+    <p>Equating Equations <xref ref="eq_ps3a" /> and <xref ref="eq_ps3b" />, we have
+      <me>
+        F(x) = C_1+\infser[0] \frac{x^{n+1}}{n+1} = -\ln\abs{1-x} + C_2.
+      </me>
+    </p>
+
+    <p>Letting <m>x=0</m>, we have <m>F(0) = C_1 = C_2</m>. This implies that we can drop the constants and conclude
+      <me>
+        \infser[0] \frac{x^{n+1}}{n+1} = -\ln\abs{1-x}.
+      </me>
+    </p>
+
+    <p>We established in <xref ref="ex_ps3">Example</xref> that the series on the left converges at <m>x=-1</m>; substituting <m>x=-1</m> on both sides of the above equality gives
+      <me>
+        -1+\frac12-\frac13+\frac14-\frac15+\cdots = -\ln(2) .
+      </me>
+    </p>
+
+    <p>On the left we have the opposite of the Alternating Harmonic Series; on the right, we have <m>-\ln(2)</m>. We conclude that
+      <me>
+        1-\frac12+\frac13-\frac14+\cdots = \ln(2) .
+      </me>
+    </p>
+
+    <p><em>Important:</em> We stated in <xref ref="idea_famous_series">Key Idea</xref> (in <xref ref="sec_series">Section</xref>) that the Alternating Harmonic Series converges to <m>\ln(2)</m>, and referred to this fact again in <xref ref="ex_alt1">Example</xref> of <xref ref="sec_alt_series">Section</xref>. However, we never gave an argument for why this was the case. The work above finally shows how we conclude that the Alternating Harmonic Series converges to <m>\ln(2)</m>. <index><main>Alternating Harmonic Series</main></index></p>
+
+    <p>We use this type of analysis in the next example.</p>
+
+    <example xml:id="ex_ps4">
+      <title>Analyzing power series functions</title>
+      <statement>
+        <p>Let <m>\ds f(x) = \infser[0] \frac{x^n}{n!}</m>. Find <m>\ds \fp(x)</m> and <m>\ds \int f(x)\ dx</m>, and use these to analyze the behavior of <m>f(x)</m>.</p>
+      </statement>
+      <solution>
+        <p>We start by making two notes: first, in <xref ref="ex_ps2">Example</xref>, we found the interval of convergence of this power series is <m>(-\infty,\infty)</m>. Second, we will find it useful later to have a few terms of the series written out:
+          <men xml:id="eq_ps4" >
+            \infser[0] \frac{x^n}{n!} = 1 + x + \frac{x^2}2+\frac{x^3}{6} + \frac{x^4}{24} +\cdots
+          </men>
+        </p>
+
+        <p>We now find the derivative:
+          <md>
+            <mrow>\fp(x) \amp = \infser n\frac{x^{n-1}}{n!}</mrow>
+            <mrow>\amp =\infser \frac{x^{n-1}}{(n-1)!} = 1+x+\frac{x^2}{2!}+\cdots.</mrow>
+            <intertext>Since the series starts at <m>n=1</m> and each term refers to <m>(n-1)</m>, we can re-index the series starting with <m>n=0</m>:</intertext>
+            <mrow>\amp = \infser[0] \frac{x^{n}}{n!}</mrow>
+            <mrow>\amp = f(x).</mrow>
+          </md>
+        </p>
+
+        <p>We found the derivative of <m>f(x)</m> is <m>f(x)</m>. The only functions for which this is true are of the form <m>y=ce^x</m> for some constant <m>c</m>. As <m>f(0) = 1</m> (see Equation <xref ref="eq_ps4" />), <m>c</m> must be 1. Therefore we conclude that
+          <me>
+            f(x) = \infser[0] \frac{x^n}{n!} = e^x
+          </me>
+          for all <m>x</m>.</p>
+
+        <p>We can also find <m>\ds \int f(x)\ dx</m>:
+          <md>
+            <mrow>\int f(x)\ dx \amp = C+\infser[0] \frac{x^{n+1}}{n!(n+1)}</mrow>
+            <mrow>\amp = C+ \infser[0] \frac{x^{n+1}}{(n+1)!}</mrow>
+          </md>
+        </p>
+
+        <p>We write out a few terms of this last series:
+          <me>
+            C+ \infser[0] \frac{x^{n+1}}{(n+1)!} = C+ x+ \frac{x^2}2+\frac{x^3}{6}+\frac{x^4}{24}+\cdots
+          </me>
+        </p>
+
+        <p>The integral of <m>f(x)</m> differs from <m>f(x)</m> only by a constant, again indicating that <m>f(x) = e^x</m>.</p>
+      </solution>
+    </example>
+
+    <p><xref ref="ex_ps4">Example</xref> and the work following <xref ref="ex_ps3">Example</xref> established relationships between a power series function and <q>regular</q> functions that we have dealt with in the past. In general, given a power series function, it is difficult (if not impossible) to express the function in terms of elementary functions. We chose examples where things worked out nicely.</p>
+
+    <p>In this section's last example, we show how to solve a simple differential equation with a power series.</p>
+
+    <example xml:id="ex_ps5">
+      <title>Solving a differential equation with a power series.</title>
+      <statement>
+        <p>Give the first 4 terms of the power series solution to <m>y' = 2y</m>, where <m>y(0) = 1</m>.</p>
+      </statement>
+      <solution>
+        <p>The differential equation <m>y' = 2y</m> describes a function <m>y=f(x)</m> where the derivative of <m>y</m> is twice <m>y</m> and <m>y(0)=1</m>. This is a rather simple differential equation; with a bit of thought one should realize that if <m>y=Ce^{2x}</m>, then <m>y' = 2Ce^{2x}</m>, and hence <m>y' = 2y</m>. By letting <m>C=1</m> we satisfy the initial condition of <m>y(0)=1</m>.</p>
+
+        <p>Let's ignore the fact that we already know the solution and find a power series function that satisfies the equation. The solution we seek will have the form
+          <me>
+            f(x)  = \infser[0] a_nx^n = a_0+a_1x+a_2x^2+a_3x^3+\cdots
+          </me>
+          for unknown coefficients <m>a_n</m>. We can find <m>\fp(x)</m> using <xref ref="thm_calc_power_series">Theorem</xref>:
+          <me>
+            \fp(x) = \infser a_n\cdot n\cdot x^{n-1} = a_1+2a_2x+3a_3x^2+4a_4x^3\cdots.
+          </me>
+        </p>
+
+        <p>Since <m>\fp(x) = 2f(x)</m>, we have
+          <md>
+            <mrow>a_1+2a_2x+3a_3x^2+4a_4x^3\cdots \amp = 2\big(a_0+a_1x+a_2x^2+a_3x^3+\cdots\big)</mrow>
+            <mrow>\amp =2a_0+2a_1x+2a_2x^2+2a_3x^3+\cdots</mrow>
+          </md>
+        </p>
+
+        <p>The coefficients of like powers of <m>x</m> must be equal, so we find that
+          <me>
+            a_1 = 2a_0, 2a_2 = 2a_1, 3a_3 = 2a_2, 4a_4 = 2a_3, \text{ etc. }
+          </me>
+        </p>
+
+        <p>The initial condition <m>y(0) = f(0) = 1</m> indicates that <m>a_0 = 1</m>; with this, we can find the values of the other coefficients:
+          <md>
+            <mrow>a_0 = 1 \text{ and }  a_1=2a_0 \amp \Rightarrow a_1 = 2;</mrow>
+            <mrow>a_1 = 2 \text{ and }  2a_2 = 2a_1 \amp \Rightarrow a_2=4/2 =2;</mrow>
+            <mrow>a_2=2 \text{ and }  3a_3 = 2a_2 \amp \Rightarrow a_3=8/(2\cdot3)=4/3;</mrow>
+            <mrow>a_3=4/3 \text{ and }  4a_4 = 2a_3 \amp \Rightarrow a_4 =16/(2\cdot3\cdot4)= 2/3.</mrow>
+          </md>
+        </p>
+
+        <p>Thus the first 5 terms of the power series solution to the differential equation <m>y'=2y</m> is
+          <me>
+            f(x) = 1+ 2x+2x^2 + \frac43x^3+\frac23x^4+\cdots
+          </me>
+        </p>
+
+        <p>In <xref ref="sec_taylor_series">Section</xref>, as we study Taylor Series, we will learn how to recognize this series as describing <m>y=e^{2x}</m>.</p>
+      </solution>
+    </example>
+
+    <p>Our last example illustrates that it can be difficult to recognize an elementary function by its power series expansion. It is far easier to start with a known function, expressed in terms of elementary functions, and represent it as a power series function. One may wonder why we would bother doing so, as the latter function probably seems more complicated. In the next two sections, we show both <em>how</em> to do this and <em>why</em> such a process can be beneficial.</p>
+  </introduction>
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>We adopt the convenction that <m>x^0=</m>\underlinespace, regardless of the value of <m>x</m>.</p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>What is the difference between the radius of convergence and the interval of convergence?</p>
+          </statement>
+          <solution>
+            <p>The radius of convergence is a <em>value</em> <m>R</m> such that a power series, centered at <m>x=c</m>, converges for all values of <m>x</m> in <m>(c-R,c+R)</m>. The interval of convergence is an <em>interval</em> on which the power series converges; it may differ from <m>(c-R,c+R)</m> only at the endpoints.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>If the radius of convergence of <m>\ds\infser[0] a_nx^n</m> is 5, what is the radius of convergence of <m>\ds\infser n\cdot a_nx^{n-1}</m>?</p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>If the radius of convergence of <m>\ds\infser[0] a_nx^n</m> is 5, what is the radius of convergence of <m>\ds\infser[0] (-1)^na_nx^n</m>?</p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, write out the sum of the first 5 terms of the given power series.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser[0] 2^nx^n</m></p>
+          </statement>
+          <solution>
+            <p><m>1+2x+4x^2+8x^3+16x^4</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser \frac{1}{n^2}x^n</m></p>
+          </statement>
+          <solution>
+            <p><m>x+\frac{x^2}{4}+\frac{x^3}{9}+\frac{x^4}{16}+\frac{x^5}{25}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser[0] \frac{1}{n!}x^n</m></p>
+          </statement>
+          <solution>
+            <p><m>1+x+\frac{x^2}{2}+\frac{x^3}{6}+\frac{x^4}{24}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser[0] \frac{(-1)^n}{(2n)!}x^{2n}</m></p>
+          </statement>
+          <solution>
+            <p><m>1-\frac{x^2}{2}+\frac{x^4}{24}-\frac{x^6}{720}+\frac{x^8}{40320}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, a power series is given.</p>
+
+      <ol>
+        <li>
+          <title>(a)</title>
+          <p>Find the radius of convergence.</p></li>
+
+        <li>
+          <title>(b)</title>
+          <p>Find the interval of convergence.</p></li>
+      </ol>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser[0] \frac{(-1)^{n+1}}{n!}x^{n}</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>R=\infty</m></p></li>
+
+              <li><p><m>(-\infty,\infty)</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser[0] nx^{n}</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>R=1</m></p></li>
+
+              <li><p><m>(-1,1)</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser \frac{(-1)^n(x-3)^{n}}{n}</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>R=1</m></p></li>
+
+              <li><p><m>(2,4]</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser[0] \frac{(x+4)^{n}}{n!}</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>R=\infty</m></p></li>
+
+              <li><p><m>(-\infty,\infty)</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser[0] \frac{x^{n}}{2^n}</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>R=2</m></p></li>
+
+              <li><p><m>(-2,2)</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser[0] \frac{(-1)^n(x-5)^{n}}{10^n}</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>R=10</m></p></li>
+
+              <li><p><m>(-5,15)</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser[0] 5^n(x-1)^{n}</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>R=1/5</m></p></li>
+
+              <li><p><m>(4/5,6/5)</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser[0] (-2)^nx^{n}</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>R=1/2</m></p></li>
+
+              <li><p><m>(-1/2,1/2)</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser[0] \sqrt{n}x^{n}</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>R=1</m></p></li>
+
+              <li><p><m>(-1,1)</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser[0] \frac{n}{3^n}x^{n}</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>R=3</m></p></li>
+
+              <li><p><m>(-3,3)</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser[0] \frac{3^n}{n!}(x-5)^{n}</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>R=\infty</m></p></li>
+
+              <li><p><m>(-\infty,\infty)</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser[0] (-1)^nn!(x-10)^{n}</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>R=0</m></p></li>
+
+              <li><p><m>x=10</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser \frac{x^n}{n^2}</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>R=1</m></p></li>
+
+              <li><p><m>[-1,1]</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser \frac{(x+2)^n}{n^3}</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>R=1</m></p></li>
+
+              <li><p><m>[-3,-1]</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser[0] n!\left(\frac x{10}\right)^n</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>R=0</m></p></li>
+
+              <li><p><m>x=0</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser[0] n^2\left(\frac{x+4}{4}\right)^n</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>R=4</m></p></li>
+
+              <li><p><m>x=(-8,0)</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, a function <m>\ds f(x) = \infser[0] a_nx^n</m> is given.</p>
+
+      <ol>
+        <li>
+          <title>(a)</title>
+          <p>Give a power series for <m>\fp(x)</m> and its interval of convergence.</p></li>
+
+        <li>
+          <title>(b)</title>
+          <p>Give a power series for <m>\int f(x)\ dx</m> and its interval of convergence.</p></li>
+      </ol>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser[0] nx^n</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>\ds \fp(x) =  \infser n^2x^{n-1}</m>;   <m>(-1,1)</m></p></li>
+
+              <li><p><m>\ds \int f(x)\ dx = C+\infser[0] \frac{n}{n+1}x^{n+1}</m>;   <m>(-1,1)</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser \frac{x^n}{n}</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>\ds \fp(x) = \infser x^{n-1}</m>;   <m>(-1,1)</m></p></li>
+
+              <li><p><m>\ds \int f(x)\ dx = C+\infser \frac{1}{n(n+1)}x^{n+1}</m>;   <m>[-1,1]</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser[0] \left(\frac{x}{2}\right)^n</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>\ds \fp(x) = \infser \frac{n}{2^n}x^{n-1}</m>;   <m>(-2,2)</m></p></li>
+
+              <li><p><m>\ds \int f(x)\ dx = C+\infser[0] \frac{1}{(n+1)2^n}x^{n+1}</m>;   <m>[-2,2)</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser[0] (-3x)^n</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>\ds \fp(x) = \infser n(-3)^nx^{n-1}</m>;   <m>(-1/3,1/3)</m></p></li>
+
+              <li><p><m>\ds \int f(x)\ dx = C+\infser[0] \frac{(-3)^n}{n+1}x^{n+1}</m>;   <m>(-1/3,1/3]</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser[0] \frac{(-1)^nx^{2n}}{(2n)!}</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>\ds \fp(x) = \infser \frac{(-1)^nx^{2n-1}}{(2n-1)!} =\infser[0] \frac{(-1)^{n+1}x^{2n+1}}{(2n+1)!}</m>;   <m>(-\infty,\infty)</m></p></li>
+
+              <li><p><m>\ds \int f(x)\ dx = C+\infser[0] \frac{(-1)^nx^{2n+1}}{(2n+1)!}</m>;   <m>(-\infty,\infty)</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser[0] \frac{(-1)^nx^{n}}{n!}</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>\ds \fp(x) = \infser \frac{(-1)^nx^{n-1}}{(n-1)!} =\infser[0] \frac{(-1)^{n+1}x^{n}}{n!}</m>;   <m>(-\infty,\infty)</m></p></li>
+
+              <li><p><m>\ds \int f(x)\ dx = C+\infser[0] \frac{(-1)^{n}x^{n+1}}{(n+1)!}</m>;   <m>(-\infty,\infty)</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, give the first 5 terms of the series that is a solution to the given differential equation.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>y\,'=3y</m>,<m>y(0)=1</m></p>
+          </statement>
+          <solution>
+            <p><m>1+3x+\frac92x^2+\frac92x^3+\frac{27}{8}x^4</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>y\,'=5y</m>,<m>y(0)=5</m></p>
+          </statement>
+          <solution>
+            <p><m>5+25x+\frac{125}2x^2+\frac{625}{6}x^3+\frac{3125}{24}x^4</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>y\,'=y^2</m>,<m>y(0)=1</m></p>
+          </statement>
+          <solution>
+            <p><m>1+x+x^2+x^3+x^4</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>y\,'=y+1</m>,<m>y(0)=1</m></p>
+          </statement>
+          <solution>
+            <p><m>1+2x+x^2+\frac13{x^3}+\frac1{12}{x^4}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>y\,''=-y</m>,<m>y(0)=0</m>, <m>y\,'(0) = 1</m></p>
+          </statement>
+          <solution>
+            <p><m>0+x+0x^2-\frac16x^3+0x^4</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>y\,''=2y</m>,<m>y(0)=1</m>, <m>y\,'(0) = 1</m></p>
+          </statement>
+          <solution>
+            <p><m>1+x+x^2+\frac13x^3+\frac16x^4</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

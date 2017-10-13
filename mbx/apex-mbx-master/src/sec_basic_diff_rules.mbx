@@ -1,0 +1,1323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_basic_diff_rules">
+  <title>Basic Differentiation Rules</title>
+  <introduction>
+    <p>The derivative is a powerful tool but is admittedly awkward given its reliance on limits. Fortunately, one thing mathematicians are good at is <em>abstraction.</em> For instance, instead of continually finding derivatives at a point, we abstracted and found the derivative function.</p>
+
+    <p>Let's practice abstraction on linear functions, <m>y=mx+b</m>. What is <m>y'</m>? Without limits, recognize that linear function are characterized by being functions with a constant rate of change (the slope). The derivative, <m>y'</m>, gives the instantaneous rate of change; with a linear function, this is constant, <m>m</m>. Thus <m>y'=m</m>.</p>
+
+    <p>Let's abstract once more. Let's find the derivative of the general quadratic function, <m>f(x) = ax^2+bx+c</m>. Using the definition of the derivative, we have:
+      <md>
+        <mrow>\fp(x)     \amp =    \lim_{h\to 0}\frac{a(x+h)^2+b(x+h)+c-(ax^2+bx+c)}{h}</mrow>
+        <mrow>\amp =\lim_{h\to 0}\frac{ax^2+2ahx+ah^2+bx+bh+c-ax^2-bx-c)}{h}</mrow>
+        <mrow>\amp =    \lim_{h\to 0} \frac{ah^2+2ahx+bh}{h}</mrow>
+        <mrow>\amp =    \lim_{h\to 0} ah+2ax+b</mrow>
+        <mrow>\amp = 2ax+b.</mrow>
+      </md>
+    </p>
+
+    <p>So if <m>y = 6x^2+11x-13</m>, we can immediately compute <m>y' = 12x+11</m>.</p>
+
+    <p>In this section (and in some sections to follow) we will learn some of what mathematicians have already discovered about the derivatives of certain functions and how derivatives interact with arithmetic operations. We start with a theorem.</p>
+
+    <theorem xml:id="thm_deriv_common">
+      <title>Derivatives of Common Functions</title>
+      <statement>
+        <p><dl>
+          <li><title>Constant Rule</title><index><main>derivative</main><sub>Constant Rule</sub></index>
+           <p><m>\lzoo{x}{c} = 0</m>, where <m>c</m> is a constant.</p></li>
+
+          <li xml:id="power-derivative-rule"><title>Power Rule</title><index><main>derivative</main><sub>Power Rule</sub></index><index><main>Power Rule</main><sub>differentiation</sub></index>
+          <p><m>\lzoo{x}{x^n}= nx^{n-1}</m>, where <m>n</m> is an integer, <m>n>0</m>.</p></li>
+
+          <li><title>Other common functions</title>
+          <p><m>\lzoo{x}{\sin(x)} = \cos(x)</m></p>
+          <p><m>\lzoo{x}{\cos(x)} = {-\sin(x)}</m></p>
+          <p><m>\lzoo{x}{e^x} = e^x</m></p>
+          <p><m>\lzoo{x}{\ln(x)} = \frac{1}{x}</m>, for <m>x\gt 0</m>.</p></li>
+        </dl>
+
+        <index><main>derivative</main><sub>basic rules</sub></index>
+        </p>
+      </statement>
+    </theorem>
+
+    <p>This theorem starts by stating an intuitive fact: constant functions have zero rate of change as they are <em>constant</em>. Therefore their derivative is <m>0</m> (they change at the rate of <m>0</m>). The theorem then states some fairly amazing things. The <xref ref="power-derivative-rule" autoname="title" /> states that the derivatives of Power Functions (of the form <m>y=x^n</m>) are very straightforward: multiply by the power, then subtract <m>1</m> from the power. We see something incredible about the function <m>y=e^x</m>: it is its own derivative. We also see a new connection between the sine and cosine functions.</p>
+
+    <p>One special case of the <xref ref="power-derivative-rule" autoname="title" /> is when <m>n=1</m>, i.e., when <m>f(x) = x</m>. What is <m>\fp(x)</m>? According to the <xref ref="power-derivative-rule" autoname="title" />,
+      <me>
+        \fp(x) = \lzoo{x}{x} = \lzoo{x}{x^1} = 1\cdot x^0 = 1.
+      </me>
+    </p>
+
+    <p>In words, we are asking <q>At what rate does <m>f</m> change with respect to <m>x</m>?</q> Since <m>f</m> <em>is</em> <m>x</m>, we are asking <q>At what rate does <m>x</m> change with respect to <m>x</m>?</q> The answer is: <m>1</m>. They change at the same rate. We can also interpret the derivative as the slope of the tangent line to the function at a point <m>(c,f(c))</m>. Since <m>f(x)=x</m> is a linear function with constant slope <m>1</m>, we can say that the derivative of <m>f(x)=x</m> is <m>\fp(x)=1</m>.</p>
+
+    <p>Let's practice using this theorem.</p>
+
+    <example xml:id="ex_deriv_rule1">
+      <title>Using common derivative rules to find, and use, derivatives</title>
+      <statement>
+        <p>Let <m>f(x)=x^3</m>.<ol>
+          <li><p>Find <m>\fp(x)</m>.</p></li>
+          <li xml:id="item-tangent-line"><p>Find the equation of the line tangent to the graph of <m>f</m> at <m>x=-1</m>.</p></li>
+          <li><p>Use the tangent line to approximate <m>(-1.1)^3</m>.</p></li>
+          <li><p>Sketch <m>f</m>, <m>\fp</m> and the tangent line from <xref ref="item-tangent-line" /> on the same axis.</p></li>
+        </ol></p>
+      </statement>
+      <solution>
+        <p><ol>
+          <li><p>The <xref ref="power-derivative-rule" autoname="title" /> states that if <m>f(x) = x^3</m>, then <m>\fp(x) = 3x^2</m>.</p></li>
+
+          <li><p>To find the equation of the line tangent to the graph of <m>f</m> at <m>x=-1</m>, we need a point and the slope. The point is <m>(-1,f(-1)) = (-1, -1)</m>. The slope is <m>\fp(-1)= 3</m>. Thus the tangent line has equation <m>y = 3(x-(-1))+(-1) = 3x+2</m>.</p></li>
+
+          <li><p>We can use the tangent line to approximate <m>(-1.1)^3</m> since <m>-1.1</m> is close to <m>-1</m>. We have
+              <me>
+                (-1.1)^3 \approx 3(-1.1)+2 = -1.3.
+              </me>
+              We can easily find the actual value: <m>(-1.1)^3 = -1.331</m>.</p></li>
+
+          <li><p>See <xref ref="fig_xcubedwithderiv">Figure</xref>.</p></li>
+        </ol></p>
+
+        <figure xml:id="fig_xcubedwithderiv" >
+          <caption>A graph of <m>f(x) = x^3</m>, along with its derivative <m>\fp(x) = 3x^2</m> and its tangent line at <m>x=-1</m>.</caption>
+          <!-- START figures/fig_xcubedwithderiv.tex -->
+          <image xml:id="img_xcubedwithderiv" width="47%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+                  \begin{axis}[xmin=-2.1,xmax=2.1,
+                                ymin=-5.1,ymax=5.1,
+                                clip=false]
+                      \addplot+[domain=-1.5:1.5] {x^3} node[below right] {$f(x)$};
+                      \addplot+[domain=-1.2:1.2] {3*x^2} node[right] {$f'(x)$};
+                      \addplot[tangentline,domain=-2:1] {3*(x+1)-1} node[above left] {$\ell(x)$};
+                      \addplot[soliddot] coordinates {(-1,-1) (-1,3)};
+                  \end{axis}
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_xcubedwithderiv.tex END -->
+        </figure>
+      </solution>
+    </example>
+
+    <p><xref ref="thm_deriv_common">Theorem</xref> gives useful information, but we will need much more. For instance, using the theorem, we can easily find the derivative of <m>y=x^3</m>, but it does not tell how to compute the derivative of <m>y=2x^3</m>, <m>y=x^3+\sin(x)</m> nor <m>y=x^3\sin(x)</m>. The following theorem helps with the first two of these examples (the third is answered in the next section).</p>
+
+    <theorem xml:id="thm_deriv_prop">
+      <title>Properties of the Derivative</title>
+      <statement>
+        <p>Let <m>f</m> and <m>g</m> be differentiable on an open interval <m>I</m> and let <m>c</m> be a real number. Then:<dl>
+          <li xml:id="sum-difference-derivative-rule"><title>Sum/Difference Rule</title>
+            <p><md>
+                <mrow>\lzoo{x}{f(x) \pm g(x)} \amp= \lzoo{x}{f(x)} \pm \lzoo{x}{g(x)}</mrow>
+                <mrow>\amp= \fp(x)\pm g'(x)</mrow>
+            </md>
+            <index><main>derivative</main><sub>Sum/Difference Rule</sub></index><index><main>Sum/Difference Rule</main><sub>of derivatives</sub></index></p></li>
+
+          <li xml:id="constant-multiple-derivative-rule"><title>Constant Multiple Rule</title>
+            <p>
+            <md>
+              <mrow>\lzoo{x}{c\cdot f(x)} \amp= c\cdot\lzoo{x}{f(x)}</mrow>
+              <mrow>\amp = c\cdot\fp(x)\text{.}</mrow>
+            </md><index><main>derivative</main><sub>Constant Multiple Rule</sub></index><index><main>Constant Multiple Rule</main><sub>of derivatives</sub></index></p></li>
+        </dl></p>
+      </statement>
+    </theorem>
+
+    <p><xref ref="thm_deriv_prop">Theorem</xref> allows us to find the derivatives of a wide variety of functions. It can be used in conjunction with the <xref ref="power-derivative-rule" autoname="title" /> to find the derivatives of any polynomial. Recall in <xref ref="ex_deriv1">Example</xref> that we found, using the limit definition, the derivative of <m>f(x) = 3x^2+5x-7</m>. We can now find its derivative without expressly using limits:
+      <md>
+        <mrow>\lzoo{x}{3x^2+5x+7} \amp = 3\lzoo{x}{x^2} + 5\lzoo{x}{x} + \lzoo{x}{7}</mrow>
+        <mrow>\amp = 3\cdot 2x+5\cdot 1+ 0</mrow>
+        <mrow>\amp = 6x+5.</mrow>
+      </md>
+    </p>
+
+    <p>We were a bit pedantic here, showing every step. Normally we would do all the arithmetic and steps in our head and readily find <m>\lzoo{x}{3x^2+5x+7}= 6x+5</m>.</p>
+
+    <example xml:id="ex_der2">
+      <title>Using the tangent line to approximate a function value</title>
+      <statement>
+        <p>Let <m>f(x) = \sin(x) + 2x+1</m>. Approximate <m>f(3)</m> using an appropriate tangent line.</p>
+      </statement>
+      <solution>
+        <p>This problem is intentionally ambiguous; we are to <em>approximate</em> using an <em>appropriate</em> tangent line. How good of an approximation are we seeking? What does <q>appropriate</q> mean?</p>
+
+        <p>In the <q>real world,</q> people solving problems deal with these issues all time. One must make a judgment using whatever seems reasonable. In this example, the actual answer is <m>f(3) = \sin(3) + 7</m>, where the real problem spot is <m>\sin(3)</m>. What is <m>\sin(3)</m>?</p>
+
+        <p>Since <m>3</m> is close to <m>\pi</m>, we can assume <m>\sin(3) \approx \sin(\pi) = 0</m>. Thus one guess is <m>f(3) \approx 7</m>. Can we do better? Let's use a tangent line as instructed and examine the results; it seems best to find the tangent line at <m>x=\pi</m>.</p>
+
+        <p>Using <xref ref="thm_deriv_common">Theorem</xref> we find <m>\fp(x) = \cos(x) + 2</m>. The slope of the tangent line is thus <m>\fp(\pi) = \cos(\pi) + 2 =1</m>. Also, <m>f(\pi) = 2\pi+1 \approx 7.28</m>. So the tangent line to the graph of <m>f</m> at <m>x=\pi</m> is <m>y=1(x-\pi)+ 2\pi+1 =x+\pi+1 \approx x+4.14</m>. Evaluated at <m>x=3</m>, our tangent line gives <m>y=3+4.14 = 7.14</m>. Using the tangent line, our final approximation is that <m>f(3) \approx 7.14</m>.</p>
+
+        <p>Using a calculator, we get an answer accurate to four places after the decimal: <m>f(3) = 7.1411</m>. Our initial guess was <m>7</m>; our tangent line approximation was more accurate, at <m>7.14</m>.</p>
+
+        <p>The point is <em>not</em> <q>Here's a cool way to do some math without a calculator.</q> Sure, that might be handy sometime, but your phone could probably give you the answer. Rather, the point is to say that tangent lines are a good way of approximating, and many scientists, engineers and mathematicians often face problems too hard to solve directly. So they approximate.</p>
+        <p>The graphs in <xref ref="fig_sintangapprox">Figure</xref> shows the graph of the function <m>f(x)</m> along with the tangent line constructed at <m>x=\pi</m>. The graph in <xref ref="fig_sintangapprox">Figure</xref> shows the same tangent line and function. Once zoomed in, you can barely distinguish the tangent line from the function. This indicates that the tangent line is a good a approximation of the function so long as we are near the point of tangency. </p>
+        <sidebyside widths="47% 47%" margins="auto">
+            <figure xml:id="fig_sintangapprox" >
+                <caption>A graph of <m>f(x) = \sin(x)+2x+1</m> along with its tangent line approximation at <m>x=\pi</m>.</caption>
+                <image xml:id="img_sintangapprox" >
+                  <description></description>
+                  <latex-image-code>
+                    <![CDATA[
+                    \begin{tikzpicture}
+                        \begin{axis}[xmin=-1.1,xmax=5.1,
+                                    ymin=-1,ymax=10,]
+                            \addplot+[domain=-.5:5] {sin(deg(x))+2*x+1};
+                            \addplot[tangentline,domain=1:4.5] {x+4.14};
+                            \addplot[soliddot] coordinates {(3,7.1411) (3.14,7.28)};
+                            \draw (axis cs:0.5,1.2) node {\scriptsize $f(x)$};
+                            \draw (axis cs:0.5,5) node {\scriptsize $l(x)$};
+                    \end{axis}
+
+
+
+                    \end{tikzpicture}
+                    ]]>
+                  </latex-image-code>
+                </image>
+                <!-- figures/fig_xcubedwithderiv.tex END -->
+            </figure>
+
+            <figure xml:id="fig_sintangapproxzoom" >
+                <caption>A graph of <m>f(x) = \sin(x)+2x+1</m> along with its tangent line approximation at <m>x=\pi</m>, zoomed in.</caption>
+                <image xml:id="img_sintangapproxzoom" >
+                  <description></description>
+                  <latex-image-code>
+                    <![CDATA[
+                    \begin{tikzpicture}
+                    \begin{axis}[ymin=6.7,ymax=7.4,
+                                 xmin=2.5,xmax=3.5,
+                                 xdiscontinuity,
+                                 ydiscontinuity]
+                    \addplot+[domain=2.6:3.25] {sin(deg(x))+2*x+1};
+                    \addplot[tangentline,domain=2.6:3.25] {x+4.14};
+                    \addplot[soliddot] coordinates {(3,7.1411) (3.14,7.28)};
+                    %\draw (axis cs:0.5,1.2) node {\scriptsize $f(x)$};
+                    %\draw (axis cs:0.5,5) node {\scriptsize $l(x)$};
+                    \end{axis}
+
+
+
+                    \end{tikzpicture}
+                    ]]>
+                  </latex-image-code>
+                </image>
+                <!-- figures/fig_xcubedwithderiv.tex END -->
+            </figure>
+         </sidebyside>
+      </solution>
+    </example>
+  </introduction>
+
+  <subsection>
+    <title>Higher Order Derivatives</title>
+    <p>The derivative of a function <m>f</m> is itself a function, therefore we can take its derivative. The following definition gives a name to this concept and introduces its notation.</p>
+
+    <definition xml:id="def_Higher_Deriv">
+      <title>Higher Order Derivatives</title>
+      <statement>
+        <p>Let <m>y=f(x)</m> be a differentiable function on <m>I</m>. <index><main>derivative</main><sub>higher order</sub></index><index><main>derivative</main><sub>notation</sub></index>
+        <ol>
+          <li><p>The <em>second derivative</em> of <m>f</m> is:
+              <me>
+                \fp'(x) = \lzoo{x}{\fp(x)} = \lzoo{x}{\lz{y}{x}} = \lzn{y}{x}{2}=y''.
+              </me>
+            </p></li>
+
+          <li><p>The <em>third derivative</em> of <m>f</m> is:
+              <me>
+                \fp''(x) = \lzoo{x}{\fp'(x)} = \lzoo{x}{\lzn{y}{x}{2}} = \lzn{y}{x}{3}=y'''.
+              </me>
+            </p></li>
+
+          <li><p>The <em><m>n</m>th derivative</em> of <m>f</m> is:
+              <me>
+                f^{(n)}(x) = \lzoo{x}{f^{(n-1)}(x)} = \lzoo{x}{\lzn{y}{x}{n-1}} = \lzn{y}{x}{n}=y^{(n)}.
+              </me>
+            </p></li>
+        </ol></p>
+      </statement>
+    </definition>
+
+    <aside>
+      <title>Higher Order Derivative Caveat</title>
+      <p><xref ref="def_Higher_Deriv">Definition</xref> comes with the caveat <q>Where the corresponding limits exist.</q> With <m>f</m> differentiable on <m>I</m>, it is possible that <m>\fp</m> is <em>not</em> differentiable on all of <m>I</m>, and so on.</p>
+    </aside>
+
+    <p>In general, when finding the fourth derivative and on, we resort to the <m>f^{(4)}(x)</m> notation, not <m>\fp'''(x)</m>; after a while, too many ticks is too confusing.</p>
+
+    <p>Let's practice using this new concept.</p>
+
+    <example xml:id="ex_high_order">
+      <title>Finding higher order derivatives</title>
+      <statement>
+        <p>Find the first four derivatives of the following functions:
+        <ol cols="3" >
+          <li><p><m>f(x) = 4x^2</m></p></li>
+
+          <li><p><m>f(x) = \sin(x)</m></p></li>
+
+          <li><p><m>f(x) = 5e^x</m></p></li>
+        </ol></p>
+      </statement>
+      <solution>
+        <p><ol>
+          <li><p>Using the Power and Constant Multiple Rules, we have: <m>\fp(x) = 8x</m>. Continuing on, we have
+              <md>
+                <mrow>\fp'(x)\amp=\lzoo{x}{8x}=8\amp\fp''(x)\amp=0\amp f^{(4)}(x)\amp=0.</mrow>
+              </md>
+              Notice how all successive derivatives will also be <m>0</m>.</p></li>
+
+          <li><p>We employ <xref ref="thm_deriv_common">Theorem</xref> repeatedly.
+              <md>
+                <mrow>\fp(x)\amp=\cos(x)\amp \fp''(x)\amp= -\cos(x)</mrow>
+                <mrow>\fp'(x)\amp= -\sin(x)\amp f^{(4)}(x)\amp = \sin(x)</mrow>
+              </md>
+              Note how we have come right back to <m>f(x)</m> again. (Can you quickly figure what <m>f^{(23)}(x)</m> is?)</p></li>
+
+          <li><p>Employing <xref ref="thm_deriv_common">Theorem</xref> and the Constant Multiple Rule, we can see that
+              <me>
+                \fp(x) = \fp'(x) = \fp''(x) = f^{(4)}(x) = 5e^x.
+              </me>
+            </p></li>
+        </ol></p>
+      </solution>
+    </example>
+  </subsection>
+
+  <subsection>
+    <title>Interpreting Higher Order Derivatives</title>
+    <p>What do higher order derivatives <em>mean</em>? What is the practical interpretation? <index><main>derivative</main><sub>higher order!interpretation</sub></index></p>
+
+    <p>Our first answer is a bit wordy, but is technically correct and beneficial to understand. That is,</p>
+
+    <blockquote>
+        <p>The second derivative of a function <m>f</m> is the rate of change of the rate of change of <m>f</m>.</p>
+    </blockquote>
+
+    <p>One way to grasp this concept is to let <m>f</m> describe a position function. Then, as stated in <xref ref="idea_motion">Key Idea</xref>, <m>\fp</m> describes the rate of position change: velocity. We now consider <m>\fp'</m>, which describes the rate of velocity change. Sports car enthusiasts talk of how fast a car can go from <m>0</m> to <quantity><mag>60</mag><unit base="mileperhour" /></quantity>; they are bragging about the <em>acceleration</em> of the car.</p>
+
+    <p>We started this chapter with amusement-park riders free-falling with position function <m>f(t) = -16t^2+150</m>. It is easy to compute <m>\fp(t)=-32t</m> ft/s and <m>\fp'(t) = -32</m> (ft/s)/s. We may recognize this latter constant; it is the acceleration due to gravity. In keeping with the unit notation introduced in the previous section, we say the units are <q>feet per second per second.</q> This is usually shortened to <q>feet per second squared,</q> written as <q>ft/s<m>^2</m>.</q></p>
+
+    <p>It can be difficult to consider the meaning of the third, and higher order, derivatives. The third derivative is <q>the rate of change of the rate of change of the rate of change of <m>f</m>.</q> That is essentially meaningless to the uninitiated. In the context of our position/velocity/acceleration example, the third derivative is the <q>rate of change of acceleration,</q> commonly referred to as <q>jerk.</q></p>
+
+    <p>Make no mistake: higher order derivatives have great importance even if their practical interpretations are hard (or <q>impossible</q>) to understand. The mathematical topic of <term>series</term> makes extensive use of higher order derivatives.</p>
+  </subsection>
+
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <pg-macros>
+            <macro-file>contextArbitraryString.pl</macro-file>
+          </pg-macros>
+          <setup>
+            <var name="$ans">
+              <static>\text{The Power Rule}</static>
+            </var>
+            <pg-code>
+              Context("ArbitraryString");
+              $ans=Compute("Power Rule");
+              $ev=$ans->cmp(checker => sub {
+              my ($correct,$student,$ans) = @_;
+              $correct = $correct->value;
+              $student = $student->value;
+              $student =~ s/^~~W+|~~W+$//g;
+              my @words = split (/ /, $student);
+              $words[0] =~ s/^~~W+|~~W+$//g;
+              $words[1] =~ s/^~~W+|~~W+$//g;
+              $words[2] =~ s/^~~W+|~~W+$//g;
+              return ($#words &lt;= 2 and ((uc($words[0]) eq 'POWER' and uc($words[1]) eq 'RULE') or (uc($words[0]) eq 'THE' and uc($words[1]) eq 'POWER' and uc($words[2]) eq 'RULE')));
+              });
+            </pg-code>
+          </setup>
+          <statement>
+            <p>What is the name of the rule which states that <m>\lzoo{x}{x^n} = nx^{n-1}</m>, where <m>n>0</m> is an integer?</p>
+            <p><var name="$ans" width="20" evaluator="$ev" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$ans">
+              <static>\frac{1}{x}</static>
+            </var>
+            <pg-code>
+              $ans=Formula("1/x");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>What is <m>\lzoo{x}{\ln(x)}</m>?</p>
+            <p><var name="$ans" width="10" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$ans">
+              <static>10e^x</static>
+            </var>
+            <pg-code>
+              $ans=Compute("e^x");
+              $ev=$ans->cmp(checker=>sub{my($correct,$student,$self )=@_;
+                my$context=Context()->copy;
+                $context->flags->set(no_parameters=>0);
+                $context->variables->add('C0'=>'Parameter');
+                my$c0=Formula($context,'C0');
+                $student=Formula($context,$student);
+                $correct=Formula($context,"$c0 e^x");
+                return $correct == $student;
+              });
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Give an example of a function <m>f(x)</m> where <m>\fp(x) = f(x)</m>.</p>
+            <p><var name="$ans" width="10" evaluator="$ev"/></p>
+          </statement>
+          <solution>
+            <p>One answer is <m>f(x) = 10e^x</m>. Any constant multiple of <m>e^x</m> will do.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$ans">
+              <static>10</static>
+            </var>
+            <pg-code>
+              $ans=Formula("10");
+              $ev=$ans->cmp(checker=>sub{my($correct,$student,$self )=@_;
+                my$context=Context()->copy;
+                $context->flags->set(no_parameters=>0);
+                $context->variables->add('C0'=>'Parameter');
+                my$c0=Formula($context,'C0');
+                $student=Formula($context,$student);
+                $correct=Formula($context,"$c0");
+                return $correct == $student;
+              });
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Give an example of a function <m>f(x)</m> where <m>\fp(x) = 0</m>.</p>
+            <p><var name="$ans" width="10" evaluator="$ev"/></p>
+          </statement>
+          <solution>
+            <p>One answer is <m>f(x) = 10</m>. Any constant function will do.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$covered">
+              <set>
+                <member correct="yes">Covered by this section</member>
+                <member>Not covered</member>
+              </set>
+            </var>
+            <var name="$not">
+              <set>
+                <member>Covered by this section</member>
+                <member correct="yes">Not covered</member>
+              </set>
+            </var>
+            <pg-code>
+              $covered = RadioButtons(["Covered by this section","Not covered"],0);
+              $not = RadioButtons(["Covered by this section","Not covered"],1);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>The derivative rules introduced in this section (<xref ref="sec_basic_diff_rules">Section</xref>) explain how to compute the derivative of which of the following functions?</p>
+
+            <table>
+              <tabular top="minor" bottom="minor" valign="top">
+                <row>
+                  <cell><m>f(x) = \frac{3}{x^2}</m></cell>
+                  <cell><var name="$not" form="buttons" /></cell>
+                </row>
+                <row>
+                  <cell><m>g(x) = 3x^2-x+17</m></cell>
+                  <cell><var name="$covered" form="buttons" /></cell>
+                </row>
+                <row>
+                  <cell><m>h(x) = 5\ln(x)</m></cell>
+                  <cell><var name="$covered" form="buttons" /></cell>
+                </row>
+                <row>
+                  <cell><m>j(x) = \sin(x) \cos(x)</m></cell>
+                  <cell><var name="$not" form="buttons" /></cell>
+                </row>
+                <row>
+                  <cell><m>k(x) = e^{x^2}</m></cell>
+                  <cell><var name="$not" form="buttons" /></cell>
+                </row>
+                <row>
+                  <cell><m>m(x) = \sqrt{x}{3}{x^2}</m></cell>
+                  <cell><var name="$not" form="buttons" /></cell>
+                </row>
+              </tabular>
+            </table>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <statement>
+            <p>Explain in your own words how to find the third derivative of a function <m>f(x)</m>.</p>
+
+            <p><var form="essay" /></p>
+          </statement>
+          <solution>
+            <p>Answers will vary.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$ans">
+              <static>10e^x</static>
+            </var>
+            <pg-code>
+              $ans=Compute("17x-205");
+              $ev=$ans->cmp(checker=>sub{my($correct,$student,$self )=@_;
+                return 0 if $student == Formula("0");
+                my$context=Context()->copy;
+                $context->flags->set(no_parameters=>0);
+                $context->variables->add('C0'=>'Parameter');
+                $context->variables->add('C1'=>'Parameter');
+                my$c0=Formula($context,'C0');
+                my$c1=Formula($context,'C1');
+                $student=Formula($context,$student);
+                $correct=Formula($context,"$c1 x + $c0");
+                return $correct == $student;
+              });
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Give an example of a function where <m>\fp(x) \neq 0</m> and <m>\fpp(x) = 0</m>.</p>
+            <p><var name="$ans" width="10" evaluator="$ev"/></p>
+          </statement>
+          <solution>
+            <p>One answer is <m>f(x) = 17x-205</m>. Any linear function with nonzero slope will do.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <statement>
+            <p>Explain in your own words how to find the third derivative of a function <m>f(x)</m>.</p>
+
+            <p><var form="essay" /></p>
+          </statement>
+          <solution>
+            <p>Answers will vary.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <pg-macros>
+            <macro-file>contextArbitraryString.pl</macro-file>
+          </pg-macros>
+          <setup>
+            <var name="$ans[0]">
+              <static>\text{velocity}</static>
+            </var>
+            <var name="$ans[1]">
+              <static>\text{acceleration}</static>
+            </var>
+            <pg-code>
+              Context("ArbitraryString");
+              $ans[0]=Compute("a velocity function");
+              $ans[1]=Compute("an acceleration function");
+              $ev[0]=$ans[0]->cmp(checker => sub {
+              my ($correct,$student,$ans) = @_;
+              $correct = $correct->value;
+              $student = $student->value;
+              $student =~ s/^~~W+|~~W+$//g;
+              my @words = split (/ /, $student);
+              $words[0] =~ s/^~~W+|~~W+$//g;
+              $words[1] =~ s/^~~W+|~~W+$//g;
+              $words[2] =~ s/^~~W+|~~W+$//g;
+              return ($#words &lt;= 2 and ((uc($words[0]) eq 'VELOCITY') or (uc($words[0]) eq 'VELOCITY' and uc($words[1]) eq 'FUNCTION') or (uc($words[0]) eq 'A' and uc($words[1]) eq 'VELOCITY' and uc($words[2]) eq 'FUNCTION')));
+              });
+              $ev[1]=$ans[1]->cmp(checker => sub {
+              my ($correct,$student,$ans) = @_;
+              $correct = $correct->value;
+              $student = $student->value;
+              $student =~ s/^~~W+|~~W+$//g;
+              my @words = split (/ /, $student);
+              $words[0] =~ s/^~~W+|~~W+$//g;
+              $words[1] =~ s/^~~W+|~~W+$//g;
+              $words[2] =~ s/^~~W+|~~W+$//g;
+              return ($#words &lt;= 2 and ((uc($words[0]) eq 'ACCELERATION') or (uc($words[0]) eq 'ACCELERATION' and uc($words[1]) eq 'FUNCTION') or (uc($words[0]) eq 'AN' and uc($words[1]) eq 'ACCELERATION' and uc($words[2]) eq 'FUNCTION')));
+              });
+            </pg-code>
+          </setup>
+          <statement>
+            <p>If <m>f(x)</m> describes a position function, then <m>\fp(x)</m> describes what kind of function?</p>
+            <p><var name="$ans[0]" width="20" evaluator="$ev[0]" /></p>
+            <p>What kind of function is <m>\fpp(x)</m>?</p>
+            <p><var name="$ans[1]" width="20" evaluator="$ev[1]" /></p>
+          </statement>
+          <solution>
+            <p><m>\fp(x)</m> is a velocity function, and <m>\fpp(x)</m> is acceleration.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <pg-macros>
+            <macro-file>contextArbitraryString.pl</macro-file>
+          </pg-macros>
+          <setup>
+            <var name="$ans">
+              <static>\text{lb}/\text{ft}^2</static>
+            </var>
+            <pg-code>
+              Context("ArbitraryString");
+              $ans=Compute("lb/ft^2");
+              $ev=$ans->cmp(checker => sub {
+              my ($correct,$student,$ans) = @_;
+              $correct = $correct->value; # get perl string from String object
+              $student = $student->value; # ditto
+              my $context = Context(); Context("Numeric");
+              my $check = NumberWithUnits("1 $correct")->cmp->evaluate("1 $student");
+              Context($context);
+              $ans->{correct_ans_latex_string} = substr($check->{correct_ans_latex_string},3);
+              if ($check->{score}) {
+                $ans->{preview_latex_string} = substr($check->{preview_latex_string},3);
+                $ans->{preview_text_string} = substr($check->{preview_text_string},3);
+              }
+              return $check->{score};
+              });
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Let <m>f(x)</m> be a function measured in pounds (lb), where <m>x</m> is measured in feet (ft). What are the units of <m>\fpp(x)</m>?</p>
+            <p><var name="$ans" width="10" evaluator="$ev" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, compute the derivative of the given function.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>7x^2-5x+7</static>
+            </var>
+            <var name="$fp">
+              <static>14x-5</static>
+            </var>
+            <pg-code>
+              $f=Formula("7x^2-5x+7");
+              $fp=Formula("14x-5");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = <var name="$f" /></m></p>
+            <p><m>f'(x)=</m><var name="$fp" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>14x^3+7x^2+11x-29</static>
+            </var>
+            <var name="$fp">
+              <static>42x^2+14x+11</static>
+            </var>
+            <pg-code>
+              $f=Formula("14x^3+7x^2+11x-29");
+              $fp=Formula("42x^2+14x+11");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>g(x) = <var name="$f" /></m></p>
+            <p><m>g'(x)=</m><var name="$fp" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>9t^5-\frac18t^3+3t-8</static>
+            </var>
+            <var name="$fp">
+              <static>45t^4-\frac38t^2+3</static>
+            </var>
+            <pg-code>
+              Context()->variables->are(t=>'Real');
+              Context()->flags->set(reduceConstants=>0);
+              $f=Formula("9t^5-1/8t^3+3t-8");
+              $fp=Formula("45t^4-3/8t^2+3");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>m(t) = <var name="$f" /></m></p>
+            <p><m>m'(t)=</m><var name="$fp" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>9\sin(\theta) + 10\cos(\theta)</static>
+            </var>
+            <var name="$fp">
+              <static>9\cos(\theta) -10\sin(\theta)</static>
+            </var>
+            <pg-code>
+              Context()->variables->are(theta=>['Real',TeX=>'\theta']);
+              $f=Formula("9sin(theta) +10cos(theta)");
+              $fp=Formula("9cos(theta)-10sin(theta)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(\theta) = <var name="$f" /></m></p>
+            <p>(<m>\theta</m> is <c>theta</c>)</p>
+            <p><m>f'(\theta)=</m><var name="$fp" width="25" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>6e^r</static>
+            </var>
+            <var name="$fp">
+              <static>6e^r</static>
+            </var>
+            <pg-code>
+              Context()->variables->are(r=>'Real');
+              $f=Formula("6e^r");
+              $fp=Formula("6e^r");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(r) = <var name="$f" /></m></p>
+            <p><m>f'(r)=</m><var name="$fp" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>10t^4-\cos(t) +7\sin(t)</static>
+            </var>
+            <var name="$fp">
+              <static>40t^3 + \sin(t) + 7\cos(t)</static>
+            </var>
+            <pg-code>
+              Context()->variables->are(t=>'Real');
+              $f=Formula("10t^4-cos(t) +7sin(t)");
+              $fp=Formula("40t^3 + sin(t) + 7cos(t)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>g(t) = <var name="$f" /></m></p>
+            <p><m>g'(t)=</m><var name="$fp" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>2\ln(x) - x</static>
+            </var>
+            <var name="$fp">
+              <static>\frac2x-1</static>
+            </var>
+            <pg-code>
+              $f=Formula("2ln(x)-x");
+              $fp=Formula("2/x-1");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = <var name="$f" /></m></p>
+            <p><m>f'(x)=</m><var name="$fp" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>\frac14s^4+\frac13s^3+\frac12s^2+s+1</static>
+            </var>
+            <var name="$fp">
+              <static>s^3+s^2+s+1</static>
+            </var>
+            <pg-code>
+              Context()->variables->are(s=>'Real');
+              Context()->flags->set(reduceConstants=>0);
+              $f=Formula("1/4s^4+1/3s^3+1/2s^2+s+1");
+              $fp=Formula("s^3+s^2+s+1");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>p(s) = <var name="$f" /></m></p>
+            <p><m>p'(s)=</m><var name="$fp" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>e^t - \sin(t) - \cos(t)</static>
+            </var>
+            <var name="$fp">
+              <static>e^t - \cos(t) + \sin(t)</static>
+            </var>
+            <pg-code>
+              Context()->variables->are(t=>'Real');
+              $f=Formula("e^t-sin(t)-cos(t)");
+              $fp=Formula("e^t-cos(t)+sin(t)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>h(t) = <var name="$f" /></m></p>
+            <p><m>h'(t)=</m><var name="$fp" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>\ln(5x^3)</static>
+            </var>
+            <var name="$fp">
+              <static>\frac3x</static>
+            </var>
+            <pg-code>
+              $f=Formula("ln(5x^3)");
+              $fp=Formula("3/x");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = <var name="$f" /></m></p>
+            <p><m>f'(x)=</m><var name="$fp" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>\ln(17)+ e^2 + \sin(\pi) /2</static>
+            </var>
+            <var name="$fp">
+              <static>0</static>
+            </var>
+            <pg-code>
+              Context()->variables->are(t=>'Real');
+              Context()->flags->set(reduceConstantFunctions=>0);
+              Context()->flags->set(reduceConstants=>0);
+              $f=Formula("ln(17)+e^2+sin(pi)/2");
+              $fp=Formula("0");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(t) = <var name="$f" /></m></p>
+            <p><m>f'(t)=</m><var name="$fp" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>(1+3t)^2</static>
+            </var>
+            <var name="$fp">
+              <static>18t+6</static>
+            </var>
+            <pg-code>
+              Context()->variables->are(t=>'Real');
+              $f=Formula("(1+3t)^2");
+              $fp=Formula("18t+6");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>g(t) = <var name="$f" /></m></p>
+            <p><m>g'(t)=</m><var name="$fp" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>(2x-5)^3</static>
+            </var>
+            <var name="$fp">
+              <static>24x^2-120x+150</static>
+            </var>
+            <pg-code>
+              $f=Formula("(2x-5)^3");
+              $fp=Formula("24x^2-120x+150");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>g(x) = <var name="$f" /></m></p>
+            <p><m>g'(x)=</m><var name="$fp" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>(1-x)^3</static>
+            </var>
+            <var name="$fp">
+              <static>-3x^2+6x-3</static>
+            </var>
+            <pg-code>
+              $f=Formula("(1-x)^3");
+              $fp=Formula("-3x^2+6x-3");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = <var name="$f" /></m></p>
+            <p><m>f'(x)=</m><var name="$fp" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>(2-3x)^2</static>
+            </var>
+            <var name="$fp">
+              <static>18x-12</static>
+            </var>
+            <pg-code>
+              $f=Formula("(2-3x)^2");
+              $fp=Formula("18x-12");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = <var name="$f" /></m></p>
+            <p><m>f'(x)=</m><var name="$fp" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercise>
+      <webwork seed="1">
+        <statement>
+          <p>A property of logarithms is that <m>\log_a(x) = \frac{\log_b(x)}{\log_b(a)}</m>, for all bases <m>a,b>0,\neq 1</m>.<ol>
+            <li><p>Rewrite this identity when <m>b=e</m>, i.e., using <m>\log_e(x) =\ln(x)</m>.</p></li>
+
+            <li><p>Use the previous result to find the derivative of <m>y=\log_a(x)</m>.</p></li>
+
+            <li><p>Give the derivative of <m>y=\log_{10}(x)</m>.</p></li>
+          </ol></p>
+
+          <p><var form="essay" /></p>
+        </statement>
+      </webwork>
+    </exercise>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, compute the first four derivatives of the given function.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f"><static>x^6</static></var>
+            <var name="$d[0]"><static>6x^5</static></var>
+            <var name="$d[1]"><static>30x^4</static></var>
+            <var name="$d[2]"><static>120x^3</static></var>
+            <var name="$d[3]"><static>360x^2</static></var>
+            <pg-code>
+              $f=Formula("x^6");
+              @d=(Formula("6x^5"), Formula("30x^4"), Formula("120x^3"), Formula("360x^2"));
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = <var name="$f" /></m></p>
+            <p><m>f'(x)=</m><var name="$d[0]" width="15" /></p>
+            <p><m>f''(x)=</m><var name="$d[1]" width="15" /></p>
+            <p><m>f^{(3)}(x)=</m><var name="$d[2]" width="15" /></p>
+            <p><m>f^{(4)}(x)=</m><var name="$d[3]" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f"><static>2\cos(x)</static></var>
+            <var name="$d[0]"><static>-2\sin(x)</static></var>
+            <var name="$d[1]"><static>-2\cos(x)</static></var>
+            <var name="$d[2]"><static>2\sin(x)</static></var>
+            <var name="$d[3]"><static>2\cos(x)</static></var>
+            <pg-code>
+              $f=Formula("2cos(x)");
+              @d=(Formula("-2sin(x)"), Formula("-2cos(x)"), Formula("2sin(x)"), Formula("2cos(x)"));
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>g(x) = <var name="$f" /></m></p>
+            <p><m>g'(x)=</m><var name="$d[0]" width="15" /></p>
+            <p><m>g''(x)=</m><var name="$d[1]" width="15" /></p>
+            <p><m>g^{(3)}(x)=</m><var name="$d[2]" width="15" /></p>
+            <p><m>g^{(4)}(x)=</m><var name="$d[3]" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f"><static>t^2 - e^t</static></var>
+            <var name="$d[0]"><static>2t - e^t</static></var>
+            <var name="$d[1]"><static>2 - e^t</static></var>
+            <var name="$d[2]"><static>-e^t</static></var>
+            <var name="$d[3]"><static>-e^t</static></var>
+            <pg-code>
+              Context()->variables->are(t=>'Real');
+              $f=Formula("t^2 - e^t");
+              @d=(Formula("2t - e^t"), Formula("2 - e^t"), Formula("-e^t"), Formula("-e^t"));
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>h(t) = <var name="$f" /></m></p>
+            <p><m>h'(t)=</m><var name="$d[0]" width="15" /></p>
+            <p><m>h''(t)=</m><var name="$d[1]" width="15" /></p>
+            <p><m>h^{(3)}(t)=</m><var name="$d[2]" width="15" /></p>
+            <p><m>h^{(4)}(t)=</m><var name="$d[3]" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f"><static>\theta^4-\theta^3</static></var>
+            <var name="$d[0]"><static>4\theta^3-3\theta^2</static></var>
+            <var name="$d[1]"><static>12\theta^2-6\theta</static></var>
+            <var name="$d[2]"><static>24\theta-6</static></var>
+            <var name="$d[3]"><static>24</static></var>
+            <pg-code>
+              Context()->variables->are(theta=>['Real',TeX=>'\theta']);
+              $f=Formula("theta^4-theta^3");
+              @d=(Formula("4theta^3-3theta^2"), Formula("12theta^2-6theta"), Formula("24theta-6"), Formula("24"));
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>p(\theta) = <var name="$f" /></m></p>
+            <p>(<m>\theta</m> is <c>theta</c>)</p>
+            <p><m>p'(\theta)=</m><var name="$d[0]" width="15" /></p>
+            <p><m>p''(\theta)=</m><var name="$d[1]" width="15" /></p>
+            <p><m>p^{(3)}(\theta)=</m><var name="$d[2]" width="15" /></p>
+            <p><m>p^{(4)}(\theta)=</m><var name="$d[3]" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f"><static>\sin(\theta) -\cos(\theta)</static></var>
+            <var name="$d[0]"><static>\cos(\theta)+\sin(\theta)</static></var>
+            <var name="$d[1]"><static>-\sin(\theta)+\cos(\theta)</static></var>
+            <var name="$d[2]"><static>-\cos(\theta)-\sin(\theta)</static></var>
+            <var name="$d[3]"><static>\sin(\theta) -\cos(\theta)</static></var>
+            <pg-code>
+              Context()->variables->are(theta=>['Real',TeX=>'\theta']);
+              $f=Formula("sin(theta)-cos(theta)");
+              @d=(Formula("cos(theta)+sin(theta)"), Formula("-sin(theta)+cos(theta)"), Formula("-cos(theta)-sin(theta)"), Formula("sin(theta)-cos(theta)"));
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(\theta) = <var name="$f" /></m></p>
+            <p>(<m>\theta</m> is <c>theta</c>)</p>
+            <p><m>f'(\theta)=</m><var name="$d[0]" width="15" /></p>
+            <p><m>f''(\theta)=</m><var name="$d[1]" width="15" /></p>
+            <p><m>f^{(3)}(\theta)=</m><var name="$d[2]" width="15" /></p>
+            <p><m>f^{(4)}(\theta)=</m><var name="$d[3]" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f"><static>1100</static></var>
+            <var name="$d[0]"><static>0</static></var>
+            <var name="$d[1]"><static>0</static></var>
+            <var name="$d[2]"><static>0</static></var>
+            <var name="$d[3]"><static>0</static></var>
+            <pg-code>
+              $f=Formula("1100");
+              @d=(Formula("0"), Formula("0"), Formula("0"), Formula("0"));
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = <var name="$f" /></m></p>
+            <p><m>f'(x)=</m><var name="$d[0]" width="15" /></p>
+            <p><m>f''(x)=</m><var name="$d[1]" width="15" /></p>
+            <p><m>f^{(3)}(x)=</m><var name="$d[2]" width="15" /></p>
+            <p><m>f^{(4)}(x)=</m><var name="$d[3]" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, find the equations of the tangent and normal lines to the graph of the function at the given point.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$t">
+              <static>y=2(x-1)</static>
+            </var>
+            <var name="$n">
+              <static>y=-\frac{1}{2}(x-1)</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0);
+              Context()->variables->add(y=>'Real');
+              parser::Assignment->Allow;
+              $t=Formula("y=2(x-1)");
+              $n=Formula("y=-(1/2)(x-1)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x)=x^3-x</m> at <m>x=1</m></p>
+            <p>Tangent line equation: <var name="$t" width="20" /></p>
+            <p>Normal line equation: <var name="$n" width="20" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$t">
+              <static>y=t+3</static>
+            </var>
+            <var name="$n">
+              <static>y=-t+3</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0);
+              Context()->variables->are(y=>'Real',t=>'Real');
+              parser::Assignment->Allow;
+              $t=Formula("y=t+3");
+              $n=Formula("y=-t+3");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(t)=e^t+3</m> at <m>t=0</m></p>
+            <p>Tangent line equation: <var name="$t" width="20" /></p>
+            <p>Normal line equation: <var name="$n" width="20" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$t">
+              <static>y=x-1</static>
+            </var>
+            <var name="$n">
+              <static>y=-(x-1)</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0);
+              Context()->variables->are(y=>'Real',x=>'Real');
+              parser::Assignment->Allow;
+              $t=Formula("y=x-1");
+              $n=Formula("y=-(x-1)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>g(x)=\ln(x)</m> at <m>x=1</m></p>
+            <p>Tangent line equation: <var name="$t" width="20" /></p>
+            <p>Normal line equation: <var name="$n" width="20" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$t">
+              <static>y=4</static>
+            </var>
+            <var name="$n">
+              <static>x=\frac{\pi}{2}</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0);
+              Context()->variables->are(y=>'Real',x=>'Real');
+              parser::Assignment->Allow;
+              $t=Formula("y=4");
+              $n=Formula("x=pi/2");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x)=4\sin(x)</m> at <m>x=\pi/2</m></p>
+            <p>Tangent line equation: <var name="$t" width="20" /></p>
+            <p>Normal line equation: <var name="$n" width="20" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$t">
+              <static>y=\sqrt{2}\left(x-\frac{\pi}{4}\right)-\sqrt{2}</static>
+            </var>
+            <var name="$n">
+              <static>y=-\frac{1}{\sqrt{2}}\left(x-\frac{\pi}{4}\right)-\sqrt{2}</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0);
+              Context()->flags->set(reduceConstantFunctions=>0);
+              Context()->variables->are(y=>'Real',x=>'Real');
+              parser::Assignment->Allow;
+              $t=Formula("y=sqrt(2)(x-pi/4)-sqrt(2)");
+              $n=Formula("y=-(1/sqrt(2))(x-pi/4)-sqrt(2)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x)=-2\cos(x)</m> at <m>x=\pi/4</m></p>
+            <p>Tangent line equation: <var name="$t" width="20" /></p>
+            <p>Normal line equation: <var name="$n" width="20" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$t">
+              <static>y=2(x-5)+13</static>
+            </var>
+            <var name="$n">
+              <static>y=-(1/2)(x-5)+13</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0);
+              Context()->flags->set(reduceConstantFunctions=>0);
+              Context()->variables->are(y=>'Real',x=>'Real');
+              parser::Assignment->Allow;
+              $t=Formula("y=2(x-5)+13");
+              $n=Formula("y=-(1/2)(x-5)+13");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x)=2x+3</m> at <m>x=5</m></p>
+            <p>Tangent line equation: <var name="$t" width="20" /></p>
+            <p>Normal line equation: <var name="$n" width="20" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>Review</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$ans">
+              <static>1.1</static>
+            </var>
+            <pg-code>
+              $ans=1.1;
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Given that <m>e^0=1</m>, approximate the value of <m>e^{0.1}</m> using the tangent line to <m>f(x) = e^x</m> at <m>x=0</m>.</p>
+            <p><var name = "$ans" width="5" /></p>
+          </statement>
+          <solution>
+            <p>The tangent line to <m>f(x) = e^x</m> at <m>x=0</m> is <m>y=x+1</m>; thus <m>e^{0.1} \approx y(0.1) = 1.1</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$ans">
+              <static>1.1</static>
+            </var>
+            <pg-code>
+              $ans=82.08;
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Approximate the value of <m>(3.01)^4</m> using the tangent line to <m>f(x) = x^4</m> at <m>x=3</m>.</p>
+            <p><var name = "$ans" width="5" /></p>
+          </statement>
+          <solution>
+            <p>The tangent line to <m>f(x) = x^4</m> at <m>x=3</m> is <m>y=108(x-3)+81</m>; thus <m>(3.01)^4 \approx y(3.01) = 108(.01)+81 = 82.08</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

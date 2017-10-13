@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<chapter xmlns:xi="http://www.w3.org/2001/XInclude"  xml:id="chapter_integration">
+  <title>Integration</title>
+  <introduction>
+    <p>We have spent considerable time considering the derivatives of a function and their applications. In the following chapters, we are going to starting thinking in <q>the other direction.</q> That is, given a function <m>f(x)</m>, we are going to consider functions <m>F(x)</m> such that <m>F'(x) = f(x)</m>. There are numerous reasons this will prove to be useful: these functions will help us compute areas, volumes, mass, force, pressure, work, and much more.</p>
+  </introduction>
+  <xi:include  href="sec_antider.mbx" />
+  <xi:include  href="sec_def_int.mbx" />
+  <xi:include  href="sec_riemann.mbx" />
+  <xi:include  href="sec_FTC.mbx" />
+  <xi:include  href="sec_numerical_integration.mbx" />
+  <conclusion>
+  	<p>We started this chapter learning about antiderivatives and indefinite integrals. We then seemed to change focus by looking at areas between the graph of a function and the <m>x</m>-axis. We defined these areas as the definite integral of the function, using a notation very similar to the notation of the indefinite integral. The Fundamental Theorem of Calculus tied these two seemingly separate concepts together: we can find areas under a curve, i.e., we can evaluate a definite integral, using antiderivatives.</p>
+
+    <p>We ended the chapter by noting that antiderivatives are sometimes more than difficult to find: they are impossible. Therefore we developed numerical techniques that gave us good approximations of definite integrals.</p>
+
+    <p>We used the definite integral to compute areas, and also to compute displacements and distances traveled. There is far more we can do than that. In <xref ref="chapter_app_of_int">Chapter</xref> we'll see more applications of the definite integral. Before that, in <xref ref="chapter_anti_tech">Chapter</xref> we'll learn advanced techniques of integration, analogous to learning rules like the Product, Quotient and Chain Rules of differentiation.</p>
+  </conclusion>
+</chapter>

@@ -1,0 +1,2732 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_double_int_volume">
+  <title>Double Integration and Volume</title>
+  <introduction>
+    <p>The definite integral of <m>f</m> over <m>[a,b]</m>, <m>\int_a^b f(x)\ dx</m>, was introduced as <q>the signed area under the curve.</q> We approximated the value of this area by first subdividing <m>[a,b]</m> into <m>n</m> subintervals, where the <m>i^\text{ th }</m> subinterval has length <m>\dx_i</m>, and letting <m>c_i</m> be any value in the <m>i^\text{ th }</m> subinterval. We formed rectangles that approximated part of the region under the curve with width <m>\dx_i</m>, height <m>f(c_i)</m>, and hence with area <m>f(c_i)\dx_i</m>. Summing all the rectangle's areas gave an approximation of the definite integral, and <xref ref="thm_riemann_sum">Theorem</xref> stated that
+      <me>
+        \int_a^bf(x)\ dx = \lim_{\\abs{\Delta x\}\to 0}\sum f(c_i)\dx_i,
+      </me>
+      connecting the area under the curve with sums of the areas of rectangles.</p>
+
+    <p>We use a similar approach in this section to find volume under a surface.</p>
+
+    <p>Let <m>R</m> be a closed, bounded region in the <m>x</m>-<m>y</m> plane and let <m>z=f(x,y)</m> be a continuous function defined on <m>R</m>. We wish to find the signed volume under the surface of <m>f</m> over <m>R</m>. (We use the term <q>signed volume</q> to denote that space above the <m>x</m>-<m>y</m> plane, under <m>f</m>, will have a positive volume; space above <m>f</m> and under the <m>x</m>-<m>y</m> plane will have a <q>negative</q> volume, similar to the notion of signed area used before.)</p>
+
+    <p>We start by partitioning <m>R</m> into <m>n</m> rectangular subregions as shown in <xref ref="fig_double_intro">Figure</xref>(a). For simplicity's sake, we let all widths be <m>\dx</m> and all heights be <m>\dy</m>. Note that the sum of the areas of the rectangles is not equal to the area of <m>R</m>, but rather is a close approximation. Arbitrarily number the rectangles 1 through <m>n</m>, and pick a point <m>(x_i,y_i)</m> in the <m>i^\text{ th }</m> subregion.</p>
+
+    <figure xml:id="fig_double_intro" >
+    <caption>Developing a method for finding signed volume under a surface.</caption>
+    <sidebyside>
+      <figure>
+        <caption>[5pt]
+        (a)</caption>
+        <!-- START figures/fig_double_intro1.tex -->
+        <image xml:id="img_double_intro1" >
+          <description></description>
+          <latex-image-code>
+            <![CDATA[
+            \begin{tikzpicture}
+            \begin{axis}[%
+            axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={4,5,1,2,3},%
+			%ytick={1,2,3,4,5},
+			%extra y ticks={.1,.9},
+			%extra y tick labels={$a$,$b$},
+            %			ytick={-1,1,2,3},
+			%%extra y ticks={-5,-3,...,7},%
+            %			minor x tick num=4,
+			ymin=-.85,ymax=.85,%
+			xmin=-.3,xmax=2.2%
+            ]
+
+            \addplot [smooth,very thick, {\colorone},samples=40,domain=-90:90] ({cos(x)*(1+cos(2*x))},{sin(x)*(1+cos(2*x))});
+
+            \draw (axis cs: 0,-.3) -- (axis cs:0,.3)
+			(axis cs: .2,-.4) -- (axis cs:.2,.4)
+			(axis cs: 0.4,-.6) -- (axis cs:.4,.6)
+			(axis cs: 0.6,-.7) -- (axis cs:.6,.7)
+			(axis cs: .8,-.8) -- (axis cs:.8,.8)
+			(axis cs: 1,-.8) -- (axis cs:1,.8)
+			(axis cs: 1.2,-.8) -- (axis cs:1.2,.8)
+			(axis cs: 1.4,-.8) -- (axis cs:1.4,.8)
+			(axis cs: 1.6,-.7) -- (axis cs:1.6,.7)
+			(axis cs: 1.8,-.6) -- (axis cs:1.8,.6)
+			(axis cs: 2,-.4) -- (axis cs:2,.4);
+
+            \draw (axis cs: .8,.8) -- (axis cs:1.4,.8)
+			(axis cs: .6,.7) -- (axis cs:1.6,.7)
+			(axis cs: .4,.6) -- (axis cs:1.8,.6)
+			(axis cs: .4,.5) -- (axis cs:1.8,.5)
+			(axis cs: .2,.4) -- (axis cs:2,.4)
+			(axis cs: 0,.3) -- (axis cs:2,.3)
+			(axis cs: 0,.2) -- (axis cs:2,.2)
+			(axis cs: 0,.1) -- (axis cs:2,.1)
+			(axis cs: .8,-.8) -- (axis cs:1.4,-.8)
+			(axis cs: .6,-.7) -- (axis cs:1.6,-.7)
+			(axis cs: .4,-.6) -- (axis cs:1.8,-.6)
+			(axis cs: .4,-.5) -- (axis cs:1.8,-.5)
+			(axis cs: .2,-.4) -- (axis cs:2,-.4)
+			(axis cs: 0,-.3) -- (axis cs:2,-.3)
+			(axis cs: 0,-.2) -- (axis cs:2,-.2)
+			(axis cs: 0,-.1) -- (axis cs:2,-.1);
+
+
+            %
+            %\addplot [smooth,thick, {\colorone},samples=40,domain=0:2.5] ({x},{x^2});
+
+            %\draw [thick,{\colorone}] (axis cs: 1,1) -- (axis cs:3,1) node [pos=.5,black,below] {\scriptsize $y=1$} -- node [pos=.5,black,below,sloped] {\scriptsize $y=2x-5 $} (axis cs:5,5)  -- node [black,above,pos=.5,sloped] {\scriptsize $y=x$} (axis cs:1,1);
+            %\draw [thick,{\colortwo}] (axis cs: 0,.9) -- (axis cs: 1,.9);
+            %
+            %\draw (axis cs:1,1.5) node {$R$};
+            %\draw (axis cs:1,2.5) node [rotate=45] {\scriptsize $y=2x$};
+            %\draw (axis cs:1.25,.9) node [rotate=45]  {\scriptsize $y=x^2$};
+            %
+            %\addplot [smooth,thick, {\colorone},samples=40,domain=1:3] {.25*(x-3)^2+1} node [shift={(-25pt,25pt)} ,black] {\scriptsize $y=x^2+1$};
+            %
+            %\draw [smooth,thick, {\colorone}] (axis cs:2,-2) --  node [pos=.85,shift={(30pt,0pt)},black] {\scriptsize $x=-1/2y+1$} (axis cs:.5,1);
+
+            %\draw [smooth,thick, {\colorone}] (axis cs:2,-1) --  node [pos=.3,shift={(-25pt,0pt)},black] {\scriptsize $y=-1/2x$} (axis cs:0,0);
+
+            \end{axis}
+
+
+
+            \end{tikzpicture}
+            ]]>
+          </latex-image-code>
+        </image>
+        <!-- figures/fig_double_intro1.tex END -->
+      </figure>
+
+      <figure>
+        <caption>(b)</caption>
+        <!--
+         \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
+        3Droll=0,
+        3Dortho=0.005025407765060663,
+        3Dc2c=0.6666666865348816 0.6666666865348816 0.3333333730697632,
+        3Dcoo=5.279583930969238 -29.517940521240234 48.47616195678711,
+        3Droo=150.0000012715658,
+        3Dlights=Headlamp,add3Djscript=asylabels.js]
+         -->
+
+
+        <!-- START figures/figdouble_intro2_3D.asy -->
+        <image xml:id="img_double_intro2_3D" >
+          <asymptote>
+            <![CDATA[
+            import graph3;
+
+            //ASY file for figdouble_intro23D.asy in Chapter 13
+
+
+            size(200,200,IgnoreAspect);
+            //currentprojection=perspective(7,2,1);
+            currentprojection=orthographic(7.5,3.1,3);
+            defaultrender.merge=true;
+
+            usepackage("mathspec");
+            texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+            texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+            texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+            texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+            // setup and draw the axes
+            real[] myxchoice={2};
+            real[] myychoice={-1,1};
+            real[] myzchoice={2};
+            defaultpen(0.5mm);
+
+            pair xbounds=(-1,2.5);
+            pair ybounds=(-1.25,1.25);
+            pair zbounds=(0,2.25);
+
+            xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+            yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+            zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+            label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+            label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+            label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+            //Draw the surface//{z=-.5*(x-1)^2-.5*(y)^2+2};
+            triple f(pair t) {
+              return (t.x,t.y,-.5*(t.x-1)^2-.5*(t.y)^2+2);
+            }
+            surface s=surface(f,(-0.221,-1),(2.2,1),12,20,vsplinetype=new splinetype[] {notaknot,notaknot,monotonic},usplinetype=new splinetype[] {notaknot,notaknot,monotonic});
+            pen p=rgb(0,0,.7);
+            draw(s,rgb(.7,.7,1)+opacity(.7),meshpen=p);
+
+
+            pen pp=linewidth(.25mm);
+            //draw the grid in the xy-plane
+            //along fixed x
+            draw((0,-.3,0) -- (0,.3,0),pp);
+            draw((.2,-.4,0) -- (.2,.4,0),pp);
+            draw((0.4,-.6,0) -- (.4,.6,0),pp);
+            draw((0.6,-.7,0) -- (.6,.7,0),pp);
+            draw((.8,-.8,0) -- (.8,.8,0),pp);
+            draw((1,-.8,0) -- (1,.8,0),pp);
+            draw((1.2,-.8,0) -- (1.2,.8,0),pp);
+            draw((1.4,-.8,0) -- (1.4,.8,0),pp);
+            draw((1.6,-.7,0) -- (1.6,.7,0),pp);
+            draw((1.8,-.6,0) -- (1.8,.6,0),pp);
+            draw((2,-.4,0) -- (2,.4,0),pp);
+            //along fixed y
+            draw((.8,.8,0) -- (1.4,.8,0),pp);
+            draw((.6,.7,0) -- (1.6,.7,0),pp);
+            draw((.4,.6,0) -- (1.8,.6,0),pp);
+            draw((.4,.5,0) -- (1.8,.5,0),pp);
+            draw((.2,.4,0) -- (2,.4,0),pp);
+            draw((0,.3,0) -- (2,.3,0),pp);
+            draw((0,.2,0) -- (2,.2,0),pp);
+            draw((0,.1,0) -- (2,.1,0),pp);
+            draw((.8,-.8,0) -- (1.4,-.8,0),pp);
+            draw((.6,-.7,0) -- (1.6,-.7,0),pp);
+            draw((.4,-.6,0) -- (1.8,-.6,0),pp);
+            draw((.4,-.5,0) -- (1.8,-.5,0),pp);
+            draw((.2,-.4,0) -- (2,-.4,0),pp);
+            draw((0,-.3,0) -- (2,-.3,0),pp);
+            draw((0,-.2,0) -- (2,-.2,0),pp);
+            draw((0,-.1,0) -- (2,-.1,0),pp);
+
+            //Draw curve on top of the grid in xy plane ({cos(x)*(1+cos(2*x))},{sin(x)*(1+cos(2*x))},0);
+            triple g(real t) {return (cos(t)*(1+cos(2*t)),sin(t)*(1+cos(2*t)),0);}
+            path3 mypath=graph(g,-pi/2,pi/2,operator ..);
+            draw(mypath,blue);
+
+            // draw curve on surface
+            triple g(real t) {
+              return (cos(t)*(1+cos(2*t)),sin(t)*(1+cos(2*t)),-.5*(cos(t)*(1+cos(2*t))-1)^2-.5*(sin(t)*(1+cos(2*t)))^2+2);
+	}
+            path3 mypath=graph(g,-pi/2,pi/2,operator ..);
+            draw(mypath,blue);	
+	
+            //surface s=surface(f,(-pi/2,0),(pi/2,2*pi),8,8,Spline);
+            //pen p=rgb(0,0,.7);
+            //draw(s,rgb(.6,.6,1)+opacity(.7),blue+linewidth(2));
+            //path3 mypath=graph(g,0,32.5,operator ..); draw(mypath,blue);
+
+            //Draw the top of the column on the surface
+            //draw((1.6,0.3,1.865)--(1.8,.3,1.725),blue+linewidth(2));
+            //draw((1.8,0.3,1.7)--(1.8,.4,1.7),blue+linewidth(2));
+            //draw((1.8,0.4,1.7)--(1.6,.4,1.7),blue+linewidth(2));
+            //draw((1.6,0.4,1.7)--(1.6,.3,1.7),blue+linewidth(2));
+            draw((1.6,.3,1.775) -- (1.6,.4,1.74) -- (1.8,.4,1.6) -- (1.8,.3,1.635) --cycle,blue+.4mm);
+
+            //Draw the rectangular column
+            //base
+            draw((1.6,0.3,0)--(1.8,.3,0)--(1.8,.4,0)--(1.6,.4,0)--cycle,red+.4mm);
+
+            //  //verticals plotted to average of 4 function heights
+            //draw((1.6,0.3,0)--(1.6,.3,1.7),red+.4mm);//base
+            //draw((1.8,0.3,0)--(1.8,.3,1.7),red+.4mm);//base
+            //draw((1.8,0.4,0)--(1.8,.4,1.7),red+.4mm);//base
+            //draw((1.6,0.4,0)--(1.6,.4,1.7),red+.4mm);//base
+            //top
+            draw((1.6,0.3,1.7)--(1.8,.3,1.7)--(1.8,.4,1.7)--(1.6,.4,1.7)--cycle,red);
+
+
+            pen q=rgb(.9,0,0)+.4mm;
+            //  draw(ss,rgb(1,.6,.6)+opacity(.8),meshpen=q,nolight,render(merge=true));
+            //   emissive(red+opacity(0.7))
+
+            //Shade the column now
+            //import three;
+
+            path3 p =  (1.6,0.3,0)--(1.8,.3,0) -- (1.8,0.3,1.7)--(1.6,.3,1.7); //Left
+            draw(surface(p -- cycle),rgb(1,.6,.6)+opacity(.8),meshpen=q,nolight,render(merge=true));
+            path3 p =  (1.6,0.3,1.7)--(1.8,.3,1.7)--(1.8,.4,1.7)--(1.6,.4,1.7); //top
+            draw(surface(p -- cycle),rgb(1,.6,.6)+opacity(.8),meshpen=q,nolight,render(merge=true));
+            //draw(surface(p -- cycle), emissive(red+opacity(0.7)));
+            path3 p =  (1.6,0.4,0)--(1.8,.4,0) -- (1.8,0.4,1.7)--(1.6,.4,1.7); //right
+            draw(surface(p -- cycle),rgb(1,.6,.6)+opacity(.8),meshpen=q,nolight,render(merge=true));
+            //draw(surface(p -- cycle), emissive(red+opacity(0.7)));
+            path3 p =  (1.6,0.3,0)--(1.6,.4,0) -- (1.6,0.4,1.7)--(1.6,.3,1.7); //back
+            draw(surface(p -- cycle),rgb(1,.6,.6)+opacity(.8),meshpen=q,nolight,render(merge=true));
+            //draw(surface(p -- cycle), emissive(red+opacity(0.7)));
+            path3 p =  (1.8,0.3,0)--(1.8,.4,0) -- (1.8,0.4,1.7)--(1.8,.3,1.7); //front
+            draw(surface(p -- cycle),rgb(1,.6,.6)+opacity(.8),meshpen=q,nolight,render(merge=true));
+            //draw(surface(p -- cycle), emissive(red+opacity(0.7)));
+            path3 p =  (1.6,0.3,0)--(1.8,.3,0)--(1.8,.4,0)--(1.6,.4,0); //bottom
+            draw(surface(p -- cycle),rgb(1,.6,.6)+opacity(.8),meshpen=q,nolight,render(merge=true));
+            //draw(surface(p -- cycle), emissive(red+opacity(0.7)));
+
+
+
+            // ////////////////////////////////////
+            //    SAMPLE CODE
+
+            // defaultpen(fontsize(10pt));
+
+            //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+            //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+            //pen p=rgb(0,0,.7);
+            //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+            //triple f(pair t) {
+            //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+            //}
+            //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+            //pen p=rgb(0,0,.7);
+            //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+            //draw(s,paleblue);
+            //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+            //draw(mypath,2bp+blue);
+
+            //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+            //path3 mypath=graph(g,-1,1,operator ..);
+
+            //pen p=rgb(0,0,1);
+            //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+            ]]>
+          </asymptote>
+        </image>
+        <!-- figures/figdouble_intro2_3D.asy END -->
+      </figure>
+    </sidebyside>
+
+    </figure>
+
+    <p>The volume of the rectangular solid whose base is the <m>i^\text{ th }</m> subregion and whose height is <m>f(x_i,y_i)</m> is <m>V_i=f(x_i,y_i)\dx\dy</m>. Such a solid is shown in <xref ref="fig_double_intro">Figure</xref>(b). Note how this rectangular solid only approximates the true volume under the surface; part of the solid is above the surface and part is below.</p>
+
+    <p>For each subregion <m>R_i</m> used to approximate <m>R</m>, create the rectangular solid with base area <m>\dx\dy</m> and height <m>f(x_i,y_i)</m>.
+      The sum of all rectangular solids is
+      <me>
+        \ds \sum_{i=1}^n f(x_i,y_i)\dx\dy.
+      </me>
+    </p>
+
+    <p>This approximates the signed volume under <m>f</m> over <m>R</m>. As we have done before, to get a better approximation we can use more rectangles to approximate the region <m>R</m>.</p>
+
+    <p>In general, each rectangle could have a different width <m>\dx_j</m> and height <m>\dy_k</m>, giving the <m>i^\text{ th }</m> rectangle an area <m>\Delta A_i = \dx_j\dy_k</m> and the <m>i^\text{ th }</m> rectangular solid a volume of <m>f(x_i,y_i)\Delta A_i</m>. Let <m>\norm{\Delta A}</m> denote the length of the longest diagonal of all rectangles in the subdivision of <m>R</m>; <m>\norm{\Delta A}\to 0</m> means each rectangle's width and height are both approaching 0. If <m>f</m> is a continuous function, as <m>\norm{\Delta A}</m> shrinks (and hence <m>n\to\infty</m>) the summation <m>\ds \sum_{i=1}^n f(x_i,y_i)\Delta A_i</m> approximates the signed volume better and better. This leads to a definition.</p>
+
+    <aside>
+      <p>Recall that the integration symbol <q><m>\int</m></q> is an <q>elongated S,</q> representing the word <q>sum.</q> We interpreted <m>\int_a^bf(x)\ dx</m> as <q>take the <em>sum</em> of the areas of rectangles over the interval <m>[a,b]</m>.</q> The double integral uses two integration symbols to represent a <q>double sum.</q> When adding up the volumes of rectangular solids over a partition of a region <m>R</m>, as done in <xref ref="fig_double_intro">Figure</xref>, one could first add up the volumes across each row (one type of sum), then add these totals together (another sum), as in
+        <me>
+          \sum_{j=1}^n\sum_{i=1}^mf(x_i,y_j)\Delta x_i\Delta y_j.
+        </me>
+      </p>
+
+      <p>One can rewrite this as
+        <me>
+          \sum_{j=1}^n\left(\sum_{i=1}^mf(x_i,y_j)\Delta x_i\right)\Delta y_j.
+        </me>
+      </p>
+
+      <p>The summation inside the parenthesis indicates the sum of heights <times /> widths, which gives an area; multiplying these areas by the thickness <m>\Delta y_j</m> gives a volume. The illustration in <xref ref="fig_double_intro3">Figure</xref> relates to this understanding.</p>
+    </aside>
+
+    <definition xml:id="def_double_int">
+      <title>Double Integral, Signed Volume</title>
+      <statement>
+        <p>Let <m>z=f(x,y)</m> be a continuous function defined over a closed region <m>R</m> in the <m>x</m>-<m>y</m> plane. The <term>signed volume</term> <m>V</m> under <m>f</m> over <m>R</m> is denoted by the <term>double integral</term>
+          <me>
+            V = \iint_R f(x,y)\ dA.
+          </me>
+        </p>
+
+        <p>Alternate notations for the double integral are
+          <index><main>integration</main><sub>double</sub></index><index><main>double integral</main></index><index><main>iterated integration</main></index><index><main>signed volume</main></index><index><main>volume</main></index>
+          <me>
+            \iint_R f(x,y)\ dA=\iint_R f(x,y)\ dx\ dy=\iint_R f(x,y)\ dy\ dx.
+          </me>
+        </p>
+      </statement>
+    </definition>
+
+    <p>The definition above does not state how to find the signed volume, though the notation offers a hint. We need the next two theorems to evaluate double integrals to find volume.</p>
+
+    <theorem xml:id="thm_double_int">
+      <title>Double Integrals and Signed Volume</title>
+      <statement>
+        <p>Let <m>z=f(x,y)</m> be a continuous function defined over a closed region <m>R</m> in the <m>x</m>-<m>y</m> plane. Then the signed volume <m>V</m> under <m>f</m> over <m>R</m> is
+          <me>
+            V = \iint_R f(x,y)\ dA = \lim_{\norm{\Delta A}\to 0}\sum_{i=1}^n f(x_i,y_i)\Delta A_i.
+          </me>
+        </p>
+      </statement>
+    </theorem>
+
+    <p>This theorem states that we can find the exact signed volume using a limit of sums. The partition of the region <m>R</m> is not specified, so any partitioning where the diagonal of each rectangle shrinks to 0 results in the same answer.</p>
+
+    <p>This does not offer a very satisfying way of computing area, though. Our experience has shown that evaluating the limits of sums can be tedious. We seek a more direct method.</p>
+
+    <p>Recall <xref ref="thm_volume_by_cross_section">Theorem</xref> in <xref ref="sec_disk">Section</xref>. This stated that if <m>A(x)</m> gives the cross-sectional area of a solid at <m>x</m>, then <m>\int_a^b A(x)\ dx</m> gave the volume of that solid over <m>[a,b]</m>.</p>
+
+    <p>Consider <xref ref="fig_double_intro3">Figure</xref>, where a surface <m>z=f(x,y)</m> is drawn over a region <m>R</m>. Fixing a particular <m>x</m> value, we can consider the area under <m>f</m> over <m>R</m> where <m>x</m> has that fixed value. That area can be found with a definite integral, namely
+      <me>
+        A(x)=\int_{g_1(x)}^{g_2(x)} f(x,y)\ dy.
+      </me>
+    </p>
+
+    <p>Remember that though the integrand contains <m>x</m>, we are viewing <m>x</m> as fixed. Also note that the bounds of integration are functions of <m>x</m>: the bounds depend on the value of <m>x</m>.</p>
+
+    <figure xml:id="fig_double_intro3" >
+      <caption>Finding volume under a surface by sweeping out a cross<ndash />sectional area.</caption>
+      <!--
+       \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
+      3Droll=0,
+      3Dortho=0.005067072808742523,
+      3Dc2c=0.5451613068580627 0.7846456170082092 0.29517868161201477,
+      3Dcoo=9.929030418395996 -41.68748092651367 56.98992919921875,
+      3Droo=200.99999858350685,
+      3Dlights=Headlamp,add3Djscript=asylabels.js]
+       -->
+
+
+      <!-- START figures/figdouble_intro3_3D.asy -->
+      <image xml:id="img_double_intro3" >
+        <asymptote>
+          <![CDATA[
+          import graph3;
+
+          //ASY file for figdouble_intro23D.asy in Chapter 13
+
+
+          size(200,200,IgnoreAspect);
+          //currentprojection=perspective(7,2,1);
+          currentprojection=orthographic(5,5.5,1.8);
+          defaultrender.merge=true;
+
+          usepackage("mathspec");
+          texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+          texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+          texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+          texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+          // setup and draw the axes
+          real[] myxchoice={2};
+          real[] myychoice={-1,1};
+          real[] myzchoice={2};
+          defaultpen(0.5mm);
+
+          pair xbounds=(-1,2.5);
+          pair ybounds=(-1.25,1.25);
+          pair zbounds=(0,2.25);
+
+          xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+          yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+          zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+          label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+          label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+          label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+
+          //Create a shaded slice
+
+          pen q=rgb(.9,0,0)+.4mm;
+          path3 p =  (1.6,-0.65,0)--(1.6,0.65,0) -- (1.6,0.65,1.65)..(1.6,0,1.8)..(1.6,-0.65,1.65)--cycle;
+          draw(surface(p), rgb(1,.6,.6)+opacity(.8),meshpen=invisible,nolight,render(merge=true));
+          draw(p,q);
+
+
+          //Draw the surface//{z=-.5*(x-1)^2-.5*(y)^2+2};
+          triple f(pair t) {
+            return (t.x,t.y,-.5*(t.x-1)^2-.5*(t.y)^2+2);
+          }
+          surface s=surface(f,(-0.221,-1),(2.2,1),12,20,vsplinetype=new splinetype[] {notaknot,notaknot,monotonic},usplinetype=new splinetype[] {notaknot,notaknot,monotonic});
+          pen p=rgb(0,0,.7);
+          draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+
+          //Draw curve in xy plane ({cos(x)*(1+cos(2*x))},{sin(x)*(1+cos(2*x))},0);
+          triple g(real t) {return (cos(t)*(1+cos(2*t)),sin(t)*(1+cos(2*t)),0);}
+          path3 mypath=graph(g,-pi/2,pi/2,operator ..);
+          draw(mypath,.4mm+blue);
+          label("$R$",(0.5,0.6,0),E);
+
+          //Draw curve on the surface //{z=-.5*(cos(t)*(1+cos(2*t))-1)^2-.5*(sin(t)*(1+cos(2*t)))^2+2};
+          triple gg(real t) {
+            return (cos(t)*(1+cos(2*t)),sin(t)*(1+cos(2*t)),-.5*(cos(t)*(1+cos(2*t))-1)^2-.5*(sin(t)*(1+cos(2*t)))^2+2);
+          }
+          path3 mypath=graph(gg,-pi/2,pi/2,operator ..);
+          draw(mypath,.4mm+blue);
+
+
+
+
+
+
+          //draw the edge in thick red  pen q=rgb(.9,0,0)+.4mm;
+          //draw((1.6,-0.65,0)--(1.6,0.65,0)--(1.6,0.65,1.625)..(1.6,0,1.825)..(1.6,-0.65,1.625)--(1.6,-0.65,0),rgb(.9,0,0)+.4mm);
+
+
+
+          // ////////////////////////////////////
+          //    SAMPLE CODE
+
+          // defaultpen(fontsize(10pt));
+
+          //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+          //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+          //pen p=rgb(0,0,.7);
+          //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+          //triple f(pair t) {
+          //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+          //}
+          //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+          //pen p=rgb(0,0,.7);
+          //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+          //draw(s,paleblue);
+          //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+          //draw(mypath,2bp+blue);
+
+          //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+          //path3 mypath=graph(g,-1,1,operator ..);
+
+          //pen p=rgb(0,0,1);
+          //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+          ]]>
+        </asymptote>
+      </image>
+      <!-- figures/figdouble_intro3_3D.asy END -->
+    </figure>
+
+    <p>As <m>A(x)</m> is a cross-sectional area function, we can find the signed volume <m>V</m> under <m>f</m> by integrating it:
+      <me>
+        V = \int_a^b A(x)\ dx = \int_a^b\left(\int_{g_1(x)}^{g_2(x)} f(x,y)\ dy\right)dx = \int_a^b\int_{g_1(x)}^{g_2(x)} f(x,y)\ dy\ dx.
+      </me>
+    </p>
+
+    <p>This gives a concrete method for finding signed volume under a surface. We could do a similar procedure where we started with <m>y</m> fixed, resulting in a iterated integral with the order of integration <m>dx\ dy</m>. The following theorem states that both methods give the same result, which is the value of the double integral. It is such an important theorem it has a name associated with it.</p>
+
+    <theorem xml:id="thm_fubini">
+      <title>Fubini's Theorem</title>
+      <statement>
+        <p>Let <m>R</m> be a closed, bounded region in the <m>x</m>-<m>y</m> plane and let <m>z=f(x,y)</m> be a continuous function on <m>R</m>.<index><main>double integral</main></index><index><main>iterated integration</main></index><index><main>signed volume</main></index><index><main>volume</main></index><index><main>Fubini's Theorem</main></index></p>
+
+        <ol>
+          <li><p>If <m>R</m> is bounded by <m>a\leq x\leq b</m> and <m>g_1(x)\leq y\leq g_2(x)</m>, where <m>g_1</m> and <m>g_2</m> are continuous functions on <m>[a,b]</m>, then
+              <me>
+                \iint_R f(x,y)\ dA = \int_a^b\int_{g_1(x)}^{g_2(x)} f(x,y)\ dy\ dx.
+              </me>
+            </p></li>
+
+          <li><p>If <m>R</m> is bounded by <m>c\leq y\leq d</m> and <m>h_1(y)\leq x\leq h_2(y)</m>, where <m>h_1</m> and <m>h_2</m> are continuous functions on <m>[c,d]</m>, then
+              <me>
+                \iint_R f(x,y)\ dA = \int_c^d\int_{h_1(y)}^{h_2(y)} f(x,y)\ dx\ dy.
+              </me>
+            </p></li>
+        </ol>
+      </statement>
+    </theorem>
+
+    <p>Note that once again the bounds of integration follow the <q>curve to curve, point to point</q> pattern discussed in the previous section. In fact, one of the main points of the previous section is developing the skill of describing a region <m>R</m> with the bounds of an iterated integral. Once this skill is developed, we can use double integrals to compute many quantities, not just signed volume under a surface.</p>
+
+    <example xml:id="ex_double1">
+      <title>Evaluating a double integral</title>
+      <statement>
+        <p>Let <m>f(x,y) = xy+e^y</m>. Find the signed volume under <m>f</m> on the region <m>R</m>, which is the rectangle with corners <m>(3,1)</m> and <m>(4,2)</m> pictured in <xref ref="fig_double1">Figure</xref>, using Fubini's Theorem and both orders of integration.</p>
+      </statement>
+      <solution>
+        <p>We wish to evaluate <m>\iint_R \big(xy+e^y\big)\ dA</m>. As <m>R</m> is a rectangle, the bounds are easily described as <m>3\leq x\leq 4</m> and <m>1\leq y\leq 2</m>.</p>
+
+        <p>Using the order <m>dy\ dx</m>:
+          <md>
+            <mrow>\iint_R\big(xy+e^y\big) \ dA \amp = \int_3^4\int_1^2\big(xy+e^y\big)\ dy \ dx</mrow>
+            <mrow>\amp = \int_3^4 \left(\left.\left[\frac12xy^2+e^y\right]\right|_1^2\ \right) dx</mrow>
+            <mrow>\amp = \int_3^4\left(\frac 32x + e^2-e\right)dx</mrow>
+            <mrow>\amp = \left.\left(\frac 34x^2 + \big(e^2-e\big)x\right)\right|_3^4</mrow>
+            <mrow>\amp = \frac {21}4+ e^2-e\approx 9.92.</mrow>
+          </md>
+        </p>
+
+        <figure xml:id="fig_double1" >
+          <caption>Finding the signed volume under a surface in <xref ref="ex_double1">Example</xref>.</caption>
+          <!--
+           \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
+          3Droll=0.,
+          3Dortho=0.0046491301618516445,
+          3Dc2c=0.5071550607681274 -0.7884454131126404 0.3480626046657562,
+          3Dcoo=34.443328857421875 108.33967590332031 55.163639068603516,
+          3Droo=149.99999646067835,
+          3Dlights=Headlamp,add3Djscript=asylabels.js]
+           -->
+
+
+          <!-- START figures/figdouble1_3D.asy -->
+          <image xml:id="img_double1" >
+            <asymptote>
+              <![CDATA[
+              import graph3;
+
+              //ASY file for figdouble13D.asy in Chapter 13
+
+
+              size(200,200,IgnoreAspect);
+              //currentprojection=perspective(7,2,1);
+              currentprojection=orthographic(10,-8,25);
+              defaultrender.merge=true;
+
+              usepackage("mathspec");
+              texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+              // setup and draw the axes
+              real[] myxchoice={1,2,3,4};
+              real[] myychoice={1,2};
+              real[] myzchoice={10};
+              defaultpen(0.5mm);
+
+              pair xbounds=(0,5);
+              pair ybounds=(0,2.5);
+              pair zbounds=(0,15);
+
+              xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+              yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+              zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+              label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+              label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+              label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+              //Draw the surface//{z=xy+e^y};
+              triple f(pair t) {
+                return (t.x,t.y,t.x*t.y+exp(t.y));
+              }
+              surface s=surface(f,(0,0),(4.25,2.25),12,20,Spline);
+              pen p=rgb(0,0,.7);
+              draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+
+              //Draw rectangle in plane
+              draw((3,1,0)--(4,1,0)--(4,2,0)--(3,2,0)--(3,1,0),blue+linewidth(2));
+              label("$R$",(3.5,1.5,0));
+
+              //Draw rectangle on surface
+              draw((3,1,3+exp(1))--(4,1,4+exp(1))..(4,1.5,6+exp(1.5))..(4,2,8+exp(2))--(3,2,6+exp(2))..(3,1.5,4.5+exp(1.5))..(3,1,3+exp(1)),blue+linewidth(2));
+
+              //Draw vertical lines
+              draw((3,1,0)--(3,1,3+exp(1)),blue+dashed+linewidth(0.75));
+              draw((3,2,0)--(3,2,6+exp(2)),blue+dashed+linewidth(0.75));
+              draw((4,1,0)--(4,1,4+exp(1)),blue+dashed+linewidth(0.75));
+              draw((4,2,0)--(4,2,8+exp(2)),blue+dashed+linewidth(0.75));
+
+
+              // ////////////////////////////////////
+              //    SAMPLE CODE
+
+              // defaultpen(fontsize(10pt));
+
+              //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+              //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //triple f(pair t) {
+              //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+              //}
+              //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //draw(s,paleblue);
+              //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+              //draw(mypath,2bp+blue);
+
+              //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+              //path3 mypath=graph(g,-1,1,operator ..);
+
+              //pen p=rgb(0,0,1);
+              //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+              ]]>
+            </asymptote>
+          </image>
+          <!-- figures/figdouble1_3D.asy END -->
+        </figure>
+
+        <p>Now we check the validity of Fubini's Theorem by using the order <m>dx\ dy</m>:
+          <md>
+            <mrow>\iint_R\big(xy+e^y\big) \ dA \amp = \int_1^2\int_3^4\big(xy+e^y\big)\ dx \ dy</mrow>
+            <mrow>\amp = \int_1^2\left(\left.\left[\frac12x^2y+xe^y\right]\right|_3^4\right)dy</mrow>
+            <mrow>\amp = \int_1^2\left(\frac72y+e^y\right)\ dy</mrow>
+            <mrow>\amp = \left.\left(\frac74y^2+e^y\right)\right|_1^2</mrow>
+            <mrow>\amp =\frac{21}4+e^2-e\approx 9.92.</mrow>
+          </md>
+        </p>
+
+        <p>Both orders of integration return the same result, as expected.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_double2">
+      <title>Evaluating a double integral</title>
+      <statement>
+        <p>Evaluate <m>\iint_R \big(3xy-x^2-y^2+6\big)\ dA</m>, where <m>R</m> is the triangle bounded by <m>x=0</m>, <m>y=0</m> and <m>x/2+y=1</m>, as shown in <xref ref="fig_double2">Figure</xref>.</p>
+      </statement>
+      <solution>
+        <p>While it is not specified which order we are to use, we will evaluate the double integral using both orders to help drive home the point that it does not matter which order we use.</p>
+
+        <figure xml:id="fig_double2" >
+          <caption>Finding the signed volume under the surface in <xref ref="ex_double2">Example</xref>.</caption>
+          <!--
+           \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
+          3Droll=0,
+          3Dortho=0.0046491301618516445,
+          3Dc2c=0.3019719421863556 -0.9206370115280151 0.24746793508529663,
+          3Dcoo=45.67414093017578 112.43929290771484 56.7108039855957,
+          3Droo=200.99999432688844,
+          3Dlights=Headlamp,add3Djscript=asylabels.js]
+           -->
+
+
+          <!-- START figures/figdouble2_3D.asy -->
+          <image xml:id="img_double2" >
+            <asymptote>
+              <![CDATA[
+              import graph3;
+
+              //ASY file for figdouble23D.asy in Chapter 13
+
+
+              size(200,200,IgnoreAspect);
+              //currentprojection=perspective(7,2,1);
+              currentprojection=orthographic(1.6,-5.5,12.4);
+              defaultrender.merge=true;
+
+              usepackage("mathspec");
+              texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+              // setup and draw the axes
+              real[] myxchoice={1,2,3,4};
+              real[] myychoice={1};
+              real[] myzchoice={2,4,6,8};
+              defaultpen(0.5mm);
+
+              pair xbounds=(0,2.5);
+              pair ybounds=(0,1.5);
+              pair zbounds=(0,9);
+
+              xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+              yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+              zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+              label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+              label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+              label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+              //Draw the surface//{z=3xy-x^2-y^2+6};
+              triple f(pair t) {
+                return (t.x,t.y,3*t.x*t.y-t.x^2-t.y^2+6);
+              }
+              surface s=surface(f,(-0.1,-0.1),(2.1,1.1),12,20,Spline);
+              pen p=rgb(0,0,.7);
+              draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+
+              //Draw triangle in plane
+              draw((0,0,0)--(2,0,0)--(0,1,0)--(0,0,0),blue+linewidth(2));
+              label("$R$",(0,0.5,0),E);
+
+              //Draw triangle on surface
+              triple g(real t) {return (t,0,6-t^2);}
+              path3 mypath=graph(g,0,2,operator ..);
+              draw(mypath,blue+linewidth(2));
+
+              triple g(real t) {return (0,t,6-t^2);}
+              path3 mypath=graph(g,0,1,operator ..);
+              draw(mypath,blue+linewidth(2));
+
+              triple g(real t) {return (2-2*t,t,3*(2-2*t)*(t)-(2-2*t)^2-(t)^2+6);}
+              path3 mypath=graph(g,0,1,operator ..);
+              draw(mypath,blue+linewidth(2));
+
+              //Draw vertical lines
+              draw((2,0,0)--(2,0,2),blue+dashed+linewidth(0.75));
+              draw((0,1,0)--(0,1,5),blue+dashed+linewidth(0.75));
+
+
+
+              // ////////////////////////////////////
+              //    SAMPLE CODE
+
+              // defaultpen(fontsize(10pt));
+
+              //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+              //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //triple f(pair t) {
+              //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+              //}
+              //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //draw(s,paleblue);
+              //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+              //draw(mypath,2bp+blue);
+
+              //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+              //path3 mypath=graph(g,-1,1,operator ..);
+
+              //pen p=rgb(0,0,1);
+              //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+              ]]>
+            </asymptote>
+          </image>
+          <!-- figures/figdouble2_3D.asy END -->
+        </figure>
+
+        <p>Using the order <m>dy\ dx</m>:
+          The bounds on <m>y</m> go from <q>curve to curve,</q> i.e., <m>0\leq y\leq 1-x/2</m>, and the bounds on <m>x</m> go from <q>point to point,</q> i.e., <m>0\leq x\leq 2</m>.
+          <md>
+            <mrow>\iint_R (3xy-x^2-y^2+6\big)\ dA \amp = \int_0^2\int_0^{-\frac x2+1} (3xy-x^2-y^2+6\big)\ dy\ dx</mrow>
+            <mrow>\amp = \int_0^2\left.\left(\frac32xy^2-x^2y-\frac13y^3+6y\right)\right|_0^{-\frac x2+1}dx</mrow>
+            <mrow>\amp = \int_0^2 \left(\frac{11}{12}x^3-\frac{11}{4}x^2-x-\frac{17}3\right)dx</mrow>
+            <mrow>\amp = \left.\left(\frac{11}{48}x^4-\frac{11}{12}x^3-\frac12x^2-\frac{17}3x\right)\right|_0^2</mrow>
+            <mrow>\amp = \frac{17}3=5.\overline{6}.</mrow>
+          </md>
+        </p>
+
+        <p>Now lets consider the order <m>dx \ dy</m>. Here <m>x</m> goes from <q>curve to curve,</q> <m>0\leq x\leq 2-2y</m>, and <m>y</m> goes from <q>point to point,</q> <m>0\leq y\leq 1</m>:
+          <md>
+            <mrow>\iint_R (3xy-x^2-y^2+6\big)\ dA \amp = \int_0^1\int_0^{2-2y} (3xy-x^2-y^2+6\big)\ dx\ dy</mrow>
+            <mrow>\amp = \int_0^1\left.\left(\frac32x^2y-\frac13x^3-xy^2+6x\right)\right|_0^{2-2y} dy</mrow>
+            <mrow>\amp = \int_0^1\left(\frac{32}3y^3-22y^2+2y+\frac{28}3\right)dy</mrow>
+            <mrow>\amp =\left.\left(\frac83y^4-\frac{22}3y^3+y^2+\frac{28}3y\right)\right|_0^1</mrow>
+            <mrow>\amp =\frac{17}3=5.\overline{6}.</mrow>
+          </md>
+        </p>
+
+        <p>We obtained the same result using both orders of integration.</p>
+      </solution>
+    </example>
+
+    <p>Note how in these two examples that the bounds of integration depend only on <m>R</m>; the bounds of integration have nothing to do with <m>f(x,y)</m>. This is an important concept, so we include it as a Key Idea.</p>
+
+    <insight xml:id="idea_bounds_on_double">
+      <title>Double Integration Bounds</title>
+      <p>When evaluating <m>\iint_Rf(x,y)\ dA</m> using an iterated integral, the bounds of integration depend only on <m>R</m>. The surface <m>f</m> does not determine the bounds of integration.</p>
+    </insight>
+
+    <p>Before doing another example, we give some properties of double integrals. Each should make sense if we view them in the context of finding signed volume under a surface, over a region.</p>
+
+    <theorem xml:id="thm_double_prop">
+      <title>Properties of Double Integrals</title>
+      <statement>
+        <p>Let <m>f</m> and <m>g</m> be continuous functions over a closed, bounded plane region <m>R</m>, and let <m>c</m> be a constant.
+          <index><main>double integral</main><sub>properties</sub></index><index><main>iterated integration</main><sub>properties</sub></index></p>
+
+        <ol>
+          <li><p><m>\ds \iint_Rc\,f(x,y)\ dA = c\iint_Rf(x,y)\ dA</m>.</p></li>
+
+          <li><p><m>\ds \iint_R \big(f(x,y)\pm g(x,y)\big)\ dA = \iint_R f(x,y)\ dA \pm \iint_R g(x,y)\ dA</m></p></li>
+
+          <li><p>If <m>f(x,y)\geq 0</m> on <m>R</m>, then <m>\ds \iint_R f(x,y)\ dA\geq 0</m>.</p></li>
+
+          <li><p>If <m>f(x,y)\geq g(x,y)</m> on <m>R</m>, then <m>\ds \iint_R f(x,y)\ dA\geq \iint_R g(x,y)\ dA</m>.</p></li>
+
+          <li xml:id="thm_double_prop_regions" ><p>Let <m>R</m> be the union of two nonoverlapping regions, <m>R = R_1\bigcup R_2</m> (see <xref ref="fig_double_region">Figure</xref>). Then
+              <me>
+                \iint_R f(x,y)\ dA = \iint_{R_1}f(x,y)\ dA+ \iint_{R_2}f(x,y)\ dA.
+              </me>
+            </p></li>
+        </ol>
+      </statement>
+    </theorem>
+
+    <figure xml:id="fig_double_region" >
+      <caption><m>R</m> is the union of two nonoverlapping regions, <m>R_1</m> and <m>R_2</m>.</caption>
+      <!-- START figures/fig_double_region.tex -->
+      <image xml:id="img_double_region" >
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}[xscale=.85,yscale=.6]%[width=\marginparwidth+25pt]
+          %\begin{axis}[%
+          %axis on top,%
+          %			%x=.37\marginparwidth,
+          %			%y=.37\marginparwidth,
+          %			xtick={1,2,3,4,5,6,7,8,9,10,11,12},%
+          %%			extra x ticks={12.57},
+          %%			extra x tick labels={$4\pi$},
+          %%			ytick=\empty,
+          %			%%extra y ticks={-5,-3,...,7},%
+          %%			minor x tick num=4,
+          %			ymin=-.1,ymax=8.5,%
+          %			xmin=-.1,xmax=12.5%
+          %]
+
+          \draw [{\colorone},thick,fill={\coloronefill},smooth] plot coordinates {(0,2.)(0.06639,2.527)(0.2407,2.839)(0.4857,3.009)(0.7641,3.112)(1.039,
+          3.221)(1.294,3.367)(1.532,3.53)(1.759,3.689)(1.98,3.823)(2.2,3.915)(2.
+          42,3.967)(2.64,3.992)(2.86,4.)(3.08,4.)(3.305,3.987)(3.543,3.93)(3.
+          808,3.797)(4.107,3.558)(4.45,3.185)(4.815,2.703)(5.17,2.152)(5.483,1.
+          577)(5.723,1.018)(5.872,0.5022)(5.938,0.02083)(5.93,-0.4363)(5.861,-0.
+          88)(5.741,-1.319)(5.58,-1.742)(5.389,-2.128)(5.179,-2.456)(4.96,-2.
+          705)(4.737,-2.865)(4.502,-2.953)(4.243,-2.991)(3.95,-3.)(3.614,-2.999)
+          (3.244,-2.984)(2.86,-2.935)(2.484,-2.829)(2.137,-2.646)(1.832,-2.378)(
+          1.558,-2.06)(1.299,-1.734)(1.039,-1.443)(0.7641,-1.222)(0.4857,-0.
+          9779)(0.2407,-0.5015)(0.06639,0.4201)(0,2.)};
+
+
+
+          \draw [thick,{\colorone}] (3,4) -- (4,-3);
+
+          \draw (2,1) node {$R_1$};
+          \draw (5,.5) node {$R_2$};
+          \draw (1,-2) node {$R$};
+          %\end{axis}
+          %
+          %
+          %
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_double_region.tex END -->
+    </figure>
+
+    <example xml:id="ex_double3">
+      <title>Evaluating a double integral</title>
+      <statement>
+        <p>Let <m>f(x,y) = \sin(x) \cos(y)</m> and <m>R</m> be the triangle with vertices <m>(-1,0)</m>, <m>(1,0)</m> and <m>(0,1)</m> (see <xref ref="fig_double3">Figure</xref>). Evaluate the double integral <m>\iint_Rf(x,y)\ dA</m>.</p>
+
+        <figure xml:id="fig_double3" >
+          <caption>Finding the signed volume under a surface in <xref ref="ex_double3">Example</xref>.</caption>
+          <!--
+           \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
+          3Droll=0.,
+          3Dortho=0.0046491301618516445,
+          3Dc2c=0.08563969284296036 0.8920179605484009 0.44381290674209595,
+          3Dcoo=-0.3899505138397217 30.125946044921875 17.537517547607422,
+          3Droo=200.9999927619444,
+          3Dlights=Headlamp,add3Djscript=asylabels.js]
+           -->
+
+
+          <!-- START figures/figdouble3_3D.asy -->
+          <image xml:id="img_double3" >
+            <asymptote>
+              <![CDATA[
+              import graph3;
+
+              //ASY file for figdouble33D.asy in Chapter 13
+
+
+              size(200,200,IgnoreAspect);
+              //currentprojection=perspective(7,2,1);
+              currentprojection=orthographic(.92,4,3.7);
+              defaultrender.merge=true;
+
+              usepackage("mathspec");
+              texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+              // setup and draw the axes
+              real[] myxchoice={-1,1};
+              real[] myychoice={1};
+              real[] myzchoice={-1,1};
+              defaultpen(0.5mm);
+
+              pair xbounds=(-1.5,1.5);
+              pair ybounds=(0,1.5);
+              pair zbounds=(-1.5,1.5);
+
+              xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+              yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+              zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+              label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+              label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+              label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+              //Draw the surface//{z=sin(x)cos(y)};
+              triple f(pair t) {
+                return (t.x,t.y,sin(t.x)*cos(t.y));
+              }
+              surface s=surface(f,(-1.25,-0.25),(1.25,1.5),12,20,Spline);
+              pen p=rgb(0,0,.7);
+              draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+
+              //Draw triangle in plane
+              draw((-1,0,0)--(1,0,0)--(0,1,0)--(-1,0,0),blue+dashed+linewidth(0.75));
+              label("$R$",(0.8,0.25,0),E);
+
+              //Draw triangle on surface
+              triple g(real t) {return (t,0,sin(t));}
+              path3 mypath=graph(g,-1,1,operator ..);
+              draw(mypath,blue+linewidth(2));
+
+              triple g(real t) {return (t-1,t,sin(t-1)*cos(t));}
+              path3 mypath=graph(g,0,1,operator ..);
+              draw(mypath,blue+linewidth(2));
+
+              triple g(real t) {return (t,1-t,sin(t)*cos(1-t));}
+              path3 mypath=graph(g,0,1,operator ..);
+              draw(mypath,blue+linewidth(2));
+
+              //Draw vertical lines
+              //draw((-1,0,0)--(-1,0,sin(-1)),blue+dashed+linewidth(0.75));
+              //draw((1,0,0)--(1,0,sin(1)),blue+dashed+linewidth(0.75));
+
+
+
+              // ////////////////////////////////////
+              //    SAMPLE CODE
+
+              // defaultpen(fontsize(10pt));
+
+              //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+              //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //triple f(pair t) {
+              //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+              //}
+              //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //draw(s,paleblue);
+              //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+              //draw(mypath,2bp+blue);
+
+              //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+              //path3 mypath=graph(g,-1,1,operator ..);
+
+              //pen p=rgb(0,0,1);
+              //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+              ]]>
+            </asymptote>
+          </image>
+          <!-- figures/figdouble3_3D.asy END -->
+        </figure>
+      </statement>
+      <solution>
+        <p>If we attempt to integrate using an iterated integral with the order <m>dy\ dx</m>, note how there are two upper bounds on <m>R</m> meaning we'll need to use two iterated integrals. We would need to split the triangle into two regions along the <m>y</m>-axis, then use <xref ref="thm_double_prop">Theorem</xref>, <xref ref="thm_double_prop_regions">part</xref>.</p>
+
+        <p>Instead, let's use the order <m>dx\ dy</m>. The curves bounding <m>x</m> are <m>y-1\leq x\leq 1-y</m>; the bounds on <m>y</m> are <m>0\leq y\leq 1</m>. This gives us:
+          <md>
+            <mrow>\iint_R f(x,y)\ dA \amp = \int_0^1\int_{y-1}^{1-y}\sin(x) \cos(y) \ dx\ dy</mrow>
+            <mrow>\amp = \int_0^1\left.\Big( -\cos(x) \cos(y) \Big)\right|_{y-1}^{1-y}dy</mrow>
+            <mrow>\amp = \int_0^1 \cos(y) \Big(-\cos(1-y) + \cos(y-1)\Big)dy.</mrow>
+          </md>
+        </p>
+
+        <p>Recall that the cosine function is an even function; that is, <m>\cos(x) = \cos(-x)</m>. Therefore, from the last integral above, we have <m>\cos(y-1) = \cos(1-y)</m>. Thus the integrand simplifies to 0, and we have
+          <md>
+            <mrow>\iint_R f(x,y)\ dA \amp = \int_0^1 0\ dy</mrow>
+            <mrow>\amp = 0.</mrow>
+          </md>
+        </p>
+
+        <p>It turns out that over <m>R</m>, there is just as much volume above the <m>x</m>-<m>y</m> plane as below (look again at <xref ref="fig_double3">Figure</xref>), giving a final signed volume of 0.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_double4">
+      <title>Evaluating a double integral</title>
+      <statement>
+        <p>Evaluate <m>\iint_R (4-y)\ dA</m>, where <m>R</m> is the region bounded by the parabolas <m>y^2=4x</m> and <m>x^2=4y</m>, graphed in <xref ref="fig_double4">Figure</xref>.</p>
+
+        <figure xml:id="fig_double4" >
+          <caption>Finding the volume under the surface in <xref ref="ex_double4">Example</xref>.</caption>
+          <!--
+           \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
+          3Droll=0,
+          3Dortho=0.004656145814806223,
+          3Dc2c=0.9017289280891418 0.24087461829185486 0.35897672176361084,
+          3Dcoo=-13.985211372375488 45.56017303466797 41.332950592041016,
+          3Droo=201.0000081559461,
+          3Dlights=Headlamp,add3Djscript=asylabels.js]
+           -->
+
+
+          <!-- START figures/figdouble4_3D.asy -->
+          <image xml:id="img_double4" >
+            <asymptote>
+              <![CDATA[
+              import graph3;
+
+              //ASY file for figdouble43D.asy in Chapter 13
+
+
+              size(200,200,IgnoreAspect);
+              //currentprojection=perspective(7,2,1);
+              currentprojection=orthographic(16,6.2,5.6);
+              defaultrender.merge=true;
+
+              usepackage("mathspec");
+              texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+              // setup and draw the axes
+              real[] myxchoice={2,4};
+              real[] myychoice={2,4};
+              real[] myzchoice={2,4};
+              defaultpen(0.5mm);
+
+              pair xbounds=(0,5);
+              pair ybounds=(0,5);
+              pair zbounds=(0,5);
+
+              xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+              yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+              zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+              label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+              label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+              label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+              //Draw the surface//{z=4-y};
+              triple f(pair t) {
+                return (t.x,t.y,4-t.y);
+              }
+              surface s=surface(f,(-0.25,-0.25),(4.5,4.25),12,20,Spline);
+              pen p=rgb(0,0,.7);
+              draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+
+              //Draw parabolas in plane
+              triple g(real t) {return (t^2/4,t,0);}
+              path3 mypath=graph(g,0,4.25,operator ..);
+              draw(mypath,blue+linewidth(2));
+              triple g(real t) {return (t,t^2/4,0);}
+              path3 mypath=graph(g,0,4.25,operator ..);
+              draw(mypath,blue+linewidth(2));
+
+              //Draw parabolas on surface
+              triple g(real t) {return (t^2/4,t,4-t);}
+              path3 mypath=graph(g,0,4.,operator ..);
+              draw(mypath,blue+linewidth(2));
+              triple g(real t) {return (t,t^2/4,4-t^2/4);}
+              path3 mypath=graph(g,0,4.,operator ..);
+              draw(mypath,blue+linewidth(2));
+
+              //Draw vertical lines
+              //draw((-1,0,0)--(-1,0,sin(-1)),blue+dashed+linewidth(0.75));
+              //draw((1,0,0)--(1,0,sin(1)),blue+dashed+linewidth(0.75));
+
+
+
+              // ////////////////////////////////////
+              //    SAMPLE CODE
+
+              // defaultpen(fontsize(10pt));
+
+              //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+              //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //triple f(pair t) {
+              //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+              //}
+              //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //draw(s,paleblue);
+              //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+              //draw(mypath,2bp+blue);
+
+              //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+              //path3 mypath=graph(g,-1,1,operator ..);
+
+              //pen p=rgb(0,0,1);
+              //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+              ]]>
+            </asymptote>
+          </image>
+          <!-- figures/figdouble4_3D.asy END -->
+        </figure>
+      </statement>
+      <solution>
+        <p>Graphing each curve can help us find their points of intersection. Solving analytically, the second equation tells us that <m>y=x^2/4</m>. Substituting this value in for <m>y</m> in the first equation gives us <m>x^4/16 = 4x</m>. Solving for <m>x</m>:
+          <md>
+            <mrow>\frac{x^4}{16} \amp = 4x</mrow>
+            <mrow>x^4-64x \amp =0</mrow>
+            <mrow>x(x^3-64) \amp =0</mrow>
+            <mrow>x\amp = 0,\ 4.</mrow>
+          </md>
+        </p>
+
+        <p>Thus we've found analytically what was easy to approximate graphically: the regions intersect at <m>(0,0)</m> and <m>(4,4)</m>, as shown in <xref ref="fig_double4">Figure</xref>.</p>
+
+        <p>We now choose an order of integration: <m>dy\ dx</m> or <m>dx\ dy</m>? Either order works; since the integrand does not contain <m>x</m>, choosing <m>dx\ dy</m> might be simpler <mdash /> at least, the first integral is very simple.</p>
+
+        <p>Thus we have the following <q>curve to curve, point to point</q> bounds: <m>y^2/4\leq x\leq 2\sqrt y</m>, and <m>0\leq y\leq 4</m>.
+          <md>
+            <mrow>\iint_R (4-y)\ dA \amp = \int_0^4\int_{y^2/4}^{2\sqrt{y}}(4-y)\ dx\ dy</mrow>
+            <mrow>\amp = \int_0^4 \big(x(4-y)\big)\Big|_{y^2/4}^{2\sqrt{y}} dy</mrow>
+            <mrow>\amp = \int_0^4 \Big(\big(2\sqrt{y}-\frac{y^2}{4}\big)\big(4-y)\Big)\ dy = \int_0^4 \Big( \frac{y^3}{4}-y^2-2y^{3/2}+8y^{1/2}\Big)\ dy</mrow>
+            <mrow>\amp = \left.\left(\frac{y^4}{16}-\frac{y^3}{3}-\frac{4y^{5/2}}5+\frac{16y^{3/2}}3\right)\right|_0^4</mrow>
+            <mrow>\amp = \frac{176}{15} = 11.7\overline{3}.</mrow>
+          </md>
+        </p>
+
+        <p>The signed volume under the surface <m>f</m> is about 11.7 cubic units.</p>
+      </solution>
+    </example>
+
+    <p>In the previous section we practiced changing the order of integration of a given iterated integral, where the region <m>R</m> was not explicitly given. Changing the bounds of an integral is more than just an test of understanding. Rather, there are cases where integrating in one order is really hard, if not impossible, whereas integrating with the other order is feasible.</p>
+
+    <example xml:id="ex_double6">
+      <title>Changing the order of integration</title>
+      <statement>
+        <p>Rewrite the iterated integral <m>\ds \int_0^3\int_y^3 e^{-x^2}\ dx\ dy</m> with the order <m>dy\ dx</m>. Comment on the feasibility to evaluate each integral.</p>
+      </statement>
+      <solution>
+        <p>Once again we make a sketch of the region over which we are integrating to facilitate changing the order. The bounds on <m>x</m> are from <m>x=y</m> to <m>x=3</m>; the bounds on <m>y</m> are from <m>y=0</m> to <m>y=3</m>. These curves are sketched in <xref ref="fig_double6">Figure</xref>, enclosing the region <m>R</m>.</p>
+
+        <figure xml:id="fig_double6" >
+          <caption>Determining the region <m>R</m> determined by the bounds of integration in <xref ref="ex_double6">Example</xref>.</caption>
+          <!-- START figures/fig_double6.tex -->
+          <image xml:id="img_double6" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[%
+              axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={4,5,1,2,3},%
+			%ytick={1,2,3,4,5},
+			%extra y ticks={.1,.9},
+			%extra y tick labels={$a$,$b$},
+              %			ytick={-1,1,2,3},
+			%%extra y ticks={-5,-3,...,7},%
+              %			minor x tick num=4,
+			ymin=-.5,ymax=3.5,%
+			xmin=-.5,xmax=3.5%
+              ]
+
+              %\addplot [smooth,very thick, {\colorone},samples=2,domain=-.5:6.9] ({x},{x/3});
+
+              \draw [very thick,{\colortwo}] (axis cs:-.5,0) -- (axis cs:3.5,0)
+															(axis cs:-.5,3) -- (axis cs:3.5,3);
+              \draw [very thick,{\colorone}] (axis cs:3,-.5) -- (axis cs:3,3.5)
+															(axis cs:-.5,-.5) -- node [above,black,pos=.5,sloped] {\scriptsize $y=x$} (axis cs: 3.5,3.5);
+              \draw (axis cs:2,1) node {$R$};													
+
+              \end{axis}
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_double6.tex END -->
+        </figure>
+
+        <p>To change the bounds, note that the curves bounding <m>y</m> are <m>y=0</m> up to <m>y=x</m>; the triangle is enclosed between <m>x=0</m> and <m>x=3</m>. Thus the new bounds of integration are <m>0\leq y\leq x</m> and <m>0\leq x\leq 3</m>, giving the iterated integral <m>\ds \int_0^3\int_0^x e^{-x^2}\ dy\ dx</m>.</p>
+
+        <p>How easy is it to evaluate each iterated integral? Consider the order of integrating <m>dx\ dy</m>, as given in the original problem. The first indefinite integral we need to evaluate is <m>\int e^{-x^2}\ dx</m>; we have stated before (see <xref ref="sec_numerical_integration">Section</xref>) that this integral cannot be evaluated in terms of elementary functions. We are stuck.</p>
+
+        <p>Changing the order of integration makes a big difference here. In the second iterated integral, we are faced with <m>\int e^{-x^2}\ dy</m>; integrating with respect to <m>y</m> gives us <m>ye^{-x^2}+C</m>, and the first definite integral evaluates to
+          <me>
+            \int_0^x e^{-x^2}\ dy = xe^{-x^2}.
+          </me>
+        </p>
+
+        <p>Thus
+          <me>
+            \int_0^3\int_0^x e^{-x^2}\ dy\ dx = \int_0^3\Big(xe^{-x^2}\Big)dx.
+          </me>
+        </p>
+
+        <p>This last integral is easy to evaluate with substitution, giving a final answer of <m>\frac12(1-e^{-9})\approx 0.5</m>. <xref ref="fig_double6b">Figure</xref> shows the surface over <m>R</m>.</p>
+
+        <figure xml:id="fig_double6b" >
+          <caption>Showing the surface <m>f</m> defined in <xref ref="ex_double6">Example</xref> over its region <m>R</m>.</caption>
+          <!--
+           \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
+          3Droll=0.,
+          3Dortho=0.005074724089354277,
+          3Dc2c=0.3949831426143646 0.8441238403320312 0.3625510632991791,
+          3Dcoo=41.500732421875 17.729557037353516 46.038082122802734,
+          3Droo=201.00002888349545,
+          3Dlights=Headlamp,add3Djscript=asylabels.js]
+           -->
+
+
+          <!-- START figures/figdouble6b_3D.asy -->
+          <image xml:id="img_double6b" >
+            <asymptote>
+              <![CDATA[
+              import graph3;
+
+              //ASY file for figdouble6b3D.asy in Chapter 13
+
+
+              size(200,200,IgnoreAspect);
+              //currentprojection=perspective(7,2,1);
+              currentprojection=orthographic(6.3,9.6,2.4);
+              defaultrender.merge=true;
+
+              usepackage("mathspec");
+              texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+              // setup and draw the axes
+              real[] myxchoice={2};
+              real[] myychoice={2};
+              real[] myzchoice={1};
+              defaultpen(0.5mm);
+
+              pair xbounds=(0,4);
+              pair ybounds=(0,3);
+              pair zbounds=(0,1.5);
+
+              xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+              yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+              zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+              label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+              label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+              label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+              //Draw the surface//{z=exp(-x^2)};
+              triple f(pair t) {
+                return (t.x,t.y,exp(-t.x^2));
+              }
+              surface s=surface(f,(-0.25,0),(3.5,3.5),12,20,Spline);
+              pen p=rgb(0,0,.7);
+              draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+
+              //Draw lines in plane
+              draw((0,0,0)--(3,0,0)--(3,3,0)--cycle,blue+dashed+linewidth(0.75));
+
+              //Draw lines on surface
+              draw((3,0,0)--(3,3,0),blue+linewidth(2));
+              triple g(real t) {return (t,0,exp(-t^2));}
+              path3 mypath=graph(g,0,3,operator ..);
+              draw(mypath,blue+linewidth(2));
+              triple g(real t) {return (t,t,exp(-t^2));}
+              path3 mypath=graph(g,0,3,operator ..);
+              draw(mypath,blue+linewidth(2));
+
+              //Draw vertical lines
+              //draw((-1,0,0)--(-1,0,sin(-1)),blue+dashed+linewidth(0.75));
+              //draw((1,0,0)--(1,0,sin(1)),blue+dashed+linewidth(0.75));
+
+
+
+              // ////////////////////////////////////
+              //    SAMPLE CODE
+
+              // defaultpen(fontsize(10pt));
+
+              //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+              //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //triple f(pair t) {
+              //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+              //}
+              //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //draw(s,paleblue);
+              //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+              //draw(mypath,2bp+blue);
+
+              //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+              //path3 mypath=graph(g,-1,1,operator ..);
+
+              //pen p=rgb(0,0,1);
+              //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+              ]]>
+            </asymptote>
+          </image>
+          <!-- figures/figdouble6b_3D.asy END -->
+        </figure>
+
+        <p>In short, evaluating one iterated integral is impossible; the other iterated integral is relatively simple.</p>
+      </solution>
+    </example>
+
+    <p><xref ref="def_av_val">Definition</xref> defines the average value of a single<ndash />variable function <m>f(x)</m> on the interval <m>[a,b]</m> as
+      <me>
+        \text{ average value of \(f(x)\) on \([a,b]\) }  = \frac1{b-a}\int_a^b f(x)\ dx;
+      </me>
+      that is, it is the <q>area under <m>f</m> over an interval divided by the length of the interval.</q> We make an analogous statement here: the average value of <m>z=f(x,y)</m> over a region <m>R</m> is the volume under <m>f</m> over <m>R</m> divided by the area of <m>R</m>.</p>
+
+    <definition xml:id="def_av_val2">
+      <title>The Average Value of <m>f</m> on <m>R</m></title>
+      <statement>
+        <p>Let <m>z=f(x,y)</m> be a continuous function defined over a closed region <m>R</m> in the <m>x</m>-<m>y</m> plane. The <term>average value of <m>f</m> on <m>R</m></term> is <index><main>average value of a function</main></index>
+          <me>
+            \text{ average value of \(f\) on \(R\) }  = \frac{\ds \iint_R f(x,y)\ dA}{\ds\iint_R \ dA}.
+          </me>
+        </p>
+      </statement>
+    </definition>
+
+    <example xml:id="ex_double8">
+      <title>Finding average value of a function over a region <m>R</m></title>
+      <statement>
+        <p>Find the average value of <m>f(x,y) = 4-y</m> over the region <m>R</m>, which is bounded by the parabolas <m>y^2=4x</m> and <m>x^2=4y</m>. Note: this is the same function and region as used in <xref ref="ex_double4">Example</xref>.</p>
+      </statement>
+      <solution>
+        <p>In <xref ref="ex_double4">Example</xref> we found
+          <me>
+            \iint_R f(x,y)\ dA = \int_0^4\int_{y^2/4}^{2\sqrt{y}}(4-y)\ dx\ dy = \frac{176}{15}.
+          </me>
+        </p>
+
+        <p>We find the area of <m>R</m> by computing <m>\iint_R \ dA</m>:
+          <me>
+            \iint_R \ dA = \int_0^4\int_{y^2/4}^{2\sqrt{y}} \ dx\ dy = \frac{16}{3}.
+          </me>
+        </p>
+
+        <p>Dividing the volume under the surface by the area gives the average value:
+          <me>
+            \text{ average value of \(f\) on \(R\) }  = \frac{176/15}{16/3} = \frac{11}5 = 2.2.
+          </me>
+        </p>
+
+        <p>While the surface, as shown in <xref ref="fig_double8">Figure</xref>, covers <m>z</m>-values from <m>z=0</m> to <m>z=4</m>, the <q>average</q> <m>z</m>-value on <m>R</m> is 2.2.</p>
+
+        <figure xml:id="fig_double8" >
+          <caption>Finding the average value of <m>f</m> in <xref ref="ex_double8">Example</xref>.</caption>
+          <!--
+           \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
+          3Droll=0,
+          3Dortho=0.004656145814806223,
+          3Dc2c=0.9017289280891418 0.24087461829185486 0.35897672176361084,
+          3Dcoo=-13.985211372375488 45.56017303466797 41.332950592041016,
+          3Droo=201.0000081559461,
+          3Dlights=Headlamp,add3Djscript=asylabels.js]
+           -->
+
+
+          <!-- START figures/figdouble4_3D.asy -->
+          <image xml:id="img_double8" >
+            <asymptote>
+              <![CDATA[
+              import graph3;
+
+              //ASY file for figdouble43D.asy in Chapter 13
+
+
+              size(200,200,IgnoreAspect);
+              //currentprojection=perspective(7,2,1);
+              currentprojection=orthographic(16,6.2,5.6);
+              defaultrender.merge=true;
+
+              usepackage("mathspec");
+              texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+              // setup and draw the axes
+              real[] myxchoice={2,4};
+              real[] myychoice={2,4};
+              real[] myzchoice={2,4};
+              defaultpen(0.5mm);
+
+              pair xbounds=(0,5);
+              pair ybounds=(0,5);
+              pair zbounds=(0,5);
+
+              xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+              yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+              zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+              label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+              label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+              label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+              //Draw the surface//{z=4-y};
+              triple f(pair t) {
+                return (t.x,t.y,4-t.y);
+              }
+              surface s=surface(f,(-0.25,-0.25),(4.5,4.25),12,20,Spline);
+              pen p=rgb(0,0,.7);
+              draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+
+              //Draw parabolas in plane
+              triple g(real t) {return (t^2/4,t,0);}
+              path3 mypath=graph(g,0,4.25,operator ..);
+              draw(mypath,blue+linewidth(2));
+              triple g(real t) {return (t,t^2/4,0);}
+              path3 mypath=graph(g,0,4.25,operator ..);
+              draw(mypath,blue+linewidth(2));
+
+              //Draw parabolas on surface
+              triple g(real t) {return (t^2/4,t,4-t);}
+              path3 mypath=graph(g,0,4.,operator ..);
+              draw(mypath,blue+linewidth(2));
+              triple g(real t) {return (t,t^2/4,4-t^2/4);}
+              path3 mypath=graph(g,0,4.,operator ..);
+              draw(mypath,blue+linewidth(2));
+
+              //Draw vertical lines
+              //draw((-1,0,0)--(-1,0,sin(-1)),blue+dashed+linewidth(0.75));
+              //draw((1,0,0)--(1,0,sin(1)),blue+dashed+linewidth(0.75));
+
+
+
+              // ////////////////////////////////////
+              //    SAMPLE CODE
+
+              // defaultpen(fontsize(10pt));
+
+              //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+              //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //triple f(pair t) {
+              //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+              //}
+              //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //draw(s,paleblue);
+              //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+              //draw(mypath,2bp+blue);
+
+              //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+              //path3 mypath=graph(g,-1,1,operator ..);
+
+              //pen p=rgb(0,0,1);
+              //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+              ]]>
+            </asymptote>
+          </image>
+          <!-- figures/figdouble4_3D.asy END -->
+        </figure>
+      </solution>
+    </example>
+
+    <p>The previous section introduced the iterated integral in the context of finding the area of plane regions. This section has extended our understanding of iterated integrals; now we see they can be used to find the signed volume under a surface.</p>
+
+    <p>This new understanding allows us to revisit what we did in the previous section. Given a region <m>R</m> in the plane, we computed <m>\iint_R 1\ dA</m>; again, our understanding at the time was that we were finding the area of <m>R</m>. However, we can now view the function <m>z=1</m> as a surface, a flat surface with constant <m>z</m>-value of 1. The double integral <m>\iint_R 1\ dA</m> finds the volume, under <m>z=1</m>, over <m>R</m>, as shown in <xref ref="fig_double_summary">Figure</xref>. Basic geometry tells us that if the base of a general right cylinder has area <m>A</m>, its volume is <m>A\cdot h</m>, where <m>h</m> is the height. In our case, the height is 1. We were <q>actually</q> computing the volume of a solid, though we interpreted the number as an area.</p>
+
+    <figure xml:id="fig_double_summary" >
+      <caption>Showing how an iterated integral used to find area also finds a certain volume.</caption>
+      <!--
+       \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
+      3Droll=0,
+      3Dortho=0.004656150005757809,
+      3Dc2c=0.6877317428588867 0.6239246726036072 0.3711375296115875,
+      3Dcoo=7.870043754577637 -27.81243896484375 55.69517135620117,
+      3Droo=201.00001586839815,
+      3Dlights=Headlamp,add3Djscript=asylabels.js]
+       -->
+
+
+      <!-- START figures/figdouble_summary_3D.asy -->
+      <image xml:id="img_double_summary" >
+        <asymptote>
+          <![CDATA[
+          import graph3;
+
+          //ASY file for figdouble_intro23D.asy in Chapter 13
+
+
+          size(200,200,IgnoreAspect);
+          //currentprojection=perspective(7,2,1);
+          currentprojection=orthographic(8.2,4.6,1.5);
+          defaultrender.merge=true;
+
+          usepackage("mathspec");
+          texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+          texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+          texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+          texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+          // setup and draw the axes
+          real[] myxchoice={2};
+          real[] myychoice={-1,1};
+          real[] myzchoice={1};
+          defaultpen(0.5mm);
+
+          pair xbounds=(-1,2.5);
+          pair ybounds=(-1.25,1.25);
+          pair zbounds=(-.05,1.5);
+
+          xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+          yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+          zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+          label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+          label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+          label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+          //Draw the surface//{z=-.5*(x-1)^2-.5*(y)^2+2};
+          //triple f(pair t) {
+          //  return (t.x,t.y,-.5*(t.x-1)^2-.5*(t.y)^2+2);
+          //}
+          //surface s=surface(f,(-0.221,-1),(2.2,1),12,20,vsplinetype=new splinetype[] {notaknot,notaknot,monotonic},usplinetype=new splinetype[] {notaknot,notaknot,monotonic});
+          //pen p=rgb(0,0,.7);
+          //draw(s,rgb(.7,.7,1)+opacity(.7),meshpen=p);
+
+
+
+          //Draw curve on top of the grid in xy plane ({cos(x)*(1+cos(2*x))},{sin(x)*(1+cos(2*x))},0);
+          triple g(real t) {return (cos(t)*(1+cos(2*t)),sin(t)*(1+cos(2*t)),0);}
+          path3 mypath=graph(g,-pi/2,pi/2,operator ..);
+          draw(mypath,blue);
+
+          // draw curve on surface
+          triple g(real t) {
+            return (cos(t)*(1+cos(2*t)),sin(t)*(1+cos(2*t)),1);
+	}
+          path3 mypath=graph(g,-pi/2,pi/2,operator ..);
+          draw(mypath,blue);
+
+
+          pen q=rgb(.9,0,0);	
+          triple gg(pair t) {return (cos(t.x)*(1+cos(2*t.x)),sin(t.x)*(1+cos(2*t.x)),t.y);}
+          surface s=surface(gg,(-pi/2,0),(pi/2,1),16,4,Spline);
+          draw(s,rgb(1,.6,.6)+opacity(.8),meshpen=q,nolight,render(merge=true));
+
+          triple f(pair t) {
+            return (t.x,t.y,1);
+          }
+          surface s=surface(f,(-.1,ybounds.x),(xbounds.y,ybounds.y),8,8);
+          pen p=rgb(0,0,.7);
+          draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+          // ////////////////////////////////////
+          //    SAMPLE CODE
+
+          // defaultpen(fontsize(10pt));
+
+          //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+          //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+          //pen p=rgb(0,0,.7);
+          //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+          //triple f(pair t) {
+          //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+          //}
+          //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+          //pen p=rgb(0,0,.7);
+          //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+          //draw(s,paleblue);
+          //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+          //draw(mypath,2bp+blue);
+
+          //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+          //path3 mypath=graph(g,-1,1,operator ..);
+
+          //pen p=rgb(0,0,1);
+          //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+          ]]>
+        </asymptote>
+      </image>
+      <!-- figures/figdouble_summary_3D.asy END -->
+    </figure>
+
+    <p>The next section extends our abilities to find <q>volumes under surfaces.</q> Currently, some integrals are hard to compute because either the region <m>R</m> we are integrating over is hard to define with rectangular curves, or the integrand itself is hard to deal with. Some of these problems can be solved by converting everything into polar coordinates.</p>
+  </introduction>
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>An integral can be interpreted as giving the signed area over an interval; a double integral can be interpreted as giving the signed <fillin /> over a region.</p>
+          </statement>
+          <solution>
+            <p>volume</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Explain why the following statement is false: <q>Fubini's Theorem states that <m>\ds \int_a^b\int_{g_1(x)}^{g_2(x)} f(x,y)\ dy\ dx = \int_a^b\int_{g_1(y)}^{g_2(y)} f(x,y)\ dx\ dy</m>.</q></p>
+          </statement>
+          <solution>
+            <p>When switching the order of integration, the bounds integrals must change to reflect the bounds of the region of integration. You cannot merely change the letters <m>x</m> and <m>y</m> in a few places.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Explain why if <m>f(x,y)>0</m> over a region <m>R</m>, then</p>
+
+            <p><m>\iint_Rf(x,y)\ dA>0</m>.</p>
+          </statement>
+          <solution>
+            <p>The double integral gives the signed volume under the surface. Since the surface is always positive, it is always above the <m>x</m>-<m>y</m> plane and hence produces only <q>positive</q> volume.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>If <m>\iint_R f(x,y)\ dA = \iint_R g(x,y)\ dA</m>, does this imply <m>f(x,y) = g(x,y)</m>?</p>
+          </statement>
+          <solution>
+            <p>No. It means that there is the same amount of signed volume under <m>f</m> and <m>g</m> over <m>R</m>, but the functions could be very different.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+    <exercisegroup>
+        <introduction>
+            <p>In the following exercises,<ol label="a">
+                <li>
+                    <p>Evaluate the given iterated integral, and</p>
+                </li>
+                <li>
+                    <p>rewrite the integral using the other order of integration.</p>
+                </li>
+            </ol></p>
+        </introduction>
+
+        <exercise xml:id="x13_02_ex_05">
+            <webwork seed="1">
+                <setup>
+                    <var name="">
+                        <static></static>
+                    </var>
+                    <pg-code>
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p><m>\ds \int_1^2\int_{-1}^1\left(\frac xy+3\right)\ dx\ dy</m></p>
+                </statement>
+                <solution>
+                    <p>6; <m>\ds \int_{-1}^1\int_{1}^2\left(\frac xy+3\right)\ dy\ dx</m></p>
+                </solution>
+            </webwork>
+        </exercise>
+
+        <exercise>
+            <webwork seed="1">
+                <setup>
+                    <var name="$value">
+                        <static>4</static>
+                    </var>
+                    <var name="$multians">
+                        <set>
+                            <member correct="yes">\pi</member>
+                            <member correct="yes">\pi/2</member>
+                            <member correct="yes">\sin(x)\cos(y)</member>
+                            <member correct="yes">dy</member>
+                            <member correct="yes">dx</member>
+                            <member correct="yes">0</member>
+                            <member correct="yes">-\pi/2</member>
+                        </set>
+                    </var>
+                    <pg-code>
+                        Context()->variables->are(x=>"Real", dx=>"Real", y=>"Real", dy=>"Real");
+                        $outerbot=Compute("0");
+                        $outertop=Compute("pi");
+                        $innerbot=Compute("-pi/2");
+                        $innertop=Compute("pi/2");
+                        $integrand=Compute("sin(x)cos(y)");
+                        $innerd=Compute("dy");
+                        $outerd=Compute("dx");
+                        $multians = MultiAnswer($outertop, $innertop, $integrand, $innerd, $outerd, $outerbot, $innerbot)->with(
+                            singleResult => 1,
+                            checker => sub {
+                                my ( $correct, $student, $self ) = @_;
+                                my ( @stu ) = @{$student};
+                                my ( @cor ) = @{$correct};
+                                my $OK = 1;
+                                for my $i (0..$#stu)
+                                    {Value::Error("stu is @stu and cor is @cor") if ($stu[$i] != $cor[$i]);
+                                    $OK = 0 if ($stu[$i] != $cor[$i]);};
+                                return $OK;
+                            }
+                        );
+                        $value=Compute("4");
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p><ol label="a">
+                        <li>
+                            <p>Calculate <m>\ds \int_{-\pi/2}^{\pi/2}\int_{0}^\pi\left(\sin(x) \cos(y) \right)\,dx\,dy</m></p>
+                            <p><var name="$value" width="10" /></p>
+                        </li>
+                        <li>
+                            <p>Rewrite the integral using the other order of integration.</p>
+                            <tabular>
+                                <row>
+                                    <cell><var name="$multians" width="1" /></cell>
+                                    <cell><var name="$multians" width="1" /></cell>
+                                </row>
+                                <row>
+                                    <cell><m>\displaystyle\int</m></cell>
+                                    <cell><m>\displaystyle\int</m></cell>
+                                    <cell><var name="$multians" width="15" /> <var name="$multians" width="1" /> <var name="$multians" width="1" /></cell>
+                                </row>
+                                <row>
+                                    <cell><var name="$multians" width="1" /></cell>
+                                    <cell><var name="$multians" width="1" /></cell>
+                                </row>
+                            </tabular>
+                        </li>
+                    </ol></p>
+                </statement>
+            </webwork>
+        </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{0}^{4}\int_{0}^{-x/2+2}\left(3x^2-y+2\right)\ dy\ dx</m></p>
+          </statement>
+          <solution>
+            <p>112/3; <m>\ds \int_{0}^{2}\int_{0}^{4-2y}\left(3x^2-y+2\right)\ dx\ dy</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+        <exercise xml:id="x13_02_ex_08">
+            <webwork seed="1">
+                <setup>
+                    <var name="$value">
+                        <static>\frac{76}{15}</static>
+                    </var>
+                    <var name="$multians">
+                        <set>
+                            <member correct="yes">3</member>
+                            <member correct="yes">x</member>
+                            <member correct="yes">x^2y-xy^2</member>
+                            <member correct="yes">dy</member>
+                            <member correct="yes">dx</member>
+                            <member correct="yes">1</member>
+                            <member correct="yes">1</member>
+                        </set>
+                    </var>
+                    <pg-code>
+                        Context()->variables->are(x=>"Real", dx=>"Real", y=>"Real", dy=>"Real");
+                        $outertop=Compute("3");
+                        $innertop=Compute("x");
+                        $integrand=Compute("x^2y-xy^2");
+                        $innerd=Compute("dy");
+                        $outerd=Compute("dx");
+                        $outerbot=Compute("1");
+                        $innerbot=Compute("1");
+                        $multians = MultiAnswer($outertop, $innertop, $integrand, $innerd, $outerd, $outerbot, $innerbot)->with(
+                            singleResult => 1,
+                            checker => sub {
+                                my ( $correct, $student, $self ) = @_;
+                                my ( @stu ) = @{$student};
+                                my ( @cor ) = @{$correct};
+                                my $OK = 1;
+                                for my $i (0..$#stu)
+                                    {Value::Error("stu is @stu and cor is @cor") if ($stu[$i] != $cor[$i]);
+                                    $OK = 0 if ($stu[$i] != $cor[$i]);};
+                                return $OK;
+                            }
+                        );
+                        $value=Formula("76/15");
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p><ol label="a">
+                        <li>
+                            <p>Calculate <m>\ds \int_{1}^{3}\int_{y}^{3}\left(x^2y-xy^2\right)\,dx\,dy</m></p>
+                            <p><var name="$value" width="10" /></p>
+                        </li>
+                        <li>
+                            <p>Rewrite the integral using the other order of integration.</p>
+                            <tabular>
+                                <row>
+                                    <cell><var name="$multians" width="1" /></cell>
+                                    <cell><var name="$multians" width="1" /></cell>
+                                </row>
+                                <row>
+                                    <cell><m>\displaystyle\int</m></cell>
+                                    <cell><m>\displaystyle\int</m></cell>
+                                    <cell><var name="$multians" width="15" /> <var name="$multians" width="1" /> <var name="$multians" width="1" /></cell>
+                                </row>
+                                <row>
+                                    <cell><var name="$multians" width="1" /></cell>
+                                    <cell><var name="$multians" width="1" /></cell>
+                                </row>
+                            </tabular>
+                        </li>
+                    </ol></p>
+                </statement>
+            </webwork>
+        </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{0}^{1}\int_{-\sqrt{1-y}}^{\sqrt{1-y}}\left(x+y+2\right)\ dx\ dy</m></p>
+          </statement>
+          <solution>
+            <p>16/5; <m>\ds \int_{-1}^{1}\int_{0}^{1-x^2}\left(x+y+2\right)\ dy\ dx</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+        <exercise>
+            <webwork seed="1">
+                <setup>
+                    <var name="$value">
+                        <static>\frac{6561}{40}</static>
+                    </var>
+                    <var name="$multians">
+                        <set>
+                            <member correct="yes">3</member>
+                            <member correct="yes">3x</member>
+                            <member correct="yes">xy^2</member>
+                            <member correct="yes">dy</member>
+                            <member correct="yes">dx</member>
+                            <member correct="yes">0</member>
+                            <member correct="yes">x^2</member>
+                        </set>
+                    </var>
+                    <pg-code>
+                        Context()->variables->are(x=>"Real", dx=>"Real", y=>"Real", dy=>"Real");
+                        $outertop=Compute("3");
+                        $innertop=Compute("3x");
+                        $integrand=Compute("xy^2");
+                        $innerd=Compute("dy");
+                        $outerd=Compute("dx");
+                        $outerbot=Compute("0");
+                        $innerbot=Compute("x^2");
+                        $multians = MultiAnswer($outertop, $innertop, $integrand, $innerd, $outerd, $outerbot, $innerbot)->with(
+                            singleResult => 1,
+                            checker => sub {
+                                my ( $correct, $student, $self ) = @_;
+                                my ( @stu ) = @{$student};
+                                my ( @cor ) = @{$correct};
+                                my $OK = 1;
+                                for my $i (0..$#stu)
+                                    {Value::Error("stu is @stu and cor is @cor") if ($stu[$i] != $cor[$i]);
+                                    $OK = 0 if ($stu[$i] != $cor[$i]);};
+                                return $OK;
+                            }
+                        );
+                        $value=Formula("6561/40");
+                    </pg-code>
+                </setup>
+                <statement>
+                    <p><ol label="a">
+                        <li>
+                            <p>Calculate <m>\ds \int_{0}^{9}\int_{y/3}^{\sqrt{y}}\left(xy^2\right)\,dx\,dy</m></p>
+                            <p><var name="$value" width="10" /></p>
+                        </li>
+                        <li>
+                            <p>Rewrite the integral using the other order of integration.</p>
+                            <tabular>
+                                <row>
+                                    <cell><var name="$multians" width="1" /></cell>
+                                    <cell><var name="$multians" width="1" /></cell>
+                                </row>
+                                <row>
+                                    <cell><m>\displaystyle\int</m></cell>
+                                    <cell><m>\displaystyle\int</m></cell>
+                                    <cell><var name="$multians" width="15" /> <var name="$multians" width="1" /> <var name="$multians" width="1" /></cell>
+                                </row>
+                                <row>
+                                    <cell><var name="$multians" width="1" /></cell>
+                                    <cell><var name="$multians" width="1" /></cell>
+                                </row>
+                            </tabular>
+                        </li>
+                    </ol></p>
+                </statement>
+            </webwork>
+        </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+        <introduction>
+            <p>In the following exercises:<ol label="a">
+                <li>
+                    <p>Sketch the region <m>R</m> given by the problem.</p>
+                </li>
+                <li>
+                    <p>Set up the iterated integrals, in both orders, that evaluate the given double integral for the described region <m>R</m>.</p>
+                </li>
+                <li>
+                    <p>Evaluate one of the iterated integrals to find the signed volume under the surface <m>z=f(x,y)</m> over the region <m>R</m>.</p>
+                </li>
+            </ol></p>
+        </introduction>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \iint_R x^2y\ dA</m>, where <m>R</m> is bounded by <m>y=\sqrt{x}</m> and <m>y=x^2</m>.</p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p>
+
+                  <figure>
+                    <!-- START figures/fig_13_02_ex_11.tex -->
+                    <image xml:id="img_13_02_ex_11X" >
+                      <description></description>
+                      <latex-image-code>
+                        <![CDATA[
+                        \begin{tikzpicture}
+                        \begin{axis}[%
+                        axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={1},
+			%%
+                        %			extra x ticks={.33},
+                        %			extra x tick labels={$1/3$},
+			ytick={1},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-.1,ymax=1.5,%
+			xmin=-.1,xmax=1.5%
+                        ]
+
+                        \addplot [very thick,{\colorone},smooth,domain=-.1:1.1,samples=20] ({x},{x^2});
+                        \addplot [very thick,{\colorone},smooth,domain=-.1:1.1,samples=20] ({x^2},{x});
+
+                        \draw (axis cs: .5,.5) node {$R$}
+                              (axis cs: .5,.9) node {\scriptsize$y=\sqrt{x}$}
+			(axis cs: .85,.4) node {\scriptsize$y=x^2$};
+
+                        %\addplot [{\colorone},thick,fill=white,area style, smooth,domain=0:360,samples=30] ({1+cos(x)},{sin(x)});
+                        %
+                        %\addplot [{\colorone},thick,,area style, smooth,domain=0:360,samples=30] ({2+2*cos(x)},{2*sin(x)});
+
+                        \end{axis}
+
+
+
+                        \end{tikzpicture}
+                        ]]>
+                      </latex-image-code>
+                    </image>
+                    <!-- figures/fig_13_02_ex_11.tex END -->
+                  </figure>
+
+                </p></li>
+
+              <li><p><m>\ds  \int_0^1\int_{x^2}^{\sqrt{x}}x^2y\ dy\ dx = \int_0^1\int_{y^2}^{\sqrt{y}}x^2y\ dx\ dy</m>.</p></li>
+
+              <li><p><m>\frac3{56}</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \iint_R x^2y\ dA</m>, where <m>R</m> is bounded by <m>y=\sqrt[3]{x}</m> and <m>y=x^3</m>.</p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p>
+
+                  <figure>
+                    <!-- START figures/fig_13_02_ex_12.tex -->
+                    <image xml:id="img_13_02_ex_12X" >
+                      <description></description>
+                      <latex-image-code>
+                        <![CDATA[
+                        \begin{tikzpicture}
+                        \begin{axis}[%
+                        axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={1},
+			%%
+                        %			extra x ticks={.33},
+                        %			extra x tick labels={$1/3$},
+			ytick={1},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-1.5,ymax=1.5,%
+			xmin=-1.5,xmax=1.5%
+                        ]
+
+                        \addplot [very thick,{\colorone},smooth,domain=-1.1:1.1,samples=20] ({x},{x^3});
+                        \addplot [very thick,{\colorone},smooth,domain=-1.1:1.1,samples=20] ({x^3},{x});
+
+                        \draw (axis cs: -.5,.5)  node (A) {$R$}
+                              (axis cs: .5,1.1) node {\scriptsize$y=\sqrt[3]{x}$}
+			(axis cs: 1.05,.4) node {\scriptsize$y=x^3$};
+
+                        \draw [->,>=stealth] (A) -- (axis cs: .5,.5);
+                        \draw [->,>=stealth] (A) -- (axis cs: -.5,-.5);
+                        %\addplot [{\colorone},thick,fill=white,area style, smooth,domain=0:360,samples=30] ({1+cos(x)},{sin(x)});
+                        %
+                        %\addplot [{\colorone},thick,,area style, smooth,domain=0:360,samples=30] ({2+2*cos(x)},{2*sin(x)});
+
+                        \end{axis}
+
+
+
+                        \end{tikzpicture}
+                        ]]>
+                      </latex-image-code>
+                    </image>
+                    <!-- figures/fig_13_02_ex_12.tex END -->
+                  </figure>
+
+                </p></li>
+
+              <li><p><m>\ds \int_0^1\int_{x^3}^{\sqrt[3]{x}}x^2y\ dy\ dx + \int_{-1}^0\int_{\sqrt[3]{x}}^{x^3}x^2y\ dy\ dx</m> <m>\ds = \int_0^1\int_{y^3}^{\sqrt[3]{y}}x^2y\ dx\ dy +\int_{-1}^0\int_{\sqrt[3]{y}}^{y^3}x^2y\ dx\ dy</m>.</p></li>
+
+              <li><p>0</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \iint_R x^2-y^2\ dA</m>, where <m>R</m> is the rectangle with corners <m>(-1,-1)</m>, <m>(1,-1)</m>, <m>(1,1)</m> and <m>(-1,1)</m>.</p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p>
+
+                  <figure>
+                    <!-- START figures/fig_13_02_ex_13.tex -->
+                    <image xml:id="img_13_02_ex_13X" >
+                      <description></description>
+                      <latex-image-code>
+                        <![CDATA[
+                        \begin{tikzpicture}
+                        \begin{axis}[%
+                        axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={-1,1},
+			%%
+                        %			extra x ticks={.33},
+                        %			extra x tick labels={$1/3$},
+			ytick={1,-1},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-1.1,ymax=1.1,%
+			xmin=-1.1,xmax=1.1%
+                        ]
+
+                        %\addplot [very thick,{\colorone},smooth,domain=-.1:1.1,samples=20] ({x},{x^3});
+                        %\addplot [very thick,{\colorone},smooth,domain=-.1:1.1,samples=20] ({x^3},{x});
+
+                        \draw [very thick,{\colorone}] (axis cs:-1,-1) -- (axis cs:1,-1) --(axis cs:1,1) --(axis cs:-1,1) --cycle;
+
+                        \draw (axis cs: .5,.5) node {$R$};
+
+                        %\addplot [{\colorone},thick,fill=white,area style, smooth,domain=0:360,samples=30] ({1+cos(x)},{sin(x)});
+                        %
+                        %\addplot [{\colorone},thick,,area style, smooth,domain=0:360,samples=30] ({2+2*cos(x)},{2*sin(x)});
+
+                        \end{axis}
+
+
+
+                        \end{tikzpicture}
+                        ]]>
+                      </latex-image-code>
+                    </image>
+                    <!-- figures/fig_13_02_ex_13.tex END -->
+                  </figure>
+
+                </p></li>
+
+              <li><p><m>\ds \int_{-1}^1\int_{-1}^{1}x^2-y^2\ dy\ dx = \int_{-1}^1\int_{-1}^{1}x^2-y^2\ dx\ dy</m>.</p></li>
+
+              <li><p>0</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \iint_R ye^x\ dA</m>, where <m>R</m> is bounded by <m>x=0</m>, <m>x=y^2</m> and <m>y=1</m>.</p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p>
+
+                  <figure>
+                    <!-- START figures/fig_13_02_ex_14.tex -->
+                    <image xml:id="img_13_02_ex_14X" >
+                      <description></description>
+                      <latex-image-code>
+                        <![CDATA[
+                        \begin{tikzpicture}
+                        \begin{axis}[%
+                        axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={1},
+			%%
+                        %			extra x ticks={.33},
+                        %			extra x tick labels={$1/3$},
+			ytick={1},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-.5,ymax=1.2,%
+			xmin=-.5,xmax=1.2%
+                        ]
+
+                        \addplot [very thick,{\colorone},smooth,domain=-.25:1.1,samples=20] ({x},{1});
+                        \addplot [very thick,{\colorone},smooth,domain=-.25:1.1,samples=20] ({x^2},{x});
+                        \addplot [very thick,{\colorone},smooth,domain=-.25:1.1,samples=20] ({0},{x});
+
+                        %\draw [very thick,{\colorone}] (axis cs:-1,-1) -- (axis cs:1,-1) --(axis cs:1,1) --(axis cs:-1,1) --cycle;
+
+                        \draw (axis cs: .25,.75) node {$R$}
+			(axis cs: .5,.5) node {\scriptsize $x=y^2$};
+
+                        %\addplot [{\colorone},thick,fill=white,area style, smooth,domain=0:360,samples=30] ({1+cos(x)},{sin(x)});
+                        %
+                        %\addplot [{\colorone},thick,,area style, smooth,domain=0:360,samples=30] ({2+2*cos(x)},{2*sin(x)});
+
+                        \end{axis}
+
+
+
+                        \end{tikzpicture}
+                        ]]>
+                      </latex-image-code>
+                    </image>
+                    <!-- figures/fig_13_02_ex_14.tex END -->
+                  </figure>
+
+                </p></li>
+
+              <li><p><m>\ds \int_{0}^1\int_{0}^{y^2}ye^x\ dx\ dy = \int_{0}^1\int_{\sqrt{x}}^{1}ye^x\ dy\ dx</m>.</p></li>
+
+              <li><p><m>e/2-1</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \iint_R \big(6-3x-2y\big)\ dA</m>, where <m>R</m> is bounded by <m>x=0</m>, <m>y=0</m> and <m>3x+2y=6</m>.</p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p>
+
+                  <figure>
+                    <!-- START figures/fig_13_02_ex_15.tex -->
+                    <image xml:id="img_13_02_ex_15X" >
+                      <description></description>
+                      <latex-image-code>
+                        <![CDATA[
+                        \begin{tikzpicture}
+                        \begin{axis}[%
+                        axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={1,2},
+			%%
+                        %			extra x ticks={.33},
+                        %			extra x tick labels={$1/3$},
+			ytick={1,2,3},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-.5,ymax=3.5,%
+			xmin=-.5,xmax=2.5%
+                        ]
+
+                        \addplot [very thick,{\colorone},smooth,domain=-.25:2.25,samples=20] ({x},{0});
+                        \addplot [very thick,{\colorone},smooth,domain=-.25:2.25,samples=20] ({x},{3-3/2*x});
+                        \addplot [very thick,{\colorone},smooth,domain=-.25:3.25,samples=20] ({0},{x});
+
+                        %\draw [very thick,{\colorone}] (axis cs:-1,-1) -- (axis cs:1,-1) --(axis cs:1,1) --(axis cs:-1,1) --cycle;
+
+                        \draw (axis cs: .75,1) node {$R$}
+			(axis cs: 1,2) node [rotate=-40] {\scriptsize $3x+2y=6$};
+
+                        %\addplot [{\colorone},thick,fill=white,area style, smooth,domain=0:360,samples=30] ({1+cos(x)},{sin(x)});
+                        %
+                        %\addplot [{\colorone},thick,,area style, smooth,domain=0:360,samples=30] ({2+2*cos(x)},{2*sin(x)});
+
+                        \end{axis}
+
+
+
+                        \end{tikzpicture}
+                        ]]>
+                      </latex-image-code>
+                    </image>
+                    <!-- figures/fig_13_02_ex_15.tex END -->
+                  </figure>
+
+                </p></li>
+
+              <li><p><m>\ds \int_{0}^2\int_{0}^{3-3/2x}\big(6-3x-2y\big)\ dy\ dx = \int_{0}^3\int_{0}^{2-2/3y}\big(6-3x-2y\big)\ dx\ dy</m>.</p></li>
+
+              <li><p>6</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \iint_R e^y\ dA</m>, where <m>R</m> is bounded by <m>y=\ln(x)</m> and</p>
+
+            <p><m>\ds y=\frac{1}{e-1}(x-1)</m>.</p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p>
+
+                  <figure>
+                    <!-- START figures/fig_13_02_ex_16.tex -->
+                    <image xml:id="img_13_02_ex_16X" >
+                      <description></description>
+                      <latex-image-code>
+                        <![CDATA[
+                        \begin{tikzpicture}
+                        \begin{axis}[%
+                        axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={1,2,3},
+			%%
+                        %			extra x ticks={.33},
+                        %			extra x tick labels={$1/3$},
+			ytick={1,2,3},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-.5,ymax=1.25,%
+			xmin=-.5,xmax=3.25%
+                        ]
+
+                        \addplot [very thick,{\colorone},smooth,domain=.5:3.25,samples=20] ({x},{ln(x)});
+                        \addplot [very thick,{\colorone},smooth,domain=-.25:3.25,samples=20] ({x},{1/1.71828*(x-1)});
+                        %\addplot [very thick,{\colorone},smooth,domain=-.25:3.25,samples=20] ({0},{x});
+
+                        %\draw [very thick,{\colorone}] (axis cs:-1,-1) -- (axis cs:1,-1) --(axis cs:1,1) --(axis cs:-1,1) --cycle;
+
+                        \draw (axis cs: 1,.5) node (A) {$R$}
+			(axis cs: 2,.9) node [rotate=40] {\scriptsize $y=\ln(x) $}
+			(axis cs: 2.5,.3) node [rotate=0] {\scriptsize $y=\frac{1}{1-e}(x-1)$};
+
+                        \draw[->,>=stealth] (A) -- (axis cs:1.8,.5);
+
+                        %\addplot [{\colorone},thick,fill=white,area style, smooth,domain=0:360,samples=30] ({1+cos(x)},{sin(x)});
+                        %
+                        %\addplot [{\colorone},thick,,area style, smooth,domain=0:360,samples=30] ({2+2*cos(x)},{2*sin(x)});
+
+                        \end{axis}
+
+
+
+                        \end{tikzpicture}
+                        ]]>
+                      </latex-image-code>
+                    </image>
+                    <!-- figures/fig_13_02_ex_16.tex END -->
+                  </figure>
+
+                </p></li>
+
+              <li><p><m>\ds  \int_{1}^e\int_{\frac{x-1}{e-1}}^{\ln(x) }e^y\ dy\ dx = \int_{0}^1\int_{e^y}^{y(e-1)+1}e^y\ dx\ dy</m>.</p></li>
+
+              <li><p><m>-\frac12e^2+2e-\frac32</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \iint_R \big(x^3y-x\big)\ dA</m>, where <m>R</m> is the half of the circle <m>x^2+y^2=9</m> in the first and second quadrants.</p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p>
+
+                  <figure>
+                    <!-- START figures/fig_13_02_ex_17.tex -->
+                    <image xml:id="img_13_02_ex_17X" >
+                      <description></description>
+                      <latex-image-code>
+                        <![CDATA[
+                        \begin{tikzpicture}
+                        \begin{axis}[%
+                        axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={-3,3},
+			%%
+                        %			extra x ticks={.33},
+                        %			extra x tick labels={$1/3$},
+			ytick={-3,3},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-3.1,ymax=3.1,%
+			xmin=-3.7,xmax=3.7%
+                        ]
+
+                        \addplot [very thick,{\colorone},smooth,domain=0:180,samples=30] ({3*cos(x)},{3*sin(x)})--cycle;
+                        %\addplot [very thick,{\colorone},smooth,domain=-.25:3.25,samples=20] ({x},{1/1.71828*(x-1)});
+                        %\addplot [very thick,{\colorone},smooth,domain=-.25:3.25,samples=20] ({0},{x});
+
+                        %\draw [very thick,{\colorone}] (axis cs:-1,-1) -- (axis cs:1,-1) --(axis cs:1,1) --(axis cs:-1,1) --cycle;
+
+                        \draw (axis cs: 1,1) node (A) {$R$};
+			%(axis cs: 2,.9) node [rotate=40] {\scriptsize $y=\ln(x) $}
+			%(axis cs: 2.5,.3) node [rotate=0] {\scriptsize $y=\frac{1}{1-e}(x-1)$};
+
+                        %\draw[->,>=stealth] (A) -- (axis cs:1.8,.5);
+
+                        %\addplot [{\colorone},thick,fill=white,area style, smooth,domain=0:360,samples=30] ({1+cos(x)},{sin(x)});
+                        %
+                        %\addplot [{\colorone},thick,,area style, smooth,domain=0:360,samples=30] ({2+2*cos(x)},{2*sin(x)});
+
+                        \end{axis}
+
+
+
+                        \end{tikzpicture}
+                        ]]>
+                      </latex-image-code>
+                    </image>
+                    <!-- figures/fig_13_02_ex_17.tex END -->
+                  </figure>
+
+                </p></li>
+
+              <li><p><m>\ds \int_{-3}^3\int_{0}^{\sqrt{9-x^2}}\big(x^3y-x\big)\ dy\ dx = \int_{0}^3\int_{-\sqrt{9-y^2}}^{\sqrt{9-y^2}}\big(x^3y-x\big)\ dx\ dy</m>.</p></li>
+
+              <li><p>0</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \iint_R \big(4-3y\big)\ dA</m>, where <m>R</m> is bounded by <m>y=0</m>, <m>y=x/e</m> and <m>y=\ln(x)</m>.</p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p>
+
+                  <figure>
+                    <!-- START figures/fig_13_02_ex_18.tex -->
+                    <image xml:id="img_13_02_ex_18X" >
+                      <description></description>
+                      <latex-image-code>
+                        <![CDATA[
+                        \begin{tikzpicture}
+                        \begin{axis}[%
+                        axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={1,2},
+			%%
+			extra x ticks={2.718},
+			extra x tick labels={$e$},
+			ytick={1},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-.5,ymax=1.2,%
+			xmin=-.5,xmax=3.5%
+                        ]
+
+                        \addplot [very thick,{\colorone},smooth,domain=.5:3.25,samples=30] ({x},{ln(x)});
+                        \addplot [very thick,{\colorone},smooth,domain=-.5:3.25,samples=2] ({x},{0});
+                        \addplot [very thick,{\colorone},smooth,domain=-.5:3.25,samples=20] ({x},{x/2.71828});
+
+                        %\draw [very thick,{\colorone}] (axis cs:-1,-1) -- (axis cs:1,-1) --(axis cs:1,1) --(axis cs:-1,1) --cycle;
+
+                        \draw (axis cs: .8,.1) node (A) {$R$};
+			%(axis cs: 2,.9) node [rotate=40] {\scriptsize $y=\ln(x) $}
+			%(axis cs: 2.5,.3) node [rotate=0] {\scriptsize $y=\frac{1}{1-e}(x-1)$};
+
+                        \filldraw (axis cs:2.718,1) circle (1.5pt);
+                        \draw (axis cs:2.718,1) node [below right] {\scriptsize $(e,1)$};
+                        %\draw[->,>=stealth] (A) -- (axis cs:1.8,.5);
+
+                        %\addplot [{\colorone},thick,fill=white,area style, smooth,domain=0:360,samples=30] ({1+cos(x)},{sin(x)});
+                        %
+                        %\addplot [{\colorone},thick,,area style, smooth,domain=0:360,samples=30] ({2+2*cos(x)},{2*sin(x)});
+
+                        \end{axis}
+
+
+
+                        \end{tikzpicture}
+                        ]]>
+                      </latex-image-code>
+                    </image>
+                    <!-- figures/fig_13_02_ex_18.tex END -->
+                  </figure>
+
+                </p></li>
+
+              <li><p><m>\ds   \int_{0}^1\int_{ey}^{e^y}\big(4-3y\big)\ dx\ dy = \int_{0}^1\int_{0}^{x/e}\big(4-3y\big)\ dy\ dx+\int_{1}^e\int_{\ln(x) }^{x/e}\big(4-3y\big)\ dy\ dx</m>.</p></li>
+
+              <li><p><m>3e-7</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, state why it is difficult/impossible to integrate the iterated integral in the given order of integration. Change the order of integration and evaluate the new iterated integral.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_0^4\int_{y/2}^2 e^{x^2}\ dx\ dy</m></p>
+          </statement>
+          <solution>
+            <p>Integrating <m>e^{x^2}</m> with respect to <m>x</m> is not possible in terms of elementary functions. <m>\ds  \int_0^2\int_0^{2x}e^{x^2}\ dy\ dx = e^4-1</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_0^{\sqrt{\pi/2}}\int_{x}^{\sqrt{\pi/2}} \cos\big(y^2\big)\ dy\ dx</m></p>
+          </statement>
+          <solution>
+            <p>Integrating <m>\cos(y^2)</m> with respect to <m>y</m> is not possible in terms of elementary functions. <m>\ds  \int_0^{\sqrt{\pi/2}}\int_0^{y}\cos(y^2)\ dx\ dy = \frac12</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_0^{1}\int_y^{1} \frac{2y}{x^2+y^2}\ dx\ dy</m></p>
+          </statement>
+          <solution>
+            <p>Integrating <m>\ds\int_y^{1}\frac{2y}{x^2+y^2}\ dx</m> gives <m>\tan^{-1}(1/y)-\pi/4</m>; integrating <m>\tan^{-1}(1/y)</m> is hard.</p>
+
+            <p><m>\ds\int_0^1\int_0^x\frac{2y}{x^2+y^2}\ dy \ dx = \ln(2)</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{-1}^{1}\int_1^{2} \frac{x\tan^2(y) }{1+\ln(y) }\ dy\ dx</m></p>
+          </statement>
+          <solution>
+            <p>Integrating in the order shown is hard/impossible. By changing the order of integration, we have <m>\ds \int_{1}^{2}\int_{-1}^{1} \frac{x\tan^2(y) }{1+\ln(y) }\ dx\ dy = 0</m>, since the integrand is an odd function with respect to <m>x</m>. Thus the iterated integral evaluates to 0.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, find the average value of <m>f</m> over the region <m>R</m>. Notice how these functions and regions are related to the iterated integrals given in <xref ref="x13_02_ex_05">Exercises</xref> <mdash /> <xref ref="x13_02_ex_08"></xref>.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y) =\frac xy+3</m>;<m>R</m> is the rectangle with opposite corners <m>(-1,1)</m> and <m>(1,2)</m>.</p>
+          </statement>
+          <solution>
+            <p>average value of <m>f = 6/2 = 3</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y) = \sin(x) \cos(y)</m>; <m>R</m> is bounded by <m>x=0</m>, <m>x=\pi</m>, <m>y=-\pi/2</m> and <m>y=\pi/2</m>.</p>
+          </statement>
+          <solution>
+            <p>average value of <m>f= 4/\pi^2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y) = 3x^2-y+2</m>;<m>R</m> is bounded by the lines <m>y=0</m>, <m>y=2-x/2</m> and <m>x=0</m>.</p>
+          </statement>
+          <solution>
+            <p>average value of <m>f= \frac{112/3}{4} =28/3</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y) =x^2y-xy^2</m>; <m>R</m> is bounded by <m>y=x</m>, <m>y=1</m> and <m>x=3</m>.</p>
+          </statement>
+          <solution>
+            <p>average value of <m>f= \frac{76/15}{2} = \frac{38}{15} \approx 2.53</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

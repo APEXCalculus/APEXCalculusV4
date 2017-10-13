@@ -1,0 +1,1216 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_fluid_force">
+  <title>Fluid Forces</title>
+  <introduction>
+    <p>In the unfortunate situation of a car driving into a body of water, the conventional wisdom is that the water pressure on the doors will quickly be so great that they will be effectively unopenable. (Survival techniques suggest immediately opening the door, rolling down or breaking the window, or waiting until the water fills up the interior at which point the pressure is equalized and the door will open. See Mythbusters episode <hash />72 to watch Adam Savage test these options.)</p>
+
+    <p>How can this be true? How much force does it take to open the door of a submerged car? In this section we will find the answer to this question by examining the forces exerted by fluids.</p>
+
+    <p>We start with <em>pressure</em>, which is related to <em>force</em> by the following equations:
+      <me>
+        \text{ Pressure }  = \frac{\text{ Force } }{\text{ Area } }  \Leftrightarrow \text{ Force }  = \text{ Pressure } \times\text{ Area } .
+      </me>
+    </p>
+
+    <p>In the context of fluids, we have the following definition.</p>
+
+    <definition xml:id="def_fluid_pressure">
+      <title>Fluid Pressure</title>
+      <statement>
+        <p>Let <m>w</m> be the weight<ndash />density of a fluid. The <term>pressure</term> <m>p</m> exerted on an object at depth <m>d</m> in the fluid is <m>p = w\cdot d</m>.<index><main>fluid pressure/force</main></index><index><main>integration</main><sub>fluid force</sub></index></p>
+      </statement>
+    </definition>
+
+    <p>We use this definition to find the <em>force</em> exerted on a horizontal sheet by considering the sheet's area.</p>
+
+    <example xml:id="ex_fluid1">
+      <title>Computing fluid force</title>
+      <statement>
+        <ol>
+          <li><p>A cylindrical storage tank has a radius of 2 ft and holds 10 ft of a fluid with a weight<ndash />density of 50 lb/ft<m>^3</m>. (See <xref ref="fig_fluid1a">Figure</xref>.) What is the force exerted on the base of the cylinder by the fluid?
+
+              <figure xml:id="fig_fluid1a" >
+                <caption>A cylindrical tank in <xref ref="ex_fluid1">Example</xref>.</caption>
+                <!-- START figures/fig_fluid1a.tex -->
+                <image xml:id="img_fluid1a" >
+                  <description></description>
+                  <latex-image-code>
+                    <![CDATA[
+                    \begin{tikzpicture}[x=.3cm,y=.3cm,>=stealth]
+
+                    \begin{scope}[xscale=2]
+
+
+                    \draw [left color={\coloronefill},right color={\coloronefill!20},thick](-2,10) -- (-2,0) arc (180:360:2) -- (2,10);
+                    \draw [right color={\coloronefill},left color={\coloronefill!30},thick] (0,10) circle (2);
+                    \draw [thick] (0,12) circle (2);
+                    \draw [thick](-2,12)--(-2,10)
+			(2,12)--(2,10);
+                    \draw [dashed,thick] (-2,0) arc (180:0:2);
+                    \draw (0,0) -- node [above,pos=.5] {\scriptsize 2 ft} (2,0);
+                    %\draw [dashed] (-2,10) arc (180:0:2);
+                    %\draw [] (-2,10) arc (180:360:2);
+                    \end{scope}
+
+                    \begin{scope}[shift={(5,0)}]
+                    \draw (-.5,0) -- (.5,0)
+			(-.5,10) -- (.5,10)
+			(0,0) -- node [pos=.5,fill=white,rotate=90] {\scriptsize 10 ft} (0,10);
+                    \end{scope}
+
+                    \end{tikzpicture}
+                    ]]>
+                  </latex-image-code>
+                </image>
+                <!-- figures/fig_fluid1a.tex END -->
+              </figure>
+
+            </p></li>
+
+          <li><p>A rectangular tank whose base is a 5 ft square has a circular hatch at the bottom with a radius of 2 ft. The tank holds 10 ft of a fluid with a weight<ndash />density of 50 lb/ft<m>^3</m>. (See <xref ref="fig_fluid1b">Figure</xref>.) What is the force exerted on the hatch by the fluid?
+
+              <figure xml:id="fig_fluid1b" >
+                <caption>A rectangular tank in <xref ref="ex_fluid1">Example</xref>.</caption>
+                <!-- START figures/fig_fluid1b.tex -->
+                <image xml:id="img_fluid1b" >
+                  <description></description>
+                  <latex-image-code>
+                    <![CDATA[
+                    \begin{tikzpicture}[x=.25cm,y=.25cm,>=stealth]
+
+                    \begin{scope}[xscale=2]
+
+                    \begin{scope}[rotate=-30]
+                    \draw [thick](-2.5,0) node (A) {}
+						 (2.5,0) node (B) {}
+						 (2.5,5) node (C) {};
+                    \draw [dashed,thick] (A.center) -- (-2.5,5) node (D) {} -- (C.center);
+
+                    \draw (0,2.5) node (O) {}
+			(-1,.77) node (OC) {};
+                    \end{scope}
+
+                    \begin{scope}[shift={(0,10)}]
+                    \begin{scope}[rotate=-30,]
+                    \draw  	(-2.5,0) node (AAA) {}
+				(2.5,0) node (BBB) {}
+				(2.5,5) node (CCC) {}
+				(-2.5,5) node (DDD) {};
+
+                    %\draw [left color={\coloronefill},right color={\coloronefill!20},thick] (-1.5,0) node (AAA) {} -- (1.5,0) node (BBB) {} -- (1.5,3) node (CCC) {}-- (-1.5,3) node (DDD) {} -- cycle;
+                    \end{scope}
+                    \end{scope}
+
+
+                    \begin{scope}[shift={(0,12)}]
+                    \begin{scope}[rotate=-30,]
+                    \draw [thick]	(-2.5,0) node (AA) {}
+							(2.5,0) node (BB) {}
+							(2.5,5) node (CC) {}
+							(-2.5,5) node (DD) {};
+                    \end{scope}
+                    \end{scope}
+
+                    \begin{scope}[shift={(0,10)}]
+                    \begin{scope}[rotate=-30,]
+                    %\draw  	(-1.5,0) node (AAA) {}
+                    %				(1.5,0) node (BBB) {}
+                    %				(1.5,3) node (CCC)
+                    %				(-1.5,3) node (DDD) {};
+
+                    \end{scope}
+                    \end{scope}
+
+
+                    \draw [left color={\coloronefill},right color={\coloronefill!20},thick](AAA.center) -- (A.center)-- node [pos=.5,rotate=-15,below] {\scriptsize 5 ft} (B.center)--node [pos=.5,rotate=45,below] {\scriptsize 5 ft}(C.center)--(CCC.center);
+
+                    \draw [right color={\coloronefill},left color={\coloronefill!20},thick] (AAA.center) -- (BBB.center) -- (CCC.center)--(DDD.center) -- cycle;
+
+                    \draw [thick] (AA.center) -- (BB.center) -- (CC.center)--(DD.center) -- cycle
+							(AA.center) -- (AAA.center)
+							(CC.center) -- (CCC.center)
+							(B.center) -- (BB.center)
+							(DD.center) --(DDD.center);
+
+                    \draw [thick,dashed]	(DDD.center)--(D.center)--(C.center)
+											(D.center) -- (A.center)
+											(O.center) circle (2)
+											(O.center) -- node [pos=.5,above,rotate=15] {\scriptsize 2 ft} (OC.center);
+
+                    \begin{scope}[shift={(5.5,3)}]
+                    \draw (-.5,0) -- (.5,0)
+			(-.5,10) -- (.5,10)
+			(0,0) -- node [pos=.5,fill=white,rotate=90] {\scriptsize 10 ft} (0,10);
+                    \end{scope}
+
+                    \end{scope}
+
+                    \end{tikzpicture}
+                    ]]>
+                  </latex-image-code>
+                </image>
+                <!-- figures/fig_fluid1b.tex END -->
+              </figure>
+
+            </p></li>
+        </ol>
+      </statement>
+      <solution>
+        <ol>
+          <li><p>Using <xref ref="def_fluid_pressure">Definition</xref>, we calculate that the pressure exerted on the cylinder's base is <m>w\cdot d = 50 \text{ lb/ft } ^3\times 10\text{ ft }  = 500</m> lb/ft<m>^2</m>. The area of the base is <m>\pi\cdot 2^2 = 4\pi</m> ft<m>^2</m>. So the force exerted by the fluid is
+              <me>
+                F = 500\times 4\pi = 6283\text{ lb } .
+              </me>
+              Note that we effectively just computed the <em>weight</em> of the fluid in the tank.</p></li>
+
+          <li><p>The dimensions of the tank in this problem are irrelevant. All we are concerned with are the dimensions of the hatch and the depth of the fluid. Since the dimensions of the hatch are the same as the base of the tank in the previous part of this example, as is the depth, we see that the fluid force is the same. That is, <m>F = 6283</m> lb.
+	
+	A key concept to understand here is that we are effectively measuring the weight of a 10 ft column of water above the hatch. The size of the tank holding the fluid does not matter.</p></li>
+        </ol>
+      </solution>
+    </example>
+
+    <p>The previous example demonstrates that computing the force exerted on a horizontally oriented plate is relatively easy to compute. What about a vertically oriented plate? For instance, suppose we have a circular porthole located on the side of a submarine. How do we compute the fluid force exerted on it?</p>
+
+    <p>Pascal's Principle states that the pressure exerted by a fluid at a depth is equal in all directions. Thus the pressure on any portion of a plate that is 1 ft below the surface of water is the same no matter how the plate is oriented. (Thus a hollow cube submerged at a great depth will not simply be <q>crushed</q> from above, but the sides will also crumple in. The fluid will exert force on <em>all</em> sides of the cube.)</p>
+
+    <p>So consider a vertically oriented plate as shown in <xref ref="fig_fluid_intro1">Figure</xref> submerged in a fluid with weight<ndash />density <m>w</m>. What is the total fluid force exerted on this plate? We find this force by first approximating the force on small horizontal strips.</p>
+
+    <figure xml:id="fig_fluid_intro1" >
+      <caption>A thin, vertically oriented plate submerged in a fluid with weight<ndash />density <m>w</m>.</caption>
+      <!-- START figures/fig_fluid_intro1.tex -->
+      <image xml:id="img_fluid_intro1" >
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}[x=1.25cm,y=1.25cm,>=stealth]
+
+          \begin{scope}
+          \draw [thick] (0,0) -- (1,2) -- (2,2) -- (4,0)--cycle;
+
+          \draw [{\colortwo},fill={\colortwofill},thick] (.5,.9) rectangle (3,1.1);
+
+          \draw (3,1) node [right] {\scriptsize $\left. \rule{0pt}{.2cm}\right\}\Delta y_i$};
+
+          \draw (.5,.5) -- (.5,.7)
+			(3,.5) -- (3,.7)
+			(.5,.6) -- node [pos=.5,below,] {\scriptsize $\ell(c_i)$} (3,.6);
+		
+          \foreach \x in {0,1,2,3}
+          {%
+		\begin{scope}[shift={(\x*1,2.5)}]		
+		\draw [{\colorone},thick] (-.5,.25) parabola bend (0,0) (.5,.25);
+		\end{scope}
+          }
+		
+          \draw (.2,1) -- (.4,1)
+			(.2,2.5) -- (.4,2.5)
+			(.3,1) -- node [pos=.5,left] {\scriptsize $d_i$} (.3,2.5);
+
+          \end{scope}
+
+
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_fluid_intro1.tex END -->
+    </figure>
+
+    <p>Let the top of the plate be at depth <m>b</m> and let the bottom be at depth <m>a</m>. (For now we assume that surface of the fluid is at depth 0, so if the bottom of the plate is 3 ft under the surface, we have <m>a=-3</m>. We will come back to this later.) We partition the interval <m>[a,b]</m> into <m>n</m> subintervals
+      <me>
+        a = y_1 \lt  y_2 \lt  \cdots \lt y_{n+1} = b,
+      </me>
+      with the <m>i^\text{ th }</m> subinterval having length <m>\Delta y_i</m>. The force <m>F_i</m> exerted on the plate in the <m>i^\text{ th }</m> subinterval is <m>F_i = \text{ Pressure } \times \text{ Area }</m>.</p>
+
+    <p>The pressure is depth <m>\times w</m>. We approximate the depth of this thin strip by choosing any value <m>d_i</m> in <m>[y_i,y_{i+1}]</m>; the depth is approximately <m>-d_i</m>. (Our convention has <m>d_i</m> being a negative number, so <m>-d_i</m> is positive.) For convenience, we let <m>d_i</m> be an endpoint of the subinterval; we let <m>d_i = y_i</m>.</p>
+
+    <p>The area of the thin strip is approximately length <times /><nbsp />width. The width is <m>\Delta y_i</m>. The length is a function of some <m>y</m>-value <m>c_i</m> in the <m>i^\text{ th }</m> subinterval. We state the length is <m>\ell(c_i)</m>. Thus
+      <md>
+        <mrow>F_i	\amp = \text{ Pressure }  \times \text{ Area }</mrow>
+        <mrow>\amp =	-y_i\cdot w \times \ell(c_i)\cdot\Delta y_i.</mrow>
+      </md>
+    </p>
+
+    <p>To approximate the total force, we add up the approximate forces on each of the <m>n</m> thin strips:
+      <me>
+        F = \sum_{i=1}^n F_i \approx \sum_{i=1}^n -w\cdot y_i\cdot\ell(c_i)\cdot\Delta y_i.
+      </me>
+    </p>
+
+    <p>This is, of course, another Riemann Sum. We can find the exact force by taking a limit as the subinterval lengths go to 0; we evaluate this limit with a definite integral.</p>
+
+    <insight xml:id="idea_fluid_force">
+      <title>Fluid Force on a Vertically Oriented Plate</title>
+      <p>Let a vertically oriented plate be submerged in a fluid with weight<ndash />density <m>w</m> where the top of the plate is at <m>y=b</m> and the bottom is at <m>y=a</m>. Let <m>\ell(y)</m> be the length of the plate at <m>y</m>.
+        <index><main>fluid pressure/force</main></index><index><main>integration</main><sub>fluid force</sub></index></p>
+
+      <ol>
+        <li><p>If <m>y=0</m> corresponds to the surface of the fluid, then the force exerted on the plate by the fluid is
+            <me>
+              F=\int_a^b w\cdot(-y)\cdot\ell(y)\ dy.
+            </me>
+          </p></li>
+
+        <li><p>In general, let <m>d(y)</m> represent the distance between the surface of the fluid and the plate at <m>y</m>. Then the force exerted on the plate by the fluid is
+            <me>
+              F=\int_a^b w\cdot d(y)\cdot\ell(y)\ dy.
+            </me>
+          </p></li>
+      </ol>
+    </insight>
+
+    <example xml:id="ex_fluid2">
+      <title>Finding fluid force</title>
+      <statement>
+        <p>Consider a thin plate in the shape of an isosceles triangle as shown in <xref ref="fig_fluid2a">Figure</xref> submerged in water with a weight<ndash />density of 62.4 lb/ft<m>^3</m>. If the bottom of the plate is 10 ft below the surface of the water, what is the total fluid force exerted on this plate?</p>
+
+        <figure xml:id="fig_fluid2a" >
+          <caption>A thin plate in the shape of an isosceles triangle in <xref ref="ex_fluid2">Example</xref>.</caption>
+          <!-- START figures/fig_fluid2a.tex -->
+          <image xml:id="img_fluid2a" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}[x=.4cm,y=.4cm,>=stealth]
+              \draw[thick] (0,0) -- (2,4) -- node [pos=.5,above] {\scriptsize 4 ft} (-2,4) -- cycle;
+
+              \draw (2.2,0) -- (2.6,0)
+			(2.2,4) -- (2.6,4)
+			(2.4,0) -- node [pos=.5,rotate=-90,above] {\scriptsize 4 ft} (2.4,4);
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_fluid2a.tex END -->
+        </figure>
+      </statement>
+      <solution>
+        <p>We approach this problem in two different ways to illustrate the different ways <xref ref="idea_fluid_force">Key Idea</xref> can be implemented. First we will let <m>y=0</m> represent the surface of the water, then we will consider an alternate convention.</p>
+
+        <ol>
+          <li><p>We let <m>y=0</m> represent the surface of the water; therefore the bottom of the plate is at <m>y=-10</m>. We center the triangle on the <m>y</m>-axis as shown in <xref ref="fig_fluid2b">Figure</xref>. The depth of the plate at <m>y</m> is <m>-y</m> as indicated by the Key Idea. We now consider the length of the plate at <m>y</m>.
+		
+	We need to find equations of the left and right edges of the plate. The right hand side is a line that connects the points <m>(0,-10)</m> and <m>(2,-6)</m>: that line has equation <m>x=1/2(y+10)</m>. (Find the equation in the familiar <m>y=mx+b</m> format and solve for <m>x</m>.) Likewise, the left hand side is described by the line <m>x=-1/2(y+10)</m>. The total length is the distance between these two lines: <m>\ell(y)=1/2(y+10) - (-1/2(y+10)) = y+10</m>.
+
+              <figure xml:id="fig_fluid2b" >
+                <caption>Sketching the triangular plate in <xref ref="ex_fluid2">Example</xref> with the convention that the water level is at <m>y=0</m>.</caption>
+                <!-- START figures/fig_fluid2b.tex -->
+                <image xml:id="img_fluid2b" >
+                  <description></description>
+                  <latex-image-code>
+                    <![CDATA[
+                    \begin{tikzpicture}[x=.4cm,y=.4cm,>=stealth]
+                    \draw[thick] (0,0) -- (2,4) --  (-2,4) -- cycle;
+
+                    \draw [fill=black] 	(2,4) circle (1pt) node [right] {\scriptsize $(2,-6)$}
+										(-2,4)circle (1pt) node [left] {\scriptsize $(-2,-6)$}
+										(0,0)circle (1pt) node [below right] {\scriptsize $(0,-10)$};
+										
+                    \draw [{\colortwo},thick]  (-1.5,3) -- (1.5,3) node [right,black] {\scriptsize $y$};
+										
+                    \draw [->] (0,-1) -- (0,12) node [above] {\scriptsize $y$};
+                    \draw [->] (-3,10) -- (3,10) node [right] {\scriptsize $x$};
+
+                    \foreach \x in {-2,-1,1,2}
+                    {
+	\draw (\x,10.2) -- (\x,9.8) node [below] {\scriptsize $\x$};
+                    }
+
+                    \foreach \x in {-10,-8,-4,-2}
+                    {
+	\draw (.2,{\x+10}) -- (-.2,{\x+10}) node [left] {\scriptsize $\x$};
+                    }
+
+                    \foreach \x in {-2,-1,0,1,2}
+                    {%
+		\begin{scope}[shift={(\x*1,10)}]		
+		\draw [{\colorone},thick] (-.5,.25) parabola bend (0,0) (.5,.25);
+		\end{scope}
+                    }
+
+                    \draw (2,11) node {\scriptsize water line};
+
+                    \draw (4.3,3) -- (4.7,3)
+			(4.3,10) -- (4.7,10)
+			(4.5,3) -- node [pos=.5,rotate=-90,above] {\scriptsize $d(y) = -y$} (4.5,10);
+
+
+                    \end{tikzpicture}
+                    ]]>
+                  </latex-image-code>
+                </image>
+                <!-- figures/fig_fluid2b.tex END -->
+              </figure>
+
+              The total fluid force is then:
+              <md>
+                <mrow>F 	\amp =	\int_{-10}^{-6} 62.4(-y)(y+10)\ dy</mrow>
+                <mrow>\amp =	62.4\cdot \frac{176}{3} \approx	3660.8\text{ lb } .</mrow>
+              </md>
+            </p></li>
+
+          <li><p>Sometimes it seems easier to orient the thin plate nearer the origin. For instance, consider the convention that the bottom of the triangular plate is at <m>(0,0)</m>, as shown in <xref ref="fig_fluid2c">Figure</xref>. The equations of the left and right hand sides are easy to find. They are <m>y=2x</m> and <m>y=-2x</m>, respectively, which we rewrite as <m>x= 1/2y</m> and <m>x=-1/2y</m>. Thus the length function is <m>\ell(y) = 1/2y-(-1/2y) = y</m>.
+
+              <figure xml:id="fig_fluid2c" >
+                <caption>Sketching the triangular plate in <xref ref="ex_fluid2">Example</xref> with the convention that the base of the triangle is at <m>(0,0)</m>.</caption>
+                <!-- START figures/fig_fluid2c.tex -->
+                <image xml:id="img_fluid2c" >
+                  <description></description>
+                  <latex-image-code>
+                    <![CDATA[
+                    \begin{tikzpicture}[x=.4cm,y=.4cm,>=stealth]
+                    \draw[thick] (0,0) -- (2,4) --  (-2,4) -- cycle;
+
+                    \draw [fill=black] 	(2,4) circle (1pt) node [right] {\scriptsize $(2,4)$}
+										(-2,4)circle (1pt) node [left] {\scriptsize $(-2,4)$}
+										(0,0)circle (1pt);
+										
+                    \draw [{\colortwo},thick]  (-1.5,3) -- (1.5,3) node [right,black] {\scriptsize $y$};
+										
+                    \draw [->] (0,-1) -- (0,12) node [above] {\scriptsize $y$};
+                    \draw [->] (-3,0) -- (3,0) node [right] {\scriptsize $x$};
+
+                    \foreach \x in {-2,-1,1,2}
+                    {
+	\draw (\x,0.2) -- (\x,-.2) node [below] {\scriptsize $\x$};
+                    }
+
+                    \foreach \x in {10,8,6,2}
+                    {
+	\draw (.2,{\x}) -- (-.2,{\x}) node [left] {\scriptsize $\x$};
+                    }
+
+                    \foreach \x in {-2,-1,0,1,2}
+                    {%
+		\begin{scope}[shift={(\x*1,10)}]		
+		\draw [{\colorone},thick] (-.5,.25) parabola bend (0,0) (.5,.25);
+		\end{scope}
+                    }
+                    %
+                    \draw (2,11) node {\scriptsize water line};
+
+                    \draw (4.1,3) -- (4.5,3)
+			(4.1,10) -- (4.5,10)
+			(4.3,3) -- node [pos=.5,rotate=-90,above] {\scriptsize $d(y) = 10-y$} (4.3,10);
+			
+                    \end{tikzpicture}
+                    ]]>
+                  </latex-image-code>
+                </image>
+                <!-- figures/fig_fluid2c.tex END -->
+              </figure>
+
+              As the surface of the water is 10 ft above the base of the plate, we have that the surface of the water is at <m>y=10</m>. Thus the depth function is the distance between <m>y=10</m> and <m>y</m>; <m>d(y) = 10-y</m>. We compute the total fluid force as:
+              <md>
+                <mrow>F	\amp =\int_0^4 62.4(10-y)(y)\ dy</mrow>
+                <mrow>\amp \approx 3660.8\text{ lb } .</mrow>
+              </md>
+            </p></li>
+        </ol>
+
+        <p>The correct answer is, of course, independent of the placement of the plate in the coordinate plane as long as we are consistent.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_fluid3">
+      <title>Finding fluid force</title>
+      <statement>
+        <p>Find the total fluid force on a car door submerged up to the bottom of its window in water, where the car door is a rectangle 40'' long and 27'' high (based on the dimensions of a 2005 Fiat Grande Punto.)</p>
+      </statement>
+      <solution>
+        <p>The car door, as a rectangle, is drawn in <xref ref="fig_fluid3">Figure</xref>. Its length is <m>10/3</m> ft and its height is 2.25 ft. We adopt the convention that the top of the door is at the surface of the water, both of which are at <m>y=0</m>. Using the weight<ndash />density of water of 62.4 lb/ft<m>^3</m>, we have the total force as
+          <md>
+            <mrow>F \amp =	\int_{-2.25}^0 62.4(-y)10/3\ dy</mrow>
+            <mrow>\amp = 	\int_{-2.25}^0 -208y\ dy</mrow>
+            <mrow>\amp = -104y^2\Big|_{-2.25}^0</mrow>
+            <mrow>\amp =	526.5 \text{ lb. }</mrow>
+          </md>
+        </p>
+
+        <p>Most adults would find it very difficult to apply over 500 lb of force to a car door while seated inside, making the door effectively impossible to open. This is counter<ndash />intuitive as most assume that the door would be relatively easy to open. The truth is that it is not, hence the survival tips mentioned at the beginning of this section.</p>
+
+        <figure xml:id="fig_fluid3" >
+          <caption>Sketching a submerged car door in <xref ref="ex_fluid3">Example</xref>.</caption>
+          <!-- START figures/fig_fluid3.tex -->
+          <image xml:id="img_fluid3" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}[x=.5cm,y=.5cm,>=stealth]
+              \draw[thick] (0,0) -- (3.33,0) --  (3.33,-2.25) -- (0,-2.25) --cycle;
+
+              \draw [fill=black] 	(3.33,0) circle (1pt) node [above right] {\scriptsize $(3.\overline{3},0)$}
+										(3.33,-2.25)circle (1pt) node [below right] {\scriptsize $(3.\overline{3},-2.25)$}
+										(0,-2.25)circle (1pt) node [below left] {\scriptsize $(0,-2.25)$};
+										\draw [fill=black] 	(0,0) circle (1pt) node [above left] {\scriptsize $(0,0)$};
+										
+              \draw [{\colortwo},thick]  (0,-1.5) -- (3.33,-1.5) node [right,black] {\scriptsize $y$};
+              %										
+              \draw [->] (0,-3) -- (0,1) node [above] {\scriptsize $y$};
+              \draw [->] (-1,0) -- (6,0) node [right] {\scriptsize $x$};
+              %
+              %\foreach \x in {-2,-1,1,2}
+              %{
+              %	\draw (\x,10.2) -- (\x,9.8) node [below] {\scriptsize $\x$};
+              %}
+              %
+              %\foreach \x in {-10,-8,-4,-2}
+              %{
+              %	\draw (.2,{\x+10}) -- (-.2,{\x+10}) node [left] {\scriptsize $\x$};
+              %}
+              %
+              \foreach \x in {-1,0,1,2,3,4}
+              {%
+		\begin{scope}[shift={(\x*1,0)}]		
+		\draw [{\colorone},thick] (-.5,.25) parabola bend (0,0) (.5,.25);
+		\end{scope}
+              }
+              %
+              %\draw (7,1) node {\scriptsize water line};
+
+              %\draw (4.3,3) -- (4.7,3)
+              %			(4.3,10) -- (4.7,10)
+              %			(4.5,3) -- node [pos=.5,rotate=-90,above] {\scriptsize $d(y) = -y$} (4.5,10);
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_fluid3.tex END -->
+        </figure>
+      </solution>
+    </example>
+
+    <example xml:id="ex_fluid4">
+      <title>Finding fluid force</title>
+      <statement>
+        <p>An underwater observation tower is being built with circular viewing portholes enabling visitors to see underwater life. Each vertically oriented porthole is to have a 3 ft diameter whose center is to be located 50 ft underwater. Find the total fluid force exerted on each porthole. Also, compute the fluid force on a horizontally oriented porthole that is under 50 ft of water.</p>
+
+        <figure xml:id="fig_fluid4" >
+          <caption>Measuring the fluid force on an underwater porthole in <xref ref="ex_fluid4">Example</xref>.</caption>
+          <!-- START figures/fig_fluid4.tex -->
+          <image xml:id="img_fluid4" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}[x=.6cm,y=.6cm,>=stealth]
+
+              \draw[thick] (0,0) circle (1.5);
+										
+              \draw [{\colortwo},thick]  (-1.3,.75) -- (1.3,.75) node [right,black] {\scriptsize $y$};
+										
+              \draw [->] (0,-2.2) -- (0,3)--(-.25,3.25) -- (0,3.5) -- (.25,3.75) -- (0,4) --(0,6) node [above] {\scriptsize $y$};
+              \draw [->] (-2.5,0) -- (2.5,0) node [right] {\scriptsize $x$};
+
+              \foreach \x in {-2,-1,1,2}
+              {
+	\draw (\x,0.2) -- (\x,-.2) node [below] {\scriptsize $\x$};
+              }
+
+              \foreach \x in {-2,-1,1,2}
+              {
+	\draw (.2,{\x}) -- (-.2,{\x}) node [left] {\scriptsize $\x$};
+              }
+
+              \draw (.2,5) -- (-.2,5) node [left] {\scriptsize $50$};
+
+              \foreach \x in {-1.5,-0.5,0.5,1.5}
+              {%
+		\begin{scope}[shift={(\x*1,5)}]		
+		\draw [{\colorone},thick] (-.5,.25) parabola bend (0,0) (.5,.25);
+		\end{scope}
+              }
+              %
+              \draw (2,6) node {\scriptsize water line}
+			(2,-2.5) node {\scriptsize \textit{not to scale}};
+
+              \draw (2.1,.75) -- (2.5,.75)
+			(2.1,5) -- (2.5,5)
+			(2.3,.75) -- node [pos=.5,rotate=-90,above] {\scriptsize $d(y) = 50-y$} (2.3,5);
+			
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_fluid4.tex END -->
+        </figure>
+      </statement>
+      <solution>
+        <p>We place the center of the porthole at the origin, meaning the surface of the water is at <m>y=50</m> and the depth function will be <m>d(y)=50-y</m>; see <xref ref="fig_fluid4">Figure</xref></p>
+
+        <p>The equation of a circle with a radius of 1.5 is <m>x^2+y^2=2.25</m>; solving for <m>x</m> we have <m>x=\pm \sqrt{2.25-y^2}</m>, where the positive square root corresponds to the right side of the circle and the negative square root corresponds to the left side of the circle. Thus the length function at depth <m>y</m> is <m>\ell(y) = 2\sqrt{2.25-y^2}</m>. Integrating on <m>[-1.5,1.5]</m> we have:
+          <md>
+            <mrow>F 		\amp = 62.4\int_{-1.5}^{1.5} 2(50-y)\sqrt{2.25-y^2}\ dy</mrow>
+            <mrow>\amp = 62.4\int_{-1.5}^{1.5} \big(100\sqrt{2.25-y^2} - 2y\sqrt{2.25-y^2}\big)\ dy</mrow>
+            <mrow>\amp = 6240\int_{-1.5}^{1.5} \big(\sqrt{2.25-y^2}\big)\ dy - 62.4\int_{-1.5}^{1.5} \big(2y\sqrt{2.25-y^2}\big)\ dy.</mrow>
+          </md>
+        </p>
+
+        <p>The second integral above can be evaluated using Substitution. Let <m>u=2.25-y^2</m> with <m>du = -2y\,dy</m>. The new bounds are: <m>u(-1.5)=0</m> and <m>u(1.5)=0</m>; the new integral will integrate from <m>u=0</m> to <m>u=0</m>, hence the integral is 0.</p>
+
+        <p>The first integral above finds the area of half a circle of radius 1.5, thus the first integral evaluates to <m>6240\cdot\pi\cdot1.5^2/2 = 22,054</m>. Thus the total fluid force on a vertically oriented porthole is <m>22,054</m> lb.</p>
+
+        <p>Finding the force on a horizontally oriented porthole is more straightforward:
+          <me>
+            F = \text{ Pressure } \times\text{ Area }  = 62.4\cdot50\times \pi\cdot1.5^2 = 22,054\text{ lb } .
+          </me>
+        </p>
+
+        <p>That these two forces are equal is not coincidental; it turns out that the fluid force applied to a vertically oriented circle whose center is at depth <m>d</m> is the same as force applied to a horizontally oriented circle at depth <m>d</m>.</p>
+      </solution>
+    </example>
+
+    <p>We end this chapter with a reminder of the true skills meant to be developed here. We are not truly concerned with an ability to find fluid forces or the volumes of solids of revolution. Work done by a variable force is important, though measuring the work done in pulling a rope up a cliff is probably not.</p>
+
+    <p>What we are actually concerned with is the ability to solve certain problems by first approximating the solution, then refining the approximation, then recognizing if/when this refining process results in a definite integral through a limit. Knowing the formulas found inside the special boxes within this chapter is beneficial as it helps solve problems found in the exercises, and other mathematical skills are strengthened by properly applying these formulas. However, more importantly, understand how each of these formulas was constructed. Each is the result of a summation of approximations; each summation was a Riemann sum, allowing us to take a limit and find the exact answer through a definite integral.</p>
+
+    <p>The next chapter addresses an entirely different topic: sequences and series. In short, a sequence is a list of numbers, where a series is the summation of a list of numbers. These seemingly<ndash />simple ideas lead to very powerful mathematics.</p>
+  </introduction>
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>State in your own words Pascal's Principle.</p>
+          </statement>
+          <solution>
+            <p>Answers will vary.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>State in your own words how pressure is different from force.</p>
+          </statement>
+          <solution>
+            <p>Answers will vary.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, find the fluid force exerted on the given plate, submerged in water with a weight density of 62.4 lb/ft<m>^3</m>.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <image xml:id="img_fluid4X" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}[xscale=.7,yscale=.7]			
+                  \draw [shift={(-1,0)},thick] (0,0) -- node [below,pos=.5] { 2 ft} (2,0)-- node [right,pos=.5] { 2 ft} (2,2) -- (0,2) -- cycle;
+                  \foreach \x in {-2,-1,0,1,2}
+                  {
+		\begin{scope}[shift={(\x*1,3)}]		
+		\draw [thick] (-.5,.25) parabola bend (0,0) (.5,.25);
+		\end{scope}
+                  }
+                  \draw [dashed] (0,2.1) -- node [right,pos=.5] { 1 ft} (0,2.9);\end{tikzpicture}]]>
+                </latex-image-code>
+              </image>
+            </figure>
+          </statement>
+          <solution>
+            <p>499.2 lb</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <image xml:id="img_fluid4X1" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}[xscale=.7,yscale=.7]			
+                  \draw [shift={(-.5,0)},thick] (0,0) -- node [below,pos=.5] { 1 ft} (1,0)-- node [right,pos=.5] { 2 ft} (1,2) -- (0,2) -- cycle;
+                  \foreach \x in {-2,-1,0,1,2}
+                  {
+		\begin{scope}[shift={(\x*1,3)}]		
+		\draw [thick] (-.5,.25) parabola bend (0,0) (.5,.25);
+		\end{scope}
+                  }
+                  \draw [dashed] (0,2.1) -- node [right,pos=.5] { 1 ft} (0,2.9);\end{tikzpicture}]]>
+                </latex-image-code>
+              </image>
+            </figure>
+          </statement>
+          <solution>
+            <p>249.6 lb</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <image xml:id="img_fluid4X2" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}[xscale=.5,yscale=.4]			
+                  \draw [thick] (0,0) -- (-2,-6) -- node [below,pos=.5] { 4 ft} (2,-6) -- cycle;
+
+                  \foreach \x in {-2,-1,0,1,2}
+                  {
+		\begin{scope}[shift={(\x*1,3)}]		
+		\draw [thick] (-.5,.25) parabola bend (0,0) (.5,.25);
+		\end{scope}
+                  }
+
+                  \draw [dashed] (0,0.1) -- node [right,pos=.5] { 5 ft} (0,2.9);
+
+                  \draw (2.2,-6) -- (2.6,-6)
+			(2.2,0) -- (2.6,0)
+			(2.4,-6) -- node [pos=.5,right] { 6 ft} (2.4,0);\end{tikzpicture}]]>
+                </latex-image-code>
+              </image>
+            </figure>
+          </statement>
+          <solution>
+            <p>6739.2 lb</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <image xml:id="img_fluid4X3" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}[xscale=.5,yscale=.4]			
+                  \draw [thick] (0,0) -- (-2,6) -- node [below,pos=.5] { 4 ft} (2,6) -- cycle;
+
+                  \foreach \x in {-2,-1,0,1,2}
+                  {
+		\begin{scope}[shift={(\x*1,9)}]		
+		\draw [thick] (-.5,.25) parabola bend (0,0) (.5,.25);
+		\end{scope}
+                  }
+
+                  \draw [dashed] (0,6.1) -- node [right,pos=.5] { 5 ft} (0,8.9);
+
+                  \draw (2.2,6) -- (2.6,6)
+			(2.2,0) -- (2.6,0)
+			(2.4,6) -- node [pos=.5,right] { 6 ft} (2.4,0);\end{tikzpicture}]]>
+                </latex-image-code>
+              </image>
+            </figure>
+          </statement>
+          <solution>
+            <p>5241.6 lb</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <image xml:id="img_fluid4X4" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}[xscale=.5,yscale=.5]			
+                  \draw [thick] (0,0) circle (2);
+
+                  \foreach \x in {-2,-1,0,1,2}
+                  {
+		\begin{scope}[shift={(\x*1,5)}]		
+		\draw [thick] (-.5,.25) parabola bend (0,0) (.5,.25);
+		\end{scope}
+                  }
+
+                  \draw [dashed] (0,0) -- node [above,pos=.5] { 2 ft} (2,0);
+
+                  \draw (2.2,5) -- (2.6,5)
+			(2.2,0) -- (2.6,0)
+			(2.4,5) -- node [pos=.5,right] { 5 ft} (2.4,0);\end{tikzpicture}]]>
+                </latex-image-code>
+              </image>
+            </figure>
+          </statement>
+          <solution>
+            <p>3920.7 lb</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <image xml:id="img_fluid4X5" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}[xscale=.5,yscale=.5]			
+                  \draw [thick] (0,0) circle (4);
+
+                  \foreach \x in {-3,-2,-1,0,1,2,3}
+                  {
+		\begin{scope}[shift={(\x*1,5)}]		
+		\draw [thick] (-.5,.25) parabola bend (0,0) (.5,.25);
+		\end{scope}
+                  }
+
+                  \draw [dashed] (0,0) -- node [above,pos=.5] { 4 ft} (4,0);
+
+                  \draw (4.2,5) -- (4.6,5)
+			(4.2,0) -- (4.6,0)
+			(4.4,5) -- node [pos=.5,right] { 5 ft} (4.4,0);\end{tikzpicture}]]>
+                </latex-image-code>
+              </image>
+            </figure>
+          </statement>
+          <solution>
+            <p>15682.8 lb</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <image xml:id="img_fluid4X6" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}[xscale=.5,yscale=.5]			
+                  \draw [thick] (-2,-1) -- node [below,pos=.5] { 4 ft} (2,-1) -- (2,1) -- (-2,1) -- node [left,pos=.5] { 2 ft} (-2,-1);
+
+                  \foreach \x in {-3,-2,-1,0,1,2,3}
+                  {
+		\begin{scope}[shift={(\x*1,5)}]		
+		\draw [thick] (-.5,.25) parabola bend (0,0) (.5,.25);
+		\end{scope}
+                  }
+
+                  \draw (2.2,5) -- (2.6,5)
+			(2.2,0) -- (2.6,0)
+			(2.4,5) -- node [pos=.5,right] { 5 ft} (2.4,0);\end{tikzpicture}]]>
+                </latex-image-code>
+              </image>
+            </figure>
+          </statement>
+          <solution>
+            <p>2496 lb</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <image xml:id="img_fluid4X7" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}[xscale=.5,yscale=.5]			
+                  \draw [thick,rotate=90] (-2,-1) -- node [right,pos=.5] { 4 ft} (2,-1) -- (2,1) -- (-2,1) -- node [below,pos=.5] { 2 ft} (-2,-1);
+
+                  \foreach \x in {-3,-2,-1,0,1,2,3}
+                  {
+		\begin{scope}[shift={(\x*1,5)}]		
+		\draw [thick] (-.5,.25) parabola bend (0,0) (.5,.25);
+		\end{scope}
+                  }
+
+                  \draw (2.2,5) -- (2.6,5)
+			(2.2,0) -- (2.6,0)
+			(2.4,5) -- node [pos=.5,right] { 5 ft} (2.4,0);\end{tikzpicture}]]>
+                </latex-image-code>
+              </image>
+            </figure>
+          </statement>
+          <solution>
+            <p>2496 lb</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <image xml:id="img_fluid4X8" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}[xscale=.7,yscale=.7]			
+                  \draw [shift={(0,-.85)},thick,rotate=45] (0,0) -- node [shift={(8pt,-5pt)},pos=.5] { 2 ft} (2,0)-- node [shift={(8pt,5pt)},pos=.5] { 2 ft} (2,2) -- (0,2) -- cycle;
+
+                  \foreach \x in {-2,-1,0,1,2}
+                  {
+		\begin{scope}[shift={(\x*1,3)}]		
+		\draw [thick] (-.5,.25) parabola bend (0,0) (.5,.25);
+		\end{scope}
+                  }
+
+                  \draw [dashed] (0,2.1) -- node [right,pos=.5] { 1 ft} (0,2.9);\end{tikzpicture}]]>
+                </latex-image-code>
+              </image>
+            </figure>
+          </statement>
+          <solution>
+            <p>602.59 lb</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <image xml:id="img_fluid4X9" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}[xscale=.7,yscale=.7]			
+                  \draw [shift={(-.5,0)},thick] (0,0) -- node [below,pos=.5] { 2 ft} (2,0)--   (0,2) -- node [left,pos=.5] { 2 ft} (0,0);
+                  \foreach \x in {-2,-1,0,1,2}
+                  {
+		\begin{scope}[shift={(\x*1,3)}]		
+		\draw [thick] (-.5,.25) parabola bend (0,0) (.5,.25);
+		\end{scope}
+                  }
+                  \draw [dashed] (0,2.1) -- node [right,pos=.5] { 1 ft} (0,2.9);\end{tikzpicture}]]>
+                </latex-image-code>
+              </image>
+            </figure>
+          </statement>
+          <solution>
+            <p>291.2 lb</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, the side of a container is pictured. Find the fluid force exerted on this plate when the container is full of:</p>
+
+      <ol>
+        <li><p>water, with a weight density of 62.4 lb/ft<m>^3</m>, and</p></li>
+
+        <li><p>concrete, with a weight density of 150 lb/ft<m>^3</m>.</p></li>
+      </ol>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <image xml:id="img_fluid4X10" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}[scale=.5]			
+                  \draw [thick] (0,0) -- node [below,pos=.5] { 3 ft} (3,0)-- node [right,pos=.5] { 5 ft} (3,5) -- (0,5) -- cycle;\end{tikzpicture}]]>
+                </latex-image-code>
+              </image>
+            </figure>
+          </statement>
+          <solution>
+            <ol>
+              <li><p>2340 lb</p></li>
+
+              <li><p>5625 lb</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <image xml:id="img_fluid4X11" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}[scale=.5]			
+                  \draw [thick] (-2,4) parabola bend (0,0) (2,4) --  node [above,pos=.5] { 4 ft} (-2,4);
+                  \draw (0,0) node [below] { \(y=x^2\)};
+                  \draw (2.2,0) -- (2.6,0)
+			(2.2,4) -- (2.6,4)
+			(2.4,0) -- node [pos=.5,right] { 4 ft} (2.4,4);\end{tikzpicture}]]>
+                </latex-image-code>
+              </image>
+            </figure>
+          </statement>
+          <solution>
+            <ol>
+              <li><p>1064.96 lb</p></li>
+
+              <li><p>2560 lb</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <image xml:id="img_fluid4X12" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}[scale=.5]			
+                  \draw [thick] (-2,0) parabola bend (0,4) (2,0) --  node [below,pos=.5] { 4 ft} (-2,0);
+                  \draw (0,4) node [above] { \(y=4-x^2\)};
+                  \draw (2.2,0) -- (2.6,0)
+			(2.2,4) -- (2.6,4)
+			(2.4,0) -- node [pos=.5,right] { 4 ft} (2.4,4);\end{tikzpicture}]]>
+                </latex-image-code>
+              </image>
+            </figure>
+          </statement>
+          <solution>
+            <ol>
+              <li><p>1597.44 lb</p></li>
+
+              <li><p>3840 lb</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <image xml:id="img_fluid4X13" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}[scale=1]			
+                  \draw [thick] (-1,0) arc (180:360:1) --  node [above,pos=.5] { 2 ft} (-1,0);
+                  \draw (0,-1) node [below] { \(y=-\sqrt{1-x^2}\)};\end{tikzpicture}]]>
+                </latex-image-code>
+              </image>
+            </figure>
+          </statement>
+          <solution>
+            <ol>
+              <li><p>41.6 lb</p></li>
+
+              <li><p>100 lb</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <image xml:id="img_fluid4X14" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}[scale=1]			
+                  \draw [thick] (-1,0) arc (180:0:1) --  node [below,pos=.5] { 2 ft} (-1,0);
+                  \draw (0,1) node [above] { \(y=\sqrt{1-x^2}\)};\end{tikzpicture}]]>
+                </latex-image-code>
+              </image>
+            </figure>
+          </statement>
+          <solution>
+            <ol>
+              <li><p>56.42 lb</p></li>
+
+              <li><p>135.62 lb</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <image xml:id="img_fluid4X15" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}[scale=.5]			
+                  \draw [thick] (-3,0) arc (180:360:3) --  node [above,pos=.5] { 6 ft} (-3,0);
+                  \draw (0,-3) node [below] { \(y=-\sqrt{9-x^2}\)};\end{tikzpicture}]]>
+                </latex-image-code>
+              </image>
+            </figure>
+          </statement>
+          <solution>
+            <ol>
+              <li><p>1123.2 lb</p></li>
+
+              <li><p>2700 lb</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>How deep must the center of a vertically oriented circular plate with a radius of 1 ft be submerged in water, with a weight density of 62.4 lb/ft<m>^3</m>, for the fluid force on the plate to reach 1,000 lb?</p>
+          </statement>
+          <solution>
+            <p>5.1 ft</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>How deep must the center of a vertically oriented square plate with a side length of 2 ft be submerged in water, with a weight density of 62.4 lb/ft<m>^3</m>, for the fluid force on the plate to reach 1,000 lb?</p>
+          </statement>
+          <solution>
+            <p>4.1 ft</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

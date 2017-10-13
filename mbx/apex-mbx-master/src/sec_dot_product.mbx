@@ -1,0 +1,2359 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_dot_product">
+  <title>The Dot Product</title>
+  <introduction>
+    <p>The previous section introduced vectors and described how to add them together and how to multiply them by scalars. This section introduces <em>a</em> multiplication on vectors called the <em>dot product</em>.</p>
+
+    <definition xml:id="def_dot_product">
+      <title>Dot Product</title>
+      <statement>
+        <ol>
+          <li><p>Let <m>\vec u = \la u_1,u_2\ra</m> and <m>\vec v = \la v_1,v_2\ra</m>  in <m>\mathbb{R}^2</m>. The <em>dot product</em> of <m>\vec u</m> and <m>\vec v</m>, denoted \dotp uv, is
+	<index><main>dot product</main><sub>definition</sub></index><index><main>vectors</main><sub>dot product</sub></index>
+              <me>
+                \dotp uv = u_1v_1+u_2v_2.
+              </me>
+            </p></li>
+
+          <li><p>Let <m>\vec u = \la u_1,u_2,u_3\ra</m> and <m>\vec v = \la v_1,v_2,v_3\ra</m>  in <m>\mathbb{R}^3</m>. The <em>dot product</em> of <m>\vec u</m> and <m>\vec v</m>, denoted \dotp uv, is
+              <me>
+                \dotp uv = u_1v_1+u_2v_2+u_3v_3.
+              </me>
+            </p></li>
+        </ol>
+      </statement>
+    </definition>
+
+    <p>Note how this product of vectors returns a <em>scalar</em>, not another vector. We practice evaluating a dot product in the following example, then we will discuss why this product is useful.</p>
+
+    <example xml:id="ex_dotp1">
+      <title>Evaluating dot products</title>
+      <statement>
+        <ol>
+          <li><p>Let <m>\vec u=\la 1,2\ra</m>, <m>\vec v=\la 3,-1\ra</m> in <m>\mathbb{R}^2</m>. Find \dotp uv.</p></li>
+
+          <li><p>Let <m>\vec x = \la 2,-2,5\ra</m> and <m>\vec y = \la -1, 0, 3\ra</m> in <m>\mathbb{R}^3</m>. Find \dotp xy.</p></li>
+        </ol>
+      </statement>
+      <solution>
+        <ol>
+          <li><p>Using <xref ref="def_dot_product">Definition</xref>, we have
+              <me>
+                \dotp uv = 1(3)+2(-1) = 1.
+              </me>
+            </p></li>
+
+          <li><p>Using the definition, we have
+              <me>
+                \dotp xy = 2(-1)  -2(0) + 5(3) = 13.
+              </me>
+            </p></li>
+        </ol>
+      </solution>
+    </example>
+
+    <p>The dot product, as shown by the preceding example, is very simple to evaluate. It is only the sum of products. While the definition gives no hint as to why we would care about this operation, there is an amazing connection between the dot product and angles formed by the vectors. Before stating this connection, we give a theorem stating some of the properties of the dot product.</p>
+
+    <theorem xml:id="thm_dot_product_properties">
+      <title>Properties of the Dot Product</title>
+      <statement>
+        <p>Let <m>\vec u</m>, <m>\vec v</m> and <m>\vec w</m> be vectors in <m>\mathbb{R}^2</m> or <m>\mathbb{R}^3</m> and let <m>c</m> be a scalar.<index><main>dot product</main><sub>properties</sub></index><index><main>vectors</main><sub>dot product</sub></index></p>
+
+        <ol>
+          <li><p><m>\dotp uv = \dotp vu</m> {Commutative Property}</p></li>
+
+          <li><p><m>\vec u\cdot(\vec v+\vec w) = \dotp uv + \dotp uw</m> {Distributive Property}</p></li>
+
+          <li><p><m>c(\dotp uv) = (c\vec u)\cdot \vec v = \vec u \cdot (c\vec v)</m></p></li>
+
+          <li><p><m>\dotp 0v = 0</m></p></li>
+
+          <li><p><m>\dotp vv=\norm{\vec v}^2</m></p></li>
+        </ol>
+      </statement>
+    </theorem>
+
+    <p>The last statement of the theorem makes a handy connection between the magnitude of a vector and the dot product with itself.
+      Our definition and theorem give properties of the dot product, but we are still likely wondering <q>What does the dot product <em>mean</em>?</q> It is helpful to understand that the dot product of a vector with itself is connected to its magnitude.</p>
+
+    <p>The next theorem extends this understanding by connecting the dot product to magnitudes and angles. Given vectors <m>\vec u</m> and <m>\vec v</m> in the plane, an angle <m>\theta</m> is clearly formed when <m>\vec u</m> and <m>\vec v</m> are drawn with the same initial point as illustrated in <xref ref="fig_dotpangle">Figure</xref>(a). (We always take <m>\theta</m> to be the angle in <m>[0,\pi]</m> as two angles are actually created.)</p>
+
+    <figure xml:id="fig_dotpangle" >
+    <caption>Illustrating the angle formed by two vectors with the same initial point.</caption>
+    <sidebyside>
+      <figure>
+        <caption>(a)</caption>
+        <!-- START figures/fig_dotpangle.tex -->
+        <image xml:id="img_dotpangle" >
+          <description></description>
+          <latex-image-code>
+            <![CDATA[
+            \begin{tikzpicture}[>=stealth,scale=1.25]
+	\draw [rotate=-15,->] (0,0) -- (2,0) node (A) [right] {\scriptsize $\vec u$};
+	\draw [rotate=35,->] (0,0) -- (2.5,0) node (B) [right] {\scriptsize $\vec v$};
+	\draw [rotate=-15,->] (.75,0) arc (0:50:.75);
+	\draw [rotate=10] (.9,0) node {\scriptsize $\theta$};
+            \end{tikzpicture}
+            ]]>
+          </latex-image-code>
+        </image>
+        <!-- figures/fig_dotpangle.tex END -->
+      </figure>
+
+      <figure>
+        <caption>(b)</caption>
+        <!--
+         \includemedia[width=125pt,3Dmenu,activate=onclick,deactivate=onclick,
+        3Droll=0,
+        3Dortho=0.0045,
+        3Dc2c=.54 .61 .58,
+        3Dcoo=0 0 40,
+        3Droo=170,
+        3Dlights=Headlamp,add3Djscript=asylabels.js]
+         -->
+
+
+        <!-- START figures/figdotpangle3D_3D.asy -->
+        <image xml:id="img_dotpangle3D_3D" >
+          <asymptote>
+            <![CDATA[
+            import graph3;
+
+            //ASY file for figdotpangle3D.asy in Chapter 10
+
+            size(200,200,IgnoreAspect);
+            //currentprojection=perspective(7,2,1);
+            currentprojection=orthographic(4,4,2);
+            defaultrender.merge=true;
+
+            usepackage("mathspec");
+            texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+            texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+            texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+            texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+
+            // setup and draw the axes
+            real[] myxchoice={};
+            real[] myychoice={};
+            real[] myzchoice={};
+            defaultpen(0.5mm);
+            pair xbounds=(-0.5,2.5);
+            pair ybounds=(-0.5,2.5);
+            pair zbounds=(-0.5,1.5);
+
+            xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+            yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+            zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+            label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+            label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+            label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+            //Draw theplane z=.1*x+y+1;
+            triple f(pair t) {
+              return (t.x,t.y,-.1*t.x+.3*t.y+.5);
+            }
+            surface s=surface(f,(0,0),(2,2),8,8,Spline);
+            pen p=rgb(0,0,.7);
+            draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p,nolight,render(merge=true));
+
+            // Draw the vectors
+            draw((0.5,0.5,.6)--(1.5,0.25,.425), black+linewidth(2),Arrow3(size=3mm));//u
+            draw((0.5,0.5,.6)--(0.25,1.8,1.015), black+linewidth(2),Arrow3(size=3mm));//v
+            label("$\vec{u}$",(1.5,0.25,.425),N);
+            label("$\vec{v}$",(0.25,1.8,1.015),N);
+            dotfactor=3;  dot((0.5,0.5,.6),black);
+
+            //Draw the arc with theta
+            draw((.99,.38,.51)..(.81,.78,.65)..(.41,.97,.75));
+            label("$\theta$",(0.5,0.5,.7),W);
+
+
+
+            // ////////////////////////////////////
+            //    SAMPLE CODE
+
+            // defaultpen(fontsize(10pt));
+
+            //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+            //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+
+            //triple f(pair t) {
+            //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+            //}
+            //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+
+            //draw(s,paleblue);
+            //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+            //draw(mypath,2bp+blue);
+
+            //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+            //path3 mypath=graph(g,-1,1,operator ..);
+
+            //pen p=rgb(0,0,1);
+            //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+            ]]>
+          </asymptote>
+        </image>
+        <!-- figures/figdotpangle3D_3D.asy END -->
+      </figure>
+    </sidebyside>
+
+    </figure>
+
+    <p>The same is also true of 2 vectors in space: given <m>\vec u</m> and <m>\vec v</m> in <m>\mathbb{R}^3</m> with the same initial point, there is a plane that contains both <m>\vec u</m> and <m>\vec v</m>. (When <m>\vec u</m> and <m>\vec v</m> are co-linear, there are infinite planes that contain both vectors.) In that plane, we can again find an angle <m>\theta</m> between them (and again, <m>0\leq \theta\leq \pi</m>). This is illustrated in <xref ref="fig_dotpangle">Figure</xref>(b).</p>
+
+    <p>The following theorem connects this angle <m>\theta</m> to the dot product of <m>\vec u</m> and <m>\vec v</m>.</p>
+
+    <theorem xml:id="thm_dot_product">
+      <title>The Dot Product and Angles</title>
+      <statement>
+        <p>Let <m>\vec u</m> and <m>\vec v</m> be vectors in <m>\mathbb{R}^2</m> or <m>\mathbb{R}^3</m>. Then
+          <me>
+            \dotp uv = \norm{\vec u}\,\norm{\vec v} \cos(\theta) ,
+          </me>
+          where <m>\theta</m>, <m>0\leq\theta\leq \pi</m>, is the angle between <m>\vec u</m> and <m>\vec v</m>.
+          <index><main>dot product</main><sub>properties</sub></index><index><main>vectors</main><sub>dot product</sub></index></p>
+      </statement>
+    </theorem>
+
+    <p>When <m>\theta</m> is an acute angle (i.e., <m>0\leq \theta \lt \pi/2</m>), <m>\cos(\theta)</m> is positive; when <m>\theta = \pi/2</m>, <m>\cos(\theta) = 0</m>; when <m>\theta</m> is an obtuse angle (<m>\pi/2\lt \theta \leq \pi</m>), <m>\cos(\theta)</m> is negative. Thus the sign of the dot product gives a general indication of the angle between the vectors, illustrated in <xref ref="fig_dotpsign">Figure</xref>.</p>
+
+    <p><!-- START figures/fig_dotpanglesign.tex -->
+      <image xml:id="img_dotpanglesign" >
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}[>=stealth,thick]
+	\begin{scope}[scale=1.25]
+		\draw[->] (0,0) -- (1,0) node [pos=.5,below] {\scriptsize $\vec u\cdot \vec v >0$} node [right] {\scriptsize $\vec u$};
+		\draw[->] (0,0) -- (.5,.866)node [above right] {\scriptsize $\vec v$};
+		\draw[->] (.3,0) arc (0:60:.3);
+		\draw[rotate=30] (.45,0) node {\scriptsize $\theta$};
+	\end{scope}
+	
+	\begin{scope}[shift={(3cm,0)},scale=1.25]
+		\draw[->] (0,0) -- (1,0)node [pos=.5,below] {\scriptsize $\vec u\cdot \vec v =0$}node [right] {\scriptsize $\vec u$};
+		\draw[->] (0,0) -- (0,1)node [above ] {\scriptsize $\vec v$};
+		\draw[->] (.3,0) arc (0:90:.3);
+		\draw[rotate=22.5] (.7,0) node {\scriptsize $\theta=\pi/2$};
+	\end{scope}
+	
+	\begin{scope}[shift={(6.5cm,0)},scale=1.25]
+		\draw[->] (0,0) -- (1,0)node [pos=.5,below] {\scriptsize $\vec u\cdot \vec v <0$}node [right] {\scriptsize $\vec u$};
+		\draw[->] (0,0) -- (-.707,.707)node [above left] {\scriptsize $\vec v$};
+		\draw[->] (.3,0) arc (0:135:.3);
+		\draw[rotate=67.5] (.45,0) node {\scriptsize $\theta$};
+	\end{scope}
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_dotpanglesign.tex END -->
+
+      \captionof{figure}{Illustrating the relationship between the angle between vectors and the sign of their dot product.} We <em>can</em> use <xref ref="thm_dot_product">Theorem</xref> to compute the dot product, but generally this theorem is used to find the angle between known vectors (since the dot product is generally easy to compute). To this end, we rewrite the theorem's equation as
+      <me>
+        \cos(\theta) = \frac{\dotp uv}{\norm{\vec u}\norm{\vec v}}  \Leftrightarrow  \theta = \cos^{-1}\left(\frac{\dotp uv}{\norm{\vec u}\norm{\vec v}}\right).
+      </me>
+    </p>
+
+    <p>We practice using this theorem in the following example.</p>
+
+    <figure xml:id="fig_dotp2" >
+      <caption>Vectors used in <xref ref="ex_dotp2">Example</xref>.</caption>
+      <!-- START figures/fig_dotp2.tex -->
+      <image xml:id="img_dotp2" >
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}[>=stealth]
+          \begin{axis}[%
+          axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick=\empty,%
+			minor x tick num=4,
+			%extra x ticks={1,1.57,3.14},
+			%extra x tick labels={$x$,$\frac{\pi}2$,$\pi$},
+			%ytick={1},
+          %			yticklabels={$-0.002$,$0.002$,$0.004$},
+          %			extra y ticks={1.8},%
+          %			extra y tick labels={$y$},
+          %			minor x tick num=4,
+			ymin=-1.8,ymax=6.99,%
+			xmin=-5.5,xmax=5.5,%
+          ]
+
+
+          \draw [thick,->] (axis cs:0,0) --(axis cs: 3,1) node [above] {\scriptsize$\vec u$};
+          \draw [thick,->] (axis cs:0,0) --(axis cs: -2,6) node [above] {\scriptsize$\vec v$};
+          \draw [thick,->] (axis cs:0,0) --(axis cs: -4,3) node [above] {\scriptsize$\vec w$};
+
+          \draw [->] (axis cs: .949,.316) arc (18.4:108.4:12pt);
+          \draw [] (axis cs:0.680986, 1.33651) node {\scriptsize $\alpha$};
+
+          \draw [->] (axis cs: -0.474342, 1.42302) arc (108.4:155.1:12pt);
+          \draw [] (axis cs:-1.13929, 1.58257) node {\scriptsize $\beta$};
+
+          \draw [->] (axis cs: 2.3725, 0.79) arc (18.4:143.1:30pt);
+          \draw [] (axis cs:1.5, 2.59808) node {\scriptsize $\theta$};
+
+
+          \end{axis}
+
+
+
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_dotp2.tex END -->
+    </figure>
+
+    <example xml:id="ex_dotp2">
+      <title>Using the dot product to find angles</title>
+      <statement>
+        <p>Let <m>\vec u = \la 3,1\ra</m>, <m>\vec v = \la -2,6\ra</m> and <m>\vec w = \la -4,3\ra</m>, as shown in <xref ref="fig_dotp2">Figure</xref>. Find the angles <m>\alpha</m>, <m>\beta</m> and <m>\theta</m>.</p>
+      </statement>
+      <solution>
+        <p>We start by computing the magnitude of each vector.
+          <me>
+            \norm{\vec u} = \sqrt{10}; \norm{\vec v} = 2\sqrt{10}; \norm{\vec w} = 5.
+          </me>
+        </p>
+
+        <p>We now apply <xref ref="thm_dot_product">Theorem</xref> to find the angles.
+          <md>
+            <mrow>\alpha \amp = \cos^{-1}\left(\frac{\dotp uv}{(\sqrt{10})(2\sqrt{10})}\right)</mrow>
+            <mrow>\amp = \cos^{-1}(0) = \frac{\pi}2 = 90^\circ.</mrow>
+          </md>
+          <md>
+            <mrow>\beta \amp = \cos^{-1}\left(\frac{\dotp vw}{(2\sqrt{10})(5)}\right)</mrow>
+            <mrow>\amp = \cos^{-1}\left(\frac{26}{10\sqrt{10}}\right)</mrow>
+            <mrow>\amp \approx 0.6055 \approx 34.7^\circ.</mrow>
+            <mrow>\theta \amp = \cos^{-1}\left(\frac{\dotp uw}{(\sqrt{10})(5)}\right)</mrow>
+            <mrow>\amp = \cos^{-1}\left(\frac{-9}{5\sqrt{10}}\right)</mrow>
+            <mrow>\amp \approx 2.1763 \approx 124.7^\circ</mrow>
+          </md>
+        </p>
+      </solution>
+    </example>
+
+    <p>We see from our computation that <m>\alpha + \beta = \theta</m>, as indicated by <xref ref="fig_dotp2">Figure</xref>. While we knew this should be the case, it is nice to see that this non-intuitive formula indeed returns the results we expected.</p>
+
+    <p>We do a similar example next in the context of vectors in space.</p>
+
+    <figure xml:id="fig_dotp3" >
+      <caption>Vectors used in <xref ref="ex_dotp3">Example</xref>.</caption>
+      <!--
+       \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
+      3Droll=0,
+      3Dortho=0.0045,
+      3Dc2c=.89 .4 .23,
+      3Dcoo=10 50 46,
+      3Droo=200,
+      3Dlights=Headlamp,add3Djscript=asylabels.js]
+       -->
+
+
+      <!-- START figures/figdotp3_3D.asy -->
+      <image xml:id="img_dotp3" >
+        <asymptote>
+          <![CDATA[
+          import graph3;
+
+          //ASY file for figdotp3.asy in Chapter 10
+
+          size(200,200,IgnoreAspect);
+          //currentprojection=perspective(7,2,1);
+          currentprojection=orthographic(23,7.4,3.8);
+          defaultrender.merge=true;
+
+          usepackage("mathspec");
+          texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+          texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+          texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+          texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+          // setup and draw the axes
+          real[] myxchoice={-5,5};
+          real[] myychoice={2,4};
+          real[] myzchoice={-2,2,4};
+          defaultpen(0.5mm);
+          pair xbounds=(-5.5,5.5);
+          pair ybounds=(-1,4.5);
+          pair zbounds=(-2.5,4.5);
+
+          xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+          yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+          zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+          label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+          label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+          label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+          // Draw the lines for vec{u}=<1,1,1>
+          draw((0,0,1)--(0,1,1)--(1,1,1)--(1,0,1)--(0,0,1), dashed+linewidth(.5)+blue);//top
+          draw((0,0,0)--(0,1,0)--(1,1,0)--(1,0,0)--(0,0,0), dashed+linewidth(.5)+blue);//bottom
+          draw((1,0,0)--(1,0,1), dashed+linewidth(.5)+blue);//up1
+          draw((0,1,0)--(0,1,1), dashed+linewidth(.5)+blue);//up2
+          draw((1,1,0)--(1,1,1), dashed+linewidth(.5)+blue);//up3
+          draw((0,0,0)--(1,1,1), blue,Arrow3(size=2mm));
+          label("$\vec{u}$",(1,1,1),E);
+          //dotfactor=3;  dot((2,1,1),blue);
+
+          // Draw the lines for \vec{v}=<-1,3,-2>
+          draw((0,0,-2)--(0,3,-2)--(-1,3,-2)--(-1,0,-2)--(0,0,-2), dashed+linewidth(.5)+red);//top
+          draw((0,0,0)--(0,3,0)--(-1,3,0)--(-1,0,0)--(0,0,0), dashed+linewidth(.5)+red);//bottom
+          draw((-1,0,0)--(-1,0,-2), dashed+linewidth(.5)+red);//up1
+          draw((0,3,0)--(0,3,-2), dashed+linewidth(.5)+red);//up2
+          draw((-1,3,0)--(-1,3,-2), dashed+linewidth(.5)+red);//up3
+          draw((0,0,0)--(-1,3,-2),red,Arrow3(size=2mm));
+          label("$\vec{v}$",(-1,3,-2),E);
+
+          // Draw the lines for \vec{w}=<-5,1,4>
+          draw((0,0,4)--(0,1,4)--(-5,1,4)--(-5,0,4)--(0,0,4), dashed+linewidth(.5)+orange);//top
+          draw((0,0,0)--(0,1,0)--(-5,1,0)--(-5,0,0)--(0,0,0), dashed+linewidth(.5)+orange);//bottom
+          draw((-5,0,0)--(-5,0,4), dashed+linewidth(.5)+orange);//up1
+          draw((0,1,0)--(0,1,4), dashed+linewidth(.5)+orange);//up2
+          draw((-5,1,0)--(-5,1,4), dashed+linewidth(.5)+orange);//up3
+          draw((0,0,0)--(-5,1,4), orange,Arrow3(size=2mm));
+          label("$\vec{w}$",(-5,1,4),E);
+
+
+          // ////////////////////////////////////
+          //    SAMPLE CODE
+
+          // defaultpen(fontsize(10pt));
+
+          //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+          //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+
+          //triple f(pair t) {
+          //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+          //}
+          //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+
+          //draw(s,paleblue);
+          //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+          //draw(mypath,2bp+blue);
+
+          //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+          //path3 mypath=graph(g,-1,1,operator ..);
+
+          //pen p=rgb(0,0,1);
+          //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+          ]]>
+        </asymptote>
+      </image>
+      <!-- figures/figdotp3_3D.asy END -->
+    </figure>
+
+    <example xml:id="ex_dotp3">
+      <title>Using the dot product to find angles</title>
+      <statement>
+        <p>Let <m>\vec u = \la 1,1,1\ra</m>, <m>\vec v = \la -1,3,-2\ra</m> and <m>\vec w = \la -5,1,4\ra</m>, as illustrated in <xref ref="fig_dotp3">Figure</xref>. Find the angle between each pair of vectors.</p>
+      </statement>
+      <solution>
+        <ol>
+          <li><p>Between <m>\vec u</m> and <m>\vec v</m>:
+              <md>
+                <mrow>\theta \amp = \cos^{-1}\left(\frac{\dotp uv}{\norm{\vec u}\norm{\vec v}}\right)</mrow>
+                <mrow>\amp = \cos^{-1}\left(\frac{0}{\sqrt{3}\sqrt{14}}\right)</mrow>
+                <mrow>\amp = \frac{\pi}2.</mrow>
+              </md>
+            </p></li>
+
+          <li><p>Between <m>\vec u</m> and <m>\vec w</m>:
+              <md>
+                <mrow>\theta \amp = \cos^{-1}\left(\frac{\dotp uw}{\norm{\vec u}\norm{\vec w}}\right)</mrow>
+                <mrow>\amp = \cos^{-1}\left(\frac{0}{\sqrt{3}\sqrt{42}}\right)</mrow>
+                <mrow>\amp = \frac{\pi}2.</mrow>
+              </md>
+            </p></li>
+
+          <li><p>Between <m>\vec v</m> and <m>\vec w</m>:
+              <md>
+                <mrow>\theta \amp = \cos^{-1}\left(\frac{\dotp vw}{\norm{\vec v}\norm{\vec w}}\right)</mrow>
+                <mrow>\amp = \cos^{-1}\left(\frac{0}{\sqrt{14}\sqrt{42}}\right)</mrow>
+                <mrow>\amp = \frac{\pi}2.</mrow>
+              </md>
+            </p></li>
+        </ol>
+
+        <p>While our work shows that each angle is <m>\pi/2</m>, i.e., <m>90^\circ</m>, none of these angles looks to be a right angle in <xref ref="fig_dotp3">Figure</xref>. Such is the case when drawing three<ndash />dimensional objects on the page.</p>
+      </solution>
+    </example>
+
+    <p>All three angles between these vectors was <m>\pi/2</m>, or <m>90^\circ</m>. We know from geometry and everyday life that <m>90^\circ</m> angles are <q>nice</q> for a variety of reasons, so it should seem significant that these angles are all <m>\pi/2</m>. Notice the common feature in each calculation (and also the calculation of <m>\alpha</m> in <xref ref="ex_dotp2">Example</xref>): the dot products of each pair of angles was 0. We use this as a basis for a definition of the term <em>orthogonal</em>, which is essentially synonymous to <em>perpendicular</em>.</p>
+
+    <definition xml:id="def_orthogonal">
+      <title>Orthogonal</title>
+      <statement>
+        <p>Vectors <m>\vec u</m> and <m>\vec v</m> are <term>orthogonal</term> if their dot product is 0.
+          <index><main>orthogonal</main></index><index><main>perpendicular|see{orthogonal}</main></index><index><main>vectors</main><sub>orthogonal</sub></index></p>
+      </statement>
+    </definition>
+
+    <aside>
+      <p>The term <em>perpendicular</em> originally referred to lines. As mathematics progressed, the concept of <q>being at right angles to</q> was applied to other objects, such as vectors and planes, and the term <em>orthogonal</em> was introduced. It is especially used when discussing objects that are hard, or impossible, to visualize: two vectors in 5-dimensional space are orthogonal if their dot product is 0. It is not wrong to say they are <em>perpendicular</em>, but common convention gives preference to the word <em>orthogonal</em>.</p>
+    </aside>
+
+    <example xml:id="ex_dotp8">
+      <title>Finding orthogonal vectors</title>
+      <statement>
+        <p>Let <m>\vec u = \la 3,5\ra</m> and <m>\vec v = \la 1,2,3\ra</m>.</p>
+
+        <ol>
+          <li><p>Find two vectors in <m>\mathbb{R}^2</m> that are orthogonal to <m>\vec u</m>.</p></li>
+
+          <li><p>Find two non<ndash />parallel vectors in <m>\mathbb{R}^3</m> that are orthogonal to <m>\vec v</m>.</p></li>
+        </ol>
+      </statement>
+      <solution>
+        <ol>
+          <li><p>Recall that a line perpendicular to a line with slope <m>m</m> has slope <m>-1/m</m>, the <q>opposite reciprocal slope.</q> We can think of the slope of <m>\vec u</m> as <m>5/3</m>, its <q>rise over run.</q> A vector orthogonal to <m>\vec u</m> will have slope <m>-3/5</m>. There are many such choices, though all parallel:
+              <me>
+                \la -5,3\ra  \text{ or }  \la 5,-3\ra  \text{ or }   \la -10,6\ra \text{ or }   \la 15,-9\ra,\text{ etc. }
+              </me>
+            </p></li>
+
+          <li><p>There are infinite directions in space orthogonal to any given direction, so there are an infinite number of non<ndash />parallel vectors orthogonal to <m>\vec v</m>. Since there are so many, we have great leeway in finding some.
+	
+	One way is to arbitrarily pick values for the first two components, leaving the third unknown. For instance, let <m>\vec v_1 = \la 2,7,z\ra</m>. If <m>\vec v_1</m> is to be orthogonal to <m>\vec v</m>, then <m>\vec v_1\cdot\vec v = 0</m>, so
+              <me>
+                2+14+3z=0  \Rightarrow z = \frac{-16}{3}.
+              </me>
+              So <m>\vec v_1 = \la 2, 7, -16/3\ra</m> is orthogonal to <m>\vec v</m>. We can apply a similar technique by leaving the first or second component unknown.
+	
+	Another method of finding a vector orthogonal to <m>\vec v</m> mirrors what we did in part 1. Let <m>\vec v_2 = \la-2,1,0\ra</m>. Here we switched the first two components of <m>\vec v</m>, changing the sign of one of them (similar to the <q>opposite reciprocal</q> concept before). Letting the third component be 0 effectively ignores the third component of <m>\vec v</m>, and it is easy to see that
+              <me>
+                \vec v_2\cdot\vec v = \la -2,1,0\ra\cdot\la 1,2,3\ra = 0.
+              </me>
+              Clearly <m>\vec v_1</m> and <m>\vec v_2</m> are not parallel.</p></li>
+        </ol>
+      </solution>
+    </example>
+
+    <p>An important construction is illustrated in <xref ref="fig_dotpproj">Figure</xref>, where vectors <m>\vec u</m> and <m>\vec v</m> are sketched. In part (a), a dotted line is drawn from the tip of <m>\vec u</m> to the line containing <m>\vec v</m>, where the dotted line is orthogonal to <m>\vec v</m>. In part (b), the dotted line is replaced with the vector <m>\vec z</m> and <m>\vec w</m> is formed, parallel to <m>\vec v</m>. It is clear by the diagram that <m>\vec u = \vec w+\vec z</m>. What is important about this construction is this: <m>\vec u</m> is <em>decomposed</em> as the sum of two vectors, one of which is parallel to <m>\vec v</m> and one that is perpendicular to <m>\vec v</m>. It is hard to overstate the importance of this construction (as we'll see in upcoming examples).</p>
+
+    <p>The vectors <m>\vec w</m>, <m>\vec z</m> and <m>\vec u</m> as shown in <xref ref="fig_dotpproj">Figure</xref> (b) form a right triangle, where the angle between <m>\vec v</m> and <m>\vec u</m> is labeled <m>\theta</m>. We can find <m>\vec w</m> in terms of <m>\vec v</m> and <m>\vec u</m>.</p>
+
+    <p>Using trigonometry, we can state that
+      <men xml:id="eq_proj1" >
+        \norm{\vec w} = \norm{\vec u}\cos(\theta) .
+      </men>
+    </p>
+
+    <figure xml:id="fig_dotpproj" >
+    <caption>Developing the construction of the <em>orthogonal projection</em>.</caption>
+    <sidebyside>
+      <figure>
+        <caption>(a)</caption>
+        <!-- START figures/fig_dotpproja.tex -->
+        <image xml:id="img_dotpproja" >
+          <description></description>
+          <latex-image-code>
+            <![CDATA[
+            \begin{tikzpicture}[>=stealth]
+	\draw [thick,->] (0,0) -- (4,2) node [right] {\scriptsize $\vec v$};
+	\draw [thick,->] (0,0) -- (1,3) node [above ] {\scriptsize $\vec u$};
+	\draw [dotted,thick] (1,3) -- (2,1);
+	\draw (1.82111, 0.910557) -- ({1.73167, 1.08944})--(1.91056, 1.17889);
+	\draw (.4,.2) arc (26.5:71.6:.45);
+	\draw [rotate=49] (.6,0) node {\scriptsize $\theta$};
+
+            \end{tikzpicture}
+            ]]>
+          </latex-image-code>
+        </image>
+        <!-- figures/fig_dotpproja.tex END -->
+      </figure>
+
+      <figure>
+        <caption>(b)</caption>
+        <!-- START figures/fig_dotpprojb.tex -->
+        <image xml:id="img_dotpprojb" >
+          <description></description>
+          <latex-image-code>
+            <![CDATA[
+            \begin{tikzpicture}[>=stealth]
+	\draw [thick,->] (2,1) -- (4,2) node [right] {\scriptsize $\vec v$};
+	\draw [thick,->] (0,0) -- (1,3) node [above ] {\scriptsize $\vec u$};
+	\draw [thick,->,gray] (0,0) -- (2,1) node [below,black] {\scriptsize $\vec w$};
+	\draw [<-,thick] (1,3) -- (2,1) node [right,pos=.5] {\scriptsize $\vec z$};
+	\draw (1.82111, 0.910557) -- ({1.73167, 1.08944})--(1.91056, 1.17889);
+            \draw (.4,.2) arc (26.5:71.6:.45);
+	\draw [rotate=49] (.6,0) node {\scriptsize $\theta$};
+            \end{tikzpicture}
+            ]]>
+          </latex-image-code>
+        </image>
+        <!-- figures/fig_dotpprojb.tex END -->
+      </figure>
+    </sidebyside>
+
+    </figure>
+
+    <p>We also know that <m>\vec w</m> is parallel to to <m>\vec v</m> ; that is, the direction of <m>\vec w</m> is the direction of <m>\vec v</m>, described by the unit vector <m>\frac{1}{\norm{\vec v}}\vec v</m>. The vector <m>\vec w</m> is the vector in the direction <m>\frac{1}{\norm{\vec v}}\vec v</m> with magnitude <m>\norm{\vec u}\cos(\theta)</m>:
+      <md>
+        <mrow>\vec w \amp = \Big(\norm{\vec u}\cos(\theta) \Big)\frac{1}{\norm{\vec v}}\vec v.</mrow>
+        <intertext>Replace <m>\cos(\theta)</m> using <xref ref="thm_dot_product">Theorem</xref>:</intertext>
+        <mrow>\amp = \left(\norm{\vec u}\frac{\dotp uv}{\norm{\vec u}\norm{\vec v}}\right)\frac{1}{\norm{\vec v}} \vec v</mrow>
+        <mrow>\amp = \frac{\dotp uv}{\norm{\vec v}^2}\vec v.</mrow>
+        <intertext>Now apply <xref ref="thm_dot_product_properties">Theorem</xref>.</intertext>
+        <mrow>\amp = \frac{\dotp uv}{\dotp vv}\vec v.</mrow>
+      </md>
+    </p>
+
+    <p>Since this construction is so important, it is given a special name.</p>
+
+    <definition xml:id="def_orthogonal_projection">
+      <title>Orthogonal Projection</title>
+      <statement>
+        <p>Let <m>\vec u</m> and <m>\vec v</m> be given. The <term>orthogonal projection of <m>\vec u</m> onto <m>\vec v</m></term>, denoted <m>\proj uv</m>, is
+          <index><main>orthogonal projection</main></index><index><main>vectors</main><sub>orthogonal projection</sub></index>
+          <me>
+            \proj uv = \frac{\dotp uv}{\dotp vv}\vec v.
+          </me>
+        </p>
+      </statement>
+    </definition>
+
+    <example xml:id="ex_dotp4">
+      <title>Computing the orthogonal projection</title>
+      <statement>
+        <ol>
+          <li><p>Let <m>\vec u= \la -2,1\ra</m> and <m>\vec v=\la 3,1\ra</m>. Find <m>\proj uv</m>, and sketch all three vectors with initial points at the origin.</p></li>
+
+          <li><p>Let <m>\vec w = \la 2,1,3\ra</m> and <m>\vec x = \la 1,1,1\ra</m>. Find <m>\proj wx</m>, and sketch all three vectors with initial points at the origin.</p></li>
+        </ol>
+      </statement>
+      <solution>
+        <ol>
+          <li><p>Applying <xref ref="def_orthogonal_projection">Definition</xref>, we have
+              <md>
+                <mrow>\proj uv \amp = \frac{\dotp uv}{\dotp vv}\vec v</mrow>
+                <mrow>\amp = \frac{-5}{10}\la 3,1\ra</mrow>
+                <mrow>\amp = \la -\frac32,-\frac12\ra.</mrow>
+              </md>
+              Vectors <m>\vec u</m>, <m>\vec v</m> and <m>\proj uv</m> are sketched in <xref ref="fig_dotp4">Figure</xref>(a). Note how the projection is parallel to <m>\vec v</m>; that is, it lies on the same line through the origin as <m>\vec v</m>, although it points in the opposite direction. That is because the angle between <m>\vec u</m> and <m>\vec v</m> is obtuse (i.e., greater than <m>90^\circ</m>).
+
+              <table xml:id="fig_dotp4" >
+                <caption>Graphing the vectors used in <xref ref="ex_dotp4">Example</xref>.</caption>
+                <tabular>
+                  <row>
+                    <cell>
+          <figure><!-- START figures/fig_dotp4a.tex -->
+                    <image xml:id="img_dotp4a" >
+                      <description></description>
+                      <latex-image-code>
+                        <![CDATA[
+                        \begin{tikzpicture}[>=stealth]
+                        \begin{axis}[%
+                        axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={-3,-2,-1,1,2,3},%
+			%minor x tick num=4,
+			%extra x ticks={1,1.57,3.14},
+			%extra x tick labels={$x$,$\frac{\pi}2$,$\pi$},
+			ytick={1,2,-1,-2},
+                        %			yticklabels={$-0.002$,$0.002$,$0.004$},
+			%
+                        %			extra y ticks={1.8},%
+                        %			extra y tick labels={$y$},
+                        %			minor x tick num=4,
+			ymin=-2.8,ymax=2.8,%
+			xmin=-2.9,xmax=3.9,%
+                        ]
+
+
+                        \draw [thick,->] (axis cs:0,0) --(axis cs: -2,1) node [above] {\scriptsize$\vec u$};
+                        \draw [thick,->] (axis cs:0,0) --(axis cs: 3,1) node [above] {\scriptsize$\vec v$};
+                        \draw [thick,->,gray] (axis cs:0,0) --(axis cs: -1.5,-.5) node [below,black] {\scriptsize$\text{proj}_{\, \vec v}\, \vec u$};
+
+                        \draw [dotted,thick] (axis cs: -2,1) -- (axis cs:-1.5,-.5);
+
+                        \end{axis}
+
+
+
+                        \end{tikzpicture}
+                        ]]>
+                      </latex-image-code>
+                    </image>
+                    <!-- figures/fig_dotp4a.tex END --></figure>
+          </cell>
+                  </row>
+                  <row>
+                    <cell>(a)</cell>
+                  </row>
+                  <row>
+                    <cell>
+          <figure><!--
+                     \includemedia[width=100pt,3Dmenu,activate=onclick,deactivate=onclick,
+                    3Droll=0,
+                    3Dortho=0.0046,
+                    3Dc2c=.9 .12 .42,
+                    3Dcoo=0 50 30,
+                    3Droo=250,
+                    3Dlights=Headlamp,add3Djscript=asylabels.js]
+                     -->
+
+
+                    <!-- START figures/figdotp4b_3D.asy -->
+                    <image xml:id="img_dotp4b_3D" >
+                      <asymptote>
+                        <![CDATA[
+                        import graph3;
+
+                        //ASY file for figdotp4b.asy in Chapter 10
+
+                        size(200,200,IgnoreAspect);
+                        //currentprojection=perspective(7,2,1);
+
+                        // The text calls for two viewpoints of this picture to show orthogonality
+                        // The two projections below give those two views
+                        //  view "b", saved as figdotp4b_3D
+                        currentprojection=orthographic(8,2,5);
+
+                        //  view "c", saved as figdotp4c_3D
+                        //currentprojection=orthographic(2,8,6);
+                        defaultrender.merge=true;
+
+                        usepackage("mathspec");
+                        texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+                        texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+                        texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+                        texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+
+                        // setup and draw the axes
+                        real[] myxchoice={2};
+                        real[] myychoice={2};
+                        real[] myzchoice={2};
+                        defaultpen(0.5mm);
+                        pair xbounds=(-0.5,2.5);
+                        pair ybounds=(-1,2.5);
+                        pair zbounds=(-0.5,3);
+
+                        xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+                        yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+                        zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+                        label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+                        label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+                        label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+                        // Draw the lines for vec{x}=<1,1,1>
+                        //draw((0,0,1)--(0,1,1)--(1,1,1)--(1,0,1)--(0,0,1), dashed+linewidth(.5));//top
+                        draw((0,0,0)--(0,1,0)--(1,1,0)--(1,0,0)--(0,0,0), dashed+linewidth(.5));//bottom
+                        //draw((1,0,0)--(1,0,1), dashed+linewidth(.5));//up1
+                        //draw((0,1,0)--(0,1,1), dashed+linewidth(.5));//up2
+                        draw((1,1,0)--(1,1,1), dashed+linewidth(.5));//up3
+                        draw((0,0,0)--(1,1,1), Arrow3(size=3mm));
+                        label("$\vec{x}$",(1,1,1),N);
+                        //dotfactor=3;  dot((2,1,1),blue);
+
+                        // Draw the lines for projection of w onto x as <2,2,2>
+                        //draw((0,0,2)--(0,2,2)--(2,2,2)--(2,0,2)--(0,0,2), dashed+linewidth(.5));//top
+                        draw((0,0,0)--(0,2,0)--(2,2,0)--(2,0,0)--(0,0,0), dashed+linewidth(.5));//bottom
+                        //draw((2,0,0)--(2,0,2), dashed+linewidth(.5));//up1
+                        //draw((0,2,0)--(0,2,2), dashed+linewidth(.5));//up2
+                        draw((2,2,0)--(2,2,2), dashed+linewidth(.5));//up3
+                        draw((0,0,0)--(2,2,2), gray,Arrow3(size=3mm));
+                        label("$\textrm{proj}_{\vec{x}} \vec{w}$",(2,2,2),N);
+
+                        // Draw the lines for \vec{w}=<2,1,3>
+                        //draw((0,0,3)--(0,1,3)--(2,1,3)--(2,0,3)--(0,0,3), dashed+linewidth(.5));//top
+                        draw((0,0,0)--(0,1,0)--(2,1,0)--(2,0,0)--(0,0,0), dashed+linewidth(.5));//bottom
+                        //draw((2,0,0)--(2,0,3), dashed+linewidth(.5));//up1
+                        //draw((0,1,0)--(0,1,3), dashed+linewidth(.5));//up2
+                        draw((2,1,0)--(2,1,3), dashed+linewidth(.5));//up3
+                        draw((0,0,0)--(2,1,3), Arrow3(size=3mm));
+                        label("$\vec{w}$",(2,1,3),N);
+
+
+                        // ////////////////////////////////////
+                        //    SAMPLE CODE
+
+                        // defaultpen(fontsize(10pt));
+
+                        //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+                        //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+
+                        //triple f(pair t) {
+                        //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+                        //}
+                        //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+
+                        //draw(s,paleblue);
+                        //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+                        //draw(mypath,2bp+blue);
+
+                        //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+                        //path3 mypath=graph(g,-1,1,operator ..);
+
+                        //pen p=rgb(0,0,1);
+                        //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+                        ]]>
+                      </asymptote>
+                    </image>
+                    <!-- figures/figdotp4b_3D.asy END --></figure>
+          </cell>
+                  </row>
+                  <row>
+                    <cell>(b)</cell>
+                  </row>
+                  <row>
+                    <cell>
+          <figure><!--
+                     \includemedia[width=100pt,3Dmenu,activate=onclick,deactivate=onclick,
+                    3Droll=0,
+                    3Dortho=0.0046,
+                    3Dc2c=.29 .77 .56,
+                    3Dcoo=50 0 40,
+                    3Droo=250,
+                    3Dlights=Headlamp,add3Djscript=asylabels.js]
+                     -->
+
+
+                    <!-- START figures/figdotp4c_3D.asy -->
+                    <image xml:id="img_dotp4c_3D" >
+                      <asymptote>
+                        <![CDATA[
+                        import graph3;
+
+                        //ASY file for figdotp4b.asy in Chapter 10
+
+                        size(200,200,IgnoreAspect);
+                        //currentprojection=perspective(7,2,1);
+
+                        // The text calls for two viewpoints of this picture to show orthogonality
+                        // The two projections below give those two views
+                        //  view "b", saved as figdotp4b_3D
+                        //currentprojection=orthographic(8,2,5);
+
+                        //  view "c", saved as figdotp4c_3D
+                        currentprojection=orthographic(2,8,6);
+                        defaultrender.merge=true;
+
+                        usepackage("mathspec");
+                        texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+                        texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+                        texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+                        texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+
+                        // setup and draw the axes
+                        real[] myxchoice={2};
+                        real[] myychoice={2};
+                        real[] myzchoice={2};
+                        defaultpen(0.5mm);
+                        pair xbounds=(-0.5,2.5);
+                        pair ybounds=(-1,2.5);
+                        pair zbounds=(-0.5,3);
+
+                        xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+                        yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+                        zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+                        label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+                        label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+                        label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+                        // Draw the lines for vec{x}=<1,1,1>
+                        //draw((0,0,1)--(0,1,1)--(1,1,1)--(1,0,1)--(0,0,1), dashed+linewidth(.5));//top
+                        draw((0,0,0)--(0,1,0)--(1,1,0)--(1,0,0)--(0,0,0), dashed+linewidth(.5));//bottom
+                        //draw((1,0,0)--(1,0,1), dashed+linewidth(.5));//up1
+                        //draw((0,1,0)--(0,1,1), dashed+linewidth(.5));//up2
+                        draw((1,1,0)--(1,1,1), dashed+linewidth(.5));//up3
+                        draw((0,0,0)--(1,1,1), Arrow3(size=3mm));
+                        label("$\vec{x}$",(1,1,1),N);
+                        //dotfactor=3;  dot((2,1,1),blue);
+
+                        // Draw the lines for projection of w onto x as <2,2,2>
+                        //draw((0,0,2)--(0,2,2)--(2,2,2)--(2,0,2)--(0,0,2), dashed+linewidth(.5));//top
+                        draw((0,0,0)--(0,2,0)--(2,2,0)--(2,0,0)--(0,0,0), dashed+linewidth(.5));//bottom
+                        //draw((2,0,0)--(2,0,2), dashed+linewidth(.5));//up1
+                        //draw((0,2,0)--(0,2,2), dashed+linewidth(.5));//up2
+                        draw((2,2,0)--(2,2,2), dashed+linewidth(.5));//up3
+                        draw((0,0,0)--(2,2,2), gray,Arrow3(size=3mm));
+                        label("$\textrm{proj}_{\vec{x}} \vec{w}$",(2,2,2),N);
+
+                        // Draw the lines for \vec{w}=<2,1,3>
+                        //draw((0,0,3)--(0,1,3)--(2,1,3)--(2,0,3)--(0,0,3), dashed+linewidth(.5));//top
+                        draw((0,0,0)--(0,1,0)--(2,1,0)--(2,0,0)--(0,0,0), dashed+linewidth(.5));//bottom
+                        //draw((2,0,0)--(2,0,3), dashed+linewidth(.5));//up1
+                        //draw((0,1,0)--(0,1,3), dashed+linewidth(.5));//up2
+                        draw((2,1,0)--(2,1,3), dashed+linewidth(.5));//up3
+                        draw((0,0,0)--(2,1,3), Arrow3(size=3mm));
+                        label("$\vec{w}$",(2,1,3),N);
+
+
+                        // ////////////////////////////////////
+                        //    SAMPLE CODE
+
+                        // defaultpen(fontsize(10pt));
+
+                        //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+                        //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+
+                        //triple f(pair t) {
+                        //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+                        //}
+                        //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+
+                        //draw(s,paleblue);
+                        //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+                        //draw(mypath,2bp+blue);
+
+                        //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+                        //path3 mypath=graph(g,-1,1,operator ..);
+
+                        //pen p=rgb(0,0,1);
+                        //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+                        ]]>
+                      </asymptote>
+                    </image>
+                    <!-- figures/figdotp4c_3D.asy END --></figure>
+          </cell>
+                  </row>
+                  <row>
+                    <cell>(c)</cell>
+                  </row>
+                  <row>
+                    <cell></cell>
+                  </row>
+                </tabular>
+              </table>
+
+            </p></li>
+
+          <li><p>Apply the definition:
+              <md>
+                <mrow>\proj wx \amp = \frac{\dotp wx}{\dotp xx}\vec x</mrow>
+                <mrow>\amp = \frac{6}{3}\la 1,1,1\ra</mrow>
+                <mrow>\amp = \la 2,2,2\ra.</mrow>
+              </md>
+              These vectors are sketched in <xref ref="fig_dotp4">Figure</xref>(b), and again in part (c) from a different perspective. Because of the nature of graphing these vectors, the sketch in part (b) makes it difficult  to recognize that the drawn projection has the geometric properties it should. The graph shown in part (c) illustrates these properties better.</p></li>
+        </ol>
+      </solution>
+    </example>
+
+    <figure xml:id="fig_dotpprojc" >
+      <caption>Illustrating the orthogonal projection.</caption>
+      <!-- START figures/fig_dotpprojc.tex -->
+      <image xml:id="img_dotpprojc" >
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}[>=stealth]
+	\draw [thick,->] (2,1) -- (4,2) node [below] {\scriptsize $\vec v$};
+	\draw [thick,->] (0,0) -- (1,3) node [above ] {\scriptsize $\vec u$};
+	\draw [thick,->,gray] (0,0) -- (2,1) node [pos=.6,below,black] {\scriptsize $\text{proj}_{\, \vec v}\, \vec u$};
+	\draw [<-,thick] (1,3) -- (2,1) node [right,pos=.5] {\scriptsize $\vec z$};
+	\draw (1.82111, 0.910557) -- ({1.73167, 1.08944})--(1.91056, 1.17889);
+          %\draw (.4,.2) arc (26.5:71.6:.45);
+	%\draw [rotate=49] (.6,0) node {\scriptsize $\theta$};
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_dotpprojc.tex END -->
+    </figure>
+
+    <p>Consider <xref ref="fig_dotpprojc">Figure</xref> where the concept of the orthogonal projection is again illustrated. It is clear that
+      <men xml:id="eq_orthogproj" >
+        \vec u = \proj uv + \vec z.
+      </men>
+    </p>
+
+    <p>As we know what <m>\vec u</m> and <m>\proj uv</m> are, we can solve for <m>\vec z</m> and state that
+      <me>
+        \vec z = \vec u - \proj uv.
+      </me>
+    </p>
+
+    <p>This leads us to rewrite Equation <xref ref="eq_orthogproj" /> in a seemingly silly way:
+      <me>
+        \vec u = \proj uv + (\vec u - \proj uv).
+      </me>
+    </p>
+
+    <p>This is not nonsense, as pointed out in the following Key Idea. (Notation note: the expression <q><m>\parallel \vec y</m> </q> means <q>is parallel to <m>\vec y</m>.</q> We can use this notation to state <q><m>\vec x\parallel\vec y</m> </q> which means <q><m>\vec x</m> is parallel to <m>\vec y</m>.</q> The expression <q><m>\perp \vec y</m> </q> means <q>is orthogonal to <m>\vec y</m>,</q> and is used similarly.)</p>
+
+    <insight xml:id="idea_orthog_proj">
+      <title>Orthogonal Decomposition of Vectors</title>
+      <p>Let <m>\vec u</m> and <m>\vec v</m> be given. Then <m>\vec u</m> can be written as the sum of two vectors, one of which is parallel to <m>\vec v</m>, and one of which is orthogonal to <m>\vec v</m>:
+        <index><main>orthogonal decomposition of vectors</main></index><index><main>orthogonal</main><sub>decomposition</sub></index><index><main>vectors</main><sub>orthogonal decomposition</sub></index>
+        <me>
+          \vec u = \underbrace{\proj uv}_{\parallel\ \vec v}\ +\  (\underbrace{\vec u-\proj uv}_{\perp\ \vec v}).
+        </me>
+      </p>
+    </insight>
+
+    <p>We illustrate the use of this equality in the following example.</p>
+
+    <example xml:id="ex_dotp5">
+      <title>Orthogonal decomposition of vectors</title>
+      <statement>
+        <ol>
+          <li><p>Let <m>\vec u = \la -2,1\ra</m> and <m>\vec v = \la 3,1\ra</m> as in <xref ref="ex_dotp4">Example</xref>. Decompose <m>\vec u</m> as the sum of a vector parallel to <m>\vec v</m> and a vector orthogonal to <m>\vec v</m>.</p></li>
+
+          <li><p>Let <m>\vec w =\la 2,1,3\ra</m> and <m>\vec x  =\la 1,1,1\ra</m> as in <xref ref="ex_dotp4">Example</xref>. Decompose <m>\vec w</m> as the sum of a vector parallel to <m>\vec x</m> and a vector orthogonal to <m>\vec x</m>.</p></li>
+        </ol>
+      </statement>
+      <solution>
+        <ol>
+          <li><p>In <xref ref="ex_dotp4">Example</xref>, we found that <m>\proj uv = \la -1.5,-0.5\ra</m>. Let
+              <me>
+                \vec z = \vec u - \proj uv = \la -2,1\ra - \la -1.5,-0.5\ra = \la-0.5, 1.5\ra.
+              </me>
+              Is <m>\vec z</m> orthogonal to <m>\vec v</m> ? (I.e, is <m>\vec z \perp\vec v</m><nbsp />?) We check for orthogonality with the dot product:
+              <me>
+                \dotp zv = \la -0.5,1.5\ra \cdot \la 3,1\ra =0.
+              </me>
+              Since the dot product is 0, we know <m>\vec z \perp \vec v</m>. Thus:
+              <md>
+                <mrow>\vec u \amp = \proj uv\ +\ (\vec u - \proj uv)</mrow>
+                <mrow>\la -2,1\ra \amp = \underbrace{\la -1.5,-0.5\ra}_{\parallel\ \vec v}\ +\ \underbrace{\la -0.5,1.5\ra}_{\perp \ \vec v}.</mrow>
+              </md>
+            </p></li>
+
+          <li><p>We found in <xref ref="ex_dotp4">Example</xref> that <m>\proj wx = \la 2,2,2\ra</m>. Applying the Key Idea, we have:
+              <me>
+                \vec z = \vec w - \proj wx = \la 2,1,3\ra  - \la 2,2,2\ra = \la 0,-1,1\ra.
+              </me>
+              We check to see if <m>\vec z \perp \vec x</m>:
+              <me>
+                \dotp zx = \la 0,-1,1\ra \cdot \la 1,1,1\ra = 0.
+              </me>
+              Since the dot product is 0, we know the two vectors are orthogonal.
+	We now write <m>\vec w</m> as the sum of two vectors, one parallel and one orthogonal to <m>\vec x</m>:
+              <md>
+                <mrow>\vec w \amp = \proj wx\ +\ (\vec w - \proj wx)</mrow>
+                <mrow>\la 2,1,3\ra \amp = \underbrace{\la 2,2,2\ra}_{\parallel\ \vec x}\ +\ \underbrace{\la 0,-1,1\ra}_{\perp \ \vec x}</mrow>
+              </md>
+            </p></li>
+        </ol>
+      </solution>
+    </example>
+
+    <p>We give an example of where this decomposition is useful.</p>
+
+    <example xml:id="ex_dotp6">
+      <title>Orthogonally decomposing a force vector</title>
+      <statement>
+        <p>Consider <xref ref="fig_dotp6">Figure</xref>(a), showing a box weighing 50lb on a ramp that rises 5ft over a span of 20ft. Find the components of force, and their magnitudes, acting on the box (as sketched in part (b) of the figure):</p>
+
+        <figure xml:id="fig_dotp6" >
+        <caption>Sketching the ramp and box in <xref ref="ex_dotp6">Example</xref>. Note: <em>The vectors are not drawn to scale.</em></caption>
+        <sidebyside>
+          <figure>
+            <caption>(a)</caption>
+            <!-- START figures/fig_dotp6.tex -->
+            <image xml:id="img_dotp6" >
+              <description></description>
+              <latex-image-code>
+                <![CDATA[
+                \begin{tikzpicture}[>=stealth]
+	\begin{scope}[scale=.25]
+			\draw [thick,->] (20,5) -- node [right,pos=.5] {\scriptsize $5$} (20,0) -- node [below,pos=.6] {\scriptsize 20}(0,0) -- (20,5) node [above] {\scriptsize $\vec r$};
+			\draw [thick] (10,2.5) -- (9.25,5.5) -- (12.25,6.25) -- (13,3.25);
+			\draw [thick,->] (11.125,4.375) -- (11.125,-3.625) node [below] {\scriptsize $\vec g$};
+	\end{scope}
+
+                \end{tikzpicture}
+                ]]>
+              </latex-image-code>
+            </image>
+            <!-- figures/fig_dotp6.tex END -->
+          </figure>
+
+          <figure>
+            <caption>(b)</caption>
+            <!-- START figures/fig_dotp6b.tex -->
+            <image xml:id="img_dotp6b" >
+              <description></description>
+              <latex-image-code>
+                <![CDATA[
+                \begin{tikzpicture}[>=stealth]
+	\begin{scope}[scale=.25]
+			\draw [thick,->] (20,5) -- node [right,pos=.5] {\scriptsize $5$} (20,0) -- node [below,pos=.6] {\scriptsize 20}(0,0) -- (20,5) node [above] {\scriptsize $\vec r$};
+			\draw [thick] (10,2.5) -- (9.25,5.5) -- (12.25,6.25) -- (13,3.25);
+			\draw [thick,->] (11.125,4.375) -- (11.125,-3.625) node [below] {\scriptsize $\vec g$};
+			\draw [gray,thick,->] (11.125,4.375) -- (13,-3.15) node [right,pos=.4,black] {\scriptsize $\vec z$};
+			\draw [gray,thick,->] (13,-3.15) -- (11.125,-3.625)node [shift={(5pt,-5pt)} ,black,pos=0] {\scriptsize $\proj gr$};
+	\end{scope}
+
+                \end{tikzpicture}
+                ]]>
+              </latex-image-code>
+            </image>
+            <!-- figures/fig_dotp6b.tex END -->
+          </figure>
+        </sidebyside>
+
+        </figure>
+
+        <ol>
+          <li><p>in the direction of the ramp, and</p></li>
+
+          <li><p>orthogonal to the ramp.</p></li>
+        </ol>
+      </statement>
+      <solution>
+        <p>As the ramp rises 5ft over a horizontal distance of 20ft, we can represent the direction of the ramp with the vector <m>\vec r= \la 20,5\ra</m>. Gravity pulls down with a force of 50lb, which we represent with <m>\vec g = \la 0,-50\ra</m>.</p>
+
+        <ol>
+          <li><p>To find the force of gravity in the direction of the ramp, we compute <m>\proj gr</m>:
+              <md>
+                <mrow>\proj gr \amp = \frac{\dotp gr}{\dotp rr}\vec r</mrow>
+                <mrow>\amp =  \frac{-250}{425}\la 20,5\ra</mrow>
+                <mrow>\amp = \la -\frac{200}{17},-\frac{50}{17}\ra \approx \la -11.76,-2.94\ra.</mrow>
+              </md>
+              The magnitude of <m>\proj gr</m> is <m>\norm{\proj gr} = 50/\sqrt{17} \approx 12.13\text{ lb }</m>. Though the box weighs 50lb, a force of about 12lb is enough to keep the box from sliding down the ramp.</p></li>
+
+          <li><p>To find the component <m>\vec z</m> of gravity orthogonal to the ramp, we use <xref ref="idea_orthog_proj">Key Idea</xref>.
+              <md>
+                <mrow>\vec z \amp = \vec g - \proj gr</mrow>
+                <mrow>\amp = \la \frac{200}{17},-\frac{800}{17}\ra \approx \la 11.76,-47.06\ra.</mrow>
+              </md>
+              The magnitude of this force is <m>\norm{\vec z} \approx 48.51</m>lb. In physics and engineering, knowing this force is important when computing things like static frictional force. (For instance, we could easily compute if the static frictional force alone was enough to keep the box from sliding down the ramp.)</p></li>
+        </ol>
+      </solution>
+    </example>
+  </introduction>
+
+  <subsection>
+    <title>Application to Work</title>
+    <p>In physics, the application of a force <m>F</m> to move an object in a straight line a distance <m>d</m> produces <em>work</em>; the amount of work <m>W</m> is <m>W=Fd</m>, (where <m>F</m> is in the direction of travel). The orthogonal projection allows us to compute work when the force is not in the direction of travel.</p>
+
+    <figure xml:id="fig_dotpwork" >
+      <caption>Finding work when the force and direction of travel are given as vectors.</caption>
+      <!-- START figures/fig_dotpwork.tex -->
+      <image xml:id="img_dotpwork" >
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}[>=stealth,scale=.8]
+	\draw [thick] (0,0) rectangle (2,2);
+	\draw [thick,->] (0,-.25) -- (5,-.25) node [right] {\scriptsize $\vec d$};
+	\draw [thick,->] (1,1) -- (3,2) node [shift={(5pt,2.5pt)}] {\scriptsize $\vec F$};
+	\draw [thick,gray,->] (1,1) -- (3,1) node [right,black] {\scriptsize $\proj Fd$};
+
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_dotpwork.tex END -->
+    </figure>
+
+    <p>Consider <xref ref="fig_dotpwork">Figure</xref>, where a force <m>\vec F</m> is being applied to an object moving in the direction of <m>\vec d</m>. (The distance the object travels is the magnitude of <m>\vec d</m>.) The work done is the amount of force in the direction of <m>\vec d</m>, <m>\norm{\proj Fd}</m>, times <m>\vnorm d</m>:
+      <md>
+        <mrow>\norm{\proj Fd}\cdot\vnorm d \amp = \snorm{\frac{\dotp Fd}{\dotp dd}\vec d}\cdot \vnorm d</mrow>
+        <mrow>\amp = \abs{\frac{\dotp Fd}{\vnorm d^2}}\cdot \vnorm d\cdot\vnorm d</mrow>
+        <mrow>\amp = \frac{\abs{\dotp Fd}}{\vnorm d^2}\vnorm d^2</mrow>
+        <mrow>\amp = \abs{\dotp Fd}.</mrow>
+      </md>
+    </p>
+
+    <p>The expression <m>\dotp Fd</m> will be positive if the angle between <m>\vec F</m> and <m>\vec d</m> is acute; when the angle is obtuse (hence <m>\dotp Fd</m> is negative), the force is causing motion in the opposite direction of <m>\vec d</m>, resulting in <q>negative work.</q> We want to capture this sign, so we drop the absolute value and find that <m>W = \dotp Fd</m>.</p>
+
+    <definition xml:id="def_work">
+      <title>Work</title>
+      <statement>
+        <p>Let <m>\vec F</m> be a constant force that moves an object in a straight line from point <m>P</m> to point <m>Q</m>. Let <m>\vec d = \vv{PQ}</m>. The <term>work</term> <m>W</m> done by <m>\vec F</m> along <m>\vec d</m> is <m>W = \dotp Fd</m>.
+          <index><main>work</main></index></p>
+      </statement>
+    </definition>
+
+    <example xml:id="ex_dotp7">
+      <title>Computing work</title>
+      <statement>
+        <p>A man slides a box along a ramp that rises 3ft over a distance of 15ft by applying 50lb of force as shown in <xref ref="fig_dotp7">Figure</xref>. Compute the work done.</p>
+      </statement>
+      <solution>
+        <p>The figure indicates that the force applied makes a <m>30^\circ</m> angle with the horizontal, so <m>\vec F = 50\la \cos(30^\circ) ,\sin(30^\circ) \ra \approx \la 43.3,25\ra</m>. The ramp is represented by <m>\vec d  = \la 15,3\ra</m>. The work done is simply
+          <me>
+            \dotp Fd = 50\la \cos(30^\circ) ,\sin(30^\circ) \ra \cdot \la 15,3\ra \approx 724.5 \text{ ft--lb } .
+          </me>
+        </p>
+
+        <figure xml:id="fig_dotp7" >
+          <caption>Computing work when sliding a box up a ramp in <xref ref="ex_dotp7">Example</xref>.</caption>
+          <!-- START figures/fig_dotp7.tex -->
+          <image xml:id="img_dotp7" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}[>=stealth,scale=.3]
+	\draw [thick] (0,0) -- node [below,pos=.5] {\scriptsize 15} (15,0) -- node [right, pos=.5] {\scriptsize 3} (15,3) -- cycle;
+	\draw [thick] (5,1) -- (4.55,3.25) -- (6.8,3.7) -- (7.25,1.45);
+	\begin{scope}[,shift={(5.9,2.35)}]
+		\draw [thick,rotate=30,->] (0,0) -- (5,0) node [right] {\scriptsize $\vec F$};
+		\draw [thick,dashed] (-2,0) -- (4,0);
+		\draw (2,0) arc (0:30:2);
+		\draw [rotate=15] (3,0) node {\scriptsize $30^\circ$};
+	\end{scope}
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_dotp7.tex END -->
+        </figure>
+
+        <p>Note how we did not actually compute the distance the object traveled, nor the magnitude of the force in the direction of travel; this is all inherently computed by the dot product!</p>
+      </solution>
+    </example>
+
+    <p>The dot product is a powerful way of evaluating computations that depend on angles without actually using angles. The next section explores another <q>product</q> on vectors, the <em>cross product.</em> Once again, angles play an important role, though in a much different way.</p>
+  </subsection>
+
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>The dot product of two vectors is a <fillin />, not a vector.</p>
+          </statement>
+          <solution>
+            <p>Scalar</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>How are the concepts of the dot product and vector magnitude related?</p>
+          </statement>
+          <solution>
+            <p>The magnitude of a vectors is the square root of the dot product of a vector with itself; that is,
+              <m>\norm{\vec v} = \sqrt{\vec v\cdot \vec v}</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>How can one quickly tell if the angle between two vectors is acute or obtuse?</p>
+          </statement>
+          <solution>
+            <p>By considering the sign of the dot product of the two vectors. If the dot product is positive, the angle is acute; if the dot product is negative, the angle is obtuse.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Give a synonym for <q>orthogonal.</q></p>
+          </statement>
+          <solution>
+            <p><q>Perpendicular</q> is one answer.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, find the dot product of the given vectors.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$dot">
+              <static>-22</static>
+            </var>
+            <pg-code>
+              Context("LimitedNumeric");
+              $dot=Real("-22");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\vec u = \la 2,-4\ra</m>, <m>\vec v = \la 3,7\ra</m></p>
+            <p><m>\vec u \cdot\vec v=</m><var name="$dot" width="5" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$dot">
+              <static>33</static>
+            </var>
+            <pg-code>
+              Context("LimitedNumeric");
+              $dot=Real("33");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\vec u = \la 5,3\ra</m>, <m>\vec v = \la 6,1\ra</m></p>
+            <p><m>\vec u \cdot\vec v=</m><var name="$dot" width="5" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$dot">
+              <static>3</static>
+            </var>
+            <pg-code>
+              Context("LimitedNumeric");
+              $dot=Real("3");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\vec u = \la 1,-1,2\ra</m>, <m>\vec v = \la 2,5,3\ra</m></p>
+            <p><m>\vec u \cdot\vec v=</m><var name="$dot" width="5" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$dot">
+              <static>0</static>
+            </var>
+            <pg-code>
+              Context("LimitedNumeric");
+              $dot=Real("0");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\vec u = \la 3,5,-1\ra</m>, <m>\vec v = \la 4,-1,7\ra</m></p>
+            <p><m>\vec u \cdot\vec v=</m><var name="$dot" width="5" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\vec u = \la 1,1\ra</m>, <m>\vec v = \la 1,2,3\ra</m></p>
+          </statement>
+          <solution>
+            <p>not defined</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$dot">
+              <static>0</static>
+            </var>
+            <pg-code>
+              Context("LimitedNumeric");
+              $dot=Real("0");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\vec u = \la 1,2,3\ra</m>, <m>\vec v = \la 0,0,0\ra</m></p>
+            <p><m>\vec u \cdot\vec v=</m><var name="$dot" width="5" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercise>
+      <webwork seed="1">
+        <setup>
+          <var name="">
+            <static></static>
+          </var>
+          <pg-code>
+          </pg-code>
+        </setup>
+        <statement>
+          <p>Create your own vectors <m>\vec u</m>, <m>\vec v</m> and <m>\vec w</m> in <m>\mathbb{R}^2</m> and show that <m>\vec u\cdot (\vec v+\vec w) = \vec u\cdot \vec v + \vec u\cdot \vec w</m>.</p>
+        </statement>
+        <solution>
+          <p>Answers will vary.</p>
+        </solution>
+      </webwork>
+    </exercise>
+    <exercise>
+      <webwork seed="1">
+        <setup>
+          <var name="">
+            <static></static>
+          </var>
+          <pg-code>
+          </pg-code>
+        </setup>
+        <statement>
+          <p>Create your own vectors <m>\vec u</m> and <m>\vec v</m> in <m>\mathbb{R}^3</m> and scalar <m>c</m> and show that <m>c(\vec u\cdot \vec v) = \vec u\cdot (c\vec v)</m>.</p>
+        </statement>
+        <solution>
+          <p>Answers will vary.</p>
+        </solution>
+      </webwork>
+    </exercise>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, find the measure of the angle between the two vectors in both radians and degrees.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$theta">
+              <static>\arccos\mathopen{}(3/\sqrt{10}\right)\mathclose{}</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $theta=Formula("arccos(3/sqrt(10))");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>The angle between <m>\vec u = \la 1,1\ra</m> and <m>\vec v = \la 1,2\ra</m> is <var name="$theta" width="10" />.</p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$theta">
+              <static>\arccos\mathopen{}(-1/\sqrt{170}\right)\mathclose{}</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $theta=Formula("arccos(-1/sqrt(170))");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>The angle between <m>\vec u = \la -2,1\ra</m> and <m>\vec v = \la 3,5\ra</m> is <var name="$theta" width="10" />.</p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$theta">
+              <static>\pi/4</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $theta=Formula("pi/4");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>The angle between <m>\vec u = \la 8,1,-4\ra</m> and <m>\vec v = \la 2,2,0\ra</m> is <var name="$theta" width="10" />.</p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$theta">
+              <static>\pi/2</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $theta=Formula("pi/2");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>The angle between <m>\vec u = \la 1,7,2\ra</m> and <m>\vec v = \la 4,-2,5\ra</m> is <var name="$theta" width="10" />.</p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, a vector <m>\vec v</m> is given. Give two vectors that are orthogonal to <m>\vec v</m>.</p>
+      </introduction>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$multians">
+              <set>
+                <member correct="yes">\langle-7,4\rangle</member>
+                <member correct="yes">\langle14,-8\rangle</member>
+              </set>
+            </var>
+            <pg-code>
+              Context("Vector");
+              $v=Vector("&lt;4,7>");
+              $u=Vector("&lt;-7,4>");
+              $w=Vector("&lt;14,-8>");
+              $multians = MultiAnswer($u,$v)->with(
+                  singleResult => 0,
+                  checker => sub {
+                      my ($correct,$student,$self) = @_;
+                      my ($s1, $s2) = @{$student};
+                      $ret[0] = (($s1 . $v == 0) and ($s1 != Vector("&lt;0,0>")));
+                      $ret[1] = (($s2 . $v == 0) and ($s2 != Vector("&lt;0,0>")) and ($s1 != $s2));
+                      return ~~@ret;
+                   }
+                );
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find two nonzero vectors orthogonal to <m>\vec v = \la 4,7\ra</m>.</p>
+            <p><var name="$multians" width="10"/> and <var name="$multians" width="10"/></p>
+          </statement>
+          <solution>
+            <p>Answers will vary; two possible answers are <m>\la -7,4\ra</m> and <m>\la 14,-8\ra</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$multians">
+              <set>
+                <member correct="yes">\langle5,3\rangle</member>
+                <member correct="yes">\langle-15,-9\rangle</member>
+              </set>
+            </var>
+            <pg-code>
+              Context("Vector");
+              $v=Vector("&lt;-3,5>");
+              $u=Vector("&lt;5,3>");
+              $w=Vector("&lt;-15,-9>");
+              $multians = MultiAnswer($u,$v)->with(
+                  singleResult => 0,
+                  checker => sub {
+                      my ($correct,$student,$self) = @_;
+                      my ($s1, $s2) = @{$student};
+                      $ret[0] = (($s1 . $v == 0) and ($s1 != Vector("&lt;0,0>")));
+                      $ret[1] = (($s2 . $v == 0) and ($s2 != Vector("&lt;0,0>")) and ($s1 != $s2));
+                      return ~~@ret;
+                   }
+                );
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find two nonzero vectors orthogonal to <m>\vec v = \la -3,5\ra</m>.</p>
+            <p><var name="$multians" width="10"/> and <var name="$multians" width="10"/></p>
+          </statement>
+          <solution>
+            <p>Answers will vary; two possible answers are <m>\la 5,3\ra</m> and <m>\la -15,-9\ra</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$multians">
+              <set>
+                <member correct="yes">\langle1,0,-1\rangle</member>
+                <member correct="yes">\langle4,5,-9\rangle</member>
+              </set>
+            </var>
+            <pg-code>
+              Context("Vector");
+              $v=Vector("&lt;1,1,1>");
+              $u=Vector("&lt;1,0,-1>");
+              $w=Vector("&lt;4,5,-9>");
+              $multians = MultiAnswer($u,$v)->with(
+                  singleResult => 0,
+                  checker => sub {
+                      my ($correct,$student,$self) = @_;
+                      my ($s1, $s2) = @{$student};
+                      $ret[0] = (($s1 . $v == 0) and ($s1 != Vector("&lt;0,0>")));
+                      $ret[1] = (($s2 . $v == 0) and ($s2 != Vector("&lt;0,0>")) and ($s1 != $s2));
+                      return ~~@ret;
+                   }
+                );
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find two nonzero vectors orthogonal to <m>\vec v = \la 1,1,1\ra</m>.</p>
+            <p><var name="$multians" width="10"/> and <var name="$multians" width="10"/></p>
+          </statement>
+          <solution>
+            <p>Answers will vary; two possible answers are <m>\la 1,0,-1\ra</m> and <m>\la 4,5,-9\ra</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$multians">
+              <set>
+                <member correct="yes">\langle2,1,0\rangle</member>
+                <member correct="yes">\langle1,1,1/3\rangle</member>
+              </set>
+            </var>
+            <pg-code>
+              Context("Vector");
+              $v=Vector("&lt;1,-2,3>");
+              $u=Vector("&lt;2,1,0>");
+              $w=Vector("&lt;1,1,1/3>");
+              $multians = MultiAnswer($u,$v)->with(
+                  singleResult => 0,
+                  checker => sub {
+                      my ($correct,$student,$self) = @_;
+                      my ($s1, $s2) = @{$student};
+                      $ret[0] = (($s1 . $v == 0) and ($s1 != Vector("&lt;0,0>")));
+                      $ret[1] = (($s2 . $v == 0) and ($s2 != Vector("&lt;0,0>")) and ($s1 != $s2));
+                      return ~~@ret;
+                   }
+                );
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find two nonzero vectors orthogonal to <m>\vec v = \la 1,-2,3\ra</m>.</p>
+            <p><var name="$multians" width="10"/> and <var name="$multians" width="10"/></p>
+          </statement>
+          <solution>
+            <p>Answers will vary; two possible answers are <m>\la 2,1,0\ra</m> and <m>\la 1,1,1/3\ra</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, vectors <m>\vec u</m> and <m>\vec v</m> are given. Find <m>\proj uv</m>, the orthogonal projection of <m>\vec u</m> onto <m>\vec v</m>, and sketch all three vectors on the same axes.</p>
+      </introduction>
+      <exercise xml:id="ex_10_03_ex_21">
+        <webwork seed="1">
+          <setup>
+            <var name="$projuv">
+              <static>\langle -1/2,3/2\rangle</static>
+            </var>
+            <pg-code>
+              Context("Vector");
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $u=Vector("&lt;1,2>");
+              $v=Vector("&lt;-1,3>");
+              $num=$u . $v;
+              $den=$v . $v;
+              @vc=$v->value;
+              @nums=map{$_*$num}(@vc);
+              $projuv=Compute("&lt;$nums[0]/$den,$nums[1]/$den>");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>If <m>\vec u = \la 1,2\ra</m> and <m>\vec v = \la -1,3\ra</m>, then <m>\proj uv=</m><var name="$projuv" width="15" />.</p>
+            <p>Sketch all three vectors on the same axes.</p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$projuv">
+              <static>\langle 2,6\rangle</static>
+            </var>
+            <pg-code>
+              Context("Vector");
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $u=Vector("&lt;5,5>");
+              $v=Vector("&lt;1,3>");
+              $num=$u . $v;
+              $den=$v . $v;
+              @vc=$v->value;
+              @nums=map{$_*$num}(@vc);
+              $projuv=Compute("&lt;$nums[0]/$den,$nums[1]/$den>");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>If <m>\vec u = \la 5,5\ra</m> and <m>\vec v = \la 1,3\ra</m>, then <m>\proj uv=</m><var name="$projuv" width="15" />.</p>
+            <p>Sketch all three vectors on the same axes.</p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$projuv">
+              <static>\langle -1/2,-1/2\rangle</static>
+            </var>
+            <pg-code>
+              Context("Vector");
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $u=Vector("&lt;-3,2>");
+              $v=Vector("&lt;1,1>");
+              $num=$u . $v;
+              $den=$v . $v;
+              @vc=$v->value;
+              @nums=map{$_*$num}(@vc);
+              $projuv=Compute("&lt;$nums[0]/$den,$nums[1]/$den>");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>If <m>\vec u = \la -3,2\ra</m> and <m>\vec v = \la 1,1\ra</m>, then <m>\proj uv=</m><var name="$projuv" width="15" />.</p>
+            <p>Sketch all three vectors on the same axes.</p>
+          </statement>
+        </webwork>
+      </exercise>
+
+     <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$projuv">
+              <static>\langle 0,0\rangle</static>
+            </var>
+            <pg-code>
+              Context("Vector");
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $u=Vector("&lt;-3,2>");
+              $v=Vector("&lt;2,3>");
+              $num=$u . $v;
+              $den=$v . $v;
+              @vc=$v->value;
+              @nums=map{$_*$num}(@vc);
+              $projuv=Compute("&lt;$nums[0]/$den,$nums[1]/$den>");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>If <m>\vec u = \la -3,2\ra</m> and <m>\vec v = \la 2,3\ra</m>, then <m>\proj uv=</m><var name="$projuv" width="15" />.</p>
+            <p>Sketch all three vectors on the same axes.</p>
+          </statement>
+        </webwork>
+      </exercise>
+
+     <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$projuv">
+              <static>\langle 1,2,3\rangle</static>
+            </var>
+            <pg-code>
+              Context("Vector");
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $u=Vector("&lt;1,5,1>");
+              $v=Vector("&lt;1,2,3>");
+              $num=$u . $v;
+              $den=$v . $v;
+              @vc=$v->value;
+              @nums=map{$_*$num}(@vc);
+              $projuv=Compute("&lt;$nums[0]/$den,$nums[1]/$den,$nums[2]/$den>");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>If <m>\vec u = \la 1,5,1\ra</m> and <m>\vec v = \la 1,2,3\ra</m>, then <m>\proj uv=</m><var name="$projuv" width="15" />.</p>
+            <p>Sketch all three vectors on the same axes.</p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise xml:id="ex_10_03_ex_24">
+        <webwork seed="1">
+          <setup>
+            <var name="$projuv">
+              <static>\langle 4/3,4/3,2/3\rangle</static>
+            </var>
+            <pg-code>
+              Context("Vector");
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $u=Vector("&lt;3,-1,2>");
+              $v=Vector("&lt;2,2,1>");
+              $num=$u . $v;
+              $den=$v . $v;
+              @vc=$v->value;
+              @nums=map{$_*$num}(@vc);
+              $projuv=Compute("&lt;$nums[0]/$den,$nums[1]/$den,$nums[2]/$den>");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>If <m>\vec u = \la 3,-1,2\ra</m> and <m>\vec v = \la 2,2,1\ra</m>, then <m>\proj uv=</m><var name="$projuv" width="15" />.</p>
+            <p>Sketch all three vectors on the same axes.</p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, vectors <m>\vec u</m> and <m>\vec v</m> are given. Write <m>\vec u</m> as the sum of two vectors, one of which is parallel to <m>\vec v</m> (or is zero) and one of which is orthogonal to <m>\vec v</m>. Note: these are the same pairs of vectors as found in <xref ref="ex_10_03_ex_21">Exercises</xref> <mdash /> <xref ref="ex_10_03_ex_24"></xref>.</p>
+      </introduction>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$multians">
+              <set>
+                <member correct="yes">\la -1/2,3/2\ra</member>
+                <member correct="yes">\la 3/2,1/2\ra</member>
+              </set>
+            </var>
+            <pg-code>
+              Context("Vector");
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $u=Vector("&lt;1,2>");
+              $v=Vector("&lt;-1,3>");
+              $num=$u . $v;
+              $den=$v . $v;
+              @vc=$v->value;
+              @nums=map{$_*$num}(@vc);
+              $projuv=Compute("&lt;$nums[0]/$den,$nums[1]/$den>");
+              @uc=$u->value;
+              @compnums=map{$uc[$_]*$den-$nums[$_]}(0,1);
+              $comp=Compute("&lt;$compnums[0]/$den,$compnums[1]/$den>");
+              $multians = MultiAnswer($projuv,$comp)->with(
+                  singleResult => 0,
+                  checker => sub {
+                      my ($correct,$student,$self) = @_;
+                      my ($s1, $s2) = @{$student};
+                      my ($c1, $c2) = @{$correct};
+                      if ((($s1==$c1) and ($s2==$c2)) or (($s1==$c2) and ($s2==$c1)))
+                        {return [1,1];}
+                      elsif ($s1+$s2 != $u)
+                        {$self->setMessage(1,"These vectors do not sum to u.");
+                         $self->setMessage(2,"These vectors do not sum to u.");
+                         return [0,0];
+                         }
+                      elsif (abs($s1 . $v) == sqrt($s1 . $s1)*sqrt($v . $v))
+                        {$self->setMessage(1,"This vector is parallel to v.");
+                         $self->setMessage(2,"But this vector is not orthogonal to v.");
+                         return [1,0];
+                        }
+                      elsif (abs($s2 . $v) == sqrt($s2 . $s2)*sqrt($v . $v))
+                        {$self->setMessage(1,"This vector is not orthogonal to v.");
+                         $self->setMessage(2,"This vector is parallel to v.");
+                         return [0,1];
+                        }
+                      elsif ($s1 . $v == 0)
+                        {$self->setMessage(1,"This vector is orthogonal to v.");
+                         $self->setMessage(2,"But this vector is not parallel to v.");
+                         return [1,0];
+                        }
+                      elsif ($s2 . $v == 0)
+                        {$self->setMessage(1,"This vector is not parallel to v.");
+                         $self->setMessage(2,"This vector is orthogonal to v.");
+                         return [0,1];
+                        }
+                      else {
+                        return [0,0];
+                      };
+                   }
+                );
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Write <m>\vec u = \la 1,2\ra</m> as the sum of two vectors, one parallel to <m>\vec v = \la -1,3\ra</m> (or zero) and the other perpendicular.</p>
+            <p><m>\vec u=</m><var name="$multians" width="15" /><m>{}+{}</m><var name="$multians" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$multians">
+              <set>
+                <member correct="yes">\la 2,6\ra</member>
+                <member correct="yes">\la 3,-1\ra</member>
+              </set>
+            </var>
+            <pg-code>
+              Context("Vector");
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $u=Vector("&lt;5,5>");
+              $v=Vector("&lt;1,3>");
+              $num=$u . $v;
+              $den=$v . $v;
+              @vc=$v->value;
+              @nums=map{$_*$num}(@vc);
+              $projuv=Compute("&lt;$nums[0]/$den,$nums[1]/$den>");
+              @uc=$u->value;
+              @compnums=map{$uc[$_]*$den-$nums[$_]}(0,1);
+              $comp=Compute("&lt;$compnums[0]/$den,$compnums[1]/$den>");
+              $multians = MultiAnswer($projuv,$comp)->with(
+                  singleResult => 0,
+                  checker => sub {
+                      my ($correct,$student,$self) = @_;
+                      my ($s1, $s2) = @{$student};
+                      my ($c1, $c2) = @{$correct};
+                      if ((($s1==$c1) and ($s2==$c2)) or (($s1==$c2) and ($s2==$c1)))
+                        {return [1,1];}
+                      elsif ($s1+$s2 != $u)
+                        {$self->setMessage(1,"These vectors do not sum to u.");
+                         $self->setMessage(2,"These vectors do not sum to u.");
+                         return [0,0];
+                         }
+                      elsif (abs($s1 . $v) == sqrt($s1 . $s1)*sqrt($v . $v))
+                        {$self->setMessage(1,"This vector is parallel to v.");
+                         $self->setMessage(2,"But this vector is not orthogonal to v.");
+                         return [1,0];
+                        }
+                      elsif (abs($s2 . $v) == sqrt($s2 . $s2)*sqrt($v . $v))
+                        {$self->setMessage(1,"This vector is not orthogonal to v.");
+                         $self->setMessage(2,"This vector is parallel to v.");
+                         return [0,1];
+                        }
+                      elsif ($s1 . $v == 0)
+                        {$self->setMessage(1,"This vector is orthogonal to v.");
+                         $self->setMessage(2,"But this vector is not parallel to v.");
+                         return [1,0];
+                        }
+                      elsif ($s2 . $v == 0)
+                        {$self->setMessage(1,"This vector is not parallel to v.");
+                         $self->setMessage(2,"This vector is orthogonal to v.");
+                         return [0,1];
+                        }
+                      else {
+                        return [0,0];
+                      };
+                   }
+                );
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Write <m>\vec u = \la 5,5\ra</m> as the sum of two vectors, one parallel to <m>\vec v = \la 1,3\ra</m> (or zero) and the other perpendicular.</p>
+            <p><m>\vec u=</m><var name="$multians" width="15" /><m>{}+{}</m><var name="$multians" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$multians">
+              <set>
+                <member correct="yes">\la -1/2,-1/2\ra</member>
+                <member correct="yes">\la -5/2,5/2\ra</member>
+              </set>
+            </var>
+            <pg-code>
+              Context("Vector");
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $u=Vector("&lt;-3,2>");
+              $v=Vector("&lt;1,1>");
+              $num=$u . $v;
+              $den=$v . $v;
+              @vc=$v->value;
+              @nums=map{$_*$num}(@vc);
+              $projuv=Compute("&lt;$nums[0]/$den,$nums[1]/$den>");
+              @uc=$u->value;
+              @compnums=map{$uc[$_]*$den-$nums[$_]}(0,1);
+              $comp=Compute("&lt;$compnums[0]/$den,$compnums[1]/$den>");
+              $multians = MultiAnswer($projuv,$comp)->with(
+                  singleResult => 0,
+                  checker => sub {
+                      my ($correct,$student,$self) = @_;
+                      my ($s1, $s2) = @{$student};
+                      my ($c1, $c2) = @{$correct};
+                      if ((($s1==$c1) and ($s2==$c2)) or (($s1==$c2) and ($s2==$c1)))
+                        {return [1,1];}
+                      elsif ($s1+$s2 != $u)
+                        {$self->setMessage(1,"These vectors do not sum to u.");
+                         $self->setMessage(2,"These vectors do not sum to u.");
+                         return [0,0];
+                         }
+                      elsif (abs($s1 . $v) == sqrt($s1 . $s1)*sqrt($v . $v))
+                        {$self->setMessage(1,"This vector is parallel to v.");
+                         $self->setMessage(2,"But this vector is not orthogonal to v.");
+                         return [1,0];
+                        }
+                      elsif (abs($s2 . $v) == sqrt($s2 . $s2)*sqrt($v . $v))
+                        {$self->setMessage(1,"This vector is not orthogonal to v.");
+                         $self->setMessage(2,"This vector is parallel to v.");
+                         return [0,1];
+                        }
+                      elsif ($s1 . $v == 0)
+                        {$self->setMessage(1,"This vector is orthogonal to v.");
+                         $self->setMessage(2,"But this vector is not parallel to v.");
+                         return [1,0];
+                        }
+                      elsif ($s2 . $v == 0)
+                        {$self->setMessage(1,"This vector is not parallel to v.");
+                         $self->setMessage(2,"This vector is orthogonal to v.");
+                         return [0,1];
+                        }
+                      else {
+                        return [0,0];
+                      };
+                   }
+                );
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Write <m>\vec u = \la -3,2\ra</m> as the sum of two vectors, one parallel to <m>\vec v = \la 1,1\ra</m> (or zero) and the other perpendicular.</p>
+            <p><m>\vec u=</m><var name="$multians" width="15" /><m>{}+{}</m><var name="$multians" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$multians">
+              <set>
+                <member correct="yes">\la 0,0\ra</member>
+                <member correct="yes">\la -3,2\ra</member>
+              </set>
+            </var>
+            <pg-code>
+              Context("Vector");
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $u=Vector("&lt;-3,2>");
+              $v=Vector("&lt;2,3>");
+              $num=$u . $v;
+              $den=$v . $v;
+              @vc=$v->value;
+              @nums=map{$_*$num}(@vc);
+              $projuv=Compute("&lt;$nums[0]/$den,$nums[1]/$den>");
+              @uc=$u->value;
+              @compnums=map{$uc[$_]*$den-$nums[$_]}(0,1);
+              $comp=Compute("&lt;$compnums[0]/$den,$compnums[1]/$den>");
+              $multians = MultiAnswer($projuv,$comp)->with(
+                  singleResult => 0,
+                  checker => sub {
+                      my ($correct,$student,$self) = @_;
+                      my ($s1, $s2) = @{$student};
+                      my ($c1, $c2) = @{$correct};
+                      if ((($s1==$c1) and ($s2==$c2)) or (($s1==$c2) and ($s2==$c1)))
+                        {return [1,1];}
+                      elsif ($s1+$s2 != $u)
+                        {$self->setMessage(1,"These vectors do not sum to u.");
+                         $self->setMessage(2,"These vectors do not sum to u.");
+                         return [0,0];
+                         }
+                      elsif (abs($s1 . $v) == sqrt($s1 . $s1)*sqrt($v . $v))
+                        {$self->setMessage(1,"This vector is parallel to v.");
+                         $self->setMessage(2,"But this vector is not orthogonal to v.");
+                         return [1,0];
+                        }
+                      elsif (abs($s2 . $v) == sqrt($s2 . $s2)*sqrt($v . $v))
+                        {$self->setMessage(1,"This vector is not orthogonal to v.");
+                         $self->setMessage(2,"This vector is parallel to v.");
+                         return [0,1];
+                        }
+                      elsif ($s1 . $v == 0)
+                        {$self->setMessage(1,"This vector is orthogonal to v.");
+                         $self->setMessage(2,"But this vector is not parallel to v.");
+                         return [1,0];
+                        }
+                      elsif ($s2 . $v == 0)
+                        {$self->setMessage(1,"This vector is not parallel to v.");
+                         $self->setMessage(2,"This vector is orthogonal to v.");
+                         return [0,1];
+                        }
+                      else {
+                        return [0,0];
+                      };
+                   }
+                );
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Write <m>\vec u = \la -3,2\ra</m> as the sum of two vectors, one parallel to <m>\vec v = \la 2,3\ra</m> (or zero) and the other perpendicular.</p>
+            <p><m>\vec u=</m><var name="$multians" width="15" /><m>{}+{}</m><var name="$multians" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$multians">
+              <set>
+                <member correct="yes">\la 1,2,3\ra</member>
+                <member correct="yes">\la 0,3,-2\ra</member>
+              </set>
+            </var>
+            <pg-code>
+              Context("Vector");
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $u=Vector("&lt;1,5,1>");
+              $v=Vector("&lt;1,2,3>");
+              $num=$u . $v;
+              $den=$v . $v;
+              @vc=$v->value;
+              @nums=map{$_*$num}(@vc);
+              $projuv=Compute("&lt;$nums[0]/$den,$nums[1]/$den,$nums[2]/$den>");
+              @uc=$u->value;
+              @compnums=map{$uc[$_]*$den-$nums[$_]}(0,1,2);
+              $comp=Compute("&lt;$compnums[0]/$den,$compnums[1]/$den,$compnums[2]/$den>");
+              $multians = MultiAnswer($projuv,$comp)->with(
+                  singleResult => 0,
+                  checker => sub {
+                      my ($correct,$student,$self) = @_;
+                      my ($s1, $s2) = @{$student};
+                      my ($c1, $c2) = @{$correct};
+                      if ((($s1==$c1) and ($s2==$c2)) or (($s1==$c2) and ($s2==$c1)))
+                        {return [1,1];}
+                      elsif ($s1+$s2 != $u)
+                        {$self->setMessage(1,"These vectors do not sum to u.");
+                         $self->setMessage(2,"These vectors do not sum to u.");
+                         return [0,0];
+                         }
+                      elsif (abs($s1 . $v) == sqrt($s1 . $s1)*sqrt($v . $v))
+                        {$self->setMessage(1,"This vector is parallel to v.");
+                         $self->setMessage(2,"But this vector is not orthogonal to v.");
+                         return [1,0];
+                        }
+                      elsif (abs($s2 . $v) == sqrt($s2 . $s2)*sqrt($v . $v))
+                        {$self->setMessage(1,"This vector is not orthogonal to v.");
+                         $self->setMessage(2,"This vector is parallel to v.");
+                         return [0,1];
+                        }
+                      elsif ($s1 . $v == 0)
+                        {$self->setMessage(1,"This vector is orthogonal to v.");
+                         $self->setMessage(2,"But this vector is not parallel to v.");
+                         return [1,0];
+                        }
+                      elsif ($s2 . $v == 0)
+                        {$self->setMessage(1,"This vector is not parallel to v.");
+                         $self->setMessage(2,"This vector is orthogonal to v.");
+                         return [0,1];
+                        }
+                      else {
+                        return [0,0];
+                      };
+                   }
+                );
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Write <m>\vec u = \la 1,5,1\ra</m> as the sum of two vectors, one parallel to <m>\vec v = \la 1,2,3\ra</m> (or zero) and the other perpendicular.</p>
+            <p><m>\vec u=</m><var name="$multians" width="15" /><m>{}+{}</m><var name="$multians" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$multians">
+              <set>
+                <member correct="yes">\la 4/3,4/3,2/3\ra</member>
+                <member correct="yes">\la 5/3,-7/3,4/3\ra</member>
+              </set>
+            </var>
+            <pg-code>
+              Context("Vector");
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $u=Vector("&lt;3,-1,2>");
+              $v=Vector("&lt;2,2,1>");
+              $num=$u . $v;
+              $den=$v . $v;
+              @vc=$v->value;
+              @nums=map{$_*$num}(@vc);
+              $projuv=Compute("&lt;$nums[0]/$den,$nums[1]/$den,$nums[2]/$den>");
+              @uc=$u->value;
+              @compnums=map{$uc[$_]*$den-$nums[$_]}(0,1,2);
+              $comp=Compute("&lt;$compnums[0]/$den,$compnums[1]/$den,$compnums[2]/$den>");
+              $multians = MultiAnswer($projuv,$comp)->with(
+                  singleResult => 0,
+                  checker => sub {
+                      my ($correct,$student,$self) = @_;
+                      my ($s1, $s2) = @{$student};
+                      my ($c1, $c2) = @{$correct};
+                      if ((($s1==$c1) and ($s2==$c2)) or (($s1==$c2) and ($s2==$c1)))
+                        {return [1,1];}
+                      elsif ($s1+$s2 != $u)
+                        {$self->setMessage(1,"These vectors do not sum to u.");
+                         $self->setMessage(2,"These vectors do not sum to u.");
+                         return [0,0];
+                         }
+                      elsif (abs($s1 . $v) == sqrt($s1 . $s1)*sqrt($v . $v))
+                        {$self->setMessage(1,"This vector is parallel to v.");
+                         $self->setMessage(2,"But this vector is not orthogonal to v.");
+                         return [1,0];
+                        }
+                      elsif (abs($s2 . $v) == sqrt($s2 . $s2)*sqrt($v . $v))
+                        {$self->setMessage(1,"This vector is not orthogonal to v.");
+                         $self->setMessage(2,"This vector is parallel to v.");
+                         return [0,1];
+                        }
+                      elsif ($s1 . $v == 0)
+                        {$self->setMessage(1,"This vector is orthogonal to v.");
+                         $self->setMessage(2,"But this vector is not parallel to v.");
+                         return [1,0];
+                        }
+                      elsif ($s2 . $v == 0)
+                        {$self->setMessage(1,"This vector is not parallel to v.");
+                         $self->setMessage(2,"This vector is orthogonal to v.");
+                         return [0,1];
+                        }
+                      else {
+                        return [0,0];
+                      };
+                   }
+                );
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Write <m>\vec u = \la 3,-1,2\ra</m> as the sum of two vectors, one parallel to <m>\vec v = \la 2,2,1\ra</m> (or zero) and the other perpendicular.</p>
+            <p><m>\vec u=</m><var name="$multians" width="15" /><m>{}+{}</m><var name="$multians" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercise>
+      <webwork seed="1">
+        <setup>
+          <var name="">
+            <static></static>
+          </var>
+          <pg-code>
+          </pg-code>
+        </setup>
+        <statement>
+          <p>A 10lb box sits on a ramp that rises 4ft over a distance of 20ft. How much force is required to keep the box from sliding down the ramp?</p>
+        </statement>
+        <solution>
+          <p>1.96lb</p>
+        </solution>
+      </webwork>
+    </exercise>
+    <exercise>
+      <webwork seed="1">
+        <setup>
+          <var name="">
+            <static></static>
+          </var>
+          <pg-code>
+          </pg-code>
+        </setup>
+        <statement>
+          <p>A 10lb box sits on a 15ft ramp that makes a <m>30^\circ</m> angle with the horizontal. How much force is required to keep the box from sliding down the ramp?</p>
+        </statement>
+        <solution>
+          <p>5lb</p>
+        </solution>
+      </webwork>
+    </exercise>
+    <exercise>
+      <webwork seed="1">
+        <setup>
+          <var name="">
+            <static></static>
+          </var>
+          <pg-code>
+          </pg-code>
+        </setup>
+        <statement>
+          <p>How much work is performed in moving a box horizontally 10ft with a force of 20lb applied at an angle of <m>45^\circ</m> to the horizontal?</p>
+        </statement>
+        <solution>
+          <p><m>141.42</m>ft<ndash />lb</p>
+        </solution>
+      </webwork>
+    </exercise>
+    <exercise>
+      <webwork seed="1">
+        <setup>
+          <var name="">
+            <static></static>
+          </var>
+          <pg-code>
+          </pg-code>
+        </setup>
+        <statement>
+          <p>How much work is performed in moving a box horizontally 10ft with a force of 20lb applied at an angle of <m>10^\circ</m> to the horizontal?</p>
+        </statement>
+        <solution>
+          <p><m>196.96</m>ft<ndash />lb</p>
+        </solution>
+      </webwork>
+    </exercise>
+    <exercise>
+      <webwork seed="1">
+        <setup>
+          <var name="">
+            <static></static>
+          </var>
+          <pg-code>
+          </pg-code>
+        </setup>
+        <statement>
+          <p>How much work is performed in moving a box up the length of a ramp that rises 2ft over a distance of 10ft, with a force of 50lb applied horizontally?</p>
+        </statement>
+        <solution>
+          <p><m>500</m>ft<ndash />lb</p>
+        </solution>
+      </webwork>
+    </exercise>
+    <exercise>
+      <webwork seed="1">
+        <setup>
+          <var name="">
+            <static></static>
+          </var>
+          <pg-code>
+          </pg-code>
+        </setup>
+        <statement>
+          <p>How much work is performed in moving a box up the length of a ramp that rises 2ft over a distance of 10ft, with a force of 50lb applied at an angle of <m>45^\circ</m> to the horizontal?</p>
+        </statement>
+        <solution>
+          <p><m>424.26</m>ft<ndash />lb</p>
+        </solution>
+      </webwork>
+    </exercise>
+    <exercise>
+      <webwork seed="1">
+        <setup>
+          <var name="">
+            <static></static>
+          </var>
+          <pg-code>
+          </pg-code>
+        </setup>
+        <statement>
+          <p>How much work is performed in moving a box up the length of a 10ft ramp that makes a <m>5^\circ</m> angle with the horizontal, with 50lb of force applied in the direction of the ramp?</p>
+        </statement>
+        <solution>
+          <p><m>500</m>ft<ndash />lb</p>
+        </solution>
+      </webwork>
+    </exercise>
+  </exercises>
+</section>

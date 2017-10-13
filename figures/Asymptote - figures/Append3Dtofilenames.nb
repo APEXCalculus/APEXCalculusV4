@@ -1,0 +1,998 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     53813,        989]
+NotebookOptionsPosition[     52532,        942]
+NotebookOutlinePosition[     52872,        957]
+CellTagsIndexPosition[     52829,        954]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+  "SetDirectory", "[", 
+   "\"\<C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\>\"", "]"}], " "}]], "Input",
+ CellChangeTimes->{{3.6260013035838957`*^9, 3.626001303592896*^9}, 
+   3.626001346108328*^9, {3.626366305942969*^9, 3.626366333489723*^9}, {
+   3.6263664003604097`*^9, 3.626366401491523*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"SetDirectory", "[", 
+  RowBox[{"Directory", "[", "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.626366404322806*^9, 3.626366416158989*^9}}],
+
+Cell[BoxData["\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\"\>"], "Output",
+ CellChangeTimes->{3.6263664186372375`*^9, 3.626367139989365*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"names", "=", 
+  RowBox[{"FileNames", "[", "\"\<*.asy\>\"", "]"}]}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"fig10_01_ex_153D.asy\"\>", ",", "\<\"fig10_01_ex_173D.asy\"\>",
+    ",", "\<\"fig10_01_ex_193D.asy\"\>", ",", "\<\"fig10_01_ex_19.asy\"\>", 
+   ",", "\<\"fig10_01_ex_203D.asy\"\>", ",", "\<\"fig10_01_ex_20.asy\"\>", 
+   ",", "\<\"fig10_01_ex_213D.asy\"\>", ",", "\<\"fig10_01_ex_21.asy\"\>", 
+   ",", "\<\"fig10_01_ex_223D.asy\"\>", ",", "\<\"fig10_01_ex_22.asy\"\>", 
+   ",", "\<\"fig10_01_ex_233D.asy\"\>", ",", "\<\"fig10_01_ex_263D.asy\"\>", 
+   ",", "\<\"fig10_01_ex_283D.asy\"\>", ",", "\<\"fig10_02_ex_143D.asy\"\>", 
+   ",", "\<\"fig10_02_ex_14.asy\"\>", ",", "\<\"fig10_02_ex_153D.asy\"\>", 
+   ",", "\<\"fig10_02_ex_15ans3D.asy\"\>", ",", "\<\"fig10_02_ex_15.asy\"\>", 
+   ",", "\<\"fig11_01_ex_123D.asy\"\>", ",", "\<\"fig11_01_ex_143D.asy\"\>", 
+   ",", "\<\"fig13_05_ex_053D.asy\"\>", ",", "\<\"fig13_05_ex_063D.asy\"\>", 
+   ",", "\<\"fig13_05_ex_073D.asy\"\>", ",", "\<\"fig13_05_ex_083D.asy\"\>", 
+   ",", "\<\"fig13_06_ex_073D.asy\"\>", ",", "\<\"fig13_06_ex_083D.asy\"\>", 
+   ",", "\<\"fig13_06_ex_093D.asy\"\>", ",", "\<\"fig13_06_ex_103D.asy\"\>", 
+   ",", "\<\"fig13_06_ex_113D.asy\"\>", ",", "\<\"fig13_06_ex_123D.asy\"\>", 
+   ",", "\<\"fig13_06_ex_133D.asy\"\>", ",", "\<\"fig13_06_ex_143D.asy\"\>", 
+   ",", "\<\"fig3d_proj3D.asy\"\>", ",", "\<\"fig3d_projb3D.asy\"\>", 
+   ",", "\<\"figcartcoord13D.asy\"\>", ",", "\<\"figcartcoord1.asy\"\>", 
+   ",", "\<\"figcartcoord23D.asy\"\>", ",", "\<\"figcartcoord2.asy\"\>", 
+   ",", "\<\"figconopt13D.asy\"\>", ",", "\<\"figconopt1c3D.asy\"\>", 
+   ",", "\<\"figconopt23D.asy\"\>", ",", "\<\"figcrossp4a3D.asy\"\>", 
+   ",", "\<\"figcrossp4a.asy\"\>", ",", "\<\"figcrossp63D.asy\"\>", 
+   ",", "\<\"figcrossp6.asy\"\>", ",", "\<\"figcrosspparallelpiped3D.asy\"\>",
+    ",", "\<\"figcrosspparallelpiped.asy\"\>", 
+   ",", "\<\"figcrossp_rhr3D.asy\"\>", ",", "\<\"figcrossp_rhr.asy\"\>", 
+   ",", "\<\"figcurvature43D.asy\"\>", ",", "\<\"figdirect13D.asy\"\>", 
+   ",", "\<\"figdirect23D.asy\"\>", ",", "\<\"figdirect33D.asy\"\>", 
+   ",", "\<\"figdirect93D.asy\"\>", ",", "\<\"figdotp33D.asy\"\>", 
+   ",", "\<\"figdotp3.asy\"\>", ",", "\<\"figdotp4b3D.asy\"\>", 
+   ",", "\<\"figdotp4b.asy\"\>", ",", "\<\"figdotpangle3D3D.asy\"\>", 
+   ",", "\<\"figdotpangle3D.asy\"\>", ",", "\<\"figdouble13D.asy\"\>", 
+   ",", "\<\"figdouble23D.asy\"\>", ",", "\<\"figdouble33D.asy\"\>", 
+   ",", "\<\"figdouble43D.asy\"\>", ",", "\<\"figdouble6b3D.asy\"\>", 
+   ",", "\<\"figdouble_intro23D.asy\"\>", 
+   ",", "\<\"figdouble_intro33D.asy\"\>", ",", "\<\"figdoublepol13D.asy\"\>", 
+   ",", "\<\"figdoublepol2b3D.asy\"\>", ",", "\<\"figdoublepol43D.asy\"\>", 
+   ",", "\<\"figdoublepol53D.asy\"\>", ",", "\<\"figdoublesummary3D.asy\"\>", 
+   ",", "\<\"figlevelcurve13D.asy\"\>", ",", "\<\"figlevelcurve23D.asy\"\>", 
+   ",", "\<\"figlines13D.asy\"\>", ",", "\<\"figlines23D.asy\"\>", 
+   ",", "\<\"figlines33D.asy\"\>", ",", "\<\"figlines63D.asy\"\>", 
+   ",", "\<\"figlines_dist23D.asy\"\>", 
+   ",", "\<\"figlines_dist2temp3D.asy\"\>", 
+   ",", "\<\"figlines_intro3D.asy\"\>", ",", "\<\"figmass23D.asy\"\>", 
+   ",", "\<\"figmass3a3D.asy\"\>", ",", "\<\"figmass3b3D.asy\"\>", 
+   ",", "\<\"figmchain23D.asy\"\>", ",", "\<\"figmchain_intro3D.asy\"\>", 
+   ",", "\<\"figmotion63D.asy\"\>", ",", "\<\"figmulticont13D.asy\"\>", 
+   ",", "\<\"figmulti_extreme13D.asy\"\>", 
+   ",", "\<\"figmulti_extreme23D.asy\"\>", 
+   ",", "\<\"figmulti_extreme33D.asy\"\>", 
+   ",", "\<\"figmulti_extreme53D.asy\"\>", 
+   ",", "\<\"figmultigraph_intro3D.asy\"\>", 
+   ",", "\<\"figmultigraph_introb3D.asy\"\>", 
+   ",", "\<\"figmultilimit_def3D.asy\"\>", ",", "\<\"figpartial3a3D.asy\"\>", 
+   ",", "\<\"figpartial3b3D.asy\"\>", ",", "\<\"figpartial4a3D.asy\"\>", 
+   ",", "\<\"figpartial4b3D.asy\"\>", ",", "\<\"figpartial63D.asy\"\>", 
+   ",", "\<\"figpartial6b3D.asy\"\>", ",", "\<\"figpartialintro3D.asy\"\>", 
+   ",", "\<\"figpartialintrob3D.asy\"\>", ",", "\<\"figplanes13D.asy\"\>", 
+   ",", "\<\"figplanes23D.asy\"\>", ",", "\<\"figplanes33D.asy\"\>", 
+   ",", "\<\"figplanes43D.asy\"\>", ",", "\<\"figplanes53D.asy\"\>", 
+   ",", "\<\"figplanes_dist3D.asy\"\>", 
+   ",", "\<\"figquadratic_parb3D.asy\"\>", 
+   ",", "\<\"figquadratic_parb.asy\"\>", ",", "\<\"figquadric_cone3D.asy\"\>",
+    ",", "\<\"figquadric_cone.asy\"\>", ",", "\<\"figquadric_coneb3D.asy\"\>",
+    ",", "\<\"figquadric_coneb.asy\"\>", 
+   ",", "\<\"figquadric_conec3D.asy\"\>", ",", "\<\"figquadric_conec.asy\"\>",
+    ",", "\<\"figquadric_ellipsoid3D.asy\"\>", 
+   ",", "\<\"figquadric_ellipsoid.asy\"\>", 
+   ",", "\<\"figquadric_ellipsoidb3D.asy\"\>", 
+   ",", "\<\"figquadric_ellipsoidb.asy\"\>", 
+   ",", "\<\"figquadric_hyp_one_sheet3D.asy\"\>", 
+   ",", "\<\"figquadric_hyp_one_sheet.asy\"\>", 
+   ",", "\<\"figquadric_hyp_one_sheetb3D.asy\"\>", 
+   ",", "\<\"figquadric_hyp_one_sheetb.asy\"\>", 
+   ",", "\<\"figquadric_hyp_par3D.asy\"\>", 
+   ",", "\<\"figquadric_hyp_par.asy\"\>", 
+   ",", "\<\"figquadric_hyp_parb3D.asy\"\>", 
+   ",", "\<\"figquadric_hyp_parb.asy\"\>", 
+   ",", "\<\"figquadric_hyp_parc3D.asy\"\>", 
+   ",", "\<\"figquadric_hyp_parc.asy\"\>", 
+   ",", "\<\"figquadric_hyp_two_sheet3D.asy\"\>", 
+   ",", "\<\"figquadric_hyp_two_sheet.asy\"\>", 
+   ",", "\<\"figquadric_hyp_two_sheetb3D.asy\"\>", 
+   ",", "\<\"figquadric_hyp_two_sheetb.asy\"\>", 
+   ",", "\<\"figquadric_par3D.asy\"\>", ",", "\<\"figquadric_par.asy\"\>", 
+   ",", "\<\"figquadric_parb3D.asy\"\>", ",", "\<\"figquadric_parb.asy\"\>", 
+   ",", "\<\"figspace13D.asy\"\>", ",", "\<\"figspace1.asy\"\>", 
+   ",", "\<\"figspace23D.asy\"\>", ",", "\<\"figspace2.asy\"\>", 
+   ",", "\<\"figspace33D.asy\"\>", ",", "\<\"figspace3.asy\"\>", 
+   ",", "\<\"figspace4a3D.asy\"\>", ",", "\<\"figspace4a.asy\"\>", 
+   ",", "\<\"figspace4b3D.asy\"\>", ",", "\<\"figspace4b.asy\"\>", 
+   ",", "\<\"figspace4c3D.asy\"\>", ",", "\<\"figspace4c.asy\"\>", 
+   ",", "\<\"figspace4d3D.asy\"\>", ",", "\<\"figspace4d.asy\"\>", 
+   ",", "\<\"figspace4e3D.asy\"\>", ",", "\<\"figspace4e.asy\"\>", 
+   ",", "\<\"figspace4f3D.asy\"\>", ",", "\<\"figspace4f.asy\"\>", 
+   ",", "\<\"figspace5a3D.asy\"\>", ",", "\<\"figspace5a.asy\"\>", 
+   ",", "\<\"figspace5ab3D.asy\"\>", ",", "\<\"figspace5ab.asy\"\>", 
+   ",", "\<\"figspace5b3D.asy\"\>", ",", "\<\"figspace5b.asy\"\>", 
+   ",", "\<\"figspace5bb3D.asy\"\>", ",", "\<\"figspace5bb.asy\"\>", 
+   ",", "\<\"figspace5c3D.asy\"\>", ",", "\<\"figspace5c.asy\"\>", 
+   ",", "\<\"figspace5cb3D.asy\"\>", ",", "\<\"figspace5cb.asy\"\>", 
+   ",", "\<\"figspace63D.asy\"\>", ",", "\<\"figspace6.asy\"\>", 
+   ",", "\<\"figspacecylinder13D.asy\"\>", 
+   ",", "\<\"figspacecylinder1.asy\"\>", 
+   ",", "\<\"figspacecylinder1b3D.asy\"\>", 
+   ",", "\<\"figspacecylinder1b.asy\"\>", 
+   ",", "\<\"figspace_tangent_intro3D.asy\"\>", 
+   ",", "\<\"figspacexy3D.asy\"\>", ",", "\<\"figspacexy.asy\"\>", 
+   ",", "\<\"figspacexz3D.asy\"\>", ",", "\<\"figspacexz.asy\"\>", 
+   ",", "\<\"figspaceyz3D.asy\"\>", ",", "\<\"figspaceyz.asy\"\>", 
+   ",", "\<\"figsurfacearea13D.asy\"\>", ",", "\<\"figsurfacearea33D.asy\"\>",
+    ",", "\<\"figsurfacearea43D.asy\"\>", 
+   ",", "\<\"figsurfacearea_intro13D.asy\"\>", 
+   ",", "\<\"figsurfacearea_intro23D.asy\"\>", 
+   ",", "\<\"figsurfrev1a3D.asy\"\>", ",", "\<\"figsurfrev1a.asy\"\>", 
+   ",", "\<\"figsurfrev1b3D.asy\"\>", ",", "\<\"figsurfrev1b.asy\"\>", 
+   ",", "\<\"figsurfrev2a3D.asy\"\>", ",", "\<\"figsurfrev2a.asy\"\>", 
+   ",", "\<\"figsurfrev2b3D.asy\"\>", ",", "\<\"figsurfrev2b.asy\"\>", 
+   ",", "\<\"figsurf_rev_intro3D.asy\"\>", 
+   ",", "\<\"figsurf_rev_intro.asy\"\>", 
+   ",", "\<\"figsurf_rev_introb3D.asy\"\>", 
+   ",", "\<\"figsurf_rev_introb.asy\"\>", ",", "\<\"figtannorm13D.asy\"\>", 
+   ",", "\<\"figtp123D.asy\"\>", ",", "\<\"figtp133D.asy\"\>", 
+   ",", "\<\"figtp153D.asy\"\>", ",", "\<\"figtp163D.asy\"\>", 
+   ",", "\<\"figtp183D.asy\"\>", ",", "\<\"figtrip13D.asy\"\>", 
+   ",", "\<\"figtrip1b3D.asy\"\>", ",", "\<\"figtrip23D.asy\"\>", 
+   ",", "\<\"figtrip2b3D.asy\"\>", ",", "\<\"figtrip2c3D.asy\"\>", 
+   ",", "\<\"figtrip2d3D.asy\"\>", ",", "\<\"figtrip33D.asy\"\>", 
+   ",", "\<\"figtrip3b3D.asy\"\>", ",", "\<\"figtrip3c3D.asy\"\>", 
+   ",", "\<\"figtrip3d3D.asy\"\>", ",", "\<\"figtrip43D.asy\"\>", 
+   ",", "\<\"figtrip4b3D.asy\"\>", ",", "\<\"figtrip4c3D.asy\"\>", 
+   ",", "\<\"figtrip4d3D.asy\"\>", ",", "\<\"figtrip53D.asy\"\>", 
+   ",", "\<\"figtrip5b3D.asy\"\>", ",", "\<\"figtrip5c3D.asy\"\>", 
+   ",", "\<\"figtrip5d3D.asy\"\>", ",", "\<\"figtrip5e3D.asy\"\>", 
+   ",", "\<\"figtripintro3D.asy\"\>", ",", "\<\"figtripintroa3D.asy\"\>", 
+   ",", "\<\"figvectintro3b3D.asy\"\>", ",", "\<\"figvectintro3b.asy\"\>", 
+   ",", "\<\"figvvf23D.asy\"\>", ",", "\<\"figvvfderiv13D.asy\"\>", 
+   ",", "\<\"figvvflimit43D.asy\"\>"}], "}"}]], "Output",
+ CellChangeTimes->{3.626366467451118*^9, 3.626367145399906*^9, 
+  3.6263673656769314`*^9}]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"StringDrop", "[", 
+  RowBox[{
+   RowBox[{"FileBaseName", "[", 
+    RowBox[{"names", "[", 
+     RowBox[{"[", "1", "]"}], "]"}], "]"}], ",", 
+   RowBox[{"-", "2"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.6263665157809505`*^9, 3.626366559499322*^9}}],
+
+Cell[BoxData["\<\"fig10_01_ex_15\"\>"], "Output",
+ CellChangeTimes->{3.6263665183882113`*^9, 3.626366560800452*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"names", "[", 
+  RowBox[{"[", "1", "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.6263665683362055`*^9, 3.6263665711464863`*^9}}],
+
+Cell[BoxData["\<\"fig10_01_ex_153D.asy\"\>"], "Output",
+ CellChangeTimes->{3.626366571830555*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"StringTake", "[", 
+  RowBox[{
+   RowBox[{"FileBaseName", "[", 
+    RowBox[{"names", "[", 
+     RowBox[{"[", "1", "]"}], "]"}], "]"}], ",", 
+   RowBox[{"-", "2"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.6263673899263563`*^9, 3.626367406981062*^9}}],
+
+Cell[BoxData["\<\"3D\"\>"], "Output",
+ CellChangeTimes->{{3.6263673970300665`*^9, 3.626367407444108*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Map", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"StringTake", "[", 
+        RowBox[{
+         RowBox[{"FileBaseName", "[", "#", "]"}], ",", 
+         RowBox[{"-", "2"}]}], "]"}], "\[Equal]", "\"\<3D\>\""}], ",", 
+      RowBox[{"RenameFile", "[", 
+       RowBox[{"#", ",", 
+        RowBox[{
+         RowBox[{"StringDrop", "[", 
+          RowBox[{
+           RowBox[{"FileBaseName", "[", "#", "]"}], ",", 
+           RowBox[{"-", "2"}]}], "]"}], "<>", "\"\<_3D.asy\>\""}]}], "]"}], 
+      ",", 
+      RowBox[{"RenameFile", "[", 
+       RowBox[{"#", ",", 
+        RowBox[{
+         RowBox[{"FileBaseName", "[", "#", "]"}], "<>", "\"\<_3D.asy\>\""}]}],
+        "]"}]}], "]"}], "&"}], ",", "names"}], "]"}]], "Input",
+ CellChangeTimes->{{3.6263665931986914`*^9, 3.626366604304802*^9}, {
+  3.626366991550523*^9, 3.6263670134327106`*^9}, {3.626367083850752*^9, 
+  3.626367110503417*^9}, {3.6263674370300665`*^9, 3.6263675085602183`*^9}, {
+  3.6263675558659487`*^9, 3.6263676067410355`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"RenameFile", "::", "filex"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Cannot overwrite existing file \
+\[NoBreak]\\!\\(\\\"fig10_01_ex_19_3D.asy\\\"\\)\[NoBreak]. \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/RenameFile/filex\\\", \
+ButtonNote -> \\\"RenameFile::filex\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.6263671153519015`*^9, 3.6263675357009325`*^9, 
+  3.626367630295391*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"RenameFile", "::", "filex"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Cannot overwrite existing file \
+\[NoBreak]\\!\\(\\\"fig10_01_ex_20_3D.asy\\\"\\)\[NoBreak]. \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/RenameFile/filex\\\", \
+ButtonNote -> \\\"RenameFile::filex\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.6263671153519015`*^9, 3.6263675357009325`*^9, 
+  3.6263676303213935`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"RenameFile", "::", "filex"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Cannot overwrite existing file \
+\[NoBreak]\\!\\(\\\"fig10_01_ex_21_3D.asy\\\"\\)\[NoBreak]. \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/RenameFile/filex\\\", \
+ButtonNote -> \\\"RenameFile::filex\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.6263671153519015`*^9, 3.6263675357009325`*^9, 
+  3.626367630347396*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"General", "::", "stop"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Further output of \
+\[NoBreak]\\!\\(\\*StyleBox[\\(RenameFile :: filex\\), \
+\\\"MessageName\\\"]\\)\[NoBreak] will be suppressed during this calculation. \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/General/stop\\\", \
+ButtonNote -> \\\"General::stop\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.6263671153519015`*^9, 3.6263675357009325`*^9, 
+  3.6263676303723984`*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\fig10_01_ex_15_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\fig10_01_ex_17_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\fig10_01_ex_19_3D.asy\"\>", ",", 
+   "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\fig10_01_ex_20_3D.asy\"\>", ",", 
+   "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\fig10_01_ex_21_3D.asy\"\>", ",", 
+   "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\fig10_01_ex_22_3D.asy\"\>", ",", 
+   "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\fig10_01_ex_23_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\fig10_01_ex_26_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\fig10_01_ex_28_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\fig10_02_ex_14_3D.asy\"\>", ",", 
+   "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\fig10_02_ex_15_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\fig10_02_ex_15ans_3D.asy\"\>", ",",
+    "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\fig11_01_ex_12_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\fig11_01_ex_14_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\fig13_05_ex_05_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\fig13_05_ex_06_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\fig13_05_ex_07_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\fig13_05_ex_08_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\fig13_06_ex_07_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\fig13_06_ex_08_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\fig13_06_ex_09_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\fig13_06_ex_10_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\fig13_06_ex_11_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\fig13_06_ex_12_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\fig13_06_ex_13_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\fig13_06_ex_14_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\fig3d_proj_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\fig3d_projb_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figcartcoord1_3D.asy\"\>", ",", 
+   "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figcartcoord2_3D.asy\"\>", ",", 
+   "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figconopt1_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figconopt1c_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figconopt2_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figcrossp4a_3D.asy\"\>", ",", 
+   "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figcrossp6_3D.asy\"\>", ",", 
+   "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figcrosspparallelpiped_3D.asy\"\>",
+    ",", "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figcrossp_rhr_3D.asy\"\>", ",", 
+   "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figcurvature4_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figdirect1_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figdirect2_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figdirect3_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figdirect9_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figdotp3_3D.asy\"\>", ",", 
+   "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figdotp4b_3D.asy\"\>", ",", 
+   "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figdotpangle3D_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figdotpangle_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figdouble1_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figdouble2_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figdouble3_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figdouble4_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figdouble6b_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figdouble_intro2_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figdouble_intro3_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figdoublepol1_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figdoublepol2b_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figdoublepol4_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figdoublepol5_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figdoublesummary_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figlevelcurve1_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figlevelcurve2_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figlines1_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figlines2_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figlines3_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figlines6_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figlines_dist2_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figlines_dist2temp_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figlines_intro_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figmass2_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figmass3a_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figmass3b_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figmchain2_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figmchain_intro_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figmotion6_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figmulticont1_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figmulti_extreme1_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figmulti_extreme2_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figmulti_extreme3_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figmulti_extreme5_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figmultigraph_intro_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figmultigraph_introb_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figmultilimit_def_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figpartial3a_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figpartial3b_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figpartial4a_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figpartial4b_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figpartial6_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figpartial6b_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figpartialintro_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figpartialintrob_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figplanes1_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figplanes2_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figplanes3_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figplanes4_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figplanes5_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figplanes_dist_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figquadratic_parb_3D.asy\"\>", ",",
+    "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figquadric_cone_3D.asy\"\>", ",", 
+   "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figquadric_coneb_3D.asy\"\>", ",", 
+   "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figquadric_conec_3D.asy\"\>", ",", 
+   "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figquadric_ellipsoid_3D.asy\"\>", 
+   ",", "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figquadric_ellipsoidb_3D.asy\"\>", 
+   ",", "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figquadric_hyp_one_sheet_3D.asy\"\>\
+", ",", "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figquadric_hyp_one_sheetb_3D.asy\"\
+\>", ",", "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figquadric_hyp_par_3D.asy\"\>", 
+   ",", "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figquadric_hyp_parb_3D.asy\"\>", 
+   ",", "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figquadric_hyp_parc_3D.asy\"\>", 
+   ",", "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figquadric_hyp_two_sheet_3D.asy\"\>\
+", ",", "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figquadric_hyp_two_sheetb_3D.asy\"\
+\>", ",", "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figquadric_par_3D.asy\"\>", ",", 
+   "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figquadric_parb_3D.asy\"\>", ",", 
+   "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figspace1_3D.asy\"\>", ",", 
+   "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figspace2_3D.asy\"\>", ",", 
+   "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figspace3_3D.asy\"\>", ",", 
+   "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figspace4a_3D.asy\"\>", ",", 
+   "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figspace4b_3D.asy\"\>", ",", 
+   "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figspace4c_3D.asy\"\>", ",", 
+   "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figspace4d_3D.asy\"\>", ",", 
+   "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figspace4e_3D.asy\"\>", ",", 
+   "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figspace4f_3D.asy\"\>", ",", 
+   "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figspace5a_3D.asy\"\>", ",", 
+   "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figspace5ab_3D.asy\"\>", ",", 
+   "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figspace5b_3D.asy\"\>", ",", 
+   "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figspace5bb_3D.asy\"\>", ",", 
+   "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figspace5c_3D.asy\"\>", ",", 
+   "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figspace5cb_3D.asy\"\>", ",", 
+   "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figspace6_3D.asy\"\>", ",", 
+   "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figspacecylinder1_3D.asy\"\>", ",",
+    "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figspacecylinder1b_3D.asy\"\>", 
+   ",", "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figspace_tangent_intro_3D.asy\"\>",
+    ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figspacexy_3D.asy\"\>", ",", 
+   "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figspacexz_3D.asy\"\>", ",", 
+   "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figspaceyz_3D.asy\"\>", ",", 
+   "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figsurfacearea1_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figsurfacearea3_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figsurfacearea4_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figsurfacearea_intro1_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figsurfacearea_intro2_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figsurfrev1a_3D.asy\"\>", ",", 
+   "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figsurfrev1b_3D.asy\"\>", ",", 
+   "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figsurfrev2a_3D.asy\"\>", ",", 
+   "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figsurfrev2b_3D.asy\"\>", ",", 
+   "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figsurf_rev_intro_3D.asy\"\>", ",",
+    "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figsurf_rev_introb_3D.asy\"\>", 
+   ",", "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figtannorm1_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figtp12_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figtp13_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figtp15_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figtp16_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figtp18_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figtrip1_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figtrip1b_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figtrip2_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figtrip2b_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figtrip2c_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figtrip2d_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figtrip3_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figtrip3b_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figtrip3c_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figtrip3d_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figtrip4_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figtrip4b_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figtrip4c_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figtrip4d_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figtrip5_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figtrip5b_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figtrip5c_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figtrip5d_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figtrip5e_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figtripintro_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figtripintroa_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figvectintro3b_3D.asy\"\>", ",", 
+   "$Failed", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figvvf2_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figvvfderiv1_3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\\\\Troy\\\\figvvflimit4_3D.asy\"\>"}], 
+  "}"}]], "Output",
+ CellChangeTimes->{3.626367115661933*^9, 3.626367535894952*^9, 
+  3.626367630474409*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"(", 
+    RowBox[{"change", " ", "to", " ", "your", " ", "directory"}], ")"}], 
+   "*)"}], "\n", "\n", 
+  RowBox[{"Map", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"RenameFile", "[", 
+      RowBox[{"#", ",", 
+       RowBox[{
+        RowBox[{"FileBaseName", "[", "#", "]"}], "<>", "\"\<3D.asy\>\""}]}], 
+      "]"}], "&"}], ",", "names"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.6260013259431744`*^9, 3.6260013571449585`*^9}, 
+   3.6263663037407484`*^9, 3.6263664621965923`*^9}],
+
+Cell[BoxData["\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\\
+Calculus III Asymptote Files Created by Siemers\"\>"], "Output",
+ GeneratedCell->False,
+ CellAutoOverwrite->False,
+ CellChangeTimes->{3.6260013748799734`*^9, 3.626366453954768*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"fig10_01_ex_19.asy\"\>", ",", "\<\"fig10_01_ex_20.asy\"\>", 
+   ",", "\<\"fig10_01_ex_21.asy\"\>", ",", "\<\"fig10_01_ex_22.asy\"\>", 
+   ",", "\<\"fig10_02_ex_14.asy\"\>", ",", "\<\"fig10_02_ex_15.asy\"\>", 
+   ",", "\<\"figcartcoord1.asy\"\>", ",", "\<\"figcartcoord2.asy\"\>", 
+   ",", "\<\"figcrossp4a.asy\"\>", ",", "\<\"figcrossp6.asy\"\>", 
+   ",", "\<\"figcrosspparallelpiped.asy\"\>", 
+   ",", "\<\"figcrossp_rhr.asy\"\>", ",", "\<\"figdotp3.asy\"\>", 
+   ",", "\<\"figdotp4b.asy\"\>", ",", "\<\"figdotpangle3D.asy\"\>", 
+   ",", "\<\"figlines1.asy\"\>", ",", "\<\"figlines2.asy\"\>", 
+   ",", "\<\"figlines3.asy\"\>", ",", "\<\"figlines6.asy\"\>", 
+   ",", "\<\"figlines_dist2.asy\"\>", ",", "\<\"figlines_intro.asy\"\>", 
+   ",", "\<\"figplanes1.asy\"\>", ",", "\<\"figplanes2.asy\"\>", 
+   ",", "\<\"figplanes3.asy\"\>", ",", "\<\"figplanes4.asy\"\>", 
+   ",", "\<\"figquadratic_parb.asy\"\>", ",", "\<\"figquadric_cone.asy\"\>", 
+   ",", "\<\"figquadric_coneb.asy\"\>", ",", "\<\"figquadric_conec.asy\"\>", 
+   ",", "\<\"figquadric_ellipsoid.asy\"\>", 
+   ",", "\<\"figquadric_ellipsoidb.asy\"\>", 
+   ",", "\<\"figquadric_hyp_one_sheet.asy\"\>", 
+   ",", "\<\"figquadric_hyp_one_sheetb.asy\"\>", 
+   ",", "\<\"figquadric_hyp_par.asy\"\>", 
+   ",", "\<\"figquadric_hyp_parb.asy\"\>", 
+   ",", "\<\"figquadric_hyp_parc.asy\"\>", 
+   ",", "\<\"figquadric_hyp_two_sheet.asy\"\>", 
+   ",", "\<\"figquadric_hyp_two_sheetb.asy\"\>", 
+   ",", "\<\"figquadric_par.asy\"\>", ",", "\<\"figquadric_parb.asy\"\>", 
+   ",", "\<\"figspace1.asy\"\>", ",", "\<\"figspace2.asy\"\>", 
+   ",", "\<\"figspace3.asy\"\>", ",", "\<\"figspace4a.asy\"\>", 
+   ",", "\<\"figspace4b.asy\"\>", ",", "\<\"figspace4c.asy\"\>", 
+   ",", "\<\"figspace4d.asy\"\>", ",", "\<\"figspace4e.asy\"\>", 
+   ",", "\<\"figspace4f.asy\"\>", ",", "\<\"figspace5a.asy\"\>", 
+   ",", "\<\"figspace5ab.asy\"\>", ",", "\<\"figspace5b.asy\"\>", 
+   ",", "\<\"figspace5bb.asy\"\>", ",", "\<\"figspace5c.asy\"\>", 
+   ",", "\<\"figspace5cb.asy\"\>", ",", "\<\"figspace6.asy\"\>", 
+   ",", "\<\"figspacecylinder1.asy\"\>", 
+   ",", "\<\"figspacecylinder1b.asy\"\>", ",", "\<\"figspacexy.asy\"\>", 
+   ",", "\<\"figspacexz.asy\"\>", ",", "\<\"figspaceyz.asy\"\>", 
+   ",", "\<\"figsurfrev1a.asy\"\>", ",", "\<\"figsurfrev1b.asy\"\>", 
+   ",", "\<\"figsurfrev2a.asy\"\>", ",", "\<\"figsurfrev2b.asy\"\>", 
+   ",", "\<\"figsurf_rev_intro.asy\"\>", 
+   ",", "\<\"figsurf_rev_introb.asy\"\>", ",", "\<\"figvectintro3b.asy\"\>"}],
+   "}"}]], "Output",
+ CellChangeTimes->{3.626001374895974*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\fig10_01_ex_193D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\fig10_01_ex_203D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\fig10_01_ex_213D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\fig10_01_ex_223D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\fig10_02_ex_143D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\fig10_02_ex_153D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figcartcoord13D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figcartcoord23D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figcrossp4a3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figcrossp63D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figcrosspparallelpiped3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figcrossp_rhr3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figdotp33D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figdotp4b3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figdotpangle3D3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figlines13D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figlines23D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figlines33D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figlines63D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figlines_dist23D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figlines_intro3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figplanes13D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figplanes23D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figplanes33D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figplanes43D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figquadratic_parb3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figquadric_cone3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figquadric_coneb3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figquadric_conec3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figquadric_ellipsoid3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figquadric_ellipsoidb3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figquadric_hyp_one_sheet3D.asy\"\>",
+    ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by \
+Siemers\\\\figquadric_hyp_one_sheetb3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figquadric_hyp_par3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figquadric_hyp_parb3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figquadric_hyp_parc3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figquadric_hyp_two_sheet3D.asy\"\>",
+    ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by \
+Siemers\\\\figquadric_hyp_two_sheetb3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figquadric_par3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figquadric_parb3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figspace13D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figspace23D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figspace33D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figspace4a3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figspace4b3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figspace4c3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figspace4d3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figspace4e3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figspace4f3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figspace5a3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figspace5ab3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figspace5b3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figspace5bb3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figspace5c3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figspace5cb3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figspace63D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figspacecylinder13D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figspacecylinder1b3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figspacexy3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figspacexz3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figspaceyz3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figsurfrev1a3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figsurfrev1b3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figsurfrev2a3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figsurfrev2b3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figsurf_rev_intro3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figsurf_rev_introb3D.asy\"\>", 
+   ",", "\<\"C:\\\\Users\\\\siemerstj\\\\Documents\\\\asymptote\\\\Calculus \
+III Asymptote Files Created by Siemers\\\\figvectintro3b3D.asy\"\>"}], 
+  "}"}]], "Output",
+ CellChangeTimes->{3.6260013749539776`*^9}]
+}, Open  ]]
+},
+WindowSize->{707, 505},
+WindowMargins->{{4, Automatic}, {Automatic, 64}},
+FrontEndVersion->"10.0 for Microsoft Windows (64-bit) (July 1, 2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 376, 8, 72, "Input"],
+Cell[CellGroupData[{
+Cell[958, 32, 162, 3, 31, "Input"],
+Cell[1123, 37, 188, 2, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1348, 44, 101, 2, 31, "Input"],
+Cell[1452, 48, 8888, 140, 1492, "Output"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[10377, 193, 273, 7, 25, "Input"],
+Cell[10653, 202, 115, 1, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10805, 208, 151, 3, 31, "Input"],
+Cell[10959, 213, 97, 1, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11093, 219, 273, 7, 31, "Input"],
+Cell[11369, 228, 105, 1, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11511, 234, 1062, 27, 72, "Input"],
+Cell[12576, 263, 535, 11, 21, "Message"],
+Cell[13114, 276, 537, 11, 21, "Message"],
+Cell[13654, 289, 535, 11, 21, "Message"],
+Cell[14192, 302, 587, 12, 21, "Message"],
+Cell[14782, 316, 24188, 409, 6972, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[39007, 730, 532, 15, 72, "Input"],
+Cell[39542, 747, 254, 4, 52, "Output"],
+Cell[39799, 753, 2592, 43, 432, "Output"],
+Cell[42394, 798, 10122, 141, 2732, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

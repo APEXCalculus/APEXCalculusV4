@@ -1,0 +1,954 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_trig_sub">
+  <title>Trigonometric Substitution</title>
+  <introduction>
+    <p>In <xref ref="sec_def_int">Section</xref> we defined the definite integral as the <q>signed area under the curve.</q> In that section we had not yet learned the Fundamental Theorem of Calculus, so we evaluated special definite integrals which described nice, geometric shapes. For instance, we were able to evaluate
+      <men xml:id="eq_trigsub1" >
+        \int_{-3}^3\sqrt{9-x^2}\ dx = \frac{9\pi}{2}
+      </men>
+      as we recognized that <m>f(x) = \sqrt{9-x^2}</m> described the upper half of a circle with radius 3.</p>
+
+    <p>We have since learned a number of integration techniques, including Substitution and Integration by Parts, yet we are still unable to evaluate the above integral without resorting to a geometric interpretation. This section introduces Trigonometric Substitution, a method of integration that fills this gap in our integration skill. This technique works on the same principle as Substitution as found in <xref ref="sec_substitution">Section</xref>, though it can feel <q>backward.</q> In <xref ref="sec_substitution">Section</xref>, we set <m>u=f(x)</m>, for some function <m>f</m>, and replaced <m>f(x)</m> with <m>u</m>. In this section, we will set <m>x=f(\theta)</m>, where <m>f</m> is a trigonometric function, then replace <m>x</m> with <m>f(\theta)</m>.</p>
+
+    <p>We start by demonstrating this method in evaluating the integral in <xref ref="eq_trigsub1" />. After the example, we will generalize the method and give more examples.</p>
+
+    <example xml:id="ex_trigsub1">
+      <title>Using Trigonometric Substitution</title>
+      <statement>
+        <p>Evaluate <m>\ds \int_{-3}^3\sqrt{9-x^2}\ dx</m>.</p>
+      </statement>
+      <solution>
+        <p>We begin by noting that <m>9\left(\sin^2(\theta) + \cos^2(\theta)\right) = 9</m>, and hence <m>9\cos^2(\theta) = 9-9\sin^2(\theta)</m>. If we let <m>x=3\sin(\theta)</m>, then <m>9-x^2 = 9-9\sin^2(\theta) = 9\cos^2(\theta)</m>.</p>
+
+        <p>Setting <m>x=3\sin(\theta)</m> gives <m>dx = 3\cos(\theta) \ d\theta</m>. We are almost ready to substitute. We also wish to change our bounds of integration. The bound <m>x=-3</m> corresponds to <m>\theta = -\pi/2</m> (for when <m>\theta = -\pi/2</m>, <m>x=3\sin(\theta) = -3</m>). Likewise, the bound of <m>x=3</m> is replaced by the bound <m>\theta = \pi/2</m>. Thus
+          <md>
+            <mrow>\int_{-3}^3\sqrt{9-x^2}\ dx \amp = \int_{-\pi/2}^{\pi/2} \sqrt{9-9\sin^2(\theta) }\ (3\cos(\theta) )\ d\theta</mrow>
+            <mrow>\amp = \int_{-\pi/2}^{\pi/2} 3\sqrt{9\cos^2(\theta) } \cos(\theta) \ d\theta</mrow>
+            <mrow>\amp =\int_{-\pi/2}^{\pi/2} 3\abs{3\cos(\theta) } \cos(\theta) \ d\theta.</mrow>
+            <intertext>On <m>[-\pi/2,\pi/2]</m>, <m>\cos(\theta)</m> is always positive, so we can drop the absolute value bars, then employ a power--reducing formula:</intertext>
+            <mrow>\amp = \int_{-\pi/2}^{\pi/2} 9\cos^2(\theta) \ d\theta</mrow>
+            <mrow>\amp = \int_{-\pi/2}^{\pi/2} \frac{9}{2}\big(1+\cos(2\theta)\big)\ d\theta</mrow>
+            <mrow>\amp  = \frac92 \big(\theta +\frac12\sin(2\theta)\big)\Bigg|_{-\pi/2}^{\pi/2}</mrow>
+            <mrow>\amp = \frac92\pi</mrow>
+          </md>.
+        </p>
+
+        <p>This matches our answer from before.</p>
+      </solution>
+    </example>
+
+    <p>We now describe in detail Trigonometric Substitution. This method excels when dealing with integrands that contain <m>\sqrt{a^2-x^2}</m>, <m>\sqrt{x^2-a^2}</m> and <m>\sqrt{x^2+a^2}</m>. The following Key Idea outlines the procedure for each case, followed by more examples. Each right triangle acts as a reference to help us understand the relationships between <m>x</m> and <m>\theta</m>.</p>
+
+    <todo> Consider using a table similar to what I use in my notes with the reference triangle.</todo>
+    <insight xml:id="idea_trigsub">
+      <title>Trigonometric Substitution</title>
+      <ol>
+        <li xml:id="idea_trigsuba">
+          <p>
+            For integrands containing <m>\sqrt{a^2-x^2}</m>:<index><main>integration</main><sub>trig. subst.</sub></index>
+            Let <m>x=a\sin(\theta)</m>,   <m>dx = a\cos(\theta) \ d\theta</m>.
+            Thus <m>\theta = \sin^{-1}(x/a)</m>, for <m>-\pi/2\leq \theta\leq \pi/2</m>. On this interval, <m>\cos(\theta) \geq 0</m>, so <m>\sqrt{a^2-x^2} = a\cos(\theta)</m>.
+
+              <!-- START figures/fig_trigsub_intro1.tex -->
+              <image xml:id="img_trigsub_intro1"  width="47%">
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}
+		\draw [very thick] (0,0) -- node[below,pos=.5] { $\sqrt{a^2-x^2}$} (3,0) -- node [right,pos=.5] { $x$} (3,2) -- node [pos=.5,above] { $a$} (0,0);
+		\draw [thick] (2.7,0) -- (2.7,.3) -- (3,.3);
+		\draw (.75,.25) node {$\theta$};
+
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_trigsub_intro1.tex END -->
+
+
+          </p></li>
+
+        <li xml:id="idea_trigsubb">
+          <p>
+            For integrands containing <m>\sqrt{x^2+a^2}</m>:
+            Let <m>x=a\tan(\theta)</m>,   <m>dx = a\sec^2(\theta) \ d\theta</m>. Thus <m>\theta = \tan^{-1}(x/a)</m>, for <m>-\pi/2 \lt  \theta \lt  \pi/2</m>. On this interval, <m>\sec(\theta) > 0</m>, so <m>\sqrt{x^2+a^2} = a\sec(\theta)</m>.
+
+              <!-- START figures/fig_trigsub_intro3.tex -->
+              <image xml:id="img_trigsub_intro3"  width="47%">
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}
+		\draw [very thick] (0,0) -- node[below,pos=.5] { $a$} (3,0) -- node [right,pos=.5] { $x$} (3,2) -- node [pos=.5,above,sloped] { $\sqrt{x^2+a^2}$} (0,0);
+		\draw [thick] (2.7,0) -- (2.7,.3) -- (3,.3);
+		\draw (.75,.25) node {$\theta$};
+
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_trigsub_intro3.tex END -->
+
+          </p></li>
+
+        <li xml:id="idea_trigsubc">
+          <p>For integrands containing <m>\sqrt{x^2-a^2}</m>: Let <m>x=a\sec(\theta)</m>,   <m>dx = a\sec(\theta) \tan(\theta) \ d\theta</m>. Thus <m>\theta = \sec^{-1}(x/a)</m>. If <m>x/a\geq 1</m>, then <m>0\leq\theta\lt \pi/2</m>; if <m>x/a \leq -1</m>, then <m>\pi/2\lt \theta\leq \pi</m>. We restrict our work to where <m>x\geq a</m>, so <m>x/a\geq 1</m>, and <m>0\leq\theta\lt \pi/2</m>. On this interval, <m>\tan(\theta) \geq 0</m>, so <m>\sqrt{x^2-a^2} = a\tan(\theta)</m>.
+
+              <!-- START figures/fig_trigsub_intro2.tex -->
+              <image xml:id="img_trigsub_intro2"  width="47%">
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}
+		\draw [very thick] (0,0) -- node[below,pos=.5] { $a$} (3,0) -- node [right,pos=.5] { $\sqrt{x^2-a^2}$} (3,2) -- node [pos=.5,above] { $x$} (0,0);
+		\draw [thick] (2.7,0) -- (2.7,.3) -- (3,.3);
+		\draw (.75,.25) node {$\theta$};
+
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_trigsub_intro2.tex END -->
+
+          </p></li>
+      </ol>
+    </insight>
+
+
+  <p>We will now apply <xref ref="idea_trigsubc">Key Idea</xref> to a type of problem that we were able to solve using algebra and substitution in <xref ref="sec_substitution">Section</xref>. <xref ref="ex_trigsub1b">Example</xref> shows an alternate way to approach these problems.</p>
+
+    <example xml:id="ex_trigsub1b">
+
+      <title>Using Trigonometric Substitution</title>
+      <statement>
+        <p>Evaluate <m>\ds \int \frac{1}{\sqrt{x^2-4}}\ dx</m>.</p>
+      </statement>
+      <solution>
+          <p>Using <xref ref="idea_trigsubc">Item</xref> from <xref ref="idea_trigsub">Key Idea</xref>, we recognize <m>a=2</m> and set <m>x= 2\sec(\theta)</m> for <m>0 \leq \theta \lt \pi/2</m>. This makes <m>dx = 2\sec(\theta)\tan(\theta) \ d\theta</m>. We will use the Pythagorean identity <m>\tan^2(\theta)=\sec^2(\theta)-1</m> and the fact that <m>\tan(\theta)\geq 0</m> on the interval. Substituting, we have:
+          <md>
+            <mrow>\int \frac{1}{\sqrt{x^2-4}}\ dx \amp = \int \frac{1}{\sqrt{4\sec^2(\theta)-4}}\cdot 2 \sec(\theta)\tan(\theta)\ d\theta</mrow>
+            <mrow>\amp = 2\int \frac{1}{\sqrt{4(\sec^2(\theta)-1)}}\cdot \sec(\theta)\tan(\theta)\ d\theta</mrow>
+            <mrow>\amp = 2\int \frac{1}{\sqrt{4(\tan^2(\theta)}}\cdot\sec(\theta)\tan(\theta)\ d\theta</mrow>
+            <mrow>\amp = 2\int \frac{1}{2\abs{\tan(\theta)}}\sec(\theta)\tan(\theta)\ d\theta</mrow>
+            <mrow>\amp = \int \sec(\theta)\ d\theta</mrow>
+            <mrow>\amp =\ln \abs{\sec(\theta)+\tan(\theta)}</mrow>
+          </md>
+          However, our original integral involved <m>x</m>.
+        </p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_trigsub3">
+      <title>Using Trigonometric Substitution</title>
+      <statement>
+        <p>Evaluate <m>\ds \int \frac{1}{\sqrt{5+x^2}}\ dx</m>.</p>
+      </statement>
+      <solution>
+        <p>Using <xref ref="idea_trigsubb">Item</xref><xref ref="idea_trigsub">Key Idea</xref>, we recognize <m>a=\sqrt{5}</m> and set <m>x= \sqrt{5}\tan(\theta)</m>. This makes <m>dx = \sqrt{5}\sec^2(\theta) \ d\theta</m>. We will use the fact that <m>\sqrt{5+x^2} = \sqrt{5+5\tan^2(\theta) } = \sqrt{5\sec^2(\theta) } = \sqrt{5}\sec(\theta)</m>. Substituting, we have:
+          <md>
+            <mrow>\int \frac{1}{\sqrt{5+x^2}}\ dx \amp = \int \frac{1}{\sqrt{5+5\tan^2(\theta) }}\sqrt{5}\sec^2(\theta) \ d\theta</mrow>
+            <mrow>\amp = \int \frac{\sqrt{5}\sec^2(\theta) }{\sqrt{5}\sec(\theta) } \ d\theta</mrow>
+            <mrow>\amp = \int \sec(\theta) \ d\theta</mrow>
+            <mrow>\amp = \ln\abs{\sec(\theta) +\tan(\theta) }+C.</mrow>
+          </md>
+        </p>
+
+        <p>While the integration steps are over, we are not yet done. The original problem was stated in terms of <m>x</m>, whereas our answer is given in terms of <m>\theta</m>. We must convert back to <m>x</m>.</p>
+
+        <p>The reference triangle given in <xref ref="idea_trigsub">Key Idea</xref>(b) helps. With <m>x=\sqrt{5}\tan(\theta)</m>, we have
+          <me>
+            \tan(\theta) = \frac x{\sqrt{5}} \text{ and }  \sec(\theta) = \frac{\sqrt{x^2+5}}{\sqrt{5}}.
+          </me>
+        </p>
+
+        <p>This gives
+          <md>
+            <mrow>\int \frac{1}{\sqrt{5+x^2}}\ dx \amp = \ln\abs{\sec(\theta) +\tan(\theta) }+C</mrow>
+            <mrow>\amp = \ln\abs{\frac{\sqrt{x^2+5}}{\sqrt{5}}+ \frac x{\sqrt{5}}}+C.</mrow>
+          </md>
+        </p>
+
+        <p>We can leave this answer as is, or we can use a logarithmic identity to simplify it. Note:
+          <md>
+            <mrow>\ln\abs{\frac{\sqrt{x^2+5}}{\sqrt{5}}+ \frac x{\sqrt{5}}}+C \amp = \ln\abs{\frac{1}{\sqrt{5}}\big(\sqrt{x^2+5}+ x\big)}+C</mrow>
+            <mrow>\amp = \ln\abs{\frac{1}{\sqrt{5}}} + \ln\abs{\sqrt{x^2+5}+ x}+C</mrow>
+            <mrow>\amp =	\ln\abs{\sqrt{x^2+5}+ x}+C,</mrow>
+          </md>
+          where the <m>\ln\big(1/\sqrt{5}\big)</m> term is absorbed into the constant <m>C</m>. (In <xref ref="sec_hyperbolic">Section</xref> we will learn another way of approaching this problem.)</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_trigsub2">
+      <title>Using Trigonometric Substitution</title>
+      <statement>
+        <p>Evaluate <m>\ds \int \sqrt{4x^2-1}\ dx</m>.</p>
+      </statement>
+      <solution>
+        <p>We start by rewriting the integrand so that it looks like <m>\sqrt{x^2-a^2}</m> for some value of <m>a</m>:
+          <md>
+            <mrow>\sqrt{4x^2-1} \amp = \sqrt{4\left(x^2-\frac14\right)}</mrow>
+            <mrow>\amp = 2\sqrt{x^2-\left(\frac12\right)^2}.</mrow>
+          </md>
+        </p>
+
+        <p>So we have <m>a=1/2</m>, and following <xref ref="idea_trigsub">Key Idea</xref>(c), we set <m>x= \frac12\sec(\theta)</m>, and hence <m>dx = \frac12\sec(\theta) \tan(\theta) \ d\theta</m>.
+          We now rewrite the integral with these substitutions:
+          <md>
+            <mrow>\int \sqrt{4x^2-1}\ dx \amp = \int 2\sqrt{x^2-\left(\frac12\right)^2}\ dx</mrow>
+            <mrow>\amp = \int 2\sqrt{\frac14\sec^2(\theta) - \frac14}\left(\frac12\sec(\theta) \tan(\theta) \right)\ d\theta</mrow>
+            <mrow>\amp =\int \sqrt{\frac14(\sec^2(\theta) -1)}\Big(\sec(\theta) \tan(\theta) \Big)\ d\theta</mrow>
+            <mrow>\amp =\int\sqrt{\frac14\tan^2(\theta) }\Big(\sec(\theta) \tan(\theta) \Big)\ d\theta</mrow>
+            <mrow>\amp =\int \frac12\tan^2(\theta) \sec(\theta) \ d\theta</mrow>
+            <mrow>\amp =\frac12\int \Big(\sec^2(\theta) -1\Big)\sec(\theta) \ d\theta</mrow>
+            <mrow>\amp =\frac12\int \big(\sec^3(\theta) - \sec(\theta) \big)\ d\theta.</mrow>
+          </md>
+        </p>
+
+        <p>We integrated <m>\sec^3(\theta)</m> in <xref ref="ex_trigint6">Example</xref>, finding its antiderivatives to be
+          <me>
+            \int \sec^3(\theta) \ d\theta = \frac12\Big(\sec(\theta) \tan(\theta) + \ln\abs{\sec(\theta) +\tan(\theta) }\Big)+C.
+          </me>
+        </p>
+
+        <p>Thus
+          <md>
+            <mrow>\int \sqrt{4x^2-1}\ dx \amp =\frac12\int \big(\sec^3(\theta) - \sec(\theta) \big)\ d\theta</mrow>
+            <mrow>\amp = \frac12\left(\frac12\Big(\sec(\theta) \tan(\theta) + \ln\abs{\sec(\theta) +\tan(\theta) }\Big) -\ln\abs{\sec(\theta) + \tan(\theta) }\right) + C</mrow>
+            <mrow>\amp = \frac14\left(\sec(\theta) \tan(\theta) -\ln\abs{\sec(\theta) +\tan(\theta) }\right)+C.</mrow>
+          </md>
+        </p>
+
+        <p>We are not yet done. Our original integral is given in terms of <m>x</m>, whereas our final answer, as given, is in terms of <m>\theta</m>. We need to rewrite our answer in terms of <m>x</m>. With <m>a=1/2</m>, and <m>x=\frac12\sec(\theta)</m>, the reference triangle in <xref ref="idea_trigsub">Key Idea</xref>(c) shows that
+          <me>
+            \tan(\theta) = \sqrt{x^2-1/4}\Big/(1/2) = 2\sqrt{x^2-1/4} \text{ and }  \sec(\theta) = 2x.
+          </me>
+        </p>
+
+        <p>Thus
+          <md>
+            <mrow>\frac14\Big(\sec(\theta) \tan(\theta) -\ln\abs{\sec(\theta) +\tan(\theta) }\Big)+C \amp =
+				\frac14\Big(2x\cdot 2\sqrt{x^2-1/4} - \ln\abs{2x + 2\sqrt{x^2-1/4}}\Big)+C</mrow>
+            <mrow>\amp = \frac14\Big(4x\sqrt{x^2-1/4} - \ln\abs{2x + 2\sqrt{x^2-1/4}}\Big)+C.</mrow>
+          </md>
+        </p>
+
+        <p>The final answer is given in the last line above, repeated here:
+          <me>
+            \int \sqrt{4x^2-1}\ dx = \frac14\Big(4x\sqrt{x^2-1/4} - \ln\abs{2x + 2\sqrt{x^2-1/4}}\Big)+C.
+          </me>
+        </p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_trigsub4">
+      <title>Using Trigonometric Substitution</title>
+      <statement>
+        <p>Evaluate <m>\ds \int \frac{\sqrt{4-x^2}}{x^2}\ dx</m>.</p>
+      </statement>
+      <solution>
+        <p>We use <xref ref="idea_trigsub">Key Idea</xref>(a) with <m>a=2</m>, <m>x=2\sin(\theta)</m>, <m>dx = 2\cos(\theta)</m> and hence <m>\sqrt{4-x^2} = 2\cos(\theta)</m>. This gives
+          <md>
+            <mrow>\int \frac{\sqrt{4-x^2}}{x^2}\ dx \amp = \int \frac{2\cos(\theta) }{4\sin^2(\theta) }(2\cos(\theta) )\ d\theta</mrow>
+            <mrow>\amp = \int \cot^2(\theta) \ d\theta</mrow>
+            <mrow>\amp =	\int (\csc^2(\theta) -1)\ d\theta</mrow>
+            <mrow>\amp = -\cot(\theta) -\theta + C.</mrow>
+          </md>
+        </p>
+
+        <p>We need to rewrite our answer in terms of <m>x</m>. Using the reference triangle found in <xref ref="idea_trigsub">Key Idea</xref>(a), we have <m>\cot(\theta) = \sqrt{4-x^2}/x</m> and <m>\theta = \sin^{-1}(x/2)</m>. Thus
+          <me>
+            \int \frac{\sqrt{4-x^2}}{x^2}\ dx = -\frac{\sqrt{4-x^2}}x-\sin^{-1}\left(\frac x2\right) + C.
+          </me>
+        </p>
+      </solution>
+    </example>
+
+    <p>Trigonometric Substitution can be applied in many situations, even those not of the form <m>\sqrt{a^2-x^2}</m>, <m>\sqrt{x^2-a^2}</m> or <m>\sqrt{x^2+a^2}</m>. In the following example, we apply it to an integral we already know how to handle.</p>
+
+    <example xml:id="ex_trigsub5">
+      <title>Using Trigonometric Substitution</title>
+      <statement>
+        <p>Evaluate <m>\ds \int\frac1{x^2+1}\ dx</m>.</p>
+      </statement>
+      <solution>
+        <p>We know the answer already as <m>\tan^{-1}(x) +C</m>. We apply Trigonometric Substitution here to show that we get the same answer without inherently relying on knowledge of the derivative of the arctangent function.</p>
+
+        <p>Using <xref ref="idea_trigsub">Key Idea</xref>(b), let <m>x=\tan(\theta)</m>, <m>dx=\sec^2(\theta) \ d\theta</m> and note that <m>x^2+1 = \tan^2(\theta) +1 = \sec^2(\theta)</m>. Thus
+          <md>
+            <mrow>\int \frac1{x^2+1}\ dx \amp = \int \frac{1}{\sec^2(\theta) }\sec^2(\theta) \ d\theta</mrow>
+            <mrow>\amp = \int 1\ d\theta</mrow>
+            <mrow>\amp = \theta + C.</mrow>
+          </md>
+        </p>
+
+        <p>Since <m>x=\tan(\theta)</m>, <m>\theta = \tan^{-1}(x)</m>, and we conclude that <m>\ds \int\frac1{x^2+1}\ dx = \tan^{-1}(x) +C</m>.</p>
+      </solution>
+    </example>
+
+    <p>The next example is similar to the previous one in that it does not involve a square<ndash />root. It shows how several techniques and identities can be combined to obtain a solution.</p>
+
+    <example xml:id="ex_trigsub7">
+      <title>Using Trigonometric Substitution</title>
+      <statement>
+        <p>Evaluate <m>\ds\int\frac1{(x^2+6x+10)^2}\ dx</m>.</p>
+      </statement>
+      <solution>
+        <p>We start by completing the square, then make the substitution <m>u=x+3</m>, followed by the trigonometric substitution of <m>u=\tan(\theta)</m>:
+          <md>
+            <mrow>\int \frac1{(x^2+6x+10)^2}\ dx =\int \frac1{\big((x+3)^2+1\big)^2}\ dx\amp = \int \frac1{(u^2+1)^2}\ du.</mrow>
+            <intertext>Now make the substitution <m>u=\tan(\theta)</m>, <m>du=\sec^2(\theta) \ d\theta</m>:</intertext>
+            <mrow>\amp =	\int \frac1{(\tan^2(\theta) +1)^2}\sec^2(\theta) \ d\theta</mrow>
+            <mrow>\amp = \int\frac 1{(\sec^2(\theta) )^2}\sec^2(\theta) \ d\theta</mrow>
+            <mrow>\amp = \int \cos^2(\theta) \ d\theta.</mrow>
+            <intertext>Applying a power reducing formula, we have</intertext>
+            <mrow>\amp = \int \left(\frac12 +\frac12\cos(2\theta)\right)\ d\theta</mrow>
+            <mrow>\amp = \frac12\theta + \frac14\sin(2\theta) + C.</mrow>
+          </md>
+        </p>
+
+        <p>We need to return to the variable <m>x</m>. As <m>u=\tan(\theta)</m>, <m>\theta = \tan^{-1}(u)</m>. Using the identity <m>\sin(2\theta) = 2\sin(\theta) \cos(\theta)</m> and using the reference triangle found in <xref ref="idea_trigsub">Key Idea</xref>(b), we have
+          <me>
+            \frac14\sin(2\theta) = \frac12\frac u{\sqrt{u^2+1}}\cdot\frac 1{\sqrt{u^2+1}} = \frac12\frac u{u^2+1}.
+          </me>
+        </p>
+
+        <p>Finally, we return to <m>x</m> with the substitution <m>u=x+3</m>. We start with the expression in Equation <xref ref="eq_extrigsub7" />:
+          <md>
+            <mrow>\frac12\theta + \frac14\sin(2\theta) + C \amp = \frac12\tan^{-1}(u) + \frac12\frac{u}{u^2+1}+C</mrow>
+            <mrow>\amp = \frac12\tan^{-1}(x+3) + \frac{x+3}{2(x^2+6x+10)}+C.</mrow>
+          </md>
+        </p>
+
+        <p>Stating our final result in one line,
+          <me>
+            \int\frac1{(x^2+6x+10)^2}\ dx=\frac12\tan^{-1}(x+3) + \frac{x+3}{2(x^2+6x+10)}+C.
+          </me>
+        </p>
+      </solution>
+    </example>
+
+    <p>Our last example returns us to definite integrals, as seen in our first example. Given a definite integral that can be evaluated using Trigonometric Substitution, we could first evaluate the corresponding indefinite integral (by changing from an integral in terms of <m>x</m> to one in terms of <m>\theta</m>, then converting back to <m>x</m>) and then evaluate using the original bounds. It is much more straightforward, though, to change the bounds as we substitute.</p>
+
+    <example xml:id="ex_trigsub6">
+      <title>Definite integration and Trigonometric Substitution</title>
+      <statement>
+        <p>Evaluate <m>\ds\int_0^5\frac{x^2}{\sqrt{x^2+25}}\ dx</m>.</p>
+      </statement>
+      <solution>
+        <p>Using <xref ref="idea_trigsub">Key Idea</xref>(b), we set <m>x=5\tan(\theta)</m>, <m>dx = 5\sec^2(\theta) \ d\theta</m>, and note that <m>\sqrt{x^2+25} = 5\sec(\theta)</m>. As we substitute, we can also change the bounds of integration.</p>
+
+        <p>The lower bound of the original integral is <m>x=0</m>. As <m>x=5\tan(\theta)</m>, we solve for <m>\theta</m> and find <m>\theta = \tan^{-1}(x/5)</m>. Thus the new lower bound is <m>\theta = \tan^{-1}(0) = 0</m>. The original upper bound is <m>x=5</m>, thus the new upper bound is <m>\theta = \tan^{-1}(5/5) = \pi/4</m>.</p>
+
+        <p>Thus we have
+          <md>
+            <mrow>\int_0^5\frac{x^2}{\sqrt{x^2+25}}\ dx \amp = \int_0^{\pi/4} \frac{25\tan^2(\theta) }{5\sec(\theta) }5\sec^2(\theta) \ d\theta</mrow>
+            <mrow>\amp = 25\int_0^{\pi/4} \tan^2(\theta) \sec(\theta) \ d\theta.</mrow>
+          </md>
+        </p>
+
+        <p>We encountered this indefinite integral in <xref ref="ex_trigsub2">Example</xref> where we found
+          <me>
+            \int \tan^2(\theta) \sec(\theta) \ d\theta = \frac12\big(\sec(\theta) \tan(\theta) -\ln\abs{\sec(\theta) +\tan(\theta) }\big).
+          </me>
+        </p>
+
+        <p>So
+          <md>
+            <mrow>25\int_0^{\pi/4} \tan^2(\theta) \sec(\theta) \ d\theta \amp = \frac{25}2\big(\sec(\theta) \tan(\theta) -\ln\abs{\sec(\theta) +\tan(\theta) }\big)\Bigg|_0^{\pi/4}</mrow>
+            <mrow>\amp = \frac{25}2\big(\sqrt2-\ln(\sqrt2+1)\big)</mrow>
+            <mrow>\amp \approx 6.661.</mrow>
+          </md>
+        </p>
+      </solution>
+    </example>
+
+    <p>The following equalities are very useful when evaluating integrals using Trigonometric Substitution.</p>
+
+    <insight xml:id="idea_useful_trigsub">
+      <title>Useful Equalities with Trigonometric Substitution</title>
+      <ol>
+        <li><p><m>\sin(2\theta) = 2\sin(\theta) \cos(\theta)</m></p></li>
+
+        <li><p><m>\cos(2\theta) = \cos^2(\theta) - \sin^2(\theta) = 2\cos^2(\theta) -1 = 1-2\sin^2(\theta)</m></p></li>
+
+        <li><p><m>\ds \int \sec^3(\theta) \ d\theta = \frac12\Big(\sec(\theta) \tan(\theta) + \ln\abs{\sec(\theta) +\tan(\theta) }\Big)+C</m></p></li>
+
+        <li><p><m>\ds \int \cos^2(\theta) \ d\theta = \int \frac12\big(1+\cos(2\theta)\big)\ d\theta = \frac12\big(\theta+\sin(\theta) \cos(\theta) \big)+C</m>.</p></li>
+      </ol>
+    </insight>
+
+    <p>The next section introduces Partial Fraction Decomposition, which is an algebraic technique that turns <q>complicated</q> fractions into sums of <q>simpler</q> fractions, making integration easier.</p>
+  </introduction>
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Trigonometric Substitution works on the same principles as Integration by Substitution, though it can feel <q><fillin /></q>.</p>
+          </statement>
+          <solution>
+            <p>backwards</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>If one uses Trigonometric Substitution on an integrand containing <m>\sqrt{25-x^2}</m>, then one should set <m>x=</m><fillin />.</p>
+          </statement>
+          <solution>
+            <p><m>5\sin(\theta)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Consider the Pythagorean Identity <m>\sin^2(\theta) +\cos^2(\theta) = 1</m>.</p>
+
+            <ol>
+              <li><p>What identity is obtained when both sides are divided by <m>\cos^2(\theta)</m>?</p></li>
+
+              <li><p>Use the new identity to simplify <m>9\tan^2(\theta) + 9</m>.</p></li>
+            </ol>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>\tan^2(\theta) + 1 = \sec^2(\theta)</m></p></li>
+
+              <li><p><m>9\sec^2(\theta)</m>.</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Why does <xref ref="idea_trigsub">Key Idea</xref>(a) state that <m>\sqrt{a^2-x^2} = a\cos(\theta)</m>, and not <m>\abs{a\cos(\theta) }</m>?</p>
+          </statement>
+          <solution>
+            <p>Because we are considering <m>a>0</m> and <m>x=a\sin(\theta)</m>, which means <m>\theta = \sin^{-1}(x/a)</m>. The arcsine function has a domain of <m>-\pi/2\leq \theta \leq \pi/2</m>; on this domain, <m>\cos(\theta) \geq 0</m>, so <m>a\cos(\theta)</m> is always non-negative, allowing us to drop the absolute value signs.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, apply Trigonometric Substitution to evaluate the indefinite integrals.</p>
+      </introduction>
+      <exercise xml:id="x06_08_ex_05">
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \sqrt{x^2+1}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac12\left(x\sqrt{x^2+1}+\ln\abs{\sqrt{x^2+1}+x}\right) + C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \sqrt{x^2+4}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>2\left(\frac x4\sqrt{x^2+4}+\ln\abs{\frac{\sqrt{x^2+4}}2+\frac x2}\right) + C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \sqrt{1-x^2}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac12\left(\sin^{-1}(x) +x\sqrt{1-x^2}\right)+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \sqrt{9-x^2}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac12\left(9\sin^{-1}(x/3)+x\sqrt{9-x^2}\right)+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \sqrt{x^2-1}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac12x\sqrt{x^2-1}-\frac12\ln\abs{x+\sqrt{x^2-1}}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \sqrt{x^2-16}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac12x\sqrt{x^2-16}-8\ln\abs{\frac x4+\frac{\sqrt{x^2-16}}4}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \sqrt{4x^2+1}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>x\sqrt{x^2+1/4}+\frac14\ln\abs{2\sqrt{x^2+1/4}+2x} + C = \frac12x\sqrt{4x^2+1}+\frac14\ln\abs{\sqrt{4x^2+1}+2x}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \sqrt{1-9x^2}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac16\sin^{-1}(3x)+\frac32\sqrt{1/9-x^2}+C=\frac16\sin^{-1}(3x)+\frac12\sqrt{1-9x^2}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \sqrt{16x^2-1}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>4\left(\frac12x\sqrt{x^2-1/16}-\frac1{32}\ln\abs{4x+4\sqrt{x^2-1/16}}\right)+C = \frac12x\sqrt{16x^2-1}-\frac18\ln\abs{4x+\sqrt{16x^2-1}}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac8{\sqrt{x^2+2}}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>8\ln\abs{\frac{\sqrt{x^2+2}}{\sqrt{2}}+\frac x{\sqrt{2}}}+C</m>; with <xref ref="sec_hyperbolic">Section</xref>, we can state the answer as <m>8\sinh^{-1}(x/\sqrt{2})+C</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac3{\sqrt{7-x^2}}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>3\sin^{-1}\left(\frac{x}{\sqrt{7}}\right)+C</m> (Trig. Subst. is not needed)</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise xml:id="x06_08_ex_16">
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac5{\sqrt{x^2-8}}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>5\ln\abs{\frac{x}{\sqrt{8}}+\frac{\sqrt{x^2-8}}{\sqrt{8}}}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, evaluate the indefinite integrals. Some may be evaluated without Trigonometric Substitution.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac {\sqrt{x^2-11}}x\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\sqrt{x^2-11}-\sqrt{11}\sec^{-1}(x/\sqrt{11})+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac {1}{(x^2+1)^2}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac12\left(\tan^{-1}(x) +\frac x{x^2+1}\right)+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac x{\sqrt{x^2-3}}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\sqrt{x^2-3}+C</m> (Trig. Subst. is not needed)</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int x^2\sqrt{1-x^2}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac18\sin^{-1}(x) -\frac18x\sqrt{1-x^2}(1-2x^2)+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac {x}{(x^2+9)^{3/2}}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>-\frac1{\sqrt{x^2+9}}+C</m>(Trig. Subst. is not needed)</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac {5x^2}{\sqrt{x^2-10}}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac52x\sqrt{x^2-10}+25\ln\abs{\frac{x}{\sqrt{10}}+\frac{\sqrt{x^2-10}}{\sqrt{10}}}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac {1}{(x^2+4x+13)^2}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac1{18}\frac{x+2}{x^2+4x+13}+\frac1{54}\tan^{-1}\left(\frac{x+2}2\right)+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int x^2(1-x^2)^{-3/2}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac x{\sqrt{1-x^2}} - \sin^{-1}(x) +C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{\sqrt{5-x^2}}{7x^2}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac17\left(-\frac{\sqrt{5-x^2}}x-\sin^{-1}(x/\sqrt{5})\right)+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{x^2}{\sqrt{x^2+3}}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac12x\sqrt{x^2+3}-\frac32\ln\abs{\frac{\sqrt{x^2+3}}{\sqrt{3}}+\frac x{\sqrt{3}}}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, evaluate the definite integrals by making the proper trigonometric substitution <em>and</em> changing the bounds of integration. (Note: each of the corresponding indefinite integrals has appeared previously in this Exercise set.)</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{-1}^1 \sqrt{1-x^2}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\pi/2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{4}^8 \sqrt{x^2-16}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>16\sqrt3-8\ln(2+\sqrt3)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{0}^2 \sqrt{x^2+4}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>2\sqrt2+2\ln(1+\sqrt2)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{-1}^1 \frac1{(x^2+1)^2}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\pi/4+1/2)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{-1}^1 \sqrt{9-x^2}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>9\sin^{-1}(1/3)+\sqrt{8}</m>Note: the new lower bound is <m>\theta=\sin^{-1}(-1/3)</m> and the new upper bound is <m>\theta=\sin^{-1}(1/3)</m>. The final answer comes with recognizing that <m>\sin^{-1}(-1/3)=-\sin^{-1}(1/3)</m> and that <m>\cos\big(\sin^{-1}(1/3)\big)=\cos\big(\sin^{-1}(-1/3)\big) = \sqrt{8}/3</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{-1}^1 x^2\sqrt{1-x^2}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\pi/8</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

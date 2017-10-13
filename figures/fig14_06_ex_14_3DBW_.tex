@@ -1,0 +1,37 @@
+\documentclass[12pt]{article}
+\usepackage{mathspec}
+\setallmainfonts[Mapping=tex-text]{Calibri}
+\setmainfont[Mapping=tex-text]{Calibri}
+\setsansfont[Mapping=tex-text]{Calibri}
+\setmathsfont(Greek){[cmmi10]}
+\def\ASYprefix{}
+\newbox\ASYbox
+\newdimen\ASYdimen
+\long\def\ASYbase#1#2{\leavevmode\setbox\ASYbox=\hbox{#1}%\ASYdimen=\ht\ASYbox%
+\setbox\ASYbox=\hbox{#2}\lower\ASYdimen\box\ASYbox}
+\pagestyle{empty}
+\textheight=2048pt
+\textwidth=2048pt
+\begin{document}
+\makeatletter%
+\let\ASYencoding\f@encoding%
+\let\ASYfamily\f@family%
+\let\ASYseries\f@series%
+\let\ASYshape\f@shape%
+\makeatother%
+\fontsize{12.000000}{14.400000}\selectfont
+\usefont{\ASYencoding}{\ASYfamily}{\ASYseries}{\ASYshape}%
+$x$\ %
+\fontsize{12.000000}{14.400000}\selectfont
+\newpage
+$y$\ %
+\fontsize{12.000000}{14.400000}\selectfont
+\newpage
+$z$\ %
+\fontsize{12.000000}{14.400000}\selectfont
+\newpage
+\vphantom{$10^4$}$-1$\ %
+\fontsize{12.000000}{14.400000}\selectfont
+\newpage
+\vphantom{$10^4$}$1$\ %
+\end{document}

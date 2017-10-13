@@ -1,0 +1,799 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_related_rates">
+  <title>Related Rates</title>
+    <p>When two quantities are related by an equation, knowing the value of one quantity can determine the value of the other. For instance, the circumference and radius of a circle are related by <m>C=2\pi r</m>; knowing that <m>C</m> is <quantity><mag>6\pi</mag><unit base="inch" /></quantity> determines the radius must be <quantity><mag>3</mag><unit base="inch" /></quantity>.</p>
+
+    <p>But what if both variables are changing with time? If we know how two variables are related and we know how one of them changes with time, can we find how the other variable changes with time?</p>
+
+    <p>The topic of <term>related rates</term> allows us to answer this question: knowing the <em>rate</em> at which one quantity is changing can determine the <em>rate</em> at which the other changes.<index><main>related rates</main></index></p>
+
+    <remark>
+      <p>This section relies heavily on implicit differentiation, so referring back to <xref ref="sec_imp_deriv">Section</xref> may help.</p>
+    </remark>
+
+    <p>We demonstrate the concepts of related rates through examples.</p>
+
+    <example xml:id="ex_rr1">
+      <title>Understanding related rates</title>
+      <statement>
+        <p>The radius of a circle is growing at a rate of <quantity><mag>5</mag><unit base="inch" /><per base="hour" /></quantity>. At what rate is the circumference growing?</p>
+      </statement>
+      <solution>
+        <p>The circumference and radius of a circle are related by <m>C = 2\pi r</m>. We are given information about how the length of <m>r</m> changes with respect to time; that is, we are told <m>\lz{r}{t}</m> is <quantity><mag>5</mag><unit base="inch" /><per base="hour" /></quantity>. We want to know how the length of <m>C</m> changes with respect to time, i.e., we want to know <m>\lz{C}{t}</m>.</p>
+
+        <p>Implicitly differentiate both sides of <m>C = 2\pi r</m> with respect to <m>t</m>:
+          <md>
+            <mrow>C \amp = 2\pi r</mrow>
+            <mrow>\lzoo{t}{C} \amp = \lzoo{t}{2\pi r}</mrow>
+            <mrow>\lz{C}{t} \amp =2\pi \lz{r}{t}</mrow>
+          </md>.
+        </p>
+
+        <p>As we know <m>\lz{r}{t}</m> is <quantity><mag>5</mag><unit base="inch" /><per base="hour" /></quantity>, we know
+          <me>
+            \lz{C}{t} = 2\pi 5 = 10\pi \approx 31.4\text{ in/hr }
+          </me>.
+        </p>
+      </solution>
+    </example>
+
+    <p>In related rates problems, we will be presented with an application problem the involves two or more variables and one or more rate. It is the job of the reader to construct the appropriate model that can be used to answer the posed question. <xref ref="idea_relatedrates">Key Idea</xref> outlines the basic steps for solving a related rates problem.</p>
+    <insight xml:id="idea_relatedrates">
+      <title>Related Rates</title>
+      <index><main>Related Rates</main></index>
+      <p><ol>
+        <li>
+          <p>Read the problem carefully and identify the quantities that are changing with time. (There may be many quantities that change with time, try to identify which variables are important to your goal and only focus on these quantities.)</p>
+        </li>
+
+        <li>
+          <p>Draw a diagram (if applicable) and assign mathematical variables to each quantity that is changing with time. (If you are given a particular value of a quantity that is also changing with time, do not include these values on your diagram. We will call these <q>instantaneous values</q> of the variable.)</p>
+        </li>
+        <li xml:id="li_rrmodel">
+          <p>Relate the important variables using a mathematical model. (Typical models are known formulas for area, perimeter, the Pythagorean Theorem or Trigonometric Ratios.) It may be necessary to use more than one technique (such as similar triangles) to reduce your model down to one that only involves the variables of interest.</p>
+        </li>
+        <li>
+          <p>Implicitly differentiate both sides of the equation found in <xref ref="li_rrmodel">Step</xref> with respect to <m>t</m>.</p>
+        </li>
+        <li>
+          <p>Substitute in the known values of rates and known instantaneous values of the variables.</p>
+        </li>
+        <li>
+          <p>Solve for the unknown rate.</p>
+        </li>
+        <li>
+          <p>Write a full sentence conclusion.</p>
+        </li>
+      </ol></p>
+    </insight>
+
+    <p>Consider another, similar example.</p>
+
+    <example xml:id="ex_rr2">
+      <title>Finding related rates</title>
+      <statement>
+        <p>Water streams out of a faucet at a rate of <quantity><mag>2</mag><unit base="inch" exp="3" /><per base="second" /></quantity> onto a flat surface at a constant rate, forming a circular puddle that is <quantity><mag>1/8</mag><unit base="inch" /></quantity> deep.</p>
+
+        <p><ol>
+          <li xml:id="ex_rr2a">
+            <p>At what rate is the area of the puddle growing?</p>
+          </li>
+
+          <li xml:id="ex_rr2b">
+            <p>At what rate is the radius of the circle growing?</p>
+          </li>
+        </ol></p>
+      </statement>
+      <solution>
+        <p><ol>
+          <li>
+            <p>We can answer this question two ways: using <q>common sense</q> or related rates. The common sense method states that the volume of the puddle is growing by <quantity><mag>2</mag><unit base="inch" exp="3" /><per base="second" /></quantity>, where <me>\text{volume of puddle}=\text{area of circle}\times\text{depth}</me>. Since the depth is constant at <quantity><mag>1/8</mag><unit base="inch" /></quantity>, the area must be growing by <quantity><mag>16</mag><unit base="inch" exp="2" /><per base="second" /></quantity> since <m>16\cdot \frac{1}{8}=2</m>. This approach reveals the underlying related rates principle.</p>
+
+            <p>Now let's solve the problem using <xref ref="idea_relatedrates">Key Idea</xref> to solve the problem. Based on the problem description, the quantities that change with time are the volume of water (the volume of the puddle), the area of the circular puddle and the radius of the circle. We don't need a diagram for this problem. The important variables for this part of the problem are the volume and area.</p>
+
+            <p>Let <m>V</m> and <m>A</m> represent the Volume and Area of the puddle. We know <m>V= A\times \frac{1}{8}</m>. Take the derivative of both sides with respect to <m>t</m>, employing implicit differentiation.<md>
+                <mrow>V \amp = \frac{1}{8}A</mrow>
+                <mrow>\lzoo{t}{V}\amp = \lzoo{t}{\frac{1}{8}A}</mrow>
+                <mrow>\lz{V}{t} \amp = \frac{1}{8}\lz{A}{t}</mrow>
+            </md>We know the change in volume, <m>\lz{V}{t} = 2</m>, so we substitute this value into our related rates equation: <m>2 = \frac{1}{8}\lz{A}{t}</m>, and hence <m>\lz{A}{t} = 16</m>. Thus the area is growing by <quantity><mag>16</mag><unit base="inch" exp="2" /><per base="second" /></quantity>.</p>
+          </li>
+
+          <li>
+            <p>We already identified the quantities that are changing in <xref ref="ex_rr2a">Part</xref>. The variables of interest in this problem are the radius and the volume. We need an equation that relates the volume of the circle to the radius. Since the puddle is a right circular cylinder, we will use a known volume formula, <m>V=\pi r^2 h</m> where <m>V</m> is the volume of the puddle (in <quantity><unit base="inch" exp="3" /></quantity>, <m>r</m> is the radius (in inches) and <m>h</m> is the height (<ie /> depth) of the puddle in inches. (Notice that this formula is equivalent to <m>V=\text{area} \times \text{depth}</m>. We know that the height (depth) is a constant <m>1/8</m> inch. Since this quantity does not change in the problem, we can safely substitute this value now.</p>
+
+            <p>Implicitly derive both sides of <m>V=\pi r^2 \frac{1}{8}</m> with respect to <m>t</m>:<md>
+                <mrow>V \amp = \frac{1}{8} \pi r^2</mrow>
+                <mrow>\frac{d}{dt}\big(V\big) \amp = \frac{d}{dt}\left(\frac{1}{8}\pi r^2\right)</mrow>
+                <mrow>\lz{V}{t} \amp = \frac{1}{8} 2\pi r\lz{r}{t}</mrow>
+                <mrow>\lz{V}{t} \amp = \frac{1}{4} \pi r\lz{r}{t}</mrow>
+            </md>We know that  <m>\lz{V}{t}</m> is <quantity><mag>2</mag><unit base="inch" exp="3" /><per base="second" /></quantity>. So we have:<me>2 = \frac14 \pi r\lz{r}{t}</me>Solving for <m>\lz{r}{t}</m>, we have<me>\lz{r}{t} = \frac{8}{\pi r}</me>. Note how our answer is not a number, but rather a function of <m>r</m>. In other words, <em>the rate at which the radius is growing depends on how big the circle already is.</em> If the circle is very large, adding <quantity><mag>2</mag><unit base="inch" exp="3" /><per base="second" /></quantity> of water will not make the circle much bigger at all. If the circle dime-sized, adding the same amount of water will make a radical change in the radius of the circle.</p>
+
+            <p>In some ways, our problem was (intentionally) ill-posed. We need to specify a current (instantaneous) value of the radius in order to know a rate of change. When the puddle has a radius of <quantity><mag>10</mag><unit base="inch" /></quantity>, the radius is growing at a rate of<me>\lz{r}{t} = \frac{8}{10\pi} = \frac{4}{5\pi} \approx 0.25\text{ in/s }.</me></p>
+          </li>
+        </ol></p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_rr3">
+      <title>Studying related rates</title>
+      <statement>
+        <p>Radar guns measure the rate of distance change between the gun and the object it is measuring. For instance, a reading of <q><quantity><mag>55</mag><unit base="mileperhour" /></quantity></q> means the object is moving away from the gun at a rate of <m>55</m> miles per hour, whereas a measurement of <q><quantity><mag>-25</mag><unit base="mileperhour" /></quantity></q> would mean that the object is approaching the gun at a rate of <m>25</m> miles per hour.</p>
+
+        <p>If the radar gun is moving (say, attached to a police car) then radar readouts are only immediately understandable if the gun and the object are moving along the same line. If a police officer is traveling <quantity><mag>60</mag><unit base="mileperhour" /></quantity> and gets a readout of <quantity><mag>15</mag><unit base="mileperhour" /></quantity>, he knows that the car ahead of him is moving away at a rate of <m>15</m> miles an hour, meaning the car is traveling <quantity><mag>75</mag><unit base="mileperhour" /></quantity>. (This straight-line principle is one reason officers park on the side of the highway and try to shoot straight back down the road. It gives the most accurate reading.)</p>
+
+        <p>Suppose an officer is driving due north at <quantity><mag>30</mag><unit base="mileperhour" /></quantity> and sees a car moving due east, as shown in <xref ref="fig_rr3">Figure</xref>. Using his radar gun, he measures a reading of <quantity><mag>20</mag><unit base="mileperhour" /></quantity>. By using landmarks, he believes both he and the other car are about <m>1/2</m> mile from the intersection of their two roads.</p>
+
+        <figure xml:id="fig_rr3" >
+          <caption>A sketch of a police car (at bottom) attempting to measure the speed of a car (at right) in <xref ref="ex_rr3">Example</xref>.</caption>
+          <!-- START figures/fig_rr3.tex -->
+          <image xml:id="img_rr3" width="47%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}[>=latex]
+                \draw(0,0) -- (3,0) node [pos=.5,above] {\scriptsize $B=1/2$} -- (0,-3) node [pos=.4,below] {\scriptsize $C$}-- (0,0) node [pos=.5,rotate=90,shift={(.1,.2)}] {\scriptsize $A=1/2$};
+
+                \draw[thick] (0,-3.5) -- (0,.5) node [above] {\scriptsize $N$};
+                \draw[thick] (-.5,0) -- (3.5,0) node [right] {\scriptsize $E$};
+                \filldraw[fill={\colortwo},draw={\colortwo}] (0,-3) circle (2pt) node [right] {\scriptsize Officer};
+                \filldraw[fill=black,draw=black] (3,0) circle (2pt) node [below ] {\scriptsize \quad Car};
+
+                \draw[->,thick] (-.2,-3.3) -- (-.2,-2.7);
+                \draw[->,thick] (2.7,.2) -- (3.3,.2);
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_rr3.tex END -->
+        </figure>
+
+        <p>If the speed limit on the other road is <quantity><mag>55</mag><unit base="mileperhour" /></quantity>, is the other driver speeding?</p>
+      </statement>
+      <solution>
+        <p>The important quantities that are changing are: the distance of the officer to the intersection, the distance of the car to the intersection, and the distance of the officer to the car. (There are other quantities that are changing as well such as the angles and area of the triangle, but these are not important to this problem.)</p>
+
+        <p>Using the diagram in <xref ref="fig_rr3">Figure</xref>, let's label what we know about the situation. As both the police officer and other driver are <m>1/2</m> mile from the intersection, we have <m>A = 1/2</m>, <m>B = 1/2</m>, and through the Pythagorean Theorem, <m>C = 1/\sqrt{2}\approx 0.707</m>. These values are <q>instantaneous</q> values for our variables, so we won't use them until the <em>end</em> of the problem. Instead, we will use the variables <m>A</m>, <m>B</m>, and <m>C</m>.</p>
+
+        <p>We need an equation that relates <m>A</m>, <m>B</m>, and <m>C</m>. The Pythagorean Theorem is a good choice: <m>A^2+B^2 = C^2</m>. Differentiate both sides with respect to <m>t</m>:
+          <md>
+            <mrow>A^2 + B^2 \amp = C^2</mrow>
+            <mrow>\lzoo{t}{A^2+B^2} \amp = \lzoo{t}{C^2}</mrow>
+            <mrow>2A\lz{A}{t} + 2B\lz{B}{t} \amp = 2C\lz{C}{t}</mrow>
+          </md>
+        </p>
+
+        <p>We know the police officer is traveling at <quantity><mag>30</mag><unit base="mileperhour" /></quantity>; that is, <m>\lz{A}{t} = -30</m>. The reason this rate of change is negative is that <m>A</m> is getting smaller; the distance between the officer and the intersection is shrinking. The radar measurement is <m>\lz{C}{t} = 20</m>. We want to find <m>\lz{B}{t}</m>.</p>
+
+        <p>We have values for everything except <m>\lz{B}{t}</m>. Solving for this we have:<me>\lz{B}{t} = \frac{C\lz{C}{t}- A\lz{A}{t}}{B}</me>. Now we substitue in our known rates and instantaneous values of our variables:<md>
+            <mrow>\lz{B}{t} \amp \approx \frac{0.707(20)- 0.5(-30)}{(0.5)}</mrow>
+            <mrow>\amp= 58.28 \text{mph}</mrow>
+        </md>.</p>
+
+        <p>The other driver appears to be speeding slightly.</p>
+      </solution>
+    </example>
+
+    <aside>
+      <title>Practicality</title>
+      <p><xref ref="ex_rr3">Example</xref> is both interesting and impractical. It highlights the difficulty in using radar in a nonlinear fashion, and explains why <q>in real life</q> the police officer would follow the other driver to determine their speed, and not pull out pencil and paper.</p>
+
+      <p>The principles here are important, though. Many automated vehicles make judgments about other moving objects based on perceived distances, radar-like measurements and the concepts of related rates.</p>
+    </aside>
+
+    <example xml:id="ex_rr4">
+      <title>Studying related rates</title>
+      <statement>
+        <p>A camera is placed on a tripod <quantity><mag>10</mag><unit base="foot" /></quantity> from the side of a road. The camera is to turn to track a car that is to drive by at <quantity><mag>100</mag><unit base="mileperhour" /></quantity> for a promotional video. The video's planners want to know what kind of motor the tripod should be equipped with in order to properly track the car as it passes by. <xref ref="fig_rr4">Figure</xref> shows the proposed setup.</p>
+
+        <figure xml:id="fig_rr4" >
+          <caption>Tracking a speeding car (at left) with a rotating camera.</caption>
+          <!-- START figures/fig_rr4.tex -->
+          <image xml:id="img_rr4" width="47%" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}[>=latex]
+
+                \draw (-3,0) -- (0,0) -- (0,-2) node [shift={(-5pt,10pt)}] {\small $\theta$} node [right,pos=.5] {\scriptsize 10ft}-- cycle;
+                \draw [<->, thick] (-3.5,0) -- node [below,pos=.5] {\scriptsize $x$} (.5,0);
+                \draw [fill={\colortwo},draw={\colortwo}] (-3,0) circle (2pt);
+                \draw [fill=black] (0,-2) circle (2pt);
+                \draw [->] (-3,.2) -- (-2,.2) node [above,pos=.5] {\scriptsize 100mph};
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_rr4.tex END -->
+        </figure>
+
+        <p>How fast must the camera be able to turn to track the car?</p>
+      </statement>
+      <solution>
+        <p>The quantities that changing are <m>x</m> and <m>\theta</m> as drawn on <xref ref="fig_rr4">Figure</xref>. (The hypotenuse of the triangle is also changing, but this isn't important to the problem). We seek information about how fast the camera is to <em>turn</em>; therefore, we need an equation that will relate an angle <m>\theta</m> to the position of the camera and the speed and position of the car.</p>
+
+        <p><xref ref="fig_rr4">Figure</xref> suggests we use a trigonometric equation. Letting <m>x</m> represent the distance the car is from the point on the road directly in front of the camera, we have
+          <men xml:id="eq_rr4" >
+            \tan(\theta) = \frac{x}{10}.
+          </men>
+        </p>
+
+        <p>Now take the derivative of both sides of Equation <xref ref="eq_rr4" /> using implicit differentiation:
+          <md>
+            <mrow>\tan(\theta) \amp = \frac{x}{10}</mrow>
+            <mrow>\lzoo{t}{\tan(\theta)} \amp = \lzoo{t}{\frac{x}{10}}</mrow>
+            <mrow>\sec^2(\theta)\lz{\theta}{t} \amp = \frac{1}{10}\lz{x}{t}</mrow>
+          </md>
+          Now we solve for <m>\lz{\theta}{t}</m>:
+          <men xml:id="eq_rr4b">
+            \lz{\theta}{t} = \frac{\cos^2(\theta)}{10}\lz{x}{t}
+          </men>
+        </p>
+
+
+        <p>As the car is moving at <quantity><mag>100</mag><unit base="mileperhour" /></quantity>, we have that <m>\lz{x}{t}</m> is <quantity><mag>-100</mag><unit base="mileperhour" /></quantity> (as in the last example, since <m>x</m> is getting smaller as the car travels, <m>\lz{x}{t}</m> is negative). We need to convert the measurements so they use the same units (we chose <quantity><unit base="foot" /></quantity>); rewrite <quantity><mag>-100</mag><unit base="mileperhour" /></quantity> in terms of <quantity><unit base="foot" /><per base="second" /></quantity>:
+          <md>
+            <mrow>\lz{x}{t} \amp = -100\frac{\text{mi} }{\text{ hr } }</mrow>
+            <mrow>\amp = -100\frac{\text{mi} }{\text{ hr } }\cdot5280\frac{\text{ ft } }{\text{mi} }\cdot\frac{1}{3600}\frac{\text{ hr } }{\text{s} } </mrow>
+            <mrow>\amp =-146.\overline{6}\text{ ft/s } </mrow>
+          </md>.
+        </p>
+
+        <p>We want to know the fastest the camera has to turn. Common sense tells us this is when the car is directly in front of the camera (i.e., when <m>\theta = 0</m>). Our mathematics bears this out. In <xref ref="eq_rr4b">Equation</xref> we see this is when <m>\cos^2(\theta)</m> is largest; this is when <m>\cos(\theta) = 1</m>, or when <m>\theta = 0</m>. We also know that we should get an answer that is in <quantity><unit base="radian" /><per base="second" /></quantity>. Since <m>\cos(\theta)</m> is a <q>dimensionless</q> measure, it won't contribute to the units. However, radians are also dimensionless. This means we can write (or erase) the word <q>radian</q> without any unit consequences. (The same is not true of degrees <mdash/> always convert degress to radians).</p>
+
+        <p>With <m>\lz{x}{t}</m> approximately <quantity><mag>-146.7</mag><unit base="foot" /><per base="second" /></quantity>, we have
+          <md>
+            <mrow>\lz{\theta}{t} \amp \approx -\frac{1}{10\text{ ft } }146.67\text{ ft/s }</mrow>
+            <mrow>\amp = -14.667\text{ radians/s } </mrow>
+          </md>
+        </p>
+
+        <p>We find that <m>\lz{\theta}{t}</m> is negative; this matches our diagram in <xref ref="fig_rr4">Figure</xref> for <m>\theta</m> is getting smaller as the car approaches the camera.</p>
+
+        <p>What is the practical meaning of <quantity><mag>-14.667</mag><unit base="radian" /><per base="second" /></quantity>? Recall that <m>1</m> circular revolution goes through <m>2\pi</m> radians, thus <quantity><mag>14.667</mag><unit base="radian" /><per base="second" /></quantity> means <m>14.667/(2\pi)\approx 2.33</m> revolutions per second. The negative sign indicates the camera is rotating in a clockwise fashion.</p>
+      </solution>
+    </example>
+
+    <p>We introduced the derivative as a function that gives the slopes of tangent lines of functions. This chapter emphasizes using the derivative in other ways. Newton's Method uses the derivative to approximate roots of functions; this section stresses the <q>rate of change</q> aspect of the derivative to find a relationship between the rates of change of two related quantities.</p>
+
+    <p>In the next section we use Extreme Value concepts to <em>optimize</em> quantities.</p>
+
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>T/F: Implicit differentiation is often used when solving <q>related rates</q> type problems.</p>
+          </statement>
+          <solution>
+            <p>T</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>T/F: A study of related rates is part of the standard police officer training.</p>
+          </statement>
+          <solution>
+            <p>F</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+    <exercisegroup>
+      <title>Problems</title>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Water flows onto a flat surface at a rate of 5cm<m>^3</m>/s forming a circular puddle 10mm deep. How fast is the radius growing when the radius is:</p>
+
+            <ol>
+              <li><p>1 cm?</p></li>
+
+              <li><p>10 cm?</p></li>
+
+              <li><p>100 cm?</p></li>
+            </ol>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>5/(2\pi) \approx 0.796</m>cm/s</p></li>
+
+              <li><p><m>1/(4\pi)\approx 0.0796</m> cm/s</p></li>
+
+              <li><p><m>1/(40\pi)\approx 0.00796</m> cm/s</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>A circular balloon is inflated with air flowing at a rate of 10cm<m>^3</m>/s. How fast is the radius of the balloon increasing when the radius is:</p>
+
+            <ol>
+              <li><p>1 cm?</p></li>
+
+              <li><p>10 cm?</p></li>
+
+              <li><p>100 cm?</p></li>
+            </ol>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>5/(2\pi)\approx 0.796</m>cm/s</p></li>
+
+              <li><p><m>1/(40\pi)\approx 0.00796</m> cm/s</p></li>
+
+              <li><p><m>1/(4000\pi)\approx 0.0000796</m> cm/s</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Consider the traffic situation introduced in <xref ref="ex_rr3">Example</xref>. How fast is the <q>other car</q> traveling if the officer and the other car are each 1/2 mile from the intersection, the other car is traveling <em>due west</em>, the officer is traveling north at 50mph, and the radar reading is <m>-80</m>mph?</p>
+          </statement>
+          <solution>
+            <p><m>63.14</m>mph</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Consider the traffic situation introduced in <xref ref="ex_rr3">Example</xref>. Calculate how fast the <q>other car</q> is traveling in each of the following situations.</p>
+
+            <ol>
+              <li><p>The officer is traveling due north at 50mph and is 1/2 mile from the intersection, while the other car is 1 mile from the intersection traveling west and the radar reading is <m>-80</m>mph?</p></li>
+
+              <li><p>The officer is traveling due north at 50mph and is 1 mile from the intersection, while the other car is 1/2 mile from the intersection traveling west and the radar reading is <m>-80</m>mph?</p></li>
+            </ol>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>64.44</m> mph</p></li>
+
+              <li><p><m>78.89</m> mph</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise xml:id="exer_04_02_ex_07">
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>An F-22 aircraft is flying at 500mph with an elevation of 10,000ft on a straight<ndash />line path that will take it directly over an anti<ndash />aircraft gun.</p>
+
+            <!-- START\1END -->
+
+            <p>How fast must the gun be able to turn to accurately track the aircraft when the plane is:</p>
+
+            <ol>
+              <li><p>1 mile away?</p></li>
+
+              <li><p>1/5 mile away?</p></li>
+
+              <li><p>Directly overhead?</p></li>
+            </ol>
+          </statement>
+          <solution>
+            <p>Due to the height of the plane, the gun does not have to rotate very fast.</p>
+
+            <ol>
+              <li><p><m>0.0573</m> rad/s</p></li>
+
+              <li><p><m>0.0725</m> rad/s</p></li>
+
+              <li><p>In the limit, rate goes to <m>0.0733</m> rad/s</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>An F-22 aircraft is flying at 500mph with an elevation of 100ft on a straight<ndash />line path that will take it directly over an anti<ndash />aircraft gun as in <xref ref="exer_04_02_ex_07">Exercise</xref> (note the lower elevation here).</p>
+
+            <p>How fast must the gun be able to turn to accurately track the aircraft when the plane is:</p>
+
+            <ol>
+              <li><p>1000 feet away?</p></li>
+
+              <li><p>100 feet away?</p></li>
+
+              <li><p>Directly overhead?</p></li>
+            </ol>
+          </statement>
+          <solution>
+            <p>Due to the height of the plane, the gun does not have to rotate very fast.</p>
+
+            <ol>
+              <li><p><m>0.073</m> rad/s</p></li>
+
+              <li><p><m>3.66</m> rad/s (about 1/2 revolution/sec)</p></li>
+
+              <li><p>In the limit, rate goes to <m>7.33</m> rad/s (more than 1 revolution/sec)</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>A 24ft. ladder is leaning against a house while the base is pulled away at a constant rate of 1ft/s.</p>
+
+            <figure>
+              <!-- START figures/fig_04_02_ex_09.tex -->
+              <image xml:id="img_04_02_ex_09" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}[>=latex]
+
+                  \draw [top color=brown, bottom color=brown!50!white,draw=black] (0,0) rectangle (20pt,30pt);
+                  \draw [fill=black] (0,30pt) -- (10pt,38pt) -- (20pt,30pt) -- cycle;
+                  \draw [fill=white] (7pt,15pt) rectangle (13pt,25pt);
+                  \draw (10pt,15pt) -- (10pt,25pt) (7pt,20pt) -- (13pt,20pt);
+
+                  \draw [thick] (20pt,25pt) -- node [pos=.5,rotate=-67,yshift=5pt] {\scriptsize 24 ft} (30pt,0);
+
+                  \draw [thick] (0,0) -- (35pt,0);
+                  \draw [->,>=latex] (34pt,2pt) -- node [above right,pos=.5] {\scriptsize 1 ft/s} (50pt,2pt);
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_04_02_ex_09.tex END -->
+            </figure>
+
+            <p>At what rate is the top of the ladder sliding down the side of the house when the base is:</p>
+
+            <ol>
+              <li><p>1 foot from the house?</p></li>
+
+              <li><p>10 feet from the house?</p></li>
+
+              <li><p>23 feet from the house?</p></li>
+
+              <li><p>24 feet from the house?</p></li>
+            </ol>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>0.04</m> ft/s</p></li>
+
+              <li><p><m>0.458</m> ft/s</p></li>
+
+              <li><p><m>3.35</m> ft/s</p></li>
+
+              <li><p>Not defined; as the distance approaches 24, the rates approaches <m>\infty</m>.</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>A boat is being pulled into a dock at a constant rate of 30ft/min by a winch located 10ft above the deck of the boat.</p>
+
+            <figure>
+              <!-- START figures/fig_04_02_ex_10.tex -->
+              <image xml:id="img_04_02_ex_10" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}[>=latex]
+
+                  \draw [top color=blue!60!white, bottom color=blue!10!white,draw=blue] (-5pt,5pt) rectangle (100pt,-5pt);
+                  \draw [thick,fill=brown] (-10pt,20pt) rectangle (8pt,22pt);
+                  \draw [top color=brown!30!black, bottom color=brown!70!white,draw=black] (0,0) rectangle (5pt,30pt);
+
+                  \draw [fill=white] (50pt,0pt) -- (90pt,0pt) -- (90pt, 15pt) -- (45pt,15pt) -- cycle;
+                  \draw [fill=black] (65pt,15pt) rectangle (67pt,20pt);
+                  \draw [fill=yellow] (55pt,20pt) -- (80pt,20pt) -- (65pt,40pt) -- cycle;
+
+                  \draw [fill=black] (8pt,35pt) circle (2pt);
+                  \draw (45pt,15pt) [dashed] -- (8pt,15pt) -- (8pt,35pt) node [pos=.4,xshift=7pt] {\scriptsize 10ft};
+
+                  \draw [,>=latex,thick] (8pt,35pt) -- (45pt,15pt);
+
+
+                  %
+                  %
+                  %\draw [fill=black] (0,30pt) -- (10pt,38pt) -- (20pt,30pt) -- cycle;
+                  %\draw [fill=white] (7pt,15pt) rectangle (13pt,25pt);
+                  %\draw (10pt,15pt) -- (10pt,25pt) (7pt,20pt) -- (13pt,20pt);
+                  %
+                  %\draw [thick] (20pt,25pt) -- node [pos=.5,rotate=-67,yshift=5pt] {\scriptsize 24 ft} (30pt,0);
+                  %
+                  %\draw [thick] (0,0) -- (35pt,0);
+                  %\draw [->,>=latex] (34pt,2pt) -- node [above right,pos=.5] {\scriptsize 1 ft/s} (50pt,2pt);
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_04_02_ex_10.tex END -->
+            </figure>
+
+            <p>At what rate is the boat approaching the dock when the boat is:</p>
+
+            <ol>
+              <li><p>50 feet out?</p></li>
+
+              <li><p>15 feet out?</p></li>
+
+              <li><p>1 foot from the dock?</p></li>
+
+              <li><p>What happens when the length of rope pulling in the boat is less than 10 feet long?</p></li>
+            </ol>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>30.59</m> ft/min</p></li>
+
+              <li><p><m>36.1</m> ft/min</p></li>
+
+              <li><p><m>301</m> ft/min</p></li>
+
+              <li><p>The boat no longer floats as usual, but is being pulled up by the winch (assuming it has the power to do so).</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>An inverted cylindrical cone, 20ft deep and 10ft across at the top, is being filled with water at a rate of 10ft<m>^3</m>/min. At what rate is the water rising in the tank when the depth of the water is:</p>
+
+            <ol>
+              <li><p>1 foot?</p></li>
+
+              <li><p>10 feet?</p></li>
+
+              <li><p>19 feet?</p></li>
+            </ol>
+
+            <p>How long will the tank take to fill when starting at empty?</p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>50.92</m> ft/min</p></li>
+
+              <li><p><m>0.509</m> ft/min</p></li>
+
+              <li><p><m>0.141</m> ft/min</p></li>
+            </ol>
+
+            <p>As the tank holds about 523.6ft<m>^3</m>, it will take about 52.36 minutes.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise xml:id="exer_04_02_ex_12">
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>A rope, attached to a weight, goes up through a pulley at the ceiling and back down to a worker. The man holds the rope at the same height as the connection point between rope and weight.</p>
+
+            <figure>
+              <!-- START figures/fig_04_02_ex_12.tex -->
+              <image xml:id="img_04_02_ex_12" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}[>=latex,x=1pt,y=1pt]
+
+                  \draw [thick](0,40) -- (55,40);
+                  \draw [thick] (0,0) -- (55,0);
+                  \draw (2,0) -- (12,0) -- (9,5) -- (5,5)--cycle;
+                  \draw (7,5) -- (7,35) -- (33,5);
+                  \draw (7,35) -- (7,40);
+                  \draw [fill=gray] (7,35) circle (2pt);
+                  \draw (35,10) circle (2pt);
+                  \draw (35,8) -- (35,4) -- (33,0) (35,4) -- (37,0) (33,6) -- (37,6);
+
+                  \draw (-4,5) -- (-1,5)  (-2.5,5) -- (-2.5,35) node [pos=.5,draw,fill=white,draw=white,rotate=90] {\scriptsize 30 ft}
+                         (-4,35) -- (-1,35);
+
+                   \draw [thick,->](40,5) --(55,5) node[pos=.5,above] {\scriptsize 2 ft/s};
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_04_02_ex_12.tex END -->
+            </figure>
+
+            <p>Suppose the man stands directly next to the weight (i.e., a total rope length of 60 ft) and begins to walk away at a rate of 2ft/s. How fast is the weight rising when the man has walked:</p>
+
+            <ol>
+              <li><p>10 feet?</p></li>
+
+              <li><p>40 feet?</p></li>
+            </ol>
+
+            <p>How far must the man walk to raise the weight all the way to the pulley?</p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>0.63</m> ft/sec</p></li>
+
+              <li><p><m>1.6</m> ft/sec</p></li>
+            </ol>
+
+            <p>About 52 ft.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Consider the situation described in <xref ref="exer_04_02_ex_12">Exercise</xref>. Suppose the man starts 40ft from the weight and begins to walk away at a rate of 2ft/s.</p>
+
+            <ol>
+              <li><p>How long is the rope?</p></li>
+
+              <li><p>How fast is the weight rising after the man has walked 10 feet?</p></li>
+
+              <li><p>How fast is the weight rising after the man has walked 40 feet?</p></li>
+
+              <li><p>How far must the man walk to raise the weight all the way to the pulley?</p></li>
+            </ol>
+          </statement>
+          <solution>
+            <ol>
+              <li><p>The rope is 80ft long.</p></li>
+
+              <li><p><m>1.71</m> ft/sec</p></li>
+
+              <li><p><m>1.87</m> ft/sec</p></li>
+
+              <li><p>About 34 feet.</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>A hot air balloon lifts off from ground rising vertically. From 100 feet away, a 5' woman tracks the path of the balloon. When her sightline with the balloon makes a 45<m>^\circ</m> angle with the horizontal, she notes the angle is increasing at about 5<m>^\circ</m>/min.</p>
+
+            <ol>
+              <li><p>What is the elevation of the balloon?</p></li>
+
+              <li><p>How fast is it rising?</p></li>
+            </ol>
+          </statement>
+          <solution>
+            <ol>
+              <li><p>The balloon is 105ft in the air.</p></li>
+
+              <li><p>The balloon is rising at a rate of 17.45ft/min. (Hint: convert all angles to radians.)</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>A company that produces landscaping materials is dumping sand into a conical pile. The sand is being poured at a rate of 5ft<m>^3</m>/sec; the physical properties of the sand, in conjunction with gravity, ensure that the cone's height is roughly 2/3 the length of the diameter of the circular base.</p>
+
+            <p>How fast is the cone rising when it has a height of 30 feet?</p>
+          </statement>
+          <solution>
+            <p>The cone is rising at a rate of <m>0.003</m>ft/s.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

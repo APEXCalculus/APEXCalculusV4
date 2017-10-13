@@ -1,0 +1,73 @@
+\small \raggedright \begin {multicols}{2}
+\thispagestyle {empty}
+\noindent {\Large \bf Chapter 9} \vskip \baselineskip 
+\noindent {\bf Section 9.1} \vskip \baselineskip 
+
+\printanswers {exercises/09_01_exercises}
+\noindent {\bf Section 9.2} \vskip \baselineskip 
+\printanswers {exercises/09_02_exercises}
+\noindent {\bf Section 9.3} \vskip \baselineskip 
+\printanswers {exercises/09_03_exercises}
+\noindent {\bf Section 9.4} \vskip \baselineskip 
+\printanswers {exercises/09_04_exercises}
+\noindent {\bf Section 9.5} \vskip \baselineskip 
+\printanswers {exercises/09_05_exercises}
+\noindent {\Large \bf Chapter 10} \vskip \baselineskip 
+\noindent {\bf Section 10.1} \vskip \baselineskip 
+
+\printanswers {exercises/10_01_exercises}
+\noindent {\bf Section 10.2} \vskip \baselineskip 
+\printanswers {exercises/10_02_exercises}
+\noindent {\bf Section 10.3} \vskip \baselineskip 
+\printanswers {exercises/10_03_exercises}
+\noindent {\bf Section 10.4} \vskip \baselineskip 
+\printanswers {exercises/10_04_exercises}
+\noindent {\bf Section 10.5} \vskip \baselineskip 
+\printanswers {exercises/10_05_exercises}
+\noindent {\bf Section 10.6} \vskip \baselineskip 
+\printanswers {exercises/10_06_exercises}
+\noindent {\Large \bf Chapter 11} \vskip \baselineskip 
+\noindent {\bf Section 11.1} \vskip \baselineskip 
+
+\printanswers {exercises/11_01_exercises}
+\noindent {\bf Section 11.2} \vskip \baselineskip 
+\printanswers {exercises/11_02_exercises}
+\noindent {\bf Section 11.3} \vskip \baselineskip 
+\printanswers {exercises/11_03_exercises}
+\noindent {\bf Section 11.4} \vskip \baselineskip 
+\printanswers {exercises/11_04_exercises}
+\noindent {\bf Section 11.5} \vskip \baselineskip 
+\printanswers {exercises/11_05_exercises}
+\noindent {\Large \bf Chapter 12} \vskip \baselineskip 
+\noindent {\bf Section 12.1} \vskip \baselineskip 
+
+\printanswers {exercises/12_01_exercises}
+\noindent {\bf Section 12.2} \vskip \baselineskip 
+\printanswers {exercises/12_02_exercises}
+\noindent {\bf Section 12.3} \vskip \baselineskip 
+\printanswers {exercises/12_03_exercises}
+\noindent {\bf Section 12.4} \vskip \baselineskip 
+\printanswers {exercises/12_04_exercises}
+\noindent {\bf Section 12.5} \vskip \baselineskip 
+\printanswers {exercises/12_08_exercises}
+\noindent {\bf Section 12.6} \vskip \baselineskip 
+\printanswers {exercises/12_05_exercises}
+\noindent {\bf Section 12.7} \vskip \baselineskip 
+\printanswers {exercises/12_06_exercises}
+\noindent {\bf Section 12.8} \vskip \baselineskip 
+\printanswers {exercises/12_07_exercises}
+\noindent {\Large \bf Chapter 13} \vskip \baselineskip 
+\noindent {\bf Section 13.1} \vskip \baselineskip 
+
+\printanswers {exercises/13_01_exercises}
+\noindent {\bf Section 13.2} \vskip \baselineskip 
+\printanswers {exercises/13_02_exercises}
+\noindent {\bf Section 13.3} \vskip \baselineskip 
+\printanswers {exercises/13_03_exercises}
+\noindent {\bf Section 13.4} \vskip \baselineskip 
+\printanswers {exercises/13_04_exercises}
+\noindent {\bf Section 13.5} \vskip \baselineskip 
+\printanswers {exercises/13_05_exercises}
+\noindent {\bf Section 13.6} \vskip \baselineskip 
+\printanswers {exercises/13_06_exercises}
+\end {multicols}\normalsize 

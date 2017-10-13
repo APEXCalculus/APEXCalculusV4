@@ -1,0 +1,2151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_vector_intro">
+  <title>An Introduction to Vectors</title>
+  <introduction>
+    <p>Many quantities we think about daily can be described by a single number: temperature, speed, cost, weight and height. There are also many other concepts we encounter daily that cannot be described with just one number. For instance, a weather forecaster often describes wind with its speed and its direction (<q><m>\ldots</m> with winds from the southeast gusting up to 30 mph <m>\ldots</m></q>). When applying a force, we are concerned with both the magnitude and direction of that force. In both of these examples, <em>direction</em> is important. Because of this, we study <em>vectors</em>, mathematical objects that convey both magnitude and direction information.</p>
+
+    <p>One <q>bare<ndash />bones</q> definition of a vector is based on what we wrote above: <q>a vector is a mathematical object with magnitude and direction parameters.</q> This definition leaves much to be desired, as it gives no indication as to how such an object is to be used. Several other definitions exist; we choose here a definition rooted in a geometric visualization of vectors. It is very simplistic but readily permits further investigation.</p>
+
+    <definition xml:id="def_vector">
+      <title>Vector</title>
+      <statement>
+        <p>A <term>vector</term> is a directed line segment.</p>
+
+        <p>Given points <m>P</m> and <m>Q</m> (either in the plane or in space), we denote with <m>\vv{PQ}</m> the vector <term>from <m>P</m> to <m>Q</m></term>. The point <m>P</m> is said to be the <term>initial point</term> of the vector, and the point <m>Q</m> is the <term>terminal point</term>.</p>
+
+        <p>The <term>magnitude</term>, <term>length</term> or <term>norm</term> of <m>\vv{PQ}</m> is the length of the line segment <m>\overline{PQ}</m>: <m>\norm{\vv{PQ}} = \norm{\overline{PQ}}</m>.</p>
+
+        <p>Two vectors are <term>equal</term> if they have the same magnitude and direction.
+          <index><main>vectors</main></index><index><main>vectors</main><sub>definition</sub></index><index><main>vectors</main><sub>norm</sub></index><index><main>vectors</main><sub>magnitude</sub></index><index><main>norm</main></index><index><main>magnitude of vector</main></index><index><main>terminal point</main></index><index><main>initial point</main></index></p>
+      </statement>
+    </definition>
+
+    <p><xref ref="fig_vectintro1">Figure</xref> shows multiple instances of the same vector. Each directed line segment has the same direction and length (magnitude), hence each is the same vector.</p>
+
+    <figure xml:id="fig_vectintro1" >
+      <caption>Drawing the same vector with different initial points.</caption>
+      <!-- START figures/fig_vectintro1.tex -->
+      <image xml:id="img_vectintro1" >
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+          \begin{axis}[%
+          axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-1,1},
+          %			extra x ticks={.33},
+          %			extra x tick labels={$1/3$},
+			%ytick={-1,1},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-5.5,ymax=5.5,%
+			xmin=-5.5,xmax=5.5%
+          ]
+
+
+
+          \draw[very thick,->,>=stealth] (axis cs:0,0) --(axis cs:3,1);
+          \draw[very thick,->,>=stealth] (axis cs:-2,-3) --(axis cs:1,-2);
+          \draw[very thick,->,>=stealth] (axis cs:-4,1) --(axis cs:-1,2);
+          \draw[very thick,->,>=stealth] (axis cs:2,-4) --(axis cs:5,-3);
+
+
+          \end{axis}
+
+
+
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_vectintro1.tex END -->
+    </figure>
+
+    <p>We use <m>\mathbb{R}^2</m> (pronounced <q>r two</q>) to represent all the vectors in the plane, and use <m>\mathbb{R}^3</m> (pronounced <q>r three</q>) to represent all the vectors in space.<index><main>r@<m>\mathbb{R}</m></main></index></p>
+
+    <figure xml:id="fig_vectintro2" >
+      <caption>Illustrating how equal vectors have the same displacement.</caption>
+      <!-- START figures/fig_vectintro2.tex -->
+      <image xml:id="img_vectintro2" >
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+          \begin{axis}[%
+          axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-1,1},
+          %			extra x ticks={.33},
+          %			extra x tick labels={$1/3$},
+			%ytick={-1,1},
+			%extra y ticks={-5,-3,...,7},%
+			ymin=-4.5,ymax=4.5,%
+			xmin=-4.5,xmax=4.5%
+          ]
+
+
+
+          \draw[very thick,->,>=stealth] (axis cs:1,0) node [above] {\scriptsize $P$}--(axis cs:3,1)node [above] {\scriptsize $Q$};
+          \draw[very thick,->,>=stealth] (axis cs:-3,1)node [above] {\scriptsize $R$} --(axis cs:-1,2)node [above] {\scriptsize $S$};
+          %\draw[very thick,->,>=stealth] (axis cs:-4,1) --(axis cs:-1,2);
+          %\draw[very thick,->,>=stealth] (axis cs:2,-4) --(axis cs:5,-3);
+
+
+          \end{axis}
+
+
+
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_vectintro2.tex END -->
+    </figure>
+
+    <p>Consider the vectors <m>\vv{PQ}</m> and <m>\vv{RS}</m> as shown in <xref ref="fig_vectintro2">Figure</xref>. The vectors look to be equal; that is, they seem to have the same length and direction. Indeed, they are. Both vectors move 2 units to the right and 1 unit up from the initial point to reach the terminal point. One can analyze this movement to measure the magnitude of the vector, and the movement itself gives direction information (one could also measure the slope of the line passing through <m>P</m> and <m>Q</m> or <m>R</m> and <m>S</m>). Since they have the same length and direction, these two vectors are equal.</p>
+
+    <p>This demonstrates that inherently all we care about is <em>displacement</em>; that is, how far in the <m>x</m>, <m>y</m> and possibly <m>z</m> directions the terminal point is from the initial point. Both the vectors <m>\vv{PQ}</m> and <m>\vv{RS}</m> in <xref ref="fig_vectintro2">Figure</xref> have an <m>x</m>-displacement of 2 and a <m>y</m>-displacement of 1. This suggests a standard way of describing vectors in the plane. A vector whose <m>x</m>-displacement is <m>a</m> and whose <m>y</m>-displacement is <m>b</m> will have terminal point <m>(a,b)</m> when the initial point is the origin, <m>(0,0)</m>. This leads us to a definition of a standard and concise way of referring to vectors.</p>
+
+    <definition xml:id="def_vector_component">
+      <title>Component Form of a Vector</title>
+      <statement>
+        <ol>
+          <li><p>The <em>component form</em> of a vector <m>\vec{v}</m> in <m>\mathbb{R}^2</m>, whose terminal point is <m>(a,b)</m> when its initial point is <m>(0,0)</m>, is <m>\la a,b\ra</m>.</p></li>
+
+          <li><p>The <em>component form</em> of a vector <m>\vec{v}</m> in <m>\mathbb{R}^3</m>, whose terminal point is <m>(a,b,c)</m> when its initial point is <m>(0,0,0)</m>, is <m>\la a,b,c\ra</m>.</p></li>
+        </ol>
+
+        <p>The numbers <m>a</m>, <m>b</m> (and <m>c</m>, respectively) are the <term>components</term> of <m>\vec v</m>.
+          <index><main>vectors</main><sub>component form</sub></index></p>
+      </statement>
+    </definition>
+
+    <p>It follows from the definition that the component form of the vector <m>\vv{PQ}</m>, where <m>P=(x_1,y_1)</m> and <m>Q=(x_2,y_2)</m> is
+      <me>
+        \vv{PQ} = \la x_2-x_1, y_2-y_1\ra;
+      </me>
+      in space, where <m>P=(x_1,y_1,z_1)</m> and <m>Q=(x_2,y_2,z_2)</m>, the component form of <m>\vv{PQ}</m> is
+      <me>
+        \vv{PQ} = \la x_2-x_1, y_2-y_1,z_2-z_1\ra.
+      </me>
+    </p>
+
+    <p>We practice using this notation in the following example.</p>
+
+    <example xml:id="ex_vect1">
+      <title>Using component form notation for vectors</title>
+      <statement>
+        <ol>
+          <li><p>Sketch the vector <m>\vec v=\la 2,-1\ra</m> starting at <m>P=(3,2)</m> and find its magnitude.</p></li>
+
+          <li><p>Find the component form of the vector <m>\vec w</m> whose initial point is <m>R=(-3,-2)</m> and whose terminal point is <m>S=(-1,2)</m>.</p></li>
+
+          <li><p>Sketch the vector <m>\vec u = \la 2,-1,3\ra</m> starting at the point <m>Q = (1,1,1)</m> and find its
+              magnitude.</p></li>
+        </ol>
+      </statement>
+      <solution>
+        <ol>
+          <li><p>Using <m>P</m> as the initial point, we move 2 units in the positive <m>x</m>-direction and <m>-1</m> units in the positive <m>y</m>-direction to arrive at the terminal point <m>P\,'=(5,1)</m>, as drawn in <xref ref="fig_vect1">Figure</xref>(a).
+	
+	The magnitude of <m>\vec v</m> is determined directly from the component form:
+              <me>
+                \norm{\vec v} =\sqrt{2^2+(-1)^2} = \sqrt{5}.
+              </me>
+
+              <figure xml:id="fig_vect1" >
+              <caption>Graphing vectors in <xref ref="ex_vect1">Example</xref>.</caption>
+              <sidebyside>
+                <figure>
+                  <caption>(a)</caption>
+                  <!-- START figures/fig_vectintro3.tex -->
+                  <image xml:id="img_vectintro3" >
+                    <description></description>
+                    <latex-image-code>
+                      <![CDATA[
+                      \begin{tikzpicture}
+                      \begin{axis}[%
+                      axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-1,1},
+			minor x tick num=4,%
+                      %			extra x ticks={.33},
+                      %			extra x tick labels={$1/3$},
+			%ytick={-1,1},
+			minor y tick num=4,%extra y ticks={-5,-3,...,7},%
+			ymin=-5.5,ymax=5.5,%
+			xmin=-5.5,xmax=5.9%
+                      ]
+
+
+
+                      \draw[very thick,->,>=stealth] (axis cs:3,2) node [left] {\scriptsize $P$}--(axis cs:5,1)node [shift={(5pt,0pt)}] {\scriptsize $P\,'$};
+                      \draw[very thick,->,>=stealth] (axis cs:-3,-2)node [below left] {\scriptsize $R$} --(axis cs:-1,2)node [above] {\scriptsize $S$};
+                      %\draw[very thick,->,>=stealth] (axis cs:-4,1) --(axis cs:-1,2);
+                      %\draw[very thick,->,>=stealth] (axis cs:2,-4) --(axis cs:5,-3);
+
+
+                      \end{axis}
+
+
+
+                      \end{tikzpicture}
+                      ]]>
+                    </latex-image-code>
+                  </image>
+                  <!-- figures/fig_vectintro3.tex END -->
+                </figure>
+
+                <figure>
+                  <caption>(b)</caption>
+                  <!--
+                   \includemedia[width=125pt,3Dmenu,activate=onclick,deactivate=onclick,
+                  3Droll=0,
+                  3Dortho=0.004,
+                  3Dc2c=.3 .9 .3,
+                  3Dcoo=49 42 58,
+                  3Droo=150,
+                  3Dlights=Headlamp,add3Djscript=asylabels.js]
+                   -->
+
+
+                  <!-- START figures/figvectintro3b_3D.asy -->
+                  <image xml:id="img_vectintro3b_3D" >
+                    <asymptote>
+                      <![CDATA[
+                      import graph3;
+
+                      //ASY file for figvectintro3b.pdf in Chapter 10.1
+
+                      size(200,200,IgnoreAspect);
+                      //currentprojection=perspective(7,2,1);
+                      currentprojection=orthographic(5,9,2);
+                      defaultrender.merge=true;
+
+                      usepackage("mathspec");
+                      texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+                      texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+                      texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+                      texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+                      // setup and draw the axes
+                      real[] myxchoice={2};
+                      real[] myychoice={2};
+                      real[] myzchoice={-2,4};
+                      defaultpen(0.5mm);
+
+                      pair xbounds=(-1,3.5);
+                      pair ybounds=(-1,2.5);
+                      pair zbounds=(-1,5);
+
+                      xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+                      yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+                      zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+                      label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+                      label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+                      label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+
+
+
+                      // Draw the lines for Q=(1,1,1)
+                      draw((0,0,1)--(0,1,1)--(1,1,1)--(1,0,1)--(0,0,1), red+dashed+linewidth(.5));//top Q
+                      draw((0,0,0)--(0,1,0)--(1,1,0)--(1,0,0)--(0,0,0), red+dashed+linewidth(.5));//bottom Q
+                      draw((1,0,0)--(1,0,1), red+dashed+linewidth(.5));//up1 Q
+                      draw((0,1,0)--(0,1,1), red+dashed+linewidth(.5));//up2 Q
+                      draw((1,1,0)--(1,1,1), red+dashed+linewidth(.5));//up3 Q
+                      label("$Q$",(1,1,1),N);
+                      //dotfactor=3;  dot((2,1,1),blue);
+
+                      // Draw the lines for Q'=(3,0,4)
+                      draw((0,0,4)--(0,0,4)--(3,0,4)--(3,0,4)--(3,0,4), red+dashed+linewidth(.5));//top P
+                      draw((0,0,0)--(3,0,0)--(3,0,0)--(3,0,0)--(0,0,0), red+dashed+linewidth(.5));//bottom P
+                      draw((3,0,0)--(3,0,4), red+dashed+linewidth(.5));//up1 P
+                      draw((0,0,0)--(0,0,3), red+dashed+linewidth(.5));//up2 P
+                      draw((3,0,0)--(3,0,3), red+dashed+linewidth(.5));//up3 P
+                      label("$Q'$",(3,0,4),N);
+                      //dotfactor=3;  dot((1,4,-1),blue);
+
+                      //line from P to Q
+                      draw((1,1,1)--(3,0,4), black,Arrow3(size=2mm));
+
+
+                      // ////////////////////////////////////
+                      //    SAMPLE CODE
+
+                      // defaultpen(fontsize(10pt));
+
+                      //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+                      //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+
+                      //triple f(pair t) {
+                      //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+                      //}
+                      //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+
+                      //draw(s,paleblue);
+                      //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+                      //draw(mypath,2bp+blue);
+
+                      //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+                      //path3 mypath=graph(g,-1,1,operator ..);
+
+                      //pen p=rgb(0,0,1);
+                      //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+                      ]]>
+                    </asymptote>
+                  </image>
+                  <!-- figures/figvectintro3b_3D.asy END -->
+                </figure>
+              </sidebyside>
+
+              </figure>
+
+            </p></li>
+
+          <li><p>Using the note following <xref ref="def_vector_component">Definition</xref>, we have
+              <me>
+                \vv{RS} = \la -1-(-3), 2-(-2)\ra = \la 2,4\ra.
+              </me>
+              One can readily see from <xref ref="fig_vect1">Figure</xref>(a) that the <m>x</m>- and <m>y</m>-displacement of <m>\vv{RS}</m> is 2 and 4, respectively, as the component form suggests.</p></li>
+
+          <li><p>Using <m>Q</m> as the initial point, we move 2 units in the positive <m>x</m>-direction, <m>-1</m> unit in the positive <m>y</m>-direction, and 3 units in the positive <m>z</m>-direction to arrive at the terminal point <m>Q' = (3,0,4)</m>, illustrated in <xref ref="fig_vect1">Figure</xref>(b).
+	
+	The magnitude of <m>\vec u</m> is:
+              <me>
+                \norm{\vec u} = \sqrt{2^2+(-1)^2+3^2} = \sqrt{14}.
+              </me>
+            </p></li>
+        </ol>
+      </solution>
+    </example>
+
+    <p>Now that we have defined vectors, and have created a nice notation by which to describe them, we start considering how vectors interact with each other. That is, we define an <em>algebra</em> on vectors.</p>
+
+    <definition xml:id="def_vector_algebra">
+      <title>Vector Algebra</title>
+      <statement>
+        <ol>
+        <li><p>Let <m>\vec u = \la u_1,u_2\ra</m> and <m>\vec v = \la v_1,v_2\ra</m> be vectors in <m>\mathbb{R}^2</m>, and let <m>c</m> be a scalar. <index><main>vectors</main><sub>algebra of</sub></index></p>
+
+        <ol>
+          <li><p>The addition, or sum, of the vectors <m>\vec u</m> and <m>\vec v</m> is the vector
+              <me>
+                \vec u+\vec v = \la u_1+v_1, u_2+v_2\ra.
+              </me>
+            </p></li>
+
+          <li><p>The scalar product of <m>c</m> and <m>\vec v</m> is the vector
+              <me>
+                c\vec v = c\la v_1,v_2\ra = \la cv_1,cv_2\ra.
+              </me>
+            </p></li>
+        </ol>
+
+        </li>
+
+        <li><p>Let <m>\vec u = \la u_1,u_2,u_3\ra</m> and <m>\vec v = \la v_1,v_2,v_3\ra</m> be vectors in <m>\mathbb{R}^3</m>, and let <m>c</m> be a scalar.</p>
+
+        <ol>
+          <li><p>The addition, or sum, of the vectors <m>\vec u</m> and <m>\vec v</m> is the vector
+              <me>
+                \vec u+\vec v = \la u_1+v_1, u_2+v_2, u_3+v_3\ra.
+              </me>
+            </p></li>
+
+          <li><p>The scalar product of <m>c</m> and <m>\vec v</m> is the vector
+              <me>
+                c\vec v = c\la v_1,v_2,v_3\ra = \la cv_1,cv_2,cv_3\ra.
+              </me>
+            </p></li>
+        </ol>
+
+        </li>
+        </ol>
+      </statement>
+    </definition>
+
+    <p>In short, we say addition and scalar multiplication are computed <q>component<ndash />wise.</q></p>
+
+    <example xml:id="ex_vect2">
+      <title>Adding vectors</title>
+      <statement>
+        <p>Sketch the vectors <m>\vec u = \la1,3\ra</m>, <m>\vec v = \la 2,1\ra</m> and <m>\vec u+\vec v</m> all with initial point at the origin.</p>
+      </statement>
+      <solution>
+        <p>We first compute <m>\vec u +\vec v</m>.
+          <md>
+            <mrow>\vec u+\vec v \amp = \la 1,3\ra + \la 2,1\ra</mrow>
+            <mrow>\amp = \la 3,4\ra.</mrow>
+          </md>
+        </p>
+
+        <figure xml:id="fig_vect2" >
+          <caption>Graphing the sum of vectors in <xref ref="ex_vect2">Example</xref>.</caption>
+          <!-- START figures/fig_vect2.tex -->
+          <image xml:id="img_vect2" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[%
+              axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-1,1},
+              %			extra x ticks={.33},
+              %			extra x tick labels={$1/3$},
+			%ytick={-1,1},
+			%extra y ticks={-5,-3,...,7},%
+			ymin=-.5,ymax=4.1,%
+			xmin=-.5,xmax=4.1%
+              ]
+
+
+
+              \draw[very thick,->,>=stealth] (axis cs:0,0) --(axis cs:1,3) node [pos=.5,above,rotate=70] {\scriptsize $\vec u$};
+              \draw[very thick,->,>=stealth] (axis cs:0,0) --(axis cs:2,1) node [pos=.5,above,rotate=40] {\scriptsize $\vec v$};
+              \draw[very thick,->,>=stealth] (axis cs:0,0) --(axis cs:3,4) node [pos=.5,above,rotate=50] {\scriptsize $\vec u+\vec v$};
+
+
+
+              \end{axis}
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_vect2.tex END -->
+        </figure>
+
+        <p>These are all sketched in <xref ref="fig_vect2">Figure</xref>.</p>
+      </solution>
+    </example>
+
+    <p>As vectors convey magnitude and direction information, the sum of vectors also convey length and magnitude information. Adding <m>\vec u+\vec v</m> suggests the following idea:</p>
+
+    <q>Starting at an initial point, go out <m>\vec u</m>, then go out <m>\vec v</m>.</q>
+
+    <p>This idea is sketched in <xref ref="fig_vect2b">Figure</xref>, where the initial point of <m>\vec v</m> is the terminal point of <m>\vec u</m>. This is known as the <q>Head to Tail Rule</q> of adding vectors. Vector addition is very important. For instance, if the vectors <m>\vec u</m> and <m>\vec v</m> represent forces acting on a body, the sum <m>\vec u+\vec v</m> gives the resulting force. Because of various physical applications of vector addition, the sum <m>\vec u+\vec v</m> is often referred to as the <em>resultant vector</em>, or just the <q>resultant.</q><index><main>vectors</main><sub>resultant</sub></index><index><main>Parallelogram Law</main></index><index><main>vectors</main><sub>Parallelogram Law</sub></index><index><main>Head To Tail Rule</main></index><index><main>vectors</main><sub>Head To Tail Rule</sub></index><index><main>vectors</main><sub>zero vector</sub></index></p>
+
+    <figure xml:id="fig_vect2b" >
+      <caption>Illustrating how to add vectors using the Head to Tail Rule and Parallelogram Law.</caption>
+      <!-- START figures/fig_vect2b.tex -->
+      <image xml:id="img_vect2b" >
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+          \begin{axis}[%
+          axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-1,1},
+          %			extra x ticks={.33},
+          %			extra x tick labels={$1/3$},
+			%ytick={-1,1},
+			%extra y ticks={-5,-3,...,7},%
+			ymin=-.5,ymax=4.1,%
+			xmin=-.5,xmax=4.1%
+          ]
+
+
+
+          \draw[very thick,->,>=stealth] (axis cs:0,0) --(axis cs:1,3) node [pos=.5,above,rotate=70] {\scriptsize $\vec u$};
+          \draw[very thick,->,>=stealth,gray] (axis cs:1,3) --(axis cs:3,4) node [pos=.5,above,rotate=30] {\scriptsize $\vec v$};
+          \draw[very thick,->,>=stealth,gray] (axis cs:2,1) --(axis cs:3,4) node [pos=.4,above,rotate=70] {\scriptsize $\vec u$};
+
+
+          \draw[very thick,->,>=stealth] (axis cs:0,0) --(axis cs:2,1) node [pos=.5,above,rotate=30] {\scriptsize $\vec v$};
+          \draw[very thick,->,>=stealth] (axis cs:0,0) --(axis cs:3,4) node [pos=.5,above,rotate=50] {\scriptsize $\vec u+\vec v$};
+
+
+
+          \end{axis}
+
+
+
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_vect2b.tex END -->
+    </figure>
+
+    <p>Analytically, it is easy to see that <m>\vec u+\vec v = \vec v+\vec u</m>. <xref ref="fig_vect2b">Figure</xref> also gives a graphical representation of this, using gray vectors. Note that the vectors <m>\vec u</m> and <m>\vec v</m>, when arranged as in the figure, form a parallelogram. Because of this, the Head to Tail Rule is also known as the Parallelogram Law: the vector <m>\vec u+\vec v</m> is defined by forming the parallelogram defined by the vectors <m>\vec u</m> and <m>\vec v</m>; the initial point of <m>\vec u+\vec v</m> is the common initial point of parallelogram, and the terminal point of the sum is the common terminal point of the parallelogram.</p>
+
+    <p>While not illustrated here, the Head to Tail Rule and Parallelogram Law hold for vectors in <m>\mathbb{R}^3</m> as well.</p>
+
+    <p>It follows from the properties of the real numbers and <xref ref="def_vector_algebra">Definition</xref> that
+      <me>
+        \vec u-\vec v = \vec u + (-1)\vec v.
+      </me>
+    </p>
+
+    <p>The Parallelogram Law gives us a good way to visualize this subtraction. We demonstrate this in the following example.</p>
+
+    <example xml:id="ex_vect4">
+      <title>Vector Subtraction</title>
+      <statement>
+        <p>Let <m>\vec u = \la 3,1\ra</m> and <m>\vec v=\la 1,2\ra</m>. Compute and sketch <m>\vec u-\vec v</m>.</p>
+      </statement>
+      <solution>
+        <p>The computation of <m>\vec u-\vec v</m> is straightforward, and we show all steps below. Usually the formal step of multiplying by <m>(-1)</m> is omitted and we <q>just subtract.</q>
+          <md>
+            <mrow>\vec u-\vec v \amp = \vec u + (-1)\vec v</mrow>
+            <mrow>\amp = \la 3,1\ra + \la -1,-2\ra</mrow>
+            <mrow>\amp = \la 2,-1\ra.</mrow>
+          </md>
+        </p>
+
+        <figure xml:id="fig_vect4" >
+          <caption>Illustrating how to subtract vectors graphically.</caption>
+          <!-- START figures/fig_vect4.tex -->
+          <image xml:id="img_vect4" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[%
+              axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-1,1},
+              %			extra x ticks={.33},
+              %			extra x tick labels={$1/3$},
+			%ytick={-1,1},
+			%extra y ticks={-5,-3,...,7},%
+			ymin=-1.5,ymax=3.1,%
+			xmin=-.5,xmax=4.1%
+              ]
+
+
+
+              \draw[very thick,->,>=stealth] (axis cs:0,0) --(axis cs:3,1) node [pos=.5,above,rotate=20] {\scriptsize $\vec u$};
+
+              \draw[very thick,->,>=stealth] (axis cs:0,0) --(axis cs:1,2) node [pos=.5,above,rotate=60] {\scriptsize $\vec v$};
+
+              \draw[very thick,->,>=stealth] (axis cs:0,0) --(axis cs:2,-1) node [pos=.5,below,rotate=-20] {\scriptsize $\vec u-\vec v$};
+
+              \draw[very thick,->,>=stealth,gray] (axis cs:3,1) --(axis cs:2,-1) node [black,pos=.7,below,rotate=60] {\scriptsize $-\vec v$};
+
+              \draw[very thick,->,>=stealth,gray] (axis cs:1,2) --(axis cs:3,1) node [black,pos=.5,above,rotate=-20] {\scriptsize $\vec u-\vec v$};
+
+
+              \end{axis}
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_vect4.tex END -->
+        </figure>
+
+        <p><xref ref="fig_vect4">Figure</xref> illustrates, using the Head to Tail Rule, how the subtraction can be viewed as the sum <m>\vec u + (-\vec v)</m>. The figure also illustrates how <m>\vec u-\vec v</m> can be obtained by looking only at the terminal points of <m>\vec u</m> and <m>\vec v</m> (when their initial points are the same).</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_vect3">
+      <title>Scaling vectors</title>
+      <statement>
+        <ol>
+          <li><p>Sketch the vectors <m>\vec v = \la 2,1\ra</m> and  <m>2\vec v</m> with initial point at the origin.</p></li>
+
+          <li><p>Compute the magnitudes of <m>\vec v</m> and <m>2\vec v</m>.</p></li>
+        </ol>
+      </statement>
+      <solution>
+        <ol>
+          <li><p>We compute <m>2\vec v</m>:
+              <md>
+                <mrow>2\vec v \amp = 2\la 2,1\ra</mrow>
+                <mrow>\amp = \la 4,2\ra.</mrow>
+              </md>
+
+              <figure xml:id="fig_vect3" >
+                <caption>Graphing vectors <m>\vec v</m> and <m>2\vec v</m> in <xref ref="ex_vect3">Example</xref>.</caption>
+                <!-- START figures/fig_vect3.tex -->
+                <image xml:id="img_vect3" >
+                  <description></description>
+                  <latex-image-code>
+                    <![CDATA[
+                    \begin{tikzpicture}
+                    \begin{axis}[%
+                    axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-1,1},
+                    %			extra x ticks={.33},
+                    %			extra x tick labels={$1/3$},
+			%ytick={-1,1},
+			%extra y ticks={-5,-3,...,7},%
+			ymin=-.5,ymax=3.1,%
+			xmin=-.5,xmax=4.1%
+                    ]
+
+                    \draw[gray,very thick,->,>=stealth] (axis cs:0,0) --(axis cs:4,2) node [pos=.7,above,rotate=30,black] {\scriptsize $2\vec v$};
+
+                    \draw[very thick,->,>=stealth] (axis cs:0,0) --(axis cs:2,1) node [pos=.5,above,rotate=30] {\scriptsize $\vec v$};
+
+
+                    \end{axis}
+
+
+
+                    \end{tikzpicture}
+                    ]]>
+                  </latex-image-code>
+                </image>
+                <!-- figures/fig_vect3.tex END -->
+              </figure>
+
+              Both <m>\vec v</m> and <m>2\vec v</m> are sketched in <xref ref="fig_vect3">Figure</xref>. Make note that <m>2\vec v</m> does not start at the terminal point of <m>\vec v</m>; rather, its initial point is also the origin.</p></li>
+
+          <li><p>The figure suggests that <m>2\vec v</m> is twice as long as <m>\vec v</m>. We compute their magnitudes to confirm this.
+              <md>
+                <mrow>\norm{\vec v} \amp = \sqrt{2^2+1^2}</mrow>
+                <mrow>\amp = \sqrt{5}.</mrow>
+                <mrow>\norm{2\vec v}\amp =\sqrt{4^2+2^2}</mrow>
+                <mrow>\amp = \sqrt{20}</mrow>
+                <mrow>\amp = \sqrt{4\cdot 5} = 2\sqrt{5}.</mrow>
+              </md>
+              As we suspected, <m>2\vec v</m> is twice as long as <m>\vec v</m>.</p></li>
+        </ol>
+      </solution>
+    </example>
+
+    <p>The <em>zero vector</em> is the vector whose initial point is also its terminal point. It is denoted by <m>\vec 0</m>. Its component form, in <m>\mathbb{R}^2</m>, is <m>\la 0,0\ra</m>; in <m>\mathbb{R}^3</m>, it is <m>\la 0,0,0\ra</m>. Usually the context makes is clear whether <m>\vec 0</m> is referring to a vector in the plane or in space.</p>
+
+    <p>Our examples have illustrated key principles in vector algebra: how to add and subtract vectors and how to multiply vectors by a scalar. The following theorem states formally the properties of these operations.</p>
+
+    <theorem xml:id="thm_vector_properties">
+      <title>Properties of Vector Operations</title>
+      <statement>
+        <p>The following are true for all scalars <m>c</m> and <m>d</m>, and for all vectors <m>\vec u</m>, <m>\vec v</m> and <m>\vec w</m>, where <m>\vec u</m>, <m>\vec v</m> and <m>\vec w</m> are all in <m>\mathbb{R}^2</m> or where <m>\vec u</m>, <m>\vec v</m> and <m>\vec w</m> are all in <m>\mathbb{R}^3</m>:<index><main>vectors</main><sub>algebraic properties</sub></index></p>
+
+        <ol>
+          <li><p><m>\vec u+\vec v = \vec v+\vec u</m> Commutative Property</p></li>
+
+          <li><p><m>(\vec u+\vec v)+\vec w = \vec u+(\vec v+\vec w)</m> Associative Property</p></li>
+
+          <li><p><m>\vec v+\vec 0 = \vec v</m> Additive Identity</p></li>
+
+          <li><p><m>(cd)\vec v= c(d\vec v)</m> </p></li>
+
+          <li><p><m>c(\vec u+\vec v) = c\vec u+c\vec v</m> Distributive Property</p></li>
+
+          <li><p><m>(c+d)\vec v = c\vec v+d\vec v</m> Distributive Property</p></li>
+
+          <li><p><m>0\vec v = \vec 0</m> </p></li>
+
+          <li xml:id="thm_norm_prop" ><p><m>\norm{c\vec v} = \abs{c}\cdot\norm{\vec v}</m></p></li>
+
+          <li xml:id="thm_zero_norm" ><p><m>\vnorm u = 0</m> if, and only if, <m>\vecu = \vec 0</m>.</p></li>
+        </ol>
+      </statement>
+    </theorem>
+
+    <p>As stated before, each vector <m>\vec v</m> conveys magnitude and direction information. We have a method of extracting the magnitude, which we write as <m>\norm{\vec v}</m>. <em>Unit vectors</em> are a way of extracting just the direction information from a vector.</p>
+
+    <definition xml:id="def_unit_vector">
+      <title>Unit Vector</title>
+      <statement>
+        <p>A <term>unit vector</term> is a vector <m>\vec v</m> with a magnitude of 1; that is,
+          <index><main>vectors</main><sub>unit vector</sub></index><index><main>unit vector</main></index>
+          <me>
+            \norm{\vec v}=1.
+          </me>
+        </p>
+      </statement>
+    </definition>
+
+    <p>Consider this scenario: you are given a vector <m>\vec v</m> and are told to create a vector of length 10 in the direction of <m>\vec v</m>. How does one do that? If we knew that <m>\vec u</m> was the unit vector in the direction of <m>\vec v</m>, the answer would be easy: <m>10\vec u</m>. So how do we find <m>\vec u</m> ?</p>
+
+    <p><xref ref="thm_norm_prop">Property</xref> of <xref ref="thm_vector_properties">Theorem</xref> holds the key. If we divide <m>\vec v</m> by its magnitude, it becomes a vector of length 1. Consider:
+      <md>
+        <mrow>\snorm{\frac{1}{\norm{\vec v}}\vec v} \amp = \frac{1}{\norm{\vec v}}\norm{\vec v} \amp  \text{ (we can pull out \(\ds \frac{1}{\norm{\vec v}}\) as it is a scalar)}</mrow>
+        <mrow>\amp = 1.</mrow>
+      </md>
+    </p>
+
+    <p>So the vector of length 10 in the direction of <m>\vec v</m> is <m>\ds 10\frac{1}{\norm{\vec v}}\vec v</m>. An example will make this more clear.</p>
+
+    <example xml:id="ex_vect5">
+      <title>Using Unit Vectors</title>
+      <statement>
+        <p>Let <m>\vec v= \la 3,1\ra</m> and let <m>\vec w = \la 1,2,2\ra</m>.</p>
+
+        <ol>
+          <li><p>Find the unit vector in the direction of <m>\vec v</m>.</p></li>
+
+          <li><p>Find the unit vector in the direction of <m>\vec w</m>.</p></li>
+
+          <li><p>Find the vector in the direction of <m>\vec v</m> with magnitude 5.</p></li>
+        </ol>
+      </statement>
+      <solution>
+        <ol>
+          <li><p>We find <m>\norm{\vec v} = \sqrt{10}</m>. So the unit vector <m>\vec u</m> in the direction of <m>\vec v</m> is
+              <me>
+                \vec u = \frac{1}{\sqrt{10}}\vec v = \la \frac{3}{\sqrt{10}},\frac{1}{\sqrt{10}}\ra.
+              </me>
+            </p></li>
+
+          <li><p>We find <m>\norm{\vec w} = 3</m>, so the unit vector <m>\vec z</m> in the direction of <m>\vec w</m> is
+              <me>
+                \vec u = \frac13\vec w = \la \frac13,\frac23,\frac23\ra.
+              </me>
+            </p></li>
+
+          <li><p>To create a vector with magnitude 5 in the direction of <m>\vec v</m>, we multiply the unit vector <m>\vec u</m> by 5. Thus <m>5\vec u = \la 15/\sqrt{10},5/\sqrt{10}\ra</m> is the vector we seek. This is sketched in <xref ref="fig_vect5">Figure</xref>.
+
+              <figure xml:id="fig_vect5" >
+                <caption>Graphing vectors in <xref ref="ex_vect5">Example</xref>. All vectors shown have their initial point at the origin.</caption>
+                <!-- START figures/fig_vect5.tex -->
+                <image xml:id="img_vect5" >
+                  <description></description>
+                  <latex-image-code>
+                    <![CDATA[
+                    \begin{tikzpicture}
+                    \begin{axis}[%
+                    axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-1,1},
+                    %			extra x ticks={.33},
+                    %			extra x tick labels={$1/3$},
+			%ytick={-1,1},
+			%extra y ticks={-5,-3,...,7},%
+			ymin=-.5,ymax=3.1,%
+			xmin=-.5,xmax=5.1%
+                    ]
+
+                    \draw[gray,very thick,->,>=stealth] (axis cs:0,0) --(axis cs:4.74,1.58) node [pos=.8,above,rotate=30,black] {\scriptsize $5\vec u$};
+
+                    \draw[very thick,->,>=stealth] (axis cs:0,0) --(axis cs:3,1) node [pos=.6,above,rotate=30] {\scriptsize $\vec v$};
+
+                    \draw[very thick,->,>=stealth,gray] (axis cs:0,0) --(axis cs:.949,.316) node [pos=.5,above,rotate=30,black] {\scriptsize $\vec u$};
+
+
+
+                    \end{axis}
+
+
+
+                    \end{tikzpicture}
+                    ]]>
+                  </latex-image-code>
+                </image>
+                <!-- figures/fig_vect5.tex END -->
+              </figure>
+
+            </p></li>
+        </ol>
+      </solution>
+    </example>
+
+    <p>The basic formation of the unit vector <m>\vec u</m> in the direction of a vector <m>\vec v</m> leads to a interesting equation. It is:
+      <me>
+        \vec v = \norm{\vec v}\frac{1}{\norm{\vec v}}\vec v.
+      </me>
+    </p>
+
+    <p>We rewrite the equation with parentheses to make a point:
+      <me>
+        \vec v = \underbrace{\norm{\vec v}}_{\text{ \scriptsize magnitude } }\cdot\underbrace{\left(\frac{1}{\norm{\vec v}}\vec v\right)}_{\text{ \scriptsize direction } }.
+      </me>
+    </p>
+
+    <p>This equation illustrates the fact that a vector has both magnitude and direction, where we view a unit vector as supplying <em>only</em> direction information. Identifying unit vectors with direction allows us to define <em>parallel vectors</em>.</p>
+
+    <definition xml:id="def_parallel_vectors">
+      <title>Parallel Vectors</title>
+      <statement>
+        <ol>
+          <li><p>Unit vectors <m>\vec u_1</m> and <m>\vec u_2</m> are <em>parallel</em> if <m>\vec u_1 = \pm \vec u_2</m>.
+	<index><main>vectors</main><sub>parallel</sub></index><index><main>parallel vectors</main></index></p></li>
+
+          <li><p>Nonzero vectors <m>\vec v_1</m> and <m>\vec v_2</m> are <em>parallel</em> if their respective unit vectors are parallel.</p></li>
+        </ol>
+      </statement>
+    </definition>
+
+    <p>It is equivalent to say that vectors <m>\vec v_1</m> and <m>\vec v_2</m> are parallel if there is a scalar <m>c\neq 0</m> such that <m>\vec v_1 = c\vec v_2</m> (see marginal note).</p>
+
+    <aside>
+      <p><m>\vec 0</m> is directionless; because <m>\vnorm{0}=0</m>, there is no unit vector in the <q>direction</q> of <m>\vec 0</m>.</p>
+
+      <p>Some texts define two vectors as being parallel if one is a scalar multiple of the other. By this definition, <m>\vec 0</m> is parallel to all vectors as <m>\vec 0 = 0\vec v</m> for all <m>\vec v</m>.</p>
+
+      <p>We prefer the given definition of parallel as it is grounded in the fact that unit vectors provide direction information. One may adopt the convention that <m>\vec 0</m> is parallel to all vectors if they desire. (See also the marginal note on <xref ref="note_crossp">page</xref>.)</p>
+    </aside>
+
+    <p>If one graphed all unit vectors in <m>\mathbb{R}^2</m> with the initial point at the origin, then the terminal points would all lie on the unit circle. Based on what we know from trigonometry, we can then say that the component form of all unit vectors in <m>\mathbb{R}^2</m> is <m>\la \cos(\theta) ,\sin(\theta) \ra</m> for some angle <m>\theta</m>.</p>
+
+    <p>A similar construction in <m>\mathbb{R}^3</m> shows that the terminal points all lie on the unit sphere. These vectors also have a particular component form, but its derivation is not as straightforward as the one for unit vectors in <m>\mathbb{R}^2</m>. Important concepts about unit vectors are given in the following Key Idea.</p>
+
+    <insight xml:id="idea_unit_vectors">
+      <title>Unit Vectors</title>
+      <ol>
+        <li><p>The unit vector in the direction of <m>\vec v</m> is
+            <me>
+              \vec u = \frac1{\norm{\vec v}} \vec v.
+            </me>
+          </p></li>
+
+        <li><p>A vector <m>\vec u</m> in <m>\mathbb{R}^2</m> is a unit vector if, and only if, its component form is <m>\la \cos(\theta) ,\sin(\theta) \ra</m> for some angle <m>\theta</m>.
+            <index><main>unit vector</main><sub>properties</sub></index><index><main>vectors</main><sub>unit vector</sub></index></p></li>
+
+        <li><p>A vector <m>\vec u</m> in <m>\mathbb{R}^3</m> is a unit vector if, and only if, its component form is <m>\la \sin(\theta) \cos(\varphi) ,\sin(\theta) \sin(\varphi) ,\cos(\theta) \ra</m> for some angles <m>\theta</m> and <m>\varphi</m>.</p></li>
+      </ol>
+    </insight>
+
+    <p>These formulas can come in handy in a variety of situations, especially the formula for unit vectors in the plane.</p>
+
+    <example xml:id="ex_vect6">
+      <title>Finding Component Forces</title>
+      <statement>
+        <p>Consider a weight of 50lb hanging from two chains, as shown in <xref ref="fig_vect6">Figure</xref>. One chain makes an angle of <m>30^\circ</m> with the vertical, and the other an angle of <m>45^\circ</m>. Find the force applied to each chain.</p>
+
+        <figure xml:id="fig_vect6" >
+          <caption>A diagram of a weight hanging from 2 chains in <xref ref="ex_vect6">Example</xref>.</caption>
+          <!-- START figures/fig_vect6.tex -->
+          <image xml:id="img_vect6" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+	
+	\filldraw[thick,black,fill=gray!30] (-.5,0) -- (.5,0) -- (1,-1) -- (-1,-1)--cycle;
+	\draw (0,-.5) node {50lb};
+	
+	\draw [thick] (-1.5,1.5) -- (2,1.5);
+	\clip (-1.5,1.5) rectangle (2,-1.25);
+	\draw [thick,rotate=120] (0,0) -- (3,0);
+	\draw [thick,rotate=45] (0,0) -- (3,0);
+	\draw [dashed] (0,0) -- (0,2);
+	\draw [rotate=45,->,>=stealth] (.8,0) arc (0:45:.8);
+	\draw [rotate=67] (1,0) node {\scriptsize $45^\circ$};
+	\draw [rotate=90,->,>=stealth] (1,0) arc (0:30:1);
+	\draw [rotate=105] (1.2,0) node {\scriptsize $30^\circ$};
+	%\draw [dashed] (-1.5,0) -- (2,0);
+	%\draw [dashed,->,>=stealth] (.6,0) arc (0:120:.6);
+	%\draw [rotate=20] (.9,0) node {\scriptsize $120^\circ$};
+	%\draw [dashed,->,>=stealth] (1.5,0) arc (0:45:1.5);
+	%\draw [rotate=15] (1.8,0) node {\scriptsize $45^\circ$};
+
+	
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_vect6.tex END -->
+        </figure>
+      </statement>
+      <solution>
+        <p>Knowing that gravity is pulling the 50lb weight straight down, we can create a vector <m>\vec F</m> to represent this force.
+          <me>
+            \vec F = 50\la 0,-1\ra = \la 0,-50\ra.
+          </me>
+        </p>
+
+        <p>We can view each chain as <q>pulling</q> the weight up, preventing it from falling. We can represent the force from each chain with a vector. Let <m>\vec F_1</m> represent the force from the chain making an angle of <m>30^\circ</m> with the vertical, and let <m>\vec F_2</m> represent the force form the other chain. Convert all angles to be measured from the horizontal (as shown in <xref ref="fig_vect6b">Figure</xref>), and apply <xref ref="idea_unit_vectors">Key Idea</xref>. As we do not yet know the magnitudes of these vectors, (that is the problem at hand), we use <m>m_1</m> and <m>m_2</m> to represent them.
+          <me>
+            \vec F_1 = m_1\la \cos(120^\circ) ,\sin(120^\circ) \ra
+          </me>
+          <me>
+            \vec F_2 = m_2\la \cos(45^\circ) ,\sin(45^\circ) \ra
+          </me>
+        </p>
+
+        <p>As the weight is not moving, we know the sum of the forces is <m>\vec 0</m>. This gives:
+          <md>
+            <mrow>\vec F + \vec F_1 + \vec F_2 \amp  = \vec 0</mrow>
+            <mrow>\la 0,-50\ra + m_1\la \cos(120^\circ) ,\sin(120^\circ) \ra + m_2\la \cos(45^\circ) ,\sin(45^\circ) \ra \amp =\vec 0</mrow>
+          </md>
+        </p>
+
+        <figure xml:id="fig_vect6b" >
+          <caption>A diagram of the force vectors from <xref ref="ex_vect6">Example</xref>.</caption>
+          <!-- START figures/fig_vect6b.tex -->
+          <image xml:id="img_vect6b" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}[>=stealth]
+	\draw [thick,rotate=120,->] (0,0) -- (1.5,0) node [left] {\scriptsize $\vec F_1$};
+	\draw [thick,rotate=45,->] (0,0) -- (1.75,0)node [right] {\scriptsize $\vec F_2$};
+	\draw [thick,rotate=-90,->] (0,0) -- (1,0) node [right] {\scriptsize $\vec F$};
+	\draw [dashed] (0,0) -- (0,1.5);
+	%\draw [rotate=45,->,>=stealth] (.8,0) arc (0:45:.8);
+	%\draw [rotate=67] (1,0) node {\scriptsize $45^\circ$};
+	%\draw [rotate=90,->,>=stealth] (1,0) arc (0:30:1);
+	%\draw [rotate=105] (1.2,0) node {\scriptsize $30^\circ$};
+	\draw [dashed] (-1.25,0) -- (1.25,0);
+	\filldraw [black] (0,0) circle (1.5pt);
+	\draw [dashed,->,>=stealth] (.6,0) arc (0:120:.6);
+	\draw [rotate=20] (.9,0) node {\scriptsize $120^\circ$};
+	\draw [dashed,->,>=stealth] (1.5,0) arc (0:45:1.5);
+	\draw [rotate=15] (1.8,0) node {\scriptsize $45^\circ$};
+
+	
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_vect6b.tex END -->
+        </figure>
+
+        <p>The sum of the entries in the first component is 0, and the sum of the entries in the second component is also 0. This leads us to the following two equations:
+          <md>
+            <mrow>m_1\cos(120^\circ) + m_2\cos(45^\circ) \amp =0</mrow>
+            <mrow>m_1\sin(120^\circ) + m_2\sin(45^\circ) \amp =50</mrow>
+          </md>
+        </p>
+
+        <p>This is a simple 2-equation, 2-unkown system of linear equations. We leave it to the reader to verify that the solution is
+          <me>
+            m_1=50(\sqrt{3}-1) \approx 36.6;\qquad m_2=\frac{50\sqrt{2}}{1+\sqrt{3}} \approx 25.88.
+          </me>
+        </p>
+
+        <p>It might seem odd that the sum of the forces applied to the chains is more than 50lb. We leave it to a physics class to discuss the full details, but offer this short explanation. Our equations were established so that the <em>vertical</em> components of each force sums to 50lb, thus supporting the weight. Since the chains are at an angle, they also pull against each other, creating an <q>additional</q> horizontal force while holding the weight in place.</p>
+      </solution>
+    </example>
+
+    <p>Unit vectors were very important in the previous calculation; they allowed us to define a vector in the proper direction but with an unknown magnitude. Our computations were then computed component<ndash />wise. Because such calculations are often necessary, the <em>standard unit vectors</em> can be useful.</p>
+
+    <definition xml:id="def_standard_unit">
+      <title>Standard Unit Vectors</title>
+      <statement>
+        <ol>
+          <li><p>In <m>\mathbb{R}^2</m>, the standard unit vectors are
+	<index><main>vectors</main><sub>standard unit vector</sub></index><index><main>unit vector</main><sub>standard unit vector</sub></index>
+              <me>
+                \vec i = \la 1,0\ra  \text{ and }  \vec j = \la 0,1\ra.
+              </me>
+            </p></li>
+
+          <li><p>In <m>\mathbb{R}^3</m>, the standard unit vectors are
+              <me>
+                \vec i = \la 1,0,0\ra  \text{ and }  \vec j = \la 0,1,0\ra  \text{ and }  \vec k = \la 0,0,1\ra.
+              </me>
+            </p></li>
+        </ol>
+      </statement>
+    </definition>
+
+    <example xml:id="ex_vect7">
+      <title>Using standard unit vectors</title>
+      <statement>
+        <ol>
+          <li><p>Rewrite <m>\vec v = \la 2,-3\ra</m> using the standard unit vectors.</p></li>
+
+          <li><p>Rewrite <m>\vec w = 4\vec i - 5\vec j +2\vec k</m> in component form.</p></li>
+        </ol>
+      </statement>
+      <solution>
+        <ol>
+          <li><p><m>\displaystyle \begin{aligned}\vec v \amp = \la 2,-3\ra \\
+								\amp = \la 2,0\ra + \la 0,-3\ra \\
+								\amp = 2\la 1,0\ra -3\la 0,1\ra\\
+								\amp = 2\vec i - 3\vec j
+              \end{aligned}</m></p></li>
+
+          <li><p><m>\displaystyle \begin{aligned}\vec w \amp = 4\vec i - 5\vec j +2\vec k\\
+							\amp = \la 4,0,0\ra +\la 0,-5,0\ra + \la 0,0,2\ra \\
+							\amp = \la 4,-5,2\ra
+              \end{aligned}</m></p></li>
+        </ol>
+
+        <p>These two examples demonstrate that converting between component form and the standard unit vectors is rather straightforward. Many mathematicians prefer component form, and it is the preferred notation in this text. Many engineers prefer using the standard unit vectors, and many engineering text use that notation.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_vect8">
+      <title>Finding Component Force</title>
+      <statement>
+        <p>A weight of 25lb is suspended from a chain of length 2ft while a wind pushes the weight to the right with constant force of 5lb as shown in <xref ref="fig_vect8">Figure</xref>. What angle will the chain make with the vertical as a result of the wind's pushing? How much higher will the weight be?</p>
+
+        <figure xml:id="fig_vect8" >
+          <caption>A figure of a weight being pushed by the wind in <xref ref="ex_vect8">Example</xref>.</caption>
+          <!-- START figures/fig_vect8.tex -->
+          <image xml:id="img_vect8" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+	\draw [dashed] (-1.5,-.2) -- (2,-.2);
+	\draw (1.75,.65) node {\scriptsize 2ft $\left\{\rule{0pt}{.8cm}\right.$};
+	\filldraw[thick,black,fill=gray!30] (-.5,0) -- (.5,0) -- (1,-1) -- (-1,-1)--cycle;
+	\draw (0,-.5) node {25lb};
+	
+	
+	
+	\draw [thick] (-1.5,1.5) -- (2,1.5);
+	\clip (-1.5,1.5) rectangle (2,-1.25);
+	\draw [thick,rotate=110] (0,0) -- (3,0);
+	\draw [dashed] (0,0) -- (0,2);
+	\draw [rotate=90,->,>=stealth] (1,0) arc (0:20:1);
+	%
+	\draw [->,>=stealth] (.6,0) arc (0:109:.6);
+	\draw [rotate=50] (.75,0) node {\scriptsize $\varphi$};
+	%
+	\draw [rotate=99] (1.2,0) node {\scriptsize $\theta$};
+	\draw [thick,->,>=stealth] (-1.45,-.5) -- (-.8,-.5) node [pos=.15,below] {\scriptsize $\vec F_w$};
+
+	
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_vect8.tex END -->
+        </figure>
+      </statement>
+      <solution>
+        <p>The force of the wind is represented by the vector <m>\vec F_w = 5\vec i</m>. The force of gravity on the weight is represented by <m>\vec F_g = -25\vec j</m>. The direction and magnitude of the vector representing the force on the chain are both unknown. We represent this force with
+          <me>
+            \vec F_c = m\la \cos(\varphi) ,\sin(\varphi) \ra = m\cos(\varphi) \, \vec i + m\sin(\varphi) \,\vec j
+          </me>
+          for some magnitude <m>m</m> and some angle with the horizontal <m>\varphi</m>. (Note: <m>\theta</m> is the angle the chain makes with the <em>vertical</em>; <m>\varphi</m> is the angle with the <em>horizontal</em>.)</p>
+
+        <p>As the weight is at equilibrium, the sum of the forces is <m>\vec0</m>:
+          <md>
+            <mrow>\vec F_c + \vec F_w + \vec F_g \amp = \vec 0</mrow>
+            <mrow>m\cos(\varphi) \, \vec i + m\sin(\varphi) \,\vec j + 5\vec i - 25\vec j \amp =\vec 0</mrow>
+          </md>
+        </p>
+
+        <p>Thus the sum of the <m>\vec i</m> and <m>\vec j</m> components are 0, leading us to the following system of equations:
+          <men xml:id="eq_vect8" >
+            \begin{split}
+            5+m\cos(\varphi) \amp = 0\\
+            -25+m\sin(\varphi) \amp = 0
+            \end{split}
+          </men>
+        </p>
+
+        <p>This is enough to determine <m>\vec F_c</m> already, as we know <m>m\cos(\varphi) = -5</m> and <m>m\sin(\varphi) =25</m>. Thus <m>F_c = \la -5,25\ra</m>. We can use this to find the magnitude <m>m</m>:
+          <me>
+            m = \sqrt{(-5)^2+25^2} = 5\sqrt{26}\approx 25.5\text{ lb } .
+          </me>
+        </p>
+
+        <p>We can then use either equality from Equation <xref ref="eq_vect8" /> to solve for <m>\varphi</m>. We choose the first equality as using arccosine will return an angle in the <m>2^\text{ nd }</m> quadrant:
+          <me>
+            5 + 5\sqrt{26}\cos(\varphi) = 0  \Rightarrow  \varphi = \cos^{-1}\left(\frac{-5}{5\sqrt{26}}\right) \approx 1.7682\approx 101.31^\circ.
+          </me>
+        </p>
+
+        <p>Subtracting <m>90^\circ</m> from this angle gives us an angle of <m>11.31^\circ</m> with the vertical.</p>
+
+        <p>We can now use trigonometry to find out how high the weight is lifted. The diagram shows that a right triangle is formed with the 2ft chain as the hypotenuse with an interior angle of <m>11.31^\circ</m>. The length of the adjacent side (in the diagram, the dashed vertical line) is <m>2\cos(11.31^\circ) \approx 1.96</m>ft. Thus the weight is lifted by about <m>0.04</m>ft, almost 1/2in.</p>
+      </solution>
+    </example>
+
+    <p>The algebra we have applied to vectors is already demonstrating itself to be very useful. There are two more fundamental operations we can perform with vectors, the <em>dot product</em> and the <em>cross product</em>. The next two sections explore each in turn.</p>
+  </introduction>
+
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Name two different things that cannot be described with just one number, but rather need 2 or more numbers to fully describe them.</p>
+          </statement>
+          <solution>
+            <p>Answers will vary.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>What is the difference between <m>(1,2)</m> and <m>\la 1,2\ra</m>?</p>
+          </statement>
+          <solution>
+            <p><m>(1,2)</m> is a point; <m>\la 1,2\ra</m> is a vector that describes a displacement of 1 unit in the <m>x</m>-direction and 2 units in the <m>y</m>-direction.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>What is a unit vector?</p>
+          </statement>
+          <solution>
+            <p>A vector with magnitude 1.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>What does it mean for two vectors to be parallel?</p>
+          </statement>
+          <solution>
+            <p>Their respective unit vectors are parallel; unit vectors <m>\vec u_1</m> and <m>\vec u_2</m> are parallel if <m>\vec u_1 = \pm \vec u_2</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>What effect does multiplying a vector by <m>-2</m> have?</p>
+          </statement>
+          <solution>
+            <p>It stretches the vector by a factor of 2, and points it in the opposite direction.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, points <m>P</m> and <m>Q</m> are given. Write the vector <m>\overrightarrow{PQ}</m> in component form and using the standard unit vectors.</p>
+      </introduction>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$comp">
+              <static>\langle1,6\rangle</static>
+            </var>
+            <var name="$stan">
+              <static>\hat{\mathi}+6\hat{\mathj}</static>
+            </var>
+            <pg-code>
+              Context("Vector2D");
+              Context()->constants->undefine(i,j);
+              $comp=Vector("&lt;1,6>");
+              Context("Vector2D");
+              Context()->flags->set(ijk=>1);
+              Context()->parens->undefine('&lt;','(','{');
+              $stan=Vector("i+6j");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>If <m>P=(2,-1)</m> and <m>Q = (3,5)</m>, write the vector <m>\overrightarrow{PQ}</m>:</p>
+            <p><ol label="a">
+              <li>
+                <p>in component form: <var name="$comp" width="10" /></p>
+              </li>
+              <li>
+                <p>using the standard unit vectors: <var name="$stan" width="10" /></p>
+              </li>
+            </ol></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$comp">
+              <static>\langle4,-4\rangle</static>
+            </var>
+            <var name="$stan">
+              <static>4\hat{\mathi}-4\hat{\mathj}</static>
+            </var>
+            <pg-code>
+              Context("Vector2D");
+              Context()->constants->undefine(i,j);
+              $comp=Vector("&lt;4,-4>");
+              Context("Vector2D");
+              Context()->flags->set(ijk=>1);
+              Context()->parens->undefine('&lt;','(','{');
+              $stan=Vector("4i-4j");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>If <m>P=(3,2)</m> and <m>Q = (7,-2)</m>, write the vector <m>\overrightarrow{PQ}</m>:</p>
+            <p><ol label="a">
+              <li>
+                <p>in component form: <var name="$comp" width="10" /></p>
+              </li>
+              <li>
+                <p>using the standard unit vectors: <var name="$stan" width="10" /></p>
+              </li>
+            </ol></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$comp">
+              <static>\langle6,-1,6\rangle</static>
+            </var>
+            <var name="$stan">
+              <static>6\hat{\mathi}-\hat{\mathj}+6\hat{k}</static>
+            </var>
+            <pg-code>
+              Context("Vector");
+              Context()->constants->undefine(i,j,k);
+              $comp=Vector("&lt;6,-1,6>");
+              Context("Vector");
+              Context()->flags->set(ijk=>1);
+              Context()->parens->undefine('&lt;','(','{');
+              $stan=Vector("6i-j+6k");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>If <m>P=(0,3,-1)</m> and <m>Q = (6,2,5)</m>, write the vector <m>\overrightarrow{PQ}</m>:</p>
+            <p><ol label="a">
+              <li>
+                <p>in component form: <var name="$comp" width="10" /></p>
+              </li>
+              <li>
+                <p>using the standard unit vectors: <var name="$stan" width="10" /></p>
+              </li>
+            </ol></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$comp">
+              <static>\langle2,2,0\rangle</static>
+            </var>
+            <var name="$stan">
+              <static>2\hat{\mathi}+2\hat{\mathj}</static>
+            </var>
+            <pg-code>
+              Context("Vector");
+              Context()->constants->undefine(i,j,k);
+              $comp=Vector("&lt;2,2,0>");
+              Context("Vector");
+              Context()->flags->set(ijk=>1);
+              Context()->parens->undefine('&lt;','(','{');
+              $stan=Vector("2i+2j");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>If <m>P=(2,1,2)</m> and <m>Q = (4,3,2)</m>, write the vector <m>\overrightarrow{PQ}</m>:</p>
+            <p><ol label="a">
+              <li>
+                <p>in component form: <var name="$comp" width="10" /></p>
+              </li>
+              <li>
+                <p>using the standard unit vectors: <var name="$stan" width="10" /></p>
+              </li>
+            </ol></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+
+    <exercise>
+      <webwork seed="1">
+        <setup>
+          <var name="">
+            <static></static>
+          </var>
+          <pg-code>
+          </pg-code>
+        </setup>
+        <statement>
+          <p>Let <m>\vec u = \la 1,-2\ra</m> and <m>\vec v= \la 1,1\ra</m>.</p>
+
+          <ol>
+            <li><p>Find <m>\vec u+\vec v</m>, <m>\vec u-\vec v</m>, <m>2\vec u-3\vec v</m>.</p></li>
+
+            <li><p>Sketch the above vectors on the same axes, along with <m>\vec u</m> and <m>\vec v</m>.</p></li>
+
+            <li><p>Find <m>\vec x</m> where <m>\vec u+\vec x = 2\vec v-\vec x</m>.</p></li>
+          </ol>
+        </statement>
+        <solution>
+          <ol>
+            <li><p><m>\vec u+\vec v = \la 2,-1\ra</m>; <m>\vec u -\vec v = \la0,-3\ra</m>; <m>2\vec u-3\vec v = \la -1,-7\ra</m>.</p></li>
+
+            <li>
+              <title>(c)</title>
+              <p><m>\vec x = \la 1/2,2\ra</m>.</p></li>
+          </ol>
+        </solution>
+      </webwork>
+    </exercise>
+    <exercise>
+      <webwork seed="1">
+        <setup>
+          <var name="">
+            <static></static>
+          </var>
+          <pg-code>
+          </pg-code>
+        </setup>
+        <statement>
+          <p>Let <m>\vec u = \la 1,1,-1\ra</m> and <m>\vec v= \la 2,1,2\ra</m>.</p>
+
+          <ol>
+            <li><p>Find <m>\vec u+\vec v</m>, <m>\vec u-\vec v</m>, <m>\pi\vec u-\sqrt{2}\vec v</m>.</p></li>
+
+            <li><p>Sketch the above vectors on the same axes, along with <m>\vec u</m> and <m>\vec v</m>.</p></li>
+
+            <li><p>Find <m>\vec x</m> where <m>\vec u+\vec x = \vec v+2\vec x</m>.</p></li>
+          </ol>
+        </statement>
+        <solution>
+          <ol>
+            <li><p><m>\vec u+\vec v = \la 3,2,1\ra</m>; <m>\vec u -\vec v = \la-1,0,-3\ra</m>; <m>\pi\vec u-\sqrt{2}\vec v = \la \pi-2\sqrt{2},\pi-\sqrt{2},-\pi-2\sqrt{2}\ra</m>.</p></li>
+
+            <li>
+              <title>(c)</title>
+              <p><m>\vec x = \la-1,0,-3\ra</m>.</p></li>
+          </ol>
+        </solution>
+      </webwork>
+    </exercise>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, sketch <m>\vec u</m>, <m>\vec v</m>, <m>\vec u+\vec v</m> and <m>\vec u-\vec v</m> on the same axes.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <!-- START figures/fig_10_02_ex_11.tex -->
+              <image xml:id="img_10_02_ex_11" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}[>=stealth]
+                  \begin{axis}[axis on top,%
+			xtick=\empty,
+			ytick=\empty,
+                  %			extra y ticks={-5,-3,...,7},%
+			ymin=-4.5,ymax=4.5,%
+			xmin=-4.5,xmax=4.5%
+                  ]
+
+                  \draw [->,thick,{\colorone}] (axis cs:0,0) -- (axis cs: 3,1) node [above,black] {\scriptsize $\vec u$};
+                  \draw [->,thick,{\colorone}] (axis cs:0,0) -- (axis cs: -1,-4)node [black, left] {\scriptsize $\vec v$};
+
+                  \end{axis}
+
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_10_02_ex_11.tex END -->
+            </figure>
+          </statement>
+          <solution>
+            <figure>
+              <!-- START figures/fig_10_02_ex_11ans.tex -->
+              <image xml:id="img_10_02_ex_11ansX" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}[>=stealth]
+                  \begin{axis}[axis on top,%
+			xtick=\empty,
+			ytick=\empty,
+                  %			extra y ticks={-5,-3,...,7},%
+			ymin=-4.5,ymax=4.5,%
+			xmin=-4.5,xmax=4.5%
+                  ]
+
+                  \draw [->,thick,{\colorone}] (axis cs:0,0) -- (axis cs: 3,1) node [above,black] {\scriptsize $\vec u$};
+                  \draw [->,thick,{\colorone}] (axis cs:0,0) -- (axis cs: -1,-4)node [black, left] {\scriptsize $\vec v$};
+
+                  \draw [->,thick,{\colorone}] (axis cs:0,0) -- (axis cs: 2,-3)node [black,below right] {\scriptsize $\vec u+\vec v$};
+
+                  \draw [->,thick,{\colorone}] (axis cs:-1,-4) -- (axis cs: 3,1)node [black,below,pos=.3,sloped] {\scriptsize $\vec u-\vec v$};
+
+
+                  \end{axis}
+
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_10_02_ex_11ans.tex END -->
+            </figure>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <!-- START figures/fig_10_02_ex_13.tex -->
+              <image xml:id="img_10_02_ex_13" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}[>=stealth]
+                  \begin{axis}[axis on top,%
+			xtick=\empty,
+			ytick=\empty,
+                  %			extra y ticks={-5,-3,...,7},%
+			ymin=-4.5,ymax=4.5,%
+			xmin=-4.5,xmax=4.5%
+                  ]
+
+                  \draw [->,thick,{\colorone}] (axis cs:0,0) -- (axis cs: 3,3) node [above,black] {\scriptsize $\vec u$};
+                  \draw [->,thick,{\colorone}] (axis cs:0,0) -- (axis cs: -1,-1)node [black, below] {\scriptsize $\vec v$};
+
+                  \end{axis}
+
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_10_02_ex_13.tex END -->
+            </figure>
+          </statement>
+          <solution>
+            <figure>
+              <!-- START figures/fig_10_02_ex_13ans.tex -->
+              <image xml:id="img_10_02_ex_13ansX" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}[>=stealth]
+                  \begin{axis}[axis on top,%
+			xtick=\empty,
+			ytick=\empty,
+                  %			extra y ticks={-5,-3,...,7},%
+			ymin=-4.5,ymax=4.5,%
+			xmin=-4.5,xmax=4.5%
+                  ]
+
+                  \draw [->,thick,{\colorone}] (axis cs:0,0) -- (axis cs: 3,3) node [above,black] {\scriptsize $\vec u$};
+                  \draw [->,thick,{\colorone}] (axis cs:0,0) -- (axis cs: -1,-1)node [black, left] {\scriptsize $\vec v$};
+
+                  \draw [->,thick,{\colorone}] (axis cs:0,0) -- (axis cs: 2,2)node [black,above left] {\scriptsize $\vec u+\vec v$};
+
+                  \draw [->,thick,{\colorone}] (axis cs:-1,-2) -- (axis cs: 3,2)node [black,below,pos=.3,sloped] {\scriptsize $\vec u-\vec v$};
+
+
+                  \end{axis}
+
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_10_02_ex_13ans.tex END -->
+
+
+              Sketch of <m>\vec u-\vec v</m> shifted for clarity.
+            </figure>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <!-- START figures/fig_10_02_ex_14.tex -->
+              <image xml:id="img_10_02_ex_14" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}[>=stealth]
+                  \begin{axis}%
+                  [width=175pt,axis on top,
+			axis lines=center,
+			view={135}{35},
+			xtick=\empty,
+			ytick=\empty,
+			ztick=\empty,
+			ymin=-1.5,ymax=1.5,
+			xmin=-1.5,xmax=1.5,
+			zmin=-0.5, zmax=1.5,
+			every axis x label/.style={at={(axis cs:\pgfkeysvalueof{/pgfplots/xmax},0,0)},xshift=-3pt,yshift=-3pt},
+				xlabel={\scriptsize $x$},
+			every axis y label/.style={at={(axis cs:0,\pgfkeysvalueof{/pgfplots/ymax},0)},xshift=5pt,yshift=-2pt},
+				ylabel={\scriptsize $y$},
+				every axis z label/.style={at={(axis cs:0,0,\pgfkeysvalueof{/pgfplots/zmax})},xshift=0pt,yshift=4pt},
+				zlabel={\scriptsize $z$}
+			]
+
+                  \draw [thick,->,{\colorone}] (axis cs:0,0,0) -- (axis cs:-1,1,0) node [black,right] {\scriptsize $\vec u$};
+                  \draw [thick,->,{\colorone}] (axis cs:0,0,0) -- (axis cs:1,0,1) node [black,left] {\scriptsize $\vec v$};
+                  %
+                  %\draw [thick,->,{\colorone}] (axis cs:0,0,0) -- (axis cs:0,1,1) node [black,above] {\scriptsize $\vec u+\vec v$};
+                  %
+                  %\draw [thick,->,{\colorone}] (axis cs:1,0,1) -- (axis cs:-1,1,0) node [black,above,pos=.9] {\scriptsize $\vec u-\vec v$};
+
+                  \end{axis}
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_10_02_ex_14.tex END -->
+            </figure>
+          </statement>
+          <solution>
+            <figure>
+              <!-- START figures/fig_10_02_ex_14ans.tex -->
+              <image xml:id="img_10_02_ex_14ansX" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}[>=stealth]
+                  \begin{axis}%
+                  [width=175pt,axis on top,
+			axis lines=center,
+			view={135}{35},
+			xtick=\empty,
+			ytick=\empty,
+			ztick=\empty,
+			ymin=-1.5,ymax=1.5,
+			xmin=-1.5,xmax=1.5,
+			zmin=-0.5, zmax=1.5,
+			every axis x label/.style={at={(axis cs:\pgfkeysvalueof{/pgfplots/xmax},0,0)},xshift=-3pt,yshift=-3pt},
+				xlabel={\scriptsize $x$},
+			every axis y label/.style={at={(axis cs:0,\pgfkeysvalueof{/pgfplots/ymax},0)},xshift=5pt,yshift=-2pt},
+				ylabel={\scriptsize $y$},
+				every axis z label/.style={at={(axis cs:0,0,\pgfkeysvalueof{/pgfplots/zmax})},xshift=0pt,yshift=4pt},
+				zlabel={\scriptsize $z$}
+			]
+
+                  \draw [thick,->,{\colorone}] (axis cs:0,0,0) -- (axis cs:-1,1,0) node [black,right] {\scriptsize $\vec u$};
+                  \draw [thick,->,{\colorone}] (axis cs:0,0,0) -- (axis cs:1,0,1) node [black,left] {\scriptsize $\vec v$};
+
+                  \draw [thick,->,{\colorone}] (axis cs:0,0,0) -- (axis cs:0,1,1) node [black,above] {\scriptsize $\vec u+\vec v$};
+
+                  \draw [thick,->,{\colorone}] (axis cs:1,0,1) -- (axis cs:-1,1,0) node [black,above,pos=.9] {\scriptsize $\vec u-\vec v$};
+
+                  \end{axis}
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_10_02_ex_14ans.tex END -->
+            </figure>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <!-- START figures/fig_10_02_ex_15.tex -->
+              <image xml:id="img_10_02_ex_15" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}[>=stealth]
+                  \begin{axis}%
+                  [width=175pt,axis on top,
+			axis lines=center,
+			view={135}{35},
+			xtick=\empty,
+			ytick=\empty,
+			ztick=\empty,
+			ymin=-1.5,ymax=1.5,
+			xmin=-1.5,xmax=1.5,
+			zmin=-0.5, zmax=1.5,
+			every axis x label/.style={at={(axis cs:\pgfkeysvalueof{/pgfplots/xmax},0,0)},xshift=-3pt,yshift=-3pt},
+				xlabel={\scriptsize $x$},
+			every axis y label/.style={at={(axis cs:0,\pgfkeysvalueof{/pgfplots/ymax},0)},xshift=5pt,yshift=-2pt},
+				ylabel={\scriptsize $y$},
+				every axis z label/.style={at={(axis cs:0,0,\pgfkeysvalueof{/pgfplots/zmax})},xshift=0pt,yshift=4pt},
+				zlabel={\scriptsize $z$}
+			]
+
+                  \draw [thick,->,{\colorone}] (axis cs:0,0,0) -- (axis cs:0,0,1) node [black,left] {\scriptsize $\vec u$};
+                  \draw [thick,->,{\colorone}] (axis cs:0,0,0) -- (axis cs:0,1,0) node [black,below] {\scriptsize $\vec v$};
+
+                  %\draw [thick,->,{\colorone}] (axis cs:0,0,0) -- (axis cs:0,1,1) node [black,above] {\scriptsize $\vec u+\vec v$};
+                  %
+                  %\draw [thick,->,{\colorone}] (axis cs:0,1,0) -- (axis cs:0,0,1) node [black,right,pos=.2] {\scriptsize $\vec u-\vec v$};
+
+                  \end{axis}
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_10_02_ex_15.tex END -->
+            </figure>
+          </statement>
+          <solution>
+            <figure>
+              <!-- START figures/fig_10_02_ex_15ans.tex -->
+              <image xml:id="img_10_02_ex_15ansX" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}[>=stealth]
+                  \begin{axis}%
+                  [width=175pt,axis on top,
+			axis lines=center,
+			view={135}{35},
+			xtick=\empty,
+			ytick=\empty,
+			ztick=\empty,
+			ymin=-1.5,ymax=1.5,
+			xmin=-1.5,xmax=1.5,
+			zmin=-0.5, zmax=1.5,
+			every axis x label/.style={at={(axis cs:\pgfkeysvalueof{/pgfplots/xmax},0,0)},xshift=-3pt,yshift=-3pt},
+				xlabel={\scriptsize $x$},
+			every axis y label/.style={at={(axis cs:0,\pgfkeysvalueof{/pgfplots/ymax},0)},xshift=5pt,yshift=-2pt},
+				ylabel={\scriptsize $y$},
+				every axis z label/.style={at={(axis cs:0,0,\pgfkeysvalueof{/pgfplots/zmax})},xshift=0pt,yshift=4pt},
+				zlabel={\scriptsize $z$}
+			]
+
+                  \draw [thick,->,{\colorone}] (axis cs:0,0,0) -- (axis cs:0,0,1) node [black,left] {\scriptsize $\vec u$};
+                  \draw [thick,->,{\colorone}] (axis cs:0,0,0) -- (axis cs:0,1,0) node [black,below] {\scriptsize $\vec v$};
+
+                  \draw [thick,->,{\colorone}] (axis cs:0,0,0) -- (axis cs:0,1,1) node [black,above] {\scriptsize $\vec u+\vec v$};
+
+                  \draw [thick,->,{\colorone}] (axis cs:0,1,0) -- (axis cs:0,0,1) node [black,right,pos=.2] {\scriptsize $\vec u-\vec v$};
+
+                  \end{axis}
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_10_02_ex_15ans.tex END -->
+            </figure>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, find <m>\norm{\vec u}</m>, <m>\norm{\vec v}</m>, <m>\norm{\vec u+\vec v}</m> and <m>\norm{\vec u-\vec v}</m>.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$normu">
+              <static>\sqrt{5}</static>
+            </var>
+            <var name="$normv">
+              <static>\sqrt{13}</static>
+            </var>
+            <var name="$normupv">
+              <static>\sqrt{26}</static>
+            </var>
+            <var name="$normumv">
+              <static>\sqrt{10}</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstantFunctions=>0);
+              $normu=Formula("sqrt(5)");
+              $normv=Formula("sqrt(13)");
+              $normupv=Formula("sqrt(26)");
+              $normumv=Formula("sqrt(10)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Given <m>\vec u=\la 2,1\ra</m> and <m>\vec v = \la 3,-2\ra</m>, find:</p>
+            <p><m>\norm{\vec u}=</m><var name="$normu" width="5" /></p>
+            <p><m>\norm{\vec v}=</m><var name="$normv" width="5" /></p>
+            <p><m>\norm{\vec u+\vec v}=</m><var name="$normupv" width="5" /></p>
+            <p><m>\norm{\vec u-\vec v}=</m><var name="$normumv" width="5" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$normu">
+              <static>\sqrt{17}</static>
+            </var>
+            <var name="$normv">
+              <static>\sqrt{3}</static>
+            </var>
+            <var name="$normupv">
+              <static>\sqrt{14}</static>
+            </var>
+            <var name="$normumv">
+              <static>\sqrt{26}</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstantFunctions=>0);
+              $normu=Formula("sqrt(17)");
+              $normv=Formula("sqrt(3)");
+              $normupv=Formula("sqrt(14)");
+              $normumv=Formula("sqrt(26)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Given <m>\vec u=\la -3,2,2\ra</m> and <m>\vec v = \la 1,-1,1\ra</m>, find:</p>
+            <p><m>\norm{\vec u}=</m><var name="$normu" width="5" /></p>
+            <p><m>\norm{\vec v}=</m><var name="$normv" width="5" /></p>
+            <p><m>\norm{\vec u+\vec v}=</m><var name="$normupv" width="5" /></p>
+            <p><m>\norm{\vec u-\vec v}=</m><var name="$normumv" width="5" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$normu">
+              <static>\sqrt{5}</static>
+            </var>
+            <var name="$normv">
+              <static>3\sqrt{5}</static>
+            </var>
+            <var name="$normupv">
+              <static>2\sqrt{5}</static>
+            </var>
+            <var name="$normumv">
+              <static>4\sqrt{5}</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstantFunctions=>0);
+              $normu=Formula("sqrt(5)");
+              $normv=Formula("3sqrt(5)");
+              $normupv=Formula("2sqrt(5)");
+              $normumv=Formula("4sqrt(5)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Given <m>\vec u=\la 1,2\ra</m> and <m>\vec v = \la -3,-6\ra</m>, find:</p>
+            <p><m>\norm{\vec u}=</m><var name="$normu" width="5" /></p>
+            <p><m>\norm{\vec v}=</m><var name="$normv" width="5" /></p>
+            <p><m>\norm{\vec u+\vec v}=</m><var name="$normupv" width="5" /></p>
+            <p><m>\norm{\vec u-\vec v}=</m><var name="$normumv" width="5" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$normu">
+              <static>7</static>
+            </var>
+            <var name="$normv">
+              <static>35</static>
+            </var>
+            <var name="$normupv">
+              <static>42</static>
+            </var>
+            <var name="$normumv">
+              <static>28</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstantFunctions=>0);
+              $normu=Formula("7");
+              $normv=Formula("35");
+              $normupv=Formula("42");
+              $normumv=Formula("28");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Given <m>\vec u=\la 2,-3,6\ra</m> and <m>\vec v = \la 10,-15,30\ra</m>, find:</p>
+            <p><m>\norm{\vec u}=</m><var name="$normu" width="5" /></p>
+            <p><m>\norm{\vec v}=</m><var name="$normv" width="5" /></p>
+            <p><m>\norm{\vec u+\vec v}=</m><var name="$normupv" width="5" /></p>
+            <p><m>\norm{\vec u-\vec v}=</m><var name="$normumv" width="5" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercise>
+      <webwork seed="1">
+        <setup>
+          <var name="">
+            <static></static>
+          </var>
+          <pg-code>
+          </pg-code>
+        </setup>
+        <statement>
+          <p>Under what conditions is <m>\norm{\vec u}+\norm{\vec v} = \norm{\vec u+\vec v}</m>?</p>
+        </statement>
+        <solution>
+          <p>When <m>\vec u</m> and <m>\vec v</m> have the same direction. (Note: parallel is not enough.)</p>
+        </solution>
+      </webwork>
+    </exercise>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, find the unit vector <m>\vec u</m> in the direction of <m>\vec v</m>.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$u">
+              <static>\left\langle\frac{3}{\sqrt{58}},\frac{7}{\sqrt{58}}\right\rangle</static>
+            </var>
+            <pg-code>
+              Context("Vector2D");
+              Context()->flags->set(reduceConstantFunctions=>0);
+              $u=Compute("&lt;3/sqrt(58), 7/sqrt(58)>");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find the unit vector <m>\vec u</m> in the direction of <m>\vec v = \la 3,7\ra</m>.</p>
+            <p><m>\vec u=</m><var name="$u" width="20" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$u">
+              <static>\left\langle0.6,0.8\right\rangle</static>
+            </var>
+            <pg-code>
+              Context("Vector2D");
+              Context()->flags->set(reduceConstantFunctions=>0);
+              $u=Compute("&lt;0.6, 0.8>");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find the unit vector <m>\vec u</m> in the direction of <m>\vec v = \la 6,8\ra</m>.</p>
+            <p><m>\vec u=</m><var name="$u" width="20" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$u">
+              <static>\left\langle\frac{1}{3},-\frac{2}{3},\frac{2}{3}\right\rangle</static>
+            </var>
+            <pg-code>
+              Context("Vector");
+              Context()->flags->set(reduceConstantFunctions=>0,reduceConstants=>0);
+              $u=Compute("&lt;1/3,-2/3,2/3>");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find the unit vector <m>\vec u</m> in the direction of <m>\vec v = \la 1,-2,2\ra</m>.</p>
+            <p><m>\vec u=</m><var name="$u" width="20" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$u">
+              <static>\left\langle\frac{1}{\sqrt{3}},-\frac{1}{\sqrt{3}},\frac{1}{\sqrt{3}}\right\rangle</static>
+            </var>
+            <pg-code>
+              Context("Vector");
+              Context()->flags->set(reduceConstantFunctions=>0,reduceConstants=>0);
+              $u=Compute("&lt;1/sqrt(3),-1/sqrt(3),1/sqrt(3)>");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find the unit vector <m>\vec u</m> in the direction of <m>\vec v = \la 2,-2,2\ra</m>.</p>
+            <p><m>\vec u=</m><var name="$u" width="20" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercise>
+      <webwork seed="1">
+        <setup>
+          <var name="$u">
+            <static>\left\langle\cos\mathopen{}\left(50^{\circ}\right),\sin\mathopen{}\left(50^{\circ}\right)\right\rangle</static>
+          </var>
+          <pg-code>
+              Context("Vector2D");
+              Context()->flags->set(reduceConstantFunctions=>0,reduceConstants=>0);
+              $u=Compute("&lt;cos(50*pi/180),sin(50*pi/180)>");
+          </pg-code>
+        </setup>
+        <statement>
+          <p>Find the unit vector in the first quadrant of <m>\mathbb{R}^2</m> that makes a <m>50^{\circ}</m> angle with the <m>x</m>-axis.</p>
+          <p><var name="$u" width="20" /></p>
+        </statement>
+      </webwork>
+    </exercise>
+
+    <exercise>
+      <webwork seed="1">
+        <setup>
+          <var name="$u">
+            <static>\left\langle-\frac{1}{2},\frac{\sqrt{3}}{2}\right\rangle</static>
+          </var>
+          <pg-code>
+              Context("Vector2D");
+              Context()->flags->set(reduceConstantFunctions=>0,reduceConstants=>0);
+              $u=Compute("&lt;-1/2,sqrt(3)/2>");
+          </pg-code>
+        </setup>
+        <statement>
+          <p>Find the unit vector in the second quadrant of <m>\mathbb{R}^2</m> that makes a <m>30^{\circ}</m> angle with the <m>y</m>-axis.</p>
+          <p><var name="$u" width="20" /></p>
+        </statement>
+      </webwork>
+    </exercise>
+
+    <exercise>
+      <webwork seed="1">
+        <setup>
+          <var name="">
+            <static></static>
+          </var>
+          <pg-code>
+          </pg-code>
+        </setup>
+        <statement>
+          <p>Verify, from <xref ref="idea_unit_vectors">Key Idea</xref>, that <m>\vec u=\la \sin(\theta) \cos(\varphi) ,\sin(\theta) \sin(\varphi) ,\cos(\theta) \ra</m> is a unit vector for all angles <m>\theta</m> and <m>\varphi</m>.</p>
+        </statement>
+        <solution>
+          <p>
+            <md>
+              <mrow>\norm{\vec u} \amp = \sqrt{\sin^2(\theta) \cos^2(\varphi) +\sin^2(\theta) \sin^2(\varphi) +\cos^2(\theta) }</mrow>
+              <mrow>\amp = \sqrt{\sin^2(\theta) (\cos^2(\varphi) +\sin^2(\varphi) )+\cos^2(\theta) }</mrow>
+              <mrow>\amp = \sqrt{\sin^2(\theta) +\cos^2(\theta) }</mrow>
+              <mrow>\amp =1.</mrow>
+            </md>
+          </p>
+        </solution>
+      </webwork>
+    </exercise>
+
+    <exercisegroup>
+      <p>{ A weight of 100lb is suspended from two chains, making angles with the vertical of <m>\theta</m> and <m>\varphi</m> as shown in the figure below.</p>
+
+      <!-- START\1END -->
+
+      <p>In Exercises}
+        {, angles <m>\theta</m> and <m>\varphi</m> are given. Find the force applied to each chain.
+        }</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\theta = 30^\circ</m>,<m>\varphi=30^\circ</m></p>
+          </statement>
+          <solution>
+            <p>The force on each chain is <m>100/\sqrt{3}\approx 57.735</m>lb.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\theta = 60^\circ</m>,<m>\varphi=60^\circ</m></p>
+          </statement>
+          <solution>
+            <p>The force on each chain is <m>100</m>lb.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\theta = 20^\circ</m>,<m>\varphi=15^\circ</m></p>
+          </statement>
+          <solution>
+            <p>The force on the chain with angle <m>\theta</m> is approx. <m>45.124</m>lb; the force on the chain with angle <m>\varphi</m> is approx. <m>59.629</m>lb.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\theta = 0^\circ</m>,<m>\varphi=0^\circ</m></p>
+          </statement>
+          <solution>
+            <p>The force on each chain is 50lb.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>{ A weight of <m>p</m>lb is suspended from a chain of length <m>\ell</m> while a constant force of <m>\vec F_w</m> pushes the weight to the right, making an angle of <m>\theta</m> with the vertical, as shown in the figure below.</p>
+
+      <!-- START\1END -->
+
+      <p>In Exercises}
+        {, a force <m>\vec F_w</m> and length <m>\ell</m> are given. Find the angle <m>\theta</m> and the height the weight is lifted as it moves to the right.
+        }</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\vec F_w=1</m>lb, <m>\ell = 1</m>ft, <m>p = 1</m>lb</p>
+          </statement>
+          <solution>
+            <p><m>\theta = 45^\circ</m>; the weight is lifted <m>0.29</m> ft (about 3.5in).</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\vec F_w=1</m>lb, <m>\ell = 1</m>ft, <m>p = 10</m>lb</p>
+          </statement>
+          <solution>
+            <p><m>\theta = 5.71^\circ</m>; the weight is lifted <m>0.005</m> ft (about 1/16th of an inch).</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\vec F_w=1</m>lb, <m>\ell = 10</m>ft, <m>p = 1</m>lb</p>
+          </statement>
+          <solution>
+            <p><m>\theta = 45^\circ</m>; the weight is lifted <m>2.93</m> ft.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\vec F_w=10</m>lb, <m>\ell = 10</m>ft, <m>p = 1</m>lb</p>
+          </statement>
+          <solution>
+            <p><m>\theta = 84.29^\circ</m>; the weight is lifted <m>9</m> ft.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

@@ -1,0 +1,1557 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_surface_area">
+  <title>Surface Area</title>
+  <introduction>
+    <p>In <xref ref="sec_arc_length">Section</xref> we used definite integrals to compute the arc length of plane curves of the form <m>y=f(x)</m>. We later extended these ideas to compute the arc length of plane curves defined by parametric or polar equations.</p>
+
+    <p>The natural extension of the concept of <q>arc length over an interval</q> to surfaces is <q>surface area over a region.</q></p>
+
+    <p>Consider the surface <m>z=f(x,y)</m> over a region <m>R</m> in the <m>x</m>-<m>y</m> plane, shown in <xref ref="fig_sa_intro">Figure</xref>(a). Because of the domed shape of the surface, the surface area will be greater than that of the area of the region <m>R</m>. We can find this area using the same basic technique we have used over and over: we'll make an approximation, then using limits, we'll refine the approximation to the exact value.</p>
+
+    <figure xml:id="fig_sa_intro" >
+    <caption>Developing a method of computing surface area.</caption>
+    <sidebyside>
+      <figure>
+        <caption>(a)</caption>
+        <!--
+         \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
+        3Droll=0.,
+        3Dortho=0.0050254100933671,
+        3Dc2c=0.6999192237854004 0.5575119853019714 0.4464230239391327,
+        3Dcoo=3.110447883605957 -24.540298461914062 45.66078186035156,
+        3Droo=150.00000665572844,
+        3Dlights=Headlamp,add3Djscript=asylabels.js]
+         -->
+
+
+        <!-- START figures/figsurfacearea_intro1_3D.asy -->
+        <image xml:id="img_surfacearea_intro1_3D" >
+          <asymptote>
+            <![CDATA[
+            import graph3;
+
+            //ASY file for figsurfacearea_intro13D.asy in Chapter 13
+
+
+            size(200,200,IgnoreAspect);
+            //currentprojection=perspective(7,2,1);
+            currentprojection=orthographic(7.5,3.1,3);
+            defaultrender.merge=true;
+
+            usepackage("mathspec");
+            texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+            texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+            texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+            texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+            // setup and draw the axes
+            real[] myxchoice={2};
+            real[] myychoice={-1,1};
+            real[] myzchoice={2};
+            defaultpen(0.5mm);
+
+            pair xbounds=(-1,2.5);
+            pair ybounds=(-1.25,1.25);
+            pair zbounds=(0,2.25);
+
+            xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+            yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+            zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+            label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+            label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+            label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+            //Draw the surface//{z=-.5*(x-1)^2-.5*(y)^2+2};
+            triple f(pair t) {
+              return (t.x,t.y,-.5*(t.x-1)^2-.5*(t.y)^2+2);
+            }
+            surface s=surface(f,(-0.221,-1),(2.2,1),12,20,usplinetype=new splinetype[] {notaknot,notaknot,monotonic},vsplinetype=new splinetype[] {notaknot,notaknot,monotonic});
+            pen p=rgb(0,0,.7);
+            draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+            pen pp=linewidth(.25mm);
+            //draw the grid in the xy-plane
+            //along fixed x
+            draw((0,-.3,0) -- (0,.3,0),pp);
+            draw((.2,-.4,0) -- (.2,.4,0),pp);
+            draw((0.4,-.6,0) -- (.4,.6,0),pp);
+            draw((0.6,-.7,0) -- (.6,.7,0),pp);
+            draw((.8,-.8,0) -- (.8,.8,0),pp);
+            draw((1,-.8,0) -- (1,.8,0),pp);
+            draw((1.2,-.8,0) -- (1.2,.8,0),pp);
+            draw((1.4,-.8,0) -- (1.4,.8,0),pp);
+            draw((1.6,-.7,0) -- (1.6,.7,0),pp);
+            draw((1.8,-.6,0) -- (1.8,.6,0),pp);
+            draw((2,-.4,0) -- (2,.4,0),pp);
+            //along fixed y
+            draw((.8,.8,0) -- (1.4,.8,0),pp);
+            draw((.6,.7,0) -- (1.6,.7,0),pp);
+            draw((.4,.6,0) -- (1.8,.6,0),pp);
+            draw((.4,.5,0) -- (1.8,.5,0),pp);
+            draw((.2,.4,0) -- (2,.4,0),pp);
+            draw((0,.3,0) -- (2,.3,0),pp);
+            draw((0,.2,0) -- (2,.2,0),pp);
+            draw((0,.1,0) -- (2,.1,0),pp);
+            draw((.8,-.8,0) -- (1.4,-.8,0),pp);
+            draw((.6,-.7,0) -- (1.6,-.7,0),pp);
+            draw((.4,-.6,0) -- (1.8,-.6,0),pp);
+            draw((.4,-.5,0) -- (1.8,-.5,0),pp);
+            draw((.2,-.4,0) -- (2,-.4,0),pp);
+            draw((0,-.3,0) -- (2,-.3,0),pp);
+            draw((0,-.2,0) -- (2,-.2,0),pp);
+            draw((0,-.1,0) -- (2,-.1,0),pp);
+
+            //Draw curve on top of the grid in xy plane ({cos(x)*(1+cos(2*x))},{sin(x)*(1+cos(2*x))},0);
+            triple g(real t) {return (cos(t)*(1+cos(2*t)),sin(t)*(1+cos(2*t)),0);}
+            path3 mypath=graph(g,-pi/2,pi/2,operator ..);
+            draw(mypath,blue);
+
+            // draw curve on surface
+            triple g(real t) {
+              return (cos(t)*(1+cos(2*t)),sin(t)*(1+cos(2*t)),-.5*(cos(t)*(1+cos(2*t))-1)^2-.5*(sin(t)*(1+cos(2*t)))^2+2);
+	}
+            path3 mypath=graph(g,-pi/2,pi/2,operator ..);
+            draw(mypath,blue);
+
+            //Draw the box in the plane and on the surface
+            draw((1.6,.3,1.775) -- (1.6,.4,1.74) -- (1.8,.4,1.6) -- (1.8,.3,1.635) --cycle,blue);
+            draw((1.6,.3,0) -- (1.6,.4,0) -- (1.8,.4,0) -- (1.8,.3,0) --cycle,blue);
+
+
+
+
+
+            // ////////////////////////////////////
+            //    SAMPLE CODE
+
+            // defaultpen(fontsize(10pt));
+
+            //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+            //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+            //pen p=rgb(0,0,.7);
+            //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+            //triple f(pair t) {
+            //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+            //}
+            //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+            //pen p=rgb(0,0,.7);
+            //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+            //draw(s,paleblue);
+            //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+            //draw(mypath,2bp+blue);
+
+            //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+            //path3 mypath=graph(g,-1,1,operator ..);
+
+            //pen p=rgb(0,0,1);
+            //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+            ]]>
+          </asymptote>
+        </image>
+        <!-- figures/figsurfacearea_intro1_3D.asy END -->
+      </figure>
+
+      <figure>
+        <caption>(b)</caption>
+        <!--
+         \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
+        3Droll=0.0002488888270874334,
+        3Dortho=0.0050254100933671,
+        3Dc2c=0.6999192237854004 0.5575119853019714 0.4464230239391327,
+        3Dcoo=-17.112655639648438 3.076296806335449 42.87860870361328,
+        3Droo=200.00000665572844,
+        3Dlights=Headlamp,add3Djscript=asylabels.js]
+         -->
+
+
+        <!-- START figures/figsurfacearea_intro2_3D.asy -->
+        <image xml:id="img_surfacearea_intro2_3D" >
+          <asymptote>
+            <![CDATA[
+            import graph3;
+
+            //ASY file for figsurfacearea_intro23D.asy in Chapter 13
+
+
+            size(200,200,IgnoreAspect);
+            //currentprojection=perspective(7,2,1);
+            currentprojection=orthographic(3,3.5,4.8);
+            defaultrender.merge=true;
+
+            usepackage("mathspec");
+            texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+            texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+            texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+            texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+            // setup and draw the axes
+            real[] myxchoice={};
+            real[] myychoice={};
+            real[] myzchoice={};
+            defaultpen(0.5mm);
+
+            pair xbounds=(0,1.25);
+            pair ybounds=(0,1.2);
+            pair zbounds=(0,2.25);
+
+            xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+            yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+            zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+            label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+            label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+            label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+            //Draw the surface//{-x^2+2};
+            triple f(pair t) {
+              return (t.x,t.y,-t.x^2+2);
+            }
+            surface s=surface(f,(0,0),(1,1.2),12,12,Spline);
+            pen p=rgb(0,0,.7);
+            draw(s,rgb(.7,.7,1)+opacity(.6),meshpen=p);
+
+            //Draw the box in the plane and on the surface
+            path3 pp=(.6,.4,0)--(.6,.6,0)--(.8,.6,0)--(.8,.4,0)--cycle;
+            draw(pp,blue);
+            label("$\Delta y_i$",(.9,.5,0));label("$\Delta x_i$",(.7,.7,0));
+            path3 ppp=(.6,.4,2-.6^2)--(.6,.6,2-.6^2)--(.8,.6,2-.8^2)--(.8,.4,2-.8^2)--cycle;
+            draw(ppp,blue);
+            draw(surface(ppp),rgb(.7,.7,1)+opacity(1),meshpen=p);
+            label("$\vec{v}$",(.9,.5,2-.85^2));label("$\vec{u}$",(.7,.7,2-.7^2));
+
+
+            // ////////////////////////////////////
+            //    SAMPLE CODE
+
+            // defaultpen(fontsize(10pt));
+
+            //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+            //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+            //pen p=rgb(0,0,.7);
+            //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+            //triple f(pair t) {
+            //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+            //}
+            //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+            //pen p=rgb(0,0,.7);
+            //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+            //draw(s,paleblue);
+            //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+            //draw(mypath,2bp+blue);
+
+            //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+            //path3 mypath=graph(g,-1,1,operator ..);
+
+            //pen p=rgb(0,0,1);
+            //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+            ]]>
+          </asymptote>
+        </image>
+        <!-- figures/figsurfacearea_intro2_3D.asy END -->
+      </figure>
+    </sidebyside>
+
+    </figure>
+
+    <p>As done to find the volume under a surface or the mass of a lamina, we subdivide <m>R</m> into <m>n</m> subregions. Here we subdivide <m>R</m> into rectangles, as shown in the figure. One such subregion is outlined in the figure, where the rectangle has dimensions <m>\dx_i</m> and <m>\dy_i</m>, along with its corresponding region on the surface.</p>
+
+    <p>In part (b) of the figure, we zoom in on this portion of the surface. When <m>\dx_i</m> and <m>\dy_i</m> are small, the function is approximated well by the tangent plane at any point <m>(x_i,y_i)</m> in this subregion, which is graphed in part (b). In fact, the tangent plane approximates the function so well that in this figure, it is virtually indistinguishable from the surface itself! Therefore we can approximate the surface area <m>S_i</m> of this region of the surface with the area <m>T_i</m> of the corresponding portion of the tangent plane.</p>
+
+    <p>This portion of the tangent plane is a parallelogram, defined by sides <m>\vec u</m> and <m>\vec v</m>, as shown. One of the applications of the cross product from <xref ref="sec_cross_product">Section</xref> is that the area of this parallelogram is <m>\norm{\vec u\times \vec v}</m>. Once we can determine <m>\vec u</m> and <m>\vec v</m>, we can determine the area.</p>
+
+    <p><m>\vec u</m> is tangent to the surface in the direction of <m>x</m>, therefore, from <xref ref="sec_multi_tangent">Section</xref>, <m>\vec u</m> is parallel to <m>\la 1,0,f_x(x_i,y_i)\ra</m>. The <m>x</m>-displacement of <m>\vec u</m> is <m>\dx_i</m>, so we know that <m>\vec u = \dx_i\la 1,0,f_x(x_i,y_i)\ra</m>. Similar logic shows that <m>\vec v = \dy_i\la 0,1,f_y(x_i,y_i)\ra</m>. Thus:
+      <md>
+        <mrow>\text{ surface area \(S_i\) }  \amp \approx \text{ area of  \(T_i\) }</mrow>
+        <mrow>\amp = \norm{\vec u\times \vec v}</mrow>
+        <mrow>\amp = \norm{\dx_i\la 1,0,f_x(x_i,y_i)\ra\times\dy_i\la 0,1,f_y(x_i,y_i)\ra}</mrow>
+        <mrow>\amp =\sqrt{1+f_x(x_i,y_i)^2+f_y(x_i,y_i)^2}\dx_i\dy_i.</mrow>
+      </md>
+    </p>
+
+    <p>Note that <m>\dx_i\dy_i = \Delta A_i</m>, the area of the <m>i^{\,\text{ th } }</m> subregion.</p>
+
+    <p>Summing up all <m>n</m> of the approximations to the surface area gives
+      <me>
+        \text{ surface area over \(R\) }  \approx \sum_{i=1}^n \sqrt{1+f_x(x_i,y_i)^2+f_y(x_i,y_i)^2}\Delta A_i.
+      </me>
+    </p>
+
+    <p>Once again take a limit as all of the <m>\dx_i</m> and <m>\dy_i</m> shrink to 0; this leads to a double integral.</p>
+
+    <definition xml:id="def_surfacearea">
+      <title>Surface Area</title>
+      <statement>
+        <p>Let <m>z=f(x,y)</m> where <m>f_x</m> and <m>f_y</m> are continuous over a closed, bounded region <m>R</m>. The surface area <m>S</m> over <m>R</m> is<index><main>surface area</main></index>
+          <md>
+            <mrow>S \amp = \iint_R \ dS</mrow>
+            <mrow>\amp =\iint_R \sqrt{1+f_x(x,y)^2+f_y(x,y)^2}\ dA.</mrow>
+          </md>
+        </p>
+      </statement>
+    </definition>
+
+    <aside>
+      <p>as done before, we think of <q><m>\iint_R\ dS</m></q> as meaning <q>sum up lots of little surface areas over <m>R</m>.</q></p>
+
+      <p>The concept of surface area is <em>defined</em> here, for while we already have a notion of the area of a region in the <em>plane</em>, we did not yet have a solid grasp of what <q>the area of a surface in <em>space</em></q> means.</p>
+    </aside>
+
+    <p>We test this definition by using it to compute surface areas of known surfaces. We start with a triangle.</p>
+
+    <example xml:id="ex_surfacearea1">
+      <title>Finding the surface area of a plane over a triangle</title>
+      <statement>
+        <p>Let <m>f(x,y) = 4-x-2y</m>, and let <m>R</m> be the region in the plane bounded by <m>x=0</m>, <m>y=0</m> and <m>y=2-x/2</m>, as shown in <xref ref="fig_surfacearea1">Figure</xref>. Find the surface area of <m>f</m> over <m>R</m>.</p>
+
+        <figure xml:id="fig_surfacearea1" >
+          <caption>Finding the area of a triangle in space in <xref ref="ex_surfacearea1">Example</xref>.</caption>
+          <!--
+           \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
+          3Droll=0,
+          3Dortho=0.0046491301618516445,
+          3Dc2c=0.7960798144340515 0.2916567623615265 0.5302765369415283,
+          3Dcoo=-3.864800214767456 31.242511749267578 -13.438399314880371,
+          3Droo=149.9999964329389,
+          3Dlights=Headlamp,add3Djscript=asylabels.js]
+           -->
+
+
+          <!-- START figures/figsurfacearea1_3D.asy -->
+          <image xml:id="img_surfacearea1" >
+            <asymptote>
+              <![CDATA[
+              import graph3;
+
+              //ASY file for figsurfacearea13D.asy in Chapter 13
+
+
+              size(200,200,IgnoreAspect);
+              //currentprojection=perspective(7,2,1);
+              currentprojection=orthographic(10.5,6.1,12);
+              defaultrender.merge=true;
+
+              usepackage("mathspec");
+              texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+              // setup and draw the axes
+              real[] myxchoice={2,4};
+              real[] myychoice={2,4};
+              real[] myzchoice={2,4};
+              defaultpen(0.5mm);
+
+              pair xbounds=(-0.25,4.5);
+              pair ybounds=(-0.25,4.25);
+              pair zbounds=(0,5);
+
+              xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+              yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+              zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+              label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+              label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+              label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+              //Draw the plane//{z=4-x-2y};
+              triple f(pair t) {
+                return (t.x,t.y,4-t.x-2*t.y);
+              }
+              surface s=surface(f,(-0.25,-0.25),(4,2),4,4);
+              pen p=rgb(0,0,.7);
+              draw(s,rgb(.6,.6,1)+opacity(.8),meshpen=p);
+
+              //draw the triangle on plane
+              draw((4,0,0)--(0,2,0)--(0,0,4)--(4,0,0),blue);
+
+              //draw the triangle on xy plane
+              draw((4,0,0)--(0,2,0)--(0,0,0)--(4,0,0),blue+dashed+linewidth(2));
+
+              //draw red line on plane
+              draw((0.8,1.6,0)--(0,0,4),red+linewidth(1));
+
+              // ////////////////////////////////////
+              //    SAMPLE CODE
+
+              // defaultpen(fontsize(10pt));
+
+              //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+              //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //triple f(pair t) {
+              //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+              //}
+              //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //draw(s,paleblue);
+              //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+              //draw(mypath,2bp+blue);
+
+              //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+              //path3 mypath=graph(g,-1,1,operator ..);
+
+              //pen p=rgb(0,0,1);
+              //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+              ]]>
+            </asymptote>
+          </image>
+          <!-- figures/figsurfacearea1_3D.asy END -->
+        </figure>
+      </statement>
+      <solution>
+        <p>We follow <xref ref="def_surfacearea">Definition</xref>. We start by noting that <m>f_x(x,y) = -1</m> and <m>f_y(x,y) = -2</m>. To define <m>R</m>, we use bounds <m>0\leq y\leq 2-x/2</m> and <m>0\leq x\leq 4</m>. Therefore
+          <md>
+            <mrow>S \amp = \iint_R\ dS</mrow>
+            <mrow>\amp = \int_0^4\int_0^{2-x/2} \sqrt{1+(-1)^2+(-2)^2}\ dy\ dx</mrow>
+            <mrow>\amp = \int_0^4 \sqrt{6}\left(2-\frac x2\right)\ dx</mrow>
+            <mrow>\amp = 4\sqrt{6}.</mrow>
+          </md>
+        </p>
+
+        <p>Because the surface is a triangle, we can figure out the area using geometry. Considering the base of the triangle to be the side in the <m>x</m>-<m>y</m> plane, we find the length of the base to be <m>\sqrt{20}</m>. We can find the height using our knowledge of vectors: let <m>\vec u</m> be the side in the <m>x</m>-<m>z</m> plane and let <m>\vec v</m> be the side in the <m>x</m>-<m>y</m> plane. The height is then <m>\norm {\vec u - \proj{u}{v}} = 4\sqrt{6/5}</m>. Geometry states that the area is thus
+          <me>
+            \frac 12\cdot4\sqrt{6/5}\cdot\sqrt{20} = 4\sqrt{6}.
+          </me>
+        </p>
+
+        <p>We affirm the validity of our formula.</p>
+      </solution>
+    </example>
+
+    <p>It is <q>common knowledge</q> that the surface area of a sphere of radius <m>r</m> is <m>4\pi r^2</m>. We confirm this in the following example, which involves using our formula with polar coordinates.</p>
+
+    <example xml:id="ex_surfacearea2">
+      <title>The surface area of a sphere.</title>
+      <statement>
+        <p>Find the surface area of the sphere with radius <m>a</m> centered at the origin, whose top hemisphere has equation <m>f(x,y)=\sqrt{a^2-x^2-y^2}</m>.</p>
+      </statement>
+      <solution>
+        <p>We start by computing partial derivatives and find
+          <me>
+            f_x(x,y) = \frac{-x}{\sqrt{a^2-x^2-y^2}}  \text{ and }  f_y(x,y) = \frac{-y}{\sqrt{a^2-x^2-y^2}}.
+          </me>
+        </p>
+
+        <p>As our function <m>f</m> only defines the top upper hemisphere of the sphere, we double our surface area result to get the total area:
+          <md>
+            <mrow>S \amp  = 2\iint_R \sqrt{1+ f_x(x,y)^2+f_y(x,y)^2}\ dA</mrow>
+            <mrow>\amp = 2\iint_R \sqrt{1+ \frac{x^2+y^2}{a^2-x^2-y^2}}\ dA.</mrow>
+          </md>
+        </p>
+
+        <p>The region <m>R</m> that we are integrating over is the circle, centered at the origin, with radius <m>a</m>: <m>x^2+y^2=a^2</m>. Because of this region, we are likely to have greater success with our integration by converting to polar coordinates. Using the substitutions <m>x=r\cos(\theta)</m>, <m>y=r\sin(\theta)</m>, <m>dA = r\ dr\ d\theta</m> and bounds <m>0\leq\theta\leq2\pi</m> and <m>0\leq r\leq a</m>, we have:
+          <md>
+            <mrow>S \amp = 2\int_0^{2\pi}\int_0^a \sqrt{1+\frac{r^2\cos^2(\theta) +r^2\sin^2(\theta) }{a^2-r^2\cos^2(\theta) -r^2\sin^2(\theta) }}\ r\ dr\ d\theta</mrow>
+            <mrow>\amp =2\int_0^{2\pi}\int_0^ar\sqrt{1+\frac{r^2}{a^2-r^2}}\ dr\ d\theta</mrow>
+            <mrow>\amp =2\int_0^{2\pi}\int_0^ar\sqrt{\frac{a^2}{a^2-r^2}}\ dr\ d\theta.</mrow>
+            <intertext>Apply substitution <m>u=a^2-r^2</m> and integrate the inner integral, giving</intertext>
+            <mrow>\amp = 2\int_0^{2\pi} a^2\ d\theta</mrow>
+            <mrow>\amp = 4\pi a^2.</mrow>
+          </md>
+        </p>
+
+        <p>Our work confirms our previous formula.</p>
+      </solution>
+    </example>
+
+    <aside>
+      <p>The inner integral in Equation <xref ref="eq_exsurfacearea2" /> is an improper integral, as the integrand of <m>\ds \int_0^ar\sqrt{\frac{a^2}{a^2-r^2}}\ dr</m> is not defined at <m>r=a</m>. To properly evaluate this integral, one must use the techniques of <xref ref="sec_improper_integration">Section</xref>.</p>
+
+      <p>The reason this need arises is that the function <m>f(x,y) = \sqrt{a^2-x^2-y^2}</m> fails the requirements of <xref ref="def_surfacearea">Definition</xref>, as <m>f_x</m> and <m>f_y</m> are not continuous on the boundary of the circle <m>x^2+y^2=a^2</m>.</p>
+
+      <p>The computation of the surface area is still valid. The definition makes stronger requirements than necessary in part to avoid the use of improper integration, as when <m>f_x</m> and/or <m>f_y</m> are not continuous, the resulting improper integral may not converge. Since the improper integral does converge in this example, the surface area is accurately computed.</p>
+    </aside>
+
+    <example xml:id="ex_surfacearea3">
+      <title>Finding the surface area of a cone</title>
+      <statement>
+        <p>The general formula for a right cone with height <m>h</m> and base radius <m>a</m> is
+          <me>
+            \ds f(x,y) = h-\frac{h}a\sqrt{x^2+y^2},
+          </me>
+          shown in <xref ref="fig_surfacearea3">Figure</xref>. Find the surface area of this cone.</p>
+
+        <figure xml:id="fig_surfacearea3" >
+          <caption>Finding the surface area of a cone in <xref ref="ex_surfacearea3">Example</xref>.</caption>
+          <!--
+           \includemedia[width=125pt,3Dmenu,activate=onclick,deactivate=onclick,
+          3Droll=0.,
+          3Dortho=0.0046491301618516445,
+          3Dc2c=0.5819994807243347 0.633007287979126 0.5104687213897705,
+          3Dcoo=-19.82758331298828 -17.547298431396484 45.13401794433594,
+          3Droo=149.99999339949443,
+          3Dlights=Headlamp,add3Djscript=asylabels.js]
+           -->
+
+
+          <!-- START figures/figsurfacearea3_3D.asy -->
+          <image xml:id="img_surfacearea3" >
+            <asymptote>
+              <![CDATA[
+              import graph3;
+
+              //ASY file for figsurfacearea33D.asy in Chapter 13
+
+
+              size(200,200,IgnoreAspect);
+              //currentprojection=perspective(7,2,1);
+              currentprojection=orthographic(4,4,2);
+              defaultrender.merge=true;
+
+              usepackage("mathspec");
+              texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+              // setup and draw the axes
+              real[] myxchoice={};
+              real[] myychoice={};
+              real[] myzchoice={};
+              defaultpen(0.5mm);
+
+              pair xbounds=(-2.5,2.5);
+              pair ybounds=(-2.5,2.5);
+              pair zbounds=(-0.25,3.25);
+
+              xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+              yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+              zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+              label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+              label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+              label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+              //Draw the cone {x*cos(y)}, {x*sin(y)},{1-x}
+              triple f(pair t) {
+                return (t.x*cos(t.y),t.x*sin(t.y),1.5*(2-t.x));
+              }
+              surface s=surface(f,(0,0),(2,2*pi),12,12,Spline);
+              pen p=rgb(0,0,.7);
+              draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //labels a and h
+              label("$h$",(.2,-.2,3));
+              label("$a$",(2.2,.2,0));
+              label("$a$",(.2,2.2,0));
+
+              // ////////////////////////////////////
+              //    SAMPLE CODE
+
+              // defaultpen(fontsize(10pt));
+
+              //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+              //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //triple f(pair t) {
+              //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+              //}
+              //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //draw(s,paleblue);
+              //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+              //draw(mypath,2bp+blue);
+
+              //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+              //path3 mypath=graph(g,-1,1,operator ..);
+
+              //pen p=rgb(0,0,1);
+              //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+              ]]>
+            </asymptote>
+          </image>
+          <!-- figures/figsurfacearea3_3D.asy END -->
+        </figure>
+      </statement>
+      <solution>
+        <p>We begin by computing partial derivatives.
+          <me>
+            f_x(x,y) = -\frac{xh}{a\sqrt{x^2+y^2}} \text{ and }  -\frac{yh}{a\sqrt{x^2+y^2}}.
+          </me>
+        </p>
+
+        <p>Since we are integrating over the circle <m>x^2+y^2=a^2</m>, we again use polar coordinates. Using the standard substitutions, our integrand becomes
+          <me>
+            \sqrt{1+ \left(\frac{hr\cos(\theta) }{a\sqrt{r^2}}\right)^2 + \left(\frac{hr\sin(\theta) }{a\sqrt{r^2}}\right)^2}.
+          </me>
+        </p>
+
+        <p>This may look intimidating at first, but there are lots of simple simplifications to be done. It amazingly reduces to just
+          <me>
+            \sqrt{1+\frac{h^2}{a^2}} = \frac1a\sqrt{a^2+h^2}.
+          </me>
+        </p>
+
+        <p>Our polar bounds are <m>0\leq\theta\leq2\pi</m> and <m>0\leq r\leq a</m>. Thus
+          <md>
+            <mrow>S \amp =	\int_0^{2\pi}\int_0^ar\frac1a\sqrt{a^2+h^2}\ dr\ d\theta</mrow>
+            <mrow>\amp = \int_0^{2\pi} \left.\left(\frac12r^2\frac1a\sqrt{a^2+h^2}\right)\right|_0^ad\theta</mrow>
+            <mrow>\amp =	\int_0^{2\pi} \frac12a\sqrt{a^2+h^2} \ d\theta</mrow>
+            <mrow>\amp = \pi a\sqrt{a^2+h^2}.</mrow>
+          </md>
+        </p>
+
+        <p>This matches the formula found in the back of this text.</p>
+      </solution>
+    </example>
+
+    <aside>
+      <p>Note that once again <m>f_x</m> and <m>f_y</m> are not continuous on the domain of <m>f</m>, as both are undefined at <m>(0,0)</m>. (A similar problem occurred in the previous example.) Once again the resulting improper integral converges and the computation of the surface area is valid.</p>
+    </aside>
+
+    <example xml:id="ex_surfacearea4">
+      <title>Finding surface area over a region</title>
+      <statement>
+        <p>Find the area of the surface <m>f(x,y) = x^2-3y+3</m> over the region <m>R</m> bounded by <m>-x\leq y\leq x</m>, <m>0\leq x\leq 4</m>, as pictured in <xref ref="fig_surfacearea4">Figure</xref>.</p>
+
+        <figure xml:id="fig_surfacearea4" >
+          <caption>Graphing the surface in <xref ref="ex_surfacearea4">Example</xref>.</caption>
+          <!--
+           \includemedia[width=125pt,3Dmenu,activate=onclick,deactivate=onclick,
+          3Droll=0,
+          3Dortho=0.0046491301618516445,
+          3Dc2c=0.43148449063301086 0.6710871458053589 0.6028791069984436,
+          3Dcoo=31.701290130615234 -40.52073669433594 19.84035873413086,
+          3Droo=150.00000342734387,
+          3Dlights=Headlamp,add3Djscript=asylabels.js]
+           -->
+
+
+          <!-- START figures/figsurfacearea4_3D.asy -->
+          <image xml:id="img_surfacearea4" >
+            <asymptote>
+              <![CDATA[
+              import graph3;
+
+              //ASY file for figsurfacearea43D.asy in Chapter 13
+
+
+              size(200,200,IgnoreAspect);
+              //currentprojection=perspective(7,2,1);
+              currentprojection=orthographic(5.3,17,74);
+              defaultrender.merge=true;
+
+              usepackage("mathspec");
+              texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+              // setup and draw the axes
+              real[] myxchoice={2,4};
+              real[] myychoice={-4,-2,2,4};
+              real[] myzchoice={20};
+              defaultpen(0.5mm);
+
+              pair xbounds=(-.25,5);
+              pair ybounds=(-5,5);
+              pair zbounds=(-1,25);
+
+              xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+              yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+              zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+              label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+              label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+              label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+              //Draw the surface x^2-3y+3
+              triple f(pair t) {
+                return (t.x,t.y,t.x^2-3*t.y+3);
+              }
+              surface s=surface(f,(-0.25,-4.5),(4.5,4.5),12,12,Spline);
+              pen p=rgb(0,0,.7);
+              draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //triangle in xy plane
+              draw((0,0,0)--(4,4,0)--(4,-4,0)--cycle,blue+dashed+linewidth(1));
+
+              //triangle on surface
+              triple g(real t) {return (t,t,t^2-3*t+3);}
+              path3 mypath=graph(g,0,4,operator ..);draw(mypath,blue+linewidth(2));
+              triple g(real t) {return (t,-t,t^2+3*t+3);}
+              path3 mypath=graph(g,0,4,operator ..);draw(mypath,blue+linewidth(2));
+              triple g(real t) {return (4,t,16-3*t+3);}
+              path3 mypath=graph(g,-4,4,operator ..);draw(mypath,blue+linewidth(2));
+
+              // ////////////////////////////////////
+              //    SAMPLE CODE
+
+              // defaultpen(fontsize(10pt));
+
+              //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+              //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //triple f(pair t) {
+              //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+              //}
+              //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //draw(s,paleblue);
+              //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+              //draw(mypath,2bp+blue);
+
+              //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+              //path3 mypath=graph(g,-1,1,operator ..);
+              //draw(mypath,blue+dashed+linewidth(2));
+
+              //pen p=rgb(0,0,1);
+              //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+              ]]>
+            </asymptote>
+          </image>
+          <!-- figures/figsurfacearea4_3D.asy END -->
+        </figure>
+      </statement>
+      <solution>
+        <p>It is straightforward to compute <m>f_x(x,y) = 2x</m> and <m>f_y(x,y) = -3</m>. Thus the surface area is described by the double integral
+          <me>
+            \iint_R \sqrt{1+(2x)^2+(-3)^2}\ dA = \iint_R \sqrt{10+4x^2}\ dA.
+          </me>
+        </p>
+
+        <p>As with integrals describing arc length, double integrals describing surface area are in general hard to evaluate directly because of the square<ndash />root. This particular integral can be easily evaluated, though, with judicious choice of our order of integration.</p>
+
+        <p>Integrating with order <m>dx\ dy</m> requires us to evaluate <m>\int \sqrt{10+4x^2}\ dx</m>. This can be done, though it involves Integration By Parts and <m>\sinh^{-1}(x)</m>. Integrating with order <m>dy\ dx</m> has as its first integral <m>\int \sqrt{10+4x^2}\ dy</m>, which is easy to evaluate: it is simply <m>y\sqrt{10+4x^2}+C</m>. So we proceed with the order <m>dy\ dx</m>; the bounds are already given in the statement of the problem.
+          <md>
+            <mrow>\iint_R\sqrt{10+4x^2}\ dA \amp = \int_0^4\int_{-x}^x\sqrt{10+4x^2}\ dy \ dx</mrow>
+            <mrow>\amp = \int_0^4\left.\big(y\sqrt{10+4x^2}\big)\right|_{-x}^x dx</mrow>
+            <mrow>\amp =\int_0^4\big(2x\sqrt{10+4x^2}\big)\ dx.</mrow>
+            <intertext>Apply substitution with <m>u = 10+4x^2</m>:</intertext>
+            <mrow>\amp = \left.\left(\frac16\big(10+4x^2\big)^{3/2}\right)\right|_0^4</mrow>
+            <mrow>\amp = \frac13\big(37\sqrt{74}-5\sqrt{10}\big) \approx 100.825\text{u} ^2.</mrow>
+          </md>
+        </p>
+
+        <p>So while the region <m>R</m> over which we integrate has an area of 16u<m>^2</m>, the surface has a much greater area as its <m>z</m>-values change dramatically over <m>R</m>.</p>
+      </solution>
+    </example>
+
+    <p>In practice, technology helps greatly in the evaluation of such integrals. High powered computer algebra systems can compute integrals that are difficult, or at least time consuming, by hand, and can at the least produce very accurate approximations with numerical methods. In general, just knowing <em>how</em> to set up the proper integrals brings one very close to being able to compute the needed value. Most of the work is actually done in just describing the region <m>R</m> in terms of polar or rectangular coordinates. Once this is done, technology can usually provide a good answer.</p>
+
+    <p>We have learned how to integrate integrals; that is, we have learned to evaluate double integrals. In the next section, we learn how to integrate double integrals <mdash /> that is, we learn to evaluate <em>triple integrals</em>, along with learning some uses for this operation.</p>
+  </introduction>
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><q>Surface area</q> is analogous to what previously studied concept?</p>
+          </statement>
+          <solution>
+            <p>arc length</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>To approximate the area of a small portion of a surface, we computed the area of its <fillin /> plane.</p>
+          </statement>
+          <solution>
+            <p>tangent</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>We interpret <m>\ds \iint_R\ dS</m> as <q>sum up lots of little <fillin /> <fillin />.</q></p>
+          </statement>
+          <solution>
+            <p>surface areas</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Why is it important to know how to set up a double integral to compute surface area, even if the resulting integral is hard to evaluate?</p>
+          </statement>
+          <solution>
+            <p>Technology makes good approximations accessible, if not exact answers.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Why do <m>z=f(x,y)</m> and <m>z=g(x,y)=f(x,y)+h</m>, for some real number <m>h</m>, have the same surface area over a region <m>R</m>?</p>
+          </statement>
+          <solution>
+            <p>Intuitively, adding <m>h</m> to <m>f</m> only shifts <m>f</m> up (i.e., parallel to the <m>z</m>-axis) and does not change its shape. Therefore it will not change the surface area over <m>R</m>.</p>
+
+            <p>Analytically, <m>f_x = g_x</m> and <m>f_y=g_y</m>; therefore, the surface area of each is computed with identical double integrals.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Let <m>z=f(x,y)</m> and <m>z=g(x,y)=2f(x,y)</m>. Why is the surface area of <m>g</m> over a region <m>R</m> not twice the surface area of <m>f</m> over <m>R</m>?</p>
+          </statement>
+          <solution>
+            <p>Analytically, <m>g_x = 2f_x</m> and <m>g_y=2f_y</m>. The double integral to compute the surface area of <m>f</m> over <m>R</m> is <m>\ds \iint_R \sqrt{1+f_x^2+f_y^2}\ dA</m>; the double integral to compute the surface area of <m>g</m> over <m>R</m> is <m>\ds \iint_R\sqrt{1+4f_x^2+4f_y^2}\ dA</m>, which is <em>not</em> twice the double integral used to calculate the surface area of <m>f</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, <em>set up</em> the iterated integral that computes the surface area of the given surface over the region <m>R</m>.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x,y) = \sin(x) \cos(y)</m>;<m>R</m> is the rectangle with bounds <m>0\leq x\leq 2\pi</m>, <m>0\leq y\leq2\pi</m>.</p>
+
+            <p><!--
+               \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
+              3Droll=0,
+              3Dortho=0.0049752527847886086,
+              3Dc2c=0.40672242641448975 0.6828556656837463 0.6068649291992188,
+              3Dcoo=30.6619873046875 3.983891248703003 -25.03248405456543,
+              3Droo=150.00000343149,
+              3Dlights=Headlamp,add3Djscript=asylabels.js]
+               -->
+
+
+              <!-- START figures/fig13_05_ex_05_3D.asy -->
+              <image xml:id="img_13_05_ex_05_3D" >
+                <asymptote>
+                  <![CDATA[
+                  import graph3;
+
+                  //ASY file for fig13_05_ex_053D.asy in Chapter 13
+
+
+                  size(200,200,IgnoreAspect);
+                  //currentprojection=perspective(7,2,1);
+                  currentprojection=orthographic(4,4,2);
+                  defaultrender.merge=true;
+
+                  usepackage("mathspec");
+                  texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+                  texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+                  texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+                  texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+                  // setup and draw the axes
+                  real[] myxchoice={5};
+                  real[] myychoice={5};
+                  real[] myzchoice={-1,1};
+                  defaultpen(0.5mm);
+
+                  pair xbounds=(-0.5,7);
+                  pair ybounds=(-0.5,7);
+                  pair zbounds=(-1.25,1.25);
+
+                  xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+                  yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+                  zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+                  label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+                  label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+                  label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+                  //Draw the surface sin(x)cos(y)
+                  triple f(pair t) {
+                    return (t.x,t.y,sin(t.x)*cos(t.y));
+                  }
+                  surface s=surface(f,(0,0),(2*pi,2*pi),12,12,Spline);
+                  pen p=rgb(0,0,.7)+.1mm;
+                  draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+                  //lines in xy plane
+                  draw((0,0,0)--(0,2*pi,0),blue+dashed+linewidth(2));
+                  draw((2*pi,0,0)--(2*pi,2*pi,0),blue+dashed+linewidth(2));
+
+                  //lines on surface
+                  triple g(real t) {return (t,0,sin(t));}
+                  path3 mypath=graph(g,0,2*pi,operator ..);draw(mypath,blue+dashed+linewidth(2));
+                  triple g(real t) {return (t,2*pi,sin(t));}
+                  path3 mypath=graph(g,0,2*pi,operator ..);draw(mypath,blue+dashed+linewidth(2));
+
+
+
+
+
+
+
+                  // ////////////////////////////////////
+                  //    SAMPLE CODE
+
+                  // defaultpen(fontsize(10pt));
+
+                  //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+                  //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+                  //pen p=rgb(0,0,.7);
+                  //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+                  //triple f(pair t) {
+                  //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+                  //}
+                  //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+                  //pen p=rgb(0,0,.7);
+                  //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+                  //draw(s,paleblue);
+                  //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+                  //draw(mypath,2bp+blue);
+
+                  //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+                  //path3 mypath=graph(g,-1,1,operator ..);
+                  //draw(mypath,blue+dashed+linewidth(2));
+
+                  //pen p=rgb(0,0,1);
+                  //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+                  ]]>
+                </asymptote>
+              </image>
+              <!-- figures/fig13_05_ex_05_3D.asy END --></p>
+          </statement>
+          <solution>
+            <p><m>\ds SA = \int_0^{2\pi}\int_0^{2\pi} \sqrt{1+ \cos^2(x) \cos^2(y) +\sin^2(x) \sin^2(y) }\ dx\ dy</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y) = \frac{1}{x^2+y^2+1}</m>;<m>R</m> is the circle <m>x^2+y^2=9</m>.</p>
+
+            <p><!--
+               \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
+              3Droll=0,
+              3Dortho=0.005094848107546568,
+              3Dc2c=0.5450001358985901 0.6626530885696411 0.5136786103248596,
+              3Dcoo=-12.860339164733887 -20.208675384521484 36.5958251953125,
+              3Droo=150.00000281692286,
+              3Dlights=Headlamp,add3Djscript=asylabels.js]
+               -->
+
+
+              <!-- START figures/fig13_05_ex_06_3D.asy -->
+              <image xml:id="img_13_05_ex_06_3D" >
+                <asymptote>
+                  <![CDATA[
+                  import graph3;
+
+                  //ASY file for fig13_05_ex_063D.asy in Chapter 13
+
+
+                  size(200,200,IgnoreAspect);
+                  //currentprojection=perspective(7,2,1);
+                  currentprojection=orthographic(13,13,1.8);
+                  defaultrender.merge=true;
+
+                  usepackage("mathspec");
+                  texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+                  texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+                  texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+                  texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+                  // setup and draw the axes
+                  real[] myxchoice={-4,-2,2,4};
+                  real[] myychoice={-4,-2,2,4};
+                  real[] myzchoice={1};
+                  defaultpen(0.5mm);
+
+                  pair xbounds=(-4.25,4.25);
+                  pair ybounds=(-4.25,4.25);
+                  pair zbounds=(-0.25,1.25);
+
+                  xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+                  yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+                  zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+                  label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+                  label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+                  label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+                  //Draw the surface 1/(1+x^2+y^2)
+                  triple f(pair t) {
+                    return (t.x,t.y,1/(1+t.x^2+t.y^2));
+                  }
+                  surface s=surface(f,(-4,-4),(4,4),12,12,Spline);
+                  pen p=rgb(0,0,.7)+.1mm;
+                  draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+                  //circle
+                  triple g(real t) {return (3*cos(t),3*sin(t),1/10);}
+                  path3 mypath=graph(g,0,2*pi,operator ..);
+                  draw(mypath,blue+dashed+linewidth(1));
+
+
+
+
+
+
+
+
+
+                  // ////////////////////////////////////
+                  //    SAMPLE CODE
+
+                  // defaultpen(fontsize(10pt));
+
+                  //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+                  //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+                  //pen p=rgb(0,0,.7);
+                  //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+                  //triple f(pair t) {
+                  //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+                  //}
+                  //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+                  //pen p=rgb(0,0,.7);
+                  //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+                  //draw(s,paleblue);
+                  //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+                  //draw(mypath,2bp+blue);
+
+                  //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+                  //path3 mypath=graph(g,-1,1,operator ..);
+                  //draw(mypath,blue+dashed+linewidth(2));
+
+                  //pen p=rgb(0,0,1);
+                  //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+                  ]]>
+                </asymptote>
+              </image>
+              <!-- figures/fig13_05_ex_06_3D.asy END --></p>
+          </statement>
+          <solution>
+            <p><m>\ds SA = \int_{-3}^{3}\int_{-\sqrt{9-x^2}}^{\sqrt{9-x^2}} \sqrt{1+ \frac{4x^2+4y^2}{(1+x^2+y^2)^4}}\ dx\ dy</m></p>
+
+            <p>Polar offers simpler bounds:</p>
+
+            <p><m>\ds SA = \int_0^{2\pi}\int_0^3 r\sqrt{1+\frac{4r^2}{(1+r^2)^4}}\ dr\ d\theta</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y) = x^2-y^2</m>;<m>R</m> is the rectangle with opposite corners <m>(-1,-1)</m> and <m>(1,1)</m>.</p>
+
+            <p><!--
+               \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
+              3Droll=0,
+              3Dortho=0.004975249990820885,
+              3Dc2c=0.4553585350513458 0.7132656574249268 0.532823383808136,
+              3Dcoo=-0.20323395729064941 3.399019956588745 -5.396617889404297,
+              3Droo=150.00000127208068,
+              3Dlights=Headlamp,add3Djscript=asylabels.js]
+               -->
+
+
+              <!-- START figures/fig13_05_ex_07_3D.asy -->
+              <image xml:id="img_13_05_ex_07_3D" >
+                <asymptote>
+                  <![CDATA[
+                  import graph3;
+
+                  //ASY file for fig13_05_ex_073D.asy in Chapter 13
+
+
+                  size(200,200,IgnoreAspect);
+                  //currentprojection=perspective(7,2,1);
+                  currentprojection=orthographic(2.2,4.1,3.8);
+                  defaultrender.merge=true;
+
+                  usepackage("mathspec");
+                  texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+                  texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+                  texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+                  texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+                  // setup and draw the axes
+                  real[] myxchoice={-1,1};
+                  real[] myychoice={-1,1};
+                  real[] myzchoice={-1,1};
+                  defaultpen(0.5mm);
+
+                  pair xbounds=(-1.5,1.5);
+                  pair ybounds=(-1.5,1.5);
+                  pair zbounds=(-1.5,1.5);
+
+                  xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+                  yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+                  zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+                  label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+                  label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+                  label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+                  //Draw the surface x^2-y^2
+                  triple f(pair t) {
+                    return (t.x,t.y,t.x^2-t.y^2);
+                  }
+                  surface s=surface(f,(-1.2,-1.2),(1.2,1.2),12,12,usplinetype=new splinetype[] {notaknot,notaknot,monotonic},vsplinetype=new splinetype[] {notaknot,notaknot,monotonic});
+                  pen p=rgb(0,0,.7)+.1mm;
+                  draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+                  //lines on surface
+                  triple g(real t) {return (t,1,t^2-1);}
+                  path3 mypath=graph(g,-1,1,operator ..);draw(mypath,blue+dashed+linewidth(1.5));
+                  triple g(real t) {return (t,-1,t^2-1);}
+                  path3 mypath=graph(g,-1,1,operator ..);draw(mypath,blue+dashed+linewidth(1.5));
+                  triple g(real t) {return (1,t,1-t^2);}
+                  path3 mypath=graph(g,-1,1,operator ..);draw(mypath,blue+dashed+linewidth(1.5));
+                  triple g(real t) {return (-1,t,1-t^2);}
+                  path3 mypath=graph(g,-1,1,operator ..);draw(mypath,blue+dashed+linewidth(1.5));
+
+
+
+
+
+
+
+                  // ////////////////////////////////////
+                  //    SAMPLE CODE
+
+                  // defaultpen(fontsize(10pt));
+
+                  //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+                  //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+                  //pen p=rgb(0,0,.7);
+                  //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+                  //triple f(pair t) {
+                  //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+                  //}
+                  //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+                  //pen p=rgb(0,0,.7);
+                  //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+                  //draw(s,paleblue);
+                  //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+                  //draw(mypath,2bp+blue);
+
+                  //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+                  //path3 mypath=graph(g,-1,1,operator ..);
+                  //draw(mypath,blue+dashed+linewidth(2));
+
+                  //pen p=rgb(0,0,1);
+                  //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+                  ]]>
+                </asymptote>
+              </image>
+              <!-- figures/fig13_05_ex_07_3D.asy END --></p>
+          </statement>
+          <solution>
+            <p><m>\ds SA = \int_{-1}^{1}\int_{-1}^{1} \sqrt{1+ 4x^2+4y^2}\ dx\ dy</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y) = \frac{1}{e^{x^2}+1}</m>;<m>R</m> is the rectangle bounded by</p>
+
+            <p><m>-5\leq x\leq 5</m> and <m>0\leq y\leq 1</m>.</p>
+
+            <p><!--
+               \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
+              3Droll=0,
+              3Dortho=0.004975249990820885,
+              3Dc2c=0.3090496361255646 0.6646339893341064 0.680257260799408,
+              3Dcoo=-18.87652587890625 -2.228297710418701 8.584968566894531,
+              3Droo=149.99999722540937,
+              3Dlights=Headlamp,add3Djscript=asylabels.js]
+               -->
+
+
+              <!-- START figures/fig13_05_ex_08_3D.asy -->
+              <image xml:id="img_13_05_ex_08_3D" >
+                <asymptote>
+                  <![CDATA[
+                  import graph3;
+
+                  //ASY file for fig13_05_ex_083D.asy in Chapter 13
+
+
+                  size(200,200,IgnoreAspect);
+                  //currentprojection=perspective(7,2,1);
+                  currentprojection=orthographic(7.6,3.9,3.5);
+                  defaultrender.merge=true;
+
+                  usepackage("mathspec");
+                  texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+                  texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+                  texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+                  texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+                  // setup and draw the axes
+                  real[] myxchoice={-5,5};
+                  real[] myychoice={-1,1};
+                  real[] myzchoice={1};
+                  defaultpen(0.5mm);
+
+                  pair xbounds=(-6,6);
+                  pair ybounds=(-1,1.5);
+                  pair zbounds=(-0.5,1.5);
+
+                  xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+                  yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+                  zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+                  label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+                  label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+                  label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+                  //Draw the surface 1/(exp(x^2)+1)
+                  triple f(pair t) {
+                    return (t.x,t.y,1/(exp(t.x^2)+1));
+                  }
+                  surface s=surface(f,(-6,-0.5),(6,1.5),16,12,Spline);
+                  pen p=rgb(0,0,.7)+.1mm;
+                  draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+                  //lines on surface
+                  draw((5,0,0)--(5,1,0),blue+dashed+linewidth(1.5));
+                  draw((-5,0,0)--(-5,1,0),blue+dashed+linewidth(1.5));
+                  triple g(real t) {return (t,0,1/(exp(t^2)+1));}
+                  path3 mypath=graph(g,-5,5,operator ..);draw(mypath,blue+dashed+linewidth(1.5));
+                  triple g(real t) {return (t,1,1/(exp(t^2)+1));}
+                  path3 mypath=graph(g,-5,5,operator ..);draw(mypath,blue+dashed+linewidth(1.5));
+
+
+
+
+
+
+
+
+                  // ////////////////////////////////////
+                  //    SAMPLE CODE
+
+                  // defaultpen(fontsize(10pt));
+
+                  //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+                  //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+                  //pen p=rgb(0,0,.7);
+                  //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+                  //triple f(pair t) {
+                  //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+                  //}
+                  //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+                  //pen p=rgb(0,0,.7);
+                  //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+                  //draw(s,paleblue);
+                  //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+                  //draw(mypath,2bp+blue);
+
+                  //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+                  //path3 mypath=graph(g,-1,1,operator ..);
+                  //draw(mypath,blue+dashed+linewidth(2));
+
+                  //pen p=rgb(0,0,1);
+                  //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+                  ]]>
+                </asymptote>
+              </image>
+              <!-- figures/fig13_05_ex_08_3D.asy END --></p>
+          </statement>
+          <solution>
+            <p><m>\ds SA = \int_{-5}^{5}\int_{0}^{1} \sqrt{1+ \frac{4x^2e^{2x^2}}{\big(1+e^{x^2}\big)^4}}\ dy\ dx</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, find the area of the given surface over the region <m>R</m>.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x,y) = 3x-7y+2</m>; <m>R</m> is the rectangle with opposite corners <m>(-1,0)</m> and <m>(1,3)</m>.</p>
+          </statement>
+          <solution>
+            <p><m>\ds SA = \int_{0}^{3}\int_{-1}^{1} \sqrt{1+ 9+49}\ dx\ dy = 6\sqrt{59} \approx 46.09</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x,y) = 2x+2y+2</m>; <m>R</m> is the triangle with corners <m>(0,0)</m>, <m>(1,0)</m> and <m>(0,1)</m>.</p>
+          </statement>
+          <solution>
+            <p><m>\ds SA = \int_{0}^{1}\int_{0}^{1-x} \sqrt{1+ 4+4}\ dy\ dx = 18</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x,y) = x^2+y^2+10</m>; <m>R</m> is the circle <m>x^2+y^2=16</m>.</p>
+          </statement>
+          <solution>
+            <p>This is easier in polar:
+              <md>
+                <mrow>SA \amp = \int_{0}^{2\pi}\int_{0}^{4} r\sqrt{1+ 4r^2\cos^2(t) +4r^2\sin^2(t) }\ dr\ d\theta</mrow>
+                <mrow>\amp = \int_0^{2\pi}\int_0^4r\sqrt{1+4r^2}\ dr\ d\theta</mrow>
+                <mrow>\amp = \frac{\pi}{6}\big(65\sqrt{65}-1\big) \approx 273.87</mrow>
+              </md>
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x,y) = -2x+4y^2+7</m> over <m>R</m>, the triangle bounded by <m>y=-x</m>, <m>y=x</m>, <m>0\leq y\leq 1</m>.</p>
+          </statement>
+          <solution>
+            <p>
+              <md>
+                <mrow>SA \amp = \int_{0}^{1}\int_{-y}^{y} \sqrt{1+ 4+64y^2}\ dx\ dy</mrow>
+                <mrow>\amp = \int_0^{1}\big(2y\sqrt{5+64y^2}\big)\ dy</mrow>
+                <mrow>\amp = \frac1{96}\big(69\sqrt{69}-5\sqrt{5}\big)\approx 5.85</mrow>
+              </md>
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x,y) = x^2+y</m> over <m>R</m>, the triangle bounded by <m>y=2x</m>, <m>y=0</m> and <m>x=2</m>.</p>
+          </statement>
+          <solution>
+            <p>
+              <md>
+                <mrow>SA \amp = \int_{0}^{2}\int_{0}^{2x} \sqrt{1+ 1+4x^2}\ dy\ dx</mrow>
+                <mrow>\amp = \int_0^{2}\big(2x\sqrt{2+4x^2}\big)\ dx</mrow>
+                <mrow>\amp = \frac{26}{3}\sqrt{2}\approx 12.26</mrow>
+              </md>
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x,y) = \frac23x^{3/2}+2y^{3/2}</m> over <m>R</m>, the rectangle with opposite corners <m>(0,0)</m> and <m>(1,1)</m>.</p>
+          </statement>
+          <solution>
+            <p>
+              <md>
+                <mrow>SA \amp = \int_{0}^{1}\int_{0}^{1} \sqrt{1+ x+9y}\ dx\ dy</mrow>
+                <mrow>\amp = \int_0^{1}\frac23\Big((9y+2)^{3/2}-(9y+1)^{3/2}\Big)\ dy</mrow>
+                <mrow>\amp = \frac{4}{135}\big(121\sqrt{11}-100\sqrt{10}-4\sqrt{2}+1\big)\approx 2.383</mrow>
+              </md>
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x,y) = 10-2\sqrt{x^2+y^2}</m> over <m>R</m>, the circle <m>x^2+y^2=25</m>. (This is the cone with height 10 and base radius 5; be sure to compare you result with the known formula.)</p>
+          </statement>
+          <solution>
+            <p>This is easier in polar:
+              <md>
+                <mrow>SA \amp = \int_{0}^{2\pi}\int_{0}^{5} r\sqrt{1+ \frac{4r^2\cos^2(t) +4r^2\sin^2(t) }{r^2\sin^2(t) +r^2\cos^2(t) }}\ dr\ d\theta</mrow>
+                <mrow>\amp = \int_0^{2\pi}\int_0^5r\sqrt{5}\ dr\ d\theta</mrow>
+                <mrow>\amp = 25\pi\sqrt{5}\approx 175.62</mrow>
+              </md>
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find the surface area of the sphere with radius 5 by doubling the surface area of <m>f(x,y) = \sqrt{25-x^2-y^2}</m> over <m>R</m>, the circle <m>x^2+y^2=25</m>. (Be sure to compare you result with the known formula.)</p>
+          </statement>
+          <solution>
+            <p>This is easier in polar:
+              <md>
+                <mrow>SA \amp = 2\int_{0}^{2\pi}\int_{0}^{5} r\sqrt{1+ \frac{r^2\cos^2(t) +r^2\sin^2(t) }{25-r^2\sin^2(t) -r^2\cos^2(t) }}\ dr\ d\theta</mrow>
+                <mrow>\amp = 2\int_0^{2\pi}\int_0^5r\sqrt{\frac{1}{25-r^2}}\ dr\ d\theta</mrow>
+                <mrow>\amp = 100\pi\approx 314.16</mrow>
+              </md>
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find the surface area of the ellipse formed by restricting the plane <m>f(x,y) = cx+dy+h</m> to the region <m>R</m>, the circle <m>x^2+y^2=1</m>, where <m>c</m>, <m>d</m> and <m>h</m> are some constants. Your answer should be given in terms of <m>c</m> and <m>d</m>; why does the value of <m>h</m> not matter?</p>
+          </statement>
+          <solution>
+            <p>Integrating in polar is easiest considering <m>R</m>:
+              <md>
+                <mrow>SA \amp = \int_{0}^{2\pi}\int_{0}^{1} r\sqrt{1+ c^2+d^2}\ dr\ d\theta</mrow>
+                <mrow>\amp = \int_0^{2\pi}\frac12\Big(\sqrt{1+c^2+d^2}\Big)\ dy</mrow>
+                <mrow>\amp = \pi\sqrt{1+c^2+d^2}.</mrow>
+              </md>
+            </p>
+
+            <p>The value of <m>h</m> does not matter as it only shifts the plane vertically (i.e., parallel to the <m>z</m>-axis). Different values of <m>h</m> do not create different ellipses in the plane.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

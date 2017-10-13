@@ -1,0 +1,1249 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_double_int_polar">
+  <title>Double Integration with Polar Coordinates</title>
+  <introduction>
+    <p>We have used iterated integrals to evaluate double integrals, which give the signed volume under a surface, <m>z=f(x,y)</m>, over a region <m>R</m> of the <m>x</m>-<m>y</m> plane. The integrand is simply <m>f(x,y)</m>, and the bounds of the integrals are determined by the region <m>R</m>.</p>
+
+    <p>Some regions <m>R</m> are easy to describe using rectangular coordinates <mdash /> that is, with equations of the form <m>y=f(x)</m>, <m>x=a</m>, etc. However, some regions are easier to handle if we represent their boundaries with polar equations of the form <m>r=f(\theta)</m>, <m>\theta = \alpha</m>, etc.</p>
+
+    <p>The basic form of the double integral is <m>\iint_R f(x,y)\ dA</m>. We interpret this integral as follows: over the region <m>R</m>, sum up lots of products of heights (given by <m>f(x_i,y_i)</m>) and areas (given by <m>\Delta A_i</m>). That is, <m>dA</m> represents <q>a little bit of area.</q> In rectangular coordinates, we can describe a small rectangle as having area <m>dx\ dy</m> or <m>dy\ dx</m> <mdash /> the area of a rectangle is simply length<times />width <mdash /> a small change in <m>x</m> times a small change in <m>y</m>. Thus we replace <m>dA</m> in the double integral with <m>dx\ dy</m> or <m>dy\ dx</m>.</p>
+
+    <figure xml:id="fig_double_pol_intro" >
+    <caption>Approximating a region <m>R</m> with portions of sectors of circles.</caption>
+    <sidebyside>
+      <figure>
+        <caption>(a)</caption>
+        <!-- START figures/fig_doublepol_intro.tex -->
+        <image xml:id="img_doublepol_intro" >
+          <description></description>
+          <latex-image-code>
+            <![CDATA[
+            \begin{tikzpicture}
+            \begin{axis}[%
+            %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-1,1},
+			%%
+            %			extra x ticks={.33},
+            %			extra x tick labels={$1/3$},
+			%ytick={-1,1},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-.1,ymax=1.1,%
+			xmin=-.2,xmax=1.24%
+            ]
+
+            %\addplot [{\coloronefill},fill={\coloronefill},area style, smooth,domain=18:72,samples=30] ({cos(x)*(1+.05*cos(9*x))},{sin(x)*(1+.05*cos(9*x))}) -- (axis cs:0,0) -- cycle;
+            %
+            %\addplot [{\colortwofill},fill={\colortwofill},area style, smooth,domain=18:72,samples=30] ({cos(x)*(.7+.05*sin(6*x))},{sin(x)*(.7+.05*sin(6*x))}) -- (axis cs:0,0) -- cycle;
+            %
+
+
+            \addplot [{\coloronefill},fill={\coloronefill},area style] coordinates {(0.6928,0.4)(0.6857,0.412)(0.6784,0.4239)(0.6709,0.4357)(0.6632,0.4474)(0.6553,0.4589)(0.6472,0.4702)(0.6389,0.4815)(0.6304,0.4925)(0.6217,0.5035)(0.6128,0.5142)(0.6038,0.5248)(0.5945,0.5353)(0.5851,0.5456)(0.5755,0.5557)(0.5657,0.5657)(0.4243,0.4243)(0.4316,0.4168)(0.4388,0.4092)(0.4459,0.4015)(0.4528,0.3936)(0.4596,0.3857)(0.4663,0.3776)(0.4728,0.3694)(0.4792,0.3611)(0.4854,0.3527)(0.4915,0.3441)(0.4974,0.3355)(0.5032,0.3268)(0.5088,0.318)(0.5143,0.309)(0.5196,0.3)(0.6928,0.4)};
+
+            \addplot [{\colorone},thick, smooth,domain=0:90,samples=30] ({cos(x)*(1+.05*cos(9*x))},{sin(x)*(1+.05*cos(9*x))});
+
+            %\addplot [{\colortwo}, thick,smooth,domain=0:90,samples=30] ({cos(x)*(.7+.05*sin(6*x))},{sin(x)*(.7+.05*sin(6*x))});
+
+            \addplot [{\colortwo}, thick,smooth,domain=0:15,samples=30] ({cos(x)*(1.05)},{sin(x)*(1.05))});
+
+            \addplot [{\colortwo}, thick,smooth,domain=15:30,samples=30] ({cos(x)*(.95)},{sin(x)*(.95))});
+            %
+            \addplot [{\colortwo}, thick,smooth,domain=30:45,samples=30] ({cos(x)*(1.05)},{sin(x)*(1.05))});
+            %
+            \addplot [{\colortwo}, thick,smooth,domain=45:60,samples=30] ({cos(x)*(.97)},{sin(x)*(.97))});
+            %
+            \addplot [{\colortwo}, thick,smooth,domain=60:75,samples=30] ({cos(x)*(1)},{sin(x)*(1))});
+            %
+            \addplot [{\colortwo}, thick,smooth,domain=75:90,samples=30] ({cos(x)*(1.05)},{sin(x)*(1.05))});
+
+
+
+            \addplot [{\colortwo}, thick,smooth,domain=0:90,samples=30] ({cos(x)*(.8)},{sin(x)*(.8))});
+
+            \addplot [{\colortwo}, thick,smooth,domain=0:90,samples=30] ({cos(x)*(.6)},{sin(x)*(.6))});
+
+            \addplot [{\colortwo}, thick,smooth,domain=0:90,samples=30] ({cos(x)*(.4)},{sin(x)*(.4))});
+
+            \addplot [{\colortwo}, thick,smooth,domain=0:90,samples=30] ({cos(x)*(.2)},{sin(x)*(.2))});
+
+
+            \addplot [{\colortwo},thick, smooth,domain=0:1.05,samples=2] ({cos(15)*(x)},{sin(15)*(x)});
+
+            \addplot [{\colortwo},thick, smooth,domain=0:1.05,samples=2] ({cos(30)*(x)},{sin(30)*(x)});
+
+            \addplot [{\colortwo},thick, smooth,domain=0:1.05,samples=2] ({cos(45)*(x)},{sin(45)*(x)});
+
+            \addplot [{\colortwo},thick, smooth,domain=0:1,samples=2] ({cos(60)*(x)},{sin(60)*(x)});
+
+            \addplot [{\colortwo},thick, smooth,domain=0:1.05,samples=2] ({cos(75)*(x)},{sin(75)*(x)});
+
+            \addplot [{\colorone},very thick, smooth,domain=0:90,samples=30] ({cos(x)*(1+.05*cos(9*x))},{sin(x)*(1+.05*cos(9*x))});
+
+
+
+
+            %\addplot [{\colorone},thick, smooth,domain=0:1,samples=2] ({cos(90)*(x)},{sin(15)*(x)});
+
+            %\addplot [{\colortwo},thick, smooth,domain=28.65:45.84,samples=30] ({1.045*cos(x)},{1.045*sin(x)}) ;-- (axis cs:0,0) -- cycle;
+
+            %\draw [thick,{\colorone},] (axis cs:0,0) -- (axis cs: 0.866025, 0.5) node [pos=.4,below,rotate=30,black] {\scriptsize $\theta=\alpha$};
+            %
+            %\draw [thick,{\colorone},] (axis cs:0,0) -- (axis cs:0.475, 0.822724) node [pos=.4,above,rotate=60,black] {\scriptsize $\theta=\beta$};
+            %
+            %\draw [thick,{\colorone},dashed] (axis cs:0,0) -- (axis cs: 0.862592, 0.528597)
+            %(axis cs:0,0) -- (axis cs: 0.732107, 0.732107)
+            %(axis cs:0,0) -- (axis cs: 0.497095, 0.811186);
+            %
+
+            %\addplot [{\colortwo},thick, smooth,domain=-1:1,samples=2] ({x},{.577*x});
+            %\addplot [{\colortwo},thick, smooth,domain=-1:1,samples=2] ({x},{-.577*x});
+
+
+            %\draw (axis cs:.5,0) circle (25pt);
+            \end{axis}
+
+            \node [right] at (myplot.right of origin) {\scriptsize $0$};
+            \node [above] at (myplot.above origin) {\scriptsize $\pi/2$};
+            \end{tikzpicture}
+            ]]>
+          </latex-image-code>
+        </image>
+        <!-- figures/fig_doublepol_intro.tex END -->
+      </figure>
+
+      <figure>
+        <caption>(b)</caption>
+        <!-- START figures/fig_doublepol_intro_b.tex -->
+        <image xml:id="img_doublepol_intro_b" >
+          <description></description>
+          <latex-image-code>
+            <![CDATA[
+            \begin{tikzpicture}
+            \begin{axis}[%
+            axis y line=none,axis x line=none,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-1,1},
+			%%
+            %			extra x ticks={.33},
+            %			extra x tick labels={$1/3$},
+			%ytick={-1,1},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-.05,ymax=0.65,%
+			xmin=-.1,xmax=.74%
+            ]
+
+
+
+            \addplot [{\coloronefill},fill={\coloronefill},area style] coordinates {(0.6928,0.4)(0.6857,0.412)(0.6784,0.4239)(0.6709,0.4357)(0.6632,0.4474)(0.6553,0.4589)(0.6472,0.4702)(0.6389,0.4815)(0.6304,0.4925)(0.6217,0.5035)(0.6128,0.5142)(0.6038,0.5248)(0.5945,0.5353)(0.5851,0.5456)(0.5755,0.5557)(0.5657,0.5657)(0.4243,0.4243)(0.4316,0.4168)(0.4388,0.4092)(0.4459,0.4015)(0.4528,0.3936)(0.4596,0.3857)(0.4663,0.3776)(0.4728,0.3694)(0.4792,0.3611)(0.4854,0.3527)(0.4915,0.3441)(0.4974,0.3355)(0.5032,0.3268)(0.5088,0.318)(0.5143,0.309)(0.5196,0.3)(0.6928,0.4)};
+
+            \addplot [{\colortwo}, thick,smooth,domain=30:45,samples=30] ({cos(x)*(.8)},{sin(x)*(.8))});
+
+
+            \addplot [{\colortwo}, thick,smooth,domain=30:45,samples=30] ({cos(x)*(.8)},{sin(x)*(.8))});
+
+            \addplot [{\colortwo}, thick,smooth,domain=30:45,samples=30] ({cos(x)*(.6)},{sin(x)*(.6))});
+
+
+            \addplot [{\colortwo},thick, smooth,domain=0:.8,samples=2] ({cos(30)*(x)},{sin(30)*(x)});
+
+            \addplot [{\colortwo},thick, smooth,domain=0:.8,samples=2] ({cos(45)*(x)},{sin(45)*(x)});
+
+            \draw [rotate=30] (axis cs:.31,-.12) node [rotate=30] {$\underbrace{\rule{92pt}{0pt}}_{r_1}$};
+
+            \draw [rotate=45] (axis cs:.41,-.03) node [rotate=45] {$\overbrace{\rule{120pt}{0pt}}^{r_2}$};
+
+            \draw [thick,->,>=stealth,rotate=24] (axis cs:.45,0) arc (0:13:80pt);
+            \draw (axis cs: .4,.3) node {\scriptsize $\Delta \theta$};
+            \end{axis}
+
+            %\node [right] at (myplot.right of origin) {\scriptsize $0$};
+            %\node [above] at (myplot.above origin) {\scriptsize $\pi/2$};
+            \end{tikzpicture}
+            ]]>
+          </latex-image-code>
+        </image>
+        <!-- figures/fig_doublepol_intro_b.tex END -->
+      </figure>
+    </sidebyside>
+
+    </figure>
+
+    <p>Now consider representing a region <m>R</m> with polar coordinates. Consider <xref ref="fig_double_pol_intro">Figure</xref>(a). Let <m>R</m> be the region in the first quadrant bounded by the curve. We can approximate this region using the natural shape of polar coordinates: portions of sectors of circles. In the figure, one such region is shaded, shown again in part (b) of the figure.</p>
+
+    <p>As the area of a sector of a circle with radius <m>r</m>, subtended by an angle <m>\theta</m>, is <m>A = \frac12r^2\theta</m>, we can find the area of the shaded region. The whole sector has area <m>\frac12r_2^2\Delta \theta</m>, whereas the smaller, unshaded sector has area <m>\frac12r_1^2\Delta \theta</m>. The area of the shaded region is the difference of these areas:
+      <me>
+        \Delta A_i = \frac12r_2^2\Delta\theta-\frac12r_1^2\Delta\theta = \frac12\big(r_2^2-r_1^2\big)\big(\Delta\theta\big) = \frac{r_2+r_1}{2}\big(r_2-r_1\big)\Delta\theta.
+      </me>
+    </p>
+
+    <p>Note that <m>(r_2+r_1)/2</m> is just the average of the two radii.</p>
+
+    <p>To approximate the region <m>R</m>, we use many such subregions; doing so shrinks the difference <m>r_2-r_1</m> between radii to 0 and shrinks the change in angle <m>\Delta \theta</m> also to 0. We represent these infinitesimal changes in radius and angle as <m>dr</m> and <m>d\theta</m>, respectively. Finally, as <m>dr</m> is small, <m>r_2\approx r_1</m>, and so <m>(r_2+r_1)/2\approx r_1</m>. Thus, when <m>dr</m> and <m>d\theta</m> are small,
+      <me>
+        \Delta A_i \approx r_i\ dr\ d\theta.
+      </me>
+    </p>
+
+    <p>Taking a limit, where the number of subregions goes to infinity and both <m>r_2-r_1</m> and <m>\Delta\theta</m> go to 0, we get
+      <me>
+        dA = r\ dr\ d\theta.
+      </me>
+    </p>
+
+    <p>So to evaluate <m>\iint_Rf(x,y)\ dA</m>, replace <m>dA</m> with <m>r\ dr\ d\theta</m>. Convert the function <m>z=f(x,y)</m> to a function with polar coordinates with the substitutions <m>x=r\cos(\theta)</m>, <m>y=r\sin(\theta)</m>. Finally, find bounds <m>g_1(\theta)\leq r\leq g_2(\theta)</m> and <m>\alpha\leq\theta\leq\beta</m> that describe <m>R</m>. This is the key principle of this section, so we restate it here as a Key Idea.</p>
+
+    <insight xml:id="idea_doublepol">
+      <title>Evaluating Double Integrals with Polar Coordinates</title>
+      <p>Let <m>R</m> be a plane region bounded by the polar equations <m>\alpha\leq\theta\leq\beta</m> and <m>g_1(\theta)\leq r\leq g_2(\theta)</m>. Then
+        <index><main>double integral</main><sub>in polar</sub></index>
+        <me>
+          \iint_Rf(x,y)\ dA = \int_\alpha^\beta\int_{g_1(\theta)}^{g_2(\theta)} f\big(r\cos(\theta) ,r\sin(\theta) \big)\ r\ dr\ d\theta.
+        </me>
+      </p>
+    </insight>
+
+    <p>Examples will help us understand this Key Idea.</p>
+
+    <example xml:id="ex_doublepol1">
+      <title>Evaluating a double integral with polar coordinates</title>
+      <statement>
+        <p>Find the signed volume under the plane <m>z= 4-x-2y</m> over the circle with equation <m>x^2+y^2=1</m>.</p>
+      </statement>
+      <solution>
+        <p>The bounds of the integral are determined solely by the region <m>R</m> over which we are integrating. In this case, it is a circle with equation <m>x^2+y^2=1</m>. We need to find polar bounds for this region. It may help to review <xref ref="sec_polar">Section</xref>; bounds for this circle are <m>0\leq r\leq 1</m> and <m>0\leq \theta\leq 2\pi</m>.</p>
+
+        <p>We replace <m>f(x,y)</m> with <m>f(r\cos(\theta) ,r\sin(\theta) )</m>. That means we make the following substitutions:
+          <me>
+            4-x-2y  \Rightarrow  4-r\cos(\theta) -2r\sin(\theta) .
+          </me>
+        </p>
+
+        <p>Finally, we replace <m>dA</m> in the double integral with <m>r\ dr\ d\theta</m>. This gives the final iterated integral, which we evaluate:
+          <md>
+            <mrow>\iint_Rf(x,y)\ dA \amp = \int_0^{2\pi}\int_0^1\big(4-r\cos(\theta) -2r\sin(\theta) \big)r\ dr\ d\theta</mrow>
+            <mrow>\amp = \int_0^{2\pi}\int_0^1\big(4r-r^2(\cos(\theta) -2\sin(\theta) )\big)\ dr\ d\theta</mrow>
+            <mrow>\amp = \int_0^{2\pi}\left.\left(2r^2-\frac13r^3(\cos(\theta) -2\sin(\theta) )\right)\right|_0^1d\theta</mrow>
+            <mrow>\amp = \int_0^{2\pi} \left(2-\frac13\big(\cos(\theta) -2\sin(\theta) \big)\right)\ d\theta</mrow>
+            <mrow>\amp = \left.\left(2\theta -\frac13\big(\sin(\theta) +2\cos(\theta) \big)\right)\right|_0^{2\pi}</mrow>
+            <mrow>\amp = 4\pi \approx 12.566.</mrow>
+          </md>
+        </p>
+
+        <figure xml:id="fig_doublepol1" >
+          <caption>Evaluating a double integral with polar coordinates in <xref ref="ex_doublepol1">Example</xref>.</caption>
+          <!--
+           \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
+          3Droll=0.,
+          3Dortho=0.0046491301618516445,
+          3Dc2c=0.8617081642150879 -0.29301872849464417 0.4142450988292694,
+          3Dcoo=-13.165555000305176 3.489872455596924 52.97535705566406,
+          3Droo=149.99999574342704,
+          3Dlights=Headlamp,add3Djscript=asylabels.js]
+           -->
+
+
+          <!-- START figures/figdoublepol1_3D.asy -->
+          <image xml:id="img_doublepol1" >
+            <asymptote>
+              <![CDATA[
+              import graph3;
+
+              //ASY file for figdoublepol13D.asy in Chapter 13
+
+
+              size(200,200,IgnoreAspect);
+              //currentprojection=perspective(7,2,1);
+              currentprojection=orthographic(7.2,-1.9,13);
+              defaultrender.merge=true;
+
+              usepackage("mathspec");
+              texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+              // setup and draw the axes
+              real[] myxchoice={-1,1};
+              real[] myychoice={-1,1};
+              real[] myzchoice={5};
+              defaultpen(0.5mm);
+
+              pair xbounds=(-1.5,1.5);
+              pair ybounds=(-1.5,1.5);
+              pair zbounds=(0,10);
+
+              xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+              yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+              zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+              label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+              label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+              label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+              //Draw the plane //({z=4-x-2y);
+              triple f(pair t) {
+                return (t.x,t.y,4-t.x-2*t.y);
+              }
+              surface s=surface(f,(-1.5,-1.5),(1.5,1.5),8,8,Spline);
+              pen p=rgb(0,0,.7);
+              draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //draw curve on xy plane
+              triple g(real t) {return (cos(t),sin(t),0);}
+              path3 mypath=graph(g,0,2*pi,operator ..);
+              draw(mypath,blue+linewidth(2));
+
+              //draw curve on plane
+              triple g(real t) {return (cos(t),sin(t),4-cos(t)-2*sin(t));}
+              path3 mypath=graph(g,0,2*pi,operator ..);
+              draw(mypath,blue+linewidth(2));
+
+
+
+
+
+              // ////////////////////////////////////
+              //    SAMPLE CODE
+
+              // defaultpen(fontsize(10pt));
+
+              //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+              //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //triple f(pair t) {
+              //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+              //}
+              //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //draw(s,paleblue);
+              //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+              //draw(mypath,2bp+blue);
+
+              //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+              //path3 mypath=graph(g,-1,1,operator ..);
+              //draw(mypath,blue+linewidth(2));
+
+              //pen p=rgb(0,0,1);
+              //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+              ]]>
+            </asymptote>
+          </image>
+          <!-- figures/figdoublepol1_3D.asy END -->
+        </figure>
+
+        <p>The surface and region <m>R</m> are shown in <xref ref="fig_doublepol1">Figure</xref>.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_doublepol2">
+      <title>Evaluating a double integral with polar coordinates</title>
+      <statement>
+        <p>Find the volume under the paraboloid <m>z=4-(x-2)^2-y^2</m> over the region bounded by the circles <m>(x-1)^2+y^2=1</m> and <m>(x-2)^2+y^2=4</m>.</p>
+      </statement>
+      <solution>
+        <p>At first glance, this seems like a very hard volume to compute as the region <m>R</m> (shown in <xref ref="fig_doublepol2">Figure</xref>(a)) has a hole in it, cutting out a strange portion of the surface, as shown in part (b) of the figure. However, by describing <m>R</m> in terms of polar equations, the volume is not very difficult to compute.</p>
+
+        <figure xml:id="fig_doublepol2" >
+        <caption>Showing the region <m>R</m> and surface used in <xref ref="ex_doublepol2">Example</xref>.</caption>
+        <sidebyside>
+          <figure>
+            <caption>(a)</caption>
+            <!-- START figures/fig_doublepol2a.tex -->
+            <image xml:id="img_doublepol2a" >
+              <description></description>
+              <latex-image-code>
+                <![CDATA[
+                \begin{tikzpicture}
+                \begin{axis}[%
+                axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={2,1,3,4},
+			%%
+                %			extra x ticks={.33},
+                %			extra x tick labels={$1/3$},
+			%ytick={-1,1},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-2.1,ymax=2.1,%
+			xmin=-.54,xmax=4.5%
+                ]
+
+                \addplot [{\coloronefill},fill={\coloronefill},area style, smooth,domain=0:360,samples=30] ({2+2*cos(x)},{2*sin(x)});
+
+
+
+                \addplot [{\colorone},thick,fill=white,area style, smooth,domain=0:360,samples=30] ({1+cos(x)},{sin(x)});
+
+                \addplot [{\colorone},thick,,area style, smooth,domain=0:360,samples=30] ({2+2*cos(x)},{2*sin(x)});
+
+                \end{axis}
+
+
+
+                \end{tikzpicture}
+                ]]>
+              </latex-image-code>
+            </image>
+            <!-- figures/fig_doublepol2a.tex END -->
+          </figure>
+
+          <figure>
+            <caption>(b)</caption>
+            <!--
+             \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
+            3Droll=0,
+            3Dortho=0.004967421758919954,
+            3Dc2c=-0.21277226507663727 -0.7507773041725159 0.6253489851951599,
+            3Dcoo=76.34239196777344 13.4976167678833 40.79242706298828,
+            3Droo=149.9999981182509,
+            3Dlights=Headlamp,add3Djscript=asylabels.js]
+             -->
+
+
+            <!-- START figures/figdoublepol2b_3D.asy -->
+            <image xml:id="img_doublepol2b_3D" >
+              <asymptote>
+                <![CDATA[
+                import graph3;
+
+                //ASY file for figdoublepol2b3D.asy in Chapter 13
+
+
+                size(200,200,IgnoreAspect);
+                //currentprojection=perspective(7,2,1);
+                currentprojection=orthographic(-2.7,-11,16);
+                defaultrender.merge=true;
+
+                // usepackage("mathspec");
+                // texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+                // texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+                // texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+                // texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+                // setup and draw the axes
+                real[] myxchoice={2,4};
+                real[] myychoice={-2,2};
+                real[] myzchoice={5};
+                defaultpen(0.5mm);
+
+                pair xbounds=(-0.25,4.5);
+                pair ybounds=(-2.5,2.5);
+                pair zbounds=(0,7);
+
+                xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+                yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+                zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+                label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+                label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+                label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+                //Draw the surface //({z=4-(x-2)^2-y^2);
+                //triple f(pair t) {
+                //  return (t.x,t.y,4-(t.x-2)^2-t.y^2);
+                //}
+
+                //surface s=surface(f,(-0.25,-2.25),(4.5,2.25),16,16,usplinetype=new splinetype[] {notaknot,notaknot,monotonic}
+                //,vsplinetype=new splinetype[] {notaknot,notaknot,monotonic}
+                //);
+                //pen p=rgb(0,0,.7);
+                //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+                //draw(s,rgb(.6,.6,1)+opacity(.7));
+
+                real r(real t) { return sqrt((2*cos(t)+1)^2+(2*sin(t))^2);}
+                real ang(real tt) {return atan2(2*sin(tt),(2*cos(tt)+1));}
+                real ra(pair s) {return 1+s.y*(r(s.x)-1);}
+
+                triple g(pair t) { return (cos(ang(t.x))*ra(t)+1,sin(ang(t.x))*ra(t),4-(cos(ang(t.x))*ra(t)+1-2)^2-(sin(ang(t.x))*ra(t))^2);}
+
+                surface s=surface(g,(0,0),(2*pi,1),16,16,usplinetype=new splinetype[] {notaknot,notaknot,monotonic}
+                ,vsplinetype=new splinetype[] {notaknot,notaknot,monotonic}
+                );
+                pen p=rgb(0,0,.7);
+                //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+                draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+
+                triple g(pair t) { return (cos(ang(t.x))*ra(t)+1,sin(ang(t.x))*ra(t),0);}
+
+                surface s=surface(g,(0,0),(2*pi,1),8,8,usplinetype=new splinetype[] {notaknot,notaknot,monotonic}
+                ,vsplinetype=new splinetype[] {notaknot,notaknot,monotonic}
+                );
+                pen p=rgb(0,0,.7);
+                //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+                draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+
+
+
+                triple ff(pair t) {
+	return (cos(t.x)+1,sin(t.x),t.y*(4-(cos(t.x)+1-2)^2-(sin(t.x))^2));}
+                surface ss= surface(ff,(0,0),(2*pi,1),16,4,Spline);
+                pen q=rgb(.9,0,0);
+                //draw(ss,rgb(1,.6,.6)+opacity(.8),meshpen=q,nolight,render(merge=true));
+                draw(ss,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+                //draw curves on xy plane
+                triple g(real t) {return (2*cos(t)+2,2*sin(t),0);}
+                path3 mypath=graph(g,0,2*pi,operator ..);
+                draw(mypath,blue+linewidth(2));
+                triple g(real t) {return (cos(t)+1,sin(t),0);}
+                path3 mypath=graph(g,0,2*pi,operator ..);
+                draw(mypath,blue+linewidth(1));
+
+                //draw curve on plane
+                triple g(real t) {return (cos(t)+1,sin(t),4-(cos(t)-1)^2-sin(t)^2);}
+                path3 mypath=graph(g,0,2*pi,operator ..);
+                draw(mypath,blue+linewidth(1));
+
+
+
+
+
+                // ////////////////////////////////////
+                //    SAMPLE CODE
+
+                // defaultpen(fontsize(10pt));
+
+                //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+                //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+                //pen p=rgb(0,0,.7);
+                //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+                //triple f(pair t) {
+                //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+                //}
+                //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+                //pen p=rgb(0,0,.7);
+                //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+                //draw(s,paleblue);
+                //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+                //draw(mypath,2bp+blue);
+
+                //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+                //path3 mypath=graph(g,-1,1,operator ..);
+                //draw(mypath,blue+linewidth(2));
+
+                //pen p=rgb(0,0,1);
+                //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+                ]]>
+              </asymptote>
+            </image>
+            <!-- figures/figdoublepol2b_3D.asy END -->
+          </figure>
+        </sidebyside>
+
+        </figure>
+
+        <p>It is straightforward to show that the circle <m>(x-1)^2+y^2=1</m> has polar equation <m>r=2\cos(\theta)</m>, and that the circle <m>(x-2)^2+y^2=4</m> has polar equation <m>r=4\cos(\theta)</m>. Each of these circles is traced out on the interval <m>0\leq\theta\leq\pi</m>. The bounds on <m>r</m> are <m>2\cos(\theta) \leq r\leq 4\cos(\theta)</m>.</p>
+
+        <p>Replacing <m>x</m> with <m>r\cos(\theta)</m> in the integrand, along with replacing <m>y</m> with <m>r\sin(\theta)</m>, prepares us to evaluate the double integral <m>\iint_Rf(x,y)\ dA</m>:
+          <md>
+            <mrow>\iint_Rf(x,y)\ dA \amp = \int_0^{\pi}\int_{2\cos(\theta) }^{4\cos(\theta) } \Big(4-\big(r\cos(\theta) -2\big)^2-\big(r\sin(\theta) \big)^2\Big)r\ dr\ d\theta</mrow>
+            <mrow>\amp = \int_0^{\pi}\int_{2\cos(\theta) }^{4\cos(\theta) } \big(-r^3+4r^2\cos(\theta) \big)\ dr\ d\theta</mrow>
+            <mrow>\amp = \int_0^\pi \left.\left(-\frac14r^4+\frac43r^3\cos(\theta) \right)\right|_{2\cos(\theta) }^{4\cos(\theta) }d\theta</mrow>
+            <mrow>\amp =\int_0^\pi \left(\left[-\frac14(256\cos^4(\theta) )+\frac43(64\cos^4(\theta) )\right]-\right.</mrow>
+            <mrow>\amp \ \left.\left[-\frac14(16\cos^4(\theta) )+\frac43(8\cos^4(\theta) )\right]\right)\ d\theta</mrow>
+            <mrow>\amp =\int_0^\pi\frac{44}3\cos^4(\theta) \ d\theta.</mrow>
+            <intertext>To integrate <m>\cos^4(\theta)</m>, rewrite it as <m>\cos^2(\theta) \cos^2(\theta)</m> and employ the power-reducing formula twice:</intertext>
+            <mrow>\cos^4(\theta) \amp =\cos^2(\theta) \cos^2(\theta) </mrow>
+            <mrow>\amp = \frac12\big(1+\cos(2\theta)\big)\frac12\big(1+\cos(2\theta)\big)</mrow>
+            <mrow>\amp = \frac14\big(1+2\cos(2\theta)+\cos^2(2\theta)\big)</mrow>
+            <mrow>\amp =\frac14\Big(1+2\cos(2\theta)+\frac12\big(1+\cos(4\theta)\big)\Big)</mrow>
+            <mrow>\amp = \frac38+\frac12\cos(2\theta)+\frac18\cos(4\theta).</mrow>
+            <intertext>Picking up from where we left off above, we have</intertext>
+            <mrow>\amp =\int_0^\pi\frac{44}3\cos^4(\theta) \ d\theta</mrow>
+            <mrow>\amp =\int_0^\pi \frac{44}3\left(\frac38+\frac12\cos(2\theta)+\frac18\cos(4\theta)\right)d\theta</mrow>
+            <mrow>\amp = \left.\frac{44}3\left(\frac{3}8\theta+\frac14\sin(2\theta)+\frac{1}{32}\sin(4\theta)\right)\right|_0^\pi</mrow>
+            <mrow>\amp =\frac{11}2\pi\approx 17.279.</mrow>
+          </md>
+        </p>
+
+        <p>While this example was not trivial, the double integral would have been <em>much</em> harder to evaluate had we used rectangular coordinates.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_doublepol5">
+      <title>Evaluating a double integral with polar coordinates</title>
+      <statement>
+        <p>Find the volume under the surface <m>\ds f(x,y) =\frac1{x^2+y^2+1}</m> over the sector of the circle with radius <m>a</m> centered at the origin in the first quadrant, as shown in <xref ref="fig_doublepol5">Figure</xref>.</p>
+      </statement>
+      <solution>
+        <figure xml:id="fig_doublepol5" >
+          <caption>The surface and region <m>R</m> used in <xref ref="ex_doublepol5">Example</xref>.</caption>
+          <!--
+           \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
+          3Droll=0,
+          3Dortho=0.005125566851347685,
+          3Dc2c=0.3594517111778259 -0.6955419182777405 0.6221060752868652,
+          3Dcoo=40.99066925048828 90.0008544921875 16.713821411132812,
+          3Droo=150.00000057205966,
+          3Dlights=Headlamp,add3Djscript=asylabels.js]
+           -->
+
+
+          <!-- START figures/figdoublepol5_3D.asy -->
+          <image xml:id="img_doublepol5" >
+            <asymptote>
+              <![CDATA[
+              import graph3;
+
+              //ASY file for figdoublepol53D.asy in Chapter 13
+
+
+              size(200,200,IgnoreAspect);
+              //currentprojection=perspective(7,2,1);
+              currentprojection=orthographic(8,-13,2.8);
+              defaultrender.merge=true;
+
+              usepackage("mathspec");
+              texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+              // setup and draw the axes
+              real[] myxchoice={2,4};
+              real[] myychoice={2,4};
+              real[] myzchoice={0.5,1};
+              defaultpen(0.5mm);
+
+              pair xbounds=(0,5.5);
+              pair ybounds=(0,5.5);
+              pair zbounds=(0,1.25);
+
+              xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+              yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+              zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+              label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+              label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+              label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+              //Draw the surface //(z=1/(1+x^2+y^2);
+              triple f(pair t) {
+                return (t.x,t.y,1/(1+t.x^2+t.y^2));
+              }
+              surface s=surface(f,(-0.25,-0.25),(5,5),16,16,Spline);
+              pen p=rgb(0,0,.7);
+              draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //draw curves on xy plane
+              triple g(real t) {return (2.5*cos(t),2.5*sin(t),0);}
+              path3 mypath=graph(g,0,pi/2,operator ..);
+              draw(mypath,blue+dashed+linewidth(0.75));
+              label("$a$",(2.7,-0.2,0),S);
+
+              //draw curves on surface
+              triple g(real t) {return (2.5*cos(t),2.5*sin(t),1/(1+2.5^2));}
+              path3 mypath=graph(g,0,pi/2,operator ..);
+              draw(mypath,blue+linewidth(2));
+              triple g(real t) {return (t,0,1/(1+t^2));}
+              path3 mypath=graph(g,0,2.5,operator ..);
+              draw(mypath,blue+linewidth(2));
+              triple g(real t) {return (0,t,1/(1+t^2));}
+              path3 mypath=graph(g,0,2.5,operator ..);
+              draw(mypath,blue+linewidth(2));
+
+              //draw connecting lines
+              draw((2.5,0,0) -- (2.5,0,1/(1+2.5^2)),blue+dashed+linewidth(0.75));
+              draw((0,2.5,0) -- (0,2.5,1/(1+2.5^2)),blue+dashed+linewidth(0.75));
+
+
+
+              // ////////////////////////////////////
+              //    SAMPLE CODE
+
+              // defaultpen(fontsize(10pt));
+
+              //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+              //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //triple f(pair t) {
+              //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+              //}
+              //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //draw(s,paleblue);
+              //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+              //draw(mypath,2bp+blue);
+
+              //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+              //path3 mypath=graph(g,-1,1,operator ..);
+              //draw(mypath,blue+linewidth(2));
+
+              //pen p=rgb(0,0,1);
+              //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+              ]]>
+            </asymptote>
+          </image>
+          <!-- figures/figdoublepol5_3D.asy END -->
+        </figure>
+
+        <p>The region <m>R</m> we are integrating over is a circle with radius <m>a</m>, restricted to the first quadrant. Thus, in polar, the bounds on <m>R</m> are <m>0\leq r\leq a</m>, <m>0\leq\theta\leq\pi/2</m>. The integrand is rewritten in polar as
+          <me>
+            \frac{1}{x^2+y^2+1} \Rightarrow \frac{1}{r^2\cos^2(\theta) +r^2\sin^2(\theta) +1} = \frac1{r^2+1}.
+          </me>
+        </p>
+
+        <p>We find the volume as follows:
+          <md>
+            <mrow>\iint_Rf(x,y)\ dA \amp = \int_0^{\pi/2}\int_0^a\frac{r}{r^2+1}\ dr\ d\theta</mrow>
+            <mrow>\amp = \int_0^{\pi/2} \frac12\big(\ln\abs{r^2+1}\big)\Big|_0^a\ d\theta</mrow>
+            <mrow>\amp =\int_0^{\pi/2} \frac12\ln(a^2+1)\ d\theta</mrow>
+            <mrow>\amp = \left.\left(\frac12\ln(a^2+1)\theta\right)\right|_0^{\pi/2}</mrow>
+            <mrow>\amp = \frac{\pi}{4}\ln(a^2+1).</mrow>
+          </md>
+        </p>
+
+        <p><xref ref="fig_doublepol5">Figure</xref> shows that <m>f</m> shrinks to near 0 very quickly. Regardless, as <m>a</m> grows, so does the volume, without bound.</p>
+
+        <aside>
+          <p>Previous work has shown that there is finite <em>area</em> under <m>\frac{1}{x^2+1}</m> over the entire <m>x</m>-axis. However, <xref ref="ex_doublepol5">Example</xref> shows that there is infinite <em>volume</em> under <m>\frac{1}{x^2+y^2+1}</m> over the entire <m>x</m>-<m>y</m> plane.</p>
+        </aside>
+      </solution>
+    </example>
+
+    <example xml:id="ex_doublepol3">
+      <title>Finding the volume of a sphere</title>
+      <statement>
+        <p>Find the volume of a sphere with radius <m>a</m>.</p>
+      </statement>
+      <solution>
+        <p>The sphere of radius <m>a</m>, centered at the origin, has equation <m>x^2+y^2+z^2=a^2</m>; solving for <m>z</m>, we have <m>z=\sqrt{a^2-x^2-y^2}</m>. This gives the upper half of a sphere. We wish to find the volume under this top half, then double it to find the total volume.</p>
+
+        <p>The region we need to integrate over is the circle of radius <m>a</m>, centered at the origin. Polar bounds for this equation are <m>0\leq r\leq a</m>, <m>0\leq\theta\leq2\pi</m>.</p>
+
+        <p>All together, the volume of a sphere with radius <m>a</m> is:
+          <md>
+            <mrow>2\iint_R\sqrt{a^2-x^2-y^2}\ dA \amp = 2\int_0^{2\pi}\int_0^a\sqrt{a^2-(r\cos(\theta) )^2-(r\sin(\theta) )^2}r\ dr\ d\theta</mrow>
+            <mrow>\amp =2\int_0^{2\pi}\int_0^ar\sqrt{a^2-r^2}\ dr\ d\theta.</mrow>
+            <intertext>We can evaluate this inner integral with substitution. With <m>u=a^2-r^2</m>, <m>du = -2r\ dr</m>. The new bounds of integration are <m>u(0) = a^2</m> to <m>u(a)=0</m>. Thus we have:</intertext>
+            <mrow>\amp = \int_0^{2\pi}\int_{a^2}^0\big(-u^{1/2}\big)\ du\ d\theta</mrow>
+            <mrow>\amp = \int_0^{2\pi}\left.\left(-\frac23u^{3/2}\right)\right|_{a^2}^0 d\theta</mrow>
+            <mrow>\amp = \int_0^{2\pi}\left(\frac23a^3\right)\ d\theta</mrow>
+            <mrow>\amp = \left.\left(\frac23a^3\theta\right)\right|_0^{2\pi}</mrow>
+            <mrow>\amp = \frac43\pi a^3.</mrow>
+          </md>
+        </p>
+
+        <p>Generally, the formula for the volume of a sphere with radius <m>r</m> is given as <m>4/3\pi r^3</m>; we have justified this formula with our calculation.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_doublepol4">
+      <title>Finding the volume of a solid</title>
+      <statement>
+        <p>A sculptor wants to make a solid bronze cast of the solid shown in <xref ref="fig_doublepol4">Figure</xref>, where the base of the solid has boundary, in polar coordinates, <m>r=\cos(3\theta)</m>, and the top is defined by the plane <m>z=1-x+0.1y</m>. Find the volume of the solid.</p>
+
+        <figure xml:id="fig_doublepol4" >
+          <caption>Visualizing the solid used in <xref ref="ex_doublepol4">Example</xref>.</caption>
+          <!--
+           \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
+          3Droll=-0.545358908878901,
+          3Dortho=0.004904536530375481,
+          3Dc2c=0.25393617153167725 0.2084963023662567 0.9444817304611206,
+          3Dcoo=-6.77640962600708 2.852377414703369 51.19231414794922,
+          3Droo=299.99999864287065,
+          3Dlights=Headlamp,add3Djscript=asylabels.js]
+           -->
+
+
+          <!-- START figures/figdoublepol4_3D.asy -->
+          <image xml:id="img_doublepol4" >
+            <asymptote>
+              <![CDATA[
+              import graph3;
+
+              //ASY file for figdoublepol43D.asy in Chapter 13
+
+
+              size(200,200,IgnoreAspect);
+              //currentprojection=perspective(7,2,1);
+              currentprojection=orthographic(4,4,2);
+              defaultrender.merge=true;
+
+              // setup and draw the axes
+              real[] myxchoice={};
+              real[] myychoice={};
+              real[] myzchoice={};
+              defaultpen(0.5mm);
+
+              pair xbounds=(-2,2);
+              pair ybounds=(-2,2);
+              pair zbounds=(-2,2);
+
+              //xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+              //yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+              //zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+              //label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+              //label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+              //label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+              //plane is z=1-x+0.1y
+              //Draw the surface
+              //({cos(3*x)*cos(x)},{cos(3*x)*sin(x)},{(1-cos(3*x)*cos(x)+.1*cos(3*x)*sin(x))*y});
+              triple f(pair t) {
+                return (cos(3*t.x)*cos(t.x),cos(3*t.x)*sin(t.x),(1-cos(3*t.x)*cos(t.x)+.1*cos(3*t.x)*sin(t.x))*t.y);
+              }
+              surface s=surface(f,(0,0),(2*pi,1),32,32,Spline);
+              pen p=rgb(0,0,.7);
+              draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //draw curve on xy plane //({cos(3*x)*cos(x)},{cos(3*x)*sin(x)},{0})
+              triple g(real t) {return (cos(3*t)*cos(t),cos(3*t)*sin(t),0);}
+              path3 mypath=graph(g,0,pi,operator ..);
+              draw(mypath,blue+linewidth(2));
+
+
+              //draw curves on surface
+              triple g(real t) {return (cos(3*t)*cos(t),cos(3*t)*sin(t),1-(cos(3*t)*cos(t))+0.1*(cos(3*t)*sin(t)));}
+              path3 mypath=graph(g,0,pi,operator ..);
+              draw(mypath,blue+linewidth(2));
+
+
+              //Shade the bottom
+              import three;
+              path3 p =  (0,0,0)..(.175,0.064,0)..(.264,.119,0)..(0.683,0.183,0)..(.916,0.121,0)..(1,0,0)..(.916,-0.121,0)..(0.683,-0.183,0)..(.264,-.119,0)..(.175,-0.086,0);
+              draw(surface(p -- cycle), emissive(rgb(.6,.6,1)+opacity(0.7)));
+
+              path3 p = (0,0,0)..(-0.1429, 0.1196,0)..(-0.2351, 0.1691,0)..(-0.5000, 0.5000,0)..(-0.5628, 0.7328,0)..(-0.5000, 0.8660,0)..(-0.3532, 0.8538,0)..(-0.1830, 0.6830,0)..(-0.0289, 0.2881,0)..(-0.0130, 0.1946,0);
+              draw(surface(p -- cycle), emissive(rgb(.6,.6,1)+opacity(0.7)));
+
+              path3 p = (0,0,0)..(-0.0321,-0.1836,0)..(-0.0289,-0.2881,0)..(-0.1830,-0.6830,0)..(-0.3532,-0.8538,0)..(-0.5000,-0.8660,0)..(-0.5628,-0.7328,0)..(-0.5000,-0.5000,0)..(-0.2351,-0.1691,0)..(-0.1620,-0.1086,0);
+              draw(surface(p -- cycle), emissive(rgb(.6,.6,1)+opacity(0.7)));
+
+              //Shade the top
+              path3 p = (0,0,1.0000)..(-0.1429,0.1196,1.1549)..(-0.2351,0.1691,1.2520)..(-0.5000,0.5000,1.5500)..(-0.5628,0.7328,1.6361)..(-0.5000,0.8660,1.5866)..(-0.3532,0.8538,1.4386)..(-0.1830 ,0.6830 ,1.2513)..(-0.0289,0.2881,1.0578)..(-0.0130,0.1946,1.0325);
+
+              draw(surface(p -- cycle), emissive(rgb(.6,.6,1)+opacity(0.7)));
+              path3 p = (0 ,        0  ,  1.0000)..(-0.0321 ,  -0.1836 ,   1.0137)..(-0.0289,   -0.2881,    1.0001)..(-0.1830,   -0.6830,    1.1147)..(-0.3532  , -0.8538 ,   1.2678)..(-0.5000,   -0.8660 ,   1.4134)..(-0.5628 ,  -0.7328,    1.4895)..(-0.5000 ,  -0.5000 ,   1.4500)..(-0.2351 ,  -0.1691 ,   1.2181)..(-0.1620 ,  -0.1086,    1.1511);
+              draw(surface(p -- cycle), emissive(rgb(.6,.6,1)+opacity(0.7)));
+
+              path3 p = (0 ,        0,    1.0000)..( 0.1750,    0.0640 ,   0.8314)..( 0.2640,    0.1190 ,   0.7479)..( 0.6830,    0.1830 ,   0.3353)..( 0.9160,    0.1210 ,   0.0961)..( 1.0000,         0 ,        0)..( 0.9160,   -0.1210 ,   0.0719)..( 0.6830,   -0.1830 ,   0.2987)..( 0.2640,   -0.1190 ,   0.7241)..( 0.1750,   -0.0860 ,   0.8164);
+              draw(surface(p -- cycle), emissive(rgb(.6,.6,1)+opacity(0.7)));
+
+
+
+              //path3 p =  (0,0,0)-- (1,1,0) -- (1,2,1) -- (0,1,1); //bottom
+              //draw(surface(p -- cycle), emissive(rgb(.6,.6,1)+opacity(0.7)));
+              //path3 p =  (-1,1,0)-- (0,2,0) -- (0,3,1) -- (-1,2,1); //right
+              //draw(surface(p -- cycle), emissive(rgb(.6,.6,1)+opacity(0.7)));
+              //path3 p =  (0,0,0)-- (-1,1,0) -- (-1,2,1) -- (0,1,1); //back
+              //draw(surface(p -- cycle), emissive(rgb(.6,.6,1)+opacity(0.7)));
+              //path3 p =  (1,1,0)-- (0,2,0) -- (0,3,1) -- (1,2,1); //front
+              //draw(surface(p -- cycle), emissive(rgb(.6,.6,1)+opacity(0.7)));
+              //path3 p =  (0,1,1)-- (1,2,1) -- (0,3,1) -- (-1,2,1); //top
+              //draw(surface(p -- cycle), emissive(rgb(.6,.6,1)+opacity(0.7)));
+
+
+              // ////////////////////////////////////
+              //    SAMPLE CODE
+
+              // defaultpen(fontsize(10pt));
+
+              //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+              //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //triple f(pair t) {
+              //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+              //}
+              //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //draw(s,paleblue);
+              //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+              //draw(mypath,2bp+blue);
+
+              //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+              //path3 mypath=graph(g,-1,1,operator ..);
+              //draw(mypath,blue+linewidth(2));
+
+              //pen p=rgb(0,0,1);
+              //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+              ]]>
+            </asymptote>
+          </image>
+          <!-- figures/figdoublepol4_3D.asy END -->
+        </figure>
+      </statement>
+      <solution>
+        <p>From the outset, we should recognize that knowing <em>how to set up</em> this problem is probably more important than knowing <em>how to compute the integrals.</em> The iterated integral to come is not <q>hard</q> to evaluate, though it is long, requiring lots of algebra. Once the proper iterated integral is determined, one can use readily<ndash />available technology to help compute the final answer.</p>
+
+        <p>The region <m>R</m> that we are integrating over is bound by <m>0\leq r\leq \cos(3\theta)</m>, for <m>0\leq \theta\leq\pi</m> (note that this rose curve is traced out on the interval <m>[0,\pi]</m>, not <m>[0,2\pi]</m>). This gives us our bounds of integration. The integrand is <m>z=1-x+0.1y</m>; converting to polar, we have that the volume <m>V</m> is:
+          <me>
+            V = \iint_R f(x,y)\ dA = \int_0^\pi\int_0^{\cos(3\theta)}\big(1-r\cos(\theta) +0.1r\sin(\theta) \big)r\ dr\ d\theta.
+          </me>
+        </p>
+
+        <p>Distributing the <m>r</m>, the inner integral is easy to evaluate, leading to
+          <me>
+            \int_0^\pi \left(\frac12\cos^2(3\theta)-\frac13\cos^3(3\theta)\cos(\theta) +\frac{0.1}3\cos^3(3\theta)\sin(\theta) \right)\ d\theta.
+          </me>
+        </p>
+
+        <p>This integral takes time to compute by hand; it is rather long and cumbersome. The powers of cosine need to be reduced, and products like <m>\cos(3\theta)\cos(\theta)</m> need to be turned to sums using the Product To Sum formulas in the back cover of this text.</p>
+
+        <p>We rewrite <m>\frac12\cos^2(3\theta)</m> as <m>\frac14(1+\cos(6\theta))</m>. We can also rewrite <m>\frac13\cos^3(3\theta)\cos(\theta)</m> as:
+          <me>
+            \frac13\cos^3(3\theta)\cos(\theta) = \frac13\cos^2(3\theta)\cos(3\theta)\cos(\theta) = \frac13\frac{1+\cos(6\theta)}2\big(\cos(4\theta)+\cos(2\theta)\big).
+          </me>
+        </p>
+
+        <p>This last expression still needs simplification, but eventually all terms can be reduced to the form <m>a\cos(m\theta)</m> or <m>a\sin(m\theta)</m> for various values of <m>a</m> and <m>m</m>.</p>
+
+        <p>We forgo the algebra and recommend the reader employ technology, such as WolframAlpha\textregistered, to compute the numeric answer. Such technology gives:
+          <me>
+            \int_0^\pi\int_0^{\cos(3\theta)}\big(1-r\cos(\theta) +0.1r\sin(\theta) \big)r\ dr\ d\theta = \frac{\pi}{4} \approx 0.785u^3.
+          </me>
+        </p>
+
+        <p>Since the units were not specified, we leave the result as almost <m>0.8</m> cubic units (meters, feet, etc.) Should the artist want to scale the piece uniformly, so that each rose petal had a length other than 1, she should keep in mind that scaling by a factor of <m>k</m> scales the volume by a factor of <m>k^3</m>.</p>
+      </solution>
+    </example>
+
+    <p>We have used iterated integrals to find areas of plane regions and volumes under surfaces. Just as a single integral can be used to compute much more than <q>area under the curve,</q> iterated integrals can be used to compute much more than we have thus far seen. The next two sections show two, among many, applications of iterated integrals.</p>
+  </introduction>
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>When evaluating <m>\iint_R f(x,y)\ dA</m> using polar coordinates, <m>f(x,y)</m> is replaced with <fillin /> and <m>dA</m> is replaced with <fillin />.</p>
+          </statement>
+          <solution>
+            <p><m>f\big(r\cos(\theta) ,r\sin(\theta) \big)</m>, <m>r\ dr\ d\theta</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Why would one be interested in evaluating a double integral with polar coordinates?</p>
+          </statement>
+          <solution>
+            <p>Some regions in the <m>x</m>-<m>y</m> plane are easier to describe using polar coordinates than using rectangular coordinates. Also, some integrals are easier to evaluate one the polar substitutions have been made.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, a function <m>f(x,y)</m> is given and a region <m>R</m> of the <m>x</m>-<m>y</m> plane is described. Set up and evaluate <m>\iint_Rf(x,y)\ dA</m> using polar coordinates.</p>
+      </introduction>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$int">
+              <static>4\pi</static>
+            </var>
+            <pg-code>
+              $int=Compute("4pi");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Use polar coordinates to evaluate <m>\iint_Rf(x,y)\,dA</m>, where <m>f(x,y) = 3x-y+4</m> and <m>R</m> is the region enclosed by the circle <m>x^2+y^2=1</m>.</p>
+            <p><var name="$int" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x,y) = 4x+4y</m>; <m>R</m> is the region enclosed by the circle <m>x^2+y^2=4</m>.</p>
+          </statement>
+          <solution>
+            <p><m>\ds \int_0^{2\pi}\int_0^2 \big(4r\cos(\theta) +4r\sin(\theta) \big)r\ dr\ d\theta = 0</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$int">
+              <static>16\pi</static>
+            </var>
+            <pg-code>
+              $int=Compute("16pi");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Use polar coordinates to evaluate <m>\iint_Rf(x,y)\,dA</m>, where <m>f(x,y) = 8-y</m> and <m>R</m> is the region enclosed by the circles with polar equations <m>r=\cos(\theta)</m> and <m>r=3\cos(\theta)</m>.</p>
+            <p><var name="$int" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x,y) = 4</m>; <m>R</m> is the region enclosed by the petal of the rose curve <m>r=\sin(2\theta)</m> in the first quadrant.</p>
+          </statement>
+          <solution>
+            <p><m>\ds \int_0^{\pi/2}\int_{0}^{\sin(2\theta)} \big(4\big)r\ dr\ d\theta = \pi/2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x,y) = \ln(x^2+y^2)</m>; <m>R</m> is the annulus enclosed by the circles <m>x^2+y^2=1</m> and <m>x^2+y^2=4</m>.</p>
+          </statement>
+          <solution>
+            <p><m>\ds \int_0^{2\pi}\int_{1}^{2} \big(\ln(r^2)\big)r\ dr\ d\theta = 2\pi\big(\ln(16) -3/2\big)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$int">
+              <static>\pi/2</static>
+            </var>
+            <pg-code>
+              $int=Compute("pi/2");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Use polar coordinates to evaluate <m>\iint_Rf(x,y)\,dA</m>, where <m>f(x,y) = 1-x^2-y^2</m> and <m>R</m> is the region enclosed by the circle <m>x^2+y^2=1</m>.</p>
+            <p><var name="$int" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x,y) = x^2-y^2</m>; <m>R</m> is the region enclosed by the circle <m>x^2+y^2=36</m> in the first and fourth quadrants.</p>
+          </statement>
+          <solution>
+            <p><m>\ds \int_{-\pi/2}^{\pi/2}\int_{0}^{6} \big(r^2\cos^2(\theta) -r^2\sin^2(\theta) \big)r\ dr\ d\theta = \int_{-\pi/2}^{\pi/2}\int_{0}^{6} \big(r^2\cos(2\theta)\big)r\ dr\ d\theta= 0</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x,y) = (x-y)/(x+y)</m>; <m>R</m> is the region enclosed by the lines <m>y=x</m>, <m>y=0</m> and the circle <m>x^2+y^2=1</m> in the first quadrant.</p>
+          </statement>
+          <solution>
+            <p><m>\ds \int_{0}^{\pi/4}\int_{0}^{1} \left(\frac{\cos(\theta) -\sin(\theta) }{\cos(\theta) +\sin(\theta) }\right)r\ dr\ d\theta = \ln(2)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, an iterated integral in rectangular coordinates is given. Rewrite the integral using polar coordinates and evaluate the new double integral.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{0}^{5}\int_{-\sqrt{25-x^2}}^{\sqrt{25-x^2}} \sqrt{x^2+y^2}\ dy\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\ds \int_{-\pi/2}^{\pi/2}\int_{0}^{5} \big(r^2\big)\ dr\ d\theta=125\pi/3</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$int">
+              <static>\frac{128}{3}</static>
+            </var>
+            <pg-code>
+              $int=Compute("128/3");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Evalueate the integral <m>\ds \int_{-4}^{4}\int_{-\sqrt{16-y^2}}^{0} \big(2y-x\big)\ dx\ dy</m> by first rewriting it using polar coordinates.</p>
+            <p><var name="$int" width="20" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{0}^{2}\int_{y}^{\sqrt{8-y^2}} \big(x+y\big)\ dx\ dy</m></p>
+          </statement>
+          <solution>
+            <p><m>\ds \int_{0}^{\pi/4}\int_{0}^{\sqrt8} \big(r\cos(\theta) +r\sin(\theta) \big)r\ dr\ d\theta=16\sqrt2/3</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{-2}^{-1}\int_{0}^{\sqrt{4-x^2}} \big(x+5\big)\ dy\ dx+\int_{-1}^{1}\int_{\sqrt{1-x^2}}^{\sqrt{4-x^2}} \big(x+5\big)\ dy\ dx +\int_{1}^{2}\int_{0}^{\sqrt{4-x^2}} \big(x+5\big)\ dy\ dx</m></p>
+
+            <p><em>Hint:</em> draw the region of each integral carefully and see how they all connect.</p>
+          </statement>
+          <solution>
+            <p><m>\ds \int_{0}^{\pi}\int_{1}^{2} \big(r\cos(\theta) +5\big)r\ dr\ d\theta=15\pi/2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, special double integrals are presented that are especially well suited for evaluation in polar coordinates.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Consider <m>\ds \iint_R e^{-(x^2+y^2)}\ dA</m>.</p>
+
+            <ol>
+              <li><p>Why is this integral difficult to evaluate in rectangular coordinates, regardless of the region <m>R</m>?</p></li>
+
+              <li><p>Let <m>R</m> be the region bounded by the circle of radius <m>a</m> centered at the origin. Evaluate the double integral using polar coordinates.</p></li>
+
+              <li><p>Take the limit of your answer from (b), as <m>a\to\infty</m>. What does this imply about the volume under the surface of <m>\ds e^{-(x^2+y^2)}</m> over the entire <m>x</m>-<m>y</m> plane?</p></li>
+            </ol>
+          </statement>
+          <solution>
+            <ol>
+              <li><p>This is impossible to integrate with rectangular coordinates as <m>e^{-(x^2+y^2)}</m> does not have an antiderivative in terms of elementary functions.</p></li>
+
+              <li><p><m>\ds \int_0^{2\pi}\int_0^a re^{r^2}\ dr\ d\theta = \pi(1-e^{-a^2})</m>.</p></li>
+
+              <li><p><m>\lim\limits_{a\to\infty} \pi(1-e^{-a^2})=\pi</m>. This implies that there is a finite volume under the surface <m>e^{-(x^2+y^2)}</m> over the entire <m>x</m>-<m>y</m> plane.</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>The surface of a right circular cone with height <m>h</m> and base radius <m>a</m> can be described by the equation <m>\ds f(x,y) = h-h\sqrt{\frac{x^2}{a^2}+\frac{y^2}{a^2}}</m>, where the tip of the cone lies at <m>(0,0,h)</m> and the circular base lies in the <m>x</m>-<m>y</m> plane, centered at the origin.</p>
+
+            <p>Confirm that the volume of a right circular cone with height <m>h</m> and base radius <m>a</m> is <m>\ds V = \frac13\pi a^2h</m> by evaluating <m>\ds \iint_R f(x,y)\ dA</m> in polar coordinates.</p>
+          </statement>
+          <solution>
+            <p>
+              <md>
+                <mrow>\iint_R f(x,y)\ dA \amp = \int_0^{2\pi}\int_0^a \left(h-h\sqrt{\frac{r^2\cos^2(\theta) }{a^2}+\frac{r^2\sin^2(\theta) }{a^2}}\right)r\ dr\ d\theta</mrow>
+                <mrow>\amp = \int_0^{2\pi}\int_0^a \left(hr-h\frac{r^2}{a}\right)\ dr\ d\theta</mrow>
+                <mrow>\amp = \int_0^{2\pi}\left.\left(\frac12hr^2-\frac{h}{3a}r^3\right)\right|_0^a d\theta</mrow>
+                <mrow>\amp = \int_0^{2\pi} \left(\frac16a^2h\right)\ d\theta</mrow>
+                <mrow>\amp = \frac13\pi a^2h.</mrow>
+              </md>
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

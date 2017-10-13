@@ -1,0 +1,1733 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_arc_length">
+  <title>Arc Length and Surface Area</title>
+  <introduction>
+    <p>In previous sections we have used integration to answer the following questions:</p>
+
+    <ol>
+      <li><p>Given a region, what is its area?</p></li>
+
+      <li><p>Given a solid, what is its volume?</p></li>
+    </ol>
+
+    <p>In this section, we address a related question: Given a curve, what is its length? This is often referred to as <em>arc length</em>.</p>
+
+    <p>Consider the graph of <m>y=\sin(x)</m> on <m>[0,\pi]</m> given in <xref ref="fig_arcintro">Figure</xref> (a). How long is this curve? That is, if we were to use a piece of string to exactly match the shape of this curve, how long would the string be?</p>
+
+    <p>As we have done in the past, we start by approximating; later, we will refine our answer using limits to get an exact solution.</p>
+
+    <p>The length of straight<ndash />line segments is easy to compute using the Distance Formula. We can approximate the length of the given curve by approximating the curve with straight lines and measuring their lengths.</p>
+
+    <table xml:id="fig_arcintro" >
+      <caption>Graphing <m>y=\sin(x)</m> on <m>[0,\pi]</m> and approximating the curve with line segments.</caption>
+      <tabular>
+        <row>
+          <cell>
+          <figure><!-- START figures/fig_arcintroa.tex -->
+          <image xml:id="img_arcintroa" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[%
+              axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick=\empty,%
+			extra x ticks={.79,1.57,2.36,3.14},
+			extra x tick labels={$\frac{\pi}4$,$\frac{\pi}2$,$\frac{3\pi}{4}$,$\pi$},
+              %			ytick={1},
+              %			yticklabels={$-0.002$,$0.002$,$0.004$},
+			%
+              %			extra y ticks={1.8},%
+              %			extra y tick labels={$y$},
+              %			minor x tick num=4,
+			ymin=-.2,ymax=1.25,%
+			xmin=-.1,xmax=3.5,%
+              ]
+
+              \addplot [{\colorone},smooth,thick,domain=0:3.14] {sin(deg(x))};
+
+              \end{axis}
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_arcintroa.tex END --></figure>
+          </cell>
+        </row>
+        <row>
+          <cell>(a)</cell>
+        </row>
+        <row>
+          <cell>
+          <figure><!-- START figures/fig_arcintrob.tex -->
+          <image xml:id="img_arcintrob" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[%
+              axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick=\empty,%
+			extra x ticks={.79,1.57,2.36,3.14},
+			extra x tick labels={$\frac{\pi}4$,$\frac{\pi}2$,$\frac{3\pi}{4}$,$\pi$},
+              %			ytick={1},
+              %			yticklabels={$-0.002$,$0.002$,$0.004$},
+			%
+			extra y ticks={.71},%
+			extra y tick labels={$\frac{\sqrt{2}}2$},
+              %			minor x tick num=4,
+			ymin=-.2,ymax=1.25,%
+			xmin=-.1,xmax=3.5,%
+              ]
+
+              \addplot [{\colorone},smooth,thick,domain=0:3.14] {sin(deg(x))};
+
+              \draw [{\colortwo},thick] (axis cs:0,0) -- (axis cs:.79,.71) -- (axis cs: 1.57,1) -- (axis cs:2.36,.71) -- (axis cs: 3.14,0);
+
+              \filldraw (axis cs:0,0) circle (1pt) (axis cs:.79,.71) circle (1pt) (axis cs: 1.57,1) circle (1pt) (axis cs:2.36,.71) circle (1pt) (axis cs: 3.14,0)circle (1pt);
+
+              \end{axis}
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_arcintrob.tex END --></figure>
+          </cell>
+        </row>
+        <row>
+          <cell>(b)</cell>
+        </row>
+        <row>
+          <cell></cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>In <xref ref="fig_arcintro">Figure</xref> (b), the curve <m>y=\sin(x)</m> has been approximated with 4 line segments (the interval <m>[0,\pi]</m> has been divided into 4 equally<ndash />lengthed subintervals). It is clear that these four line segments approximate <m>y=\sin(x)</m> very well on the first and last subinterval, though not so well in the middle. Regardless, the sum of the lengths of the line segments is <m>3.79</m>, so we approximate the arc length of <m>y=\sin(x)</m> on <m>[0,\pi]</m> to be <m>3.79</m>.</p>
+
+    <p>In general, we can approximate the arc length of <m>y=f(x)</m> on <m>[a,b]</m> in the following manner. Let <m>a=x_1 \lt  x_2 \lt  \ldots \lt  x_n\lt  x_{n+1}=b</m> be a partition of <m>[a,b]</m> into <m>n</m> subintervals. Let <m>\dx_i</m> represent the length of the <m>i^\text{ th }</m> subinterval <m>[x_i,x_{i+1}]</m>.</p>
+
+    <figure xml:id="fig_arcintro2" >
+      <caption>Zooming in on the <m>i\ ^th</m> subinterval <m>[x_i,x_{i+1}</m>] of a partition of <m>[a,b]</m>.</caption>
+      <!-- START figures/fig_arcintrod.tex -->
+      <image xml:id="img_arcintro2" >
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+          \begin{axis}[%
+          axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick=\empty,%
+			extra x ticks={.3,1.37},
+			extra x tick labels={$x_i$,$x_{i+1}$},
+			ytick=\empty,
+          %			yticklabels={$-0.002$,$0.002$,$0.004$},
+			%
+			extra y ticks={.48,1},%
+			extra y tick labels={$y_i$,$y_{i+1}$},
+          %			minor x tick num=4,
+			ymin=-.2,ymax=1.25,%
+			xmin=-.1,xmax=1.6,%
+          ]
+          %\addplot [{\colorone},smooth,thin,dashed,domain=0.1:1.55] {sin(deg(x+.2))};
+
+          \addplot [{\colorone},smooth,thick,domain=0.3:1.37] {sin(deg(x+.2))};
+
+          \draw (axis cs: .25,1) -- (axis cs:.1,1)
+			(axis cs: .25,.48) -- (axis cs:.1,.48)
+			(axis cs: .175,.48) -- node [pos=.5,fill=white] {\scriptsize $\Delta y_i$} (axis cs:.175,1);
+
+          \draw (axis cs: .3,.25) -- (axis cs: .3,.4)
+			(axis cs: 1.37,.25) -- (axis cs: 1.37,.4)
+			(axis cs: .3,.325) -- node [pos=.5,fill=white] {\scriptsize $\Delta x_i$} (axis cs: 1.37,.325);
+			
+          \draw [{\colortwo},thick] (axis cs: .3,.48) -- (axis cs:1.37,1);
+
+          \draw [dashed,thin] (axis cs: .3,.48) -| (axis cs:1.37,1);
+			
+          \filldraw (axis cs: .3,.48) circle (1pt) (axis cs:1.37,1) circle (1pt);
+
+          %\draw [{\colortwo},thick] (axis cs:0,0)--(axis cs:0.5236,0.5)--(axis cs:1.047,0.866)--(axis cs:1.571,1.)--(axis cs:2.094,0.866)--(axis cs:2.618,0.5)--(axis cs:3.142,0);
+          %
+          %\filldraw (axis cs:0,0) circle (1pt) (axis cs:0.5236,0.5) circle (1pt) (axis cs:1.047,0.866) circle (1pt) (axis cs:1.571,1.) circle (1pt) (axis cs:2.094,0.866) circle (1pt) (axis cs:2.618,0.5) circle (1pt) (axis cs:3.142,0);
+
+          \end{axis}
+
+
+
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_arcintrod.tex END -->
+    </figure>
+
+    <p><xref ref="fig_arcintro2">Figure</xref> zooms in on the <m>i^\text{ th }</m> subinterval where <m>y=f(x)</m> is approximated by a straight line segment. The dashed lines show that we can view this line segment as they hypotenuse of a right triangle whose sides have length <m>\dx_i</m> and <m>\dy_i</m>. Using the Pythagorean Theorem, the length of this line segment is
+      <m>\ds \sqrt{\dx_i^2 + \Delta y_i^2}</m>. Summing over all subintervals gives an arc length approximation
+      <me>
+        L \approx \sum_{i=1}^n \sqrt{\dx_i^2 + \Delta y_i^2}.
+      </me>
+    </p>
+
+    <p>As shown here, this is <em>not</em> a Riemann Sum. While we could conclude that taking a limit as the subinterval length goes to zero gives the exact arc length, we would not be able to compute the answer with a definite integral. We need first to do a little algebra.</p>
+
+    <p>In the above expression factor out a <m>\dx_i^2</m> term:
+      <md>
+        <mrow>\sum_{i=1}^n \sqrt{\dx_i^2 + \Delta y_i^2} \amp = \sum_{i=1}^n \sqrt{\dx_i^2\left(1 + \frac{\Delta y_i^2}{\dx_i^2}\right)}.</mrow>
+        <intertext>Now pull the <m>\dx_i^2</m> term out of the square root:</intertext>
+        <mrow>\amp = \sum_{i=1}^n\sqrt{1 + \frac{\Delta y_i^2}{\dx_i^2}}\ \dx_i.</mrow>
+        <intertext>This is nearly a Riemann Sum. Consider the <m>\Delta y_i^2/\dx_i^2</m> term. The expression <m>\Delta y_i/\dx_i</m> measures the <q>change in <m>y</m>/change in <m>x</m>,</q> that is, the <q>rise over run</q> of <m>f</m> on the <m>i ^\text{ th }</m> subinterval. The Mean Value Theorem of Differentiation (<xref ref="thm_mvt">Theorem</xref>) states that there is a <m>c_i</m> in the <m>i ^\text{ th }</m> subinterval where <m>\fp(c_i) = \Delta y_i/\dx_i</m>. Thus we can rewrite our above expression as:</intertext>
+        <mrow>\amp = \sum_{i=1}^n\sqrt{1+\fp(c_i)^2}\ \dx_i.</mrow>
+        <intertext>This <em>is</em> a Riemann Sum. As long as \fp\ is continuous, we can invoke <xref ref="thm_riemann_sum">Theorem</xref> and conclude</intertext>
+        <mrow>\amp = \int_a^b\sqrt{1+\fp(x)^2}\ dx.</mrow>
+      </md>
+    </p>
+
+    <insight xml:id="idea_arclength">
+      <title>Arc Length</title>
+      <p>Let <m>f</m> be differentiable on an open interval containing <m>[a,b]</m>, where <m>\fp</m> is also continuous on <m>[a,b]</m>. Then the arc length of <m>f</m> from <m>x=a</m> to <m>x=b</m> is
+        <index><main>integration</main><sub>arc length</sub></index><index><main>arc length</main></index>
+        <me>
+          L = \int_a^b \sqrt{1+\fp(x)^2}\ dx.
+        </me>
+      </p>
+    </insight>
+
+    <p>As the integrand contains a square root, it is often difficult to use the formula in <xref ref="idea_arclength">Key Idea</xref> to find the length exactly. When exact answers are difficult to come by, we resort to using numerical methods of approximating definite integrals. The following examples will demonstrate this.</p>
+
+    <example xml:id="ex_arc1">
+      <title>Finding arc length</title>
+      <statement>
+        <p>Find the arc length of <m>f(x) = x^{3/2}</m> from <m>x=0</m> to <m>x=4</m>.</p>
+      </statement>
+      <solution>
+        <p>We begin by finding <m>\fp(x)= \frac32x^{1/2}</m>. Using the formula, we find the arc length <m>L</m> as
+          <md>
+            <mrow>L \amp =	\int_0^4 \sqrt{1+\left(\frac32x^{1/2}\right)^2}\ dx</mrow>
+            <mrow>\amp =	\int_0^4 \sqrt{1+\frac94x} \ dx</mrow>
+            <mrow>\amp = 	\int_0^4 \left(1+\frac94x\right)^{1/2}\ dx</mrow>
+            <mrow>\amp =  \frac23\frac49\left(1+\frac94x\right)^{3/2}\Big|_0^4</mrow>
+            <mrow>\amp =\frac{8}{27}\left(10^{3/2}-1\right) \approx 9.07 \text{ units } .</mrow>
+          </md>
+        </p>
+
+        <figure xml:id="fig_arc1" >
+          <caption>A graph of <m>f(x) = x^{3/2}</m> from <xref ref="ex_arc1">Example</xref>.</caption>
+          <!-- START figures/fig_arc1.tex -->
+          <image xml:id="img_arc1" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[%
+              axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+              %			xtick=\empty,%
+              %			extra x ticks={.79,1.57,2.36,3.14},
+              %			extra x tick labels={$\frac{\pi}4$,$\frac{\pi}2$,$\frac{3\pi}{4}$,$\pi$},
+              %			ytick={1},
+              %			yticklabels={$-0.002$,$0.002$,$0.004$},
+			%
+              %			extra y ticks={1.8},%
+              %			extra y tick labels={$y$},
+              %			minor x tick num=4,
+			ymin=-.2,ymax=8.5,%
+			xmin=-.1,xmax=4.5,%
+              ]
+
+              \addplot [{\colorone},smooth,thick,domain=0:4,samples=50] coordinates {(0,0)(0.1,0.03162)(0.2,0.08944)(0.3,0.1643)(0.4,0.253)(0.5,0.3536)(0.6,0.4648)(0.7,0.5857)(0.8,0.7155)(0.9,0.8538)(1.,1.)(1.3,1.482)(1.6,2.024)(1.9,2.619)(2.2,3.263)(2.5,3.953)(2.8,4.685)(3.1,5.458)(3.4,6.269)(3.7,7.117)(4.,8.)};
+
+              \end{axis}
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_arc1.tex END -->
+        </figure>
+
+        <p>A graph of <m>f</m> is given in <xref ref="fig_arc1">Figure</xref>.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_arc2">
+      <title>Finding arc length</title>
+      <statement>
+        <p>Find the arc length of <m>\ds f(x) =\frac18x^2-\ln(x)</m> from <m>x=1</m> to <m>x=2</m>.</p>
+      </statement>
+      <solution>
+        <p>This function was chosen specifically because the resulting integral can be evaluated exactly. We begin by finding <m>\fp(x) = x/4-1/x</m>. The arc length is
+          <md>
+            <mrow>L		\amp =  \int_1^2 \sqrt{1+ \left(\frac x4-\frac1x\right)^2}\ dx</mrow>
+            <mrow>\amp = 	\int_1^2 \sqrt{1 + \frac{x^2}{16} -\frac12 + \frac1{x^2} } \ dx</mrow>
+            <mrow>\amp =	\int_1^2 \sqrt{\frac{x^2}{16} +\frac12 + \frac1{x^2} } \ dx</mrow>
+            <mrow>\amp =	\int_1^2	\sqrt{ \left(\frac x4 + \frac1x\right)^2}\ dx</mrow>
+          </md>
+          <md>
+            <mrow>\amp = \int_1^2 \left(\frac x4 + \frac1x\right) \ dx</mrow>
+            <mrow>\amp =  \left(\frac{x^2}8 + \ln(x) \right)\Bigg|_1^2</mrow>
+            <mrow>\amp =	\frac38+\ln(2) \approx 1.07 \ \text{ units } .</mrow>
+          </md>
+        </p>
+
+        <figure xml:id="fig_arc2" >
+          <caption>A graph of <m>f(x) =\frac18x^2-\ln(x)</m> from <xref ref="ex_arc2">Example</xref>.</caption>
+          <!-- START figures/fig_arc2.tex -->
+          <image xml:id="img_arc2" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[%
+              axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+              %			xtick=\empty,%
+              %			extra x ticks={.79,1.57,2.36,3.14},
+              %			extra x tick labels={$\frac{\pi}4$,$\frac{\pi}2$,$\frac{3\pi}{4}$,$\pi$},
+              %			ytick={1},
+              %			yticklabels={$-0.002$,$0.002$,$0.004$},
+			%
+              %			extra y ticks={1.8},%
+              %			extra y tick labels={$y$},
+              %			minor x tick num=4,
+			ymin=-.26,ymax=1.2,%
+			xmin=-.1,xmax=3.1,%
+              ]
+              \addplot [{\colorone},smooth,thin] coordinates{(0.2,1.614)(0.3,1.215)(0.4,0.9363)(0.5,0.7244)(0.6,0.5558)(0.7,0.4179)(0.8,0.3031)(0.9,0.2066)(1.,0.125)(1.1,0.05594)(1.2,-0.002322)(1.3,-0.05111)(1.4,-0.09147)(1.5,-0.1242)(1.6,-0.15)(1.7,-0.1694)(1.8,-0.1828)(1.9,-0.1906)(2.,-0.1931)(2.1,-0.1907)(2.2,-0.1835)(2.3,-0.1717)(2.4,-0.1555)(2.5,-0.135)(2.6,-0.1105)(2.7,-0.082)(2.8,-0.04962)(2.9,-0.01346)(3.,0.02639)};
+
+              \addplot [{\colorone},smooth,very thick,] coordinates {(1.,0.125)(1.1,0.05594)(1.2,-0.002322)(1.3,-0.05111)(1.4,-0.09147)(1.5,-0.1242)(1.6,-0.15)(1.7,-0.1694)(1.8,-0.1828)(1.85,-0.1874)(1.9,-0.1906)(1.95,-0.1925)(2.,-0.1931)};
+
+
+              \end{axis}
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_arc2.tex END -->
+        </figure>
+
+        <p>A graph of <m>f</m> is given in <xref ref="fig_arc2">Figure</xref>; the portion of the curve measured in this problem is in bold.</p>
+      </solution>
+    </example>
+
+    <p>The previous examples found the arc length exactly through careful choice of the functions. In general, exact answers are much more difficult to come by and numerical approximations are necessary.</p>
+
+    <example xml:id="ex_arc3">
+      <title>Approximating arc length numerically</title>
+      <statement>
+        <p>Find the length of the sine curve from <m>x=0</m> to <m>x=\pi</m>.</p>
+      </statement>
+      <solution>
+        <p>This is somewhat of a mathematical curiosity; in <xref ref="ex_ftc4">Example</xref> we found the area under one <q>hump</q> of the sine curve is 2 square units; now we are measuring its arc length.</p>
+
+        <p>The setup is straightforward: <m>f(x) = \sin(x)</m> and <m>\fp(x) = \cos(x)</m>. Thus
+          <me>
+            L = \int_0^\pi \sqrt{1+\cos^2(x) }\ dx.
+          </me>
+        </p>
+
+        <p>This integral <em>cannot</em> be evaluated in terms of elementary functions so we will approximate it with Simpson's Method with <m>n=4</m>.</p>
+
+        <figure xml:id="fig_arc3" >
+          <caption>A table of values of <m>y=\sqrt{1+\cos^2(x) }</m> to evaluate a definite integral in <xref ref="ex_arc3">Example</xref>.</caption>
+          <me>
+            \begin{array}{cc}
+            x \amp  \sqrt{1+\cos^2(x) } \\ \hline
+             0 \amp  \sqrt{2} \\
+             \pi/4 \amp  \sqrt{3/2} \\
+             \pi/2 \amp  1 \\
+             3 \pi/4 \amp  \sqrt{3/2} \\
+             \pi  \amp  \sqrt{2} \\
+            \end{array}
+          </me>
+        </figure>
+
+        <p><xref ref="fig_arc3">Figure</xref> gives <m>\sqrt{1+\cos^2(x) }</m> evaluated at 5 evenly spaced points in <m>[0,\pi]</m>. Simpson's Rule then states that
+          <md>
+            <mrow>\int_0^\pi \sqrt{1+\cos^2(x) }\ dx \amp \approx	\frac{\pi-0}{4\cdot 3}\left(\sqrt{2}+4\sqrt{3/2}+2(1)+4\sqrt{3/2}+\sqrt{2}\right)</mrow>
+            <mrow>\amp =3.82918.</mrow>
+          </md>
+        </p>
+
+        <p>Using a computer with <m>n=100</m> the approximation is <m>L\approx 3.8202</m>; our approximation with <m>n=4</m> is quite good.</p>
+      </solution>
+    </example>
+  </introduction>
+
+  <subsection>
+    <title>Surface Area of Solids of Revolution</title>
+    <p>We have already seen how a curve <m>y=f(x)</m> on <m>[a,b]</m> can be revolved around an axis to form a solid. Instead of computing its volume, we now consider its surface area.</p>
+
+    <figure xml:id="fig_surface_intro" >
+    <caption>Establishing the formula for surface area.</caption>
+    <sidebyside>
+      <figure>
+        <caption>(a)</caption>
+        <!-- START figures/fig_arc4b.tex -->
+        <image xml:id="img_arc4b" >
+          <description></description>
+          <latex-image-code>
+            <![CDATA[
+            \begin{tikzpicture}
+            \begin{axis}%
+            [
+            %
+            axis on top,
+			axis y line=none,
+            %			axis x line=none,
+            %			axis z line=none,%
+			axis lines=center,
+			y dir=reverse,
+			view={10}{30},
+            %			%x=.37\marginparwidth,
+            %			%y=.37\marginparwidth,
+			xtick=\empty,
+			ztick=\empty,%
+			extra x ticks={.5,.9,1.4,1.9},
+			extra x tick labels={$a$,$x_i$,$x_{i+1}$,$b$},
+            %			ytick={.1,1},
+            %			%%extra y ticks={-5,-3,...,7},%
+			ymin=-1,ymax=1,%
+			xmin=.25,xmax=2.1,
+			zmin=-.2,zmax=1.2%
+            ]
+
+            %\addplot3[domain=1:3,y domain=150:325,samples y=36,surf,shader=flat,colormap={mp2}{\colormaptwo}] ({2*cos(y)+3},{2*sin(y)},{x});
+
+
+            %\addplot3[domain=1:1.2,y domain=-210:150,samples y=36,surf,shader=flat,colormap={mp2}{\colormapone}] ({x},{(sin(deg(3*x+.25))-.5)*sin(y)},{(sin(deg(3*x+.25))-.5)*cos(y)});
+
+            %\addplot3[domain=.83:1.4,,samples y=0,{\colorone},thick] ({x},{0},{-(sin(deg(3*x+.25)))+.5});
+
+            \addplot3[domain=.5:1.9,,samples y=0,{\colorone},thick] ({x},{0},{(sin(deg(x)))});
+
+            \draw [{\colortwo},thick] (axis cs:.9,0,.78) -- (axis cs:1.4,0,.985);
+            \draw [fill=black] (axis cs:.9,.0,.78) circle (1pt) (axis cs:1.4,0,.985) circle (1pt);
+            %\draw [>=stealth,->]  (axis cs:1.15,0,0) -- (axis cs:1.4,0,0);
+            %\draw [dashed] (axis cs:.96,0,0) -- (axis cs:1.17,0,0);
+
+            %\draw (axis cs:1.28,0,.64) node {\scriptsize $\left.\rule{0pt}{17pt}\right\}\ R(x_{i+1})$};
+            %\draw (axis cs:.92,0,.33) node {\scriptsize $r(x_i)\left\{\rule{0pt}{8pt}\right.$};
+            %\draw [dashed] (axis cs:3,0,0) -- (axis cs:3,0,3.75);
+            %
+            %\draw (axis cs:1.09,0,1.18) node [rotate=19] {\scriptsize $\overbrace{\rule{38pt}{0pt}}^L$};
+
+
+            \end{axis}
+
+            \node [right] at (myplot.right of origin)[shift={(-10pt,-6pt)}] {\scriptsize $x$};
+            \node [above] at (myplot.above origin) [shift={(0,-17pt)}] {\scriptsize $y$};
+            \end{tikzpicture}
+            ]]>
+          </latex-image-code>
+        </image>
+        <!-- figures/fig_arc4b.tex END -->
+      </figure>
+
+      <figure>
+        <caption>(b)</caption>
+        <!--
+         \includemedia[width=125pt,3Dmenu,activate=onclick,deactivate=onclick,
+        3Droll=121.00092658103458,
+        3Dortho=0.0048407199792563915,
+        3Dc2c=0.2899017035961151 0.17925968766212463 0.9401186108589172,
+        3Dcoo=72.58285522460938 2.891160011291504 -26.545438766479492,
+        3Droo=149.99998703790175,
+        3Dlights=Headlamp,add3Djscript=asylabels.js]
+         -->
+
+
+        <!-- START figures/figarc4_3D.asy -->
+        <image xml:id="img_arc4_3D" >
+          <asymptote>
+            <![CDATA[
+            import graph3;
+
+            //ASY file for figarc4_3D.asy in Chapter 7
+
+
+            size(200,200,IgnoreAspect);
+            //currentprojection=perspective(7,2,1);
+            currentprojection=orthographic((16.7,13.2,46),(0,1,0),(0,0,0),1,(-.0323,0.0012));
+            //currentprojection=orthographic((16.7,13.2,46),(0,1,0),(0,0,0),1,(0.0148,0.00673));
+            defaultrender.merge=true;
+
+            usepackage("amsmath");
+            usepackage("mathspec");
+            texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+            texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+            texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+            texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+
+            // setup and draw the axes
+            real[] myxchoice={};
+            real[] myychoice={};
+            real[] myzchoice={};
+            defaultpen(0.5mm);
+
+            pair xbounds=(-.25,2.1);
+            pair ybounds=(-1.1,1.1);
+            pair zbounds=(-1.1,1.1);
+
+            xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+            yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+            zaxis3("",zbounds.x,zbounds.y,invisible,OutTicks(myzchoice),Arrow3(size=3mm));
+
+            label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+            label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+            //label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+            //\addplot3[domain=.9:1.4,y domain=-210:150,samples y=36,surf,shader=flat,colormap={mp2}{\colormapone}]
+            // ({x},{(.41*(x-.9)+.78)*sin(y)},{(.41*(x-.9)+.78)*cos(y)});
+
+            //\addplot3[domain=.5:1.9,,samples y=0,{\colorone},] ({x},{0},{(sin(deg(x)))});
+
+            //\addplot3[domain=0:360,,samples y=0,black,smooth] ({1.4},{.98*cos(x)},{.98*sin(x)});
+
+            //\addplot3[domain=130:330,,samples y=0,black,dashed,smooth] ({.9},{.78*cos(x)},{.78*sin(x)});
+
+            pen p=rgb(0,0,.7);
+
+            triple f2(pair t) {return (t.x,(.41*(t.x-.9)+.78)*sin(t.y),(.41*(t.x-.9)+.78)*cos(t.y));}
+            surface s2=surface(f2,(.9,0),(1.4,2*pi),2,16,Spline);
+            draw(s2,emissive(rgb(.6,.6,1)+opacity(.7)),meshpen=p);
+
+            triple g3(real t) {return (t,sin(t),0);}
+            path3 p3=graph(g3,.5,1.9,operator ..);
+            draw(p3,blue+.4mm);
+
+            triple g3(real t) {return (.9,.78*sin(t),.78*cos(t));}
+            path3 p3=graph(g3,0,2*pi,operator ..);
+            draw(p3,blue+.2mm);
+
+            triple g3(real t) {return (1.4,.985*sin(t),.985*cos(t));}
+            path3 p3=graph(g3,0,2*pi,operator ..);
+            draw(p3,blue+.2mm);
+
+            draw((.9,.78,0)--(1.4,.985,0),red+.6mm);
+
+            draw((.5,.05,0)--(.5,-.05,0),black+.2mm);
+            label("$a$",(.5,-.05,0),S);
+
+            draw((1.9,.05,0)--(1.9,-.05,0),black+.2mm);
+            label("$b$",(1.9,-.05,0),S);
+
+            draw((.9,.05,0)--(.9,-.05,0),black+.2mm);
+            label("$x_i$",(.9,-.05,0),S);
+
+            draw((1.4,.05,0)--(1.4,-.05,0),black+.2mm);
+            label("$x_{i+1}$",(1.4,-.05,0),S);
+
+            label(XY*"$\left.\rule{0pt}{40pt}\right\}\ R$",(1.4,.49,0),E,Embedded);
+            label(XY*"$r\left\{\rule{0pt}{30pt}\right.$",(.85,.37,0),W,Embedded);
+            label(rotate(20,(0,0,1))*"$\overbrace{\rule{41pt}{0pt}}^{\text{\normalsize \textit{L}}}$",(1.1,1.03,0),Embedded);
+
+            // ////////////////////////////////////
+            //    SAMPLE CODE
+
+            // defaultpen(fontsize(10pt));
+
+            //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+            //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+            //pen p=rgb(0,0,.7);
+            //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+            //triple f(pair t) {
+            //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+            //}
+            //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+            //pen p=rgb(0,0,.7);
+            //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+            //draw(s,paleblue);
+            //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+            //draw(mypath,2bp+blue);
+
+            //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+            //path3 mypath=graph(g,-1,1,operator ..);
+            //draw(mypath,blue+dashed+linewidth(2));
+
+            //pen p=rgb(0,0,1);
+            //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+            ]]>
+          </asymptote>
+        </image>
+        <!-- figures/figarc4_3D.asy END -->
+      </figure>
+    </sidebyside>
+
+    </figure>
+
+    <p>We begin as we have in the previous sections: we partition the interval <m>[a,b]</m> with <m>n</m> subintervals, where the <m>i^{\text{ th } }</m> subinterval is <m>[x_i,x_{i+1}]</m>. On each subinterval, we can approximate the curve <m>y=f(x)</m> with a straight line that connects <m>f(x_i)</m> and <m>f(x_{i+1})</m> as shown in <xref ref="fig_surface_intro">Figure</xref>(a). Revolving this line segment about the <m>x</m>-axis creates part of a cone (called a <em>frustum</em> of a cone) as shown in <xref ref="fig_surface_intro">Figure</xref>(b). The surface area of a frustum of a cone is
+      <me>
+        2\pi\cdot\text{ length } \cdot\text{ average of the two radii \(R\) and \(r\) } .
+      </me>
+    </p>
+
+    <p>The length is given by <m>L</m>; we use the material just covered by arc length to state that
+      <me>
+        L\approx \sqrt{1+\fp(c_i)}\dx_i
+      </me>
+      for some <m>c_i</m> in the <m>i^\text{ th }</m> subinterval. The radii are just the function evaluated at the endpoints of the interval. That is,
+      <me>
+        R = f(x_{i+1}) \text{ and }  r = f(x_i).
+      </me>
+    </p>
+
+    <p>Thus the surface area of this sample frustum of the cone is approximately
+      <me>
+        2\pi\frac{f(x_i)+f(x_{i+1})}2\sqrt{1+\fp(c_i)^2}\dx_i.
+      </me>
+    </p>
+
+    <p>Since <m>f</m> is a continuous function, the Intermediate Value Theorem states there is some <m>d_i</m> in <m>[x_i,x_{i+1}]</m> such that <m>\ds f(d_i) = \frac{f(x_i)+f(x_{i+1})}2</m>; we can use this to rewrite the above equation as
+      <me>
+        2\pi f(d_i)\sqrt{1+\fp(c_i)^2}\dx_i.
+      </me>
+    </p>
+
+    <p>Summing over all the subintervals we get the total surface area to be approximately
+      <me>
+        \text{ Surface Area } \approx \sum_{i=1}^n 2\pi f(d_i)\sqrt{1+\fp(c_i)^2}\dx_i,
+      </me>
+      which is a Riemann Sum. Taking the limit as the subinterval lengths go to zero gives us the exact surface area, given in the following Key Idea.</p>
+
+    <insight xml:id="idea_surface_area">
+      <title>Surface Area of a Solid of Revolution</title>
+      <p>Let <m>f</m> be differentiable on an open interval containing <m>[a,b]</m> where <m>\fp</m> is also continuous on <m>[a,b]</m>. <index><main>integration</main><sub>surface area</sub></index><index><main>surface area</main><sub>solid of revolution</sub></index></p>
+
+      <ol>
+        <li><p>The surface area of the solid formed by revolving the graph of <m>y=f(x)</m>, where <m>f(x)\geq0</m>, about the <m>x</m>-axis is
+            <me>
+              \text{ Surface Area }  = 2\pi\int_a^b f(x)\sqrt{1+\fp(x)^2}\ dx.
+            </me>
+          </p></li>
+
+        <li><p>The surface area of the solid formed by revolving the graph of <m>y=f(x)</m> about the <m>y</m>-axis, where <m>a,b\geq0</m>, is
+            <me>
+              \text{ Surface Area }  = 2\pi\int_a^b x\sqrt{1+\fp(x)^2}\ dx.
+            </me>
+          </p></li>
+      </ol>
+    </insight>
+
+    <p>(When revolving <m>y=f(x)</m> about the <m>y</m>-axis, the radii of the resulting frustum are <m>x_i</m> and <m>x_{i+1}</m>; their average value is simply the midpoint of the interval. In the limit, this midpoint is just <m>x</m>. This gives the second part of <xref ref="idea_surface_area">Key Idea</xref>.)</p>
+
+    <example xml:id="ex_sa1">
+      <title>Finding surface area of a solid of revolution</title>
+      <statement>
+        <p>Find the surface area of the solid formed by revolving <m>y=\sin(x)</m> on <m>[0,\pi]</m> around the <m>x</m>-axis, as shown in <xref ref="fig_sa1">Figure</xref>.</p>
+
+        <figure xml:id="fig_sa1" >
+          <caption>Revolving <m>y=\sin(x)</m> on <m>[0,\pi]</m> about the <m>x</m>-axis.</caption>
+          <!--
+           \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
+          3Droll=121.00092658103458,
+          3Dortho=0.0048407199792563915,
+          3Dc2c=0.2899017035961151 0.17925968766212463 0.9401186108589172,
+          3Dcoo=72.58285522460938 2.891160011291504 -26.545438766479492,
+          3Droo=149.99998703790175,
+          3Dlights=Headlamp,add3Djscript=asylabels.js]
+           -->
+
+
+          <!-- START figures/figsa1_3D.asy -->
+          <image xml:id="img_sa1" >
+            <asymptote>
+              <![CDATA[
+              import graph3;
+
+              //ASY file for figarc4_3D.asy in Chapter 7
+
+
+              size(200,200,IgnoreAspect);
+              //currentprojection=perspective(7,2,1);
+              currentprojection=orthographic((16.7,13.2,46),(0,1,0),(0,0,0),1,(-.0323,0.0012));
+              //currentprojection=orthographic((16.7,13.2,46),(0,1,0),(0,0,0),1,(0.0148,0.00673));
+              defaultrender.merge=true;
+
+              usepackage("mathspec");
+              texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+              // setup and draw the axes
+              real[] myxchoice={};
+              real[] myychoice={-1,1};
+              real[] myzchoice={};
+              defaultpen(0.5mm);
+
+              pair xbounds=(-.1,3.5);
+              pair ybounds=(-1.5,1.5);
+              pair zbounds=(-1.5,1.5);
+
+              xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+              yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+              zaxis3("",zbounds.x,zbounds.y,invisible,OutTicks(myzchoice),Arrow3(size=3mm));
+
+              label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+              label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+              //label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+              //\addplot3[domain=.9:1.4,y domain=-210:150,samples y=36,surf,shader=flat,colormap={mp2}{\colormapone}]
+              // ({x},{(.41*(x-.9)+.78)*sin(y)},{(.41*(x-.9)+.78)*cos(y)});
+
+              //\addplot3[domain=.5:1.9,,samples y=0,{\colorone},] ({x},{0},{(sin(deg(x)))});
+
+              //\addplot3[domain=0:360,,samples y=0,black,smooth] ({1.4},{.98*cos(x)},{.98*sin(x)});
+
+              //\addplot3[domain=130:330,,samples y=0,black,dashed,smooth] ({.9},{.78*cos(x)},{.78*sin(x)});
+
+              pen p=rgb(0,0,.8)+.1mm;
+
+              triple f2(pair t) {return (t.x,sin(t.x)*sin(t.y),sin(t.x)*cos(t.y));}
+              surface s2=surface(f2,(0,0),(pi,2*pi),16,16,usplinetype=new splinetype[] {notaknot,notaknot,monotonic}
+              ,vsplinetype=new splinetype[] {notaknot,notaknot,monotonic}
+              );
+              draw(s2,emissive(rgb(.6,.6,1)+opacity(.7)),meshpen=p);
+
+              triple g3(real t) {return (t,sin(t),0);}
+              path3 p3=graph(g3,0,pi,32,operator ..);
+              draw(p3,blue+.6mm);
+
+              draw((pi,.05,0)--(pi,-.05,0),black+.2mm);
+              label("$\pi$",(pi,-.05,0),S);
+
+
+              // ////////////////////////////////////
+              //    SAMPLE CODE
+
+              // defaultpen(fontsize(10pt));
+
+              //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+              //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //triple f(pair t) {
+              //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+              //}
+              //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //draw(s,paleblue);
+              //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+              //draw(mypath,2bp+blue);
+
+              //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+              //path3 mypath=graph(g,-1,1,operator ..);
+              //draw(mypath,blue+dashed+linewidth(2));
+
+              //pen p=rgb(0,0,1);
+              //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+              ]]>
+            </asymptote>
+          </image>
+          <!-- figures/figsa1_3D.asy END -->
+        </figure>
+      </statement>
+      <solution>
+        <p>The setup is relatively straightforward. Using <xref ref="idea_surface_area">Key Idea</xref>, we have the surface area <m>SA</m> is:
+          <md>
+            <mrow>SA  \amp =	2\pi\int_0^\pi \sin(x) \sqrt{1+\cos^2(x) }\ dx</mrow>
+            <mrow>\amp =	-2\pi\frac12\left.\left(\sinh^{-1}(\cos(x) )+\cos(x) \sqrt{1+\cos^2(x) }\right)\right|_0^\pi</mrow>
+            <mrow>\amp = 2\pi\left(\sqrt{2}+\sinh^{-1}(1) \right)</mrow>
+            <mrow>\amp \approx 14.42\ \text{ units } ^2.</mrow>
+          </md>
+        </p>
+
+        <p>The integration step above is nontrivial, utilizing an integration method called Trigonometric Substitution.</p>
+
+        <p>It is interesting to see that the surface area of a solid, whose shape is defined by a trigonometric function, involves both a square root and an inverse hyperbolic trigonometric function.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_sa2">
+      <title>Finding surface area of a solid of revolution</title>
+      <statement>
+        <p>Find the surface area of the solid formed by revolving the curve <m>y=x^2</m> on <m>[0,1]</m> about:</p>
+
+        <ol>
+          <li><p>the <m>x</m>-axis</p></li>
+
+          <li><p>the <m>y</m>-axis.</p></li>
+        </ol>
+
+        <table xml:id="fig_sa2" >
+          <caption>The solids used in <xref ref="ex_sa2">Example</xref>.</caption>
+          <tabular>
+            <row>
+              <cell>
+          <figure><!--
+               \includemedia[width=125pt,3Dmenu,activate=onclick,deactivate=onclick,
+              3Droll=138.26595091591264,
+              3Dortho=0.0048407199792563915,
+              3Dc2c=0.16831636428833008 0.19470007717609406 0.966313362121582,
+              3Dcoo=81.32470703125 3.403531074523926 -28.20997428894043,
+              3Droo=149.9999886313645,
+              3Dlights=Headlamp,add3Djscript=asylabels.js]
+               -->
+
+
+              <!-- START figures/figsa2a_3D.asy -->
+              <image xml:id="img_sa2a_3D" >
+                <asymptote>
+                  <![CDATA[
+                  import graph3;
+
+                  //ASY file for figarc4_3D.asy in Chapter 7
+
+
+                  size(200,200,IgnoreAspect);
+                  //currentprojection=perspective(7,2,1);
+                  currentprojection=orthographic((7.4,20,47),(0,1,0),(0,0,0),1,(-.004432,-0.00537));
+                  defaultrender.merge=true;
+
+                  usepackage("mathspec");
+                  texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+                  texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+                  texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+                  texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+                  // setup and draw the axes
+                  real[] myxchoice={1};
+                  real[] myychoice={-1,1};
+                  real[] myzchoice={};
+                  defaultpen(0.5mm);
+
+                  pair xbounds=(-.1,1.5);
+                  pair ybounds=(-1.1,1.1);
+                  pair zbounds=(-1.1,1.1);
+
+                  xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+                  yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+                  zaxis3("",zbounds.x,zbounds.y,invisible,OutTicks(myzchoice),Arrow3(size=3mm));
+
+                  label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+                  label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+                  //label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+
+                  pen p=rgb(0,0,.8)+.1mm;
+
+                  triple f2(pair t) {return (t.x,t.x^2*sin(t.y),t.x^2*cos(t.y));}
+                  surface s2=surface(f2,(0,0),(1,2*pi),8,16,usplinetype=new splinetype[] {notaknot,notaknot,monotonic}
+                  ,vsplinetype=new splinetype[] {notaknot,notaknot,monotonic}
+                  );
+                  draw(s2,emissive(rgb(.6,.6,1)+opacity(.7)),meshpen=p);
+
+                  triple g3(real t) {return (t,t^2,0);}
+                  path3 p3=graph(g3,0,1,operator ..);
+                  draw(p3,blue+.6mm);
+
+
+
+                  // ////////////////////////////////////
+                  //    SAMPLE CODE
+
+                  // defaultpen(fontsize(10pt));
+
+                  //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+                  //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+                  //pen p=rgb(0,0,.7);
+                  //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+                  //triple f(pair t) {
+                  //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+                  //}
+                  //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+                  //pen p=rgb(0,0,.7);
+                  //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+                  //draw(s,paleblue);
+                  //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+                  //draw(mypath,2bp+blue);
+
+                  //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+                  //path3 mypath=graph(g,-1,1,operator ..);
+                  //draw(mypath,blue+dashed+linewidth(2));
+
+                  //pen p=rgb(0,0,1);
+                  //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+                  ]]>
+                </asymptote>
+              </image>
+              <!-- figures/figsa2a_3D.asy END --></figure>
+          </cell>
+            </row>
+            <row>
+              <cell>(a)</cell>
+            </row>
+            <row>
+              <cell></cell>
+            </row>
+            <row>
+              <cell>
+          <figure><!--
+               \includemedia[width=125pt,3Dmenu,activate=onclick,deactivate=onclick,
+              3Droll=138.26595091591264,
+              3Dortho=0.0048407199792563915,
+              3Dc2c=0.16831637918949127 0.19470007717609406 0.966313362121582,
+              3Dcoo=0.013853734359145164 79.42704010009766 -29.364774703979492,
+              3Droo=149.99998895240248,
+              3Dlights=Headlamp,add3Djscript=asylabels.js]
+               -->
+
+
+              <!-- START figures/figsa2b_3D.asy -->
+              <image xml:id="img_sa2b_3D" >
+                <asymptote>
+                  <![CDATA[
+                  import graph3;
+
+                  //ASY file for figarc4_3D.asy in Chapter 7
+
+
+                  size(200,200,IgnoreAspect);
+                  //currentprojection=perspective(7,2,1);
+                  currentprojection=orthographic((10.4,3.7,64),(0,1,0),(0,0,0),.95,(0.00404,0.00136));
+                  defaultrender.merge=true;
+
+                  usepackage("mathspec");
+                  texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+                  texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+                  texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+                  texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+                  // setup and draw the axes
+                  real[] myxchoice={1,-1};
+                  real[] myychoice={-1,1};
+                  real[] myzchoice={};
+                  defaultpen(0.5mm);
+
+                  pair xbounds=(-1.5,1.5);
+                  pair ybounds=(-.1,1.1);
+                  pair zbounds=(-1.5,1.5);
+
+                  xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+                  yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+                  zaxis3("",zbounds.x,zbounds.y,invisible,OutTicks(myzchoice),Arrow3(size=3mm));
+
+                  label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+                  label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+                  //label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+
+                  pen p=rgb(0,0,.8)+.1mm;
+
+                  triple f2(pair t) {return (t.x*sin(t.y),t.x^2,t.x*cos(t.y));}
+                  surface s2=surface(f2,(0,0),(1,2*pi),8,16,usplinetype=new splinetype[] {notaknot,notaknot,monotonic}
+                  ,vsplinetype=new splinetype[] {notaknot,notaknot,monotonic}
+                  );
+                  draw(s2,emissive(rgb(.6,.6,1)+opacity(.7)),meshpen=p);
+
+                  triple g3(real t) {return (t,t^2,0);}
+                  path3 p3=graph(g3,0,1,operator ..);
+                  draw(p3,blue+.6mm);
+
+
+
+                  // ////////////////////////////////////
+                  //    SAMPLE CODE
+
+                  // defaultpen(fontsize(10pt));
+
+                  //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+                  //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+                  //pen p=rgb(0,0,.7);
+                  //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+                  //triple f(pair t) {
+                  //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+                  //}
+                  //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+                  //pen p=rgb(0,0,.7);
+                  //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+                  //draw(s,paleblue);
+                  //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+                  //draw(mypath,2bp+blue);
+
+                  //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+                  //path3 mypath=graph(g,-1,1,operator ..);
+                  //draw(mypath,blue+dashed+linewidth(2));
+
+                  //pen p=rgb(0,0,1);
+                  //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+                  ]]>
+                </asymptote>
+              </image>
+              <!-- figures/figsa2b_3D.asy END --></figure>
+          </cell>
+            </row>
+            <row>
+              <cell>(b)</cell>
+            </row>
+          </tabular>
+        </table>
+      </statement>
+      <solution>
+        <ol>
+          <li><p>The integral is straightforward to setup:
+              <md>
+                <mrow>SA \amp = 2\pi\int_0^1 x^2\sqrt{1+(2x)^2}\ dx.</mrow>
+                <intertext>Like the integral in <xref ref="ex_sa1">Example</xref>, this requires Trigonometric Substitution.</intertext>
+                <mrow>\amp = \left.\frac{\pi}{32}\left(2(8x^3+x)\sqrt{1+4x^2}-\sinh^{-1}(2x)\right)\right|_0^1</mrow>
+                <mrow>\amp =\frac{\pi}{32}\left(18\sqrt{5}-\sinh^{-1}(2) \right)</mrow>
+                <mrow>\amp \approx 3.81\ \text{ units } ^2.</mrow>
+              </md>
+              The solid formed by revolving <m>y=x^2</m> around the <m>x</m>-axis is graphed in <xref ref="fig_sa2">Figure</xref> (a).</p></li>
+
+          <li><p>Since we are revolving around the <m>y</m>-axis, the <q>radius</q> of the solid is not <m>f(x)</m> but rather <m>x</m>. Thus the integral to compute the surface area is:
+              <md>
+                <mrow>SA \amp = 2\pi\int_0^1x\sqrt{1+(2x)^2}\ dx.</mrow>
+                <intertext>This integral can be solved using substitution. Set <m>u=1+4x^2</m>; the new bounds are <m>u=1</m> to <m>u=5</m>. We then have</intertext>
+                <mrow>\amp =	\frac{\pi}4\int_1^5 \sqrt{u}\ du</mrow>
+                <mrow>\amp = \left.\frac{\pi}{4}\frac23 u^{3/2}\right|_1^5</mrow>
+                <mrow>\amp = \frac{\pi}6\left(5\sqrt{5}-1\right)</mrow>
+                <mrow>\amp \approx 5.33\ \text{ units } ^2.</mrow>
+              </md>
+              The solid formed by revolving <m>y=x^2</m> about the <m>y</m>-axis is graphed in <xref ref="fig_sa2">Figure</xref> (b).</p></li>
+        </ol>
+      </solution>
+    </example>
+
+    <p>Our final example is a famous mathematical <q>paradox.</q></p>
+
+    <example xml:id="ex_gabriel">
+      <title>The surface area and volume of Gabriel's Horn</title>
+      <statement>
+        <p>Consider the solid formed by revolving <m>y=1/x</m> about the <m>x</m>-axis on <m>[1,\infty)</m>. Find the volume and surface area of this solid. (This shape, as graphed in <xref ref="fig_gabriel">Figure</xref>, is known as <q>Gabriel's Horn</q> since it looks like a very long horn that only a supernatural person, such as an angel, could play.)<index><main>Gabriel's Horn</main></index></p>
+
+        <figure xml:id="fig_gabriel" >
+          <caption>A graph of Gabriel's Horn.</caption>
+          <!--
+           \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
+          3Droll=107.09033109095482,
+          3Dortho=0.0048407199792563915,
+          3Dc2c=0.4647676646709442 0.1565970778465271 0.8714748024940491,
+          3Dcoo=72.58285522460938 2.8911631107330322 -26.545440673828125,
+          3Droo=149.99999776925813,
+          3Dlights=Headlamp,add3Djscript=asylabels.js]
+           -->
+
+
+          <!-- START figures/figgabriel_3D.asy -->
+          <image xml:id="img_gabriel" >
+            <asymptote>
+              <![CDATA[
+              import graph3;
+
+              //ASY file for figgabriel_3D.asy in Chapter 7
+
+
+              size(200,200,IgnoreAspect);
+              //currentprojection=perspective(7,2,1);
+              currentprojection=orthographic((372,29,113),(0,1,0),(0,0,0),.95,(-0.024,-0.0032));
+              defaultrender.merge=true;
+
+              usepackage("mathspec");
+              texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+              // setup and draw the axes
+              real[] myxchoice={5,10,15};
+              real[] myychoice={-1,1};
+              real[] myzchoice={};
+              defaultpen(0.5mm);
+
+              pair xbounds=(-1,17);
+              pair ybounds=(-1.3,1.3);
+              pair zbounds=(-1.3,1.3);
+
+              xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+              yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+              zaxis3("",zbounds.x,zbounds.y,invisible,OutTicks(myzchoice),Arrow3(size=3mm));
+
+              label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+              label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+              //label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+
+              pen p=rgb(0,0,.8)+.1mm;
+
+              triple f2(pair t) {return (t.x,1/t.x*sin(t.y),1/t.x*cos(t.y));}
+              surface s2=surface(f2,(1,0),(15,2*pi),16,16,usplinetype=new splinetype[] {notaknot,notaknot,monotonic}
+              ,vsplinetype=new splinetype[] {notaknot,notaknot,monotonic}
+              );
+              draw(s2,emissive(rgb(.6,.6,1)+opacity(.7)),meshpen=p);
+
+              triple g3(real t) {return (t,1/t,0);}
+              path3 p3=graph(g3,1,15,16,operator ..);
+              draw(p3,blue+.6mm);
+
+              draw((0,-2,0)--(0,2,0),invisible);
+
+
+              // ////////////////////////////////////
+              //    SAMPLE CODE
+
+              // defaultpen(fontsize(10pt));
+
+              //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+              //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //triple f(pair t) {
+              //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+              //}
+              //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //draw(s,paleblue);
+              //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+              //draw(mypath,2bp+blue);
+
+              //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+              //path3 mypath=graph(g,-1,1,operator ..);
+              //draw(mypath,blue+dashed+linewidth(2));
+
+              //pen p=rgb(0,0,1);
+              //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+              ]]>
+            </asymptote>
+          </image>
+          <!-- figures/figgabriel_3D.asy END -->
+        </figure>
+      </statement>
+      <solution>
+        <p>To compute the volume it is natural to use the Disk Method. We have:
+          <md>
+            <mrow>V \amp = \pi\int_1^\infty \frac{1}{x^2}\ dx</mrow>
+            <mrow>\amp = \lim_{b\to\infty}\pi\int_1^b\frac{1}{x^2}\ dx</mrow>
+            <mrow>\amp =	\lim_{b\to\infty} \left.\pi\left(\frac{-1}{x}\right)\right|_1^b</mrow>
+            <mrow>\amp = \lim_{b\to\infty} \pi\left(1-\frac1b\right)</mrow>
+            <mrow>\amp = \pi \ \text{ units } ^3.</mrow>
+          </md>
+        </p>
+
+        <p>Gabriel's Horn has a finite volume of <m>\pi</m> cubic units. Since we have already seen that regions with infinite length can have a finite area, this is not too difficult to accept.</p>
+
+        <p>We now consider its surface area. The integral is straightforward to setup:
+          <md>
+            <mrow>SA \amp = 2\pi\int_1^\infty \frac{1}{x}\sqrt{1+1/x^4}\ dx.</mrow>
+            <intertext>Integrating this expression is not trivial. We can, however, compare it to other improper integrals. Since <m>1\lt  \sqrt{1+1/x^4}</m> on <m>[1,\infty)</m>, we can state that</intertext>
+            <mrow>2\pi\int_1^\infty \frac{1}{x}\ dx \amp \lt 2\pi\int_1^\infty \frac{1}{x}\sqrt{1+1/x^4}\ dx .</mrow>
+          </md>
+        </p>
+
+        <p>By <xref ref="idea_impint1">Key Idea</xref>, the improper integral on the left diverges. Since the integral on the right is larger, we conclude it also diverges, meaning Gabriel's Horn has infinite surface area.</p>
+
+        <p>Hence the <q>paradox</q>: we can fill Gabriel's Horn with a finite amount of paint, but since it has infinite surface area, we can never paint it.</p>
+
+        <p>Somehow this paradox is striking when we think about it in terms of volume and area. However, we have seen a similar paradox before, as referenced above. We know that the area under the curve <m>y=1/x^2</m> on <m>[1,\infty)</m> is finite, yet the shape has an infinite perimeter. Strange things can occur when we deal with the infinite.</p>
+      </solution>
+    </example>
+
+    <p>A standard equation from physics is <q>Work = force <times /> distance</q>, when the force applied is constant. In the next section we learn how to compute work when the force applied is variable.</p>
+  </subsection>
+
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>T/F: The integral formula for computing Arc Length was found by first approximating arc length with straight line segments.</p>
+          </statement>
+          <solution>
+            <p>T</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>T/F: The integral formula for computing Arc Length includes a square<ndash />root, meaning the integration is probably easy.</p>
+          </statement>
+          <solution>
+            <p>F</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, find the arc length of the function on the given interval.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = x</m> on <m>[0, 1]</m>.</p>
+          </statement>
+          <solution>
+            <p><m>\sqrt{2}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \sqrt{8}x</m> on <m>[-1, 1]</m>.</p>
+          </statement>
+          <solution>
+            <p><m>6</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \frac13x^{3/2}-x^{1/2}</m> on <m>[0,1]</m>.</p>
+          </statement>
+          <solution>
+            <p><m>4/3</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \frac1{12}x^{3}+\frac1x</m> on <m>[1,4]</m>.</p>
+          </statement>
+          <solution>
+            <p><m>6</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = 2x^{3/2}-\frac16\sqrt{x}</m> on <m>[0,9]</m>.</p>
+          </statement>
+          <solution>
+            <p><m>109/2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \cosh(x)</m> on <m>[-\ln(2) , \ln(2) ]</m>.</p>
+          </statement>
+          <solution>
+            <p><m>3/2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \frac12\big(e^x+e^{-x}\big)</m> on <m>[0, \ln(5) ]</m>.</p>
+          </statement>
+          <solution>
+            <p><m>12/5</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \frac1{12}x^5+\frac1{5x^3}</m> on <m>[.1, 1]</m>.</p>
+          </statement>
+          <solution>
+            <p><m>79953333/400000 \approx 199.883</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \ln\big(\sin(x) \big)</m> on <m>[\pi/6, \pi/2]</m>.</p>
+          </statement>
+          <solution>
+            <p><m>-\ln(2-\sqrt{3}) \approx 1.31696</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \ln\big(\cos(x) \big)</m> on <m>[0, \pi/4]</m>.</p>
+          </statement>
+          <solution>
+            <p><m>\sinh^{-1}(1)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, set up the integral to compute the arc length of the function on the given interval. Do not evaluate the integral.</p>
+      <exercise xml:id="ex_07_04_ex_13">
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = x^2</m> on <m>[0, 1]</m>.</p>
+          </statement>
+          <solution>
+            <p><m>\int_0^1 \sqrt{1+4x^2}\ dx</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = x^{10}</m> on <m>[0, 1]</m>.</p>
+          </statement>
+          <solution>
+            <p><m>\int_0^1 \sqrt{1+100x^{18}}\ dx</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \sqrt{x}</m> on <m>[0, 1]</m>.</p>
+          </statement>
+          <solution>
+            <p><m>\int_0^1 \sqrt{1+\frac{1}{4x}}\ dx</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \ln(x)</m> on <m>[1, e]</m>.</p>
+          </statement>
+          <solution>
+            <p><m>\int_1^e \sqrt{1+\frac1{x^2}}\ dx</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \sqrt{1-x^2}</m> on <m>[-1, 1]</m>. (Note: this describes the top half of a circle with radius 1.)</p>
+          </statement>
+          <solution>
+            <p><m>\int_{-1}^1 \sqrt{1+\frac{x^2}{1-x^2}}\ dx</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \sqrt{1-x^2/9}</m> on <m>[-3, 3]</m>. (Note: this describes the top half of an ellipse with a major axis of length 6 and a minor axis of length 2.)</p>
+          </statement>
+          <solution>
+            <p><m>\int_{-3}^3 \sqrt{1+\frac{x^2}{81-9x^2}}\ dx</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \frac1x</m> on <m>[1,2]</m>.</p>
+          </statement>
+          <solution>
+            <p><m>\int_{1}^2 \sqrt{1+\frac1{x^4}}\ dx</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise xml:id="ex_07_04_ex_20">
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \sec(x)</m> on <m>[-\pi/4,\pi/4]</m>.</p>
+          </statement>
+          <solution>
+            <p><m>\int_{-\pi/4}^{\pi/4} \sqrt{1+\sec^2(x) \tan^2(x) }\ dx</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, use Simpson's Rule, with <m>n=4</m>, to approximate the arc length of the function on the given interval. Note: these are the same problems as in <xref ref="ex_07_04_ex_13">Exercises</xref><ndash /> <xref ref="ex_07_04_ex_20"></xref>.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = x^2</m> on <m>[0, 1]</m>.</p>
+          </statement>
+          <solution>
+            <p><m>1.4790</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = x^{10}</m> on <m>[0, 1]</m>.</p>
+          </statement>
+          <solution>
+            <p><m>1.8377</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \sqrt{x}</m> on <m>[0, 1]</m>. (Note: <m>\fp(x)</m> is not defined at <m>x=0</m>.)</p>
+          </statement>
+          <solution>
+            <p>Simpson's Rule fails, as it requires one to divide by 0. However, recognize the answer should be the same as for <m>y=x^2</m>; why?</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \ln(x)</m> on <m>[1, e]</m>.</p>
+          </statement>
+          <solution>
+            <p><m>2.1300</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \sqrt{1-x^2}</m> on <m>[-1, 1]</m>. (Note: <m>\fp(x)</m> is not defined at the endpoints.)</p>
+          </statement>
+          <solution>
+            <p>Simpson's Rule fails.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \sqrt{1-x^2/9}</m> on <m>[-3, 3]</m>. (Note: <m>\fp(x)</m> is not defined at the endpoints.)</p>
+          </statement>
+          <solution>
+            <p>Simpson's Rule fails.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \frac1x</m> on <m>[1,2]</m>.</p>
+          </statement>
+          <solution>
+            <p><m>1.4058</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \sec(x)</m> on <m>[-\pi/4,\pi/4]</m>.</p>
+          </statement>
+          <solution>
+            <p><m>1.7625</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, find the surface area of the described solid of revolution.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>The solid formed by revolving <m>y=2x</m> on <m>[0,1]</m> about the <m>x</m>-axis.</p>
+          </statement>
+          <solution>
+            <p><m>2\pi\int_0^1 2x\sqrt{5}\ dx = 2\pi\sqrt{5}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>The solid formed by revolving <m>y=x^2</m> on <m>[0,1]</m> about the <m>y</m>-axis.</p>
+          </statement>
+          <solution>
+            <p><m>2\pi\int_0^1 x\sqrt{1+4x^2}\ dx = \pi/6(5\sqrt{5}-1)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>The solid formed by revolving <m>y=x^3</m> on <m>[0,1]</m> about the <m>x</m>-axis.</p>
+          </statement>
+          <solution>
+            <p><m>2\pi\int_0^1 x^3\sqrt{1+9x^4}\ dx = \pi/27(10\sqrt{10}-1)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>The solid formed by revolving <m>y=\sqrt{x}</m> on <m>[0,1]</m> about the <m>x</m>-axis.</p>
+          </statement>
+          <solution>
+            <p><m>2\pi\int_0^1 \sqrt{x}\sqrt{1+1/(4x)}\ dx = \pi/6(5\sqrt{5}-1)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>The sphere formed by revolving <m>y=\sqrt{1-x^2}</m> on <m>[-1,1]</m> about the <m>x</m>-axis.</p>
+          </statement>
+          <solution>
+            <p><m>2\pi\int_0^1 \sqrt{1-x^2}\sqrt{1+x/(1-x^2)}\ dx = 4\pi</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

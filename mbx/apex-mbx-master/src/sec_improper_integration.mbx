@@ -1,0 +1,1569 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_improper_integration">
+  <title>Improper Integration</title>
+  <introduction>
+    <p>We begin this section by considering the following definite integrals:</p>
+
+    <ul>
+      <li><p><m>\ds \int_0^{100}\frac1{1+x^2}\ dx \approx 1.5608</m>,</p></li>
+
+      <li><p><m>\ds \int_0^{1000}\frac1{1+x^2}\ dx \approx 1.5698</m>,</p></li>
+
+      <li><p><m>\ds \int_0^{10,000}\frac1{1+x^2}\ dx \approx 1.5707</m>.</p></li>
+    </ul>
+
+    <p>Notice how the integrand is <m>1/(1+x^2)</m> in each integral (which is sketched in <xref ref="fig_improper1">Figure</xref>). As the upper bound gets larger, one would expect the <q>area under the curve</q> would also grow. While the definite integrals do increase in value as the upper bound grows, they are not increasing by much. In fact, consider:
+      <me>
+        \int_0^b \frac{1}{1+x^2}\ dx = \tan^{-1}(x) \Big|_0^b = \tan^{-1}(b) -\tan^{-1}(0) = \tan^{-1}(b) .
+      </me>
+    </p>
+
+    <p>As <m>b\rightarrow \infty</m>, <m>\tan^{-1}(b) \rightarrow \pi/2</m>. Therefore it seems that as the upper bound <m>b</m> grows, the value of the definite integral <m>\ds \int_0^b\frac{1}{1+x^2}\ dx</m> approaches <m>\pi/2\approx 1.5708</m>. This should strike the reader as being a bit amazing: even though the curve extends <q>to infinity,</q> it has a finite amount of area underneath it.</p>
+
+    <figure xml:id="fig_improper1" >
+      <caption>Graphing <m>\ds f(x)=\frac{1}{1+x^2}</m>.</caption>
+      <!-- START figures/fig_improper1.tex -->
+      <image xml:id="img_improper1" >
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+          \begin{axis}[%
+          axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+          %			xtick={-1,1},%
+          %			extra x ticks={.5,3},
+          %			extra x tick labels={$a$,$b$},
+          %			ytick={-1,1},
+			%%extra y ticks={-5,-3,...,7},%
+          %			minor x tick num=4,
+			ymin=-.1,ymax=1.1,%
+			xmin=-1,xmax=11%
+          ]
+
+          \addplot [{\coloronefill},fill={\coloronefill}] coordinates {(0,1.)(0.1,0.9901)(0.2,0.9615)(0.3,0.9174)(0.4,0.8621)(0.5,0.8)(0.6,0.7353)(0.7,0.6711)(0.8,0.6098)(0.9,0.5525)(1.,0.5)(1.5,0.3077)(2.,0.2)(2.5,0.1379)(3.,0.1)(3.5,0.07547)(4.,0.05882)(4.5,0.04706)(5.,0.03846)(5.5,0.032)(6.,0.02703)(6.5,0.02312)(7.,0.02)(7.5,0.01747)(8.,0.01538)(8.5,0.01365)(9.,0.0122)(9.5,0.01096)(10.,0.009901)(10.5,0.0089)} -- (axis cs:0,0)--cycle;
+
+          \addplot [{\colorone},thick,smooth] coordinates {(0,1.)(0.1,0.9901)(0.2,0.9615)(0.3,0.9174)(0.4,0.8621)(0.5,0.8)(0.6,0.7353)(0.7,0.6711)(0.8,0.6098)(0.9,0.5525)(1.,0.5)(1.5,0.3077)(2.,0.2)(2.5,0.1379)(3.,0.1)(3.5,0.07547)(4.,0.05882)(4.5,0.04706)(5.,0.03846)(5.5,0.032)(6.,0.02703)(6.5,0.02312)(7.,0.02)(7.5,0.01747)(8.,0.01538)(8.5,0.01365)(9.,0.0122)(9.5,0.01096)(10.,0.009901)(10.5,0.0089)};
+
+          %\filldraw (axis cs:.707,.707) circle (1pt) node [shift={(6pt,11pt)}] {\scriptsize ($\cos(\theta) $,$\sin(\theta) $)};
+          %
+          %\draw (axis cs:.6,.25) node {\scriptsize $\ds\frac{\theta}{2}$};
+          %\draw (axis cs:-.75,1) node {\scriptsize $x^2+y^2=1$};
+
+          \end{axis}
+
+
+
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_improper1.tex END -->
+    </figure>
+
+    <p>When we defined the definite integral <m>\ds\int_a^b f(x)\ dx</m>, we made two stipulations:</p>
+
+    <ol>
+      <li><p>The interval over which we integrated, <m>[a,b]</m>, was a finite interval, and</p></li>
+
+      <li><p>The function <m>f(x)</m> was continuous on <m>[a,b]</m> (ensuring that the range of <m>f</m> was finite).</p></li>
+    </ol>
+
+    <p>In this section we consider integrals where one or both of the above conditions do not hold. Such integrals are called <em>improper integrals.</em></p>
+  </introduction>
+
+  <subsection>
+    <title>Improper Integrals with Infinite Bounds</title>
+    <definition xml:id="def_imp_int1">
+      <title>Improper Integrals with Infinite Bounds; Converge, Diverge</title>
+      <statement>
+        <ol>
+          <li><p>Let <m>f</m> be a continuous function on <m>[a,\infty)</m>. Define <index><main>integration</main><sub>improper</sub></index><index><main>improper integration</main></index><index><main>convergence</main><sub>of improper int.</sub></index><index><main>divergence</main><sub>of improper int.</sub></index>
+              <me>
+                \int_a^\infty f(x)\ dx  \text{ to be }  \lim_{b\to\infty}\int_a^b f(x)\ dx.
+              </me>
+            </p></li>
+
+          <li><p>Let <m>f</m> be a continuous function on <m>(-\infty,b]</m>. Define
+              <me>
+                \int_{-\infty}^b f(x)\ dx  \text{ to be }  \lim_{a\to-\infty}\int_a^b f(x)\ dx.
+              </me>
+            </p></li>
+
+          <li><p>Let <m>f</m> be a continuous function on <m>(-\infty,\infty)</m>. Let <m>c</m> be any real number; define
+              <me>
+                \int_{-\infty}^\infty f(x)\ dx  \text{ to be }  \lim_{a\to-\infty}\int_a^c f(x)\ dx\ +\ \lim_{b\to\infty}\int_c^b f(x)\ dx.
+              </me>
+            </p></li>
+        </ol>
+
+        <p>An improper integral is said to <term>converge</term> if its corresponding limit exists; otherwise, it <term>diverges</term>. The improper integral in part 3 converges if and only if both of its limits exist.</p>
+      </statement>
+    </definition>
+
+    <example xml:id="ex_impint1">
+      <title>Evaluating improper integrals</title>
+      <statement>
+        <p>Evaluate the following improper integrals.</p>
+
+        <ol cols="2" >
+          <li><p><m>\ds\int_1^\infty \frac1{x^2}\ dx</m></p></li>
+
+          <li><p><m>\ds\int_1^\infty \frac1x\ dx</m></p></li>
+
+          <li><p><m>\ds\int_{-\infty}^0 e^x\ dx</m></p></li>
+
+          <li><p><m>\ds\int_{-\infty}^\infty \frac1{1+x^2}\ dx</m></p></li>
+        </ol>
+      </statement>
+      <solution>
+        <ol>
+          <li><p><m>\begin{aligned}\int_1^\infty \frac{1}{x^2}\ dx\  =\ \lim_{b\to\infty} \int_1^b\frac1{x^2}\ dx\  \amp =\ \lim_{b\to\infty} \frac{-1}{x}\Big|_1^b \\
+               \amp = \lim_{b\to\infty} \frac{-1}{b} + 1\\
+               \amp = 1.
+              \end{aligned}</m>
+
+              A graph of the area defined by this integral is given in <xref ref="fig_impint1a">Figure</xref>.
+
+              <figure xml:id="fig_impint1a" >
+                <caption>A graph of <m>f(x) = \frac{1}{x^2}</m> in <xref ref="ex_impint1">Example</xref>.</caption>
+                <!-- START figures/fig_eximpint1a.tex -->
+                <image xml:id="img_impint1a" >
+                  <description></description>
+                  <latex-image-code>
+                    <![CDATA[
+                    \begin{tikzpicture}
+                    \begin{axis}[%
+                    axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={1,5,10},%
+                    %			extra x ticks={.5,3},
+                    %			extra x tick labels={$a$,$b$},
+                    %			ytick={-1,1},
+			%%extra y ticks={-5,-3,...,7},%
+                    %			minor x tick num=4,
+			ymin=-.1,ymax=1.1,%
+			xmin=-1,xmax=11%
+                    ]
+
+                    \addplot [{\coloronefill},fill={\coloronefill}] coordinates {(1.,1.)(1.5,0.4444)(2.,0.25)(2.5,0.16)(3.,0.1111)(3.5,0.08163)(4.,0.0625)(4.5,0.04938)(5.,0.04)(5.5,0.03306)(6.,0.02778)(6.5,0.02367)(7.,0.02041)(7.5,0.01778)(8.,0.01563)(8.5,0.01384)(9.,0.01235)(9.5,0.01108)(10.,0.01)(10.5,0.009)} -- (axis cs:10.5,0)--(axis cs:1,0)--cycle;
+
+                    \addplot [{\colorone},thick,smooth] coordinates {(1.,1.)(1.5,0.4444)(2.,0.25)(2.5,0.16)(3.,0.1111)(3.5,0.08163)(4.,0.0625)(4.5,0.04938)(5.,0.04)(5.5,0.03306)(6.,0.02778)(6.5,0.02367)(7.,0.02041)(7.5,0.01778)(8.,0.01563)(8.5,0.01384)(9.,0.01235)(9.5,0.01108)(10.,0.01)(10.5,0.009)};
+
+                    \draw (axis cs:5,.75) node {\scriptsize $\ds f(x)=\frac{1}{x^2}$};
+
+                    \end{axis}
+
+
+
+                    \end{tikzpicture}
+                    ]]>
+                  </latex-image-code>
+                </image>
+                <!-- figures/fig_eximpint1a.tex END -->
+              </figure>
+
+            </p></li>
+
+          <li><p><m>\begin{aligned}\int_1^\infty \frac1x\ dx \amp  = \lim_{b\to\infty}\int_1^b\frac1x\ dx \\
+						\amp = \lim_{b\to\infty} \ln\abs{x}\Big|_1^b \\
+						\amp = \lim_{b\to\infty} \ln(b)\\
+						\amp = \infty.
+              \end{aligned}</m>
+	
+              The limit does not exist, hence the improper integral <m>\ds\int_1^\infty\frac1x\ dx</m> diverges. Compare the graphs in <xref ref="fig_impint1a">Figures</xref> and <xref ref="fig_impint1b"></xref>; notice how the graph of <m>f(x) = 1/x</m> is noticeably larger. This difference is enough to cause the improper integral to diverge.
+
+              <figure xml:id="fig_impint1b" >
+                <caption>A graph of <m>f(x) = \frac{1}{x}</m> in <xref ref="ex_impint1">Example</xref>.</caption>
+                <!-- START figures/fig_eximpint1b.tex -->
+                <image xml:id="img_impint1b" >
+                  <description></description>
+                  <latex-image-code>
+                    <![CDATA[
+                    \begin{tikzpicture}
+                    \begin{axis}[%
+                    axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={1,5,10},%
+                    %			extra x ticks={.5,3},
+                    %			extra x tick labels={$a$,$b$},
+                    %			ytick={-1,1},
+			%%extra y ticks={-5,-3,...,7},%
+                    %			minor x tick num=4,
+			ymin=-.1,ymax=1.1,%
+			xmin=-1,xmax=11%
+                    ]
+
+                    \addplot [{\coloronefill},fill={\coloronefill}] coordinates {(1.,1.)(1.5,0.6667)(2.,0.5)(2.5,0.4)(3.,0.3333)(3.5,0.2857)(4.,0.25)(4.5,0.2222)(5.,0.2)(5.5,0.1818)(6.,0.1667)(6.5,0.1538)(7.,0.1429)(7.5,0.1333)(8.,0.125)(8.5,0.1176)(9.,0.1111)(9.5,0.1053)(10.,0.1)(10.5,0.09524)} -- (axis cs:10.5,0)-- (axis cs:1,0)--cycle;
+
+                    \addplot [{\colorone},thick,smooth] coordinates {(1.,1.)(1.5,0.6667)(2.,0.5)(2.5,0.4)(3.,0.3333)(3.5,0.2857)(4.,0.25)(4.5,0.2222)(5.,0.2)(5.5,0.1818)(6.,0.1667)(6.5,0.1538)(7.,0.1429)(7.5,0.1333)(8.,0.125)(8.5,0.1176)(9.,0.1111)(9.5,0.1053)(10.,0.1)(10.5,0.09524)};
+
+                    \draw (axis cs:5,.75) node {\scriptsize $\ds f(x)=\frac{1}{x}$};
+                    \end{axis}
+
+
+
+                    \end{tikzpicture}
+                    ]]>
+                  </latex-image-code>
+                </image>
+                <!-- figures/fig_eximpint1b.tex END -->
+              </figure>
+
+            </p></li>
+
+          <li><p><m>\begin{aligned}\int_{-\infty}^0 e^x \ dx \amp = \lim_{a\to-\infty} \int_a^0e^x\ dx \\
+					\amp =  \lim_{a\to-\infty} e^x\Big|_a^0 \\
+					\amp = \lim_{a\to-\infty} e^0-e^a \\
+					\amp = 1.
+              \end{aligned}</m>
+		
+		A graph of the area defined by this integral is given in <xref ref="fig_impint1c">Figure</xref>.
+
+              <figure xml:id="fig_impint1c" >
+                <caption>A graph of <m>f(x) = e^x</m> in <xref ref="ex_impint1">Example</xref>.</caption>
+                <!-- START figures/fig_eximpint1c.tex -->
+                <image xml:id="img_impint1c" >
+                  <description></description>
+                  <latex-image-code>
+                    <![CDATA[
+                    \begin{tikzpicture}
+                    \begin{axis}[%
+                    axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={-1,-5,-10},%
+                    %			extra x ticks={.5,3},
+                    %			extra x tick labels={$a$,$b$},
+			ytick={1},
+			%%extra y ticks={-5,-3,...,7},%
+                    %			minor x tick num=4,
+			ymin=-.1,ymax=1.1,%
+			xmin=-11,xmax=1%
+                    ]
+
+                    \addplot [{\coloronefill},fill={\coloronefill}] coordinates {(-10.5,0)(-10.,0)(-9.5,0)(-9.,0.0001234)(-8.5,0.0002035)(-8.,0.0003355)(-7.5,0.0005531)(-7.,0.0009119)(-6.5,0.001503)(-6.,0.002479)(-5.5,0.004087)(-5.,0.006738)(-4.5,0.01111)(-4.,0.01832)(-3.5,0.0302)(-3.,0.04979)(-2.5,0.08208)(-2.,0.1353)(-1.5,0.2231)(-1.,0.3679)(-0.5,0.6065)(0,1.)} -- (axis cs:0,0)--cycle;
+
+                    \addplot [{\colorone},thick,smooth] coordinates {(-10.5,0)(-10.,0)(-9.5,0)(-9.,0.0001234)(-8.5,0.0002035)(-8.,0.0003355)(-7.5,0.0005531)(-7.,0.0009119)(-6.5,0.001503)(-6.,0.002479)(-5.5,0.004087)(-5.,0.006738)(-4.5,0.01111)(-4.,0.01832)(-3.5,0.0302)(-3.,0.04979)(-2.5,0.08208)(-2.,0.1353)(-1.5,0.2231)(-1.,0.3679)(-0.5,0.6065)(0,1.)};
+
+                    \draw (axis cs:-5,.75) node {\scriptsize $\ds f(x)=e^x$};
+                    \end{axis}
+
+
+
+                    \end{tikzpicture}
+                    ]]>
+                  </latex-image-code>
+                </image>
+                <!-- figures/fig_eximpint1c.tex END -->
+              </figure>
+
+            </p></li>
+
+          <li><p>We will need to break this into two improper integrals and choose a value of <m>c</m> as in part 3 of <xref ref="def_imp_int1">Definition</xref>. Any value of <m>c</m> is fine; we choose <m>c=0</m>.
+              <md>
+                <mrow>\int_{-\infty}^\infty \frac1{1+x^2}\ dx \amp = \lim_{a\to-\infty} \int_a^0\frac{1}{1+x^2}\ dx + \lim_{b\to\infty} \int_0^b\frac{1}{1+x^2}\ dx</mrow>
+                <mrow>\amp = \lim_{a\to-\infty} \tan^{-1}(x) \Big|_a^0 + \lim_{b\to\infty} \tan^{-1}(x) \Big|_0^b</mrow>
+                <mrow>\amp = \lim_{a\to-\infty} \left(\tan^{-1}(0) -\tan^{-1}(a) \right) + \lim_{b\to\infty} \left(\tan^{-1}(b) -\tan^{-1}(0) \right)</mrow>
+                <mrow>\amp = \left(0-\frac{-\pi}2\right) + \left(\frac{\pi}2-0\right).</mrow>
+                <intertext>Each	limit exists, hence the original integral converges and has value:</intertext>
+                <mrow>\amp = \pi.</mrow>
+              </md>
+              A graph of the area defined by this integral is given in <xref ref="fig_impint1d">Figure</xref>.
+
+              <figure xml:id="fig_impint1d" >
+                <caption>A graph of <m>f(x) = \frac{1}{1+x^2}</m> in <xref ref="ex_impint1">Example</xref>.</caption>
+                <!-- START figures/fig_eximpint1d.tex -->
+                <image xml:id="img_impint1d" >
+                  <description></description>
+                  <latex-image-code>
+                    <![CDATA[
+                    \begin{tikzpicture}
+                    \begin{axis}[%
+                    axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+                    %			xtick={-1,-5,-10},%
+                    %			extra x ticks={.5,3},
+                    %			extra x tick labels={$a$,$b$},
+			ytick={1},
+			%%extra y ticks={-5,-3,...,7},%
+                    %			minor x tick num=4,
+			ymin=-.1,ymax=1.1,%
+			xmin=-11,xmax=11%
+                    ]
+
+                    \addplot [{\coloronefill},fill={\coloronefill}] coordinates {(-10.5,0.008989)(-10.,0.009901)(-9.5,0.01096)(-9.,0.0122)(-8.5,0.01365)(-8.,0.01538)(-7.5,0.01747)(-7.,0.02)(-6.5,0.02312)(-6.,0.02703)(-5.5,0.032)(-5.,0.03846)(-4.5,0.04706)(-4.,0.05882)(-3.5,0.07547)(-3.,0.1)(-2.5,0.1379)(-2.,0.2)(-1.5,0.3077)(-1.,0.5)(-0.5,0.8)(0,1.)(0.5,0.8)(1.,0.5)(1.5,0.3077)(2.,0.2)(2.5,0.1379)(3.,0.1)(3.5,0.07547)(4.,0.05882)(4.5,0.04706)(5.,0.03846)(5.5,0.032)(6.,0.02703)(6.5,0.02312)(7.,0.02)(7.5,0.01747)(8.,0.01538)(8.5,0.01365)(9.,0.0122)(9.5,0.01096)(10.,0.009901)(10.5,0.008989)} --cycle;
+
+                    \addplot [{\colorone},thick,smooth] coordinates {(-10.5,0.008989)(-10.,0.009901)(-9.5,0.01096)(-9.,0.0122)(-8.5,0.01365)(-8.,0.01538)(-7.5,0.01747)(-7.,0.02)(-6.5,0.02312)(-6.,0.02703)(-5.5,0.032)(-5.,0.03846)(-4.5,0.04706)(-4.,0.05882)(-3.5,0.07547)(-3.,0.1)(-2.5,0.1379)(-2.,0.2)(-1.5,0.3077)(-1.,0.5)(-0.5,0.8)(0,1.)(0.5,0.8)(1.,0.5)(1.5,0.3077)(2.,0.2)(2.5,0.1379)(3.,0.1)(3.5,0.07547)(4.,0.05882)(4.5,0.04706)(5.,0.03846)(5.5,0.032)(6.,0.02703)(6.5,0.02312)(7.,0.02)(7.5,0.01747)(8.,0.01538)(8.5,0.01365)(9.,0.0122)(9.5,0.01096)(10.,0.009901)(10.5,0.008989)};
+
+                    \draw (axis cs:6,.75) node {\scriptsize $\ds f(x)=\frac{1}{1+x^2}$};
+                    \end{axis}
+
+
+
+                    \end{tikzpicture}
+                    ]]>
+                  </latex-image-code>
+                </image>
+                <!-- figures/fig_eximpint1d.tex END -->
+              </figure>
+
+            </p></li>
+        </ol>
+      </solution>
+    </example>
+
+    <p>The previous section introduced l'H&#xf4;pital's Rule, a method of evaluating limits that return indeterminate forms. It is not uncommon for the limits resulting from improper integrals to need this rule as demonstrated next.</p>
+
+    <example xml:id="ex_impint2">
+      <title>Improper integration and l'H&#xf4;pital's Rule</title>
+      <statement>
+        <p>Evaluate the improper integral <m>\ds \int_1^\infty \frac{\ln(x) }{x^2}\ dx</m>.</p>
+      </statement>
+      <solution>
+        <p>This integral will require the use of Integration by Parts. Let <m>u = \ln(x)</m> and <m>dv = 1/x^2\ dx</m>. Then</p>
+
+        <figure xml:id="fig_impint2" >
+          <caption>A graph of <m>f(x) = \frac{\ln(x) }{x^2}</m> in <xref ref="ex_impint2">Example</xref>.</caption>
+          <!-- START figures/fig_eximpint2.tex -->
+          <image xml:id="img_impint2" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[%
+              axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={1,5,10},%
+              %			extra x ticks={.5,3},
+              %			extra x tick labels={$a$,$b$},
+              %			ytick={1},
+			%%extra y ticks={-5,-3,...,7},%
+              %			minor x tick num=4,
+			ymin=-.1,ymax=.5,%
+			xmin=-1,xmax=11%
+              ]
+
+              \addplot [{\coloronefill},fill={\coloronefill}] coordinates {(1.,0)(1.1,0.07877)(1.2,0.1266)(1.3,0.1552)(1.4,0.1717)(1.5,0.1802)(1.6,0.1836)(1.7,0.1836)(1.8,0.1814)(1.9,0.1778)(2.,0.1733)(2.5,0.1466)(3.,0.1221)(3.5,0.1023)(4.,0.08664)(4.5,0.07428)(5.,0.06438)(5.5,0.05636)(6.,0.04977)(6.5,0.0443)(7.,0.03971)(7.5,0.03582)(8.,0.03249)(8.5,0.02962)(9.,0.02713)(9.5,0.02495)(10.,0.02303)(10.5,0.02133)} -- (axis cs:10.5,0)--(axis cs:0,0)--cycle;
+
+              \addplot [{\colorone},thick,smooth] coordinates {(1.,0)(1.1,0.07877)(1.2,0.1266)(1.3,0.1552)(1.4,0.1717)(1.5,0.1802)(1.6,0.1836)(1.7,0.1836)(1.8,0.1814)(1.9,0.1778)(2.,0.1733)(2.5,0.1466)(3.,0.1221)(3.5,0.1023)(4.,0.08664)(4.5,0.07428)(5.,0.06438)(5.5,0.05636)(6.,0.04977)(6.5,0.0443)(7.,0.03971)(7.5,0.03582)(8.,0.03249)(8.5,0.02962)(9.,0.02713)(9.5,0.02495)(10.,0.02303)(10.5,0.02133)};
+
+              \draw (axis cs:5,.3) node {\scriptsize $\ds f(x)=\frac{\ln(x) }{x^2}$};
+              \end{axis}
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_eximpint2.tex END -->
+        </figure>
+
+        <md>
+          <mrow>\int_1^\infty\frac{\ln(x) }{x^2}\ dx \amp = \lim_{b\to\infty}\int_1^b\frac{\ln(x) }{x^2}\ dx</mrow>
+          <mrow>\amp =  \lim_{b\to\infty}\left(-\frac{\ln(x) }{x}\Big|_1^b +\int_1^b \frac{1}{x^2} \ dx \right)</mrow>
+          <mrow>\amp =  \lim_{b\to\infty} \left.\left(-\frac{\ln(x) }{x} -\frac1x\right)\right|_1^b</mrow>
+          <mrow>\amp =	\lim_{b\to\infty} \left(-\frac{\ln(b) }{b}-\frac1b - \left(-\ln(1) -1\right)\right).</mrow>
+          <intertext>The <m>1/b</m> and <m>\ln(1)</m> terms go to 0, leaving <m>\lim\limits_{b\to\infty} -\frac{\ln(b) }b + 1</m>. We need to evaluate <m>\lim\limits_{b\to\infty} \frac{\ln(b) }{b}</m> with l'H\^opital's Rule. We have:</intertext>
+          <mrow>\lim_{b\to\infty}\frac{\ln(b) }b \amp \stackrel{\ \text{ by LHR }  \ }{=} \lim_{b\to\infty} \frac{1/b}{1}</mrow>
+          <mrow>\amp = 0.</mrow>
+          <intertext>Thus the improper integral evaluates as:</intertext>
+          <mrow>\int_1^\infty\frac{\ln(x) }{x^2}\ dx \amp = 1.</mrow>
+        </md>
+      </solution>
+    </example>
+
+    <p><em> Improper Integrals with Infinite Range</em>
+      We have just considered definite integrals where the interval of integration was infinite. We now consider another type of improper integration, where the range of the integrand is infinite.</p>
+
+    <definition xml:id="def_imp_int2">
+      <title>Improper Integration with Infinite Range</title>
+      <statement>
+        <p>Let <m>f(x)</m> be a continuous function on <m>[a,b]</m> except at <m>c</m>, <m>a\leq c\leq b</m>, where <m>x=c</m> is a vertical asymptote of <m>f</m>. Define<index><main>integration</main><sub>improper</sub></index><index><main>improper integration</main></index>
+          <me>
+            \int_a^b f(x)\ dx = \lim_{t\to c^-}\int_a^t f(x)\ dx + \lim_{t\to c^+}\int_t^b f(x)\ dx.
+          </me>
+        </p>
+      </statement>
+    </definition>
+
+    <example xml:id="ex_impint3">
+      <title>Improper integration of functions with infinite range</title>
+      <statement>
+        <p>Evaluate the following improper integrals:
+          <m>\ds 1.\ \int_0^1\frac1{\sqrt{x}}\ dx 2. \ \int_{-1}^1\frac{1}{x^2}\ dx</m>.</p>
+      </statement>
+      <solution>
+        <ol>
+          <li><p>A graph of <m>f(x) = 1/\sqrt{x}</m> is given in <xref ref="fig_impint3">Figure</xref>. Notice that <m>f</m> has a vertical asymptote at <m>x=0</m>; in some sense, we are trying to compute the area of a region that has no <q>top.</q> Could this have a finite value?
+            <md>
+              <mrow>\int_0^1 \frac{1}{\sqrt{x}}\ dx \amp = \lim_{a\to0^+}\int_a^1 \frac1{\sqrt{x}}\ dx</mrow>
+              <mrow>\amp =	\lim_{a\to0^+} 2\sqrt{x}\Big|_a^1</mrow>
+              <mrow>\amp = \lim_{a\to0^+} 2\left(\sqrt{1}-\sqrt{a}\right)</mrow>
+              <mrow>\amp =	2.</mrow>
+            </md>
+            It turns out that the region does have a finite area even though it has no upper bound (strange things can occur in mathematics when considering the infinite).
+
+            <aside>
+              <p>In <xref ref="def_imp_int2">Definition</xref>, <m>c</m> can be one of the endpoints (<m>a</m> or <m>b</m>). In that case, there is only one limit to consider as part of the definition.</p>
+            </aside>
+
+            <figure xml:id="fig_impint3" >
+              <caption>A graph of <m>f(x)=\frac{1}{\sqrt{x}}</m> in <xref ref="ex_impint3">Example</xref>.</caption>
+              <!-- START figures/fig_impint3.tex -->
+              <image xml:id="img_impint3" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}
+                  \begin{axis}[%
+                  axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+                  %			xtick={1,5,10},%
+                  %			extra x ticks={.5,3},
+                  %			extra x tick labels={$a$,$b$},
+                  %			ytick={1},
+			%%extra y ticks={-5,-3,...,7},%
+                  %			minor x tick num=4,
+			ymin=-.1,ymax=11,%
+			xmin=-.1,xmax=1.1%
+                  ]
+
+                  \addplot [{\coloronefill},fill={\coloronefill}] coordinates {(0.01,10.)(0.02,7.071)(0.03,5.774)(0.04,5.)(0.05,4.472)(0.06,4.082)(0.07,3.78)(0.08,3.536)(0.09,3.333)(0.1,3.162)(0.11,3.015)(0.12,2.887)(0.13,2.774)(0.14,2.673)(0.15,2.582)(0.16,2.5)(0.17,2.425)(0.18,2.357)(0.19,2.294)(0.2,2.236)(0.3,1.826)(0.4,1.581)(0.5,1.414)(0.6,1.291)(0.7,1.195)(0.8,1.118)(0.9,1.054)(1.,1.)} -- (axis cs:1,0)--(axis cs:.01,0)--cycle;
+
+                  \addplot [{\colorone},thick,smooth] coordinates {(0.01,10.)(0.02,7.071)(0.03,5.774)(0.04,5.)(0.05,4.472)(0.06,4.082)(0.07,3.78)(0.08,3.536)(0.09,3.333)(0.1,3.162)(0.11,3.015)(0.12,2.887)(0.13,2.774)(0.14,2.673)(0.15,2.582)(0.16,2.5)(0.17,2.425)(0.18,2.357)(0.19,2.294)(0.2,2.236)(0.3,1.826)(0.4,1.581)(0.5,1.414)(0.6,1.291)(0.7,1.195)(0.8,1.118)(0.9,1.054)(1.,1.)};
+
+                  \draw (axis cs:.5,5) node {\scriptsize $\ds f(x)=\frac{1}{\sqrt{x}}$};
+                  \end{axis}
+
+
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_impint3.tex END -->
+            </figure>
+
+            </p></li>
+
+          <li><p>The function <m>f(x) = 1/x^2</m> has a vertical asymptote at <m>x=0</m>, as shown in <xref ref="fig_impint3b">Figure</xref>, so this integral is an improper integral. Let's eschew using limits for a moment and proceed without recognizing the improper nature of the integral. This leads to:
+              <md>
+                <mrow>\int_{-1}^1\frac1{x^2}\ dx \amp = -\frac1x\Big|_{-1}^1</mrow>
+                <mrow>\amp = -1 - (1)</mrow>
+                <mrow>\amp =-2 !</mrow>
+              </md>
+
+              <figure xml:id="fig_impint3b" >
+                <caption>A graph of <m>f(x)=\frac{1}{x^2}</m> in <xref ref="ex_impint3">Example</xref>.</caption>
+                <!-- START figures/fig_impint3b.tex -->
+                <image xml:id="img_impint3b" >
+                  <description></description>
+                  <latex-image-code>
+                    <![CDATA[
+                    \begin{tikzpicture}
+                    \begin{axis}[%
+                    axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+                    %			xtick={.1,.5,1},%
+                    %			extra x ticks={.5,3},
+                    %			extra x tick labels={$a$,$b$},
+                    %			ytick={1},
+			%%extra y ticks={-5,-3,...,7},%
+                    %			minor x tick num=4,
+			ymin=-.1,ymax=11,%
+			xmin=-1.1,xmax=1.1%
+                    ]
+
+                    \addplot [{\coloronefill},fill={\coloronefill},smooth] coordinates {(-1.,1.)(-0.9,1.235)(-0.8,1.563)(-0.7,2.041)(-0.6,2.778)(-0.5,4.)(-0.4,6.25)(-0.3,11.11)(-0.2,25.)} -- (axis cs:0,11)--(axis cs:0,0)--(axis cs:-1,0) --cycle;
+
+                    \addplot [{\colorone},thick,smooth] coordinates {(-1.,1.)(-0.9,1.235)(-0.8,1.563)(-0.7,2.041)(-0.6,2.778)(-0.5,4.)(-0.4,6.25)(-0.3,11.11)(-0.2,25.)};
+
+                    \addplot [{\coloronefill},fill={\coloronefill},smooth] coordinates {(0.2,25.)(0.3,11.11)(0.4,6.25)(0.5,4.)(0.6,2.778)(0.7,2.041)(0.8,1.563)(0.9,1.235)(1.,1.)} -- (axis cs:1,0)--(axis cs:0,0)--(axis cs:0,11) --cycle;
+
+                    \addplot [{\colorone},thick,smooth] coordinates {(0.2,25.)(0.3,11.11)(0.4,6.25)(0.5,4.)(0.6,2.778)(0.7,2.041)(0.8,1.563)(0.9,1.235)(1.,1.)};
+
+                    \draw (axis cs:.7,7) node {\scriptsize $\ds f(x)=\frac{1}{x^2}$};
+                    \end{axis}
+
+
+
+                    \end{tikzpicture}
+                    ]]>
+                  </latex-image-code>
+                </image>
+                <!-- figures/fig_impint3b.tex END -->
+              </figure>
+
+              Clearly the area in question is above the <m>x</m>-axis, yet the area is supposedly negative! Why does our answer not match our intuition? To answer this, evaluate the integral using <xref ref="def_imp_int2">Definition</xref>.
+              <md>
+                <mrow>\int_{-1}^1\frac1{x^2}\ dx \amp = \lim_{t\to0^-}\int_{-1}^t \frac1{x^2}\ dx + \lim_{t\to0^+}\int_t^1\frac1{x^2}\ dx</mrow>
+                <mrow>\amp = \lim_{t\to0^-}-\frac1x\Big|_{-1}^t + \lim_{t\to0^+}-\frac1x\Big|_t^1</mrow>
+                <mrow>\amp = \lim_{t\to0^-}-\frac1t-1 + \lim_{t\to0^+} -1+\frac1t</mrow>
+                <mrow>\amp \Rightarrow \Big(\infty-1\Big)\ + \ \Big(- 1+\infty\Big).</mrow>
+              </md>
+              Neither limit converges hence the original improper integral diverges. The nonsensical answer we obtained by ignoring the improper nature of the integral is just that: nonsensical.</p></li>
+        </ol>
+      </solution>
+    </example>
+  </subsection>
+
+  <subsection>
+    <title>Understanding Convergence and Divergence</title>
+    <p>Oftentimes we are interested in knowing simply whether or not an improper integral converges, and not necessarily the value of a convergent integral. We provide here several tools that help determine the convergence or divergence of improper integrals without integrating.</p>
+
+    <p>Our first tool is to understand the behavior of functions of the form <m>\ds \frac1{x^p}</m>.</p>
+
+    <example xml:id="ex_impint4">
+      <title>Improper integration of <m>1/x^p</m></title>
+      <statement>
+        <p>Determine the values of <m>p</m> for which <m>\ds \int_1^\infty \frac1{x^p}\ dx</m> converges.</p>
+      </statement>
+      <solution>
+        <p>We begin by integrating and then evaluating the limit.
+          <md>
+            <mrow>\int_1^\infty \frac1{x^p}\ dx \amp =	\lim_{b\to\infty}\int_1^b\frac1{x^p}\ dx</mrow>
+            <mrow>\amp =	\lim_{b\to\infty}\int_1^b x^{-p}\ dx \qquad \text{ (assume \(p\neq 1\)) }</mrow>
+            <mrow>\amp = \lim_{b\to\infty} \frac{1}{-p+1}x^{-p+1}\Big|_1^b</mrow>
+            <mrow>\amp = \lim_{b\to\infty} \frac{1}{1-p}\big(b^{1-p}-1^{1-p}\big).</mrow>
+          </md>
+        </p>
+
+        <p>When does this limit converge <mdash /> i.e., when is this limit <em>not</em> <m>\infty</m>? This limit converges precisely when the power of <m>b</m> is less than 0: when <m>1-p\lt 0 \Rightarrow 1\lt p</m>.</p>
+
+        <figure xml:id="fig_impint4" >
+          <caption>Plotting functions of the form <m>1/x\ ^p</m> in <xref ref="ex_impint4">Example</xref>.</caption>
+          <!-- START figures/fig_impint4.tex -->
+          <image xml:id="img_impint4" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[%
+              axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={1},%
+              %			extra x ticks={.5,3},
+              %			extra x tick labels={$a$,$b$},
+			ytick=\empty,
+			%%extra y ticks={-5,-3,...,7},%
+              %			minor x tick num=4,
+			ymin=-.1,ymax=6,%
+			xmin=-.1,xmax=2.1%
+              ]
+
+              \addplot [dashed,thick,smooth] coordinates {(0.1,10.)(0.15,6.667)(0.2,5.)(0.25,4.)(0.3,3.333)(0.35,2.857)(0.4,2.5)(0.45,2.222)(0.5,2.)(0.55,1.818)(0.6,1.667)(0.65,1.538)(0.7,1.429)(0.75,1.333)(0.8,1.25)(0.85,1.176)(0.9,1.111)(0.95,1.053)(1.,1.)(1.05,0.9524)(1.1,0.9091)(1.15,0.8696)(1.2,0.8333)(1.25,0.8)(1.3,0.7692)(1.35,0.7407)(1.4,0.7143)(1.45,0.6897)(1.5,0.6667)(1.55,0.6452)(1.6,0.625)(1.65,0.6061)(1.7,0.5882)(1.75,0.5714)(1.8,0.5556)(1.85,0.5405)(1.9,0.5263)(1.95,0.5128)(2.,0.5)};
+
+              \addplot [{\colorone},thick,smooth] coordinates {(0.1,31.62)(0.15,17.21)(0.2,11.18)(0.25,8.)(0.3,6.086)(0.35,4.829)(0.4,3.953)(0.45,3.313)(0.5,2.828)(0.55,2.452)(0.6,2.152)(0.65,1.908)(0.7,1.707)(0.75,1.54)(0.8,1.398)(0.85,1.276)(0.9,1.171)(0.95,1.08)(1.,1.)(1.05,0.9294)(1.1,0.8668)(1.15,0.8109)(1.2,0.7607)(1.25,0.7155)(1.3,0.6747)(1.35,0.6375)(1.4,0.6037)(1.45,0.5727)(1.5,0.5443)(1.55,0.5182)(1.6,0.4941)(1.65,0.4718)(1.7,0.4512)(1.75,0.432)(1.8,0.4141)(1.85,0.3974)(1.9,0.3818)(1.95,0.3672)(2.,0.3536)};
+
+              \addplot [{\colortwo},thick,smooth] coordinates {(.05,4.47)(0.1,3.162)(0.15,2.582)(0.2,2.236)(0.25,2.)(0.3,1.826)(0.35,1.69)(0.4,1.581)(0.45,1.491)(0.5,1.414)(0.55,1.348)(0.6,1.291)(0.65,1.24)(0.7,1.195)(0.75,1.155)(0.8,1.118)(0.85,1.085)(0.9,1.054)(0.95,1.026)(1.,1.)(1.05,0.9759)(1.1,0.9535)(1.15,0.9325)(1.2,0.9129)(1.25,0.8944)(1.3,0.8771)(1.35,0.8607)(1.4,0.8452)(1.45,0.8305)(1.5,0.8165)(1.55,0.8032)(1.6,0.7906)(1.65,0.7785)(1.7,0.767)(1.75,0.7559)(1.8,0.7454)(1.85,0.7352)(1.9,0.7255)(1.95,0.7161)(2.,0.7071)};
+
+              \draw (axis cs:.7,5) node {\scriptsize $\ds f(x)=\frac{1}{x^q}$};
+              \draw (axis cs:.35,.8) node {\scriptsize $\ds f(x)=\frac{1}{x^p}$};
+              \draw (axis cs:1.5,3) node {\scriptsize $p<1<q$};
+              \end{axis}
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_impint4.tex END -->
+        </figure>
+
+        <p>Our analysis shows that if <m>p>1</m>, then <m>\ds\int_1^\infty \frac1{x^p}\ dx</m> converges. When <m>p\lt 1</m> the improper integral diverges; we showed in <xref ref="ex_impint1">Example</xref> that when <m>p=1</m> the integral also diverges.</p>
+
+        <p><xref ref="fig_impint4">Figure</xref> graphs <m>y=1/x</m> with a dashed line, along with graphs of <m>y=1/x^p</m>, <m>p\lt 1</m>, and <m>y=1/x^q</m>, <m>q>1</m>. Somehow the dashed line forms a dividing line between convergence and divergence.</p>
+      </solution>
+    </example>
+
+    <p>The result of <xref ref="ex_impint4">Example</xref> provides an important tool in determining the convergence of other integrals. A similar result is proved in the exercises about improper integrals of the form <m>\ds \int_0^1\frac1{x^p}\ dx</m>. These results are summarized in the following Key Idea.</p>
+
+    <insight xml:id="idea_impint1">
+      <title>Convergence of Improper Integrals <m>\ds \int_1^\infty\frac1{x^p}<nbsp />dx</m> and <m>\ds \int_0^1\frac1{x^p}<nbsp />dx</m>.</title>
+      <ol>
+        <li><p>The improper integral <m>\ds \int_1^\infty\frac1{x^p}\ dx</m> converges when <m>p>1</m> and diverges when <m>p\leq 1</m>.<index><main>convergence</main><sub>of improper int.</sub></index><index><main>divergence</main><sub>of improper int.</sub></index></p></li>
+
+        <li><p>The improper integral <m>\ds \int_0^1\frac1{x^p}\ dx</m> converges when <m>p\lt 1</m> and diverges when <m>p\geq 1</m>.</p></li>
+      </ol>
+    </insight>
+
+    <p>A basic technique in determining convergence of improper integrals is to compare an integrand whose convergence is unknown to an integrand whose convergence is known. We often use integrands of the form <m>1/x^p</m> to compare to as their convergence on certain intervals is known. This is described in the following theorem.</p>
+
+    <aside>
+      <p>We used the upper and lower bound of <q>1</q> in <xref ref="idea_impint1">Key Idea</xref> for convenience. It can be replaced by any <m>a</m> where <m>a>0</m>.</p>
+    </aside>
+
+    <theorem xml:id="thm_impint_comparison">
+      <title>Direct Comparison Test for Improper Integrals</title>
+      <statement>
+        <p>Let <m>f</m> and <m>g</m> be continuous on <m>[a,\infty)</m> where <m>0\leq f(x)\leq g(x)</m> for all <m>x</m> in <m>[a,\infty)</m>.</p>
+
+        <ol>
+          <li><p>If <m>\ds \int_a^\infty g(x)\ dx</m> converges, then <m>\ds \int_a^\infty f(x)\ dx</m> converges.
+	<index><main>integration</main><sub>improper</sub></index><index><main>convergence</main><sub>Direct Comparison Test!for integration</sub></index><index><main>divergence</main><sub>Direct Comparison Test!for integration</sub></index><index><main>Direct Comparison Test</main><sub>for integration</sub></index><index><main>convergence</main><sub>of improper int.</sub></index><index><main>divergence</main><sub>of improper int.</sub></index></p></li>
+
+          <li><p>If <m>\ds \int_a^\infty f(x)\ dx</m> diverges, then <m>\ds \int_a^\infty g(x)\ dx</m> diverges.</p></li>
+        </ol>
+      </statement>
+    </theorem>
+
+    <example xml:id="ex_impint5">
+      <title>Determining convergence of improper integrals</title>
+      <statement>
+        <p>Determine the convergence of the following improper integrals.</p>
+
+        <p>1. <m>\ds \int_1^\infty e^{-x^2}\ dx</m>  2. <m>\ds \int_3^\infty \frac{1}{\sqrt{x^2-x}}\ dx</m></p>
+      </statement>
+      <solution>
+        <ol>
+          <li><p>The function <m>f(x) = e^{-x^2}</m> does not have an antiderivative expressible in terms of elementary functions, so we cannot integrate directly. It is comparable to <m>g(x)=1/x^2</m>, and as demonstrated in <xref ref="fig_impint5">Figure</xref>, <m>e^{-x^2} \lt  1/x^2</m> on <m>[1,\infty)</m>. We know from <xref ref="idea_impint1">Key Idea</xref> that <m>\ds \int_1^\infty \frac{1}{x^2}\ dx</m> converges, hence <m>\ds\int_1^\infty e^{-x^2}\ dx</m> also converges.
+
+              <figure xml:id="fig_impint5" >
+                <caption>Graphs of <m>f(x) = e^{-x^2}</m> and <m>f(x)= 1/x^2</m> in <xref ref="ex_impint5">Example</xref>.</caption>
+                <!-- START figures/fig_impint5.tex -->
+                <image xml:id="img_impint5" >
+                  <description></description>
+                  <latex-image-code>
+                    <![CDATA[
+                    \begin{tikzpicture}
+                    \begin{axis}[%
+                    axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+                    %			xtick={1},%
+                    %			extra x ticks={.5,3},
+                    %			extra x tick labels={$a$,$b$},
+                    %			ytick=\empty,
+			%%extra y ticks={-5,-3,...,7},%
+                    %			minor x tick num=4,
+			ymin=-.1,ymax=1.1,%
+			xmin=-.1,xmax=4.1%
+                    ]
+
+                    \addplot [{\colorone},thick,smooth] coordinates {(1.,0.3679)(1.1,0.2982)(1.2,0.2369)(1.3,0.1845)(1.4,0.1409)(1.5,0.1054)(1.6,0.0773)(1.7,0.05558)(1.8,0.03916)(1.9,0.02705)(2.,0.01832)(2.1,0.01216)(2.2,0.007907)(2.3,0.005042)(2.4,0.003151)(2.5,0.00193)(2.6,0.001159)(2.7,0.0006823)(2.8,0.0003937)(2.9,0.0002226)(3.,0.0001234)(3.1,0)(3.2,0)(3.3,0)(3.4,0)(3.5,0)(3.6,0)(3.7,0)(3.8,0)(3.9,0)(4.,0)};
+
+                    \addplot [{\colortwo},thick,smooth] coordinates {(1.,1.)(1.1,0.8264)(1.2,0.6944)(1.3,0.5917)(1.4,0.5102)(1.5,0.4444)(1.6,0.3906)(1.7,0.346)(1.8,0.3086)(1.9,0.277)(2.,0.25)(2.1,0.2268)(2.2,0.2066)(2.3,0.189)(2.4,0.1736)(2.5,0.16)(2.6,0.1479)(2.7,0.1372)(2.8,0.1276)(2.9,0.1189)(3.,0.1111)(3.1,0.1041)(3.2,0.09766)(3.3,0.09183)(3.4,0.08651)(3.5,0.08163)(3.6,0.07716)(3.7,0.07305)(3.8,0.06925)(3.9,0.06575)(4.,0.0625)};
+
+                    \draw (axis cs:.7,.45) node {\scriptsize $\ds f(x)=e^{-x^2}$};
+                    \draw (axis cs:1.9,.8) node {\scriptsize $\ds f(x)=\frac{1}{x^2}$};
+
+                    \end{axis}
+
+
+
+                    \end{tikzpicture}
+                    ]]>
+                  </latex-image-code>
+                </image>
+                <!-- figures/fig_impint5.tex END -->
+              </figure>
+
+            </p></li>
+
+          <li><p>Note that for large values of <m>x</m>, <m>\ds \frac{1}{\sqrt{x^2-x}} \approx \frac{1}{\sqrt{x^2}} =\frac{1}{x}</m>. We know from <xref ref="idea_impint1">Key Idea</xref> and the subsequent note that  <m>\ds \int_3^\infty \frac1x\ dx</m> diverges, so we seek to compare the original integrand to <m>1/x</m>.
+
+              It is easy to see that when <m>x>0</m>, we have <m>x = \sqrt{x^2} > \sqrt{x^2-x}</m>. Taking reciprocals reverses the inequality, giving
+              <me>
+                \frac1x \lt  \frac1{\sqrt{x^2-x}}.
+              </me>
+              Using <xref ref="thm_impint_comparison">Theorem</xref>, we conclude that since <m>\ds\int_3^\infty\frac1x\ dx</m> diverges, <m>\ds\int_3^\infty\frac1{\sqrt{x^2-x}}\ dx</m> diverges as well. <xref ref="fig_impint5b">Figure</xref> illustrates this.
+
+              <figure xml:id="fig_impint5b" >
+                <caption>Graphs of <m>f(x) = 1/\sqrt{x^2-x}</m> and <m>f(x)= 1/x</m> in <xref ref="ex_impint5">Example</xref>.</caption>
+                <!-- START figures/fig_impint5b.tex -->
+                <image xml:id="img_impint5b" >
+                  <description></description>
+                  <latex-image-code>
+                    <![CDATA[
+                    \begin{tikzpicture}
+                    \begin{axis}[%
+                    axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+                    %			xtick={1},%
+                    %			extra x ticks={.5,3},
+                    %			extra x tick labels={$a$,$b$},
+                    %			ytick=\empty,
+			%%extra y ticks={-5,-3,...,7},%
+                    %			minor x tick num=4,
+			ymin=-.1,ymax=.5,%
+			xmin=-.1,xmax=6.2%
+                    ]
+
+                    \addplot [{\colorone},thick,smooth] coordinates {(3.,0.4082)(3.1,0.3919)(3.2,0.3769)(3.3,0.363)(3.4,0.3501)(3.5,0.3381)(3.6,0.3269)(3.7,0.3164)(3.8,0.3066)(3.9,0.2974)(4.,0.2887)(4.1,0.2805)(4.2,0.2728)(4.3,0.2655)(4.4,0.2585)(4.5,0.252)(4.6,0.2457)(4.7,0.2398)(4.8,0.2341)(4.9,0.2288)(5.,0.2236)(5.1,0.2187)(5.2,0.214)(5.3,0.2095)(5.4,0.2052)(5.5,0.201)(5.6,0.197)(5.7,0.1932)(5.8,0.1895)(5.9,0.186)(6.,0.1826)};
+
+                    \addplot [{\colortwo},thick,smooth] coordinates {(3.,0.3333)(3.1,0.3226)(3.2,0.3125)(3.3,0.303)(3.4,0.2941)(3.5,0.2857)(3.6,0.2778)(3.7,0.2703)(3.8,0.2632)(3.9,0.2564)(4.,0.25)(4.1,0.2439)(4.2,0.2381)(4.3,0.2326)(4.4,0.2273)(4.5,0.2222)(4.6,0.2174)(4.7,0.2128)(4.8,0.2083)(4.9,0.2041)(5.,0.2)(5.1,0.1961)(5.2,0.1923)(5.3,0.1887)(5.4,0.1852)(5.5,0.1818)(5.6,0.1786)(5.7,0.1754)(5.8,0.1724)(5.9,0.1695)(6.,0.1667)};
+
+                    \draw (axis cs:4,.45) node {\scriptsize $\ds f(x)=\frac{1}{\sqrt{x^2-x}}$};
+                    \draw (axis cs:2.5,.2) node {\scriptsize $\ds f(x)=\frac{1}{x}$};
+
+                    \end{axis}
+
+
+
+                    \end{tikzpicture}
+                    ]]>
+                  </latex-image-code>
+                </image>
+                <!-- figures/fig_impint5b.tex END -->
+              </figure>
+
+            </p></li>
+        </ol>
+      </solution>
+    </example>
+
+    <p>Being able to compare <q>unknown</q> integrals to <q>known</q> integrals is very useful in determining convergence. However, some of our examples were a little <q>too nice.</q> For instance, it was convenient that <m>\ds \frac{1}x \lt  \frac{1}{\sqrt{x^2-x}}</m>, but what if the <q><m>-x</m></q> were replaced with a <q><m>+2x+5</m></q>? That is, what can we say about the convergence of <m>\ds \int_3^\infty\frac{1}{\sqrt{x^2+2x+5}}\ dx</m>? We have <m>\ds \frac{1}{x} > \frac1{\sqrt{x^2+2x+5}}</m>, so we cannot use <xref ref="thm_impint_comparison">Theorem</xref>.</p>
+
+    <p>In cases like this (and many more) it is useful to employ the following theorem.</p>
+
+    <theorem xml:id="thm_impint_limit">
+      <title>Limit Comparison Test for Improper Integrals</title>
+      <statement>
+        <p>Let <m>f</m> and <m>g</m> be continuous functions on <m>[a,\infty)</m> where <m>f(x)>0</m> and <m>g(x)>0</m> for all <m>x</m>. If
+          <me>
+            \lim_{x\to\infty} \frac{f(x)}{g(x)} = L,\qquad 0\lt L\lt \infty,
+          </me>
+          then
+          <me>
+            \int_a^\infty f(x)\ dx  \text{ and }   \int_a^\infty g(x)\ dx
+          </me>
+          either both converge or both diverge.
+	<index><main>integration</main><sub>improper</sub></index><index><main>convergence</main><sub>Limit Comparison Test!for integration</sub></index><index><main>divergence</main><sub>Limit Comparison Test!for integration</sub></index><index><main>Limit Comparison Test</main><sub>for integration</sub></index><index><main>convergence</main><sub>of improper int.</sub></index><index><main>divergence</main><sub>of improper int.</sub></index></p>
+      </statement>
+    </theorem>
+
+    <example xml:id="ex_impint6">
+      <title>Determining convergence of improper integrals</title>
+      <statement>
+        <p>Determine the convergence of <m>\ds \int_3^{\infty} \frac{1}{\sqrt{x^2+2x+5}}\ dx</m>.</p>
+      </statement>
+      <solution>
+        <p>As <m>x</m> gets large, the quadratic inside the square root function will begin to behave much like <m>y=x</m>. So we compare \small<m>\ds\frac{1}{\sqrt{x^2+2x+5}}</m><nbsp />to \small<m>\ds\frac1x</m><nbsp />with the Limit Comparison Test:
+          <me>
+            \lim_{x\to\infty} \frac{1/\sqrt{x^2+2x+5}}{1/x} = \lim_{x\to\infty}\frac{x}{\sqrt{x^2+2x+5}}.
+          </me>
+        </p>
+
+        <p>The immediate evaluation of this limit returns <m>\infty/\infty</m>, an indeterminate form. Using l'H&#xf4;pital's Rule seems appropriate, but in this situation, it does not lead to useful results. (We encourage the reader to employ l'H&#xf4;pital's Rule at least once to verify this.)</p>
+
+        <p>The trouble is the square root function. To get rid of it, we employ the following fact: If <m>\lim\limits_{x\to c} f(x) = L</m>, then <m>\lim\limits_{x\to c} f(x)^2 = L^2</m>. (This is true when either <m>c</m> or <m>L</m> is <m>\infty</m>.) So we consider now the limit
+          <me>
+            \lim_{x\to\infty} \frac{x^2}{x^2+2x+5}.
+          </me>
+        </p>
+
+        <p>This converges to 1, meaning the original limit also converged to 1. As <m>x</m> gets very large, the function
+          \small<m>\ds\frac{1}{\sqrt{x^2+2x+5}}</m><nbsp />looks very much like \small<m>\ds\frac1x</m>.\
+          Since we know that \small<m>\ds\int_3^{\infty} \frac1x\ dx</m><nbsp />diverges, by the Limit Comparison Test we know that \small<m>\ds\int_3^\infty\frac{1}{\sqrt{x^2+2x+5}}\ dx</m><nbsp />also diverges. <xref ref="fig_impint6">Figure</xref> graphs <m>f(x)=1/\sqrt{x^2+2x+5}</m> and <m>f(x)=1/x</m>, illustrating that as <m>x</m> gets large, the functions become indistinguishable.</p>
+
+        <figure xml:id="fig_impint6" >
+          <caption>Graphing <m>f(x)=\frac{1}{\sqrt{x^2+2x+5}}</m> and <m>f(x)=\frac1x</m> in <xref ref="ex_impint6">Example</xref>.</caption>
+          <!-- START figures/fig_impint6.tex -->
+          <image xml:id="img_impint6" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[%
+              axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+              %			xtick={1},%
+              %			extra x ticks={.5,3},
+              %			extra x tick labels={$a$,$b$},
+              %			ytick=\empty,
+			%%extra y ticks={-5,-3,...,7},%
+              %			minor x tick num=4,
+			ymin=-.1,ymax=.35,%
+			xmin=-.1,xmax=21%
+              ]
+
+              \addplot [{\colortwo},thick,smooth] coordinates {(3.,0.3333)(4.,0.25)(5.,0.2)(6.,0.1667)(7.,0.1429)(8.,0.125)(9.,0.1111)(10.,0.1)(11.,0.09091)(12.,0.08333)(13.,0.07692)(14.,0.07143)(15.,0.06667)(16.,0.0625)(17.,0.05882)(18.,0.05556)(19.,0.05263)(20.,0.05)};
+
+              \addplot [{\colorone},thick,smooth] coordinates {(3.,0.2236)(4.,0.1857)(5.,0.1581)(6.,0.1374)(7.,0.1213)(8.,0.1085)(9.,0.09806)(10.,0.08944)(11.,0.0822)(12.,0.07603)(13.,0.07071)(14.,0.06608)(15.,0.06202)(16.,0.05842)(17.,0.05522)(18.,0.05234)(19.,0.04975)(20.,0.0474)};
+
+              \draw (axis cs:10,.3) node {\scriptsize $\ds f(x)=\frac{1}{\sqrt{x^2+2x+5}}$};
+              \draw (axis cs:4,.09) node {\scriptsize $\ds f(x)=\frac{1}{x}$};
+
+              \end{axis}
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_impint6.tex END -->
+        </figure>
+      </solution>
+    </example>
+
+    <p>Both the Direct and Limit Comparison Tests were given in terms of integrals over an infinite interval. There are versions that apply to improper integrals with an infinite range, but as they are a bit wordy and a little more difficult to employ, they are omitted from this text.</p>
+
+    <p>This chapter has explored many integration techniques. We learned Substitution, which <q>undoes</q> the Chain Rule of differentiation, as well as Integration by Parts, which <q>undoes</q> the Product Rule. We learned specialized techniques for handling trigonometric functions and introduced the hyperbolic functions, which are closely related to the trigonometric functions. All techniques effectively have this goal in common: rewrite the integrand in a new way so that the integration step is easier to see and implement.</p>
+
+    <p>As stated before, integration is, in general, hard. It is easy to write a function whose antiderivative is impossible to write in terms of elementary functions, and even when a function does have an antiderivative expressible by elementary functions, it may be really hard to discover what it is. The powerful computer algebra system <em>Mathematica</em><trademark /> has approximately 1,000 pages of code dedicated to integration.</p>
+
+    <p>Do not let this difficulty discourage you. There is great value in learning integration techniques, as they allow one to manipulate an integral in ways that can illuminate a concept for greater understanding. There is also great value in understanding the need for good numerical techniques: the Trapezoidal and Simpson's Rules are just the beginning of powerful techniques for approximating the value of integration.</p>
+
+    <p>The next chapter stresses the uses of integration. We generally do not find antiderivatives for antiderivative's sake, but rather because they provide the solution to some type of problem. The following chapter introduces us to a number of different problems whose solution is provided by integration.</p>
+  </subsection>
+
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>The definite integral was defined with what two stipulations?</p>
+          </statement>
+          <solution>
+            <p>The interval of integration is finite, and the integrand is continuous on that interval.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>If <m>\lim\limits_{b\to \infty} \int_0^b f(x)\ dx</m> exists, then the integral <m>\ds \int_0^\infty f(x)\ dx</m> is said to <fillin />.</p>
+          </statement>
+          <solution>
+            <p>converge</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>If <m>\ds \int_1^\infty f(x)\ dx=10</m>, and <m>0\leq g(x)\leq f(x)</m> for all <m>x</m>, then we know that <m>\ds \int_1^\infty g(x)\ dx</m> <fillin />.</p>
+          </statement>
+          <solution>
+            <p>converges; could also state <m>\lt 10</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>For what values of <m>p</m> will <m>\ds \int_1^\infty \frac1{x^p}\ dx</m> converge?</p>
+          </statement>
+          <solution>
+            <p><m>p>1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>For what values of <m>p</m> will <m>\ds \int_{10}^\infty \frac1{x^p}\ dx</m> converge?</p>
+          </statement>
+          <solution>
+            <p><m>p>1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>For what values of <m>p</m> will <m>\ds \int_{0}^1 \frac1{x^p}\ dx</m> converge?</p>
+          </statement>
+          <solution>
+            <p><m>p\lt 1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, evaluate the given improper integral.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_0^\infty e^{5-2x}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>e^5/2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_1^\infty \frac{1}{x^3}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>1/2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_1^\infty x^{-4}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>1/3</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{-\infty}^\infty \frac{1}{x^2+9}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\pi/3</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{-\infty}^0 2^x\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>1/\ln(2)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{-\infty}^0 \left(\frac12\right)^x\ dx</m></p>
+          </statement>
+          <solution>
+            <p>diverges</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{-\infty}^\infty\frac{x}{x^2+1}\ dx</m></p>
+          </statement>
+          <solution>
+            <p>diverges</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{-\infty}^\infty\frac{x}{x^2+4}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\pi/2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{2}^\infty\frac{1}{(x-1)^2}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{1}^2\frac{1}{(x-1)^2}\ dx</m></p>
+          </statement>
+          <solution>
+            <p>diverges</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{2}^\infty\frac{1}{x-1}\ dx</m></p>
+          </statement>
+          <solution>
+            <p>diverges</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{1}^2\frac{1}{x-1}\ dx</m></p>
+          </statement>
+          <solution>
+            <p>diverges</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{-1}^1 \frac 1x \ dx</m></p>
+          </statement>
+          <solution>
+            <p>diverges</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{1}^3\frac{1}{x-2}\ dx</m></p>
+          </statement>
+          <solution>
+            <p>diverges</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{0}^\pi \sec^2(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p>diverges</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{-2}^1 \frac{1}{\sqrt{\abs{x}}} \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>2+2\sqrt{2}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{0}^\infty xe^{-x} \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{0}^\infty xe^{-x^2} \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>1/2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{-\infty}^\infty xe^{-x^2} \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>0</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{-\infty}^\infty \frac{1}{e^x+e^{-x}} \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\pi/2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{0}^1 x\ln(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>-1/4</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{1}^\infty \frac{\ln(x) }{x} \ dx</m></p>
+          </statement>
+          <solution>
+            <p>diverges</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{0}^1 \ln(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>-1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{1}^\infty \frac{\ln(x) }{x^2} \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{1}^\infty \frac{\ln(x) }{\sqrt{x}} \ dx</m></p>
+          </statement>
+          <solution>
+            <p>diverges</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{0}^\infty e^{-x}\sin(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>1/2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{0}^\infty e^{-x}\cos(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>1/2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, use the Direct Comparison Test or the Limit Comparison Test to determine whether the given definite integral converges or diverges. Clearly state what test is being used and what function the integrand is being compared to.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{10}^\infty \frac{3}{\sqrt{3x^2+2x-5}} \ dx</m></p>
+          </statement>
+          <solution>
+            <p>diverges; Limit Comparison Test with <m>1/x</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{2}^\infty \frac{4}{\sqrt{7x^3-x}} \ dx</m></p>
+          </statement>
+          <solution>
+            <p>converges; Limit Comparison Test with <m>1/x^{3/2}</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{0}^\infty \frac{\sqrt{x+3}}{\sqrt{x^3-x^2+x+1}} \ dx</m></p>
+          </statement>
+          <solution>
+            <p>diverges; Limit Comparison Test with <m>1/x</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{1}^\infty e^{-x}\ln(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p>converges; Direct Comparison Test with <m>xe^{-x}</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{5}^\infty e^{-x^2+3x+1} \ dx</m></p>
+          </statement>
+          <solution>
+            <p>converges; Direct Comparison Test with <m>e^{-x}</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{0}^\infty \frac{\sqrt{x}}{e^x} \ dx</m></p>
+          </statement>
+          <solution>
+            <p>converges; Direct Comparison Test with <m>xe^{-x}</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{2}^\infty \frac{1}{x^2+\sin(x) } \ dx</m></p>
+          </statement>
+          <solution>
+            <p>converges; Direct Comparison Test with <m>1/(x^2-1)</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{0}^\infty \frac{x}{x^2+\cos(x) } \ dx</m></p>
+          </statement>
+          <solution>
+            <p>diverges; Direct Comparison Test with <m>x/(x^2+\cos(x) )</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{0}^\infty \frac{1}{x+e^x} \ dx</m></p>
+          </statement>
+          <solution>
+            <p>converges; Direct Comparison Test with <m>1/e^x</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{0}^\infty \frac{1}{e^x-x} \ dx</m></p>
+          </statement>
+          <solution>
+            <p>converges; Limit Comparison Test with <m>1/e^x</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

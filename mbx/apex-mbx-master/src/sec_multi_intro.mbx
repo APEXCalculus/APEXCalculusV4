@@ -1,0 +1,1470 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_multi_intro">
+  <title>Introduction to Multivariable Functions</title>
+  <introduction>
+    <definition xml:id="def_multi2">
+      <title>Function of Two Variables</title>
+      <statement>
+        <p>Let <m>D</m> be a subset of <m>\mathbb{R}^2</m>. A <term>function <m>f</m> of two variables</term> is a rule that assigns each pair <m>(x,y)</m> in <m>D</m> a value <m>z=f(x,y)</m> in <m>\mathbb{R}</m>. <m>D</m> is the <term>domain</term> of <m>f</m>; the set of all outputs of <m>f</m> is the <term>range</term>.
+          <index><main>multivariable function</main></index><index><main>multivariable function</main><sub>domain</sub></index><index><main>multivariable function</main><sub>range</sub></index><index><main>function</main><sub>of two variables</sub></index></p>
+      </statement>
+    </definition>
+
+    <example xml:id="ex_multi1">
+      <title>Understanding a function of two variables</title>
+      <statement>
+        <p>Let <m>z=f(x,y) = x^2-y</m>. Evaluate <m>f(1,2)</m>, <m>f(2,1)</m>, and <m>f(-2,4)</m>; find the domain and range of <m>f</m>.</p>
+      </statement>
+      <solution>
+        <p>Using the definition <m>f(x,y) = x^2-y</m>, we have:
+          <md>
+            <mrow>f(1,2) \amp = 1^2-2 = -1</mrow>
+            <mrow>f(2,1) \amp =	2^2-1 = 3</mrow>
+            <mrow>f(-2,4) \amp = (-2)^2-4 = 0</mrow>
+          </md>
+        </p>
+
+        <p>The domain is not specified, so we take it to be all possible pairs in <m>\mathbb{R}^2</m> for which <m>f</m> is defined. In this example, <m>f</m> is defined for <em>all</em> pairs <m>(x,y)</m>, so the domain <m>D</m> of <m>f</m> is <m>\mathbb{R}^2</m>.</p>
+
+        <p>The output of <m>f</m> can be made as large or small as possible; any real number <m>r</m> can be the output. (In fact, given any real number <m>r</m>, <m>f(0,-r)=r</m>.) So the range <m>R</m> of <m>f</m> is <m>\mathbb{R}</m>.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_multi2">
+      <title>Understanding a function of two variables</title>
+      <statement>
+        <p>Let <m>\ds f(x,y) = \sqrt{1-\frac{x^2}9-\frac{y^2}4}</m>. Find the domain and range of <m>f</m>.</p>
+      </statement>
+      <solution>
+        <p>The domain is all pairs <m>(x,y)</m> allowable as input in <m>f</m>. Because of the square<ndash />root, we need <m>(x,y)</m> such that <m>0\leq1-\frac{x^2}9-\frac{y^2}4</m>:
+          <md>
+            <mrow>0\amp \leq1-\frac{x^2}9-\frac{y^2}4</mrow>
+            <mrow>\frac{x^2}9+\frac{y^2}4 \amp \leq 1</mrow>
+          </md>
+        </p>
+
+        <p>The above equation describes the interior of an ellipse as shown in <xref ref="fig_multi2">Figure</xref>. We can represent the domain <m>D</m> graphically with the figure; in set notation, we can write <m>D = \{(x,y)|\,\frac{x^2}9+\frac{y^2}4 \leq 1\}</m>.</p>
+
+        <figure xml:id="fig_multi2" >
+          <caption>Illustrating the domain of <m>f(x,y)</m> in <xref ref="ex_multi2">Example</xref>.</caption>
+          <!-- START figures/fig_multi2.tex -->
+          <image xml:id="img_multi2" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}[>=stealth]
+              \begin{axis}[%
+              axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={1,2,-1,-2},
+			%minor x tick num=4,%
+              %			extra x ticks={.33},
+              %			extra x tick labels={$1/3$},
+			%ytick={-3,-2,-1,1,2,3},
+			%minor y tick num=4,%extra y ticks={-5,-3,...,7},%
+			ymin=-5.9,ymax=5.9,%
+			xmin=-5.9,xmax=5.9%
+              ]
+
+              \addplot [thick,{\colorone},fill={\coloronefill}, smooth,domain=0:360,samples=45] ({3*cos(x)},{2*sin(x)});
+
+              \draw (axis cs: 3,3) node {\scriptsize $\displaystyle \frac{x^2}9+\frac{y^2}4=1$};
+
+
+
+
+              \end{axis}
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_multi2.tex END -->
+        </figure>
+
+        <p>The range is the set of all possible output values. The square<ndash />root ensures that all output is <m>\geq 0</m>. Since the <m>x</m> and <m>y</m> terms are squared, then subtracted, inside the square<ndash />root, the largest output value comes at <m>x=0</m>, <m>y=0</m>: <m>f(0,0) = 1</m>. Thus the range <m>R</m> is the interval <m>[0,1]</m>.</p>
+      </solution>
+    </example>
+  </introduction>
+
+  <subsection>
+    <title>Graphing Functions of Two Variables</title>
+    <p>The <em>graph</em> of a function <m>f</m> of two variables is the set of all points <m>\big(x,y,f(x,y)\big)</m> where <m>(x,y)</m> is in the domain of <m>f</m>. This creates a <em>surface</em> in space.</p>
+
+    <figure xml:id="fig_multigraph_intro" >
+    <caption>Graphing a function of two variables.</caption>
+    <sidebyside>
+      <figure>
+        <caption>(a)</caption>
+        <!--
+         \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=pageinvisible,
+        3Droll=0.5548354761871764,
+        3Dortho=0.004999999888241291,
+        3Dc2c=0.5822595357894897 0.666623592376709 0.4653888940811157,
+        3Dcoo=-4.197300910949707 1.0700405836105347 59.15589141845703,
+        3Droo=129.99999935798337,
+        3Dlights=Headlamp,add3Djscript=asylabels.js]
+         -->
+
+
+        <!-- START figures/figmultigraph_intro_3D.asy -->
+        <image xml:id="img_multigraph_intro_3D" >
+          <asymptote>
+            <![CDATA[
+            import graph3;
+
+            //ASY file for figmultigraph_intro3D.asy in Chapter 12
+
+            size(200,200,IgnoreAspect);
+            //currentprojection=perspective(7,2,1);
+            currentprojection=orthographic(8,8,1.5);
+            defaultrender.merge=true;
+
+            usepackage("mathspec");
+            texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+            texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+            texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+            texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+
+            // setup and draw the axes
+            real[] myxchoice={-2,2};
+            real[] myychoice={-2,2};
+            real[] myzchoice={0.5,1};
+            defaultpen(0.5mm);
+            pair xbounds=(-2.5,2.5);
+            pair ybounds=(-2.5,2.5);
+            pair zbounds=(-0.25,1.25);
+
+            xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+            yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+            zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+            label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+            label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+            label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+            //Draw 25 points on the surface z=1/(1+x^2+y^2)
+            dotfactor=3;
+            real[] A={-2,-1,0,1,2};
+            for (int i=0; i<5; ++i)
+            {
+             for (int j=0; j<5; ++j)
+             {
+              dot((A[i],A[j],1/(1+(A[i])^2+(A[j])^2)),rgb(.6,.6,1));
+             }
+            }
+
+
+
+
+
+
+
+
+
+
+
+            // ////////////////////////////////////
+            //    SAMPLE CODE
+
+            // defaultpen(fontsize(10pt));
+
+            //Draw the parabola z=y^2 for t from -2 to 2
+            //triple g(real t) {return (0,t,t^2);}
+            //path3 mypath=graph(g,-2,2,operator ..); draw(mypath,blue);
+
+
+            //Draw the surface z=1/(1+x^2+y^2)
+            //triple f(pair t) {
+            //  return (t.x,t.y,1/(1+(t.x)^2+(t.y)^2));
+            //}
+            //surface s=surface(f,(-2,-2),(2,2),8,8,Spline);
+            //pen p=rgb(0,0,.7);
+            //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+
+            //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+            //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+
+            //triple f(pair t) {
+            //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+            //}
+            //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+
+            //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+            //path3 mypath=graph(g,-2,2,operator ..);
+
+            //pen p=rgb(0,0,1);
+            //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+
+            //draw(s,paleblue);
+            //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+            //draw(mypath,2bp+blue);
+            ]]>
+          </asymptote>
+        </image>
+        <!-- figures/figmultigraph_intro_3D.asy END -->
+      </figure>
+
+      <figure>
+        <caption>(b)</caption>
+        <!--
+         \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=pageinvisible,
+        3Droll=0.5548354761871764,
+        3Dortho=0.004999999888241291,
+        3Dc2c=0.5822595357894897 0.666623592376709 0.4653888940811157,
+        3Dcoo=-4.197300910949707 1.0700405836105347 59.15589141845703,
+        3Droo=129.99999935798337,
+        3Dlights=Headlamp,add3Djscript=asylabels.js]
+         -->
+
+
+        <!-- START figures/figmultigraph_introb_3D.asy -->
+        <image xml:id="img_multigraph_introb_3D" >
+          <asymptote>
+            <![CDATA[
+            import graph3;
+
+            //ASY file for figmultigraph_introb3D.asy in Chapter 12
+
+            size(200,200,IgnoreAspect);
+            //currentprojection=perspective(7,2,1);
+            currentprojection=orthographic(8,8,1.5);
+            defaultrender.merge=true;
+
+            usepackage("mathspec");
+            texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+            texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+            texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+            texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+
+            // setup and draw the axes
+            real[] myxchoice={-2,2};
+            real[] myychoice={-2,2};
+            real[] myzchoice={0.5,1};
+            defaultpen(0.5mm);
+            pair xbounds=(-2.5,2.5);
+            pair ybounds=(-2.5,2.5);
+            pair zbounds=(-0.25,1.25);
+
+            xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+            yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+            zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+            label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+            label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+            label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+            //Draw the surface z=1/(1+x^2+y^2)
+            triple f(pair t) {
+              return (t.x,t.y,1/(1+(t.x)^2+(t.y)^2));
+            }
+            surface s=surface(f,(-2,-2),(2,2),8,8,Spline);
+            pen p=rgb(0,0,.7);
+            draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+            // ////////////////////////////////////
+            //    SAMPLE CODE
+
+            // defaultpen(fontsize(10pt));
+
+            //Draw the parabola z=y^2 for t from -2 to 2
+            //triple g(real t) {return (0,t,t^2);}
+            //path3 mypath=graph(g,-2,2,operator ..); draw(mypath,blue);
+
+            //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+            //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+
+            //triple f(pair t) {
+            //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+            //}
+            //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+
+            //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+            //path3 mypath=graph(g,-2,2,operator ..);
+
+            //pen p=rgb(0,0,1);
+            //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+
+            //draw(s,paleblue);
+            //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+            //draw(mypath,2bp+blue);
+            ]]>
+          </asymptote>
+        </image>
+        <!-- figures/figmultigraph_introb_3D.asy END -->
+      </figure>
+    </sidebyside>
+
+    </figure>
+
+    <p>One can begin sketching a graph by plotting points, but this has limitations. Consider <xref ref="fig_multigraph_intro">Figure</xref>(a) where 25 points have been plotted of <m>\ds f(x,y) = \frac1{x^2+y^2+1}</m>. More points have been plotted than one would reasonably want to do by hand, yet it is not clear at all what the graph of the function looks like. Technology allows us to plot lots of points, connect adjacent points with lines and add shading to create a graph like <xref ref="fig_multigraph_intro">Figure</xref>b which does a far better job of illustrating the behavior of <m>f</m>.</p>
+
+    <p>While technology is readily available to help us graph functions of two variables, there is still a paper<ndash />and<ndash />pencil approach that is useful to understand and master as it, combined with high<ndash />quality graphics, gives one great insight into the behavior of a function. This technique is known as sketching <em>level curves</em>.</p>
+  </subsection>
+
+  <subsection>
+    <title>Level Curves</title>
+    <p>It may be surprising to find that the problem of representing a three dimensional surface on paper is familiar to most people (they just don't realize it).<index><main>multivariable function</main><sub>level curves</sub></index><index><main>level curves</main></index><index><main>contour lines</main></index> Topographical maps, like the one shown in <xref ref="fig_topomap">Figure</xref>, represent the surface of Earth by indicating points with the same elevation with <em>contour lines</em>. The elevations marked are equally spaced; in this example, each thin line indicates an elevation change in 50ft increments and each thick line indicates a change of 200ft. When lines are drawn close together, elevation changes rapidly (as one does not have to travel far to rise 50ft). When lines are far apart, such as near <q>Aspen Campground,</q> elevation changes more gradually as one has to walk farther to rise 50ft.</p>
+
+    <figure xml:id="fig_topomap" >
+      <caption>A topographical map displays elevation by drawing contour lines, along with the elevation is constant.
+        Sample taken from the public domain USGS Digital Raster Graphics, <c>http://topmaps.usgs.gove/drg/</c>.</caption>
+    </figure>
+
+    <p>Given a function <m>z=f(x,y)</m>, we can draw a <q>topographical map</q> of <m>f</m> by drawing <em>level curves</em> (or, contour lines). A level curve at <m>z=c</m> is a curve in the <m>x</m>-<m>y</m> plane such that for all points <m>(x,y)</m> on the curve, <m>f(x,y) = c</m>.</p>
+
+    <p>When drawing level curves, it is important that the <m>c</m> values are spaced equally apart as that gives the best insight to how quickly the <q>elevation</q> is changing. Examples will help one understand this concept.</p>
+
+    <example xml:id="ex_levelcurve1">
+      <title>Drawing Level Curves</title>
+      <statement>
+        <p>Let <m>\ds f(x,y) = \sqrt{1-\frac{x^2}9-\frac{y^2}4}</m>. Find the level curves of <m>f</m> for <m>c=0</m>, <m>0.2</m>, <m>0.4</m>, <m>0.6</m>, <m>0.8</m> and <m>1</m>.</p>
+      </statement>
+      <solution>
+        <p>Consider first <m>c=0</m>. The level curve for <m>c=0</m> is the set of all points <m>(x,y)</m> such that <m>0=\sqrt{1-\frac{x^2}9-\frac{y^2}4}</m>. Squaring both sides gives us
+          <me>
+            \frac{x^2}9+\frac{y^2}4=1,
+          </me>
+          an ellipse centered at <m>(0,0)</m> with horizontal major axis of length 6 and minor axis of length 4. Thus for any point <m>(x,y)</m> on this curve, <m>f(x,y) = 0</m>.</p>
+
+        <p>Now consider the level curve for <m>c=0.2</m>
+          <md>
+            <mrow>0.2 \amp = \sqrt{1-\frac{x^2}9-\frac{y^2}4}</mrow>
+            <mrow>0.04 \amp = 1-\frac{x^2}9-\frac{y^2}4</mrow>
+            <mrow>\frac{x^2}9+\frac{y^2}4 \amp =0.96</mrow>
+            <mrow>\frac{x^2}{8.64}+\frac{y^2}{3.84} \amp =1.</mrow>
+          </md>
+        </p>
+
+        <p>This is also an ellipse, where <m>a = \sqrt{8.64}\approx 2.94</m> and <m>b=\sqrt{3.84}\approx 1.96</m>.</p>
+
+        <p>In general, for <m>z=c</m>, the level curve is:
+          <md>
+            <mrow>c \amp = \sqrt{1-\frac{x^2}9-\frac{y^2}4}</mrow>
+            <mrow>c^2 \amp = 1-\frac{x^2}9-\frac{y^2}4</mrow>
+            <mrow>\frac{x^2}9+\frac{y^2}4 \amp =1-c^2</mrow>
+            <mrow>\frac{x^2}{9(1-c^2)}+\frac{y^2}{4(1-c^2)} \amp =1,</mrow>
+          </md>
+          ellipses that are decreasing in size as <m>c</m> increases. A special case is when <m>c=1</m>; there the ellipse is just the point <m>(0,0)</m>.</p>
+
+        <p>The level curves are shown in <xref ref="fig_levelcurves1">Figure</xref>(a). Note how the level curves for <m>c=0</m> and <m>c=0.2</m> are very, very close together: this indicates that <m>f</m> is growing rapidly along those curves.</p>
+
+        <figure xml:id="fig_levelcurves1" >
+        <caption>Graphing the level curves in <xref ref="ex_levelcurve1">Example</xref>.</caption>
+        <sidebyside>
+          <figure>
+            <caption>(a)</caption>
+            <!-- START figures/fig_levelcurve1b.tex -->
+            <image xml:id="img_levelcurve1b" >
+              <description></description>
+              <latex-image-code>
+                <![CDATA[
+                \begin{tikzpicture}
+                \begin{axis}[%
+                %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={-1,1,2,-2,3,-3},
+			%minor x tick num=4,%
+                %			extra x ticks={.33},
+                %			extra x tick labels={$1/3$},
+			ytick={-1,1,-2,2,3,-3},
+			%minor y tick num=4,%extra y ticks={-5,-3,...,7},%
+			ymin=-2.5,ymax=2.5,%
+			xmin=-3.2,xmax=3.2%
+                ]
+
+                \addplot [thick,{\colorone}, smooth,domain=0:360,samples=60] ({3*(cos(x))},{2*(sin(x))});
+
+                \addplot [thick,{\colorone}, smooth,domain=0:360,samples=60] ({2.93*(cos(x))},{1.96*(sin(x))});
+
+                \addplot [thick,{\colorone}, smooth,domain=0:360,samples=60] ({2.75*(cos(x))},{1.83*(sin(x))});
+
+                \addplot [thick,{\colorone}, smooth,domain=0:360,samples=60] ({2.4*(cos(x))},{1.6*(sin(x))});
+
+                \addplot [thick,{\colorone}, smooth,domain=0:360,samples=60] ({1.8*(cos(x))},{1.2*(sin(x))});
+
+                \filldraw [{\colorone}] (axis cs:0,0) circle (1pt) node [black, above right] {\scriptsize $c=1$};
+
+                \draw [->,>=stealth] (axis cs:1.7,1.13) -- (axis cs:2.6,2) node [above] {\scriptsize $c=0.6$};
+
+
+
+                \end{axis}
+
+
+
+                \end{tikzpicture}
+                ]]>
+              </latex-image-code>
+            </image>
+            <!-- figures/fig_levelcurve1b.tex END -->
+          </figure>
+
+          <figure>
+            <caption>(b)</caption>
+            <!--
+             \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=pageinvisible,
+            3Droll=0,
+            3Dortho=0.004999999888241291,
+            3Dc2c=0.6562340259552002 0.7273486256599426 0.20080043375492096,
+            3Dcoo=2.348435640335083 -6.5163373947143555 66.12745666503906,
+            3Droo=129.99999641808185,
+            3Dlights=Headlamp,add3Djscript=asylabels.js]
+             -->
+
+
+            <!-- START figures/figlevelcurve1_3D.asy -->
+            <image xml:id="img_levelcurve1_3D" >
+              <asymptote>
+                <![CDATA[
+                import graph3;
+
+                //ASY file for figlevelcurve13D.asy in Chapter 12
+
+                size(200,200,IgnoreAspect);
+                //currentprojection=perspective(7,2,1);
+                currentprojection=orthographic(9,9,2);
+                defaultrender.merge=true;
+
+                usepackage("mathspec");
+                texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+                texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+                texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+                texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+
+                // setup and draw the axes
+                real[] myxchoice={-2,2};
+                real[] myychoice={-2,2};
+                real[] myzchoice={1,2};
+                defaultpen(0.5mm);
+                pair xbounds=(-3.5,3.5);
+                pair ybounds=(-2.5,2.5);
+                pair zbounds=(-0.25,2.25);
+
+                xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+                yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+                zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+                label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+                label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+                label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+                //Draw top half of surface x^2/9+y^2/4+z^2=1
+                triple f(pair t) {
+                  //return (cos(t.x)*3*cos(t.y),sin(t.x)*2*cos(t.y),sin(t.y));
+	return (3*sin(t.y),sin(t.x)*2*cos(t.y),cos(t.x)*cos(t.y));
+                }
+                surface s=surface(f,(-pi/2,-pi/2),(pi/2,pi/2),16,16,Spline);
+                pen p=rgb(0,0,.7);
+                draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+                //Draw level curves for surface x^2/9+y^2/4+z^2=1 at c=0,0.2,0.4,0.6,0.8,1
+                triple g(real t) {return (3*cos(t)*sqrt(1-(0.8)^2),2*sin(t)*sqrt(1-(0.8)^2),0.8);}
+                path3 mypath=graph(g,0,2*pi,operator ..); draw(mypath,blue);
+                triple g(real t) {return (3*cos(t)*sqrt(1-(0.6)^2),2*sin(t)*sqrt(1-(0.6)^2),0.6);}
+                path3 mypath=graph(g,0,2*pi,operator ..); draw(mypath,blue);
+                triple g(real t) {return (3*cos(t)*sqrt(1-(0.4)^2),2*sin(t)*sqrt(1-(0.4)^2),0.4);}
+                path3 mypath=graph(g,0,2*pi,operator ..); draw(mypath,blue);
+                triple g(real t) {return (3*cos(t)*sqrt(1-(0.2)^2),2*sin(t)*sqrt(1-(0.2)^2),0.2);}
+                path3 mypath=graph(g,0,2*pi,operator ..); draw(mypath,blue);
+                triple g(real t) {return (3*cos(t)*sqrt(1-(0)^2),2*sin(t)*sqrt(1-(0)^2),0);}
+                path3 mypath=graph(g,0,2*pi,operator ..); draw(mypath,blue);
+
+                dotfactor=3;
+                dot((0,0,1),blue);
+
+
+
+
+
+
+                // ////////////////////////////////////
+                //    SAMPLE CODE
+
+                // defaultpen(fontsize(10pt));
+
+                //Draw the parabola z=y^2 for t from -2 to 2
+                //triple g(real t) {return (0,t,t^2);}
+                //path3 mypath=graph(g,-2,2,operator ..); draw(mypath,blue);
+
+
+                //Draw the surface z=1/(1+x^2+y^2)
+                //triple f(pair t) {
+                //  return (t.x,t.y,1/(1+(t.x)^2+(t.y)^2));
+                //}
+                //surface s=surface(f,(-2,-2),(2,2),8,8,Spline);
+                //pen p=rgb(0,0,.7);
+                //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+
+                //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+                //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+
+                //triple f(pair t) {
+                //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+                //}
+                //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+
+                //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+                //path3 mypath=graph(g,-2,2,operator ..);
+
+                //pen p=rgb(0,0,1);
+                //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+
+                //draw(s,paleblue);
+                //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+                //draw(mypath,2bp+blue);
+                ]]>
+              </asymptote>
+            </image>
+            <!-- figures/figlevelcurve1_3D.asy END -->
+          </figure>
+        </sidebyside>
+
+        </figure>
+
+        <p>In <xref ref="fig_levelcurves1">Figure</xref>(b), the curves are drawn on a graph of <m>f</m> in space. Note how the elevations are evenly spaced. Near the level curves of <m>c=0</m> and <m>c=0.2</m> we can see that <m>f</m> indeed is growing quickly.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_levelcurves2">
+      <title>Analyzing Level Curves</title>
+      <statement>
+        <p>Let <m>\ds f(x,y) = \frac{x+y}{x^2+y^2+1}</m>. Find the level curves for <m>z=c</m>.</p>
+      </statement>
+      <solution>
+        <p>We begin by setting <m>f(x,y)=c</m> for an arbitrary <m>c</m> and seeing if algebraic manipulation of the equation reveals anything significant.
+          <md>
+            <mrow>\frac{x+y}{x^2+y^2+1} \amp = c</mrow>
+            <mrow>x+y \amp = c(x^2+y^2+1).</mrow>
+            <intertext>We recognize this as a circle, though the center and radius are not yet clear. By completing the square, we can obtain:</intertext>
+            <mrow>\left(x-\frac{1}{2c}\right)^2+\left(y-\frac1{2c}\right)^2\amp =\frac{1}{2c^2}-1,</mrow>
+          </md>
+          a circle centered at <m>\big(1/(2c),1/(2c)\big)</m> with radius <m>\sqrt{1/(2c^2)-1}</m>, where <m>\abs{c}\lt 1/\sqrt{2}</m>. The level curves for <m>c=\pm 0.2,\ \pm 0.4</m> and <m>\pm0.6</m> are sketched in <xref ref="fig_levelcurves2">Figure</xref>(a). To help illustrate <q>elevation,</q> we use thicker lines for <m>c</m> values near 0, and dashed lines indicate where <m>c\lt 0</m>.</p>
+
+        <p>There is one special level curve, when <m>c=0</m>. The level curve in this situation is <m>x+y=0</m>, the line <m>y=-x</m>.</p>
+
+        <p>In <xref ref="fig_levelcurves2">Figure</xref>(b) we see a graph of the surface. Note how the <m>y</m>-axis is pointing away from the viewer to more closely resemble the orientation of the level curves in (a).</p>
+
+        <figure xml:id="fig_levelcurves2" >
+        <caption>Graphing the level curves in <xref ref="ex_levelcurves2">Example</xref>.</caption>
+        <sidebyside>
+          <figure>
+            <caption>(a)</caption>
+            <!-- START figures/fig_levelcurve2b.tex -->
+            <image xml:id="img_levelcurve2b" >
+              <description></description>
+              <latex-image-code>
+                <![CDATA[
+                \begin{tikzpicture}
+                \begin{axis}[%
+                %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-1,1,2,-2,3,-3},
+			%minor x tick num=4,%
+                %			extra x ticks={.33},
+                %			extra x tick labels={$1/3$},
+			%ytick={-1,1,-2,2,3,-3},
+			%minor y tick num=4,%extra y ticks={-5,-3,...,7},%
+			ymin=-5.1,ymax=5.1,%
+			xmin=-6.1,xmax=6.1%
+                ]
+
+                \addplot [thin,{\colorone}, smooth] coordinates {(1.457,0.8333)(1.443,0.963)(1.403,1.087)(1.338,1.2)(1.251,1.297)(1.145,1.373)(1.026,1.426)(0.8985,1.454)(0.7681,1.454)(0.6406,1.426)(0.5215,1.373)(0.4161,1.297)(0.3288,1.2)(0.2636,1.087)(0.2234,0.963)(0.2097,0.8333)(0.2234,0.7037)(0.2636,0.5797)(0.3288,0.4668)(0.4161,0.3699)(0.5215,0.2933)(0.6406,0.2402)(0.7681,0.2131)(0.8985,0.2131)(1.026,0.2402)(1.145,0.2933)(1.251,0.3699)(1.338,0.4668)(1.403,0.5797)(1.443,0.7037)(1.457,0.8333)};
+
+                \addplot [ thick,{\colorone}, smooth] coordinates {(2.708,1.25)(2.676,1.553)(2.582,1.843)(2.429,2.107)(2.225,2.333)(1.979,2.512)(1.7,2.636)(1.402,2.7)(1.098,2.7)(0.7995,2.636)(0.5211,2.512)(0.2746,2.333)(0.07067,2.107)(-0.08171,1.843)(-0.1759,1.553)(-0.2077,1.25)(-0.1759,0.9469)(-0.08171,0.6571)(0.07067,0.3932)(0.2746,0.1667)(0.5211,-0.01244)(0.7995,-0.1364)(1.098,-0.1998)(1.402,-0.1998)(1.7,-0.1364)(1.979,-0.01244)(2.225,0.1667)(2.429,0.3932)(2.582,0.6571)(2.676,0.9469)(2.708,1.25)};
+
+                \addplot [very thick,{\colorone}, smooth] coordinates {(5.891,2.5)(5.817,3.205)(5.598,3.879)(5.244,4.493)(4.769,5.02)(4.196,5.437)(3.548,5.725)(2.854,5.873)(2.146,5.873)(1.452,5.725)(0.8044,5.437)(0.2309,5.02)(-0.2435,4.493)(-0.598,3.879)(-0.8171,3.205)(-0.8912,2.5)(-0.8171,1.795)(-0.598,1.121)(-0.2435,0.5067)(0.2309,-0.02013)(0.8044,-0.4368)(1.452,-0.7252)(2.146,-0.8726)(2.854,-0.8726)(3.548,-0.7252)(4.196,-0.4368)(4.769,-0.02013)(5.244,0.5067)(5.598,1.121)(5.817,1.795)(5.891,2.5)};
+
+                \addplot [thin,{\colorone},dashed, smooth] coordinates {(-0.2097,-0.8333)(-0.2234,-0.7037)(-0.2636,-0.5797)(-0.3288,-0.4668)(-0.4161,-0.3699)(-0.5215,-0.2933)(-0.6406,-0.2402)(-0.7681,-0.2131)(-0.8985,-0.2131)(-1.026,-0.2402)(-1.145,-0.2933)(-1.251,-0.3699)(-1.338,-0.4668)(-1.403,-0.5797)(-1.443,-0.7037)(-1.457,-0.8333)(-1.443,-0.963)(-1.403,-1.087)(-1.338,-1.2)(-1.251,-1.297)(-1.145,-1.373)(-1.026,-1.426)(-0.8985,-1.454)(-0.7681,-1.454)(-0.6406,-1.426)(-0.5215,-1.373)(-0.4161,-1.297)(-0.3288,-1.2)(-0.2636,-1.087)(-0.2234,-0.963)(-0.2097,-0.8333)};
+
+                \addplot [thick,{\colorone},dashed, smooth] coordinates {(0.2077,-1.25)(0.1759,-0.9469)(0.08171,-0.6571)(-0.07067,-0.3932)(-0.2746,-0.1667)(-0.5211,0.01244)(-0.7995,0.1364)(-1.098,0.1998)(-1.402,0.1998)(-1.7,0.1364)(-1.979,0.01244)(-2.225,-0.1667)(-2.429,-0.3932)(-2.582,-0.6571)(-2.676,-0.9469)(-2.708,-1.25)(-2.676,-1.553)(-2.582,-1.843)(-2.429,-2.107)(-2.225,-2.333)(-1.979,-2.512)(-1.7,-2.636)(-1.402,-2.7)(-1.098,-2.7)(-0.7995,-2.636)(-0.5211,-2.512)(-0.2746,-2.333)(-0.07067,-2.107)(0.08171,-1.843)(0.1759,-1.553)(0.2077,-1.25)};
+
+                \addplot [very thick,{\colorone},dashed, smooth] coordinates {(0.8912,-2.5)(0.8171,-1.795)(0.598,-1.121)(0.2435,-0.5067)(-0.2309,0.02013)(-0.8044,0.4368)(-1.452,0.7252)(-2.146,0.8726)(-2.854,0.8726)(-3.548,0.7252)(-4.196,0.4368)(-4.769,0.02013)(-5.244,-0.5067)(-5.598,-1.121)(-5.817,-1.795)(-5.891,-2.5)(-5.817,-3.205)(-5.598,-3.879)(-5.244,-4.493)(-4.769,-5.02)(-4.196,-5.437)(-3.548,-5.725)(-2.854,-5.873)(-2.146,-5.873)(-1.452,-5.725)(-0.8044,-5.437)(-0.2309,-5.02)(0.2435,-4.493)(0.598,-3.879)(0.8171,-3.205)(0.8912,-2.5)};
+
+                \addplot[ultra thick,{\colorone}] {-x};
+
+                \draw (axis cs:5,-3.5) node {\scriptsize $c=0$};
+                \draw (axis cs:3.8,4.6) node {\scriptsize $c=0.2$};
+                \draw (axis cs:1.5,3) node {\scriptsize $c=0.4$};
+
+                %\addplot [thick,{\colorone}, smooth,domain=0:360,samples=60] ({2.93*(cos(x))},{1.96*(sin(x))});
+                %
+                %\addplot [thick,{\colorone}, smooth,domain=0:360,samples=60] ({2.75*(cos(x))},{1.83*(sin(x))});
+                %
+                %\addplot [thick,{\colorone}, smooth,domain=0:360,samples=60] ({2.4*(cos(x))},{1.6*(sin(x))});
+                %
+                %\addplot [thick,{\colorone}, smooth,domain=0:360,samples=60] ({1.8*(cos(x))},{1.2*(sin(x))});
+                %
+                %\filldraw [{\colorone}] (axis cs:0,0) circle (1pt) node [black, above right] {\scriptsize $c=1$};
+                %
+                %\draw [->,>=stealth] (axis cs:1.7,1.13) -- (axis cs:2.6,2) node [above] {\scriptsize $c=0.6$};
+
+
+
+                \end{axis}
+
+
+
+                \end{tikzpicture}
+                ]]>
+              </latex-image-code>
+            </image>
+            <!-- figures/fig_levelcurve2b.tex END -->
+          </figure>
+
+          <figure>
+            <caption>(b)</caption>
+            {
+            <!--
+             \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=pageinvisible,
+            3Droll=0.25732633644359904,
+            3Dortho=0.004999999888241291,
+            3Dc2c=0.5196654200553894 -0.7088789939880371 0.4769051671028137,
+            3Dcoo=-0.7249413728713989 1.7016432285308838 3.277412176132202,
+            3Droo=130.00000541214214,
+            3Dlights=Headlamp,add3Djscript=asylabels.js]
+             -->
+
+
+            <!-- START figures/figlevelcurve2_3D.asy -->
+            <image xml:id="img_levelcurve2_3D" >
+              <asymptote>
+                <![CDATA[
+                import graph3;
+
+                //ASY file for figlevelcurve23D.asy in Chapter 12
+
+                size(200,200,IgnoreAspect);
+                //currentprojection=perspective(7,2,1);
+                currentprojection=orthographic(16,-12,1.4);
+                defaultrender.merge=true;
+
+                usepackage("mathspec");
+                texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+                texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+                texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+                texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+
+                // setup and draw the axes
+                real[] myxchoice={-5,5};
+                real[] myychoice={-5,5};
+                real[] myzchoice={-0.7,0.7};
+                defaultpen(0.5mm);
+                pair xbounds=(-6,6);
+                pair ybounds=(-6,6);
+                pair zbounds=(-0.8,.8);
+
+                xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+                yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+                zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+                label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+                label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+                label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+                //Draw surface z=(x+y)/(1+x^2+y^2)
+                triple f(pair t) {
+                  return (t.x,t.y,(t.x+t.y)/(1+(t.x)^2+(t.y)^2));
+                }
+                surface s=surface(f,(-6,-6),(6,6),16,16,Spline);
+                pen p=rgb(0,0,.7);
+                draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+                //Draw level curves for surface x^2/9+y^2/4+z^2=1 at c=0.2,0.4,0.6
+                real[] A={0.2,0.4,0.6};
+                for (int i=0; i<3; ++i)
+                {
+                  triple g(real t) {
+	return (1/(2*A[i])+(cos(t))*sqrt(-1+(1/(2*A[i]^2))),1/(2*A[i])+(sin(t))*sqrt(-1+(1/(2*A[i]^2))),A[i]);}
+	path3 mypath=graph(g,0,2*pi,operator ..); draw(mypath,blue);
+	//Negative values too
+	triple g(real t) {
+	return (1/(-2*A[i])+(cos(t))*sqrt(-1+(1/(2*A[i]^2))),1/(-2*A[i])+(sin(t))*sqrt(-1+(1/(2*A[i]^2))),-A[i]);}
+	path3 mypath=graph(g,0,2*pi,operator ..); draw(mypath,blue);
+                }
+
+                draw((-6,6,0)--(6,-6,0),blue);
+
+
+                //triple g(real t) {
+                //return (1/(2*0.6)+(cos(t))*sqrt(-1+(1/(2*0.6^2))),1/(2*0.6)+(sin(t))*sqrt(-1+(1/(2*0.6^2))),0.6);}
+                //path3 mypath=graph(g,0,2*pi,operator ..); draw(mypath,blue);
+
+
+
+
+
+
+
+                // ////////////////////////////////////
+                //    SAMPLE CODE
+
+                // defaultpen(fontsize(10pt));
+
+                //Draw the parabola z=y^2 for t from -2 to 2
+                //triple g(real t) {return (0,t,t^2);}
+                //path3 mypath=graph(g,-2,2,operator ..); draw(mypath,blue);
+
+
+                //Draw the surface z=1/(1+x^2+y^2)
+                //triple f(pair t) {
+                //  return (t.x,t.y,1/(1+(t.x)^2+(t.y)^2));
+                //}
+                //surface s=surface(f,(-2,-2),(2,2),8,8,Spline);
+                //pen p=rgb(0,0,.7);
+                //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+
+                //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+                //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+
+                //triple f(pair t) {
+                //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+                //}
+                //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+
+                //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+                //path3 mypath=graph(g,-2,2,operator ..);
+
+                //pen p=rgb(0,0,1);
+                //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+
+                //draw(s,paleblue);
+                //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+                //draw(mypath,2bp+blue);
+                ]]>
+              </asymptote>
+            </image>
+            <!-- figures/figlevelcurve2_3D.asy END -->
+
+            }
+          </figure>
+        </sidebyside>
+
+        </figure>
+
+        <p>Seeing the level curves helps us understand the graph. For instance, the graph does not make it clear that one can <q>walk</q> along the line <m>y=-x</m> without elevation change, though the level curve does.</p>
+      </solution>
+    </example>
+  </subsection>
+
+  <subsection>
+    <title>Functions of Three Variables</title>
+    <p>We extend our study of multivariable functions to functions of three variables. (One can make a function of as many variables as one likes; we limit our study to three variables.)</p>
+
+    <definition xml:id="def_multi3">
+      <title>Function of Three Variables</title>
+      <statement>
+        <p>Let <m>D</m> be a subset of <m>\mathbb{R}^3</m>. A <term>function <m>f</m> of three variables</term> is a rule that assigns each triple <m>(x,y,z)</m> in <m>D</m> a value <m>w=f(x,y,z)</m> in <m>\mathbb{R}</m>. <m>D</m> is the <term>domain</term> of <m>f</m>; the set of all outputs of <m>f</m> is the <term>range</term>.
+          <index><main>multivariable function</main></index><index><main>function</main><sub>of three variables</sub></index><index><main>multivariable function</main><sub>domain</sub></index><index><main>multivariable function</main><sub>range</sub></index></p>
+      </statement>
+    </definition>
+
+    <p>Note how this definition closely resembles that of <xref ref="def_multi2">Definition</xref>.</p>
+
+    <example xml:id="ex_multi3">
+      <title>Understanding a function of three variables</title>
+      <statement>
+        <p>Let <m>\ds f(x,y,z) =  \frac{x^2+z+3\sin(y) }{x+2y-z}</m>. Evaluate <m>f</m> at the point <m>(3,0,2)</m> and find the domain and range of <m>f</m>.</p>
+      </statement>
+      <solution>
+        <p><m>\ds f(3,0,2) = \frac{3^2+2+3\sin(0) }{3+2(0)-2} = 11</m>.</p>
+
+        <p>As the domain of <m>f</m> is not specified, we take it to be the set of all triples <m>(x,y,z)</m> for which <m>f(x,y,z)</m> is defined. As we cannot divide by <m>0</m>, we find the domain <m>D</m> is
+          <me>
+            D = \{(x,y,z)\ |\ x+2y-z\neq 0\}.
+          </me>
+        </p>
+
+        <p>We recognize that the set of all points in <m>\mathbb{R}^3</m> that <em>are not</em> in <m>D</m> form a plane in space that passes through the origin (with normal vector <m>\la 1,2,-1\ra</m>).</p>
+
+        <p>We determine the range <m>R</m> is <m>\mathbb{R}</m>; that is, all real numbers are possible outputs of <m>f</m>. There is no set way of establishing this. Rather, to get numbers near 0 we can let <m>y=0</m> and choose <m>z \approx -x^2</m>. To get numbers of arbitrarily large magnitude, we can let <m>z\approx x+2y</m>.</p>
+      </solution>
+    </example>
+  </subsection>
+
+  <subsection>
+    <title>Level Surfaces</title>
+    <p>It is very difficult to produce a meaningful graph of a function of three variables. A function of <em>one</em> variable is a <em>curve</em> drawn in <em>2</em> dimensions; a function of <em>two</em> variables is a <em>surface</em> drawn in <em>3</em> dimensions; a function of <em>three</em> variables is a <em>hypersurface</em> drawn in <em>4</em> dimensions.<index><main>multivariable function</main><sub>level surface</sub></index><index><main>level surface</main></index></p>
+
+    <p>There are a few techniques one can employ to try to <q>picture</q> a graph of three variables. One is an analogue of level curves: <em>level surfaces</em>. Given <m>w=f(x,y,z)</m>, the level surface at <m>w=c</m> is the surface in space formed by all points <m>(x,y,z)</m> where <m>f(x,y,z)=c</m>.</p>
+
+    <example xml:id="ex_multi4">
+      <title>Finding level surfaces</title>
+      <statement>
+        <p>If a point source <m>S</m> is radiating energy, the intensity <m>I</m> at a given point <m>P</m> in space is inversely proportional to the square of the distance between <m>S</m> and <m>P</m>. That is, when <m>S=(0,0,0)</m>, <m>\ds I(x,y,z) = \frac{k}{x^2+y^2+z^2}</m> for some constant <m>k</m>.</p>
+
+        <p>Let <m>k=1</m>; find the level surfaces of <m>I</m>.</p>
+      </statement>
+      <solution>
+        <p>We can (mostly) answer this question using <q>common sense.</q> If energy (say, in the form of light) is emanating from the origin, its intensity will be the same at all points equidistant from the origin. That is, at any point on the surface of a sphere centered at the origin, the intensity should be the same. Therefore, the level surfaces are spheres.</p>
+
+        <p>We now find this mathematically. The level surface at <m>I=c</m> is defined by
+          <md>
+            <mrow>c \amp = \frac{1}{x^2+y^2+z^2}.</mrow>
+            <intertext>A small amount of algebra reveals</intertext>
+            <mrow>x^2+y^2+z^2 \amp = \frac1c.</mrow>
+          </md>
+        </p>
+
+        <p>Given an intensity <m>c</m>, the level surface <m>I=c</m> is a sphere of radius <m>1/\sqrt{c}</m>, centered at the origin.</p>
+
+        <table xml:id="fig_multi4" >
+          <caption>A table of <m>c</m> values and the corresponding radius <m>r</m> of the spheres of constant value in <xref ref="ex_multi4">Example</xref>.</caption>
+          <tabular>
+            <row>
+              <cell><m>c</m></cell>
+              <cell><m>r</m></cell>
+            </row>
+            <row bottom="minor">
+              <cell></cell>
+              <cell></cell>
+            </row>
+            <row>
+              <cell><m>16</m>.</cell>
+              <cell><m>0.25</m></cell>
+            </row>
+            <row>
+              <cell><m>8</m>.</cell>
+              <cell><m>0.35</m></cell>
+            </row>
+            <row>
+              <cell><m>4</m>.</cell>
+              <cell><m>0.5</m></cell>
+            </row>
+            <row>
+              <cell><m>2</m>.</cell>
+              <cell><m>0.71</m></cell>
+            </row>
+            <row>
+              <cell><m>1</m>.</cell>
+              <cell><m>1</m>.</cell>
+            </row>
+            <row>
+              <cell><m>0.5</m></cell>
+              <cell><m>1.41</m></cell>
+            </row>
+            <row>
+              <cell><m>0.25</m></cell>
+              <cell><m>2</m>.</cell>
+            </row>
+            <row>
+              <cell><m>0.125</m></cell>
+              <cell><m>2.83</m></cell>
+            </row>
+            <row>
+              <cell><m>0.0625</m></cell>
+              <cell><m>4</m>.</cell>
+            </row>
+            <row>
+              <cell></cell>
+            </row>
+          </tabular>
+        </table>
+
+        <p><xref ref="fig_multi4">Figure</xref> gives a table of the radii of the spheres for given <m>c</m> values. Normally one would use equally spaced <m>c</m> values, but these values have been chosen purposefully. At a distance of 0.25 from the point source, the intensity is 16; to move to a point of half that intensity, one just moves out 0.1 to 0.35 <mdash /> not much at all. To again halve the intensity, one moves 0.15, a little more than before.</p>
+
+        <p>Note how each time the intensity if halved, the distance required to move away grows. We conclude that the closer one is to the source, the more rapidly the intensity changes.</p>
+      </solution>
+    </example>
+
+    <p>In the next section we apply the concepts of limits to functions of two or more variables.</p>
+  </subsection>
+
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Give two examples (other than those given in the text) of <q>real world</q> functions that require more than one input.</p>
+          </statement>
+          <solution>
+            <p>Answers will vary.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>The graph of a function of two variables is a <fillin />.</p>
+          </statement>
+          <solution>
+            <p>surface</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Most people are familiar with the concept of level curves in the context of <fillin /> maps.</p>
+          </statement>
+          <solution>
+            <p>topographical</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>T/F: Along a level curve, the output of a function does not change.</p>
+          </statement>
+          <solution>
+            <p>T</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>The analogue of a level curve for functions of three variables is a level <fillin />.</p>
+          </statement>
+          <solution>
+            <p>surface</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>What does it mean when level curves are close together? Far apart?</p>
+          </statement>
+          <solution>
+            <p>When level curves are close together, it means the function is changing <m>z</m>-values rapidly. When far apart, it changes <m>z</m>-values slowly.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, give the domain and range of the multivariable function.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x,y) = x^2+y^2+2</m></p>
+          </statement>
+          <solution>
+            <p>domain: <m>\mathbb{R}^2</m></p>
+
+            <p>range: <m>z\geq 2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x,y) = x+2y</m></p>
+          </statement>
+          <solution>
+            <p>domain: <m>\mathbb{R}^2</m></p>
+
+            <p>range: <m>\mathbb{R}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x,y) = x-2y</m></p>
+          </statement>
+          <solution>
+            <p>domain: <m>\mathbb{R}^2</m></p>
+
+            <p>range: <m>\mathbb{R}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y) = \frac{1}{x+2y}</m></p>
+          </statement>
+          <solution>
+            <p>domain: <m>x\neq 2y</m>; in set notation, <m>\{(x,y)\,|\, x\neq 2y\}</m></p>
+
+            <p>range: <m>z\neq 0</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y) = \frac{1}{x^2+y^2+1}</m></p>
+          </statement>
+          <solution>
+            <p>domain: <m>\mathbb{R}^2</m></p>
+
+            <p>range: <m>0\lt z\leq 1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y) = \sin(x) \cos(y)</m></p>
+          </statement>
+          <solution>
+            <p>domain: <m>\mathbb{R}^2</m></p>
+
+            <p>range: <m>-1\leq z\leq 1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y) = \sqrt{9-x^2-y^2}</m></p>
+          </statement>
+          <solution>
+            <p>domain: <m>\{(x,y)\,|\, x^2+y^2\leq 9\}</m>, i.e., the domain is the circle and interior of a circle centered at the origin with radius 3.</p>
+
+            <p>range: <m>0\leq z\leq 3</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y) = \frac1{\sqrt{x^2+y^2-9}}</m></p>
+          </statement>
+          <solution>
+            <p>domain: <m>\{(x,y)\,|\, x^2+y^2\geq 9\}</m>, i.e., the domain is the exterior of the circle (not including the circle itself) centered at the origin with radius 3.</p>
+
+            <p>range: <m>0\lt  z\lt  \infty</m>, or <m>(0,\infty)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, describe in words and sketch the level curves for the function and given <m>c</m> values.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y) = 3x-2y</m>; <m>c = -2,0,2</m></p>
+          </statement>
+          <solution>
+            <p>Level curves are lines <m>y = (3/2)x-c/2</m>.</p>
+
+            <!-- START\1END -->
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y) = x^2-y^2</m>; <m>c = -1,0,1</m></p>
+          </statement>
+          <solution>
+            <p>Level curves are hyperbolas <m>\frac{x^2}{c}-\frac{y^2}{c}=1</m>, except for <m>c=0</m>, where the level curve is the pair of lines <m>y=x</m>, <m>y=-x</m>.</p>
+
+            <!-- START\1END -->
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y) = x-y^2</m>; <m>c = -2,0,2</m></p>
+          </statement>
+          <solution>
+            <p>Level curves are parabolas <m>x=y^2+c</m>.</p>
+
+            <!-- START\1END -->
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y) = \frac{1-x^2-y^2}{2y-2x}</m>; <m>c = -2,0,2</m></p>
+          </statement>
+          <solution>
+            <p>Level curves are hyperbolas <m>(x-c)^2-(y-c)^2=1</m>, drawn in graph in different styles to differentiate the curves.</p>
+
+            <!-- START\1END -->
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y) = \frac{2x-2y}{x^2+y^2+1}</m>; <m>c = -1,0,1</m></p>
+          </statement>
+          <solution>
+            <p>When <m>c\neq 0</m>, the level curves are circles, centered at <m>(1/c,-1/c)</m> with radius <m>\sqrt{2/c^2-1}</m>. When <m>c=0</m>, the level curve is the line <m>y=x</m>.</p>
+
+            <!-- START\1END -->
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y) = \frac{y-x^3-1}{x}</m>; <m>c = -3,-1,0,1,3</m></p>
+          </statement>
+          <solution>
+            <p>Level curves are cubics of the form <m>y=x^3+cx+1</m>. Note how each curve passes through <m>(0,1)</m> and that the function is not defined at <m>x=0</m>.</p>
+
+            <!-- START\1END -->
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise xml:id="x12_01_ex_21">
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y) = \sqrt{x^2+4y^2}</m>; <m>c = 1,2,3,4</m></p>
+          </statement>
+          <solution>
+            <p>Level curves are ellipses of the form <m>\frac{x^2}{c^2}+\frac{y^2}{c^2/4}=1</m>, i.e., <m>a=c</m> and <m>b=c/2</m>.</p>
+
+            <!-- START\1END -->
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise xml:id="x12_01_ex_22">
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y) = x^2+4y^2</m>; <m>c = 1,2,3,4</m></p>
+          </statement>
+          <solution>
+            <p>Level curves are ellipses of the form <m>\frac{x^2}{c}+\frac{y^2}{c/4}=1</m>, i.e., <m>a=\sqrt{c}</m> and <m>b=\sqrt{c}/2</m>.</p>
+
+            <!-- START\1END -->
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, give the domain and range of the functions of three variables.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y,z) = \frac{x}{x+2y-4z}</m></p>
+          </statement>
+          <solution>
+            <p>domain: <m>x+2y-4z\neq 0</m>; the set of points in <m>\mathbb{R}^3</m> NOT in the domain form a plane through the origin.</p>
+
+            <p>range: <m>\mathbb{R}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y,z) = \frac{1}{1-x^2-y^2-z^2}</m></p>
+          </statement>
+          <solution>
+            <p>domain: <m>x^2+y^2+z^2\neq 1</m>; the set of points in <m>\mathbb{R}^3</m> NOT in the domain form a sphere of radius 1.</p>
+
+            <p>range: <m>(-\infty,0)\cup[1,\infty)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y,z) = \sqrt{z-x^2+y^2}</m></p>
+          </statement>
+          <solution>
+            <p>domain: <m>z\geq x^2-y^2</m>; the set of points in <m>\mathbb{R}^3</m> above (and including) the hyperbolic paraboloid <m>z=x^2-y^2</m>.</p>
+
+            <p>range: <m>[0,\infty)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y,z) = z^2\sin(x) \cos(y)</m></p>
+          </statement>
+          <solution>
+            <p>domain: <m>\mathbb{R}^3</m></p>
+
+            <p>range: <m>\mathbb{R}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, describe the level surfaces of the given functions of three variables.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y,z) = x^2+y^2+z^2</m></p>
+          </statement>
+          <solution>
+            <p>The level surfaces are spheres, centered at the origin, with radius <m>\sqrt{c}</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y,z) = z-x^2+y^2</m></p>
+          </statement>
+          <solution>
+            <p>The level surfaces are hyperbolic paraboloids of the form <m>z=x^2-y^2+c</m>; each is shifted up/down by <m>c</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y,z) = \frac{x^2+y^2}{z}</m></p>
+          </statement>
+          <solution>
+            <p>The level surfaces are paraboloids of the form <m>z=\frac{x^2}{c}+\frac{y^2}{c}</m>; the larger <m>c</m>, the <q>wider</q> the paraboloid.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y,z) = \frac{z}{x-y}</m></p>
+          </statement>
+          <solution>
+            <p>The level surfaces are planes through the origin of the form <m>cx-cy-z=0</m>, that is, planes through the origin with normal vector <m>\la c,-c,-1\ra</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Compare the level curves of <xref ref="x12_01_ex_21">Exercises</xref> and <xref ref="x12_01_ex_22"></xref>. How are they similar, and how are they different? Each surface is a quadric surface; describe how the level curves are consistent with what we know about each surface.</p>
+          </statement>
+          <solution>
+            <p>The level curves for each surface are similar; for <m>z=\sqrt{x^2+4y^2}</m> the level curves are ellipses of the form <m>\frac{x^2}{c^2}+\frac{y^2}{c^2/4}=1</m>, i.e., <m>a=c</m> and <m>b=c/2</m>; whereas for <m>z=x^2+4y^2</m> the level curves are ellipses of the form <m>\frac{x^2}{c}+\frac{y^2}{c/4}=1</m>, i.e., <m>a=\sqrt{c}</m> and <m>b=\sqrt{c}/2</m>. The first set of ellipses are spaced evenly apart, meaning the function grows at a constant rate; the second set of ellipses are more closely spaced together as <m>c</m> grows, meaning the function grows faster and faster as <m>c</m> increases.</p>
+
+            <p>The function <m>z=\sqrt{x^2+4y^2}</m> can be rewritten as <m>z^2=x^2+4y^2</m>, an elliptic cone; the function <m>z=x^2+4y^2</m> is a paraboloid, each matching the description above.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

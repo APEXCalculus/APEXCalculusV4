@@ -1,0 +1,1963 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_polarcalc">
+  <title>Calculus and Polar Functions</title>
+  <introduction>
+    <p>The previous section defined polar coordinates, leading to polar functions. We investigated plotting these functions and solving a fundamental question about their graphs, namely, where do two polar graphs intersect?</p>
+
+    <p>We now turn our attention to answering other questions, whose solutions require the use of calculus. A basis for much of what is done in this section is the ability to turn a polar function <m>r=f(\theta)</m> into a set of parametric equations. Using the identities <m>x=r\cos(\theta)</m> and <m>y=r\sin(\theta)</m>, we can create the parametric equations <m>x=f(\theta)\cos(\theta)</m>, <m>y=f(\theta)\sin(\theta)</m> and apply the concepts of <xref ref="sec_par_calc">Section</xref>.</p>
+  </introduction>
+
+  <subsection>
+    <title>Polar Functions and <m>\ds \frac{dy}{dx}</m></title>
+    <p>We are interested in the lines tangent a given graph, regardless of whether that graph is produced by rectangular, parametric, or polar equations. In each of these contexts, the slope of the tangent line is <m>\frac{dy}{dx}</m>. Given <m>r=f(\theta)</m>, we are generally <em>not</em> concerned with <m>r\,'=\fp(\theta)</m>; that describes how fast <m>r</m> changes with respect to <m>\theta</m>. Instead, we will use <m>x=f(\theta)\cos(\theta)</m>, <m>y=f(\theta)\sin(\theta)</m> to compute <m>\frac{dy}{dx}</m>.</p>
+
+    <p>Using <xref ref="idea_dydxpar">Key Idea</xref> we have
+      <me>
+        \frac{dy}{dx} = \frac{dy}{d\theta}\Big/\frac{dx}{d\theta}.
+      </me>
+    </p>
+
+    <p>Each of the two derivatives on the right hand side of the equality requires the use of the Product Rule. We state the important result as a Key Idea.</p>
+
+    <insight xml:id="idea_dydxpol">
+      <title>Finding <m>\frac{dy}{dx}</m> with Polar Functions</title>
+      <p>Let <m>r=f(\theta)</m> be a polar function. With <m>x=f(\theta)\cos(\theta)</m> and <m>y=f(\theta)\sin(\theta)</m>,
+        <index><main>polar</main><sub>functions!finding <m>\frac{dy}{dx}</m></sub></index><index><main>tangent line</main></index>
+        <me>
+          \frac{dy}{dx} = \frac{\fp(\theta)\sin(\theta) +f(\theta)\cos(\theta) }{\fp(\theta)\cos(\theta) -f(\theta)\sin(\theta) }.
+        </me>
+      </p>
+    </insight>
+
+    <example xml:id="ex_polcalc1">
+      <title>Finding <m>\frac{dy}{dx}</m> with polar functions.</title>
+      <statement>
+        <p>Consider the lima&#xe7;on <m>r=1+2\sin(\theta)</m> on <m>[0,2\pi]</m>.</p>
+
+        <ol>
+          <li><p>Find the equations of the tangent and normal lines to the graph at <m>\theta=\pi/4</m>.</p></li>
+
+          <li><p>Find where the graph has vertical and horizontal tangent lines.</p></li>
+        </ol>
+      </statement>
+      <solution>
+        <ol>
+          <li><p>We start by computing <m>\frac{dy}{dx}</m>. With <m>\fp(\theta) = 2\cos(\theta)</m>, we have
+              <md>
+                <mrow>\frac{dy}{dx} \amp = \frac{2\cos(\theta) \sin(\theta) + \cos(\theta) (1+2\sin(\theta) )}{2\cos^2(\theta) -\sin(\theta) (1+2\sin(\theta) )}</mrow>
+                <mrow>\amp = \frac{\cos(\theta) (4\sin(\theta) +1)}{2(\cos^2(\theta) -\sin^2(\theta) )-\sin(\theta) }.</mrow>
+              </md>
+              When <m>\theta=\pi/4</m>, <m>\frac{dy}{dx}=-2\sqrt{2}-1</m> (this requires a bit of simplification). In rectangular coordinates, the point on the graph at <m>\theta=\pi/4</m> is <m>(1+\sqrt{2}/2,1+\sqrt{2}/2)</m>. Thus the rectangular equation of the line tangent to the lima&#xe7;on at <m>\theta=\pi/4</m> is
+              <me>
+                y=(-2\sqrt{2}-1)\big(x-(1+\sqrt{2}/2)\big)+1+\sqrt{2}/2 \approx  -3.83 x+8.24.
+              </me>
+              The lima&#xe7;on and the tangent line are graphed in <xref ref="fig_polcalc1">Figure</xref>.
+	
+	The normal line has the opposite<ndash />reciprocal slope as the tangent line, so its equation is
+              <me>
+                y \approx \frac{1}{3.83}x+1.26.
+              </me>
+
+              <figure xml:id="fig_polcalc1" >
+                <caption>The lima&#xe7;on in <xref ref="ex_polcalc1">Example</xref> with its tangent line at <m>\theta=\pi/4</m> and points of vertical and horizontal tangency.</caption>
+                <!-- START figures/fig_polcalc1.tex -->
+                <image xml:id="img_polcalc1" >
+                  <description></description>
+                  <latex-image-code>
+                    <![CDATA[
+                    \begin{tikzpicture}
+                    \begin{axis}[%
+                    %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-1,1},
+			%
+                    %			extra x ticks={.33},
+                    %			extra x tick labels={$1/3$},
+			%ytick={-1,1},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-.35,ymax=3.2,%
+			xmin=-2.1,xmax=2.1%
+                    ]
+
+                    \addplot [{\colorone},thick, smooth,domain=0:360,samples=60] ({cos(x)*(1+2*sin(x))},{sin(x)*(1+2*sin(x))});
+                    \addplot [{\colortwo},thick, smooth,domain=0.1:2,samples=2] ({x},{-3.82843*x+8.24264});
+                    \filldraw (axis cs: 0,3) circle (1.5pt)
+		(axis cs: 0,1) circle (1.5pt)
+		(axis cs: -.493,-0.125) circle (1.5pt)
+		(axis cs: .483,-0.125) circle (1.5pt);
+
+                    \filldraw [fill=white,draw=black,thick] (axis cs: 1.76011, 1.31048) circle (1.5pt)
+		(axis cs: -1.76011, 1.31048) circle (1.5pt)
+		(axis cs: 0.368977, 0.572639) circle (1.5pt)
+		(axis cs: -0.369009, 0.578743) circle (1.5pt);
+
+
+                    %\draw (axis cs:.5,0) circle (25pt);
+                    \end{axis}
+
+                    \node [right] at (myplot.right of origin) {\scriptsize $0$};
+                    \node [above] at (myplot.above origin) {\scriptsize $\pi/2$};
+                    \end{tikzpicture}
+                    ]]>
+                  </latex-image-code>
+                </image>
+                <!-- figures/fig_polcalc1.tex END -->
+              </figure>
+
+            </p></li>
+
+          <li><p>To find the horizontal lines of tangency, we find where <m>\frac{dy}{dx}=0</m>; thus we find where the numerator of our equation for <m>\frac{dy}{dx}</m> is 0.
+              <me>
+                \cos(\theta) (4\sin(\theta) +1)=0 \Rightarrow  \cos(\theta) =0  \text{ or }  4\sin(\theta) +1=0.
+              </me>
+              On <m>[0,2\pi]</m>, <m>\cos(\theta) =0</m> when <m>\theta=\pi/2,\ 3\pi/2</m>.
+
+              Setting <m>4\sin(\theta) +1=0</m> gives <m>\theta=\sin^{-1}(-1/4)\approx -0.2527 = -14.48^\circ</m>. We want the results in <m>[0,2\pi]</m>; we also recognize there are two solutions, one in the 3<m>^\text{ rd }</m> quadrant and one in the 4<m>^\text{ th }</m>. Using reference angles, we have our two solutions as <m>\theta =3.39</m> and <m>6.03</m> radians. The four points we obtained where the lima&#xe7;on has a horizontal tangent line are given in <xref ref="fig_polcalc1">Figure</xref> with black<ndash />filled dots.
+
+
+              To find the vertical lines of tangency, we set the denominator of <m>\frac{dy}{dx}=0</m>.
+              <md>
+                <mrow>2(\cos^2(\theta) -\sin^2(\theta) )-\sin(\theta) \amp = 0 .</mrow>
+                <intertext>Convert the <m>\cos^2(\theta)</m> term to <m>1-\sin^2(\theta)</m>:</intertext>
+                <mrow>2(1-\sin^2(\theta) -\sin^2(\theta) )-\sin(\theta) \amp = 0</mrow>
+                <mrow>4\sin^2(\theta) + \sin(\theta) -1 \amp = 0.</mrow>
+                <intertext>Recognize this as a quadratic in the variable <m>\sin(\theta)</m>. Using the quadratic formula, we have</intertext>
+                <mrow>\sin(\theta) \amp = \frac{-1\pm\sqrt{33}}{8}.</mrow>
+              </md>
+              We solve <m>\sin(\theta) = \frac{-1+\sqrt{33}}8</m> and <m>\sin(\theta) = \frac{-1-\sqrt{33}}8</m>:
+              <md>
+                <mrow>\sin(\theta) \amp =\frac{-1+\sqrt{33}}8 \amp  \sin(\theta) \amp = \frac{-1-\sqrt{33}}{8}</mrow>
+                <mrow>\theta \amp = \sin^{-1}\left(\frac{-1+\sqrt{33}}8\right) \amp  \theta \amp = \sin^{-1}\left(\frac{-1-\sqrt{33}}8\right)</mrow>
+                <mrow>\theta \amp = 0.6399 \amp  \theta \amp = -1.0030</mrow>
+              </md>
+              In each of the solutions above, we only get one of the possible two solutions as <m>\sin^{-1}(x)</m> only returns solutions in <m>[-\pi/2,\pi/2]</m>, the 4<m>^\text{ th }</m> and <m>1^\text{ st }</m> quadrants. Again using reference angles, we have:
+              <me>
+                \sin(\theta) = \frac{-1+\sqrt{33}}8  \Rightarrow  \theta = 0.6399,\ 3.7815 \text{ radians }
+              </me>
+              and
+              <me>
+                \sin(\theta) = \frac{-1-\sqrt{33}}8  \Rightarrow  \theta = 4.1446,\ 5.2802 \text{ radians. }
+              </me>
+              These points are also shown in <xref ref="fig_polcalc1">Figure</xref> with white<ndash />filled dots.</p></li>
+        </ol>
+      </solution>
+    </example>
+
+    <p>When the graph of the polar function <m>r=f(\theta)</m> intersects the pole, it means that <m>f(\alpha)=0</m> for some angle <m>\alpha</m>. Thus the formula for <m>\frac{dy}{dx}</m> in such instances is very simple, reducing simply to
+      <me>
+        \frac{dy}{dx} = \tan\alpha.
+      </me>
+    </p>
+
+    <p>This equation makes an interesting point. It tells us the slope of the tangent line at the pole is <m>\tan\alpha</m>; some of our previous work (see, for instance, <xref ref="ex_polar3">Example</xref>) shows us that the line through the pole with slope <m>\tan\alpha</m> has polar equation <m>\theta=\alpha</m>. Thus when a polar graph touches the pole at <m>\theta=\alpha</m>, the equation of the tangent line at the pole is <m>\theta=\alpha</m>.</p>
+
+    <example xml:id="ex_polcalc2">
+      <title>Finding tangent lines at the pole.</title>
+      <statement>
+        <p>Let <m>r=1+2\sin(\theta)</m>, a lima&#xe7;on. Find the equations of the lines tangent to the graph at the pole.</p>
+
+        <figure xml:id="fig_polcalc2" >
+          <caption>Graphing the tangent lines at the pole in <xref ref="ex_polcalc2">Example</xref>.</caption>
+          <!-- START figures/fig_polcalc2.tex -->
+          <image xml:id="img_polcalc2" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[%
+              %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-1,1},
+			%%
+              %			extra x ticks={.33},
+              %			extra x tick labels={$1/3$},
+			%ytick={-1,1},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-.5,ymax=1.37,%
+			xmin=-1.1,xmax=1.1%
+              ]
+
+              \addplot [{\colorone},thick, smooth,domain=0:360,samples=60] ({cos(x)*(1+2*sin(x))},{sin(x)*(1+2*sin(x))});
+              \addplot [{\colortwo},thick, smooth,domain=-1:1,samples=2] ({x},{.577*x});
+              \addplot [{\colortwo},thick, smooth,domain=-1:1,samples=2] ({x},{-.577*x});
+
+
+              %\draw (axis cs:.5,0) circle (25pt);
+              \end{axis}
+
+              \node [right] at (myplot.right of origin) {\scriptsize $0$};
+              \node [above] at (myplot.above origin) {\scriptsize $\pi/2$};
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_polcalc2.tex END -->
+        </figure>
+      </statement>
+      <solution>
+        <p>We need to know when <m>r=0</m>.
+          <md>
+            <mrow>1+2\sin(\theta) \amp = 0</mrow>
+            <mrow>\sin(\theta) \amp = -1/2</mrow>
+            <mrow>\theta \amp = \frac{7\pi}{6},\ \frac{11\pi}6.</mrow>
+          </md>
+        </p>
+
+        <p>Thus the equations of the tangent lines, in polar, are <m>\theta = 7\pi/6</m> and <m>\theta = 11\pi/6</m>. In rectangular form, the tangent lines are <m>y=\tan(7\pi/6)x</m> and <m>y=\tan(11\pi/6)x</m>. The full lima&#xe7;on can be seen in <xref ref="fig_polcalc1">Figure</xref>; we zoom in on the tangent lines in <xref ref="fig_polcalc2">Figure</xref>.</p>
+      </solution>
+    </example>
+  </subsection>
+
+  <subsection>
+    <title>Area</title>
+    <p>When using rectangular coordinates, the equations <m>x=h</m> and <m>y=k</m> defined vertical and horzontal lines, respectively, and combinations of these lines create rectangles (hence the name <q>rectangular coordinates</q>). It is then somewhat natural to use rectangles to approximate area as we did when learning about the definite integral.<index><main>polar</main><sub>functions!area</sub></index></p>
+
+    <p>When using polar coordinates, the equations <m>\theta=\alpha</m> and <m>r=c</m> form lines through the origin and circles centered at the origin, respectively, and combinations of these curves form sectors of circles. It is then somewhat natural to calculate the area of regions defined by polar functions by first approximating with sectors of circles.</p>
+
+    <p>Consider <xref ref="fig_polararea">Figure</xref> (a) where a region defined by <m>r=f(\theta)</m> on <m>[\alpha,\beta]</m> is given. (Note how the <q>sides</q> of the region are the lines <m>\theta=\alpha</m> and <m>\theta=\beta</m>, whereas in rectangular coordinates the <q>sides</q> of regions were often the vertical lines <m>x=a</m> and <m>x=b</m>.)</p>
+
+    <aside>
+      <p>Recall that the area of a sector of a circle with radius <m>r</m> subtended by an angle <m>\theta</m> is <m>A = \frac12\theta r^2</m>.</p>
+      <image xml:id="img_polcalc2X" >
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}[x=30pt,y=30pt,thick]
+			\draw (2,0) arc (0:50:2) -- (0,0);
+			\draw [] (0,0) -- (2,0) node [pos=.5,below] {\(r\)};
+			\draw [fill=black] (0,0) circle (1pt);
+			
+			\draw (0,0) node [shift={(15pt,8pt)}] {\(\theta\)};\end{tikzpicture}]]>
+        </latex-image-code>
+      </image>
+    </aside>
+
+    <p>Partition the interval <m>[\alpha,\beta]</m> into <m>n</m> equally spaced subintervals as <m>\alpha = \theta_1 \lt  \theta_2 \lt \cdots \lt \theta_{n+1}=\beta</m>. The length of each subinterval is <m>\Delta\theta = (\beta-\alpha)/n</m>, representing a small change in angle. The area of the region defined by the <m>i^\text{ th }</m> subinterval <m>[\theta_i,\theta_{i+1}]</m> can be approximated with a sector of a circle with radius <m>f(c_i)</m>, for some <m>c_i</m> in <m>[\theta_i,\theta_{i+1}]</m>. The area of this sector is <m>\frac12f(c_i)^2\Delta\theta</m>. This is shown in part (b) of the figure, where <m>[\alpha,\beta]</m> has been divided into 4 subintervals. We approximate the area of the whole region by summing the areas of all sectors:
+      <me>
+        \text{ Area }  \approx \sum_{i=1}^n \frac12f(c_i)^2\Delta\theta.
+      </me>
+    </p>
+
+    <p>This is a Riemann sum. By taking the limit of the sum as <m>n\to\infty</m>, we find the exact area of the region in the form of a definite integral.</p>
+
+    <figure xml:id="fig_polararea" >
+    <caption>Computing the area of a polar region.</caption>
+    <sidebyside>
+      <figure>
+        <caption>(a)</caption>
+        <!-- START figures/fig_polarea1.tex -->
+        <image xml:id="img_polarea1" >
+          <description></description>
+          <latex-image-code>
+            <![CDATA[
+            \begin{tikzpicture}
+            \begin{axis}[%
+            %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-1,1},
+			%%
+            %			extra x ticks={.33},
+            %			extra x tick labels={$1/3$},
+			%ytick={-1,1},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-.1,ymax=1.1,%
+			xmin=-.1,xmax=1.1%
+            ]
+
+            \addplot [{\coloronefill},fill={\coloronefill},area style, smooth,domain=18:72,samples=30] ({cos(x)*(1+.05*cos(9*x))},{sin(x)*(1+.05*cos(9*x))}) -- (axis cs:0,0) -- cycle;
+
+            \addplot [{\colorone},thick, smooth,domain=0:90,samples=30] ({cos(x)*(1+.05*cos(9*x))},{sin(x)*(1+.05*cos(9*x))});
+
+            %\addplot [{\colortwo},thick, smooth,domain=28.65:45.84,samples=30] ({1.045*cos(x)},{1.045*sin(x)}) ;-- (axis cs:0,0) -- cycle;
+
+            \draw [thick,{\colorone},] (axis cs:0,0) -- (axis cs: 0.905831, 0.294322) node [pos=.7,below,rotate=18,black] {\scriptsize $\theta=\alpha$};
+
+            \draw [thick,{\colorone},] (axis cs:0,0) -- (axis cs:0.313792, 0.965751) node [pos=.7,above,rotate=72,black] {\scriptsize $\theta=\beta$};
+
+            \draw [thick,{\colorone},dashed] (axis cs:0,0) -- (axis cs: 0.862592, 0.528597)
+            (axis cs:0,0) -- (axis cs: 0.732107, 0.732107)
+            (axis cs:0,0) -- (axis cs: 0.497095, 0.811186);
+
+            \draw (axis cs:.8,.85) node {\scriptsize $r=f(\theta)$};
+
+
+            %\addplot [{\colortwo},thick, smooth,domain=-1:1,samples=2] ({x},{.577*x});
+            %\addplot [{\colortwo},thick, smooth,domain=-1:1,samples=2] ({x},{-.577*x});
+
+
+            %\draw (axis cs:.5,0) circle (25pt);
+            \end{axis}
+
+            \node [right] at (myplot.right of origin) {\scriptsize $0$};
+            \node [above] at (myplot.above origin) {\scriptsize $\pi/2$};
+            \end{tikzpicture}
+            ]]>
+          </latex-image-code>
+        </image>
+        <!-- figures/fig_polarea1.tex END -->
+      </figure>
+
+      <figure>
+        <caption>(b)</caption>
+        <!-- START figures/fig_polarea2.tex -->
+        <image xml:id="img_polarea2" >
+          <description></description>
+          <latex-image-code>
+            <![CDATA[
+            \begin{tikzpicture}
+            \begin{axis}[%
+            %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-1,1},
+			%%
+            %			extra x ticks={.33},
+            %			extra x tick labels={$1/3$},
+			%ytick={-1,1},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-.1,ymax=1.1,%
+			xmin=-.1,xmax=1.1%
+            ]
+
+            \addplot [{\coloronefill},fill={\coloronefill},area style, smooth,domain=18:72,samples=30] ({cos(x)*(1+.05*cos(9*x))},{sin(x)*(1+.05*cos(9*x))}) -- (axis cs:0,0) -- cycle;
+
+            \draw [thick,{\colorone},] (axis cs:0,0) -- (axis cs:0.313792, 0.965751) node [pos=.7,above,rotate=72,black] {\scriptsize $\theta=\beta$};
+
+            \addplot [{\colortwo},fill={\colortwofill},thick, smooth,domain=18:31.5,samples=30] ({.96*cos(x)},{.96*sin(x)}) -- (axis cs:0,0) -- cycle;
+            \addplot [{\colortwo},fill={\colortwofill},thick, smooth,domain=31.5:45,samples=30] ({1.05*cos(x)},{1.05*sin(x)}) -- (axis cs:0,0) -- cycle;
+            \addplot [{\colortwo},fill={\colortwofill},thick, smooth,domain=45:58.5,samples=30] ({1.0*cos(x)},{1*sin(x)}) -- (axis cs:0,0) -- cycle;
+            \addplot [{\colortwo},fill={\colortwofill},thick, smooth,domain=58.5:72,samples=30] ({.96*cos(x)},{.96*sin(x)}) -- (axis cs:0,0) -- cycle;
+
+            \draw (axis cs:.8,.85) node {\scriptsize $r=f(\theta)$};
+
+
+            \draw [thick,{\colortwo},] (axis cs:0,0) -- (axis cs: 0.905831, 0.294322) node [pos=.7,below,rotate=18,black] {\scriptsize $\theta=\alpha$};
+
+
+
+            \addplot [{\colorone},thick, smooth,domain=0:90,samples=30] ({cos(x)*(1+.05*cos(9*x))},{sin(x)*(1+.05*cos(9*x))});
+            %\draw [thick,{\colortwo}] (axis cs:0,0) -- (axis cs: 0.862592, 0.528597)
+            %(axis cs:0,0) -- (axis cs: 0.732107, 0.732107)
+            %(axis cs:0,0) -- (axis cs: 0.497095, 0.811186);
+
+            \end{axis}
+
+            \node [right] at (myplot.right of origin) {\scriptsize $0$};
+            \node [above] at (myplot.above origin) {\scriptsize $\pi/2$};
+            \end{tikzpicture}
+            ]]>
+          </latex-image-code>
+        </image>
+        <!-- figures/fig_polarea2.tex END -->
+      </figure>
+    </sidebyside>
+
+    </figure>
+
+    <theorem xml:id="thm_polar_area">
+      <title>Area of a Polar Region</title>
+      <statement>
+        <p>Let <m>f</m> be continuous and non-negative on <m>[\alpha,\beta]</m>, where <m>0\leq \beta-\alpha\leq 2\pi</m>. The area <m>A</m> of the region bounded by the curve <m>r=f(\theta)</m> and the lines <m>\theta=\alpha</m> and <m>\theta=\beta</m> is
+          <me>
+            A \ =\  \frac12\int_\alpha^\beta f(\theta)^2 \ d\theta\  =\  \frac12\int_\alpha^\beta r^{\,2} \ d\theta
+          </me>
+        </p>
+      </statement>
+    </theorem>
+
+    <p>The theorem states that <m>0\leq \beta-\alpha\leq 2\pi</m>. This ensures that region does not overlap itself, which would give a result that does not correspond directly to the area.</p>
+
+    <example xml:id="ex_polcalc3">
+      <title>Area of a polar region</title>
+      <statement>
+        <p>Find the area of the circle defined by <m>r=\cos(\theta)</m>. (Recall this circle has radius <m>1/2</m>.)</p>
+      </statement>
+      <solution>
+        <p>This is a direct application of <xref ref="thm_polar_area">Theorem</xref>. The circle is traced out on <m>[0,\pi]</m>, leading to the integral
+          <md>
+            <mrow>\text{ Area }  \amp = \frac12\int_0^\pi \cos^2(\theta) \ d  \theta</mrow>
+            <mrow>\amp = \frac12\int_0^\pi \frac{1+\cos(2\theta)}{2}\ d\theta</mrow>
+            <mrow>\amp = \frac14\big(\theta +\frac12\sin(2\theta)\big)\Bigg|_0^\pi</mrow>
+            <mrow>\amp = \frac14\pi.</mrow>
+          </md>
+        </p>
+
+        <p>Of course, we already knew the area of a circle with radius <m>1/2</m>. We did this example to demonstrate that the area formula is correct.</p>
+      </solution>
+    </example>
+
+    <aside>
+      <p><xref ref="ex_polcalc3">Example</xref> requires the use of the integral <m>\ds\int \cos^2(\theta) \ d\theta</m>. This is handled well by using the power reducing formula as found in the back of this text. Due to the nature of the area formula, integrating <m>\cos^2(\theta)</m> and <m>\sin^2(\theta)</m> is required often. We offer here these indefinite integrals as a time<ndash />saving measure.
+        <me>
+          \int\cos^2(\theta) \ d\theta = \frac12\theta+\frac14\sin(2\theta)+C
+        </me>
+        <me>
+          \int\sin^2(\theta) \ d\theta = \frac12\theta-\frac14\sin(2\theta)+C
+        </me>
+      </p>
+    </aside>
+
+    <example xml:id="ex_polcalc4">
+      <title>Area of a polar region</title>
+      <statement>
+        <p>Find the area of the cardiod <m>r=1+\cos(\theta)</m> bound between <m>\theta=\pi/6</m> and <m>\theta=\pi/3</m>, as shown in <xref ref="fig_polcalc4">Figure</xref>.</p>
+
+        <figure xml:id="fig_polcalc4" >
+          <caption>Finding the area of the shaded region of a cardiod in <xref ref="ex_polcalc4">Example</xref>.</caption>
+          <!-- START figures/fig_polcalc4.tex -->
+          <image xml:id="img_polcalc4" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[%
+              %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-1,1},
+			%%
+              %			extra x ticks={.33},
+              %			extra x tick labels={$1/3$},
+			ytick={1},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-.7,ymax=1.5,%
+			xmin=-.5,xmax=2.1%
+              ]
+
+              \addplot [{\coloronefill},fill={\coloronefill},area style, smooth,domain=30:60,samples=30] ({cos(x)*(1+cos(x))},{sin(x)*(1+cos(x))}) -- (axis cs:0,0) -- cycle;
+
+              \addplot [{\colorone},thick, smooth,domain=0:360,samples=60] ({cos(x)*(1+cos(x))},{sin(x)*(1+cos(x))});
+
+              %\addplot [{\colortwo},thick, smooth,domain=28.65:45.84,samples=30] ({1.045*cos(x)},{1.045*sin(x)}) ;-- (axis cs:0,0) -- cycle;
+
+              \draw [thick,{\colorone},] (axis cs:0,0) -- (axis cs: 1.61603, 0.933013) node [pos=.6,below,rotate=30,black] {\scriptsize $\theta=\pi/6$};
+
+              \draw [thick,{\colorone},] (axis cs:0,0) -- (axis cs:0.75, 1.29904) node [pos=.6,above,rotate=60,black] {\scriptsize $\theta=\pi/3$};
+
+              %\draw [thick,{\colorone},dashed] (axis cs:0,0) -- (axis cs: 0.862592, 0.528597)
+              %(axis cs:0,0) -- (axis cs: 0.732107, 0.732107)
+              %(axis cs:0,0) -- (axis cs: 0.497095, 0.811186);
+              %
+              %\draw (axis cs:.8,.85) node {\scriptsize $r=f(\theta)$};
+
+
+              %\addplot [{\colortwo},thick, smooth,domain=-1:1,samples=2] ({x},{.577*x});
+              %\addplot [{\colortwo},thick, smooth,domain=-1:1,samples=2] ({x},{-.577*x});
+
+
+              %\draw (axis cs:.5,0) circle (25pt);
+              \end{axis}
+
+              \node [right] at (myplot.right of origin) {\scriptsize $0$};
+              \node [above] at (myplot.above origin) {\scriptsize $\pi/2$};
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_polcalc4.tex END -->
+        </figure>
+      </statement>
+      <solution>
+        <p>This is again a direct application of <xref ref="thm_polar_area">Theorem</xref>.
+          <md>
+            <mrow>\text{ Area }  \amp = \frac12\int_{\pi/6}^{\pi/3} (1+\cos(\theta) )^2\ d\theta</mrow>
+            <mrow>\amp = \frac12\int_{\pi/6}^{\pi/3} (1+2\cos(\theta) +\cos^2(\theta) )\ d\theta</mrow>
+            <mrow>\amp = \frac12\left(\theta+2\sin(\theta) +\frac12\theta+\frac14\sin(2\theta)\right)\Bigg|_{\pi/6}^{\pi/3}</mrow>
+            <mrow>\amp = \frac18\big(\pi+4\sqrt{3}-4\big) \approx 0.7587.</mrow>
+          </md>
+        </p>
+      </solution>
+    </example>
+
+    <p><em>Area Between Curves</em></p>
+
+    <p>Our study of area in the context of rectangular functions led naturally to finding area bounded between curves. We consider the same in the context of polar functions. <index><main>polar</main><sub>functions!area between curves</sub></index></p>
+
+    <p>Consider the shaded region shown in <xref ref="fig_polarea3">Figure</xref>. We can find the area of this region by computing the area bounded by <m>r_2=f_2(\theta)</m> and subtracting the area bounded by <m>r_1=f_1(\theta)</m> on <m>[\alpha,\beta]</m>. Thus
+      <me>
+        \text{ Area } \ = \ \frac12\int_\alpha^\beta r_2^{\,2}\ d\theta - \frac12\int_\alpha^\beta r_1^{\,2}\ d\theta = \frac12\int_\alpha^\beta \big(r_2^{\,2}-r_1^{\,2}\big)\ d\theta.
+      </me>
+    </p>
+
+    <figure xml:id="fig_polarea3" >
+      <caption>Illustrating area bound between two polar curves.</caption>
+      <!-- START figures/fig_polarea3.tex -->
+      <image xml:id="img_polarea3" >
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+          \begin{axis}[%
+          %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-1,1},
+			%%
+          %			extra x ticks={.33},
+          %			extra x tick labels={$1/3$},
+			%ytick={-1,1},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-.1,ymax=1.1,%
+			xmin=-.1,xmax=1.1%
+          ]
+
+          %\addplot [{\coloronefill},fill={\coloronefill},area style, smooth,domain=18:72,samples=30] ({cos(x)*(1+.05*cos(9*x))},{sin(x)*(1+.05*cos(9*x))}) -- (axis cs:0,0) -- cycle;
+          %
+          %\addplot [{\colortwofill},fill={\colortwofill},area style, smooth,domain=18:72,samples=30] ({cos(x)*(.7+.05*sin(6*x))},{sin(x)*(.7+.05*sin(6*x))}) -- (axis cs:0,0) -- cycle;
+          %
+
+
+          \addplot [{\coloronefill},fill={\coloronefill},area style] coordinates {(0.866,0.5)(0.8626,0.5286)(0.8577,0.557)(0.8509,0.5848)(0.8417,0.6116)
+          (0.83,0.6369)(0.8155,0.6604)(0.7983,0.6818)(0.7785,0.7009)(0.7563,0.7177)(0.7321,0.7321)(0.7063,0.7443)(0.6795,0.7546)(0.652,0.7634)(0.6244,0.7711)(0.5971,0.7782)(0.5705,0.7852)(0.5449,0.7928)(0.5204,0.8013)(0.4971,0.8112)(0.475,0.8227)(0.35,0.6062)(0.3617,0.5902)(0.3728,0.5741)(0.3836,0.5582)(0.3942,0.5425)(0.4046,0.5273)(0.4151,0.5126)(0.4257,0.4984)(0.4366,0.4849)(0.4479,0.4719)(0.4596,0.4596)(0.4719,0.4479)(0.4849,0.4366)(0.4984,0.4257)(0.5126,0.4151)(0.5273,0.4046)(0.5425,0.3942)(0.5582,0.3836)(0.5741,0.3728)(0.5902,0.3617)(0.6062,0.35)};
+
+          \addplot [{\colorone},thick, smooth,domain=0:90,samples=30] ({cos(x)*(1+.05*cos(9*x))},{sin(x)*(1+.05*cos(9*x))});
+          \addplot [{\colortwo}, thick,smooth,domain=0:90,samples=30] ({cos(x)*(.7+.05*sin(6*x))},{sin(x)*(.7+.05*sin(6*x))});
+          %\addplot [{\colortwo},thick, smooth,domain=28.65:45.84,samples=30] ({1.045*cos(x)},{1.045*sin(x)}) ;-- (axis cs:0,0) -- cycle;
+
+          \draw [thick,{\colorone},] (axis cs:0,0) -- (axis cs: 0.866025, 0.5) node [pos=.4,below,rotate=30,black] {\scriptsize $\theta=\alpha$};
+
+          \draw [thick,{\colorone},] (axis cs:0,0) -- (axis cs:0.475, 0.822724) node [pos=.4,above,rotate=60,black] {\scriptsize $\theta=\beta$};
+          %
+          %\draw [thick,{\colorone},dashed] (axis cs:0,0) -- (axis cs: 0.862592, 0.528597)
+          %(axis cs:0,0) -- (axis cs: 0.732107, 0.732107)
+          %(axis cs:0,0) -- (axis cs: 0.497095, 0.811186);
+          %
+          \draw (axis cs:.8,.85) node {\scriptsize $r_2=f_2(\theta)$}
+          (axis cs:.2,.8) node {\scriptsize $r_1=f_1(\theta)$};
+
+
+          %\addplot [{\colortwo},thick, smooth,domain=-1:1,samples=2] ({x},{.577*x});
+          %\addplot [{\colortwo},thick, smooth,domain=-1:1,samples=2] ({x},{-.577*x});
+
+
+          %\draw (axis cs:.5,0) circle (25pt);
+          \end{axis}
+
+          \node [right] at (myplot.right of origin) {\scriptsize $0$};
+          \node [above] at (myplot.above origin) {\scriptsize $\pi/2$};
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_polarea3.tex END -->
+    </figure>
+
+    <insight xml:id="idea_area_between_polar">
+      <title>Area Between Polar Curves</title>
+      <p>The area <m>A</m> of the region bounded by <m>r_1=f_1(\theta)</m> and <m>r_2=f_2(\theta)</m>, <m>\theta=\alpha</m> and <m>\theta=\beta</m>, where <m>f_1(\theta)\leq f_2(\theta)</m> on <m>[\alpha,\beta]</m>, is
+        <me>
+          A = \frac12\int_\alpha^\beta \big(r_2^{\,2}-r_1^{\,2}\big)\ d\theta.
+        </me>
+      </p>
+    </insight>
+
+    <example xml:id="ex_polcalc5">
+      <title>Area between polar curves</title>
+      <statement>
+        <p>Find the area bounded between the curves <m>r=1+\cos(\theta)</m> and <m>r=3\cos(\theta)</m>, as shown in <xref ref="fig_polcalc5">Figure</xref>.</p>
+
+        <figure xml:id="fig_polcalc5" >
+          <caption>Finding the area between polar curves in <xref ref="ex_polcalc5">Example</xref>.</caption>
+          <!-- START figures/fig_polcalc5.tex -->
+          <image xml:id="img_polcalc5" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[%
+              axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-1,1},
+			%%
+              %			extra x ticks={.33},
+              %			extra x tick labels={$1/3$},
+			%ytick={-1,1},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-1.6,ymax=1.6,%
+			xmin=-.6,xmax=3.2%
+              ]
+
+              %\addplot [{\coloronefill},fill={\coloronefill},area style, smooth,domain=18:72,samples=30] ({cos(x)*(1+.05*cos(9*x))},{sin(x)*(1+.05*cos(9*x))}) -- (axis cs:0,0) -- cycle;
+              %
+              %\addplot [{\colortwofill},fill={\colortwofill},area style, smooth,domain=18:72,samples=30] ({cos(x)*(.7+.05*sin(6*x))},{sin(x)*(.7+.05*sin(6*x))}) -- (axis cs:0,0) -- cycle;
+              %
+
+
+              \addplot [{\coloronefill},fill={\coloronefill},area style] coordinates {(0.75,-1.299)(0.8719,-1.293)(0.9947,-1.273)(1.117,-1.24)(1.237,-1.194)(1.353,-1.135)(1.464,-1.063)(1.567,-0.9793)(1.663,-0.884)(1.748,-0.
+              7783)(1.823,-0.6634)(1.885,-0.5406)(1.935,-0.4113)(1.971,-0.277)(1.
+              993,-0.1393)(2.,0)(1.993,0.1393)(1.971,0.277)(1.935,0.4113)(1.885,0.
+              5406)(1.823,0.6634)(1.748,0.7783)(1.663,0.884)(1.567,0.9793)(1.464,1.
+              063)(1.353,1.135)(1.237,1.194)(1.117,1.24)(0.9947,1.273)(0.8719,1.293)
+              (0.75,1.299)(0.75,1.299)(0.9381,1.391)(1.137,1.455)(1.343,1.492)(1.552,1.499)(1.
+              76,1.477)(1.964,1.427)(2.158,1.348)(2.339,1.244)(2.504,1.115)(2.649,0.
+              9642)(2.772,0.7949)(2.87,0.6101)(2.942,0.4135)(2.985,0.2088)(3.,0)(2.
+              985,-0.2088)(2.942,-0.4135)(2.87,-0.6101)(2.772,-0.7949)(2.649,-0.
+              9642)(2.504,-1.115)(2.339,-1.244)(2.158,-1.348)(1.964,-1.427)(1.76,-1.
+              477)(1.552,-1.499)(1.343,-1.492)(1.137,-1.455)(0.9381,-1.391)(0.75,-1.
+              299)};
+
+              \addplot [{\colorone},thick, smooth,domain=0:180,samples=60] ({cos(x)*(3*cos(x))},{sin(x)*(3*cos(x))});
+              \addplot [{\colortwo}, thick,smooth,domain=0:360,samples=60] ({cos(x)*(1+cos(x))},{sin(x)*(1+cos(x))});
+
+              %\draw (axis cs:.8,.85) node {\scriptsize $r_2=f_2(\theta)$}
+              %(axis cs:.2,.8) node {\scriptsize $r_1=f_1(\theta)$};
+
+
+              %\addplot [{\colortwo},thick, smooth,domain=-1:1,samples=2] ({x},{.577*x});
+              %\addplot [{\colortwo},thick, smooth,domain=-1:1,samples=2] ({x},{-.577*x});
+
+
+              %\draw (axis cs:.5,0) circle (25pt);
+              \end{axis}
+
+              \node [right] at (myplot.right of origin) {\scriptsize $0$};
+              \node [above] at (myplot.above origin) {\scriptsize $\pi/2$};
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_polcalc5.tex END -->
+        </figure>
+      </statement>
+      <solution>
+        <p>We need to find the points of intersection between these two functions. Setting them equal to each other, we find:
+          <md>
+            <mrow>1+\cos(\theta) \amp = 3\cos(\theta) </mrow>
+            <mrow>\cos(\theta) \amp =1/2</mrow>
+            <mrow>\theta \amp = \pm \pi/3</mrow>
+          </md>
+        </p>
+
+        <p>Thus we integrate <m>\frac12\big((3\cos(\theta) )^2-(1+\cos(\theta) )^2\big)</m> on <m>[-\pi/3,\pi/3]</m>.
+          <md>
+            <mrow>\text{ Area }  \amp = \frac12\int_{-\pi/3}^{\pi/3} \big((3\cos(\theta) )^2-(1+\cos(\theta) )^2\big)\ d\theta</mrow>
+            <mrow>\amp = \frac12\int_{-\pi/3}^{\pi/3} \big( 8\cos^2(\theta) -2\cos(\theta) -1\big)\ d\theta</mrow>
+            <mrow>\amp = \big(2\sin(2\theta) - 2\sin(\theta) +3\theta\big)\Bigg|_{-\pi/3}^{\pi/3}</mrow>
+            <mrow>\amp = 2\pi.</mrow>
+          </md>
+        </p>
+
+        <p>Amazingly enough, the area between these curves has a <q>nice</q> value.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_polcalc6">
+      <title>Area defined by polar curves</title>
+      <statement>
+        <p>Find the area bounded between the polar curves <m>r=1</m> and <m>r=2\cos(2\theta)</m>, as shown in <xref ref="fig_polcalc6">Figure</xref> (a).</p>
+      </statement>
+      <solution>
+        <p>We need to find the point of intersection between the two curves. Setting the two functions equal to each other, we have
+          <me>
+            2\cos(2\theta) = 1  \Rightarrow  \cos(2\theta) = \frac12  \Rightarrow  2\theta = \pi/3 \Rightarrow  \theta=\pi/6.
+          </me>
+        </p>
+
+        <table xml:id="fig_polcalc6" >
+          <caption>Graphing the region bounded by the functions in <xref ref="ex_polcalc6">Example</xref>.</caption>
+          <tabular>
+            <row>
+              <cell>
+          <figure><!-- START figures/fig_polcalc6.tex -->
+              <image xml:id="img_polcalc6" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}
+                  \begin{axis}[%
+                  axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-1,1},
+			%%
+                  %			extra x ticks={.33},
+                  %			extra x tick labels={$1/3$},
+			%ytick={-1,1},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-1.15,ymax=1.15,%
+			xmin=-.5,xmax=2.2%
+                  ]
+
+                  %\addplot [{\coloronefill},fill={\coloronefill},area style, smooth,domain=18:72,samples=30] ({cos(x)*(1+.05*cos(9*x))},{sin(x)*(1+.05*cos(9*x))}) -- plot ({cos(x)*(2+.05*cos(9*x))},{sin(x)*(2+.05*cos(9*x))});
+                  %
+                  %\addplot [{\colortwofill},fill={\colortwofill},area style, smooth,domain=18:72,samples=30] ({cos(x)*(.7+.05*sin(6*x))},{sin(x)*(.7+.05*sin(6*x))}) -- (axis cs:0,0) -- cycle;
+                  %
+
+
+                  \addplot [{\coloronefill},fill={\coloronefill},area style] coordinates {(1.,0)(0.9986,0.05234)(0.9945,0.1045)(0.9877,0.1564)(0.9781,0.2079)(0.9659,0.2588)(0.9511,0.309)(0.9336,0.3584)(0.9135,0.4067)(0.891,0.454)(0.866,0.5)(0.7742,0.4744)(0.6822,0.443)(0.5907,0.406)(0.5,0.3633)(0.4107,0.3151)(0.3232,0.2617)(0.2379,0.2032)(0.1554,0.1399)(0.07593,0.07205)(0,0)};
+
+                  \addplot [{\colorone},thick, smooth,domain=0:360,samples=90] ({cos(x)*(2*cos(2*x))},{sin(x)*(2*cos(2*x))});
+                  \addplot [{\colortwo}, thick,smooth,domain=0:360,samples=60] ({cos(x)*(1)},{sin(x)*(1)});
+
+                  %\draw (axis cs:.8,.85) node {\scriptsize $r_2=f_2(\theta)$}
+                  %(axis cs:.2,.8) node {\scriptsize $r_1=f_1(\theta)$};
+
+
+                  %\addplot [{\colortwo},thick, smooth,domain=-1:1,samples=2] ({x},{.577*x});
+                  %\addplot [{\colortwo},thick, smooth,domain=-1:1,samples=2] ({x},{-.577*x});
+
+
+                  %\draw (axis cs:.5,0) circle (25pt);
+                  \end{axis}
+
+                  \node [right] at (myplot.right of origin) {\scriptsize $0$};
+                  \node [above] at (myplot.above origin) {\scriptsize $\pi/2$};
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_polcalc6.tex END --></figure>
+          </cell>
+            </row>
+            <row>
+              <cell>(a)</cell>
+            </row>
+            <row>
+              <cell>
+          <figure><!-- START figures/fig_polcalc6a.tex -->
+              <image xml:id="img_polcalc6a" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}
+                  \begin{axis}[%
+                  axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-1,1},
+			%%
+                  %			extra x ticks={.33},
+                  %			extra x tick labels={$1/3$},
+			%ytick={-1,1},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-.1,ymax=1,%
+			xmin=-.1,xmax=1.2%
+                  ]
+
+                  %\addplot [{\coloronefill},fill={\coloronefill},area style, smooth,domain=18:72,samples=30] ({cos(x)*(1+.05*cos(9*x))},{sin(x)*(1+.05*cos(9*x))}) -- plot ({cos(x)*(2+.05*cos(9*x))},{sin(x)*(2+.05*cos(9*x))});
+                  %
+                  %\addplot [{\colortwofill},fill={\colortwofill},area style, smooth,domain=18:72,samples=30] ({cos(x)*(.7+.05*sin(6*x))},{sin(x)*(.7+.05*sin(6*x))}) -- (axis cs:0,0) -- cycle;
+                  %
+
+
+                  \addplot [{\colortwofill},fill={\colortwofill},area style] coordinates {(1.,0)(0.9986,0.05234)(0.9945,0.1045)(0.9877,0.1564)(0.9781,0.2079)(0.9659,0.2588)(0.9511,0.309)(0.9336,0.3584)(0.9135,0.4067)(0.891,0.454)(0.866,0.5)(0,0)};
+
+                  \addplot [{\coloronefill},fill={\coloronefill},area style] coordinates {(0.866,0.5)(0.7742,0.4744)(0.6822,0.443)(0.5907,0.406)(0.5,0.3633)(0.4107,0.3151)(0.3232,0.2617)(0.2379,0.2032)(0.1554,0.1399)(0.07593,0.07205)(0,0)};
+
+                  \addplot [{\colorone},thick, smooth,domain=0:360,samples=90] ({cos(x)*(2*cos(2*x))},{sin(x)*(2*cos(2*x))});
+                  \addplot [{\colortwo}, thick,smooth,domain=0:360,samples=60] ({cos(x)*(1)},{sin(x)*(1)});
+
+                  \draw [thick,dashed] (axis cs: 0,0) -- (axis cs:.866,.5);
+
+
+
+                  %\draw (axis cs:.8,.85) node {\scriptsize $r_2=f_2(\theta)$}
+                  %(axis cs:.2,.8) node {\scriptsize $r_1=f_1(\theta)$};
+
+
+                  %\addplot [{\colortwo},thick, smooth,domain=-1:1,samples=2] ({x},{.577*x});
+                  %\addplot [{\colortwo},thick, smooth,domain=-1:1,samples=2] ({x},{-.577*x});
+
+
+                  %\draw (axis cs:.5,0) circle (25pt);
+                  \end{axis}
+
+                  \node [right] at (myplot.right of origin) {\scriptsize $0$};
+                  \node [above] at (myplot.above origin) {\scriptsize $\pi/2$};
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_polcalc6a.tex END --></figure>
+          </cell>
+            </row>
+            <row>
+              <cell>(b)</cell>
+            </row>
+            <row>
+              <cell></cell>
+            </row>
+          </tabular>
+        </table>
+
+        <p>In part (b) of the figure, we zoom in on the region and note that it is not really bounded <em>between</em> two polar curves, but rather <em>by</em> two polar curves, along with <m>\theta=0</m>. The dashed line breaks the region into its component parts. Below the dashed line, the region is defined by <m>r=1</m>, <m>\theta=0</m> and <m>\theta = \pi/6</m>. (Note: the dashed line lies on the line <m>\theta=\pi/6</m>.) Above the dashed line the region is bounded by <m>r=2\cos(2\theta)</m> and <m>\theta =\pi/6</m>. Since we have two separate regions, we find the area using two separate integrals.</p>
+
+        <p>Call the area below the dashed line <m>A_1</m> and the area above the dashed line <m>A_2</m>. They are determined by the following integrals:
+          <me>
+            A_1 = \frac12\int_0^{\pi/6} (1)^2\ d\theta\qquad  A_2 = \frac12\int_{\pi/6}^{\pi/4} \big(2\cos(2\theta)\big)^2\ d\theta.
+          </me>
+        </p>
+
+        <p>(The upper bound of the integral computing <m>A_2</m> is <m>\pi/4</m> as <m>r=2\cos(2\theta)</m> is at the pole when <m>\theta=\pi/4</m>.)</p>
+
+        <p>We omit the integration details and let the reader verify that <m>A_1 = \pi/12</m> and <m>A_2 = \pi/12-\sqrt{3}/8</m>; the total area is <m>A = \pi/6-\sqrt{3}/8</m>.</p>
+      </solution>
+    </example>
+  </subsection>
+
+  <subsection>
+    <title>Arc Length</title>
+    <p>As we have already considered the arc length of curves defined by rectangular and parametric equations, we now consider it in the context of polar equations. Recall that the arc length <m>L</m> of the graph defined by the parametric equations <m>x=f(t)</m>, <m>y=g(t)</m> on <m>[a,b]</m> is
+      <index><main>arc length</main></index><index><main>polar</main><sub>function!arc length</sub></index>
+      <men xml:id="eq_polar_arclength" >
+        L = \int_a^b \sqrt{\fp(t)^2 + g'(t)^2}\ dt = \int_a^b \sqrt{x'(t)^2+y'(t)^2}\ dt.
+      </men>
+    </p>
+
+    <p>Now consider the polar function <m>r=f(\theta)</m>. We again use the identities <m>x=f(\theta)\cos(\theta)</m> and <m>y=f(\theta)\sin(\theta)</m> to create parametric equations based on the polar function. We compute <m>x'(\theta)</m> and <m>y'(\theta)</m> as done before when computing <m>\frac{dy}{dx}</m>, then apply Equation <xref ref="eq_polar_arclength" />.</p>
+
+    <p>The expression <m>x'(\theta)^2+y'(\theta)^2</m> can be simplified a great deal; we leave this as an exercise and state that
+      <me>
+        x'(\theta)^2+y'(\theta)^2 = \fp(\theta)^2+f(\theta)^2.
+      </me>
+    </p>
+
+    <p>This leads us to the arc length formula.</p>
+
+    <insight xml:id="idea_polar_arclength">
+      <title>Arc Length of Polar Curves</title>
+      <p>Let <m>r=f(\theta)</m> be a polar function with <m>\fp</m> continuous on an open interval <m>I</m> containing <m>[\alpha,\beta]</m>, on which the graph traces itself only once. The arc length <m>L</m> of the graph on <m>[\alpha,\beta]</m> is
+        <me>
+          L = \int_\alpha^\beta \sqrt{\fp(\theta)^2+f(\theta)^2}\ d\theta = \int_\alpha^\beta\sqrt{(r\,')^2+ r^2}\ d\theta.
+        </me>
+      </p>
+    </insight>
+
+    <example xml:id="ex_polcalc7">
+      <title>Arc length of a lima&#xe7;on</title>
+      <statement>
+        <p>Find the arc length of the lima&#xe7;on <m>r=1+2\sin(t)</m>.</p>
+      </statement>
+      <solution>
+        <p>With <m>r=1+2\sin(t)</m>, we have <m>r\,' = 2\cos(t)</m>. The lima&#xe7;on is traced out once on <m>[0,2\pi]</m>, giving us our bounds of integration. Applying <xref ref="idea_polar_arclength">Key Idea</xref>, we have
+          <md>
+            <mrow>L 	\amp = \int_0^{2\pi} \sqrt{(2\cos(\theta) )^2+(1+2\sin(\theta) )^2}\ d\theta</mrow>
+            <mrow>\amp =	\int_0^{2\pi} \sqrt{4\cos^2(\theta) +4\sin^2(\theta) +4\sin(\theta) +1}\ d\theta</mrow>
+            <mrow>\amp =	\int_0^{2\pi} \sqrt{4\sin(\theta) +5}\ d\theta</mrow>
+            <mrow>\amp \approx 13.3649.</mrow>
+          </md>
+        </p>
+
+        <figure xml:id="fig_polcalc7" >
+          <caption>The lima&#xe7;on in <xref ref="ex_polcalc7">Example</xref> whose arc length is measured.</caption>
+          <!-- START figures/fig_polcalc7.tex -->
+          <image xml:id="img_polcalc7" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[%
+              axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-1,1},
+			%%
+              %			extra x ticks={.33},
+              %			extra x tick labels={$1/3$},
+			%ytick={-1,1},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-.5,ymax=3.2,%
+			xmin=-2.22,xmax=2.22%
+              ]
+
+
+
+              \addplot [{\colorone},thick, smooth,domain=0:360,samples=90] ({cos(x)*(1+2*sin(x))},{sin(x)*(1+2*sin(x))});
+
+              %\draw (axis cs:.8,.85) node {\scriptsize $r_2=f_2(\theta)$}
+              %(axis cs:.2,.8) node {\scriptsize $r_1=f_1(\theta)$};
+
+
+              %\addplot [{\colortwo},thick, smooth,domain=-1:1,samples=2] ({x},{.577*x});
+              %\addplot [{\colortwo},thick, smooth,domain=-1:1,samples=2] ({x},{-.577*x});
+
+
+              %\draw (axis cs:.5,0) circle (25pt);
+              \end{axis}
+
+              \node [right] at (myplot.right of origin) {\scriptsize $0$};
+              \node [above] at (myplot.above origin) {\scriptsize $\pi/2$};
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_polcalc7.tex END -->
+        </figure>
+
+        <p>The final integral cannot be solved in terms of elementary functions, so we resorted to a numerical approximation. (Simpson's Rule, with <m>n=4</m>, approximates the value with <m>13.0608</m>. Using <m>n=22</m> gives the value above, which is accurate to 4 places after the decimal.)</p>
+      </solution>
+    </example>
+  </subsection>
+
+  <subsection>
+    <title>Surface Area</title>
+    <p>The formula for arc length leads us to a formula for surface area. The following Key Idea is based on <xref ref="idea_surface_area_parametric">Key Idea</xref>.</p>
+
+    <insight xml:id="idea_surface_area_polar">
+      <title>Surface Area of a Solid of Revolution</title>
+      <p>Consider the graph of the polar equation <m>r=f(\theta)</m>, where <m>\fp</m> is continuous on an open interval containing <m>[\alpha,\beta]</m> on which the graph does not cross itself.
+        <index><main>surface area</main><sub>solid of revolution</sub></index><index><main>polar</main><sub>function!surface area</sub></index><index><main>integration</main><sub>surface area</sub></index></p>
+
+      <ol>
+        <li><p>The surface area of the solid formed by revolving the graph about the initial ray (<m>\theta=0</m>) is:
+            <me>
+              \text{ Surface Area }  = 2\pi\int_\alpha^\beta f(\theta)\sin(\theta) \sqrt{\fp(\theta)^2+f(\theta)^2}\ d\theta.
+            </me>
+          </p></li>
+
+        <li><p>The surface area of the solid formed by revolving the graph about the line <m>\theta=\pi/2</m> is:
+            <me>
+              \text{ Surface Area }  = 2\pi\int_\alpha^\beta f(\theta)\cos(\theta) \sqrt{\fp(\theta)^2+f(\theta)^2}\ d\theta.
+            </me>
+          </p></li>
+      </ol>
+    </insight>
+
+    <example xml:id="ex_polcalc8">
+      <title>Surface area determined by a polar curve</title>
+      <statement>
+        <p>Find the surface area formed by revolving one petal of the rose curve <m>r=\cos(2\theta)</m> about its central axis (see <xref ref="fig_polcalc8">Figure</xref>).</p>
+      </statement>
+      <solution>
+        <table xml:id="fig_polcalc8" >
+          <caption>Finding the surface area of a rose<ndash />curve petal that is revolved around its central axis.</caption>
+          <tabular>
+            <row>
+              <cell>
+          <figure><!-- START figures/fig_polcalc8.tex -->
+              <image xml:id="img_polcalc8" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}
+                  \begin{axis}[%
+                  axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={-1,1},
+			%%
+                  %			extra x ticks={.33},
+                  %			extra x tick labels={$1/3$},
+			ytick={-1,1},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-1.1,ymax=1.1,%
+			xmin=-1.3,xmax=1.3%
+                  ]
+
+
+
+                  \addplot [{\colorone},thick, smooth,domain=0:45,samples=30] ({cos(x)*(cos(2*x))},{sin(x)*(cos(2*x))});
+                  \addplot [{\colortwo},thick, smooth,domain=45:360,samples=60] ({cos(x)*(cos(2*x))},{sin(x)*(cos(2*x))});
+
+                  %\draw (axis cs:.8,.85) node {\scriptsize $r_2=f_2(\theta)$}
+                  %(axis cs:.2,.8) node {\scriptsize $r_1=f_1(\theta)$};
+
+
+                  %\addplot [{\colortwo},thick, smooth,domain=-1:1,samples=2] ({x},{.577*x});
+                  %\addplot [{\colortwo},thick, smooth,domain=-1:1,samples=2] ({x},{-.577*x});
+
+
+                  %\draw (axis cs:.5,0) circle (25pt);
+                  \end{axis}
+
+                  \node [right] at (myplot.right of origin) {\scriptsize $0$};
+                  \node [above] at (myplot.above origin) {\scriptsize $\pi/2$};
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_polcalc8.tex END --></figure>
+          </cell>
+            </row>
+            <row>
+              <cell>(a)</cell>
+            </row>
+            <row>
+              <cell>
+          <figure><!--
+               \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=pageinvisible,
+              3Droll=0,
+              3Dortho=0.009,
+              3Dc2c=0.41893383860588074 -0.887881875038147 0.1901581883430481,
+              3Dcoo=65.85308837890625 6.341495513916016 17.98039436340332,
+              3Droo=85,
+              3Dlights=Headlamp,add3Djscript=asylabels.js]
+               -->
+
+
+              <!-- START figures/figpolcalc8a_3D.asy -->
+              <image xml:id="img_polcalc8a_3D" >
+                <asymptote>
+                  <![CDATA[
+                  import graph3;
+
+                  //ASY file for figparcalc8_3D.asy in Chapter 9
+
+
+                  size(200,200,IgnoreAspect);
+                  //currentprojection=perspective(7,2,1);
+                  currentprojection=orthographic(4,-8,2);
+                  defaultrender.merge=true;
+
+                  usepackage("mathspec");
+                  texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+                  texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+                  texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+                  texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+                  // setup and draw the axes
+                  real[] myxchoice={1};
+                  real[] myychoice={};
+                  real[] myzchoice={};
+                  defaultpen(0.5mm);
+
+                  pair xbounds=(-0.25,1.25);
+                  pair ybounds=(-.25,.25);
+                  pair zbounds=(-.25,.5);
+
+                  xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+                  yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice));//,Arrow3(size=3mm));
+                  zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+                  label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+                  //label("$x$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+                  label("$y$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+                  label("\ ",(0,0,1.5));
+                  label("\ ",(0,-1.5,0));
+
+                  //surface r=cos(2 theta) revolved around x axis // ({cos(y)*(cos(2*y))},{(sin(y)*(cos(2*y)))*cos(x)},{(sin(y)*(cos(2*y)))*sin(x)});
+                  triple f(pair t) {
+                    return (cos(t.y)*cos(2*t.y),sin(t.y)*cos(2*t.y)*cos(t.x),sin(t.y)*cos(2*t.y)*sin(t.x));
+                  }
+                  surface s=surface(f,(0,0),(2pi,pi/4),8,16,Spline);
+                  pen p=rgb(0,0,.7);
+                  draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+
+                  //curve on the surfaces  //({cos(x)*cos(2*x)},{0},{sin(x)*cos(2*x)});
+                  triple g(real t) {return (cos(t)*cos(2*t),0,sin(t)*cos(2*t));}
+                  path3 mypath=graph(g,0,pi/4,operator ..);draw(mypath,blue+linewidth(2));
+
+
+
+
+
+                  // ////////////////////////////////////
+                  //    SAMPLE CODE
+
+                  // defaultpen(fontsize(10pt));
+
+                  //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+                  //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+                  //pen p=rgb(0,0,.7);
+                  //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+                  //triple f(pair t) {
+                  //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+                  //}
+                  //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+                  //pen p=rgb(0,0,.7);
+                  //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+                  //draw(s,paleblue);
+                  //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+                  //draw(mypath,2bp+blue);
+
+                  //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+                  //path3 mypath=graph(g,-1,1,operator ..);
+                  //draw(mypath,blue+dashed+linewidth(2));
+
+                  //pen p=rgb(0,0,1);
+                  //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+                  ]]>
+                </asymptote>
+              </image>
+              <!-- figures/figpolcalc8a_3D.asy END --></figure>
+          </cell>
+            </row>
+            <row>
+              <cell>(b)</cell>
+            </row>
+            <row>
+              <cell></cell>
+            </row>
+          </tabular>
+        </table>
+
+        <p>We choose, as implied by the figure, to revolve the portion of the curve that lies on <m>[0,\pi/4]</m> about the initial ray. Using <xref ref="idea_surface_area_polar">Key Idea</xref> and the fact that <m>\fp(\theta) = -2\sin(2\theta)</m>, we have
+          <md>
+            <mrow>\text{ Surface Area }  \amp = 2\pi\int_0^{\pi/4} \cos(2\theta)\sin(\theta)\sqrt{\big(-2\sin(2\theta)\big)^2+\big(\cos(2\theta)\big)^2}\ d\theta</mrow>
+            <mrow>\amp \approx 1.36707.</mrow>
+          </md>
+        </p>
+
+        <p>The integral is another that cannot be evaluated in terms of elementary functions. Simpson's Rule, with <m>n=4</m>, approximates the value at <m>1.36751</m>.</p>
+      </solution>
+    </example>
+
+    <p>This chapter has been about curves in the plane. While there is great mathematics to be discovered in the two dimensions of a plane, we live in a three dimensional world and hence we should also look to do mathematics in 3D <mdash /> that is, in <em>space</em>. The next chapter begins our exploration into space by introducing the topic of <em>vectors</em>, which are incredibly useful and powerful mathematical objects.</p>
+  </subsection>
+
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Given polar equation <m>r=f(\theta)</m>, how can one create parametric equations of the same curve?</p>
+          </statement>
+          <solution>
+            <p>Using <m>x=r\cos(\theta)</m> and <m>y=r\sin(\theta)</m>, we can write <m>x=f(\theta)\cos(\theta)</m>, <m>y=f(\theta)\sin(\theta)</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>With rectangular coordinates, it is natural to approximate area with <fillin />; with polar coordinates, it is natural to approximate area with <fillin />.</p>
+          </statement>
+          <solution>
+            <p>rectangles; sectors of circles</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, find <m>\lz{y}{x}</m> (in terms of <m>\theta</m>). Then find the equations of the tangent and normal lines to the curve at the indicated <m>\theta</m>-value.</p>
+      </introduction>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$dydx">
+              <static>-\cot(\theta)</static>
+            </var>
+            <var name="$tan">
+              <static>y=-(x-\sqrt{2}/2)+\sqrt{2}/2</static>
+            </var>
+            <var name="$nor">
+              <static>y=x</static>
+            </var>
+            <pg-code>
+              Context()->variables->are(theta=>['Real',TeX=>'\theta']);
+              $dydx=Formula("-cot(theta)");
+              Context("Numeric")->variables->add(y=>'Real');
+              parser::Assignment->Allow;
+              Context()->flags->set(reduceConstants=>0, reduceConstantFunctions=>0);
+              $tan=Formula("y=-(x-sqrt(2)/2)+sqrt(2)/2");
+              $nor=Formula("y=x");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>For the polar equation <m>r=1</m>, find <m>\lz{y}{x}</m> in terms of <m>\theta</m>. Type <sq><c>theta</c></sq> for <m>\theta</m>.</p>
+            <p><m>\lz{y}{x}=</m><var name="$dydx" width="30" /></p>
+            <p>At <m>\theta = \pi/4</m>, the tangent line has equation</p>
+            <p><var name="$tan" width="30" /></p>
+            <p>and the normal line has equation</p>
+            <p><var name="$nor" width="30" />.</p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$dydx">
+              <static>\frac{1}{2}(\tan(\theta)-\cot(\theta))</static>
+            </var>
+            <var name="$tan">
+              <static>y=\frac{1}{2}</static>
+            </var>
+            <var name="$nor">
+              <static>x=\frac{1}{2}</static>
+            </var>
+            <pg-code>
+              Context()->variables->are(theta=>['Real',TeX=>'\theta']);
+              $dydx=Formula("1/2(tan(theta)-cot(theta))");
+              Context("Numeric")->variables->add(y=>'Real');
+              parser::Assignment->Allow;
+              Context()->flags->set(reduceConstants=>0, reduceConstantFunctions=>0);
+              $tan=Formula("y=1/2");
+              $nor=Formula("x=1/2");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>For the polar equation <m>r=\cos(\theta)</m>, find <m>\lz{y}{x}</m> in terms of <m>\theta</m>. Type <sq><c>theta</c></sq> for <m>\theta</m>.</p>
+            <p><m>\lz{y}{x}=</m><var name="$dydx" width="30" /></p>
+            <p>At <m>\theta = \pi/4</m>, the tangent line has equation</p>
+            <p><var name="$tan" width="30" /></p>
+            <p>and the normal line has equation</p>
+            <p><var name="$nor" width="30" />.</p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>r=1+\sin(\theta)</m>;<m>\theta = \pi/6</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>\frac{dy}{dx} = \frac{\cos(\theta) (1+2\sin(\theta) )}{\cos^2(\theta) -\sin(\theta) (1+\sin(\theta) )}</m></p></li>
+
+              <li><p>tangent line: <m>x=3\sqrt{3}/4</m>; normal line: <m>y=3/4</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds r=1-3\cos(\theta)</m>;<m>\theta = 3\pi/4</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>\frac{dy}{dx} = \frac{3 \sin^2(t)+(1-3 \cos(t)) \cos(t)}{3 \sin(t) \cos(t)-\sin(t) (1-3 \cos(t))}</m></p></li>
+
+              <li><p>tangent line: <m>y=\frac{1}{1+3\sqrt{2}}(x+(1/\sqrt{2}+3/2))+1/\sqrt{2}+3/2 \approx y=0.19(x+2.21)+2.21</m>; normal line: <m>y=-(1+3\sqrt{2})(x+(1/\sqrt{2}+3/2))+1/\sqrt{2}+3/2</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$dydx">
+              <static>\frac{\theta\cos(\theta)+\sin(\theta)}{\cos(\theta)-\theta\sin(\theta)}</static>
+            </var>
+            <var name="$tan">
+              <static>y=-2/\pi x+\pi/2</static>
+            </var>
+            <var name="$nor">
+              <static>y=\pi/2x+\pi/2</static>
+            </var>
+            <pg-code>
+              Context()->variables->are(theta=>['Real',TeX=>'\theta']);
+              $dydx=Formula("(theta cos(theta) + sin(theta))/(cos(theta)-theta sin(theta))");
+              Context("Numeric")->variables->add(y=>'Real');
+              parser::Assignment->Allow;
+              Context()->flags->set(reduceConstants=>0, reduceConstantFunctions=>0);
+              $tan=Formula("y=-2/pi x + pi/2");
+              $nor=Formula("y=pi/2 x + pi/2");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>For the polar equation <m>r=\theta</m>, find <m>\lz{y}{x}</m> in terms of <m>\theta</m>. Type <sq><c>theta</c></sq> for <m>\theta</m>.</p>
+            <p><m>\lz{y}{x}=</m><var name="$dydx" width="30" /></p>
+            <p>At <m>\theta = \pi/2</m>, the tangent line has equation</p>
+            <p><var name="$tan" width="30" /></p>
+            <p>and the normal line has equation</p>
+            <p><var name="$nor" width="30" />.</p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$dydx">
+              <static>\frac{\cos(\theta)\cos(3\theta)-3\sin(\theta)\sin(3\theta)}{-\cos(3\theta)\sin(\theta)-3\cos(\theta)\sin(3\theta)}</static>
+            </var>
+            <var name="$tan">
+              <static>y=x/\sqrt{3}</static>
+            </var>
+            <var name="$nor">
+              <static>y=-\sqrt{3}x</static>
+            </var>
+            <pg-code>
+              Context()->variables->are(theta=>['Real',TeX=>'\theta']);
+              $dydx=Formula("(cos(theta)cos(3theta)-3sin(theta)sin(3theta))/(-cos(3theta)sin(theta)-3cos(theta)sin(3theta))");
+              Context("Numeric")->variables->add(y=>'Real');
+              parser::Assignment->Allow;
+              Context()->flags->set(reduceConstants=>0, reduceConstantFunctions=>0);
+              $tan=Formula("y=x/sqrt(3)");
+              $nor=Formula("y=-sqrt(3)x");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>For the polar equation <m>r=\cos(3\theta)</m>, find <m>\lz{y}{x}</m> in terms of <m>\theta</m>. Type <sq><c>theta</c></sq> for <m>\theta</m>.</p>
+            <p><m>\lz{y}{x}=</m><var name="$dydx" width="30" /></p>
+            <p>At <m>\theta = \pi/6</m>, the tangent line has equation</p>
+            <p><var name="$tan" width="30" /></p>
+            <p>and the normal line has equation</p>
+            <p><var name="$nor" width="30" />.</p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$dydx">
+              <static>\frac{4\sin(\theta)\cos(4\theta)+\sin(4\theta)\cos(\theta)}{4\cos(\theta)\cos(4\theta)-\sin(\theta)\sin(4\theta)}</static>
+            </var>
+            <var name="$tan">
+              <static>y=5\sqrt{3}\left(x+\sqrt{3}/4\right)-3/4</static>
+            </var>
+            <var name="$nor">
+              <static>y=-\frac{1}{5\sqrt{3}}\left(x+\sqrt{3}/4\right)-3/4</static>
+            </var>
+            <pg-code>
+              Context()->variables->are(theta=>['Real',TeX=>'\theta']);
+              $dydx=Formula("(4sin(theta)cos(4theta)+sin(4theta)cos(theta))/(4cos(theta)cos(4theta)-sin(theta)sin(4theta))");
+              Context("Numeric")->variables->add(y=>'Real');
+              parser::Assignment->Allow;
+              Context()->flags->set(reduceConstants=>0, reduceConstantFunctions=>0);
+              $tan=Formula("y=5sqrt(3)(x+sqrt(3)/4)-3/4");
+              $nor=Formula("y=-1/(5sqrt(3))(x+sqrt(3)/4)-3/4");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>For the polar equation <m>r=\sin(4\theta)</m>, find <m>\lz{y}{x}</m> in terms of <m>\theta</m>. Type <sq><c>theta</c></sq> for <m>\theta</m>.</p>
+            <p><m>\lz{y}{x}=</m><var name="$dydx" width="30" /></p>
+            <p>At <m>\theta = \pi/3</m>, the tangent line has equation</p>
+            <p><var name="$tan" width="30" /></p>
+            <p>and the normal line has equation</p>
+            <p><var name="$nor" width="30" />.</p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds r=\frac1{\sin(\theta) -\cos(\theta) }</m>;<m>\theta = \pi</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>\frac{dy}{dx} = 1</m></p></li>
+
+              <li><p>tangent line: <m>y=x+1</m>; normal line: <m>y=-x-1</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, find the values of <m>\theta</m> in the given interval where the graph of the polar function has horizontal and vertical tangent lines.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds r=3</m>;<m>[0,2\pi]</m></p>
+          </statement>
+          <solution>
+            <p>horizontal: <m>\theta=\pi/2,3\pi/2</m>;</p>
+
+            <p>vertical: <m>\theta = 0,\pi,2\pi</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds r=2\sin(\theta)</m>;<m>[0,\pi]</m></p>
+          </statement>
+          <solution>
+            <p>horizontal: <m>\theta=0,\pi/2,\pi</m>;</p>
+
+            <p>vertical: <m>\theta = \pi/4,3\pi/4</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds r=\cos(2\theta)</m>;<m>[0,2\pi]</m></p>
+          </statement>
+          <solution>
+            <p>horizontal: <m>\theta=\tan^{-1}(1/\sqrt{5}),\ \pi/2,\ \pi-\tan^{-1}(1/\sqrt{5}),\ \pi+\tan^{-1}(1/\sqrt{5}),\ 3\pi/2,\ 2\pi-\tan^{-1}(1/\sqrt{5})</m>;</p>
+
+            <p>vertical: <m>\theta = 0,\ \tan^{-1}(\sqrt{5}),\ \pi-\tan^{-1}(\sqrt{5}),\ \pi,\ \pi+\tan^{-1}(\sqrt{5}),\ 2\pi-\tan^{-1}(\sqrt{5})</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$hor">
+              <static>\pi/3, \pi, 5\pi/3</static>
+            </var>
+            <var name="$ver">
+              <static>0, 2\pi/3, 4\pi/3</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFormulas=>0);
+              $hor=List(Formula("pi/3"), Formula("pi"), Formula("5pi/3"));
+              $ver=List(Formula("0"), Formula("2pi/3"), Formula("4pi/3"));
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find the values of <m>\theta</m> in <m>[0,2\pi)</m> where the graph of <m>r=1+\cos(\theta)</m> has horizontal and vertical tangent lines.</p>
+            <p>Horizontal tangent lines for <m>\theta\in\bigg\{</m><var name="$hor" width="20" /><m>\bigg\}</m></p>
+            <p>Vertical tangent lines for <m>\theta\in\bigg\{</m><var name="$ver" width="20" /><m>\bigg\}</m></p>
+          </statement>
+          <solution>
+            <p>horizontal: <m>\theta=\pi/3,\ 5\pi/3</m>;</p>
+
+            <p>vertical: <m>\theta = 0,\ 2\pi/3,\ 4\pi/3,\ 2\pi</m></p>
+
+            <p>At <m>\theta=\pi</m>, <m>\frac{dy}{dx} = 0/0</m>; apply L'Hopital's Rule to find that <m>\frac{dy}{dx}\rightarrow 0</m> as <m>\theta\rightarrow \pi</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, find the equation of the lines tangent to the graph at the pole.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds r=\sin(\theta)</m>;<m>[0,\pi]</m></p>
+          </statement>
+          <solution>
+            <p>In polar: <m>\theta = 0 \ \cong \ \theta = \pi</m></p>
+
+            <p>In rectangular: <m>y=0</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds r=\sin(3\theta)</m>;<m>[0,\pi]</m></p>
+          </statement>
+          <solution>
+            <p>In polar: <m>\theta = 0,\ \theta = \pi/3,\ \theta = 2\pi/3</m>.</p>
+
+            <p>In rectangular: <m>y=0</m>, <m>y=\sqrt{3}x</m>, and <m>y= -\sqrt{3}x</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, find the area of the described region.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Enclosed by the circle: <m>\ds r=4\sin(\theta)</m></p>
+          </statement>
+          <solution>
+            <p>area = <m>4\pi</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Enclosed by the circle <m>\ds r=5</m></p>
+          </statement>
+          <solution>
+            <p>area = <m>25\pi</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$area">
+              <static>\pi/12</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFormulas=>0);
+              $area=Formula("pi/12");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find the area enclosed by one petal of <m>r=\sin(3\theta)</m>.</p>
+            <p><var name="$area" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$area">
+              <static>3\pi/2</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFormulas=>0);
+              $area=Formula("3pi/2");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find the area enclosed by the cardiod <m>r=1-\sin(\theta)</m>.</p>
+            <p><var name="$area" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Enclosed by the inner loop of the lima&#xe7;on <m>\ds r=1+2\cos(\theta)</m></p>
+          </statement>
+          <solution>
+            <p>area = <m>\pi-3\sqrt{3}/2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$area">
+              <static>2\pi+3\sqrt{3}/2</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFormulas=>0);
+              $area=Formula("2pi+3sqrt(3)/2");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find the area enclosed by the outer loop of the lima&#xe7;on <m>r=1+2\cos(\theta)</m> (including area enclosed by the inner loop).</p>
+            <p><var name="$area" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$area">
+              <static>\pi+3\sqrt{3}</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFormulas=>0);
+              $area=Formula("pi+3sqrt(3)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find the area enclosed between the inner and outer loop of the lima&#xe7;on <m>r=1+2\cos(\theta)</m>.</p>
+            <p><var name="$area" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$area">
+              <static>1</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFormulas=>0);
+              $area=Formula("1");
+              $gr = init_graph(-1.5,-1.5,2.5,2.5,size=>[400,400]);
+              $gr->moveTo(-1.5,0); $gr->arrowTo(2.4,0,'black',1);
+              $gr->moveTo(0,-1.5); $gr->arrowTo(0,2.4,'black',1);
+              Context()->variables->are(t=>"Real");
+              $x[0] = Formula("2*cos(t)*cos(t)");
+              $y[0] = Formula("2*cos(t)*sin(t)");
+              $c[0] = new Fun( $x[0]->perlFunction, $y[0]->perlFunction, $gr );
+              $c[0]->domain(0,6.28318);
+              $c[0]->steps(90);
+              $c[0]->weight(1);
+              $c[0]->color('black');
+              $x[1] = Formula("2*sin(t)*cos(t)");
+              $y[1] = Formula("2*sin(t)*sin(t)");
+              $c[1] = new Fun( $x[1]->perlFunction, $y[1]->perlFunction, $gr );
+              $c[1]->domain(0,6.28318);
+              $c[1]->steps(90);
+              $c[1]->weight(1);
+              $c[1]->color('black');
+              for my$i(-1,1,2){$gr->lb( new Label($i,-0.1,$i,'black','center','top'));};
+              for my$i(-1,1,2){$gr->lb( new Label(-0.1,$i,$i,'black','right','middle'));};
+              $gr->fillRegion([1.5,0.5,"blue"]);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find the area enclosed by <m>r=2\cos(\theta)</m>, <m>r=2\sin(\theta)</m>, and the <m>x</m>-axis, as shown:</p>
+            <figure>
+              <image pg-name="$gr" />
+            </figure>
+            <p>The area is <var name="$area" width="15" />.</p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Enclosed by <m>r=\cos(3 \theta)</m> and <m>r=\sin(3\theta)</m>, as shown:</p>
+
+            <!-- START\1END -->
+          </statement>
+          <solution>
+            <p>area = <m>\ds \int_{\pi/12}^{\pi/3} \frac12 \sin^2(3\theta)\ d\theta - \int_{\pi/12}^{\pi/6}\frac12\cos^2(3\theta)\ d\theta = \frac1{12}+\frac{\pi}{24}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$area">
+              <static>\frac{1}{32}\left(4\pi-3\sqrt{3}\right)</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFormulas=>0);
+              $area=Formula("1/32(4pi-3sqrt(3))");
+              $gr = init_graph(-0.1,-0.1,1.5,1.5,size=>[400,400]);
+              $gr->moveTo(-0.1,0); $gr->arrowTo(1.4,0,'black',1);
+              $gr->moveTo(0,-0.1); $gr->arrowTo(0,1.4,'black',1);
+              Context()->variables->are(t=>"Real");
+              $x[0] = Formula("cos(t)*cos(t)");
+              $y[0] = Formula("cos(t)*sin(t)");
+              $c[0] = new Fun( $x[0]->perlFunction, $y[0]->perlFunction, $gr );
+              $c[0]->domain(0,1.570796);
+              $c[0]->steps(90);
+              $c[0]->weight(1);
+              $c[0]->color('black');
+              $x[1] = Formula("sin(2t)*cos(t)");
+              $y[1] = Formula("sin(2t)*sin(t)");
+              $c[1] = new Fun( $x[1]->perlFunction, $y[1]->perlFunction, $gr );
+              $c[1]->domain(0,1.570796);
+              $c[1]->steps(90);
+              $c[1]->weight(1);
+              $c[1]->color('black');
+              for my$i(1){$gr->lb( new Label($i,-0.025,$i,'black','center','top'));};
+              for my$i(1){$gr->lb( new Label(-0.025,$i,$i,'black','right','middle'));};
+              $gr->fillRegion([0.3,0.3,"blue"]);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find the area enclosed by <m>r=\cos(\theta)</m> and <m>r=\sin(2\theta)</m>, as shown:</p>
+            <figure>
+              <image pg-name="$gr" />
+            </figure>
+            <p>The area is <var name="$area" width="15" />.</p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Enclosed by <m>r=\cos(\theta)</m> and <m>r=1-\cos(\theta)</m>, as shown:</p>
+
+            <!-- START\1END -->
+          </statement>
+          <solution>
+            <p>area = <m>\ds \int_{0}^{\pi/3} \frac12 (1-\cos(\theta) )^2\ d\theta +\int_{\pi/3}^{\pi/2} \frac12 (\cos(\theta) )^2\ d\theta =\frac{7\pi}{24}-\frac{\sqrt{3}}2\approx 0.0503</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, answer the questions involving arc length.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Let <m>x(\theta) = f(\theta)\cos(\theta)</m> and <m>y(\theta)=f(\theta)\sin(\theta)</m>. Show, as suggested by the text, that
+              <me>
+                x\,'(\theta)^2+y\,'(\theta)^2 = \fp(\theta)^2+f(\theta)^2.
+              </me>
+            </p>
+          </statement>
+          <solution>
+            <p><m>x\,'(\theta) = \fp(\theta)\cos(\theta) -f(\theta)\sin(\theta)</m>, <m>y\,'(\theta) = \fp(\theta)\sin(\theta) + f(\theta)\cos(\theta)</m>. Square each and add; applying the Pythagoran Theorem twice achieves the result.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$length">
+              <static>4\pi</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFormulas=>0);
+              $length=Formula("4pi");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Use the arc length formula to compute the arc length of the circle <m>r=2</m>.</p>
+            <p><var name="$length" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$length">
+              <static>4\pi</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFormulas=>0);
+              $length=Formula("4pi");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Use the arc length formula to compute the arc length of the circle <m>r=4\sin(\theta)</m>.</p>
+            <p><var name="$length" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$length">
+              <static>2.2592</static>
+            </var>
+            <pg-code>
+              $length=OneOf("2.2592,2.22748");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Approximate the arc length of one petal of the rose curve <m>r=\sin(3\theta)</m> with Simpson's Rule and <m>n=4</m>.</p>
+            <p><var name="$length" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$length">
+              <static>7.62933</static>
+            </var>
+            <pg-code>
+              $length=OneOf("7.62933,8");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Approximate the arc length of the cardiod <m>r=1+\cos(\theta)</m> with Simpson's Rule and <m>n=6</m>.</p>
+            <p><var name="$length" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, answer the questions involving surface area.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Use <xref ref="idea_surface_area_polar">Key Idea</xref> to find the surface area of the sphere formed by revolving the circle <m>r=2</m> about the initial ray.</p>
+          </statement>
+          <solution>
+            <p><m>SA = 16\pi</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Use <xref ref="idea_surface_area_polar">Key Idea</xref> to find the surface area of the sphere formed by revolving the circle <m>r=2\cos(\theta)</m> about the initial ray.</p>
+          </statement>
+          <solution>
+            <p><m>SA = 4\pi</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find the surface area of the solid formed by revolving the cardiod <m>r=1+\cos(\theta)</m> about the initial ray.</p>
+          </statement>
+          <solution>
+            <p><m>SA = 32\pi/5</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find the surface area of the solid formed by revolving the circle <m>r=2\cos(\theta)</m> about the line <m>\theta=\pi/2</m>.</p>
+          </statement>
+          <solution>
+            <p><m>SA = 4\pi^2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find the surface area of the solid formed by revolving the line <m>r=3\sec(\theta)</m>, <m>-\pi/4\leq\theta\leq\pi/4</m>, about the line <m>\theta=\pi/2</m>.</p>
+          </statement>
+          <solution>
+            <p><m>SA = 36\pi</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

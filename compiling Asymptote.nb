@@ -1,0 +1,1600 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     69245,       1591]
+NotebookOptionsPosition[     65948,       1473]
+NotebookOutlinePosition[     66291,       1488]
+CellTagsIndexPosition[     66248,       1485]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"SetDirectory", "[", 
+  "\"\<C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.6396522903566494`*^9, 3.639652297741361*^9}, 
+   3.639665581936229*^9}],
+
+Cell[BoxData["\<\"C:\\\\Users\\\\hartmangn\\\\Documents\\\\Text \
+Projects\\\\Calculus\\\\figures\"\>"], "Output",
+ CellChangeTimes->{3.639652298381941*^9, 3.639665586591695*^9, 
+  3.639689202788555*^9, 3.6398242065259504`*^9, 3.639905557415182*^9, 
+  3.639905715135767*^9, 3.6399070475367813`*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"filenames", "=", 
+   RowBox[{"FileNames", "[", "\"\<*3D.asy\>\"", "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.639652301966093*^9, 3.6396523154225454`*^9}, {
+  3.6396656228183165`*^9, 3.639665622934328*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["filenames"], "Input",
+ CellChangeTimes->{{3.63966561054309*^9, 3.639665620002035*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"crop3D.asy\"\>", ",", "\<\"fig10_01_ex_15_3D.asy\"\>", 
+   ",", "\<\"fig10_01_ex_16_3D.asy\"\>", ",", "\<\"fig10_01_ex_17_3D.asy\"\>",
+    ",", "\<\"fig10_01_ex_18_3D.asy\"\>", 
+   ",", "\<\"fig10_01_ex_19_3D.asy\"\>", ",", "\<\"fig10_01_ex_20_3D.asy\"\>",
+    ",", "\<\"fig10_01_ex_21_3D.asy\"\>", 
+   ",", "\<\"fig10_01_ex_22_3D.asy\"\>", ",", "\<\"fig10_01_ex_23_3D.asy\"\>",
+    ",", "\<\"fig10_01_ex_24_3D.asy\"\>", 
+   ",", "\<\"fig10_01_ex_25_3D.asy\"\>", ",", "\<\"fig10_01_ex_26_3D.asy\"\>",
+    ",", "\<\"fig10_01_ex_27_3D.asy\"\>", 
+   ",", "\<\"fig10_01_ex_28_3D.asy\"\>", ",", "\<\"fig10_01_ex_29_3D.asy\"\>",
+    ",", "\<\"fig10_01_ex_30_3D.asy\"\>", 
+   ",", "\<\"fig10_01_ex_31_3D.asy\"\>", ",", "\<\"fig10_01_ex_32_3D.asy\"\>",
+    ",", "\<\"fig10_02_ex_14_3D.asy\"\>", 
+   ",", "\<\"fig10_02_ex_15_3D.asy\"\>", 
+   ",", "\<\"fig10_02_ex_15ans_3D.asy\"\>", 
+   ",", "\<\"fig11_01_ex_12_3D.asy\"\>", ",", "\<\"fig11_01_ex_14_3D.asy\"\>",
+    ",", "\<\"fig13_05_ex_05_3D.asy\"\>", 
+   ",", "\<\"fig13_05_ex_06_3D.asy\"\>", ",", "\<\"fig13_05_ex_07_3D.asy\"\>",
+    ",", "\<\"fig13_05_ex_08_3D.asy\"\>", 
+   ",", "\<\"fig13_06_ex_07_3D.asy\"\>", ",", "\<\"fig13_06_ex_08_3D.asy\"\>",
+    ",", "\<\"fig13_06_ex_09_3D.asy\"\>", 
+   ",", "\<\"fig13_06_ex_10_3D.asy\"\>", ",", "\<\"fig13_06_ex_11_3D.asy\"\>",
+    ",", "\<\"fig13_06_ex_12_3D.asy\"\>", 
+   ",", "\<\"fig13_06_ex_13_3D.asy\"\>", ",", "\<\"fig13_06_ex_14_3D.asy\"\>",
+    ",", "\<\"fig3d_proj_3D.asy\"\>", ",", "\<\"fig3d_projb_3D.asy\"\>", 
+   ",", "\<\"figarc4_3D.asy\"\>", ",", "\<\"figcartcoord1_3D.asy\"\>", 
+   ",", "\<\"figcartcoord2_3D.asy\"\>", ",", "\<\"figconopt1_3D.asy\"\>", 
+   ",", "\<\"figconopt1c_3D.asy\"\>", ",", "\<\"figconopt2_3D.asy\"\>", 
+   ",", "\<\"figcross1_3D.asy\"\>", ",", "\<\"figcross_area1_3D.asy\"\>", 
+   ",", "\<\"figcrossp4a_3D.asy\"\>", ",", "\<\"figcrossp6_3D.asy\"\>", 
+   ",", "\<\"figcrosspparallelpiped_3D.asy\"\>", 
+   ",", "\<\"figcrossp_rhr_3D.asy\"\>", ",", "\<\"figcurvature4_3D.asy\"\>", 
+   ",", "\<\"figdirect1_3D.asy\"\>", ",", "\<\"figdirect2_3D.asy\"\>", 
+   ",", "\<\"figdirect3_3D.asy\"\>", ",", "\<\"figdirect9_3D.asy\"\>", 
+   ",", "\<\"figdisk1_3D.asy\"\>", ",", "\<\"figdisk1a_3D.asy\"\>", 
+   ",", "\<\"figdisk1b_3D.asy\"\>", ",", "\<\"figdisk2a_3D.asy\"\>", 
+   ",", "\<\"figdotp3_3D.asy\"\>", ",", "\<\"figdotp4b_3D.asy\"\>", 
+   ",", "\<\"figdotpangle3D_3D.asy\"\>", ",", "\<\"figdouble1_3D.asy\"\>", 
+   ",", "\<\"figdouble2_3D.asy\"\>", ",", "\<\"figdouble3_3D.asy\"\>", 
+   ",", "\<\"figdouble4_3D.asy\"\>", ",", "\<\"figdouble6b_3D.asy\"\>", 
+   ",", "\<\"figdouble_intro2_3D.asy\"\>", 
+   ",", "\<\"figdouble_intro3_3D.asy\"\>", 
+   ",", "\<\"figdoublepol1_3D.asy\"\>", ",", "\<\"figdoublepol2b_3D.asy\"\>", 
+   ",", "\<\"figdoublepol4_3D.asy\"\>", ",", "\<\"figdoublepol5_3D.asy\"\>", 
+   ",", "\<\"figdouble_summary_3D.asy\"\>", 
+   ",", "\<\"figdoublesummary_3D.asy\"\>", ",", "\<\"figgabriel_3D.asy\"\>", 
+   ",", "\<\"figlevelcurve1_3D.asy\"\>", ",", "\<\"figlevelcurve2_3D.asy\"\>",
+    ",", "\<\"figlines1_3D.asy\"\>", ",", "\<\"figlines2_3D.asy\"\>", 
+   ",", "\<\"figlines3_3D.asy\"\>", ",", "\<\"figlines6_3D.asy\"\>", 
+   ",", "\<\"figlines_dist2_3D.asy\"\>", 
+   ",", "\<\"figlines_dist2temp_3D.asy\"\>", 
+   ",", "\<\"figlines_intro_3D.asy\"\>", ",", "\<\"figmass2_3D.asy\"\>", 
+   ",", "\<\"figmass3a_3D.asy\"\>", ",", "\<\"figmass3b_3D.asy\"\>", 
+   ",", "\<\"figmchain2_3D.asy\"\>", ",", "\<\"figmchain_intro_3D.asy\"\>", 
+   ",", "\<\"figmotion6_3D.asy\"\>", ",", "\<\"figmulticont1_3D.asy\"\>", 
+   ",", "\<\"figmulti_extreme1_3D.asy\"\>", 
+   ",", "\<\"figmulti_extreme2_3D.asy\"\>", 
+   ",", "\<\"figmulti_extreme3_3D.asy\"\>", 
+   ",", "\<\"figmulti_extreme5_3D.asy\"\>", 
+   ",", "\<\"figmultigraph_intro_3D.asy\"\>", 
+   ",", "\<\"figmultigraph_introb_3D.asy\"\>", 
+   ",", "\<\"figmultilimit_def_3D.asy\"\>", ",", "\<\"figparcalc8_3D.asy\"\>",
+    ",", "\<\"figpartial3a_3D.asy\"\>", ",", "\<\"figpartial3b_3D.asy\"\>", 
+   ",", "\<\"figpartial4a_3D.asy\"\>", ",", "\<\"figpartial4b_3D.asy\"\>", 
+   ",", "\<\"figpartial6_3D.asy\"\>", ",", "\<\"figpartial6b_3D.asy\"\>", 
+   ",", "\<\"figpartialintro_3D.asy\"\>", 
+   ",", "\<\"figpartialintrob_3D.asy\"\>", ",", "\<\"figplanes1_3D.asy\"\>", 
+   ",", "\<\"figplanes2_3D.asy\"\>", ",", "\<\"figplanes3_3D.asy\"\>", 
+   ",", "\<\"figplanes4_3D.asy\"\>", ",", "\<\"figplanes5_3D.asy\"\>", 
+   ",", "\<\"figplanes_dist_3D.asy\"\>", 
+   ",", "\<\"figplanes_intro_3D.asy\"\>", ",", "\<\"figpolcalc8a_3D.asy\"\>", 
+   ",", "\<\"figquadratic_parb_3D.asy\"\>", 
+   ",", "\<\"figquadric_cone_3D.asy\"\>", 
+   ",", "\<\"figquadric_coneb_3D.asy\"\>", 
+   ",", "\<\"figquadric_conec_3D.asy\"\>", 
+   ",", "\<\"figquadric_ellipsoid_3D.asy\"\>", 
+   ",", "\<\"figquadric_ellipsoidb_3D.asy\"\>", 
+   ",", "\<\"figquadric_hyp_one_sheet_3D.asy\"\>", 
+   ",", "\<\"figquadric_hyp_one_sheetb_3D.asy\"\>", 
+   ",", "\<\"figquadric_hyp_par_3D.asy\"\>", 
+   ",", "\<\"figquadric_hyp_parb_3D.asy\"\>", 
+   ",", "\<\"figquadric_hyp_parc_3D.asy\"\>", 
+   ",", "\<\"figquadric_hyp_two_sheet_3D.asy\"\>", 
+   ",", "\<\"figquadric_hyp_two_sheetb_3D.asy\"\>", 
+   ",", "\<\"figquadric_par_3D.asy\"\>", 
+   ",", "\<\"figquadric_parb_3D.asy\"\>", ",", "\<\"figsa1_3D.asy\"\>", 
+   ",", "\<\"figsa2a_3D.asy\"\>", ",", "\<\"figsa2b_3D.asy\"\>", 
+   ",", "\<\"figshell2a_3D.asy\"\>", ",", "\<\"figshell2b_3D.asy\"\>", 
+   ",", "\<\"figshell2c_3D.asy\"\>", ",", "\<\"figshell3b_3D.asy\"\>", 
+   ",", "\<\"figshell3c_3D.asy\"\>", ",", "\<\"figshell4b_3D.asy\"\>", 
+   ",", "\<\"figshell4c_3D.asy\"\>", ",", "\<\"figshell_intro_a_3D.asy\"\>", 
+   ",", "\<\"figshell_intro_b_3D.asy\"\>", 
+   ",", "\<\"figshell_intro_d_3D.asy\"\>", ",", "\<\"figspace1_3D.asy\"\>", 
+   ",", "\<\"figspace2_3D.asy\"\>", ",", "\<\"figspace3_3D.asy\"\>", 
+   ",", "\<\"figspace4a_3D.asy\"\>", ",", "\<\"figspace4b_3D.asy\"\>", 
+   ",", "\<\"figspace4c_3D.asy\"\>", ",", "\<\"figspace4d_3D.asy\"\>", 
+   ",", "\<\"figspace4e_3D.asy\"\>", ",", "\<\"figspace4f_3D.asy\"\>", 
+   ",", "\<\"figspace5a_3D.asy\"\>", ",", "\<\"figspace5ab_3D.asy\"\>", 
+   ",", "\<\"figspace5b_3D.asy\"\>", ",", "\<\"figspace5bb_3D.asy\"\>", 
+   ",", "\<\"figspace5c_3D.asy\"\>", ",", "\<\"figspace5cb_3D.asy\"\>", 
+   ",", "\<\"figspace6_3D.asy\"\>", ",", "\<\"figspacecylinder1_3D.asy\"\>", 
+   ",", "\<\"figspacecylinder1b_3D.asy\"\>", 
+   ",", "\<\"figspace_tangent_intro_3D.asy\"\>", 
+   ",", "\<\"figspacexy_3D.asy\"\>", ",", "\<\"figspacexz_3D.asy\"\>", 
+   ",", "\<\"figspaceyz_3D.asy\"\>", ",", "\<\"figsurfacearea1_3D.asy\"\>", 
+   ",", "\<\"figsurfacearea3_3D.asy\"\>", 
+   ",", "\<\"figsurfacearea4_3D.asy\"\>", 
+   ",", "\<\"figsurfacearea_intro1_3D.asy\"\>", 
+   ",", "\<\"figsurfacearea_intro2_3D.asy\"\>", 
+   ",", "\<\"figsurfrev1a_3D.asy\"\>", ",", "\<\"figsurfrev1b_3D.asy\"\>", 
+   ",", "\<\"figsurfrev2a_3D.asy\"\>", ",", "\<\"figsurfrev2b_3D.asy\"\>", 
+   ",", "\<\"figsurf_rev_intro_3D.asy\"\>", 
+   ",", "\<\"figsurf_rev_introb_3D.asy\"\>", 
+   ",", "\<\"figtannorm1_3D.asy\"\>", ",", "\<\"figtannorm3_3D.asy\"\>", 
+   ",", "\<\"figtp12_3D.asy\"\>", ",", "\<\"figtp13_3D.asy\"\>", 
+   ",", "\<\"figtp15_3D.asy\"\>", ",", "\<\"figtp16_3D.asy\"\>", 
+   ",", "\<\"figtp18_3D.asy\"\>", ",", "\<\"figtpl2_3D.asy\"\>", 
+   ",", "\<\"figtpl3_3D.asy\"\>", ",", "\<\"figtpl5_3D.asy\"\>", 
+   ",", "\<\"figtpl6_3D.asy\"\>", ",", "\<\"figtpl8_3D.asy\"\>", 
+   ",", "\<\"figtrip1_3D.asy\"\>", ",", "\<\"figtrip1b_3D.asy\"\>", 
+   ",", "\<\"figtrip2_3D.asy\"\>", ",", "\<\"figtrip2b_3D.asy\"\>", 
+   ",", "\<\"figtrip2c_3D.asy\"\>", ",", "\<\"figtrip2d_3D.asy\"\>", 
+   ",", "\<\"figtrip3_3D.asy\"\>", ",", "\<\"figtrip3b_3D.asy\"\>", 
+   ",", "\<\"figtrip3c_3D.asy\"\>", ",", "\<\"figtrip3d_3D.asy\"\>", 
+   ",", "\<\"figtrip4_3D.asy\"\>", ",", "\<\"figtrip4b_3D.asy\"\>", 
+   ",", "\<\"figtrip4c_3D.asy\"\>", ",", "\<\"figtrip4d_3D.asy\"\>", 
+   ",", "\<\"figtrip5_3D.asy\"\>", ",", "\<\"figtrip5b_3D.asy\"\>", 
+   ",", "\<\"figtrip5c_3D.asy\"\>", ",", "\<\"figtrip5d_3D.asy\"\>", 
+   ",", "\<\"figtrip5e_3D.asy\"\>", ",", "\<\"figtripintro_3D.asy\"\>", 
+   ",", "\<\"figtripintroa_3D.asy\"\>", ",", "\<\"figvectintro3b_3D.asy\"\>", 
+   ",", "\<\"figvvf2_3D.asy\"\>", ",", "\<\"figvvf23D.asy\"\>", 
+   ",", "\<\"figvvfderiv1_3D.asy\"\>", ",", "\<\"figvvflimit4_3D.asy\"\>", 
+   ",", "\<\"figwash1_3D.asy\"\>", ",", "\<\"figwash1b_3D.asy\"\>", 
+   ",", "\<\"figwash1c_3D.asy\"\>", ",", "\<\"figwash2_3D.asy\"\>", 
+   ",", "\<\"figwash2a_3D.asy\"\>", ",", "\<\"figwash2b_3D.asy\"\>", 
+   ",", "\<\"figwash2c_3D.asy\"\>", ",", "\<\"figwasher_idea_a_3D.asy\"\>", 
+   ",", "\<\"figwasher_idea_b_3D.asy\"\>", 
+   ",", "\<\"figwasher_idea_c_3D.asy\"\>"}], "}"}]], "Output",
+ CellChangeTimes->{{3.639665617207756*^9, 3.639665628235859*^9}}]
+}, Closed]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"allContent", "=", 
+   RowBox[{"Map", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Import", "[", 
+       RowBox[{"#", ",", "\"\<Text\>\""}], "]"}], "&"}], ",", "filenames"}], 
+    "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.639652319216771*^9, 3.6396523358020124`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"filenames", "[", 
+  RowBox[{"[", "1", "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.639652965740644*^9, 3.639652968264431*^9}}],
+
+Cell[BoxData["\<\"fig10_01_ex_15_3D.asy\"\>"], "Output",
+ CellChangeTimes->{3.639652969077993*^9, 3.639689210838555*^9, 
+  3.6396892729755545`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"test", "=", 
+  RowBox[{"StringReplace", "[", 
+   RowBox[{
+    RowBox[{"allContent", "[", 
+     RowBox[{"[", "1", "]"}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+      "\"\<import graph3;\>\"", "\[Rule]", 
+       "\"\<import graph3;\\nimport apexstyle;\\n\>\""}], ",", 
+      RowBox[{
+      "\"\<draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);\>\"", "\[Rule]", 
+       "\"\<draw(s,surfacepen,meshpen=apexmeshpen);\>\""}], ",", 
+      RowBox[{"\"\<red\>\"", "\[Rule]", "\"\<rgb(.5,.5,.5)\>\""}], ",", 
+      RowBox[{"\"\<blue\>\"", "\[Rule]", "\"\<rgb(.8,.8,.8)\>\""}]}], "}"}]}],
+    "]"}]}]], "Input",
+ CellChangeTimes->{{3.639652361356684*^9, 3.6396524087597623`*^9}, {
+  3.639652441945159*^9, 3.63965247182547*^9}, {3.6396525687514515`*^9, 
+  3.6396526147602587`*^9}}],
+
+Cell[BoxData["\<\"import graph3;\\nimport apexstyle;\\n\\n\\n//ASY file for \
+fig10_01_ex_153D.asy in Chapter \
+10\\n\\nsize(200,200,IgnoreAspect);\\n//currentprojection=perspective(7,2,1);\
+\\ncurrentprojection=orthographic(4,4,2);\\ndefaultrender.merge=true;\\n\\\
+nusepackage(\\\"mathspec\\\");\\ntexpreamble(\\\"\\\\setallmainfonts[Mapping=\
+tex-text]{Calibri}\\\");\\ntexpreamble(\\\"\\\\setmainfont[Mapping=tex-text]{\
+Calibri}\\\");\\ntexpreamble(\\\"\\\\setsansfont[Mapping=tex-text]{Calibri}\\\
+\");\\ntexpreamble(\\\"\\\\setmathsfont(Greek){[cmmi10]}\\\");\\n\\n\\n// \
+setup and draw the axes\\nreal[] myxchoice={-1,1};\\nreal[] \
+myychoice={};\\nreal[] myzchoice={};\\ndefaultpen(0.5mm);\\npair \
+xbounds=(-1.25,1.25);\\npair ybounds=(-1.25,1.25);\\npair \
+zbounds=(-1.25,1.25);\\n\\nxaxis3(\\\"\\\",xbounds.x,xbounds.y,black,OutTicks(\
+myxchoice),Arrow3(size=3mm));\\nyaxis3(\\\"\\\",ybounds.x,ybounds.y,black,\
+OutTicks(myychoice),Arrow3(size=3mm));\\nzaxis3(\\\"\\\",zbounds.x,zbounds.y,\
+black,OutTicks(myzchoice),Arrow3(size=3mm));\\n\\nlabel(\\\"$x$\\\",(xbounds.\
+y+0.05*(xbounds.y-xbounds.x),0,0));\\nlabel(\\\"$y$\\\",(0,ybounds.y+0.05*(\
+ybounds.y-ybounds.x),0));\\nlabel(\\\"$z$\\\",(0,0,zbounds.y+0.05*(zbounds.y-\
+zbounds.x)));\\n\\n//Draw the parabola z=x^3 for t from -2 to 2\\ntriple \
+g(real t) {return (t,0,t^3);}\\npath3 mypath=graph(g,-1,1,operator ..); \
+draw(mypath,rgb(.8,.8,.8));\\n\\n//Draw the cylinder z=x^3\\ntriple f(pair t) \
+{\\n  return (t.x,t.y,(t.x)^3);\\n}\\nsurface \
+s=surface(f,(-1,-1),(1,1),16,16,Spline);\\npen \
+p=rgb(0,0,.7);\\ndraw(s,surfacepen,meshpen=apexmeshpen);\\n\\n//Draw the \
+traces (in this case lines)\\ntriple g(real t) {return \
+(-0.2,t,(-0.2)^3);}\\npath3 mypath=graph(g,-1,1,operator ..); \
+draw(mypath,rgb(.5,.5,.5));\\ntriple g(real t) {return \
+(-0.4,t,(-0.4)^3);}\\npath3 mypath=graph(g,-1,1,operator ..); \
+draw(mypath,rgb(.5,.5,.5));\\ntriple g(real t) {return \
+(-0.6,t,(-0.6)^3);}\\npath3 mypath=graph(g,-1,1,operator ..); \
+draw(mypath,rgb(.5,.5,.5));\\ntriple g(real t) {return \
+(-0.8,t,(-0.8)^3);}\\npath3 mypath=graph(g,-1,1,operator ..); \
+draw(mypath,rgb(.5,.5,.5));\\ntriple g(real t) {return \
+(-1,t,(-1)^3);}\\npath3 mypath=graph(g,-1,1,operator ..); \
+draw(mypath,rgb(.5,.5,.5));\\ntriple g(real t) {return \
+(0.2,t,(0.2)^3);}\\npath3 mypath=graph(g,-1,1,operator ..); \
+draw(mypath,rgb(.5,.5,.5));\\ntriple g(real t) {return \
+(0.4,t,(0.4)^3);}\\npath3 mypath=graph(g,-1,1,operator ..); \
+draw(mypath,rgb(.5,.5,.5));\\ntriple g(real t) {return \
+(0.6,t,(0.6)^3);}\\npath3 mypath=graph(g,-1,1,operator ..); \
+draw(mypath,rgb(.5,.5,.5));\\ntriple g(real t) {return \
+(0.8,t,(0.8)^3);}\\npath3 mypath=graph(g,-1,1,operator ..); \
+draw(mypath,rgb(.5,.5,.5));\\ntriple g(real t) {return (1,t,(1)^3);}\\npath3 \
+mypath=graph(g,-1,1,operator ..); draw(mypath,rgb(.5,.5,.5));\\ntriple g(real \
+t) {return (t,0,(t)^3);}\\npath3 mypath=graph(g,-1,1,operator ..); \
+draw(mypath,rgb(.8,.8,.8));\\n\\n\\n\\n\\n\\n// \
+////////////////////////////////////\\n//    SAMPLE CODE\\n\\n// \
+defaultpen(fontsize(10pt));\\n\\n//Draw the parabola z=y^2 for t from -2 to 2\
+\\n//triple g(real t) {return (0,t,t^2);}\\n//path3 \
+mypath=graph(g,-2,2,operator ..); draw(mypath,rgb(.8,.8,.8));\\n\\n//real \
+f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}\\n//surface \
+s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);\\n\\n//triple f(pair t) {\\n//  \
+return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));\\n//}\\n//surface \
+s=surface(f,(0,0),(pi,2*pi),8,8,Spline);\\n\\n//triple g(real t) {return \
+(t,t,-2*t^4+4*t^2);}\\n//path3 mypath=graph(g,-2,2,operator ..);\\n\\n//pen \
+p=rgb(0,0,1);\\n//draw(s,palergb(.8,.8,.8)+opacity(.5),meshpen=p,render(merge=\
+true));\\n\\n//draw(s,palergb(.8,.8,.8));\\n//draw(s,lightrgb(.8,.8,.8),\
+meshpen=black+thick(),nolight,render(merge=true));\\n//draw(mypath,2bp+rgb(.8,\
+.8,.8));\"\>"], "Output",
+ CellChangeTimes->{
+  3.6396524727266912`*^9, {3.639652602716591*^9, 3.639652616642782*^9}}]
+}, Closed]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"OpenWrite", "[", "\"\<aaatest3DBW.asy\>\"", "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.6396527471689305`*^9, 3.6396527486390285`*^9}, {
+  3.6396527789206657`*^9, 3.6396527982493954`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"WriteString", "[", 
+   RowBox[{"\"\<aaatest3DBW.asy\>\"", ",", "test"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Close", "[", "\"\<aaatest3DBW.asy\>\"", "]"}]}], "Input",
+ CellChangeTimes->{{3.639652801164377*^9, 3.639652832162261*^9}}],
+
+Cell[BoxData["\<\"aaatest3DBW.asy\"\>"], "Output",
+ CellChangeTimes->{3.6396528337229233`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Run", "[", 
+  RowBox[{
+  "\"\<asy.exe -f pdf -render=-3 -noView -noprc -tex \\\"xelatex\\\" \>\"", 
+   "<>", "\"\<C:\\\\Users\\\\Gregory\\\\Documents\\\\Greg\\\\Calculus\\\\\
+Calculus\\\\Calculus\\\\figures\\\\aaatest3DBW.asy\>\""}], "]"}]], "Input",
+ CellChangeTimes->{{3.639653093173876*^9, 3.6396531717321672`*^9}, {
+   3.639653313270969*^9, 3.6396533489228287`*^9}, 3.63965372810222*^9, {
+   3.6396542443763533`*^9, 3.639654249366947*^9}, 3.639654317436406*^9}],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{{3.6396531751775894`*^9, 3.639653177664479*^9}, 
+   3.6396533512826877`*^9, 3.639653506620185*^9, {3.639654311343897*^9, 
+   3.6396543375065975`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"FileBaseName", "[", 
+   RowBox[{"filenames", "[", 
+    RowBox[{"[", "1", "]"}], "]"}], "]"}], "<>", "\"\<BW.asy\>\""}]], "Input",
+ CellChangeTimes->{{3.6396660565806885`*^9, 3.6396660825712876`*^9}}],
+
+Cell[BoxData["\<\"crop3DBW.asy\"\>"], "Output",
+ CellChangeTimes->{3.6396660838814187`*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{" ", 
+  RowBox[{
+   RowBox[{"makeBWandRunASY", "[", "file_", "]"}], ":=", 
+   RowBox[{"(", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"contents", "=", 
+      RowBox[{"Import", "[", 
+       RowBox[{"file", ",", "\"\<Text\>\""}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"contents", "=", 
+      RowBox[{"StringReplace", "[", 
+       RowBox[{"contents", ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{
+          "\"\<import graph3;\>\"", "\[Rule]", 
+           "\"\<import graph3;\\nimport apexstyle;\\n\>\""}], ",", 
+          RowBox[{
+           RowBox[{
+           "\"\<draw(s,rgb(.6,.6,1)+opacity(.\>\"", "~~", "_", "~~", 
+            "\"\<),meshpen=p);\>\""}], "\[Rule]", 
+           "\"\<draw(s,emissive(surfacepen),meshpen=apexmeshpen);\>\""}], ",", 
+          RowBox[{"\"\<red\>\"", "\[Rule]", "\"\<rgb(.3,.3,.3)\>\""}], ",", 
+          RowBox[{"\"\<blue\>\"", "\[Rule]", "\"\<rgb(.1,.1,.1)\>\""}], ",", 
+          RowBox[{
+          "\"\<rgb(.6,.6,1)+opacity(0.7)\>\"", "\[Rule]", 
+           "\"\<simplesurfacepen\>\""}], ",", 
+          RowBox[{
+          "\"\<rgb(1,.6,.6)+opacity(0.7)\>\"", "\[Rule]", 
+           "\"\<simplesurfacepen\>\""}], ",", 
+          RowBox[{"\"\<rgb(1,0,0)\>\"", "\[Rule]", "\"\<rgb(.3,.3,.3)\>\""}], 
+          ",", 
+          RowBox[{
+          "\"\<rgb(.2,.2,1)+opacity(.7)\>\"", "\[Rule]", 
+           "\"\<emissive(surfacepen)\>\""}]}], "}"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"newname", "=", 
+      RowBox[{
+       RowBox[{"FileBaseName", "[", "file", "]"}], "<>", "\"\<BW.asy\>\""}]}],
+      ";", "\[IndentingNewLine]", 
+     RowBox[{"OpenWrite", "[", "newname", "]"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"WriteString", "[", 
+      RowBox[{"newname", ",", "contents"}], "]"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"Close", "[", "newname", "]"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"Run", "[", 
+      RowBox[{
+      "\"\<asy.exe -f pdf -render=-3 -noView -noprc -tex \\\"xelatex\\\" \
+\>\"", "<>", "newname"}], "]"}]}], ")"}]}]}]], "Input",
+ CellChangeTimes->{
+  3.639655978853054*^9, {3.6396612012505045`*^9, 3.639661240135477*^9}, {
+   3.6396612968049083`*^9, 3.6396614035732884`*^9}, {3.6396620177555103`*^9, 
+   3.6396620287794127`*^9}, {3.6396622480147305`*^9, 3.639662267746003*^9}, {
+   3.639665046363925*^9, 3.6396650661494637`*^9}, 3.6396653049745717`*^9, {
+   3.639666101246155*^9, 3.639666118886919*^9}, 3.639666153731403*^9, {
+   3.639666504475474*^9, 3.639666551034129*^9}, {3.6396670032603474`*^9, 
+   3.6396670052105427`*^9}, {3.639905522888203*^9, 3.6399055351869245`*^9}, {
+   3.6399077909406147`*^9, 3.639907820453166*^9}, {3.6399079510559688`*^9, 
+   3.6399079585905757`*^9}, {3.6399082086474085`*^9, 3.639908221564125*^9}, {
+   3.639908469276602*^9, 3.639908492068056*^9}, 3.639909025422969*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"testfile", "=", "\"\<figtrip4_3D.asy\>\""}], ";"}]], "Input",
+ CellChangeTimes->{{3.639905747180562*^9, 3.6399057614548707`*^9}, 
+   3.639905793842863*^9, {3.639909031163732*^9, 3.639909032848521*^9}, {
+   3.639909063145752*^9, 3.639909093259778*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Run", "[", 
+  RowBox[{
+  "\"\<asy.exe -f pdf -render=-3 -noView -noprc -tex \\\"xelatex\\\" \>\"", "<>",
+    "testfile"}], "]"}]], "Input",
+ CellChangeTimes->{{3.6399059351261835`*^9, 3.639905938140964*^9}, 
+   3.6399061681853094`*^9, 3.63990646803531*^9, {3.639909068262519*^9, 
+   3.639909069120514*^9}}],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{
+  3.639905940917746*^9, 3.6399060801703625`*^9, {3.6399061728483095`*^9, 
+   3.6399061926388097`*^9}, {3.6399064712633095`*^9, 3.63990649539631*^9}, 
+   3.6399071465940475`*^9, {3.6399090488874435`*^9, 3.6399090746004877`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"makeBWandRunASY", "[", "testfile", "]"}]], "Input",
+ CellChangeTimes->{{3.6399057631884594`*^9, 3.639905766797036*^9}}],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{{3.6399057705796127`*^9, 3.639905799695826*^9}, {
+  3.639909087862213*^9, 3.6399091010369387`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Dynamic", "[", "n", "]"}]], "Input"],
+
+Cell[BoxData[
+ DynamicBox[ToBoxes[$CellContext`n, StandardForm],
+  ImageSizeCache->{8., {0., 8.}}]], "Output",
+ CellChangeTimes->{3.639909474887498*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"Do", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"n", "=", "i"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"makeBWandRunASY", "[", 
+     RowBox[{"filenames", "[", 
+      RowBox[{"[", "i", "]"}], "]"}], "]"}], ";"}], "\[IndentingNewLine]", 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "1", ",", 
+     RowBox[{"Length", "[", "filenames", "]"}]}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.6399092536820974`*^9, 3.6399093431012974`*^9}, {
+  3.639909449631098*^9, 3.6399094768218975`*^9}, {3.6399095106144977`*^9, 
+  3.6399095144988976`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Map", "[", 
+  RowBox[{"makeBWandRunASY", ",", "filenames"}], "]"}]], "Input",
+ CellChangeTimes->{{3.639661690890169*^9, 3.6396617096078787`*^9}, 
+   3.6396670952125416`*^9, {3.6396893101055546`*^9, 3.639689313976555*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", 
+   ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", 
+   "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", 
+   ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", 
+   "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", 
+   ",", "0", ",", "0", ",", "0", ",", "0", ",", "1", ",", "0", ",", "0", ",", 
+   "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", 
+   ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", 
+   "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", 
+   ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", 
+   "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", 
+   ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", 
+   "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", 
+   ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", 
+   "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", 
+   ",", "1", ",", "0", ",", "0", ",", "1", ",", "1", ",", "1", ",", "1", ",", 
+   "1", ",", "1", ",", "1", ",", "0", ",", "1", ",", "1", ",", "1", ",", "1", 
+   ",", "1", ",", "1", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", 
+   "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", 
+   ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", 
+   "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", 
+   ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", 
+   "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "34304", ",", "0", ",", 
+   "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", 
+   ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", 
+   "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", 
+   ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", 
+   "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", 
+   ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", 
+   "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0"}], 
+  "}"}]], "Output",
+ CellChangeTimes->{3.6396909928205547`*^9}]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Parallelize", "[", 
+  RowBox[{"Map", "[", 
+   RowBox[{"makeBWandRunASY", ",", "filenames"}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.639661690890169*^9, 3.6396617096078787`*^9}, 
+   3.6396670952125416`*^9}],
+
+Cell[BoxData["$Aborted"], "Output",
+ CellChangeTimes->{3.6396618282679863`*^9, 3.6396621415792165`*^9, 
+  3.639662398295432*^9, 3.639670304298418*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Recompile with better meshpen", "Subsubsection",
+ CellChangeTimes->{{3.6399240548319817`*^9, 3.639924060592558*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"BWasyfiles", "=", 
+  RowBox[{"FileNames", "[", "\"\<*_3DBW.asy\>\"", "]"}]}]], "Input",
+ CellChangeTimes->{{3.6399240935448523`*^9, 3.6399241167561736`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"fig10_01_ex_15_3DBW.asy\"\>", 
+   ",", "\<\"fig10_01_ex_16_3DBW.asy\"\>", 
+   ",", "\<\"fig10_01_ex_17_3DBW.asy\"\>", 
+   ",", "\<\"fig10_01_ex_18_3DBW.asy\"\>", 
+   ",", "\<\"fig10_01_ex_19_3DBW.asy\"\>", 
+   ",", "\<\"fig10_01_ex_20_3DBW.asy\"\>", 
+   ",", "\<\"fig10_01_ex_21_3DBW.asy\"\>", 
+   ",", "\<\"fig10_01_ex_22_3DBW.asy\"\>", 
+   ",", "\<\"fig10_01_ex_23_3DBW.asy\"\>", 
+   ",", "\<\"fig10_01_ex_24_3DBW.asy\"\>", 
+   ",", "\<\"fig10_01_ex_25_3DBW.asy\"\>", 
+   ",", "\<\"fig10_01_ex_26_3DBW.asy\"\>", 
+   ",", "\<\"fig10_01_ex_27_3DBW.asy\"\>", 
+   ",", "\<\"fig10_01_ex_28_3DBW.asy\"\>", 
+   ",", "\<\"fig10_01_ex_29_3DBW.asy\"\>", 
+   ",", "\<\"fig10_01_ex_30_3DBW.asy\"\>", 
+   ",", "\<\"fig10_01_ex_31_3DBW.asy\"\>", 
+   ",", "\<\"fig10_01_ex_32_3DBW.asy\"\>", 
+   ",", "\<\"fig10_02_ex_14_3DBW.asy\"\>", 
+   ",", "\<\"fig10_02_ex_15_3DBW.asy\"\>", 
+   ",", "\<\"fig10_02_ex_15ans_3DBW.asy\"\>", 
+   ",", "\<\"fig11_01_ex_12_3DBW.asy\"\>", 
+   ",", "\<\"fig11_01_ex_14_3DBW.asy\"\>", 
+   ",", "\<\"fig13_05_ex_05_3DBW.asy\"\>", 
+   ",", "\<\"fig13_05_ex_06_3DBW.asy\"\>", 
+   ",", "\<\"fig13_05_ex_07_3DBW.asy\"\>", 
+   ",", "\<\"fig13_05_ex_08_3DBW.asy\"\>", 
+   ",", "\<\"fig13_06_ex_07_3DBW.asy\"\>", 
+   ",", "\<\"fig13_06_ex_08_3DBW.asy\"\>", 
+   ",", "\<\"fig13_06_ex_09_3DBW.asy\"\>", 
+   ",", "\<\"fig13_06_ex_10_3DBW.asy\"\>", 
+   ",", "\<\"fig13_06_ex_11_3DBW.asy\"\>", 
+   ",", "\<\"fig13_06_ex_12_3DBW.asy\"\>", 
+   ",", "\<\"fig13_06_ex_13_3DBW.asy\"\>", 
+   ",", "\<\"fig13_06_ex_14_3DBW.asy\"\>", ",", "\<\"fig3d_proj_3DBW.asy\"\>",
+    ",", "\<\"fig3d_projb_3DBW.asy\"\>", ",", "\<\"figarc4_3DBW.asy\"\>", 
+   ",", "\<\"figcartcoord1_3DBW.asy\"\>", 
+   ",", "\<\"figcartcoord2_3DBW.asy\"\>", ",", "\<\"figconopt1_3DBW.asy\"\>", 
+   ",", "\<\"figconopt1c_3DBW.asy\"\>", ",", "\<\"figconopt2_3DBW.asy\"\>", 
+   ",", "\<\"figcross1_3DBW.asy\"\>", ",", "\<\"figcross_area1_3DBW.asy\"\>", 
+   ",", "\<\"figcrossp4a_3DBW.asy\"\>", ",", "\<\"figcrossp6_3DBW.asy\"\>", 
+   ",", "\<\"figcrosspparallelpiped_3DBW.asy\"\>", 
+   ",", "\<\"figcrossp_rhr_3DBW.asy\"\>", 
+   ",", "\<\"figcurvature4_3DBW.asy\"\>", ",", "\<\"figdirect1_3DBW.asy\"\>", 
+   ",", "\<\"figdirect2_3DBW.asy\"\>", ",", "\<\"figdirect3_3DBW.asy\"\>", 
+   ",", "\<\"figdirect9_3DBW.asy\"\>", ",", "\<\"figdisk1_3DBW.asy\"\>", 
+   ",", "\<\"figdisk1a_3DBW.asy\"\>", ",", "\<\"figdisk1b_3DBW.asy\"\>", 
+   ",", "\<\"figdisk2a_3DBW.asy\"\>", ",", "\<\"figdotp3_3DBW.asy\"\>", 
+   ",", "\<\"figdotp4b_3DBW.asy\"\>", ",", "\<\"figdotpangle3D_3DBW.asy\"\>", 
+   ",", "\<\"figdouble1_3DBW.asy\"\>", ",", "\<\"figdouble2_3DBW.asy\"\>", 
+   ",", "\<\"figdouble3_3DBW.asy\"\>", ",", "\<\"figdouble4_3DBW.asy\"\>", 
+   ",", "\<\"figdouble6b_3DBW.asy\"\>", 
+   ",", "\<\"figdouble_intro2_3DBW.asy\"\>", 
+   ",", "\<\"figdouble_intro3_3DBW.asy\"\>", 
+   ",", "\<\"figdoublepol1_3DBW.asy\"\>", 
+   ",", "\<\"figdoublepol2b_3DBW.asy\"\>", 
+   ",", "\<\"figdoublepol4_3DBW.asy\"\>", 
+   ",", "\<\"figdoublepol5_3DBW.asy\"\>", 
+   ",", "\<\"figdouble_summary_3DBW.asy\"\>", 
+   ",", "\<\"figdoublesummary_3DBW.asy\"\>", 
+   ",", "\<\"figgabriel_3DBW.asy\"\>", ",", "\<\"figlevelcurve1_3DBW.asy\"\>",
+    ",", "\<\"figlevelcurve2_3DBW.asy\"\>", ",", "\<\"figlines1_3DBW.asy\"\>",
+    ",", "\<\"figlines2_3DBW.asy\"\>", ",", "\<\"figlines3_3DBW.asy\"\>", 
+   ",", "\<\"figlines6_3DBW.asy\"\>", ",", "\<\"figlines_dist2_3DBW.asy\"\>", 
+   ",", "\<\"figlines_dist2temp_3DBW.asy\"\>", 
+   ",", "\<\"figlines_intro_3DBW.asy\"\>", ",", "\<\"figmass2_3DBW.asy\"\>", 
+   ",", "\<\"figmass3a_3DBW.asy\"\>", ",", "\<\"figmass3b_3DBW.asy\"\>", 
+   ",", "\<\"figmchain2_3DBW.asy\"\>", 
+   ",", "\<\"figmchain_intro_3DBW.asy\"\>", 
+   ",", "\<\"figmotion6_3DBW.asy\"\>", ",", "\<\"figmulticont1_3DBW.asy\"\>", 
+   ",", "\<\"figmulti_extreme1_3DBW.asy\"\>", 
+   ",", "\<\"figmulti_extreme2_3DBW.asy\"\>", 
+   ",", "\<\"figmulti_extreme3_3DBW.asy\"\>", 
+   ",", "\<\"figmulti_extreme5_3DBW.asy\"\>", 
+   ",", "\<\"figmultigraph_intro_3DBW.asy\"\>", 
+   ",", "\<\"figmultigraph_introb_3DBW.asy\"\>", 
+   ",", "\<\"figmultilimit_def_3DBW.asy\"\>", 
+   ",", "\<\"figparcalc8_3DBW.asy\"\>", ",", "\<\"figpartial3a_3DBW.asy\"\>", 
+   ",", "\<\"figpartial3b_3DBW.asy\"\>", ",", "\<\"figpartial4a_3DBW.asy\"\>",
+    ",", "\<\"figpartial4b_3DBW.asy\"\>", ",", "\<\"figpartial6_3DBW.asy\"\>",
+    ",", "\<\"figpartial6b_3DBW.asy\"\>", 
+   ",", "\<\"figpartialintro_3DBW.asy\"\>", 
+   ",", "\<\"figpartialintrob_3DBW.asy\"\>", 
+   ",", "\<\"figplanes1_3DBW.asy\"\>", ",", "\<\"figplanes2_3DBW.asy\"\>", 
+   ",", "\<\"figplanes3_3DBW.asy\"\>", ",", "\<\"figplanes4_3DBW.asy\"\>", 
+   ",", "\<\"figplanes5_3DBW.asy\"\>", ",", "\<\"figplanes_dist_3DBW.asy\"\>",
+    ",", "\<\"figplanes_intro_3DBW.asy\"\>", 
+   ",", "\<\"figpolcalc8a_3DBW.asy\"\>", 
+   ",", "\<\"figquadratic_parb_3DBW.asy\"\>", 
+   ",", "\<\"figquadric_cone_3DBW.asy\"\>", 
+   ",", "\<\"figquadric_coneb_3DBW.asy\"\>", 
+   ",", "\<\"figquadric_conec_3DBW.asy\"\>", 
+   ",", "\<\"figquadric_ellipsoid_3DBW.asy\"\>", 
+   ",", "\<\"figquadric_ellipsoidb_3DBW.asy\"\>", 
+   ",", "\<\"figquadric_hyp_one_sheet_3DBW.asy\"\>", 
+   ",", "\<\"figquadric_hyp_one_sheetb_3DBW.asy\"\>", 
+   ",", "\<\"figquadric_hyp_par_3DBW.asy\"\>", 
+   ",", "\<\"figquadric_hyp_parb_3DBW.asy\"\>", 
+   ",", "\<\"figquadric_hyp_parc_3DBW.asy\"\>", 
+   ",", "\<\"figquadric_hyp_two_sheet_3DBW.asy\"\>", 
+   ",", "\<\"figquadric_hyp_two_sheetb_3DBW.asy\"\>", 
+   ",", "\<\"figquadric_par_3DBW.asy\"\>", 
+   ",", "\<\"figquadric_parb_3DBW.asy\"\>", ",", "\<\"figsa1_3DBW.asy\"\>", 
+   ",", "\<\"figsa2a_3DBW.asy\"\>", ",", "\<\"figsa2b_3DBW.asy\"\>", 
+   ",", "\<\"figshell2a_3DBW.asy\"\>", ",", "\<\"figshell2b_3DBW.asy\"\>", 
+   ",", "\<\"figshell2c_3DBW.asy\"\>", ",", "\<\"figshell3b_3DBW.asy\"\>", 
+   ",", "\<\"figshell3c_3DBW.asy\"\>", ",", "\<\"figshell4b_3DBW.asy\"\>", 
+   ",", "\<\"figshell4c_3DBW.asy\"\>", 
+   ",", "\<\"figshell_intro_a_3DBW.asy\"\>", 
+   ",", "\<\"figshell_intro_b_3DBW.asy\"\>", 
+   ",", "\<\"figshell_intro_d_3DBW.asy\"\>", 
+   ",", "\<\"figspace1_3DBW.asy\"\>", ",", "\<\"figspace2_3DBW.asy\"\>", 
+   ",", "\<\"figspace3_3DBW.asy\"\>", ",", "\<\"figspace4a_3DBW.asy\"\>", 
+   ",", "\<\"figspace4b_3DBW.asy\"\>", ",", "\<\"figspace4c_3DBW.asy\"\>", 
+   ",", "\<\"figspace4d_3DBW.asy\"\>", ",", "\<\"figspace4e_3DBW.asy\"\>", 
+   ",", "\<\"figspace4f_3DBW.asy\"\>", ",", "\<\"figspace5a_3DBW.asy\"\>", 
+   ",", "\<\"figspace5ab_3DBW.asy\"\>", ",", "\<\"figspace5b_3DBW.asy\"\>", 
+   ",", "\<\"figspace5bb_3DBW.asy\"\>", ",", "\<\"figspace5c_3DBW.asy\"\>", 
+   ",", "\<\"figspace5cb_3DBW.asy\"\>", ",", "\<\"figspace6_3DBW.asy\"\>", 
+   ",", "\<\"figspacecylinder1_3DBW.asy\"\>", 
+   ",", "\<\"figspacecylinder1b_3DBW.asy\"\>", 
+   ",", "\<\"figspace_tangent_intro_3DBW.asy\"\>", 
+   ",", "\<\"figspacexy_3DBW.asy\"\>", ",", "\<\"figspacexz_3DBW.asy\"\>", 
+   ",", "\<\"figspaceyz_3DBW.asy\"\>", 
+   ",", "\<\"figsurfacearea1_3DBW.asy\"\>", 
+   ",", "\<\"figsurfacearea3_3DBW.asy\"\>", 
+   ",", "\<\"figsurfacearea4_3DBW.asy\"\>", 
+   ",", "\<\"figsurfacearea_intro1_3DBW.asy\"\>", 
+   ",", "\<\"figsurfacearea_intro2_3DBW.asy\"\>", 
+   ",", "\<\"figsurfrev1a_3DBW.asy\"\>", ",", "\<\"figsurfrev1b_3DBW.asy\"\>",
+    ",", "\<\"figsurfrev2a_3DBW.asy\"\>", 
+   ",", "\<\"figsurfrev2b_3DBW.asy\"\>", 
+   ",", "\<\"figsurf_rev_intro_3DBW.asy\"\>", 
+   ",", "\<\"figsurf_rev_introb_3DBW.asy\"\>", 
+   ",", "\<\"figtannorm1_3DBW.asy\"\>", ",", "\<\"figtannorm3_3DBW.asy\"\>", 
+   ",", "\<\"figtp12_3DBW.asy\"\>", ",", "\<\"figtp13_3DBW.asy\"\>", 
+   ",", "\<\"figtp15_3DBW.asy\"\>", ",", "\<\"figtp16_3DBW.asy\"\>", 
+   ",", "\<\"figtp18_3DBW.asy\"\>", ",", "\<\"figtpl2_3DBW.asy\"\>", 
+   ",", "\<\"figtpl3_3DBW.asy\"\>", ",", "\<\"figtpl5_3DBW.asy\"\>", 
+   ",", "\<\"figtpl6_3DBW.asy\"\>", ",", "\<\"figtpl8_3DBW.asy\"\>", 
+   ",", "\<\"figtrip1_3DBW.asy\"\>", ",", "\<\"figtrip1b_3DBW.asy\"\>", 
+   ",", "\<\"figtrip2_3DBW.asy\"\>", ",", "\<\"figtrip2b_3DBW.asy\"\>", 
+   ",", "\<\"figtrip2c_3DBW.asy\"\>", ",", "\<\"figtrip2d_3DBW.asy\"\>", 
+   ",", "\<\"figtrip3_3DBW.asy\"\>", ",", "\<\"figtrip3b_3DBW.asy\"\>", 
+   ",", "\<\"figtrip3c_3DBW.asy\"\>", ",", "\<\"figtrip3d_3DBW.asy\"\>", 
+   ",", "\<\"figtrip4_3DBW.asy\"\>", ",", "\<\"figtrip4b_3DBW.asy\"\>", 
+   ",", "\<\"figtrip4c_3DBW.asy\"\>", ",", "\<\"figtrip4d_3DBW.asy\"\>", 
+   ",", "\<\"figtrip5_3DBW.asy\"\>", ",", "\<\"figtrip5b_3DBW.asy\"\>", 
+   ",", "\<\"figtrip5c_3DBW.asy\"\>", ",", "\<\"figtrip5d_3DBW.asy\"\>", 
+   ",", "\<\"figtrip5e_3DBW.asy\"\>", ",", "\<\"figtripintro_3DBW.asy\"\>", 
+   ",", "\<\"figtripintroa_3DBW.asy\"\>", 
+   ",", "\<\"figvectintro3b_3DBW.asy\"\>", ",", "\<\"figvvf2_3DBW.asy\"\>", 
+   ",", "\<\"figvvfderiv1_3DBW.asy\"\>", ",", "\<\"figvvflimit4_3DBW.asy\"\>",
+    ",", "\<\"figwash1_3DBW.asy\"\>", ",", "\<\"figwash1b_3DBW.asy\"\>", 
+   ",", "\<\"figwash1c_3DBW.asy\"\>", ",", "\<\"figwash2_3DBW.asy\"\>", 
+   ",", "\<\"figwash2a_3DBW.asy\"\>", ",", "\<\"figwash2b_3DBW.asy\"\>", 
+   ",", "\<\"figwash2c_3DBW.asy\"\>", 
+   ",", "\<\"figwasher_idea_a_3DBW.asy\"\>", 
+   ",", "\<\"figwasher_idea_b_3DBW.asy\"\>", 
+   ",", "\<\"figwasher_idea_c_3DBW.asy\"\>"}], "}"}]], "Output",
+ CellChangeTimes->{3.6399241179662943`*^9}]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Length", "[", "BWasyfiles", "]"}]], "Input",
+ CellChangeTimes->{{3.6399241539218893`*^9, 3.6399241597654743`*^9}}],
+
+Cell[BoxData["223"], "Output",
+ CellChangeTimes->{3.6399241603425317`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Dynamic", "[", "n", "]"}]], "Input"],
+
+Cell[BoxData[
+ DynamicBox[ToBoxes[$CellContext`n, StandardForm],
+  ImageSizeCache->{8., {0., 8.}}]], "Output",
+ CellChangeTimes->{3.6399241912336206`*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"Do", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"n", "=", "i"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Run", "[", 
+     RowBox[{
+     "\"\<asy.exe -f pdf -render=-3 -noView -noprc -tex \\\"xelatex\\\" \>\"",
+       "<>", 
+      RowBox[{"BWasyfiles", "[", 
+       RowBox[{"[", "i", "]"}], "]"}]}], "]"}], ";"}], "\[IndentingNewLine]", 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "1", ",", 
+     RowBox[{"Length", "[", "BWasyfiles", "]"}]}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.6399092536820974`*^9, 3.6399093431012974`*^9}, {
+   3.639909449631098*^9, 3.6399094768218975`*^9}, {3.6399095106144977`*^9, 
+   3.6399095144988976`*^9}, {3.6399241395414515`*^9, 3.639924148230321*^9}, 
+   3.639924179654463*^9, {3.6399242737808743`*^9, 3.639924277747271*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["results", "Subsubsection",
+ CellChangeTimes->{{3.6397223556692886`*^9, 3.639722356548377*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"results", "=", 
+   RowBox[{"{", 
+    RowBox[{
+    "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0",
+      ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", 
+     ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", 
+     ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", 
+     ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", 
+     ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "1", 
+     ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", 
+     ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", 
+     ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", 
+     ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", 
+     ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", 
+     ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", 
+     ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", 
+     ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", 
+     ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", 
+     ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", 
+     ",", "1", ",", "0", ",", "0", ",", "1", ",", "1", ",", "1", ",", "1", 
+     ",", "1", ",", "1", ",", "1", ",", "0", ",", "1", ",", "1", ",", "1", 
+     ",", "1", ",", "1", ",", "1", ",", "0", ",", "0", ",", "0", ",", "0", 
+     ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", 
+     ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", 
+     ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", 
+     ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", 
+     ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", 
+     ",", "0", ",", "34304", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0",
+      ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", 
+     ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", 
+     ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", 
+     ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", 
+     ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", 
+     ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", 
+     ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0"}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Length", "[", "results", "]"}]}], "Input",
+ CellChangeTimes->{{3.6397223602697487`*^9, 3.639722373601082*^9}}],
+
+Cell[BoxData["224"], "Output",
+ CellChangeTimes->{3.6397223744661684`*^9}]
+}, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"pairs", "=", 
+   RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"needToFix", "=", 
+   RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Do", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"AppendTo", "[", 
+     RowBox[{"pairs", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"results", "[", 
+         RowBox[{"[", "i", "]"}], "]"}], ",", 
+        RowBox[{"filenames", "[", 
+         RowBox[{"[", "i", "]"}], "]"}]}], "}"}]}], "]"}], ";", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"results", "[", 
+        RowBox[{"[", "i", "]"}], "]"}], "\[NotEqual]", "0"}], ",", 
+      RowBox[{"AppendTo", "[", 
+       RowBox[{"needToFix", ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"results", "[", 
+           RowBox[{"[", "i", "]"}], "]"}], ",", 
+          RowBox[{"filenames", "[", 
+           RowBox[{"[", "i", "]"}], "]"}]}], "}"}]}], "]"}]}], "]"}], ";"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "1", ",", 
+     RowBox[{"Length", "[", "results", "]"}]}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.639722581190839*^9, 3.6397226579485135`*^9}, {
+  3.6397243991486163`*^9, 3.639724472174918*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["needToFix"], "Input",
+ CellChangeTimes->{{3.6397244516048613`*^9, 3.6397244523869395`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1", ",", "\<\"figconopt2_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "\<\"figplanes_intro_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "\<\"figquadric_cone_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "\<\"figquadric_coneb_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "\<\"figquadric_conec_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "\<\"figquadric_ellipsoid_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "\<\"figquadric_ellipsoidb_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "\<\"figquadric_hyp_one_sheet_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "\<\"figquadric_hyp_one_sheetb_3D.asy\"\>"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "\<\"figquadric_hyp_parb_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "\<\"figquadric_hyp_parc_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "\<\"figquadric_hyp_two_sheet_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "\<\"figquadric_hyp_two_sheetb_3D.asy\"\>"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "\<\"figquadric_par_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "\<\"figquadric_parb_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"34304", ",", "\<\"figsurfrev1a_3D.asy\"\>"}], "}"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{{3.639724453251026*^9, 3.6397244743941402`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"makeBWandRunASY", "[", "\"\<figsurfrev1a_3D.asy\>\"", 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.6397252703497276`*^9, 3.6397252732700195`*^9}, {
+   3.639731164455079*^9, 3.639731171173751*^9}, 3.6397315220598364`*^9, 
+   3.6397345741610155`*^9}],
+
+Cell[BoxData["34304"], "Output",
+ CellChangeTimes->{
+  3.63972527637033*^9, 3.6397254146771593`*^9, 3.639730953251961*^9, {
+   3.6397311468183155`*^9, 3.6397311747261066`*^9}, 3.6397315251121416`*^9, 
+   3.639734585736173*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["pairs"], "Input",
+ CellChangeTimes->{{3.639722644804199*^9, 3.6397226452752466`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"fig10_01_ex_15_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"fig10_01_ex_16_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"fig10_01_ex_17_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"fig10_01_ex_18_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"fig10_01_ex_19_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"fig10_01_ex_20_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"fig10_01_ex_21_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"fig10_01_ex_22_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"fig10_01_ex_23_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"fig10_01_ex_24_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"fig10_01_ex_25_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"fig10_01_ex_26_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"fig10_01_ex_27_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"fig10_01_ex_28_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"fig10_01_ex_29_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"fig10_01_ex_30_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"fig10_01_ex_31_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"fig10_01_ex_32_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"fig10_02_ex_14_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"fig10_02_ex_15_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"fig10_02_ex_15ans_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"fig11_01_ex_12_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"fig11_01_ex_14_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"fig13_05_ex_05_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"fig13_05_ex_06_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"fig13_05_ex_07_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"fig13_05_ex_08_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"fig13_06_ex_07_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"fig13_06_ex_08_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"fig13_06_ex_09_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"fig13_06_ex_10_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"fig13_06_ex_11_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"fig13_06_ex_12_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"fig13_06_ex_13_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"fig13_06_ex_14_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"fig3d_proj_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"fig3d_projb_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figarc4_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figcartcoord1_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figcartcoord2_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figconopt1_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figconopt1c_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "\<\"figconopt2_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figcross1_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figcross_area1_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figcrossp4a_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figcrossp6_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figcrosspparallelpiped_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figcrossp_rhr_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figcurvature4_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figdirect1_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figdirect2_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figdirect3_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figdirect9_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figdisk1_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figdisk1a_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figdisk1b_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figdisk2a_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figdotp3_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figdotp4b_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figdotpangle3D_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figdouble1_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figdouble2_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figdouble3_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figdouble4_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figdouble6b_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figdouble_intro2_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figdouble_intro3_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figdoublepol1_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figdoublepol2b_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figdoublepol4_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figdoublepol5_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figdouble_summary_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figdoublesummary_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figgabriel_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figlevelcurve1_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figlevelcurve2_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figlines1_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figlines2_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figlines3_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figlines6_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figlines_dist2_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figlines_dist2temp_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figlines_intro_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figmass2_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figmass3a_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figmass3b_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figmchain2_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figmchain_intro_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figmotion6_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figmulticont1_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figmulti_extreme1_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figmulti_extreme2_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figmulti_extreme3_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figmulti_extreme5_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figmultigraph_intro_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figmultigraph_introb_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figmultilimit_def_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figparcalc8_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figpartial3a_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figpartial3b_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figpartial4a_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figpartial4b_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figpartial6_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figpartial6b_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figpartialintro_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figpartialintrob_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figplanes1_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figplanes2_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figplanes3_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figplanes4_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figplanes5_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figplanes_dist_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "\<\"figplanes_intro_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figpolcalc8a_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figquadratic_parb_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "\<\"figquadric_cone_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "\<\"figquadric_coneb_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "\<\"figquadric_conec_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "\<\"figquadric_ellipsoid_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "\<\"figquadric_ellipsoidb_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "\<\"figquadric_hyp_one_sheet_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "\<\"figquadric_hyp_one_sheetb_3D.asy\"\>"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figquadric_hyp_par_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "\<\"figquadric_hyp_parb_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "\<\"figquadric_hyp_parc_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "\<\"figquadric_hyp_two_sheet_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "\<\"figquadric_hyp_two_sheetb_3D.asy\"\>"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "\<\"figquadric_par_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "\<\"figquadric_parb_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figsa1_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figsa2a_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figsa2b_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figshell2a_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figshell2b_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figshell2c_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figshell3b_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figshell3c_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figshell4b_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figshell4c_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figshell_intro_a_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figshell_intro_b_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figshell_intro_d_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figspace1_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figspace2_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figspace3_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figspace4a_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figspace4b_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figspace4c_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figspace4d_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figspace4e_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figspace4f_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figspace5a_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figspace5ab_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figspace5b_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figspace5bb_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figspace5c_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figspace5cb_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figspace6_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figspacecylinder1_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figspacecylinder1b_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figspace_tangent_intro_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figspacexy_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figspacexz_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figspaceyz_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figsurfacearea1_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figsurfacearea3_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figsurfacearea4_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figsurfacearea_intro1_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figsurfacearea_intro2_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"34304", ",", "\<\"figsurfrev1a_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figsurfrev1b_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figsurfrev2a_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figsurfrev2b_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figsurf_rev_intro_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figsurf_rev_introb_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figtannorm1_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figtannorm3_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figtp12_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figtp13_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figtp15_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figtp16_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figtp18_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figtpl2_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figtpl3_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figtpl5_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figtpl6_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figtpl8_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figtrip1_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figtrip1b_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figtrip2_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figtrip2b_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figtrip2c_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figtrip2d_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figtrip3_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figtrip3b_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figtrip3c_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figtrip3d_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figtrip4_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figtrip4b_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figtrip4c_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figtrip4d_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figtrip5_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figtrip5b_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figtrip5c_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figtrip5d_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figtrip5e_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figtripintro_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figtripintroa_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figvectintro3b_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figvvf2_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figvvf23D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figvvfderiv1_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figvvflimit4_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figwash1_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figwash1b_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figwash1c_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figwash2_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figwash2a_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figwash2b_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figwash2c_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figwasher_idea_a_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figwasher_idea_b_3D.asy\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "\<\"figwasher_idea_c_3D.asy\"\>"}], "}"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{{3.6397226459913177`*^9, 3.639722660623781*^9}}]
+}, Closed]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Compiling all pics into one ",
+ Cell[BoxData[
+  FormBox[
+   StyleBox[
+    RowBox[{"T", 
+     AdjustmentBox["E",
+      BoxBaselineShift->0.5,
+      BoxMargins->{{-0.3, 0}, {0, 0}}], "X"}],
+    SingleLetterItalics->False], TraditionalForm]]],
+ " document"
+}], "Subsubsection",
+ CellChangeTimes->{{3.6398242224064445`*^9, 3.639824229987899*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"filename", "=", "\"\<all3Dpics.tex\>\""}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+  "openstring", "=", 
+   "\"\<\\\\documentclass[10pt]{article}\\n\n\\\\usepackage{graphicx}\\n\n\
+\\\\usepackage[textwidth=7.5in,textheight=9.5in]{geometry}\\n\n\\n\n\
+\\\\begin{document}\\n\>\""}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"endstring", "=", "\"\<\\\\end{document}\>\""}], ";"}]}], "Input",
+ CellChangeTimes->{{3.6398242368985662`*^9, 3.639824339216998*^9}, {
+  3.639833740246098*^9, 3.639833765444098*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"allBWpdfFiles", "=", 
+   RowBox[{"FileNames", "[", "\"\<*3DBW.pdf\>\"", "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.639824378247448*^9, 3.6398244207252474`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"OpenWrite", "[", "filename", "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"WriteString", "[", 
+   RowBox[{"filename", ",", "openstring"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Do", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"WriteString", "[", 
+      RowBox[{"filename", ",", 
+       RowBox[{"\"\<\\\\includegraphics{\>\"", "<>", 
+        RowBox[{"allBWpdfFiles", "[", 
+         RowBox[{"[", "i", "]"}], "]"}], "<>", 
+        "\"\<}\\n\\\\texttt{\\\\detokenize{\>\"", "<>", 
+        RowBox[{"allBWpdfFiles", "[", 
+         RowBox[{"[", "i", "]"}], "]"}], "<>", "\"\<}}\\n\\n\>\""}]}], "]"}], 
+     ";"}], ",", "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{"i", ",", "1", ",", 
+      RowBox[{"Length", "[", "allBWpdfFiles", "]"}]}], "}"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"WriteString", "[", 
+   RowBox[{"filename", ",", "endstring"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Close", "[", "filename", "]"}]}], "Input",
+ CellChangeTimes->{{3.6398243516967583`*^9, 3.63982437294355*^9}, {
+  3.6398244253271294`*^9, 3.639824566226924*^9}, {3.6398247566226993`*^9, 
+  3.6398247869262667`*^9}, {3.639833680710298*^9, 3.6398336877704983`*^9}}],
+
+Cell[BoxData["\<\"all3Dpics.tex\"\>"], "Output",
+ CellChangeTimes->{
+  3.6398245677089806`*^9, {3.6398247776679087`*^9, 3.639824788221117*^9}, 
+   3.6398336900298977`*^9, {3.639833750940098*^9, 3.639833771153698*^9}, 
+   3.63991118439124*^9}]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+testing
+\
+\>", "Subsubsection",
+ CellChangeTimes->{{3.6396651759792576`*^9, 3.6396651766632414`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"StringReplace", "[", 
+  RowBox[{"\"\<draw(s,rgb(.6,.6,1)+opacity(.4),meshpen=p);\>\"", ",", 
+   RowBox[{
+    RowBox[{
+    "\"\<draw(s,rgb(.6,.6,1)+opacity(.\>\"", "~~", "_", "~~", 
+     "\"\<),meshpen=p);\>\""}], "->", 
+    "\"\<draw(s,surfacepen,meshpen=apexmeshpen);\>\""}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.639665184631415*^9, 3.63966527050873*^9}}],
+
+Cell[BoxData["\<\"draw(s,surfacepen,meshpen=apexmeshpen);\"\>"], "Output",
+ CellChangeTimes->{
+  3.6396652359725533`*^9, {3.6396652662496605`*^9, 3.6396652712291574`*^9}}]
+}, Open  ]]
+}, Closed]]
+},
+WindowSize->{999, 842},
+WindowMargins->{{Automatic, -1029}, {Automatic, 0}},
+FrontEndVersion->"10.0 for Microsoft Windows (64-bit) (July 1, 2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 248, 5, 31, "Input"],
+Cell[831, 29, 298, 4, 31, "Output"]
+}, Open  ]],
+Cell[1144, 36, 245, 5, 31, "Input"],
+Cell[CellGroupData[{
+Cell[1414, 45, 100, 1, 31, "Input"],
+Cell[1517, 48, 8822, 140, 1392, "Output"]
+}, Closed]],
+Cell[10354, 191, 310, 9, 25, "Input"],
+Cell[CellGroupData[{
+Cell[10689, 204, 151, 3, 31, "Input"],
+Cell[10843, 209, 147, 2, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11027, 216, 809, 19, 72, "Input"],
+Cell[11839, 237, 3995, 59, 2032, "Output"]
+}, Closed]],
+Cell[15849, 299, 225, 4, 25, "Input"],
+Cell[CellGroupData[{
+Cell[16099, 307, 283, 6, 52, "Input"],
+Cell[16385, 315, 94, 1, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16516, 321, 489, 8, 52, "Input"],
+Cell[17008, 331, 198, 3, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17243, 339, 234, 5, 31, "Input"],
+Cell[17480, 346, 91, 1, 31, "Output"]
+}, Open  ]],
+Cell[17586, 350, 2866, 59, 272, "Input"],
+Cell[20455, 411, 286, 5, 31, "Input"],
+Cell[CellGroupData[{
+Cell[20766, 420, 330, 7, 31, "Input"],
+Cell[21099, 429, 276, 4, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[21412, 438, 143, 2, 31, "Input"],
+Cell[21558, 442, 147, 2, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[21742, 449, 60, 1, 31, "Input"],
+Cell[21805, 452, 152, 3, 31, "Output"]
+}, Open  ]],
+Cell[21972, 458, 569, 14, 72, "Input"],
+Cell[CellGroupData[{
+Cell[22566, 476, 245, 4, 31, "Input"],
+Cell[22814, 482, 2463, 34, 172, "Output"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[25314, 521, 236, 5, 25, "Input"],
+Cell[25553, 528, 150, 2, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[25740, 535, 122, 1, 39, "Subsubsection"],
+Cell[CellGroupData[{
+Cell[25887, 540, 181, 3, 31, "Input"],
+Cell[26071, 545, 9277, 162, 1072, "Output"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[35385, 712, 138, 2, 25, "Input"],
+Cell[35526, 716, 74, 1, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[35637, 722, 60, 1, 31, "Input"],
+Cell[35700, 725, 154, 3, 31, "Output"]
+}, Open  ]],
+Cell[35869, 731, 794, 18, 72, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[36700, 754, 100, 1, 39, "Subsubsection"],
+Cell[CellGroupData[{
+Cell[36825, 759, 2676, 39, 212, "Input"],
+Cell[39504, 800, 74, 1, 31, "Output"]
+}, Open  ]],
+Cell[39593, 804, 1229, 36, 112, "Input"],
+Cell[CellGroupData[{
+Cell[40847, 844, 105, 1, 31, "Input"],
+Cell[40955, 847, 1594, 38, 172, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[42586, 890, 269, 5, 31, "Input"],
+Cell[42858, 897, 226, 4, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[43121, 906, 99, 1, 31, "Input"],
+Cell[43223, 909, 19240, 454, 1812, "Output"]
+}, Closed]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[62512, 1369, 360, 12, 33, "Subsubsection"],
+Cell[62875, 1383, 567, 13, 152, "Input"],
+Cell[63445, 1398, 200, 4, 31, "Input"],
+Cell[CellGroupData[{
+Cell[63670, 1406, 1262, 31, 172, "Input"],
+Cell[64935, 1439, 242, 4, 31, "Output"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[65226, 1449, 111, 4, 61, "Subsubsection"],
+Cell[CellGroupData[{
+Cell[65362, 1457, 384, 8, 72, "Input"],
+Cell[65749, 1467, 171, 2, 31, "Output"]
+}, Open  ]]
+}, Closed]]
+}
+]
+*)
+
+(* End of internal cache information *)

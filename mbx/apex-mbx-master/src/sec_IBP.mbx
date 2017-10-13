@@ -1,0 +1,1393 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_IBP">
+  <title>Integration by Parts</title>
+  <introduction>
+    <p>Here's a simple integral that we can't yet evaluate:
+      <me>
+        \int x\cos(x) \,dx.
+      </me>
+    </p>
+
+    <p>It's a simple matter to take the derivative of the integrand using the Product Rule, but there is no Product Rule for integrals. However, this section introduces <em>Integration by Parts</em>, a method of integration that is based on the Product Rule for derivatives. It will enable us to evaluate this integral.</p>
+
+    <p>The Product Rule says that if <m>u</m> and <m>v</m> are functions of <m>x</m>, then <m>(uv)' = u'v + uv'</m>. For simplicity, we've written <m>u</m> for <m>u(x)</m>, <m>u'</m> for <m>u'(x)</m>, <m>v</m> for <m>v(x)</m>, and <m>v'</m> for <m>v'(x)</m>. Suppose we integrate both sides with respect to <m>x</m>. This gives
+      <me>
+        \int (uv)'\,dx = \int (u'v+uv')\,dx.
+      </me>
+    </p>
+
+    <p>By the Fundamental Theorem of Calculus, the left side integrates to <m>uv</m>. The right side can be broken up into two integrals, and we have
+      <me>
+        uv = \int u'v\,dx + \int uv'\,dx.
+      </me>
+    </p>
+
+    <p>Solving for the second integral we have
+      <me>
+        \int uv'\,dx = uv - \int u'v\,dx.
+      </me>
+    </p>
+
+    <p>Using differential notation, we can write <m>du = u'(x)dx</m> and <m>dv=v'(x)dx</m> and the expression above can be written as follows:
+      <me>
+        \int u\,dv = uv - \int v\,du.
+      </me>
+    </p>
+
+    <p>This is the Integration by Parts formula. For reference purposes, we state this in a theorem.</p>
+
+    <theorem xml:id="thm_IBP">
+      <title>Integration by Parts</title>
+      <statement>
+        <p>Let <m>u</m> and <m>v</m> be differentiable functions of <m>x</m> on an interval <m>I</m> containing <m>a</m> and <m>b</m>. Then
+          <me>
+            \int u\ dv = uv - \int v\ du,
+          </me>
+          and <index><main>integration</main><sub>by parts</sub></index>
+          <me>
+            \int_{x=a}^{x=b} u\ dv = uv\Big|_a^b - \int_{x=a}^{x=b}v\ du.
+          </me>
+        </p>
+      </statement>
+    </theorem>
+    <aside><p>The integration by parts formula can also be written as <me>\int f(x)\ g'(x) \ dx=f(x)g(x)-\int \fp(x)\ g(x)\ dx</me> for differentiable functions <m>f</m> and <m>g</m>. </p></aside>
+
+    <p>Let's try an example to understand our new technique.</p>
+
+    <example xml:id="ex_ibp1">
+      <title>Integrating using Integration by Parts</title>
+      <statement>
+        <p>Evaluate <m>\ds\int x\cos(x) \ dx</m>.</p>
+      </statement>
+      <solution xml:id="fig_ibp1">
+        <p>The key to Integration by Parts is to identify part of the integrand as <q><m>u</m></q> and part as <q><m>dv</m>.</q> Regular practice will help one make good identifications, and later we will introduce some principles that help. For now, let <m>u=x</m> and <m>dv=\cos(x) \ dx</m>.</p>
+
+        <p>It is generally useful to make a small table of these values as done below. Right now we only know <m>u</m> and <m>dv</m> as shown on the left of <xref ref="tab_ibp1">Figure</xref>; on the right we fill in the rest of what we need. If <m>u = x</m>, then <m>du = dx</m>. Since <m>dv = \cos(x) \ dx</m>, <m>v</m> is an antiderivative of <m>\cos(x)</m>. We choose <m>v = \sin(x)</m>.</p>
+     
+      <p>
+        <todo>Figure out why the right arrow won't show up</todo>
+        <table xml:id="tab_ibp1">
+          <caption/>
+          <tabular>
+            <col width="30%" halign="center"/>
+            <col width="30%" halign="center"/>
+            <col width="30%" halign="center"/>
+            <row>
+              <cell>
+                <md>
+                  <mrow>u\amp = x \amp  v\amp =\text{?}</mrow>
+                  <mrow>du\amp = \text{?}  \amp  dv\amp =\cos(x) \ dx</mrow>
+                </md>
+              </cell>
+              <cell>
+                <md>\Rightarrow</md>
+              </cell>
+              <cell>
+                <md>
+                  <mrow>u\amp = x \amp  v\amp =\sin(x) </mrow>
+                  <mrow>du\amp = dx \amp  dv\amp =\cos(x) \ dx</mrow>
+                </md>       
+              </cell>
+            </row>
+          </tabular>
+        </table>
+        </p>
+      
+
+        <p>Now substitute all of this into the Integration by Parts formula, giving
+          <me>
+            \int x\cos(x) \,dx = x\sin(x) - \int \sin(x) \,dx.
+          </me>
+        </p>
+
+        <p>We can then integrate <m>\sin(x)</m> to get <m>-\cos(x) + C</m> and overall our answer is
+          <me>
+            \int x\cos(x) \ dx = x\sin(x) + \cos(x) + C.
+          </me>
+        </p>
+
+        <p>Note how the antiderivative contains a product, <m>x\sin(x)</m>. This product is what makes Integration by Parts necessary.</p>
+        <p>We can check our work by taking the derivative:
+          <md>
+            <mrow>\lzoo{x}{x\sin(x) + \cos(x) + C} \amp =x\cos(x)+\sin(x)-\sin(x)+0</mrow>
+            <mrow>\amp = x\cos(x)</mrow>
+          </md>.</p>
+
+      </solution>
+    </example>
+
+    <p>You may wonder what would have happened in <xref ref="ex_ibp1"> Example</xref> if we had chosen our <m>u</m> and <m>dv</m> differently. If we had chosen <m>u=\cos(x)</m> and <m>dv=x \ dx</m> then <m>du=-\sin(x)\ dx</m> and <m>v=x^2/2</m>. Our second integral is not simpler than the first, we would have <m>\int x\cos(x)\,dx=\cos(x)\frac{x^2}{2}-\int \frac{x^2}{2}\left(-\sin(x)\right)\,dx</m>. The only way to approach this second integral would be yet another integration by parts.</p>
+    <p><xref ref="ex_ibp1"> Example</xref> demonstrates how Integration by Parts works in general. We try to identify <m>u</m> and <m>dv</m> in the integral we are given, and the key is that we usually want to choose <m>u</m> and <m>dv</m> so that <m>du</m> is simpler than <m>u</m> and <m>v</m> is hopefully not too much more complicated than <m>dv</m>. This will mean that the integral on the right side of the Integration by Parts formula, <m>\int v\,du</m> will be simpler to integrate than the original integral <m>\int u\,dv</m>.</p>
+   
+
+    <p>In the example above, we chose <m>u=x</m> and <m>dv=\cos(x) \,dx</m>. Then <m>du=dx</m> was simpler than <m>u</m> and <m>v=\sin(x)</m> is no more complicated than <m>dv</m>. Therefore, instead of integrating <m>x\cos(x) \,dx</m>, we could integrate <m>\sin(x) \,dx</m>, which we knew how to do.</p>
+
+    <p>A useful mnemonic for helping to determine <m>u</m> is <q>LIATE,</q> where</p>
+
+    <p>L = <em>L</em>ogarithmic, I = <em>I</em>nverse Trig., A = <em>A</em>lgebraic (polynomials, roots, power functions),T = <em>T</em>rigonometric, and E = <em>E</em>xponential.</p>
+
+    <p>If the integrand contains both a logarithmic and an algebraic term, in general letting <m>u</m> be the logarithmic term works best, as indicated by L coming before A in LIATE.</p>
+
+    <p>We now consider another example.</p>
+
+    <example xml:id="ex_ibp2">
+      <title>Integrating using Integration by Parts</title>
+      <statement>
+        <p>Evaluate <m>\displaystyle \int x e^x\,dx</m>.</p>
+      </statement>
+      <solution xml:id="fig_ibp2">
+        <p>The integrand contains an <em>A</em>lgebraic term (<m>x</m>) and an <em>E</em>xponential term (<m>e^x</m>). Our mnemonic suggests letting <m>u</m> be the algebraic term, so we choose <m>u=x</m> and <m>dv=e^x\,dx</m>. Then <m>du=dx</m> and <m>v=e^x</m> as indicated by the tables below.</p>
+
+        <!--
+        <caption>Setting up Integration by Parts.</caption>
+        -->
+        <p>
+        <table xml:id="tab_ibp2">
+          <caption/>
+          <tabular>
+            <col width="30%" halign="center"/>
+            <col width="30%" halign="center"/>
+            <col width="30%" halign="center"/>
+            <row>
+              <cell>
+                <md>
+                  <mrow>u\amp = x \amp  v\amp =\text{?}</mrow>
+                  <mrow>du\amp = \text{?}  \amp  dv\amp =e^x \ dx</mrow>
+                </md>
+              </cell>
+              <cell>
+                <md>\Rightarrow</md>
+              </cell>
+              <cell>
+                <md>
+                  <mrow>u\amp = x \amp  v\amp =e^x </mrow>
+                  <mrow>du\amp = dx \amp  dv\amp =e^x \ dx</mrow>
+                </md>       
+              </cell>
+            </row>
+          </tabular>
+        </table>
+        </p>
+  
+
+        <p>We see <m>du</m> is simpler than <m>u</m>, while there is no change in going from <m>dv</m> to <m>v</m>. This is good. The Integration by Parts formula gives
+          <me>
+            \int x e^x\,dx = xe^x - \int e^x\,dx.
+          </me>
+        </p>
+
+        <p>The integral on the right is simple; our final answer is
+          <me>
+            \int xe^x\ dx = xe^x - e^x + C.
+          </me>
+        </p>
+
+        <p>Note again how the antiderivatives contain a product term.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_ibp3">
+      <title>Integrating using Integration by Parts</title>
+      <statement>
+        <p>Evaluate <m>\displaystyle \int x^2\cos(x) \,dx</m>.</p>
+      </statement>
+      <solution xml:id="fig_ibp3">
+        <p>The mnemonic suggests letting <m>u=x^2</m> instead of the trigonometric function, hence <m>dv=\cos(x) \,dx</m>. Then <m>du=2x\,dx</m> and <m>v=\sin(x)</m> as shown below.</p>
+
+        <!--
+        <caption>Setting up Integration by Parts.</caption>
+        -->
+      <p>
+        <todo>Figure out why the right arrow won't show up</todo>
+        <table xml:id="tab_ibp3">
+          <caption/>
+          <tabular>
+            <col width="30%" halign="center"/>
+            <col width="30%" halign="center"/>
+            <col width="30%" halign="center"/>
+            <row>
+              <cell>
+                <md>
+                  <mrow>u\amp = x^2 \amp  v\amp =\text{?}</mrow>
+                  <mrow>du\amp = \text{?}  \amp  dv\amp =\cos(x) \ dx</mrow>
+                </md>
+              </cell>
+              <cell>
+                <md>\Rightarrow</md>
+              </cell>
+              <cell>
+                <md>
+                  <mrow>u\amp = x^2 \amp  v\amp =\sin(x) </mrow>
+                  <mrow>du\amp = 2x\ dx \amp  dv\amp =\cos(x) \ dx</mrow>
+                </md>       
+              </cell>
+            </row>
+          </tabular>
+        </table>
+        </p>
+
+        <p>The Integration by Parts formula gives
+          <me>
+            \int x^2\cos(x) \,dx = x^2\sin(x) - \int 2x\sin(x) \,dx.
+          </me>
+        </p>
+
+        <p>At this point, the integral on the right is indeed simpler than the one we started with, but to evaluate it, we need to do Integration by Parts again. Here we choose <m>r=2x</m> and <m>ds=\sin(x)</m> and fill in the rest below. (We are choosing new names since we have already used <m>u</m> and <m>v</m>. Our intgration by parts formula is now <m>\int r\ ds=rs-\int s\ dr</m>.)</p>
+
+        <!--
+        <caption>Setting up Integration by Parts (again).</caption>
+        -->
+
+      <p>
+        <todo>Figure out why the right arrow won't show up</todo>
+        <table xml:id="tab_ibp3b">
+          <caption/>
+          <tabular>
+            <col width="30%" halign="center"/>
+            <col width="30%" halign="center"/>
+            <col width="30%" halign="center"/>
+            <row>
+              <cell>
+                <md>
+                  <mrow>r\amp = 2x \amp  s\amp =\text{?}</mrow>
+                  <mrow>dr\amp = \text{?}  \amp  ds\amp =\sin(x) \ dx</mrow>
+                </md>
+              </cell>
+              <cell>
+                <md>\Rightarrow</md>
+              </cell>
+              <cell>
+                <md>
+                  <mrow>r\amp = 2x \amp  s\amp =-\cos(x) </mrow>
+                  <mrow>dr\amp = 2\ dx \amp  ds\amp =\sin(x) \ dx</mrow>
+                </md>       
+              </cell>
+            </row>
+          </tabular>
+        </table>
+        </p>
+
+        <me>
+          \int x^2\cos(x) \,dx = x^2\sin(x) - \left(-2x\cos(x) - \int -2\cos(x) \,dx\right).
+        </me>
+        <p>The integral all the way on the right is now something we can evaluate. It evaluates to <m>-2\sin(x)</m>. Then going through and simplifying, being careful to keep all the signs straight, our answer is
+          <me>
+            \int x^2\cos(x) \ dx = x^2\sin(x) + 2x\cos(x) - 2\sin(x) + C.
+          </me>
+        </p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_ibp4">
+      <title>Integrating using Integration by Parts</title>
+      <statement>
+        <p>Evaluate <m>\displaystyle \int e^x\cos(x) \,dx</m>.</p>
+      </statement>
+      <solution xml:id="fig_ibp4">
+        <p>This is a classic problem. Our mnemonic suggests letting <m>u</m> be the trigonometric function instead of the exponential. In this particular example, one can let <m>u</m> be either <m>\cos(x)</m> or <m>e^x</m>; to demonstrate that we do not have to follow LIATE, we choose <m>u=e^x</m> and hence <m>dv = \cos(x) \,dx</m>. Then <m>du=e^x\,dx</m> and <m>v=\sin(x)</m> as shown below.</p>
+
+        <!--
+        <caption>Setting up Integration by Parts.</caption>
+        -->
+      <p>
+        <todo>Figure out why the right arrow won't show up</todo>
+        <table xml:id="tab_ibp4a">
+          <caption/>
+          <tabular>
+            <col width="30%" halign="center"/>
+            <col width="30%" halign="center"/>
+            <col width="30%" halign="center"/>
+            <row>
+              <cell>
+                <md>
+                  <mrow>u\amp = e^x \amp  v\amp =\text{?}</mrow>
+                  <mrow>du\amp = \text{?}  \amp  dv\amp =\cos(x) \ dx</mrow>
+                </md>
+              </cell>
+              <cell>
+                <md>\Rightarrow</md>
+              </cell>
+              <cell>
+                <md>
+                  <mrow>u\amp = e^x \amp  v\amp =\sin(x)</mrow>
+                  <mrow>du\amp = e^x  \amp  dv\amp =\cos(x) \ dx</mrow>
+                </md>       
+              </cell>
+            </row>
+          </tabular>
+        </table>
+        </p>
+
+        <p>Notice that <m>du</m> is no simpler than <m>u</m>, going against our general rule (but bear with us). The Integration by Parts formula yields
+          <me>
+            \int e^x\cos(x) \ dx = e^x\sin(x) - \int e^x\sin(x) \,dx.
+          </me>
+        </p>
+
+        <p>The integral on the right is not much different than the one we started with, so it seems like we have gotten nowhere. Let's keep working and apply Integration by Parts to the new integral, using <m>u=e^x</m> and <m>dv = \sin(x) \,dx</m>. This leads us to the following:</p>
+
+        <!--
+        <caption>Setting up Integration by Parts (again).</caption>
+        -->
+        <p>
+        <table xml:id="tab_ibp4b">
+          <caption/>
+          <tabular>
+            <col width="30%" halign="center"/>
+            <col width="30%" halign="center"/>
+            <col width="30%" halign="center"/>
+            <row>
+              <cell>
+                <md>
+                  <mrow>r\amp = e^x \amp  s\amp =\text{?}</mrow>
+                  <mrow>dr\amp = \text{?}  \amp  ds\amp =\sin(x) \ dx</mrow>
+                </md>
+              </cell>
+              <cell>
+                <md>\Rightarrow</md>
+              </cell>
+              <cell>
+                <md>
+                  <mrow>r\amp = e^x \amp  s\amp =-\cos(x) </mrow>
+                  <mrow>dr\amp = e^x\ dx \amp  ds\amp =\sin(x) \ dx</mrow>
+                </md>       
+              </cell>
+            </row>
+          </tabular>
+        </table>
+        </p>
+        <p>The Integration by Parts formula then gives:
+          <md>
+            <mrow>\int e^x\cos(x) \,dx \amp = e^x\sin(x) - \left(-e^x\cos(x) - \int -e^x\cos(x) \,dx\right)</mrow>
+            <mrow>\amp = e^x\sin(x) + e^x\cos(x) - \int e^x\cos(x) \ dx.</mrow>
+          </md>
+        </p>
+
+        <p>It seems we are back right where we started, as the right hand side contains <m>\int e^x\cos(x) \,dx</m>. But this is actually a good thing.</p>
+
+        <p>Add <m>\ds\int e^x\cos(x) \ dx</m> to both sides. This gives
+          <md>
+            <mrow>2\int e^x\cos(x) \ dx \amp  = e^x\sin(x) + e^x\cos(x) </mrow>
+            <intertext>Now divide both sides by 2 and then add the integration constant:</intertext>
+            <mrow>\int e^x\cos(x) \ dx \amp  = \frac{1}{2}\big(e^x\sin(x) + e^x\cos(x) \big)+C.</mrow>
+          </md>
+        </p>
+
+        <p>Simplifying a little, our answer is thus
+          <me>
+            \int e^x\cos(x) \ dx = \frac12e^x\left(\sin(x) + \cos(x) \right)+C.
+          </me>
+        </p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_ibp5">
+      <title>Integrating using Integration by Parts: antiderivative of <m>\ln(x)</m></title>
+      <statement>
+        <p>Evaluate <m>\displaystyle \int \ln(x) \,dx</m>.</p>
+      </statement>
+      <solution xml:id="fig_ibp5">
+        <p>One may have noticed that we have rules for integrating the familiar trigonometric functions and <m>e^x</m>, but we have not yet given a rule for integrating <m>\ln(x)</m>. That is because <m>\ln(x)</m> can't easily be integrated with any of the rules we have learned up to this point. But we can find its antiderivative by a clever application of Integration by Parts. Set <m>u=\ln(x)</m> and <m>dv=dx</m>. This is a good, sneaky trick to learn as it can help in other situations. This determines <m>du=(1/x)\,dx</m> and <m>v=x</m> as shown below.</p>
+
+        <!--
+        <caption>Setting up Integration by Parts.</caption>
+        -->
+      <p>
+        <todo>Figure out why the right arrow won't show up</todo>
+        <table xml:id="tab_ibp5">
+          <caption/>
+          <tabular>
+            <col width="30%" halign="center"/>
+            <col width="30%" halign="center"/>
+            <col width="30%" halign="center"/>
+            <row>
+              <cell>
+                <md>
+                  <mrow>u\amp = \ln(x) \amp  v\amp =\text{?}</mrow>
+                  <mrow>du\amp = \text{?}  \amp  dv\amp =1 \ dx</mrow>
+                </md>
+              </cell>
+              <cell>
+                <md>\Rightarrow</md>
+              </cell>
+              <cell>
+                <md>
+                   <mrow>u\amp = \ln(x) \amp  v\amp =x</mrow>
+                  <mrow>du\amp = 1/x\ dx  \amp  dv\amp =1 \ dx</mrow>
+                </md>       
+              </cell>
+            </row>
+          </tabular>
+        </table>
+        </p>
+
+        <p>Putting this all together in the Integration by Parts formula, things work out very nicely:
+          <me>
+            \int \ln(x) \,dx = x\ln(x) - \int x\,\frac1x\,dx.
+          </me>
+        </p>
+
+        <p>The new integral simplifies to <m>\int 1\,dx</m>, which is about as simple as things get. Its integral is <m>x+C</m> and our answer is
+          <me>
+            \int \ln(x) \ dx = x\ln(x) - x + C.
+          </me>
+        </p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_ibp6">
+      <title>Integrating using Int. by Parts: antiderivative of <m>\arctan x</m></title>
+      <statement>
+        <p>Evaluate <m>\displaystyle \int \arctan x  \,dx</m>.</p>
+      </statement>
+      <solution>
+        <p>The same sneaky trick we used above works here. Let <m>u=\arctan x</m> and <m>dv=dx</m>. Then <m>du=1/(1+x^2)\,dx</m> and <m>v=x</m>. The Integration by Parts formula gives
+          <me>
+            \int \arctan x \,dx = x\arctan x - \int \frac x{1+x^2}\,dx.
+          </me>
+        </p>
+
+        <p>The integral on the right can be solved by substitution. Taking <m>w=1+x^2</m>, we get <m>dw=2x\,dx</m>. The integral then becomes
+          <me>
+            \int \arctan x \,dx = x\arctan x - \frac12\int \frac 1{w}\,dw.
+          </me>
+        </p>
+
+        <p>The integral on the right evaluates to <m>\ln\abs{w}+C</m>, which becomes <m>\ln(1+x^2)+C</m>. Therefore, the answer is
+          <me>
+            \int \arctan x\ dx = x\arctan x - \ln(1+x^2) + C.
+          </me>
+        </p>
+      </solution>
+    </example>
+  </introduction>
+
+  <subsection>
+    <title>Substitution Before Integration</title>
+    <p>When taking derivatives, it was common to employ multiple rules (such as using both the Quotient and the Chain Rules). It should then come as no surprise that some integrals are best evaluated by combining integration techniques. In particular, here we illustrate making an <q>unusual</q> substitution first before using Integration by Parts.</p>
+
+    <example xml:id="ex_ibp8">
+      <title>Integration by Parts after substitution</title>
+      <statement>
+        <p>Evaluate <m>\ds \int \cos(\ln(x) )\ dx</m>.</p>
+      </statement>
+      <solution>
+        <p>The integrand contains a composition of functions, leading us to think Substitution would be beneficial. Letting <m>u=\ln(x)</m>, we have <m>du = 1/x\ dx</m>. This seems problematic, as we do not have a <m>1/x</m> in the integrand. But consider:
+          <me>
+            du = \frac 1x\ dx \Rightarrow x\cdot du = dx.
+          </me>
+        </p>
+
+        <p>Since <m>u = \ln(x)</m>, we can use inverse functions and conclude that <m>e^{\ln(x)} = e^u\Rightarrow x=e^u</m>. Therefore we have that
+          <md>
+            <mrow>dx \amp = x\cdot du</mrow>
+            <mrow>\amp = e^u\ du.</mrow>
+          </md>
+        </p>
+
+        <p>We can thus replace <m>\ln(x)</m> with <m>u</m> and <m>dx</m> with <m>e^u\ du</m>. Thus we rewrite our integral as
+          <me>
+            \int \cos(\ln(x) )\ dx = \int e^u\cos(u) \ du.
+          </me>
+        </p>
+
+        <p>We evaluated this integral on the right in <xref ref="ex_ibp4">Example</xref>. (This integral can also be found in a table of integrals). Using the result there, we have:
+          <md>
+            <mrow>\int \cos(\ln(x) )\ dx \amp = \int e^u\cos(u) \ du</mrow>
+            <mrow>\amp = \frac12e^u\big(\sin(u) + \cos(u) \big) + C</mrow>
+            <mrow>\amp = \frac12e^{\ln(x) } \big(\sin(\ln(x) ) + \cos(\ln(x) )\big)+C</mrow>
+            <mrow>\amp = \frac12x \big(\sin(\ln(x) ) + \cos(\ln(x) )\big)+C.</mrow>
+          </md>
+        </p>
+      </solution>
+    </example>
+  </subsection>
+
+  <subsection>
+    <title>Definite Integrals and Integration By Parts</title>
+    <p>So far we have focused only on evaluating indefinite integrals. Of course, we can use Integration by Parts to evaluate definite integrals as well, as <xref ref="thm_IBP">Theorem</xref> states. We do so in the next example.</p>
+
+    <example xml:id="ex_ibp7">
+      <title>Definite integration using Integration by Parts</title>
+      <statement>
+        <p>Evaluate <m>\displaystyle \int_1^2 x^2 \ln(x) \,dx</m>.</p>
+      </statement>
+      <solution xml:id="fig_ibp7">
+        <p>Our mnemonic suggests letting <m>u=\ln(x)</m>, hence <m>dv =x^2\,dx</m>.
+          We then get <m>du = (1/x)\,dx</m> and <m>v=x^3/3</m> as shown below.</p>
+
+        <!--
+        <caption>Setting up Integration by Parts.</caption>
+        -->
+        <p>
+        <todo>Figure out why the right arrow won't show up</todo>
+        <table xml:id="tab_ibp7">
+          <caption/>
+          <tabular>
+            <col width="30%" halign="center"/>
+            <col width="30%" halign="center"/>
+            <col width="30%" halign="center"/>
+            <row>
+              <cell>
+                <md>
+                  <mrow>u\amp = \ln(x) \amp  v\amp =\text{?}</mrow>
+                  <mrow>du\amp = \text{?}  \amp  dv\amp =x^2 \ dx</mrow>
+                </md>
+              </cell>
+              <cell>
+                <md>\Rightarrow</md>
+              </cell>
+              <cell>
+                <md>
+                   <mrow>u\amp = \ln(x) \amp  v\amp =x^3/3</mrow>
+                  <mrow>du\amp = 1/x\ dx  \amp  dv\amp =1 \ dx</mrow>
+                </md>       
+              </cell>
+            </row>
+          </tabular>
+        </table>
+        </p>
+
+        <p>The Integration by Parts formula then gives
+          <md>
+            <mrow>\int_1^2 x^2 \ln(x) \,dx \amp = \frac{x^3}3\ln(x) \bigg|_1^2 - \int_1^2 \frac{x^3}{3}\,\frac 1x\,dx</mrow>
+            <mrow>\amp =  \frac{x^3}3\ln(x) \bigg|_1^2 - \int_1^2 \frac{x^2}{3}\,dx</mrow>
+            <mrow>\amp =  \frac{x^3}3\ln(x) \bigg|_1^2 - \frac{x^3}{9}\bigg|_1^2</mrow>
+            <mrow>\amp =  \left(\frac{x^3}3\ln(x) - \frac{x^3}{9}\right)\bigg|_1^2</mrow>
+            <mrow>\amp =	\left(\frac83\ln(2) - \frac89\right)-\left(\frac13\ln(1) - \frac19\right)</mrow>
+            <mrow>\amp = \frac83\ln(2) - \frac79</mrow>
+            <mrow>\amp \approx 1.07.</mrow>
+          </md>
+        </p>
+      </solution>
+    </example>
+
+    <p>In general, Integration by Parts is useful for integrating certain products of functions, like <m>\int x e^x\,dx</m> or <m>\int x^3\sin(x) \,dx</m>. It is also useful for integrals involving logarithms and inverse trigonometric functions.</p>
+
+    <p>As stated before, integration is generally more difficult than derivation. We are developing tools for handling a large array of integrals, and experience will tell us when one tool is preferable/necessary over another. For instance, consider the three similar<ndash />looking integrals
+      <me>
+        \int xe^x\,dx, \qquad  \int x e^{x^2}\,dx \qquad \text{ and }  \qquad \int xe^{x^3}\,dx.
+      </me>
+    </p>
+
+    <p>While the first is calculated easily with Integration by Parts, the second is best approached with Substitution. Taking things one step further, the third integral has no answer in terms of elementary functions, so none of the methods we learn in calculus will get us the exact answer.</p>
+
+    <p>Integration by Parts is a very useful method, second only to substitution. In the following sections of this chapter, we continue to learn other integration techniques. <xref ref="sec_trigint">Section</xref> focuses on handling integrals containing trigonometric functions.</p>
+  </subsection>
+
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>T/F: Integration by Parts is useful in evaluating integrands that contain products of functions.</p>
+          </statement>
+          <solution>
+            <p>T</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>T/F: Integration by Parts can be thought of as the <q>opposite of the Chain Rule.</q></p>
+          </statement>
+          <solution>
+            <p>F</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>For what is <q>LIATE</q> useful?</p>
+          </statement>
+          <solution>
+            <p>Determining which functions in the integrand to set equal to <q><m>u</m></q> and which to set equal to <q><m>dv</m></q>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, evaluate the given indefinite integral.</p>
+      </introduction>
+      <exercise xml:id="ibp_prob_4">
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int x\sin(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\sin(x) - x\cos(x) +C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int xe^{-x}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>-e^{-x}-xe^{-x}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int x^2\sin(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>-x^2\cos(x) +2x\sin(x) +2\cos(x) +C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int x^3\sin(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>-x^3\cos(x) + 3x^2\sin(x) +6x\cos(x) -6\sin(x) +C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int xe^{x^2}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>1/2e^{x^2}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int x^3e^{x}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>x^3e^x-3x^2e^x+6xe^x-6e^x+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int xe^{-2x}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>-\frac{1}{2}x e^{-2 x}-\frac{e^{-2 x}}{4}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int e^x\sin(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>1/2e^x(\sin(x) -\cos(x) )+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise xml:id="ibp_prob_12">
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int e^{2x}\cos(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>1/5e^{2x}(\sin(x) +2\cos(x) )+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int e^{2x}\sin(3x)\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>1/13e^{2x}(2\sin(3x)-3\cos(3x))+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int e^{5x}\cos(5x)\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>1/10e^{5x}(\sin(5x)+\cos(5x))+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \sin(x) \cos(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>-1/2\cos^2(x) +C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \sin^{-1}(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\sqrt{1-x^2}+x \sin^{-1}(x)+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \tan^{-1}(2x)\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>x \tan^{-1}(2 x)-\frac{1}{4} \ln\abs{4 x^2+1}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int x\tan^{-1}(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{1}{2} x^2 \tan^{-1}(x)-\frac{x}{2}+\frac{1}{2}
+                 \tan^{-1}(x)+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \sin^{-1}(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\sqrt{1-x^2}+x\sin^{-1}(x) +C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int x\ln(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{1}{2} x^2 \ln\abs{x}-\frac{x^2}{4}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int (x-2)\ln(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>-\frac{x^2}{4}+\frac{1}{2} x^2 \ln\abs{x}+2 x-2 x \ln\abs{x}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int x\ln(x-1)\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>-\frac{x^2}{4}+\frac{1}{2} x^2 \ln\abs{x-1}-\frac{x}{2}-\frac{1}{2} \ln\abs{x-1}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int x\ln(x^2)\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{1}{2} x^2 \ln\left(x^2\right)-\frac{x^2}{2}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int x^2\ln(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{1}{3} x^3 \ln\abs{x}-\frac{x^3}{9}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \left(\ln(x) \right)^2\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>2 x+x \left(\ln\abs{x}\right)^2-2 x \ln\abs{x}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \left(\ln(x+1)\right)^2\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>2 x+x \left(\ln\abs{x+1}\right)+\left(\ln\abs{x+1}\right)^2-</m> <m>2 x \ln\abs{x+1}-2 \ln\abs{x+1}+2+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int x\sec^2(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>x \tan(x)+\ln\abs{\cos(x)}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int x\csc^2(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\ln\abs{\sin(x)}-x \cot(x)+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int x\sqrt{x-2}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac 25(x-2)^{5/2}+\frac43 (x-2)^{3/2}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int x\sqrt{x^2-2}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac13(x^2-2)^{3/2}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \sec(x) \tan(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\sec(x) +C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int x\sec(x) \tan(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>x\sec(x) -\ln\abs{\sec(x) +\tan(x) }+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int x\csc(x) \cot(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>-x\csc(x) -\ln\abs{\csc(x) +\cot(x) }+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, evaluate the indefinite integral after first making a substitution.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \sin(\ln(x) )\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>1/2x\big(\sin(\ln(x) )-\cos(\ln(x) )\big)+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \sin(\sqrt{x})\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>2 \sin\left(\sqrt{x}\right)-2 \sqrt{x} \cos\left(\sqrt{x}\right)+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \ln(\sqrt{x})\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{1}{2} x \ln\abs{x}-\frac{x}{2}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int e^{\sqrt{x}}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>2\sqrt{x} e^{\sqrt{x}} -2 e^{\sqrt{x}}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int e^{\ln(x) }\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>1/2x^2+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, evaluate the definite integral. Note: the corresponding indefinite integrals appear in <xref ref="ibp_prob_4">Exercises</xref> <mdash /> <xref ref="ibp_prob_12"></xref>.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_0^\pi x\sin(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\pi</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{-1}^1 xe^{-x}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>-2/e</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{-\pi/4}^{\pi/4} x^2\sin(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>0</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{-\pi/2}^{\pi/2} x^3\sin(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{3 \pi ^2}{2}-12</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_0^{\sqrt{\ln(2) }} xe^{x^2}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>1/2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_0^1 x^3e^{x}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>6-2e</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_1^2 xe^{-2x}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{3}{4 e^2}-\frac{5}{4 e^4}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_0^{\pi} e^x\sin(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{1}{2}+\frac{e^{\pi }}{2}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{-\pi/2}^{\pi/2} e^{2x}\cos(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>1/5\left(e^{\pi}+e^{-\pi}\right)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

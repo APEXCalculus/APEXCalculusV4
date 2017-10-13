@@ -1,0 +1,2012 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_FTC">
+  <title>The Fundamental Theorem of Calculus</title>
+  <introduction>
+    <p>Let <m>f(t)</m> be a continuous function defined on <m>[a,b]</m>. The definite integral <m>\int_a^b f(x)\ dx</m> is the <q>area under <m>f</m></q> on <m>[a,b]</m>. We can turn this concept into a function by letting the upper (or lower) bound vary.</p>
+
+    <p>Let <m>F(x) = \int_a^x f(t)\ dt</m>. It computes the area under <m>f</m> on <m>[a,x]</m> as illustrated in <xref ref="fig_ftc0">Figure</xref>. We can study this function using our knowledge of the definite integral. For instance, <m>F(a)=0</m> since <m>\int_a^af(t)\ dt=0</m>.</p>
+
+    <figure xml:id="fig_ftc0">
+      <caption>The area of the shaded region is <m>F(x) = \int_a^x f(t)\ dt</m>.</caption>
+      <!-- START figures/fig_ftc1.tex -->
+      <image xml:id="img_ftc0"  width="47%">
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+          \begin{axis}[axis on top,
+                      xtick=\empty,
+                      extra x ticks={1,2.5,3},
+                      extra x tick labels={$a$,$x$,$b$},
+                      ytick=\empty,
+                      xlabel=$t$,
+                      ymin=-.5,ymax=2,
+                      xmin=-.5,xmax=3.5
+                      ]
+                \addplot+[domain=0:3.25] {.5*sin(deg(x))+1};
+                \addplot [{\coloronefill},fill={\coloronefill},area style,domain=1:2.5] {.5*sin(deg(x))+1}\closedcycle;
+
+          \end{axis}
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_ftc0.tex END -->
+    </figure>
+
+    <example xml:id="ex_ftc1">
+      <title>Exploring the <q>Area so far</q> function</title>
+      <statement>
+        <p>Consider <m>f(t)=2t</m> pictured in Figure <xref ref="fig_ftc1">Figure </xref> and its associated <q>area so far</q> function, <m>F(x)=\int_1^x 2t\ dt</m>. Using the graph of <m>f</m> and geometry, find an explicit formula for <m>F</m>.</p>
+
+    <figure xml:id="fig_ftc1" >
+      <caption>The area of the shaded region is <m>F(x) = \int_1^x 2t\ dt</m>.</caption>
+      <!-- START figures/fig_ftc1.tex -->
+
+      <image xml:id="img_ftc1"  width="47%">
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+          \begin{axis}[xtick=\empty,
+                       extra x ticks={1,2.5},
+                       extra x tick labels={$1$,$x$},
+                       %ytick=\empty,
+                       xlabel=$t$,
+                       ymin=-2,ymax=8,
+                       xmin=-1,xmax=3.5
+                       ]
+                       \addplot+[domain=-1:3.25] {2*x};
+                       \addplot [{\coloronefill},fill={\coloronefill},area style,domain=1:2.5] {2*x} \closedcycle;        
+
+          \end{axis}
+
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_ftc1.tex END -->
+    </figure>
+
+ 
+
+      </statement>
+      <solution>
+        <p>We can see from <xref ref="fig_ftc1b">Figure</xref> that for <m>x \ge 1</m>, the area under the curve can be found by subtracting the area of two triangles. The larger triangle will have a base of <m>x</m> and a height of <m>f(x)=2x</m>, while the smaller triangle will have a base of <m>1</m> and a height of <m>2</m>. Therefore, the area under the curve for <m>x \gte 1</m> is given by <m>A(x)=\frac12 (x)(2x)-\frac12 (1)(2)=x^2-1</m>. </p>
+    <figure xml:id="fig_ftc1b" >
+      <caption>The area of the shaded region is <m>F(x) = \int_1^x 2t\ dt</m>.</caption>
+      <!-- START figures/fig_ftc1.tex -->
+      <image xml:id="img_ftc1b"  width="47%">
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+          \begin{axis}[ xtick=\empty,
+                       extra x ticks={1,2.5},
+                       extra x tick labels={$1$,$x$},
+                       %ytick=\empty,
+                       xlabel=$t$,
+                       ymin=-2,ymax=8,%
+                       xmin=-1,xmax=3.5%
+                       ]
+                       \addplot+[domain=-1:3.25] {2*x};
+                       \addplot [{\coloronefill},fill={\coloronefill},area style,domain=1:2.5] {2*x} \closedcycle;
+                       \addplot[lineseg, domain=0:2]({1},{x}) node[pos=0.5, right]{$2$};
+                       \addplot[lineseg, domain=0:1]({x},{0}) node[pos=0.5, above]{$1$};
+                       \addplot[lineseg,<->, domain=0:2.5]({x},{-1}) node[pos=0.5, below]{$x$};
+                       \addplot[lineseg, domain=0:5]({2.5},{x}) node[pos=0.5, right]{$2x$};
+
+          \end{axis}
+
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_ftc1.tex END -->
+    </figure>
+
+    <p>Note that this same formula holds for <m>x\lt 1</m>. If <m>x \lt 1</m>, then <m>F(x) = \int_1^x 2t\ dt=-\int_x^1 2t\ dt</m>. The areas to the left of <m>x=1</m> will have opposite signs (since they areas are accumulated <em>before</em> <m>x=1</m>). For example, when <m>x=0</m>, <m>F(0) = -\int_0^1 2t\ dt=-\frac12 (1)(2)=-1</m>. This is the same value we get from evaluating <m>x^2-1</m> for <m>x=0</m>. Also notice that <m>F(-1)=\int_1^{-1} 2t \ dt=-\int_{-1}^1 2t\ dt</m>. This integral is clearly <m>0</m> since the areas over <m>[-1,0]</m> and <m>[0,1]</m> will sum to zero. Again, this is the same answer obtained by evaluating <m>x^2-1</m> for <m>x=-1</m>. </p>
+
+    <p>Therefore, we can reasonably say that <m>F(x)=x^2-1</m>. A plot of both <m>f(x)=2x</m> and <m>F(x)=x^2-1</m> are given in Figure <xref ref="fig_ftc1c">Figure</xref>. You should notice a familiar relationship between these two functions. This relationship is formally stated in <xref autoname="title" ref="thm_FTC1"/>.</p>
+
+    <figure xml:id="fig_ftc1c">
+      <caption>Graphs of <m>f(x)=2x</m> and <m>F(x)=x^2-1</m>.</caption>
+      <!-- START figures/fig_ftc1.tex -->
+      <image xml:id="img_ftc1c"  width="47%">
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+          \begin{axis}[ymin=-2,ymax=8,
+                       xmin=-1,xmax=3.5
+                       ]
+                       \addplot+[domain=-1:3.25] {2*x};
+                       \addplot+[domain=-1:3.25] {x^2-1};
+                       
+
+          \end{axis}
+
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_ftc1.tex END -->
+    </figure>
+
+      </solution>
+    </example>
+
+    <p>As <xref ref="ex_ftc1">Example</xref> hinted, we can apply calculus ideas to <m>F(x)</m>; in particular, we can compute its derivative. In <xref ref="ex_ftc1">Example</xref>, <m>F(x)=x^2-1</m>, so <m>F'(x)=2x=f(x)</m>. While this may seem like an innocuous thing to do, it has far<ndash />reaching implications, as demonstrated by the fact that the result is given as an important theorem.</p>
+
+    <theorem xml:id="thm_FTC1">
+      <title>The Fundamental Theorem of Calculus, Part 1</title>
+      <statement>
+        <p>Let <m>f</m> be continuous on <m>[a,b]</m> and let <m>F(x) = \int_a^x f(t)\ dt</m>. Then <m>F</m> is a differentiable function on <m>(a,b)</m>, and<index><main>Fundamental Theorem of Calculus</main></index><index><main>integration</main><sub>Fun. Thm. of Calc.</sub></index>
+          <me>
+            \Fp(x)=f(x).
+          </me>
+          In other words: <me>\lzoo{x}{\int_a^x f(t)\ dt}=f(x).</me>
+        </p>
+      </statement>
+    </theorem>
+
+    <p>Initially this seems simple, as demonstrated in the following example.</p>
+
+    <example xml:id="ex_ftc2">
+      <title>Using the Fundamental Theorem of Calculus, Part 1</title>
+      <statement>
+        <p>Let <m>\ds F(x) = \int_{-5}^x (t^2+\sin(t) )\ dt</m>. What is <m>\Fp(x)</m>?</p>
+      </statement>
+      <solution>
+        <p>Using the Fundamental Theorem of Calculus, we have <m>\Fp(x) = x^2+\sin(x)</m>. That is, the derivative of the <q>area so far</q> function, is simply the integrand replacing <m>x</m> with <m>t</m>.
+      </p>
+       <p>This simple example reveals something incredible: <m>F(x)</m> is an antiderivative of <m>x^2+\sin(x)</m>! Therefore, <m>F(x) = \frac13x^3-\cos(x) +C</m> for some value of <m>C</m>. (We can find <m>C</m>, but generally we do not care. We know that <m>F(-5)=0</m>, which allows us to compute <m>C</m>. In this case, <m>C=\cos(-5)+\frac{125}3</m>.)</p>
+      </solution>
+    </example>
+
+   
+    <p>What we have done in <xref ref="ex_ftc2">Example</xref> was more than finding a complicated way of computing an antiderivative. Consider a function <m>f</m> defined on an open interval containing <m>a</m>, <m>b</m> and <m>c</m>. Suppose we want to compute <m>\int_a^b f(t)\ dt</m>. First, let 
+    <men xml:id="eq_ftc_c">F(x) = \int_c^x f(t)\ dt</men>. Using the properties of the definite integral found in <xref ref="thm_defintprop">Theorem</xref>, we know
+      <md>
+        <mrow>\int_a^b f(t)\ dt \amp = \int_a^c f(t)\ dt + \int_c^b f(t)\ dt</mrow>
+        <mrow>\amp = -\int_c^a f(t)\ dt + \int_c^b f(t)\ dt</mrow>
+      </md>
+      Using <xref ref="eq_ftc_c">Equation</xref>, let <m>x=a</m> in the first integral and <m>x=b</m> in the second integral so that <m>\int_c^a f(t)\ dt =F(a)</m> and <m>\int_c^b f(t)\ dt =F(b)</m>. Therefore:
+        <md>
+        <mrow>\int_a^b f(t)\ dt \amp =-F(a) + F(b)</mrow>
+        <mrow>\amp = F(b) - F(a).</mrow>
+      </md>
+    </p>
+
+    <p>We now see how indefinite integrals and definite integrals are related: we can evaluate a definite integral using antiderivatives! In fact, this is exactly what we noticed in <xref ref="ex_ftc1">Example</xref>. The <q>area so far</q> function was indeed an anti-derivative of the integrand. This is the second part of the Fundamental Theorem of Calculus.</p>
+
+    <theorem xml:id="thm_FTC2">
+      <title>The Fundamental Theorem of Calculus, Part 2</title>
+      <statement>
+        <p>Let <m>f</m> be continuous on <m>[a,b]</m> and let <m>F</m> be <em>any</em> antiderivative of <m>f</m>. Then<index><main>Fundamental Theorem of Calculus</main></index><index><main>integration</main><sub>Fun. Thm. of Calc.</sub></index>
+          <me>
+            \int_a^b f(x)\ dx = F(b) - F(a).
+          </me>
+        </p>
+      </statement>
+    </theorem>
+
+    <example xml:id="ex_ftc3">
+      <title>Using the <xref autoname="title" ref="thm_FTC2" /></title>
+      <statement>
+        <p>We spent a great deal of time in the previous section studying <m>\int_0^4(4x-x^2)\ dx</m>. Using the Fundamental Theorem of Calculus, evaluate this definite integral.</p>
+      </statement>
+      <solution>
+        <p>We need an antiderivative of <m>f(x)=4x-x^2</m>. All antiderivatives of <m>f</m> have the form <m>F(x) = 2x^2-\frac13x^3+C</m>; for simplicity, choose <m>C=0</m>.</p>
+
+        <p>The Fundamental Theorem of Calculus states
+          <md>
+            <mrow>\int_0^4(4x-x^2)\ dx \amp= F(4)-F(0)</mrow>
+            <mrow>\amp = \big(2(4)^2-\frac134^3\big)-\big(0-0\big)</mrow>
+            <mrow>\amp = 32-\frac{64}3 = 32/3\text{.}</mrow>
+              
+          </md>
+        </p>
+
+        <p>This is the same answer we obtained using limits in the previous section, just with much less work.</p>
+      </solution>
+    </example>
+
+    <p><em>Notation:</em><index><main>integration</main><sub>notation</sub></index> A special notation is often used in the process of evaluating definite integrals using the Fundamental Theorem of Calculus. Instead of explicitly writing <m>F(b)-F(a)</m>, the notation <m>F(x)\Big|_a^b</m> is used. Thus the solution to <xref ref="ex_ftc3">Example</xref> would be written as:
+      <md>
+        <mrow> \int_0^4(4x-x^2)\ dx \amp = \left.\left(2x^2-\frac13x^3\right)\right|_0^4 </mrow>
+        <mrow>\amp = \big(2(4)^2-\frac134^3\big)-\big(0-0\big) =  32/3.</mrow>
+       
+      </md>
+    </p>
+
+    <p><em>The Constant <m>C</m>:</em> <em>Any</em> antiderivative <m>F(x)</m> can be chosen when using the Fundamental Theorem of Calculus to evaluate a definite integral, meaning any value of <m>C</m> can be picked. The constant <em>always</em> cancels out of the expression when evaluating <m>F(b)-F(a)</m>, so it does not matter what value is picked. This being the case, we might as well let <m>C=0</m>.</p>
+
+    <example xml:id="ex_ftc4">
+      <title>Using the Fundamental Theorem of Calculus, Part 2</title>
+      <statement>
+        <p>Evaluate the following definite integrals.
+          <ol>
+            <li><m>\int_{-2}^2 x^3\ dx</m></li>
+            <li><m>\int_0^\pi \sin(x) \ dx</m></li>
+            <li><m> \int_0^5 e^t\ dt</m></li>
+            <li><m> \int_4^9 \sqrt{u}\ du</m></li>
+            <li><m>\int_1^5 2\ dx</m></li>
+          </ol>
+        </p>
+      </statement>
+      <solution>
+        <ol>
+          <li><p>
+            <md>
+              <mrow>\int_{-2}^2 x^3\ dx \amp = \left.\frac14x^4\right|_{-2}^2 \amp</mrow>
+              <mrow>\amp = \left(\frac142^4\right) - \left(\frac14(-2)^4\right) </mrow>
+              <mrow>\amp = 0</mrow>
+            </md>.
+          </p></li>
+
+          <li>
+          <p>
+            <md>
+              <mrow>\int_0^\pi \sin(x) \ dx \amp = -\cos(x) \Big|_0^\pi</mrow>
+              <mrow> \amp = -\cos(\pi) - \big(-\cos(0) \big)</mrow> 
+              <mrow>\amp = 1+1=2</mrow>
+            </md>.
+
+              (This is interesting; it says that the area under one <q>hump</q> of a sine curve is 2.)</p></li>
+
+          <li><p>
+            <md>
+              <mrow>\int_0^5e^t\ dt \amp = e^t\Big|_0^5 </mrow>
+              <mrow>\amp = e^5 - e^0 </mrow>
+              <mrow>\amp= e^5-1 \approx 147.41</mrow>
+            </md>.</p></li>
+
+          <li><p>
+            <md> 
+              <mrow>\int_4^9 \sqrt{u}\ du \amp= \int_4^9 u^\frac12\ du</mrow>
+              <mrow> \amp = \frac23u^\frac32\Big|_4^9</mrow>
+              <mrow>\amp = \frac23\left(9^\frac32-4^\frac32\right)</mrow>
+              <mrow>\amp = \frac23\big(27-8\big) =\frac{38}3</mrow> 
+            </md>.
+            </p></li>
+
+          <li><p>
+            <md>
+              <mrow> \int_1^5 2\ dx \amp = 2x\Big|_1^5 </mrow>
+              <mrow>\amp = 2(5)-2</mrow>
+              <mrow>\amp =2(5-1)=8</mrow>
+            </md>.
+
+              This integral is interesting; the integrand is a constant function, hence we are finding the area of a rectangle with width <m>(5-1)=4</m> and height 2. Notice how the evaluation of the definite integral led to <m>2(4)=8</m>.
+
+              In general, if <m>c</m> is a constant, then <m>\int_a^b c\ dx = c(b-a)</m>.</p></li>
+        </ol>
+      </solution>
+    </example>
+  </introduction>
+
+  <subsection>
+    <title>Understanding Motion with the Fundamental Theorem of Calculus</title>
+    <p>We established, starting with <xref ref="idea_motion">Key Idea</xref>, that the derivative of a position function is a velocity function, and the derivative of a velocity function is an acceleration function. Now consider definite integrals of velocity and acceleration functions. Specifically, if <m>v(t)</m> is a velocity function, what does <m>\ds \int_a^b v(t)\ dt</m> mean?<index><main>integration</main><sub>displacement</sub></index><index><main>displacement</main></index></p>
+
+    <p>The Fundamental Theorem of Calculus states that
+      <me>
+        \int_a^b v(t)\ dt = V(b) - V(a),
+      </me>
+      where <m>V(t)</m> is any antiderivative of <m>v(t)</m>. Since <m>v(t)</m> is a velocity function, <m>V(t)</m> must be a position function, and <m>V(b) - V(a)</m> measures a change in position, or <em>displacement</em>.</p>
+
+    <example xml:id="ex_ftcmotion1">
+      <title>Finding displacement and distance</title>
+      <statement>
+        <p>A ball is thrown straight up with velocity given by <m>v(t) = -32t+20</m>ft/s, where <m>t</m> is measured in seconds. Find, and interpret, <m>\ds \int_0^1 v(t)\ dt</m> and <m>\int_0^1 \abs{v(t)}\ dt</m>.</p>
+      </statement>
+      <solution>
+        <p>Using the Fundamental Theorem of Calculus, we have
+          <md>
+            <mrow>\int_0^1 v(t)\ dt \amp = \int_0^1 (-32t+20)\ dt</mrow>
+            <mrow>\amp = \left(-16t^2 + 20t\right)\Big|_0^1</mrow>
+            <mrow>\amp = 4.</mrow>
+          </md>
+        </p>
+
+        <p>Thus if a ball is thrown straight up into the air with velocity <m>v(t) = -32t+20</m>, the height of the ball, 1 second later, will be 4 feet above the initial height.</p> 
+        <p>Note that the ball has <em>traveled</em> much farther. It has gone up to its peak and is falling down, but the difference between its height at <m>t=0</m> and <m>t=1</m> is 4ft. </p>
+        <p>If we wish to find the total distance traveled, we must evaluate <m>\int_0^1 \abs{v(t)}\ dt</m> (noting that negative velocities will reduce the diplacement, but we want <em>distance</em>, not displacement). In this case, we know that the velocity changes sign once when <m>v(t)=0</m>,so <m>t=20/32=5/8</m> seconds. The velocity is positive over <m>[0,5/8]</m> and negative over <m>[5/8,1]</m>. Therefore 
+        <md>
+          <mrow>\int_0^1 \abs{-32t+20}\ dt \amp =\int_0^{5/8}-32t+20\ dt-\int_{5/8}^1 -32t+20\ dt</mrow>
+          <mrow>\amp =\left(-16t^2 + 20t\right)\Big|_0^{5/8}-\left(-16t^2 + 20t\right)\Big|_0^1</mrow>
+          <mrow>\amp = \frac{25}4-\left(-\frac94\right)=9</mrow>
+        </md>.
+        So the total distance traveled over <m>[0,1]</m> is <m>\int_0^1 \abs{-32t+20}\ dt=9 \text{ feet }.</m> </p>
+        <p>As we can see in <xref ref="fig_ftcmotion1a">Figure</xref>, the positive area between <m>v(t)</m> and the <m>t</m>-axis, <m>A_1=25/4</m>, while the negative area, <m>A_2=-9/4</m>. When we add these two areas, we get the displacement of <m>4</m> ft. But when we add the absolute value of both of these areas (as in <xref ref="fig_ftcmotion1b">Figure</xref>), we get the total distance of <m>9</m> ft. 
+
+  <sidebyside xml:id="fig_ftcmotion1"  widths="47% 47%">
+    <figure xml:id="fig_ftcmotion1a" >
+      <caption>The area between <m>v(t)</m> and the <m>t</m>-axis can be used to represent displacement.</caption>
+      <image xml:id="img_ftcmotion1a" >
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+          \begin{axis}[ xtick=\empty,
+                       extra x ticks={0.625,1},
+                       extra x tick labels={$5/8$,$1$},
+                       %ytick=\empty,
+                       xlabel=$t$,
+                       ymin=-15,ymax=25,%
+                       xmin=-1,xmax=1.5%
+                       ]
+                       \addplot+[domain=-.5:1.5] {-32*x+20};
+                       \addplot [{\coloronefill},fill={\coloronefill},area style,domain=0:1] {-32*x+20} \closedcycle;
+                       \node at (axis cs:.3125,5) {\scriptsize $A_1$};
+                       \node at (axis cs:.8125,-3) {\scriptsize $A_2$};
+
+          \end{axis}
+
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+    </figure>
+
+       <figure xml:id="fig_ftcmotion1b" >
+      <caption>The area between <m>\abs{v(t)}</m> and the <m>t</m>-axis can be used to represent distance.</caption>
+      <image xml:id="img_ftcmotion1b">
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+          \begin{axis}[ xtick=\empty,
+                       extra x ticks={0.625,1},
+                       extra x tick labels={$5/8$,$1$},
+                       %ytick=\empty,
+                       xlabel=$t$,
+                       ymin=-15,ymax=25,%
+                       xmin=-1,xmax=1.5%
+                       ]
+                       \addplot+[-,domain=-.5:5/8] {-32*x+20};
+                       \addplot+[-,domain=5/8:1.5, firstcurvestyle] {32*x-20};
+                       \addplot [{\coloronefill},fill={\coloronefill},area style,domain=0:5/8] {-32*x+20} \closedcycle;
+                       \addplot [{\coloronefill},fill={\coloronefill},area style,domain=5/8:1] {32*x-20} \closedcycle;
+                       \node at (axis cs:.3125,5) {\scriptsize $A_1$};
+                       \node at (axis cs:.8125,3) {\scriptsize $A_3$};
+
+          \end{axis}
+
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+    </figure>
+
+  </sidebyside>
+    </p>
+      </solution>
+    </example>
+
+    <p>Integrating a rate of change function gives total change. Velocity is the rate of position change; integrating velocity gives the total change of position, i.e., displacement.</p>
+
+    <p>Integrating a speed function gives a similar, though different, result. Speed is also the rate of position change, but does not account for direction. That is, the speed an object is the absolute value of its velocity. This is what we saw in <xref ref="ex_ftcmotion1">Example</xref> when we evaluated <m>\int_0^1 \abs{v(t)}\ dt</m>. So integrating a speed function gives total change of position, without the possibility of <q>negative position change.</q> Hence the integral of a speed function gives <em>distance traveled.</em></p>
+
+    <p>As acceleration is the rate of velocity change, integrating an acceleration function gives total change in velocity. We do not have a simple term for this analogous to displacement. If <m>a(t) = 5</m>miles/h<m>^2</m> and <m>t</m> is measured in hours, then
+      <me>
+        \int_0^3 a(t)\ dt = 15
+      </me>
+      means the velocity has increased by 15m/h from <m>t=0</m> to <m>t=3</m>.</p>
+  </subsection>
+
+  <subsection>
+    <title>The Fundamental Theorem of Calculus and the Chain Rule</title>
+    <p>Part 1 of the Fundamental Theorem of Calculus (FTC) states that given <m>\ds F(x) = \int_a^x f(t)\ dt</m>, we have <m>\Fp(x) = f(x)</m>. Using other notation, <m>\ds \lzoo{x}{F(x)}=\lzoo{x}{\int_a^x f(t)\ dt} = f(x)</m>. While we have just practiced evaluating definite integrals, sometimes finding antiderivatives is impossible and we need to rely on other techniques to approximate the value of a definite integral. Functions written as <m>F(x) = \int_a^x f(t)\ dt</m> are useful in such situations.</p>
+
+    <p>It may be of further use to compose such a function with another. As an example, we may compose <m>F(x)</m> with <m>g(x)</m> to get
+      <me>
+        F\big(g(x)\big) = \int_a^{g(x)} f(t)\ dt.
+      </me>
+    </p>
+
+    <p>What is the derivative of such a function?<index><main>Fundamental Theorem of Calculus</main><sub>and Chain Rule</sub></index> The Chain Rule can be employed to state
+      <me>
+        \frac{d}{dx}\Big(F\big(g(x)\big)\Big) = \Fp\big(g(x)\big)g'(x) = f\big(g(x)\big)g'(x).
+      </me>
+    </p>
+
+    <p>An example will help us understand this.</p>
+
+    <example xml:id="ex_ftc11">
+      <title>The FTC, Part 1, and the Chain Rule</title>
+      <statement>
+        <p>Find the derivative of <m>\ds F(x) = \int_2^{x^2} \ln(t) \ dt</m>.</p>
+      </statement>
+      <solution>
+        <p>We can view <m>F(x)</m> as being the function <m>\ds G(x) = \int_2^x \ln(t) \ dt</m> composed with <m>g(x) = x^2</m>; that is, <m>F(x) = G\big(g(x)\big)</m>. The Fundamental Theorem of Calculus states that <m>G'(x) = \ln(x)</m>. The Chain Rule gives us
+          <md>
+            <mrow>F'(x) \amp = G'\big(g(x)\big) g'(x)</mrow>
+            <mrow>\amp = \ln(g(x)) g'(x)</mrow>
+            <mrow>\amp = \ln(x^2) 2x</mrow>
+            <mrow>\amp =2x\ln(x^2) </mrow>
+          </md>
+        </p>
+
+        <p>Normally, the steps defining <m>G(x)</m> and <m>g(x)</m> are skipped.</p>
+      </solution>
+    </example>
+
+    <p>Practice this once more.</p>
+
+    <example xml:id="ex_ftc12">
+      <title>The FTC, Part 1, and the Chain Rule</title>
+      <statement>
+        <p>Find the derivative of <m>\ds F(x) = \int_{\cos(x) }^5 t^3\ dt.</m></p>
+      </statement>
+      <solution>
+        <p>Note that <m>\ds F(x) = -\int_5^{\cos(x) } t^3\ dt</m>. Viewed this way, the derivative of <m>F</m> is straightforward:
+          <md>
+            <mrow>F'(x) \amp= -\cos^3(x)\left(-\sin(x)\right)</mrow>
+            <mrow>\amp= \cos^3(x)\sin(x)</mrow>           
+          </md>.
+        </p>
+      </solution>
+    </example>
+  </subsection>
+
+  <subsection>
+    <title>Area Between Curves</title>
+    <p>Consider continuous functions <m>f(x)</m> and <m>g(x)</m> defined on <m>[a,b]</m>, where <m>f(x) \geq g(x)</m> for all <m>x</m> in <m>[a,b]</m>, as demonstrated in <xref ref="fig_ftc5">Figure</xref>. What is the area of the shaded region bounded by the two curves over <m>[a,b]</m>?<index><main>integration</main><sub>area between curves</sub></index></p>
+
+    <sidebyside xml:id="fig_ftc5" widths="47% 47%">
+       <caption>Finding the area bounded by two functions on an interval; it is found by subtracting the area under <m>g</m> from the area under <m>f</m>.</caption>
+    <figure xml:id="fig_ftc5a"> 
+      <caption/>
+      <!-- START figures/fig_ftc5.tex -->
+      <image xml:id="img_ftc5a">
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+          \begin{axis}[%
+          axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick=\empty,%
+			extra x ticks={.5,3},
+			extra x tick labels={$a$,$b$},
+			ytick=\empty,
+			%%extra y ticks={-5,-3,...,7},%
+          %			minor x tick num=4,
+			ymin=-.5,ymax=2,%
+			xmin=-.5,xmax=3.5%
+          ]
+
+          \addplot [{\coloronefill},domain=.5:3,stack plots=y] {.25*(x-2)^2+.2};
+          \addplot [{\coloronefill},thick,fill={\coloronefill},area style,domain=.5:3,stack plots=y] {.25*sin(deg(2*x))+1.25-(.25*(x-2)^2+.2)} \closedcycle;
+          \addplot [smooth,thick, {\colorone},domain=-.25:3.25] {.25*sin(deg(2*x))+1.25} node [shift={(5pt,7pt)} ,black] {\scriptsize $f(x)$};
+          \addplot [smooth,thick, {\colorone},domain=-.25:3.25] {.25*(x-2)^2+.2}node [shift={(5pt,7pt)} ,black] {\scriptsize $g(x)$};
+
+
+          \end{axis}
+
+
+
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_ftc5.tex END -->
+    </figure>
+
+      <figure xml:id="fig_ftc5b">
+        <caption/>
+
+      <!-- START figures/fig_ftc5a.tex -->
+      <image xml:id="img_ftc5b">
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+          \begin{axis}[%
+          axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick=\empty,%
+			extra x ticks={.5,3},
+			extra x tick labels={$a$,$b$},
+			ytick=\empty,
+			%%extra y ticks={-5,-3,...,7},%
+          %			minor x tick num=4,
+			ymin=-.5,ymax=2,%
+			xmin=-.5,xmax=3.5%
+          ]
+
+          \addplot [{\coloronefill},fill={\coloronefill},area style,domain=.5:3] {.25*sin(deg(2*x))+1.25} \closedcycle;
+          \addplot [{\colortwofill},fill={\colortwofill},domain=.5:3,fill opacity=.5] {.25*(x-2)^2+.2} \closedcycle;
+          \addplot [smooth,thick, {\colorone},domain=-.25:3.25] {.25*sin(deg(2*x))+1.25} node [shift={(5pt,7pt)} ,black] {\scriptsize $f(x)$};
+          \addplot [smooth,thick, {\colorone},domain=-.25:3.25] {.25*(x-2)^2+.2}node [shift={(5pt,7pt)} ,black] {\scriptsize $g(x)$};
+
+
+
+          \end{axis}
+
+
+
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_ftc5a.tex END -->
+    </figure>
+    </sidebyside>
+
+    <p>The area can be found by recognizing that this area is <q>the area under <m>f</m> <m>-</m> the area under <m>g</m>.</q> Using mathematical notation, the area is
+      <me>
+        \int_a^b f(x)\ dx - \int_a^b g(x)\ dx.
+      </me>
+    </p>
+
+    <p>Properties of the definite integral allow us to simplify this expression to
+      <me>
+        \int_a^b\big(f(x) - g(x)\big)\ dx.
+      </me>
+    </p>
+
+    <theorem xml:id="thm_areabtwncurves">
+      <title>Area Between Curves</title>
+      <statement>
+        <p>Let <m>f(x)</m> and <m>g(x)</m> be continuous functions defined on <m>[a,b]</m> where <m>f(x)\geq g(x)</m> for all <m>x</m> in <m>[a,b]</m>. The area of the region bounded by the curves <m>y=f(x)</m>, <m>y=g(x)</m> and the lines <m>x=a</m> and <m>x=b</m> is
+          <me>
+            \int_a^b \big(f(x)-g(x)\big)\ dx.
+          </me>
+        </p>
+      </statement>
+    </theorem>
+
+    <example xml:id="ex_ftc6">
+      <title>Finding area between curves</title>
+      <statement>
+        <p>Find the area of the region enclosed by <m>y=x^2+x-5</m> and <m>y=3x-2</m>.</p>
+      </statement>
+      <solution>
+        <p>It will help to sketch these two functions, as done in <xref ref="fig_ftc6">Figure</xref>.</p>
+
+        <figure xml:id="fig_ftc6" >
+          <caption>Sketching the region enclosed by <m>y=x^2+x-5</m> and <m>y=3x-2</m> in <xref ref="ex_ftc6">Example</xref>.</caption>
+          <!-- START figures/fig_ftc6.tex -->
+          <image xml:id="img_ftc6"  width="47%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[axis on top,
+                           xtick={-2,-1,1,2,3,4},
+                           ytick={5,10,15},
+                           ymin=-10,ymax=16,
+                           xmin=-2.5,xmax=4.5
+              ]
+
+              \addplot+[name path=F,domain={-2:4}] {x^2+x-5} node[pos=1, left]{\scriptsize $y=x^2+x-5$};
+              \addplot+[name path=G,domain={-2:4}] {3*x-2}node[pos=0.7, above left]{\scriptsize $y=3x-2$};
+              \addplot[color=gray!50]fill between[of=F and G, soft clip={domain=-1:3}];
+
+              \end{axis}
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_ftc6.tex END -->
+        </figure>
+
+        <p>The region whose area we seek is completely bounded by these two functions; they seem to intersect at <m>x=-1</m> and <m>x=3</m>. To check, set <m>x^2+x-5=3x-2</m> and solve for <m>x</m>:
+          <md>
+            <mrow>x^2+x-5 \amp = 3x-2</mrow>
+            <mrow>(x^2+x-5) - (3x-2) \amp = 0</mrow>
+            <mrow>x^2-2x-3 \amp = 0</mrow>
+            <mrow>(x-3)(x+1) \amp = 0</mrow>
+            <mrow>x\amp =-1,\ 3.</mrow>
+          </md>
+        </p>
+
+        <p>Following <xref ref="thm_areabtwncurves">Theorem</xref>, the area is
+          <md>
+            <mrow>\int_{-1}^3\big(3x-2 -(x^2+x-5)\big)\ dx \amp = \int_{-1}^3 (-x^2+2x+3)\ dx</mrow>
+            <mrow>\amp =\left.\left(-\frac13x^3+x^2+3x\right)\right|_{-1}^3</mrow>
+            <mrow>\amp =-\frac13(27)+9+9-\left(\frac13+1-3\right)</mrow>
+            <mrow>\amp = 10\frac23 = 10.\overline{6}</mrow>
+          </md>
+        </p>
+      </solution>
+    </example>
+  </subsection>
+
+  <subsection>
+    <title>The Mean Value Theorem and Average Value</title>
+    <figure xml:id="fig_ftc7a" >
+      <caption>A graph of a function <m>f</m> to introduce the Mean Value Theorem.</caption>
+      <!-- START figures/fig_ftc7a.tex -->
+      <image xml:id="img_ftc7a"  width="47%">
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+          \begin{axis}[%
+          axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={1,2,3,4},%
+          %			extra x ticks={.5,3},
+          %			extra x tick labels={$a$,$b$},
+			ytick=\empty,
+			%%extra y ticks={-5,-3,...,7},%
+          %			minor x tick num=4,
+			ymin=-.5,ymax=1.75,%
+			xmin=-.5,xmax=4.5%
+          ]
+
+          \addplot [smooth,thick, {\colorone},domain=-.5:4.5] {.3*cos(deg(x))+1};
+
+
+          \end{axis}
+
+
+
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_ftc7a.tex END -->
+    </figure>
+
+    <p>Consider the graph of a function <m>f</m> in <xref ref="fig_ftc7a">Figure</xref> and the area defined by <m>\int_1^4 f(x)\ dx</m>. Three rectangles are drawn in <xref ref="fig_ftc7b">Figure</xref>; in <xref ref="fig_ftc7b2">Figure</xref>, the height of the rectangle is greater than <m>f</m> on <m>[1,4]</m>, hence the area of this rectangle is is greater than <m>\int_0^4 f(x)\ dx</m>.</p>
+
+    <p>In <xref ref="fig_ftc7b1">Figure</xref>, the height of the rectangle is smaller than <m>f</m> on <m>[1,4]</m>, hence the area of this rectangle is less than <m>\int_1^4 f(x)\ dx</m>.</p>
+
+     <p>Finally, in <xref ref="fig_ftc7b3">Figure</xref> the height of the rectangle is such that the area of the rectangle is <em>exactly</em> that of <m>\int_0^4 f(x)\ dx</m>. Since rectangles that are <q>too big</q>, as in (a), and rectangles that are <q>too little,</q> as in (b), give areas greater/lesser than <m>\int_1^4 f(x)\ dx</m>, it makes sense that there is a rectangle, whose top intersects <m>f(x)</m> somewhere on <m>[1,4]</m>, whose area is <em>exactly</em> that of the definite integral.</p>
+
+    <p>We state this idea formally in a theorem.</p>
+
+    <sidebyside xml:id="fig_ftc7b" widths="31% 31% 31%">
+       <caption>Differently sized rectangles give upper and lower bounds on <m>\int_1^4 f(x)\ dx</m>; the last rectangle matches the area exactly.</caption>
+      <figure xml:id="fig_ftc7b2">
+        <caption/>
+        <!-- START figures/fig_ftc7b2.tex -->
+        <image xml:id="img_ftc7b2">
+          <description></description>
+          <latex-image-code>
+            <![CDATA[
+            \begin{tikzpicture}
+            \begin{axis}[%
+            axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={1,2,3,4},%
+            %			extra x ticks={.5,3},
+            %			extra x tick labels={$a$,$b$},
+			ytick=\empty,
+			%%extra y ticks={-5,-3,...,7},%
+            %			minor x tick num=4,
+			ymin=-.5,ymax=1.75,%
+			xmin=-.5,xmax=4.5%
+            ]
+
+            \addplot [{\coloronefill},thick,fill={\coloronefill},domain=1:4] {.3*cos(deg(x))+1} \closedcycle;
+            \addplot [smooth,thick, {\colorone},domain=-.5:4.5] {.3*cos(deg(x))+1};
+            \draw [thick,draw={\colortwo}] (axis cs: 1,0) rectangle (axis cs:4,1.35);
+            \end{axis}
+
+
+
+            \end{tikzpicture}
+            ]]>
+          </latex-image-code>
+        </image>
+        <!-- figures/fig_ftc7b2.tex END -->
+      </figure>
+
+
+      <figure xml:id="fig_ftc7b1">
+        <caption/>
+        <!-- START figures/fig_ftc7b1.tex -->
+        <image xml:id="img_ftc7b1">
+          <description></description>
+          <latex-image-code>
+            <![CDATA[
+            \begin{tikzpicture}
+            \begin{axis}[%
+            axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={1,2,3,4},%
+            %			extra x ticks={.5,3},
+            %			extra x tick labels={$a$,$b$},
+			ytick=\empty,
+			%%extra y ticks={-5,-3,...,7},%
+            %			minor x tick num=4,
+			ymin=-.5,ymax=1.75,%
+			xmin=-.5,xmax=4.5%
+            ]
+
+            \addplot [{\coloronefill},thick,fill={\coloronefill},domain=1:4] {.3*cos(deg(x))+1} \closedcycle;
+            \addplot [smooth,thick, {\colorone},domain=-.5:4.5] {.3*cos(deg(x))+1};
+            \draw [thick,draw={\colortwo}] (axis cs: 1,0) rectangle (axis cs:4,.65);
+            \end{axis}
+
+
+
+            \end{tikzpicture}
+            ]]>
+          </latex-image-code>
+        </image>
+        <!-- figures/fig_ftc7b1.tex END -->
+      </figure>
+
+      <figure xml:id="fig_ftc7b3">
+        <caption/>
+        <!-- START figures/fig_ftc7b3.tex -->
+        <image xml:id="img_ftc7b3">
+          <description></description>
+          <latex-image-code>
+            <![CDATA[
+            \begin{tikzpicture}
+            \begin{axis}[%
+            axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={1,2,3,4},%
+            %			extra x ticks={.5,3},
+            %			extra x tick labels={$a$,$b$},
+			ytick=\empty,
+			%%extra y ticks={-5,-3,...,7},%
+            %			minor x tick num=4,
+			ymin=-.5,ymax=1.75,%
+			xmin=-.5,xmax=4.5%
+            ]
+
+            \addplot [{\coloronefill},thick,fill={\coloronefill},domain=1:4] {.3*cos(deg(x))+1} \closedcycle;
+            \addplot [smooth,thick, {\colorone},domain=-.5:4.5] {.3*cos(deg(x))+1};
+            \draw [thick,draw={\colortwo}] (axis cs: 1,0) rectangle (axis cs:4,.84);
+            \end{axis}
+
+
+
+            \end{tikzpicture}
+            ]]>
+          </latex-image-code>
+        </image>
+        <!-- figures/fig_ftc7b3.tex END -->
+      </figure>
+    </sidebyside>
+
+
+   
+
+    <theorem xml:id="thm_mvt2">
+      <title>The Mean Value Theorem of Integration</title>
+      <statement>
+        <p>Let <m>f</m> be continuous on <m>[a,b]</m>.<index><main>Mean Value Theorem</main><sub>of integration</sub></index><index><main>integration</main><sub>Mean Value Theorem</sub></index> There exists a value <m>c</m> in <m>[a,b]</m> such that
+          <me>
+            \int_a^bf(x)\ dx = f(c)(b-a).
+          </me>
+        </p>
+      </statement>
+    </theorem>
+
+    <p>This is an <em>existential</em> statement; <m>c</m> exists, but we do not provide a method of finding it. <xref ref="thm_mvt2">Theorem</xref> is directly connected to the Mean Value Theorem of Differentiation, given
+      as <xref ref="thm_mvt">Theorem</xref>; we leave it to the reader to see how.</p>
+
+      <aside><p>The <xref ref="thm_mvt2">Theorem</xref> simply says that there is a rectangle with height <m>f(c)</m> and width <m>b-a</m>, the area of which is the same as the area between <m>f</m> and the <m>x</m>-axis over<m>[a,b]</m>. Furthermore, we know that <m>c</m> will be in the interval <m>[a,b]</m>.</p></aside>
+
+    <p>We demonstrate the principles involved in this version of the Mean Value Theorem in the following example.</p>
+
+    <example xml:id="ex_ftc8">
+      <title>Using the Mean Value Theorem</title>
+      <statement>
+        <p>Consider <m>\int_0^\pi \sin(x) \ dx</m>. Find a value <m>c</m> guaranteed by the Mean Value Theorem.</p>
+      </statement>
+      <solution>
+        <p>We first need to evaluate <m>\int_0^\pi \sin(x) \ dx</m>. (This was previously done in <xref ref="ex_ftc4">Example</xref>.)
+          <me>
+            \int_0^\pi\sin(x) \ dx =	-\cos(x) \Big|_0^\pi = 2.
+          </me>
+        </p>
+
+        <p>Thus we seek a value <m>c</m> in <m>[0,\pi]</m> such that <m>\pi\sin(c) =2</m>.
+          <me>
+            \pi\sin(c) = 2\ \ \Rightarrow\ \ \sin(c) = 2/\pi\ \ \Rightarrow\ \ c = \arcsin(2/\pi) \approx 0.69.
+          </me>
+        </p>
+
+        <figure xml:id="fig_ftc8" >
+          <caption>A graph of <m>y=\sin(x)</m> on <m>[0,\pi]</m> and the rectangle guaranteed by the Mean Value Theorem.</caption>
+          <!-- START figures/fig_ftc8.tex -->
+          <image xml:id="img_ftc8"  width="47%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[%
+              axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={1,2},%
+			extra x ticks={.69,3.14},
+			extra x tick labels={$c$,$\pi$},
+			ytick={1},
+			%
+			extra y ticks={.637},%
+			extra y tick labels={$\sin(0.69) $},
+              %			minor x tick num=4,
+			ymin=-.25,ymax=1.25,%
+			xmin=-.5,xmax=3.5%
+              ]
+
+              \addplot [{\coloronefill},thick,fill={\coloronefill},domain=0:3.14] {sin(deg(x))} \closedcycle;
+              \addplot [smooth,thick, {\colorone},domain=-.5:3.5] {sin(deg(x))};
+              \draw [thick,draw={\colortwo}] (axis cs: 0,0) rectangle (axis cs:3.14,.637);
+              \end{axis}
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_ftc8.tex END -->
+        </figure>
+
+        <p>In <xref ref="fig_ftc8">Figure</xref> <m>\sin(x)</m> is sketched along with a rectangle with height <m>\sin(0.69)</m>. The area of the rectangle is the same as the area under <m>\sin(x)</m> on <m>[0,\pi]</m>.</p>
+      </solution>
+    </example>
+
+    <p>We now turn our attention to a related topic <mdash/>average value. Let <m>f</m> be a function on <m>[a,b]</m> with <m>c</m> such that <m>f(c)(b-a) = \int_a^bf(x)\ dx</m>. Consider <m>\int_a^b\big(f(x)-f(c)\big)\ dx</m>:
+      <md>
+        <mrow>\int_a^b\big(f(x)-f(c)\big)\ dx \amp =	\int_a^b f(x) - \int_a^b f(c)\ dx</mrow>
+        <mrow>\amp = f(c)(b-a) - f(c)(b-a)</mrow>
+        <mrow>\amp = 0.</mrow>
+      </md>
+    </p>
+
+    <p> When <m>f(x)</m> is shifted by <m>-f(c)</m>, the amount of area under <m>f</m> above the <m>x</m><ndash />axis on <m>[a,b]</m> is the same as the amount of area below the <m>x</m><ndash />axis above <m>f</m>; see <xref ref="fig_ftc9">Figure</xref> for an illustration of this. In this sense, we can say that <m>f(c)</m> is the <em>average value</em> of <m>f</m> on <m>[a,b]</m>.</p>
+
+    <figure xml:id="fig_ftc9" >
+      <caption>On the left, a graph of <m>y=f(x)</m> and the rectangle guaranteed by the Mean Value Theorem. On the right, <m>y=f(x)</m> is shifted down by <m>f(c)</m>; the resulting <q>area under the curve</q> is 0.</caption>
+      <!-- START figures/fig_ftc9a.tex -->
+      <image xml:id="img_ftc9a"  width="47%">
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+          \begin{axis}[%
+          axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick=\empty,%
+			extra x ticks={1,4,1.63},
+			extra x tick labels={$a$,$b$,$c$},
+			ytick=\empty,
+			%
+			extra y ticks={1.75},%
+			extra y tick labels={$f(c)$},
+          %			minor x tick num=4,
+			ymin=-1,ymax=3.5,%
+			xmin=-.5,xmax=4.25%
+          ]
+
+          \addplot [{\coloronefill},thick,fill={\coloronefill},domain=1:4] {(x-2.5)^2+1} \closedcycle;
+          \addplot [smooth,thick, {\colorone},domain=-.5:4.25] {(x-2.5)^2+1};
+          \draw [thick,draw={\colortwo}] (axis cs: 1,0) rectangle (axis cs:4,1.75);
+          \draw (axis cs:3.35,3) node {\scriptsize $y=f(x)$};
+          \end{axis}
+
+
+
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_ftc9a.tex END -->
+
+      <!-- START figures/fig_ftc9b.tex -->
+      <image xml:id="img_ftc9b"  width="47%">
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+          \begin{axis}[%
+          axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick=\empty,%
+			extra x ticks={1,4,1.63},
+			extra x tick labels={$a$,$b$,$c$},
+			ytick=\empty,
+			%
+			extra y ticks={1.75},%
+			extra y tick labels={$f(c)$},
+          %			minor x tick num=4,
+			ymin=-1,ymax=3.5,%
+			xmin=-.5,xmax=4.25%
+          ]
+
+          \addplot [{\coloronefill},thick,fill={\coloronefill},domain=1:4] {(x-2.5)^2-.75} \closedcycle;
+          \addplot [smooth,thick, {\colorone},domain=.75:4.25] {(x-2.5)^2-.75};
+          %\draw [thick,draw={\colortwo}] (axis cs: 1,0) rectangle (axis cs:4,1.75);
+          \draw (axis cs:3.2,2.5) node {\scriptsize $y=f(x)-f(c)$};
+          \end{axis}
+
+
+
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_ftc9b.tex END -->
+    </figure>
+
+    <p>The value <m>f(c)</m> is the average value in another sense. First, recognize that the Mean Value Theorem can be rewritten as
+      <me>
+        f(c) = \frac{1}{b-a}\int_a^b f(x)\ dx,
+      </me>
+      for some value of <m>c</m> in <m>[a,b]</m>. 
+
+      Replacing the integral with the limit of a Riemann sum (as in <xref ref="thm_riemann_sum">Theorem</xref>):
+      <md>
+        <mrow>f(c) \amp = \frac{1}{b-a}\int_a^b f(x)\ dx \amp </mrow>
+        <mrow>\amp = \frac{1}{b-a} \lim_\limits{n \to \infty}\sum_{i=1}^n f(c_i)\ \Delta x \amp \text{Using } <xref ref="thm_riemann_sum">Theorem</xref> </mrow>
+        <mrow>\amp =\frac{1}{b-a} \lim_\limits{n \to \infty}\sum_{i=1}^n f(c_i)\ \frac{b-a}{n}\amp \Delta x =\frac{b-a}{n}</mrow>
+        <mrow>\amp =\lim_\limits{n \to \infty}\sum_{i=1}^n f(c_i)\frac{1}{n} \amp \text{Cancelling the common factor of } b-a. </mrow>
+
+
+        
+      </md>
+    </p>
+
+    <p>Examining this last line closely, the expression <m>\sum_{i=1}^n f(c_i)\frac{1}{n}</m> represents adding up <m>n</m> sample values of <m>f(x)</m>and then dividing by <m>n</m>. This is <em>exactly</em> what we do when we calculate the average of a set of <m>n</m> numbers. Now when we consider taking the limit as <m>n</m> goes to <m>\infty</m>, <m>\lim_\limits{n \to \infty}\sum_{i=1}^n f(c_i)\frac{1}{n}</m>, we are adding up <em>all</em> of the function's output values over <m>[a,b]</m> and dividing by the <q>number of numbers</q>. In a sense, we are adding up an infinite number of output values and then dividing by the number of terms we summed (which is again infinite). </p>
+
+
+      <!--Next, partition the interval <m>[a,b]</m> into <m>n</m> equally spaced subintervals, <m>a=x_1 \lt  x_2 \lt  \ldots \lt  x_{n+1}=b</m> and choose any <m>c_i</m> in <m>[x_i,x_{i+1}]</m>. The average of the numbers <m>f(c_1)</m>, <m>f(c_2)</m>, <ellipsis />, <m>f(c_n)</m> is:
+      <me>
+        \frac1n\Big(f(c_1) + f(c_2) + \ldots + f(c_n)\Big) = \frac1n\sum_{i=1}^n f(c_i).
+      </me>
+    </p>
+
+    <p>Multiply this last expression by 1 in the form of <m>\frac{(b-a)}{(b-a)}</m>:
+      <md>
+        <mrow>\frac1n\sum_{i=1}^n f(c_i) \amp = \sum_{i=1}^n f(c_i)\frac1n</mrow>
+        <mrow>\amp = \sum_{i=1}^n f(c_i)\frac1n \frac{(b-a)}{(b-a)}</mrow>
+        <mrow>\amp = \frac{1}{b-a} \sum_{i=1}^n f(c_i)\frac{b-a}n</mrow>
+        <mrow>\amp =\frac{1}{b-a} \sum_{i=1}^n f(c_i)\Delta x \text{ \scriptsize (where \(\Delta x = (b-a)/n\)) }</mrow>
+      </md>
+    </p>
+
+    <p>Now take the limit as <m>n\to\infty</m>:
+      <me>
+        \lim_{n\to\infty} \frac{1}{b-a} \sum_{i=1}^n f(c_i)\Delta x  =  \frac{1}{b-a} \int_a^b f(x)\ dx =   f(c).
+      </me>
+    </p>
+
+    <p>This tells us this: when we evaluate <m>f</m> at <m>n</m> (somewhat) equally spaced points in <m>[a,b]</m>, the average value of these samples is <m>f(c)</m> as <m>n\to\infty</m>.</p>-->
+
+    
+  
+    <p>This leads us to a definition.</p>
+
+    <definition xml:id="def_av_val">
+      <title>The Average Value of <m>f</m> on <m>[a,b]</m></title>
+      <statement>
+        <p>Let <m>f</m> be continuous on <m>[a,b]</m>. The <term>average value of<nbsp /> <m>f</m><nbsp /> on <m>[a,b]</m></term> is <m>f(c)</m>, where <m>c</m> is a value in <m>[a,b]</m> guaranteed by the Mean Value Theorem.<index><main>integration</main><sub>average value</sub></index><index><main>average value of function</main></index> I.e.,
+          <me>
+            \text{ Average Value of \(f\) on \([a,b]\) }  = \frac{1}{b-a}\int_a^b f(x)\ dx.
+          </me>
+        </p>
+      </statement>
+    </definition>
+
+    <p>An application of this definition is given in the following example.</p>
+
+    <example xml:id="ex_ftc10">
+      <title>Finding the average value of a function</title>
+      <statement>
+        <p>An object moves back and forth along a straight line with a velocity given by <m>v(t) = (t-1)^2</m> on <m>[0,3]</m>, where <m>t</m> is measured in seconds and <m>v(t)</m> is measured in ft/s.</p>
+
+        <p>What is the average velocity of the object?</p>
+      </statement>
+      <solution>
+        <p>By our definition, the average velocity is:
+          <md>
+            <mrow>\frac{1}{3-0}\int_0^3 (t-1)^2\ dt \amp =\frac13 \int_0^3 \big(t^2-2t+1\big)\ dt</mrow>
+            <mrow>\amp = \left.\frac13\left(\frac13t^3-t^2+t\right)\right|_0^3</mrow>
+            <mrow>\amp =\frac13\left[\left(\frac13(3)^3-(3)^2+(3)\right)-\left(\frac13(0)^3-(0)^2+(0)\right)\right]</mrow>
+            <mrow> \amp = 1\text{ ft/s } </mrow>
+          </md>.
+        </p>
+      </solution>
+    </example>
+
+    <p>We can understand the above example through a simpler situation. Suppose you drove 100 miles in 2 hours. What was your average speed? The answer is simple: displacement/time = 100 miles/2 hours = 50 mph.</p>
+
+    <p>What was the displacement of the object in <xref ref="ex_ftc10">Example</xref>? We calculate this by integrating its velocity function: <m>\int_0^3 (t-1)^2\ dt = 3</m> ft. Its final position was 3 feet from its initial position after 3 seconds: its average velocity was 1 ft/s.</p>
+
+    <p>This section has laid the groundwork for a lot of great mathematics to follow. The most important lesson is this: definite integrals can be evaluated using antiderivatives. Since <xref ref="sec_riemann">Section</xref> established that definite integrals are the limit of Riemann sums, we can later create Riemann sums to approximate values other than <q>area under the curve,</q> convert the sums to definite integrals, then evaluate these using the <xref autoname="title" ref="thm_FTC2"/>. This will allow us to compute the work done by a variable force, the volume of certain solids, the arc length of curves, and more.</p>
+
+    <p>The downside is this: generally speaking, computing antiderivatives is much more difficult than computing derivatives. <xref ref="chapter_anti_tech">Chapter</xref> is devoted to techniques of finding antiderivatives so that a wide variety of definite integrals can be evaluated. Before that, <xref ref="sec_numerical_integration">Section</xref> explores techniques of approximating the value of definite integrals beyond using the Left Hand, Right Hand and Midpoint Rules.</p>
+  </subsection>
+
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>How are definite and indefinite integrals related?</p>
+          </statement>
+          <solution>
+            <p>Answers will vary.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>What constant of integration is most commonly used when evaluating definite integrals?</p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>T/F: If <m>f</m> is a continuous function, then <m>\ds F(x) = \int_a^x f(t)\ dt</m> is also a continuous function.</p>
+          </statement>
+          <solution>
+            <p>T</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>The definite integral can be used to find <q>the area under a curve.</q> Give two other uses for definite integrals.</p>
+          </statement>
+          <solution>
+            <p>Answers will vary.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, evaluate the definite integral.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\int_1^3 (3x^2-2x+1)\ dx</m></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\int_0^4 (x-1)^2\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>28/3</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\int_{-1}^1 (x^3-x^5)\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>0</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\int_{\pi/2}^\pi \cos(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\int_{0}^{\pi/4} \sec^2(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\int_{1}^{e} \frac1x \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\int_{-1}^{1} 5^x \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>(5-1/5)/\ln(5)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\int_{-2}^{-1} (4-2x^3) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>23/2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\int_{0}^{\pi} (2\cos(x) - 2\sin(x) ) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>-4</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\int_{1}^{3} e^x \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>e^3-e</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\int_{0}^{4} \sqrt{t} \ dt</m></p>
+          </statement>
+          <solution>
+            <p><m>16/3</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\int_{9}^{25} \frac{1}{\sqrt{t}} \ dt</m></p>
+          </statement>
+          <solution>
+            <p><m>4</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\int_{1}^{8} \sqrt[3]{x} \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>45/4</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\int_{1}^{2} \frac1{x} \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\ln(2)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\int_{1}^{2} \frac1{x^2} \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>1/ 2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\int_{1}^{2} \frac1{x^3} \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>3/8</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\int_{0}^{1} x \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>1/2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\int_{0}^{1} x^2 \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>1/3</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\int_{0}^{1} x^3 \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>1/4</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\int_{0}^{1} x^{100} \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>1/101</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\int_{-4}^{4} \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>8</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\int_{-10}^{-5} 3\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>15</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\int_{-2}^{2} 0\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>0</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{\pi/6}^{\pi/3} \csc(x) \cot(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>2-2/\sqrt{3}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Explain why:</p>
+
+            <ol>
+              <li><p><m>\ds \int_{-1}^1 x^n\ dx=0</m>, when <m>n</m> is a positive, odd integer, and</p></li>
+
+              <li><p><m>\ds \int_{-1}^1 x^n\ dx = 2\int_{0}^1 x^n\ dx</m> when <m>n</m> is a positive, even integer.</p></li>
+            </ol>
+          </statement>
+          <solution>
+            <p>Explanations will vary. A sketch will help.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, find a value <m>c</m> guaranteed by the Mean Value Theorem.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_0^2 x^2\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>c=2/\sqrt{3}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{-2}^2 x^2\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>c=\pm 2/\sqrt{3}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{0}^1 e^x\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>c=\ln(e-1)\approx 0.54</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{0}^{16} \sqrt{x}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>c=64/9\approx 7.1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, find the average value of the function on the given interval.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x)=\sin(x)</m> on <m>[0,\pi/2]</m></p>
+          </statement>
+          <solution>
+            <p><m>2/\pi</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>y=\sin(x)</m> on <m>[0,\pi]</m></p>
+          </statement>
+          <solution>
+            <p><m>2/pi</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>y=x</m> on <m>[0,4]</m></p>
+          </statement>
+          <solution>
+            <p><m>2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>y=x^2</m> on <m>[0,4]</m></p>
+          </statement>
+          <solution>
+            <p><m>16/3</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>y=x^3</m> on <m>[0,4]</m></p>
+          </statement>
+          <solution>
+            <p><m>16</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>g(t) = 1/t</m> on <m>[1,e]</m></p>
+          </statement>
+          <solution>
+            <p><m>1/(e-1)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, a velocity function of an object moving along a straight line is given. Find the displacement of the object over the given time interval.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>v(t) = -32t+20</m>ft/s on <m>[0,5]</m></p>
+          </statement>
+          <solution>
+            <p><m>-300</m>ft</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>v(t) = -32t+200</m>ft/s on <m>[0,10]</m></p>
+          </statement>
+          <solution>
+            <p><m>400</m>ft</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>v(t) = 2^t</m>mph on <m>[-1,1]</m></p>
+          </statement>
+          <solution>
+            <p><m>1.5/\ln(2) \approx 2.164</m>miles</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>v(t) = \cos(t)</m> ft/s on <m>[0,3\pi/2]</m></p>
+          </statement>
+          <solution>
+            <p><m>-1</m>ft</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>v(t) = \sqrt[4]{t}</m> ft/s on <m>[0,16]</m></p>
+          </statement>
+          <solution>
+            <p><m>128/5</m>ft</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, an acceleration function of an object moving along a straight line is given. Find the change of the object's velocity over the given time interval.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>a(t) = -32</m>ft/s<m>^2</m> on <m>[0,2]</m></p>
+          </statement>
+          <solution>
+            <p><m>-64</m>ft/s</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>a(t) = 10</m>ft/s<m>^2</m> on <m>[0,5]</m></p>
+          </statement>
+          <solution>
+            <p><m>50</m>ft/s</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>a(t) = t</m> ft/s<m>^2</m> on <m>[0,2]</m></p>
+          </statement>
+          <solution>
+            <p><m>2</m>ft/s</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>a(t) = \cos(t)</m> ft/s<m>^2</m> on <m>[0,\pi]</m></p>
+          </statement>
+          <solution>
+            <p><m>0</m>ft/s</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, sketch the given functions and find the area of the enclosed region.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>y=2x</m>, <m>y=5x</m>, and <m>x= 3</m>.</p>
+          </statement>
+          <solution>
+            <p><m>27/2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>y=-x+1</m>, <m>y=3x+6</m>, <m>x=2</m> and <m>x= -1</m>.</p>
+          </statement>
+          <solution>
+            <p><m>21</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>y=x^2-2x+5</m>, <m>y=5x-5</m>.</p>
+          </statement>
+          <solution>
+            <p><m>9/2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>y=2x^2+2x-5</m>, <m>y=x^2+3x+7</m>.</p>
+          </statement>
+          <solution>
+            <p><m>343/6</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, find <m>\Fp(x)</m>.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds F(x) = \int_2^{x^3+x} \frac{1}{t}\ dt</m></p>
+          </statement>
+          <solution>
+            <p><m>F'(x) = (3x^2+1)\frac{1}{x^3+x}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds F(x) = \int_{x^3}^{0} t^3\ dt</m></p>
+          </statement>
+          <solution>
+            <p><m>F'(x) = 3x^{11}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds F(x) = \int_{x}^{x^2} (t+2)\ dt</m></p>
+          </statement>
+          <solution>
+            <p><m>F'(x) = 2x(x^2+2)-(x+2)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds F(x) = \int_{\ln(x) }^{e^x} \sin(t) \ dt</m></p>
+          </statement>
+          <solution>
+            <p><m>F'(x) = e^x\sin(e^x) - 1/x\sin(\ln(x) )</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

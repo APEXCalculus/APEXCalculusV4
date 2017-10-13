@@ -1,0 +1,1156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_sketch">
+  <title>Curve Sketching</title>
+    <p>We have been learning how we can understand the behavior of a function based on its first and second derivatives. While we have been treating the properties of a function separately (increasing and decreasing, concave up and concave down, etc.), we combine them here to produce an accurate graph of the function without plotting lots of extraneous points.</p>
+
+    <p>Why bother? Graphing utilities are very accessible, whether on a computer, a hand-held calculator, or a smartphone. These resources are usually very fast and accurate. We will see that our method is not particularly fast <mdash /> it will require time (but it is not <em>hard</em>). So again: why bother?</p>
+
+    <p>We are attempting to understand the behavior of a function <m>f</m> based on the information given by its derivatives. While all of a function's derivatives relay information about it, it turns out that <q>most</q> of the behavior we care about is explained by <m>\fp</m>and <m>\fpp</m>. Understanding the interactions between the graph of <m>f</m> and <m>\fp</m>and <m>\fpp</m>is important. To gain this understanding, one might argue that all that is needed is to look at lots of graphs. This is true to a point, but is somewhat similar to stating that one understands how an engine works after looking only at pictures. It is true that the basic ideas will be conveyed, but <q>hands-on</q> access increases understanding.</p>
+
+    <p><xref ref="idea_sketch">Key Idea</xref> summarizes what we have learned so far that is applicable to sketching graphs of functions and gives a framework for putting that information together. It is followed by several examples.</p>
+
+    <insight xml:id="idea_sketch">
+      <title>Curve Sketching</title>
+      <p>To produce an accurate sketch a given function <m>f</m>, consider the following steps.<index><main>curve sketching</main></index><ol>
+        <li xml:id="item-find-domain">
+          <p>Find the domain of <m>f</m>. Generally, we assume that the domain is the entire real line then find restrictions, such as where a denominator is <m>0</m> or where negatives appear under the radical.</p>
+        </li>
+        <li>
+          <p>Find the critical values of <m>f</m>.</p>
+        </li>
+
+        <li>
+          <p>Find the possible points of inflection of <m>f</m>.</p>
+        </li>
+
+        <li>
+          <p>Find the location of any vertical asymptotes of <m>f</m> (usually done in conjunction with <xref ref="item-find-domain">Item</xref>).</p>
+        </li>
+
+        <li>
+          <p>Consider the limits <m>\lim\limits_{x\to-\infty}f(x)</m> and <m>\lim\limits_{x\to\infty}f(x)</m> to determine the end behavior of the function.</p>
+        </li>
+
+        <li>
+          <p>Create a number line that includes all critical points, possible points of inflection, and locations of vertical asymptotes. For each interval created, determine whether <m>f</m> is increasing or decreasing, concave up or down.</p>
+        </li>
+
+        <li>
+          <p>Evaluate <m>f</m> at each critical point and possible point of inflection. Plot these points on a set of axes. Connect these points with curves exhibiting the proper concavity. Sketch asymptotes and <m>x</m>- and <m>y</m>-intercepts where applicable.</p>
+        </li>
+      </ol></p>
+    </insight>
+
+    <example xml:id="ex_sketch1">
+      <title>Curve sketching</title>
+      <statement>
+        <p>Use <xref ref="idea_sketch">Key Idea</xref> to sketch <m>f(x) = 3x^3-10x^2+7x+5</m>.</p>
+      </statement>
+      <solution>
+        <p>We follow the steps outlined in <xref ref="idea_sketch">Key Idea</xref>.<ol>
+          <li>
+            <p>The domain of <m>f</m> is the entire real line; there are no values <m>x</m> for which <m>f(x)</m> is not defined.</p>
+          </li>
+
+          <li>
+            <p>Find the critical values of <m>f</m>. We compute <m>\fp(x) = 9x^2-20x+7</m>. Use the Quadratic Formula to find the roots of <m>\fp</m>:<md>
+              <mrow>x \amp= \frac{20\pm \sqrt{(-20)^2-4(9)(7)}}{2(9)} </mrow>
+              <mrow>\amp = \frac19\left(10\pm\sqrt{37}\right)</mrow>
+              <mrow>x \amp \approx 0.435, 1.787</mrow>
+            </md>.</p>
+          </li>
+
+          <li>
+            <p>Find the possible points of inflection of <m>f</m>. Compute <m>\fpp(x) = 18x-20</m>. We have<md>
+              <mrow>\fpp(x) \amp = 0</mrow>
+              <mrow>18x-20 \amp =0</mrow>
+              <mrow>x \amp = 10/9</mrow>
+              <mrow>\amp \approx 1.111</mrow>
+            </md>.</p>
+          </li>
+
+          <li>
+            <p>There are no vertical asymptotes.</p>
+          </li>
+
+          <li>
+            <p>We determine the end behavior using limits as <m>x</m> approaches <m>\pm \infty </m>.<me>
+                \lim_{x\to -\infty} f(x) = -\infty \qquad \lim_{x\to \infty}f(x) = \infty.
+            </me>We do not have any horizontal asymptotes.</p>
+          </li>
+
+          <li>
+            <p>We place the values <m>x=(10\pm\sqrt{37})/9</m> and <m>x=10/9</m> on a number line, as shown in <xref ref="tab_sketchline1">Figure</xref>. We mark each subinterval as increasing or decreasing, concave up or down, using the techniques used in <xref first="sec_incr_decr" last="sec_concavity">Sections</xref>.</p>
+          </li>
+
+          <li>
+            <p>Evaluate <m>f</m> at each critical number and possible inflection point.<md>
+              <mrow>f(0.435)\amp\approx6.400\amp f(1.111)\amp\approx4.547\amp f(1.787)\amp\approx 2.695</mrow>
+            </md></p>
+            <p>We plot the appropriate points on axes as shown in <xref ref="fig_sketch1a">Figure</xref> and connect the points with straight lines (to show increasing/decreasig behavior). In <xref ref="fig_sketch1b">Figure</xref> we adjust these lines to demonstrate the proper concavity. In <xref ref="fig_sketch1c">Figure</xref> we show a graph of <m>f</m> drawn with a computer program, verifying the accuracy of our sketch.</p>
+          </li>
+        </ol></p>
+
+        <table xml:id="tab_sketchline1">
+          <caption />
+          <tabular halign="center">
+            <row bottom="major">
+              <cell colspan="2" right="minor">
+                <line><m>\fp\gt0</m>,</line>
+                <line><m>f</m> incr;</line>
+                <line><m>\fpp\lt0</m>,</line>
+                <line><m>f</m> c. down</line>
+              </cell>
+              <cell colspan="2" right="minor">
+                <line><m>\fp\lt0</m>,</line>
+                <line><m>f</m> decr;</line>
+                <line><m>\fpp\lt0</m>,</line>
+                <line><m>f</m> c. down</line>
+              </cell>
+              <cell colspan="2" right="minor">
+                <line><m>\fp\lt0</m>,</line>
+                <line><m>f</m> decr;</line>
+                <line><m>\fpp\gt0</m>,</line>
+                <line><m>f</m> c. up</line>
+              </cell>
+              <cell colspan="2">
+                <line><m>\fp\gt0</m>,</line>
+                <line><m>f</m> incr;</line>
+                <line><m>\fpp\gt0</m>,</line>
+                <line><m>f</m> c. up</line>
+              </cell>
+            </row>
+            <row>
+              <cell />
+              <cell colspan="2">
+                <line><m>\frac{1}{9}\left(10-\sqrt{37}\right)</m></line>
+                <line><m>\approx0.435</m></line>
+              </cell>
+              <cell colspan="2">
+                <line><m>\frac{10}{9}</m></line>
+                <line><m>\approx1.111</m></line>
+              </cell>
+              <cell colspan="2">
+                <line><m>\frac{1}{9}\left(10+\sqrt{37}\right)</m></line>
+                <line><m>\approx1.787</m></line>
+              </cell>
+              <cell />
+            </row>
+          </tabular>
+        </table>
+
+<!--         <figure xml:id="fig_sketchline1">
+          <caption/>
+          <image width="100%">
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+                \begin{axis}[numberline,
+                            xmin=0,xmax=2.222,
+                            minor xtick={{}},
+                            extra x ticks={0.435, 1.111, 1.787},
+                            extra x tick labels={\parbox{6em}{\centering $\frac{1}{9}\left(10-\sqrt{37}\right)$ $\approx0.435$},\parbox{2em}{$\frac{10}{9}\approx1.111$}, \parbox{6em}{\centering $\frac{1}{9}\left(10+\sqrt{37}\right)$ $\approx1.787$}},]
+                    \addplot[guideline] coordinates {(0.435,0) (0.435,2)};
+                    \addplot[guideline] coordinates {(1.111,0) (1.111,2)};
+                    \addplot[guideline] coordinates {(1.787,0) (1.787,2)};
+                    \addplot[mark=none] coordinates {(0.22,1)} node {\parbox{8em}{\centering \small  $\fp>0$, $f$ incr\\$\fpp\lt0$, $f$ c.\ down }};
+                    \addplot[mark=none] coordinates {(0.77,1)} node {\parbox{8em}{\centering \small  $\fp\lt0$, $f$ decr\\$\fpp\lt0$, $f$ c.\ down }};
+                    \addplot[mark=none] coordinates {(1.45,1)} node {\parbox{8em}{\centering \small  $\fp\lt0$, $f$ decr\\$\fpp>0$, $f$ c.\ up }};
+                    \addplot[mark=none] coordinates {(2,1)} node {\parbox{8em}{\centering \small  $\fp>0$, $f$ incr\\$\fpp>0$, $f$ c.\ up }};
+                \end{axis}
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+        </figure> -->
+
+        <sidebyside xml:id="fig_sketch1" widths="32% 32% 32%">
+          <caption>Sketching <m>f</m> in <xref ref="ex_sketch1">Example</xref>.</caption>
+          <figure xml:id="fig_sketch1a">
+            <caption/>
+            <!-- START figures/fig_sketch1a.tex -->
+            <image xml:id="img_sketch1a" >
+              <description></description>
+              <latex-image-code>
+                <![CDATA[
+                \begin{tikzpicture}
+                  \begin{axis}[ymin=-5.5,ymax=10.9,xmin=-1.2,xmax=3.2,]
+                    \addplot[firstcurvestyle,leftarrow,domain=-1:0.435] {(5-6.4)/(0-0.435)*(x-0.435)+6.4};
+                    \addplot[firstcurvestyle,-] coordinates {(0.435,6.4) (1.79,2.69)};
+                    \addplot[firstcurvestyle,rightarrow,domain=1.79:2.7] {(5-6.4)/(0-0.435)*(x-1.79)+2.69};
+                    \addplot[soliddot] coordinates{(0.435,6.4) (1.11,4.55) (1.79,2.69)};
+                  \end{axis}
+                \end{tikzpicture}
+                ]]>
+              </latex-image-code>
+            </image>
+            <!-- figures/fig_sketch1a.tex END -->
+          </figure>
+
+          <figure xml:id="fig_sketch1b">
+            <caption/>
+            <!-- START figures/fig_sketch1b.tex -->
+            <image xml:id="img_sketch1b" >
+              <description></description>
+              <latex-image-code>
+                <![CDATA[
+                \begin{tikzpicture}
+                  \begin{axis}[ymin=-5.5,ymax=10.9,xmin=-1.2,xmax=3.2,]
+                    \addplot[firstcurvestyle,leftarrow,domain=-0.8:0.435] {(x-0.435)^2/(0-0.435)^2*(5-6.4)  + 6.4};
+                    \addplot[firstcurvestyle,-,domain=0.435:1.79] {(6.4-2.69)*6/(1.79-0.435)^3*((x-0.435)*(x-1.79)^2/2 - (x-1.79)^3/6)+2.69};
+                    \addplot[firstcurvestyle,rightarrow,domain=1.79:2.8] {-(x-1.79)^2/(0-0.435)^2*(5-6.4)  + 2.69};
+                    \addplot[soliddot] coordinates{(0.435,6.4) (1.11,4.55) (1.79,2.69)};
+                  \end{axis}
+                \end{tikzpicture}
+                ]]>
+              </latex-image-code>
+            </image>
+            <!-- figures/fig_sketch1b.tex END -->
+          </figure>
+
+          <figure xml:id="fig_sketch1c">
+            <caption/>
+            <image xml:id="img_sketch1c" >
+              <description></description>
+              <sageplot>
+                f(x) = 3*x^3-10*x^2+7*x+5
+                plot(f, (x, -1, 3), ymin=-5, ymax=10, fontsize=30, thickness=3)
+              </sageplot>
+            </image>
+          </figure>
+        </sidebyside>
+      </solution>
+    </example>
+
+    <example xml:id="ex_sketch2">
+      <title>Curve sketching</title>
+      <statement>
+        <p>Sketch <m>\ds f(x) = \frac{x^2-x-2}{x^2-x-6}</m>.</p>
+      </statement>
+      <solution>
+        <p>We again follow the steps outlined in <xref ref="idea_sketch">Key Idea</xref>.</p>
+
+        <p><ol>
+          <li>
+            <p>In determining the domain, we assume it is all real numbers and looks for restrictions. We find that at <m>x=-2</m> and <m>x=3</m>, <m>f(x)</m> is not defined. So the domain of <m>f</m> is <m>D = \{ x \mid x\neq -2,3\}</m>.</p>
+          </li>
+
+          <li>
+            <p>To find the critical values of <m>f</m>, we first find <m>\fp(x)</m>. Using the <xref ref="thm_QuotientRule" autoname="title" />, we find<me>
+                \fp(x) = \frac{-8x+4}{(x^2+x-6)^2} = \frac{-8x+4}{(x-3)^2(x+2)^2}.
+            </me>When <m>x = 1/2</m>, <m>\fp(x) = 0</m>, and <m>\fp</m> is undefined when <m>x=-2,3</m>. Since <m>\fp</m>is undefined only when <m>f</m> is also undefined, these are not critical values. The only critical value is <m>x=1/2</m>.</p>
+          </li>
+
+          <li>
+            <p>To find the possible points of inflection, we find <m>\fpp(x)</m>, again employing the <xref ref="thm_QuotientRule" autoname="title" />:<me>
+                \fpp(x) = \frac{24x^2-24x+56}{(x-3)^3(x+2)^3}.
+            </me>We find that <m>\fpp(x)</m> is never <m>0</m> (setting the numerator equal to <m>0</m> and solving for <m>x</m>, we find the only roots to this quadratic are not real numbers) and <m>\fpp</m>is undefined when <m>x=-2,3</m>. Thus concavity will possibly only change at <m>x=-2</m> and <m>x=3</m> (which are not in the domain of <m>f</m>, so these won't be inflection points).</p>
+          </li>
+
+          <li>
+            <p>The vertical asymptotes of <m>f</m> are at <m>x=-2</m> and <m>x=3</m>, the places where <m>f</m> is undefined.</p>
+          </li>
+
+          <li>
+            <p>There is a horizontal asymptote of <m>y=1</m>, as <m>\lim\limits_{x\to -\infty}f(x) = 1</m> and <m>\lim\limits_{x\to\infty}f(x) =1</m>.</p>
+          </li>
+
+          <li>
+            <p>We place the values <m>x=1/2</m>, <m>x=-2</m> and <m>x=3</m> on a number line as shown in <xref ref="tab_sketchline2">Figure</xref>. We mark in each interval whether <m>f</m> is increasing or decreasing, concave up or down. We see that <m>f</m> has a relative maximum at <m>x=1/2</m>; concavity changes only at the vertical asymptotes.</p>
+          </li>
+		
+          <li>
+            <p>Evaluate <m>f</m> at each critical number.<md>
+              <mrow>f(0)\amp=1/3\amp f(1/2)\amp=9/25</mrow>
+            </md></p>
+
+            <p>In <xref ref="fig_sketch2a">Figure</xref>, we plot the points from the number line on a set of axes and connect the points with straight lines to get a general idea of what the function looks like (these lines effectively only convey increasing/decreasing information). In <xref ref="fig_sketch2b">Figure</xref>, we adjust the graph with the appropriate concavity. We also show <m>f</m> crossing the <m>x</m>-axis at <m>x=-1</m> and <m>x=2</m> and crossing the <m>y</m>-axis at <m>y=1/3</m>. Finally, <xref ref="fig_sketch2c">Figure</xref> shows a computer generated graph of <m>f</m>, which verifies the accuracy of our sketch.</p>
+          </li>
+        </ol></p>
+
+        <table xml:id="tab_sketchline2">
+          <caption />
+          <tabular halign="center">
+            <row bottom="major">
+              <cell colspan="2" right="minor">
+                <line><m>\fp>0</m>,</line>
+                <line><m>f</m> incr;</line>
+                <line><m>\fpp>0</m>,</line>
+                <line><m>f</m> c. up</line>
+              </cell>
+              <cell colspan="2" right="minor">
+                <line><m>\fp\gt0</m>,</line>
+                <line><m>f</m> incr;</line>
+                <line><m>\fpp\lt0</m>,</line>
+                <line><m>f</m> c. down</line>
+              </cell>
+              <cell colspan="2" right="minor">
+                <line><m>\fp\lt0</m>,</line>
+                <line><m>f</m> decr;</line>
+                <line><m>\fpp\lt0</m>,</line>
+                <line><m>f</m> c. down</line>
+              </cell>
+              <cell colspan="2">
+                <line><m>\fp\lt0</m>,</line>
+                <line><m>f</m> decr;</line>
+                <line><m>\fpp\gt0</m>,</line>
+                <line><m>f</m> c. up</line>
+              </cell>
+            </row>
+            <row>
+              <cell />
+              <cell colspan="2"><m>-2</m></cell>
+              <cell colspan="2"><m>\frac{1}{2}</m></cell>
+              <cell colspan="2"><m>3</m></cell>
+              <cell />
+            </row>
+          </tabular>
+        </table>
+
+<!--         <figure xml:id="fig_sketchline2">
+          <caption/>
+          <image width="100%">
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+                \begin{axis}[numberline,
+                            xmin=-5,xmax=5,
+                            minor xtick={{}},
+                            xtick={10},
+                            extra x ticks={-2, 0.5, 3},
+                            extra x tick labels={$-2$, $\frac{1}{2}$, $3$},]
+                    \addplot[guideline] coordinates {(-2,0) (-2,2)};
+                    \addplot[guideline] coordinates {(0.5,0) (0.5,2)};
+                    \addplot[guideline] coordinates {(3,0) (3,2)};
+                    \addplot[mark=none] coordinates {(-3.5,1)} node {\parbox{8em}{\centering \small  $\fp>0$, $f$ incr\\$\fpp>0$, $f$ c.\ up }};
+                    \addplot[mark=none] coordinates {(0.75,1)} node {\parbox{8em}{\centering \small  $\fp>0$, $f$ incr\\$\fpp\lt0$, $f$ c.\ down }};
+                    \addplot[mark=none] coordinates {(1.75,1)} node {\parbox{8em}{\centering \small  $\fp\lt0$, $f$ decr\\$\fpp\lt0$, $f$ c.\ down }};
+                    \addplot[mark=none] coordinates {(4,1)} node {\parbox{8em}{\centering \small  $\fp\lt0$, $f$ incr\\$\fpp\lt0$, $f$ c.\ down }};
+                \end{axis}
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+        </figure> -->
+
+        <sidebyside xml:id="fig_sketch2" widths="32% 32% 32%">
+          <caption>Sketching <m>f</m> in <xref ref="ex_sketch2">Example</xref>.</caption>
+          <figure xml:id="fig_sketch2a">
+            <caption/>
+            <!-- START figures/fig_sketch2a.tex -->
+            <image xml:id="img_sketch2a" >
+              <description></description>
+              <latex-image-code>
+                <![CDATA[
+                \begin{tikzpicture}
+                  \begin{axis}[ymin=-5.2,ymax=5.2,xmin=-5.1,xmax=5.1,]
+                    \addplot[firstcurvestyle,domain=-4.5:-2.5] {(x+3)+3};
+                    \addplot[firstcurvestyle,leftarrow,domain=-1.7:0.5] {(0-0.36)/(-1-0.5)*(x-0.5)+0.36};
+                    \addplot[firstcurvestyle,rightarrow,domain=0.5:2.7] {(0-0.36)/(2-0.5)*(x-0.5)+0.36};
+                    \addplot[firstcurvestyle,domain=3.5:5] {-(x-4)+3};
+                    \addplot[asymptote] coordinates {(-2,-5) (-2,5)};
+                    \addplot[asymptote] coordinates {(3,-5) (3,5)};
+                    \addplot[asymptote] {1};
+                    \addplot[soliddot] coordinates{(0.5,0.36)};
+                  \end{axis}
+                \end{tikzpicture}
+                ]]>
+              </latex-image-code>
+            </image>
+            <!-- figures/fig_sketch2a.tex END -->
+          </figure>
+
+          <figure xml:id="fig_sketch2b">
+            <caption/>
+            <!-- START figures/fig_sketch2b.tex -->
+            <image xml:id="img_sketch2b" >
+              <description></description>
+              <latex-image-code>
+                <![CDATA[
+                \begin{tikzpicture}
+                  \begin{axis}[ymin=-5.2,ymax=5.2,xmin=-5.1,xmax=5.1,]
+                    \addplot[firstcurvestyle,domain=-5.1:-2.3] {-1/(x+2)+1};
+                    \addplot[firstcurvestyle,domain=-1.8:2.8] {(x^2-x-2)/(x^2-x-6)};
+                    \addplot[firstcurvestyle,domain=3.3:5.1] {1/(x-3)+1};
+                    \addplot[asymptote] coordinates {(-2,-5) (-2,5)};
+                    \addplot[asymptote] coordinates {(3,-5) (3,5)};
+                    \addplot[asymptote] {1};
+                    \addplot[soliddot] coordinates{(0.5,0.36) (-1,0) (2,0)};
+                  \end{axis}
+                \end{tikzpicture}
+                ]]>
+              </latex-image-code>
+            </image>
+            <!-- figures/fig_sketch2b.tex END -->
+          </figure>
+
+          <figure xml:id="fig_sketch2c">
+            <caption/>
+            <image xml:id="img_sketch2c" >
+              <description></description>
+              <sageplot>
+                f(x) = (x^2-x-2)/(x^2-x-6)
+                plot(f, (x, -5, 5), ymin=-5, ymax=5, detect_poles=true, fontsize=30, thickness=3)
+              </sageplot>
+            </image>
+          </figure>
+        </sidebyside>
+      </solution>
+    </example>
+
+    <example xml:id="ex_sketch3">
+      <title>Curve sketching</title>
+      <statement>
+        <p>Sketch <m>\ds f(x) = \frac{5(x-2)(x+1)}{x^2+2x+4}</m>.</p>
+      </statement>
+      <solution>
+        <p>We again follow <xref ref="idea_sketch">Key Idea</xref>.</p>
+
+        <p><ol>
+          <li>
+            <p>We assume that the domain of <m>f</m> is all real numbers and consider restrictions. The only restrictions could come when the denominator is <m>0</m>, but this never occurs because the denominator is a quadratic polynomial with no real roots. Therefore the domain of <m>f</m> is all real numbers, <m>\mathbb{R}</m>.</p>
+          </li>
+
+          <li>
+            <p>We find the critical values of <m>f</m> by setting <m>\fp(x)=0</m> and solving for <m>x</m>. We find<md>
+                <mrow>\fp(x) \amp = \frac{15x(x+4)}{(x^2+2x+4)^2}</mrow>
+                <mrow>0 \amp =\frac{15x(x+4)}{(x^2+2x+4)^2}</mrow>
+                <mrow>x \amp =-4,0</mrow>
+            </md>.Since the denominator of <m>\fp</m> is just the square of the denominator of <m>f</m>, there are no values of <m>x</m> for which <m>\fp</m> is undefined.</p>
+          </li>
+
+          <li>
+            <p>We find the possible points of inflection by solving <m>\fpp(x) = 0</m> for <m>x</m> (again, there are no values of <m>x</m> for which <m>\fpp</m> is undefined.) We find<me>
+                \fpp(x) = -\frac{30x^3+180x^2-240}{(x^2+2x+4)^3}
+            </me>. The cubic in the numerator does not factor very <q>nicely.</q> We instead approximate the roots (using a <init>CAS</init>) at <m>x= -5.759</m>, <m>x=-1.305</m> and <m>x=1.064</m>.</p>
+          </li>
+
+          <li>
+            <p>There are no vertical asymptotes as the denominator never equals zero.</p>
+          </li>
+
+          <li>
+            <p>We have a horizontal asymptote of <m>y=5</m>, as <m>\lim\limits_{x\to-\infty}f(x) = \lim\limits_{x\to\infty}f(x) = 5</m>.</p>
+          </li>
+
+          <li>
+            <p>We place the critical points and possible points on a number line as shown in <xref ref="tab_sketchline3">Figure</xref> and mark each interval as increasing/decreasing, concave up/down appropriately.</p>
+          </li>
+
+          <li>
+            <p>Evaluate <m>f</m> at each critical number, possible inflection point.<md>
+              <mrow>f(-5.759)\amp\approx7.200\amp f(-4)\amp=7.5</mrow>
+              <mrow>f(-1.305)\amp\approx1.630\amp f(0)\amp=2.5</mrow>
+              <mrow>f(1.064)\amp\approx-1.331</mrow>
+            </md></p>
+
+            <p>In <xref ref="fig_sketch3a">Figure</xref> we plot the significant points from the number line as well as the <m>x</m>- and <m>y</m>-intercepts, and connect the points with straight lines to get a general impression about the graph (this graph only includes increasing/decreasing information). In <xref ref="fig_sketch3b">Figure</xref>, we add concavity, drawing the function so that it is smooth (since <m>f</m> is differntiable everywhere, there should be no kinks or corners). <xref ref="fig_sketch3c">Figure</xref> shows a computer generated graph of <m>f</m>, affirming our results.</p>
+          </li>
+        </ol></p>
+
+        <table xml:id="tab_sketchline3">
+          <caption />
+          <tabular halign="center">
+            <row bottom="major">
+              <cell colspan="2" right="minor">
+                <line><m>\fp\gt0</m>,</line>
+                <line><m>\fpp\gt0</m>;</line>
+                <line><m>f</m> incr,</line>
+                <line><m>f</m> c. up</line>
+              </cell>
+              <cell colspan="2" right="minor">
+                <line><m>\fp\gt0</m>,</line>
+                <line><m>\fpp\lt0</m>;</line>
+                <line><m>f</m> incr,</line>
+                <line><m>f</m> c. down</line>
+              </cell>
+              <cell colspan="2" right="minor">
+                <line><m>\fp\lt0</m>,</line>
+                <line><m>\fpp\lt0</m>;</line>
+                <line><m>f</m> decr,</line>
+                <line><m>f</m> c. down</line>
+              </cell>
+              <cell colspan="2" right="minor">
+                <line><m>\fp\lt0</m>,</line>
+                <line><m>\fpp\gt0</m>;</line>
+                <line><m>f</m> decr,</line>
+                <line><m>f</m> c. up</line>
+              </cell>
+              <cell colspan="2" right="minor">
+                <line><m>\fp\gt0</m>,</line>
+                <line><m>\fpp\gt0</m>;</line>
+                <line><m>f</m> incr,</line>
+                <line><m>f</m> c. up</line>
+              </cell>
+              <cell colspan="2">
+                <line><m>\fp\gt0</m>,</line>
+                <line><m>\fpp\lt0</m>;</line>
+                <line><m>f</m> incr,</line>
+                <line><m>f</m> c. down</line>
+              </cell>
+            </row>
+            <row>
+              <cell />
+              <cell colspan="2"><m>-5.579</m></cell>
+              <cell colspan="2"><m>-4</m></cell>
+              <cell colspan="2"><m>-1.305</m></cell>
+              <cell colspan="2"><m>0</m></cell>
+              <cell colspan="2"><m>1.064</m></cell>
+              <cell />
+            </row>
+          </tabular>
+        </table>
+
+<!--           <figure xml:id="fig_sketchline3">
+          <caption/>
+          <image width="100%">
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+                \begin{axis}[numberline,
+                            xmin=-7,xmax=2.5,
+                            minor xtick={{}},
+                            xtick={10},
+                            extra x ticks={-5.579, -4, -1.305, 0, 1.064},
+                            extra x tick labels={$-5.579$, $-4$, $-1.305$, $0$, $1.064$},]
+                    \addplot[guideline] coordinates {(-5.579,0) (-5.579,2)};
+                    \addplot[guideline] coordinates {(-4,0) (-4,2)};
+                    \addplot[guideline] coordinates {(-1.305,0) (-1.305,2)};
+                    \addplot[guideline] coordinates {(0,0) (0,2)};
+                    \addplot[guideline] coordinates {(1.064,0) (1.064,2)};
+                    \addplot[mark=none] coordinates {(-6.25,1)} node {\parbox{8em}{\centering \small  $\fp>0$, $f$ incr\\$\fpp>0$, $f$ c.\ up }};
+                    \addplot[mark=none] coordinates {(-4.75,1)} node {\parbox{8em}{\centering \small  $\fp>0$, $f$ incr\\$\fpp\lt0$, $f$ c.\ down }};
+                    \addplot[mark=none] coordinates {(-2.75,1)} node {\parbox{8em}{\centering \small  $\fp\lt0$, $f$ decr\\$\fpp\lt0$, $f$ c.\ down }};
+                    \addplot[mark=none] coordinates {(-0.75,1)} node {\parbox{8em}{\centering \small  $\fp\lt0$, $f$ decr\\$\fpp>0$, $f$ c.\ up }};
+                    \addplot[mark=none] coordinates {(0.5,1)} node {\parbox{8em}{\centering \small  $\fp>0$, $f$ incr\\$\fpp>0$, $f$ c.\ up }};
+                    \addplot[mark=none] coordinates {(1.75,1)} node {\parbox{8em}{\centering \small  $\fp>0$, $f$ incr\\$\fpp\lt0$, $f$ c.\ down }};
+                \end{axis}
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+        </figure> -->
+
+        <sidebyside xml:id="fig_sketch3" widths="32% 32% 32%">
+          <caption>Sketching <m>f</m> in <xref ref="ex_sketch3">Example</xref>.</caption>
+          <figure xml:id="fig_sketch3a">
+            <caption/>
+            <!-- START figures/fig_sketch3a.tex -->
+            <image xml:id="img_sketch3a" >
+              <description></description>
+              <latex-image-code>
+                <![CDATA[
+                \begin{tikzpicture}
+                  \begin{axis}[ ymin=-3.1,ymax=8.1,xmin=-7.5,xmax=6.5,]
+                    \addplot[firstcurvestyle,leftarrow,domain=-7:-4] {(7.2-7.5)/(-5.579+4)*(x+4)+7.5};
+                    \addplot[firstcurvestyle,-,domain=-4:-1.305] {(1.630-7.5)/(-1.305+4)*(x+4)+7.5};
+                    \addplot[firstcurvestyle,-,domain=-1.305:-1] {(0-1.630)/(-1+1.305)*(x+1)};
+                    \addplot[firstcurvestyle,-,domain=-1:0] {(-2.5-0)/(0+1)*(x+1)};
+                    \addplot[firstcurvestyle,-,domain=0:1.064] {(-1.331+2.5)/(1.064-0)*(x-1.064)-1.331};
+                    \addplot[firstcurvestyle,rightarrow,domain=1.064:5] {(0+1.331)/(2-1.064)*(x-2)};
+                    \addplot[asymptote,domain=-7.5:6.5] {5};
+                    \addplot[soliddot] coordinates{(0,-2.5) (-1,0) (2,0) (-5.579,7.2) (-1.305,1.630) (1.064,-1.331) (-4,7.5)};
+                  \end{axis}
+                \end{tikzpicture}
+                ]]>
+              </latex-image-code>
+            </image>
+            <!-- figures/fig_sketch3a.tex END -->
+          </figure>
+
+          <figure xml:id="fig_sketch3b">
+            <caption/>
+            <!-- START figures/fig_sketch3b.tex -->
+            <image xml:id="img_sketch3b" >
+              <description></description>
+              <latex-image-code>
+                <![CDATA[
+                \begin{tikzpicture}
+                  \begin{axis}[ ymin=-3.1,ymax=8.1,xmin=-7.5,xmax=6.5,]
+                    \addplot[firstcurvestyle,leftarrow,domain=-7.5:-4] {7.5-0.3/(exp(-1/2/(-5.579+4)^2*(-5.579+4)^2) - 1)*(-1+exp(-1/2/(-5.579+4)^2*(x+4)^2))};
+                    \addplot[firstcurvestyle,-,domain=-4:-1.305] {(1.630-7.5)/(-1.305+4)^2*(x+4)^2+7.5};
+                    \addplot[firstcurvestyle,-,domain=-1.305:-1] {(0-1.630)/(-1+1.305)*(x+1)+0};
+                    \addplot[firstcurvestyle,-,domain=-1:0] {2.5/(-1)^2*x^2-2.5};
+                    \addplot[firstcurvestyle,-,domain=0:1.064] {(-1.331+2.5)/(1.064)^2*x^2-2.5};
+                    \addplot[firstcurvestyle,rightarrow,domain=1.064:6] {4*(-1.331+2.5)/1.064 * sqrt(1.064+((1.331*1.064/4/(-1.331+2.5)+1.064)^2 - 1.064*2) / (1.064+2 - 2*(1.331*1.064/4/(-1.331+2.5)+1.064)))*sqrt(x+((1.331*1.064/4/(-1.331+2.5)+1.064)^2 - 1.064*2) / (1.064+2 - 2*(1.331*1.064/4/(-1.331+2.5)+1.064)))-(4*(-1.331+2.5)/1.064 * sqrt(1.064+((1.331*1.064/4/(-1.331+2.5)+1.064)^2 - 1.064*2) / (1.064+2 - 2*(1.331*1.064/4/(-1.331+2.5)+1.064))))*sqrt(2+((1.331*1.064/4/(-1.331+2.5)+1.064)^2 - 1.064*2) / (1.064+2 - 2*(1.331*1.064/4/(-1.331+2.5)+1.064)))};
+                    \addplot[asymptote,domain=-7.5:6.5] {5};
+                    \addplot[soliddot] coordinates{(0,-2.5) (-1,0) (2,0) (-5.579,7.2) (-1.305,1.630) (1.064,-1.331) (-4,7.5)};
+                  \end{axis}
+                \end{tikzpicture}
+                ]]>
+              </latex-image-code>
+            </image>
+            <!-- figures/fig_sketch3b.tex END -->
+          </figure>
+
+          <figure xml:id="fig_sketch3c">
+            <caption/>
+            <image xml:id="img_sketch3c" >
+              <description></description>
+              <sageplot>
+                f(x) = (5*(x-2)*(x+1))/(x^2+2*x+4)
+                plot(f, (x, -7.5, 6.5), ymin=-3, ymax=8, fontsize=30, thickness=3)
+              </sageplot>
+            </image>
+          </figure>
+        </sidebyside>
+      </solution>
+    </example>
+
+    <p>In each of our examples, we found a few significant points on the graph of <m>f</m> that corresponded to changes in increasing/decreasing or concavity. We connected these points with straight lines, then adjusted for concavity, and finished by showing a very accurate, computer generated graph.</p>
+
+    <p>Why are computer graphics so good? It is not because computers are <q>smarter</q> than we are. Rather, it is largely because computers are much faster at computing than we are. In general, computers graph functions much like most students do when first learning to draw graphs: they plot equally spaced points, then connect the dots using lines. By using lots of points, the connecting lines are short and the graph looks smooth.</p>
+
+    <p>This does a fine job of graphing in most cases (in fact, this is the method used for many graphs in this text). However, in regions where the graph is very <q>curvy,</q> this can generate noticeable sharp edges on the graph unless a large number of points are used. High quality computer algebra systems, such as <booktitle>Mathematica</booktitle> and <booktitle>Sage</booktitle>, use special algorithms to plot lots of points only where the graph is <q>curvy.</q></p>
+
+    <p>In <xref ref="fig_sage_sinx">Figure</xref>, two graph of <m>y=\sin(x)</m> is given, generated by <booktitle>Sage</booktitle> and <booktitle>Mathematica</booktitle>. The small points represent each of the places where each <init>CAS</init> sampled the function. Notice how at the <q>bends</q> of <m>\sin(x)</m>, lots of points are used; where <m>\sin(x)</m> is relatively straight, fewer points are used. (In the <booktitle>Mathematica</booktitle> plot, many points are also used at the endpoints to ensure the <q>end behavior</q> is accurate.)</p>
+
+    <sidebyside xml:id="fig_sage_sinx" widths="47% 47%">
+      <caption>CAS plots of <m>y=\sin(x)</m> illustrating the sample points</caption>
+      <figure>
+        <caption><booktitle>Sage</booktitle> output</caption>
+        <image xml:id="img_sage_sinx">
+          <description></description>
+          <sageplot>
+            f(x) = sin(x)
+            plot(f, (x, 0, 2*pi), marker="o", plot_points=50, randomize=False, adaptive_tolerance=0.01, adaptive_recursion=2, fontsize=30, thickness=2)
+          </sageplot>
+        </image>
+      </figure>
+      <figure>
+        <caption><booktitle>Mathematica</booktitle> output</caption>
+        <image xml:id="img_mathematica_sinx" source="images/figmathematica_sinx" />
+      </figure>
+    </sidebyside>
+
+
+    <p>How does <booktitle>Sage</booktitle> know where the graph is <q>curvy</q>? Calculus. When we study <em>curvature</em> in a later chapter, we will see how the first and second derivatives of a function work together to provide a measurement of <q>curviness.</q> <booktitle>Sage</booktitle> employs algorithms to determine regions of <q>high curvature</q> and plots extra points there.</p>
+
+    <p>Again, the goal of this section is not <q>How to graph a function when there is no computer to help.</q> Rather, the goal is <q>Understand that the shape of the graph of a function is largely determined by understanding the behavior of the function at a few key places.</q> In <xref ref="ex_sketch3">Example</xref>, we were able to accurately sketch a complicated graph using only five points and knowledge of asymptotes!</p>
+
+    <p>There are many applications of our understanding of derivatives beyond curve sketching. The next chapter explores some of these applications, demonstrating just a few kinds of problems that can be solved with a basic knowledge of differentiation.</p>
+
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Why is sketching curves by hand beneficial even though technology is ubiquitous?</p>
+          </statement>
+          <solution>
+            <p>Answers will vary.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>What does <q>ubiquitous</q> mean?</p>
+          </statement>
+          <solution>
+            <p>Found everywhere.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>T/F: When sketching graphs of functions, it is useful to find the critical points.</p>
+          </statement>
+          <solution>
+            <p>T</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>T/F: When sketching graphs of functions, it is useful to find the possible points of inflection.</p>
+          </statement>
+          <solution>
+            <p>T</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>T/F: When sketching graphs of functions, it is useful to find the horizontal and vertical asymptotes.</p>
+          </statement>
+          <solution>
+            <p>T</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, practice using <xref ref="idea_sketch">Key Idea</xref> by applying the principles to the given functions with familiar graphs.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = 2x+4</m></p>
+          </statement>
+          <solution>
+            <p>A good sketch will include the <m>x</m> and <m>y</m> intercepts and draw the appropriate line.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = -x^2+1</m></p>
+          </statement>
+          <solution>
+            <p>A good sketch will include the <m>x</m> and <m>y</m> intercepts..</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = \sin(x)</m></p>
+          </statement>
+          <solution>
+            <p>Use technology to verify sketch.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = e^x</m></p>
+          </statement>
+          <solution>
+            <p>Use technology to verify sketch.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \frac{1}{x}</m></p>
+          </statement>
+          <solution>
+            <p>Use technology to verify sketch.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \frac{1}{x^2}</m></p>
+          </statement>
+          <solution>
+            <p>Use technology to verify sketch.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, sketch a graph of the given function using <xref ref="idea_sketch">Key Idea</xref>. Show all work; check your answer with technology.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = x^3-2x^2+4x+1</m></p>
+          </statement>
+          <solution>
+            <p>Use technology to verify sketch.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = -x^3+5x^2-3x+2</m></p>
+          </statement>
+          <solution>
+            <p>Use technology to verify sketch.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = x^3+3x^2+3x+1</m></p>
+          </statement>
+          <solution>
+            <p>Use technology to verify sketch.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = x^3-x^2-x+1</m></p>
+          </statement>
+          <solution>
+            <p>Use technology to verify sketch.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = (x-2)\ln(x-2)</m></p>
+          </statement>
+          <solution>
+            <p>Use technology to verify sketch.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = (x-2)^2\ln(x-2)</m></p>
+          </statement>
+          <solution>
+            <p>Use technology to verify sketch.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \frac{x^2-4}{x^2}</m></p>
+          </statement>
+          <solution>
+            <p>Use technology to verify sketch.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \frac{x^2-4x+3}{x^2-6x+8}</m></p>
+          </statement>
+          <solution>
+            <p>Use technology to verify sketch.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \frac{x^2-2x+1}{x^2-6x+8}</m></p>
+          </statement>
+          <solution>
+            <p>Use technology to verify sketch.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = x\sqrt{x+1}</m></p>
+          </statement>
+          <solution>
+            <p>Use technology to verify sketch.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = x^2e^x</m></p>
+          </statement>
+          <solution>
+            <p>Use technology to verify sketch.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \sin(x) \cos(x)</m> on <m>[-\pi,\pi]</m></p>
+          </statement>
+          <solution>
+            <p>Use technology to verify sketch.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = (x-3)^{2/3} + 2</m></p>
+          </statement>
+          <solution>
+            <p>Use technology to verify sketch.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \frac{(x-1)^{2/3}}{x}</m></p>
+          </statement>
+          <solution>
+            <p>Use technology to verify sketch.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, a function with the parameters <m>a</m> and <m>b</m> are given. Describe the critical points and possible points of inflection of <m>f</m> in terms of <m>a</m> and <m>b</m>.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \frac{a}{x^2+b^2}</m></p>
+          </statement>
+          <solution>
+            <p>Critical point: <m>x=0</m>
+              Points of inflection: <m>\pm b/\sqrt{3}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = \sin(ax+b)</m></p>
+          </statement>
+          <solution>
+            <p>Critical points: <m>x=\frac{n\pi/2-b}{a}</m>, where <m>n</m> is an odd integer
+              Points of inflection: <m>(n\pi-b)/a</m>, where <m>n</m> is an integer.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) = (x-a)(x-b)</m></p>
+          </statement>
+          <solution>
+            <p>Critical point: <m>x=(a+b)/2</m>
+              Points of inflection: none</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Given <m>x^2+y^2=1</m>, use implicit differentiation to find <m>\frac{dy}{dx}</m> and <m>\frac{d^2y}{dx^2}</m>. Use this information to justify the sketch of the unit circle.</p>
+          </statement>
+          <solution>
+            <p><m>\frac{dy}{dx} = -x/y</m>, so the function is increasing in second and fourth quadrants, decreasing in the first and third quadrants.</p>
+
+            <p><m>\frac{d^2y}{dx^2} = -1/y - x^2/y^3</m>, which is positive when <m>y\lt 0</m> and is negative when <m>y>0</m>. Hence the function is concave down in the first and second quadrants and concave up in the third and fourth quadrants.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

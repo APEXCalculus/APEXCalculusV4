@@ -1,0 +1,9 @@
+/* set default image max-width to match that of a two-panel sidebyside  */
+/* can be overruled by using a width attribute in the MBX image element */
+
+.mathbook-content figure.figure-like {
+  width: 50%;  
+  margin-left:auto;
+  margin-right:auto;
+  margin-bottom:20px;
+}

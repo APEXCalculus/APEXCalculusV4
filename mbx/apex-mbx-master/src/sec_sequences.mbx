@@ -1,0 +1,1720 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_sequences">
+  <title>Sequences</title>
+  <introduction>
+    <p>We commonly refer to a set of events that occur one after the other as a <em>sequence</em> of events. In mathematics, we use the word <em>sequence</em> to refer to an ordered set of numbers, i.e., a set of numbers that <q>occur one after the other.</q></p>
+
+    <p>For instance, the numbers 2, 4, 6, 8, <ellipsis />, form a sequence. The order is important; the first number is 2, the second is 4, etc. It seems natural to seek a formula that describes a given sequence, and often this can be done. For instance, the sequence above could be described by the function <m>a(n) = 2n</m>, for the values of <m>n = 1, 2, \ldots</m> To find the 10<m>^\text{ th }</m> term in the sequence, we would compute <m>a(10)</m>. This leads us to the following, formal definition of a sequence.</p>
+
+    <definition xml:id="def_sequence">
+      <title>Sequence</title>
+      <statement>
+        <p>A <term>sequence</term> is a function <m>a(n)</m> whose domain is <m>\mathbb{N}</m>. The <term>range</term> of a sequence is the set of all distinct values of <m>a(n)</m>.
+          <index><main>sequences</main><sub>definition</sub></index></p>
+
+        <p>The <term>terms</term> of a sequence are the values <m>a(1)</m>, <m>a(2)</m>, <ellipsis />, which are usually denoted with subscripts as <m>a_1</m>, <m>a_2</m>, <ellipsis />.</p>
+
+        <p>A sequence <m>a(n)</m> is often denoted as <m>\{a_n\}</m>.</p>
+      </statement>
+    </definition>
+
+    <aside>
+      <p><em>Notation:</em> We use <m>\mathN</m> to describe the set of natural numbers, that is, the positive integers <m>1, 2, 3, \dots</m> </p>
+    </aside>
+
+
+    <definition xml:id="def_factorial">
+      <statement><p>A <term>factorial</term> refers to the product of a descending sequence of natural numbers. For example, the expression <m>3!</m> (read as <m>3</m> factorial) refers to the number <m>3\cdot2\cdot1 = 6</m>.
+        <index><main>factorial</main></index><index><main>aa@<m>"!</m></main></index></p>
+
+      <p>In general, <m>n! = n\cdot (n-1)\cdot(n-2)\cdots 2\cdot1</m>, where <m>n</m> is a natural number.</p>
+
+      <p>We define <m>0! = 1</m>. While this does not immediately make sense, it makes many mathematical formulas work properly.</p>
+    </statement>
+      
+    </definition>
+
+
+    <example xml:id="ex_seq1">
+      <title>Listing terms of a sequence</title>
+      <statement>
+        <p>List the first four terms of the following sequences.</p>
+
+        <p> 
+          <ol cols="3">
+            <li><m>\{a_n\} = \left\{\frac{3^n}{n!}\right\}</m> </li>
+            <li><m>\{a_n\} = \{4+(-1)^n\}</m> </li>
+            <li><m>\{a_n\} = \left\{\frac{(-1)^{n(n+1)/2}}{n^2}\right\}</m></li>
+          </ol>
+        </p>
+      </statement>
+      <solution>
+        <ol>
+          <li><p><m>\ds a_1=\frac{3^1}{1!} = 3;\quad</m>	<m>\ds a_2= \frac{3^2}{2!} = \frac92;\quad</m>  <m>\ds a_3 = \frac{3^3}{3!} = \frac92;\quad</m>  <m>\ds a_4 = \frac{3^4}{4!} = \frac{27}8\quad</m></p>
+
+              <p>We can plot the terms of a sequence with a scatter plot. The horizontal axis is used for the values of <m>n</m>, and the values of the terms are plotted on the vertical axis. To visualize this sequence, see <xref ref="fig_seq1a">Figure</xref>.</p></li>
+
+          <li><p><m>a_1= 4+(-1)^1 = 3;\quad</m> <m>a_2 = 4+(-1)^2 = 5;\quad</m>
+
+               <m>a_3=4+(-1)^3 = 3;\quad</m>  <m>a_4 = 4+(-1)^4 = 5\quad</m>.</p> 
+
+               <p>Note that the range of this sequence is finite, consisting of only the values 3 and 5. This sequence is plotted in <xref ref="fig_seq1b">Figure</xref>.</p></li>
+
+          <li><p><m>\ds a_1= \frac{(-1)^{1(2)/2}}{1^2} = -1;\quad</m>  <m>\ds a_2 = \frac{(-1)^{2(3)/2}}{2^2} =-\frac14 ;\quad</m>
+
+               <m>\ds a_3 = \frac{(-1)^{3(4)/2}}{3^2} = \frac19;\quad</m>  <m>\ds a_4 = \frac{(-1)^{4(5)/2}}{4^2} = \frac1{16};\quad</m>;
+
+               <m>\ds a_5 = \frac{(-1)^{5(6)/2}}{5^2}=-\frac1{25}\quad</m>.
+             </p>
+
+              <p>We gave one extra term to begin to show the pattern of signs is ``<m>-</m>, <m>-</m>, <m>+</m>, <m>+</m>, <m>-</m>, <m>-</m>, <m>\ldots</m>, due to the fact that the exponent of <m>-1</m> is a special quadratic. This sequence is plotted in <xref ref="fig_seq1c">Figure</xref>.
+
+             <todo>Maybe move these to be next to each example? Otherwise they are too small to be used meaningfully.</todo>
+              <sidebyside xml:id="fig_seq1" widths="31% 31% 31%" >
+              <caption>Plotting sequences in <xref ref="ex_seq1">Example</xref>.</caption>
+                <figure xml:id="fig_seq1a">
+                  <caption/>
+                  <!-- START figures/fig_seq1a.tex -->
+                  <image xml:id="img_seq1a" >
+                    <description></description>
+                    <latex-image-code>
+                      <![CDATA[
+                      \begin{tikzpicture}
+                      \begin{axis}[%
+                      axis on top,%
+			xtick={1,2,3,4},%
+                      %			extra x ticks={3.14,1.57},
+                      %			extra x tick labels={$\pi$,$\pi/2$},
+			ytick={1,2,3,4,5},
+			%%extra y ticks={-5,-3,...,7},%
+                      %			minor x tick num=4,
+			ymin=-.1,ymax=5.5,%
+			xmin=-.1,xmax=4.5%
+                      ]
+
+                      \addplot [only marks,{\colorone},mark size={1.75pt}] coordinates {(1,3)(2,4.5)(3,4.5)(4,3.375)};
+
+                      \draw (axis cs:2.5,1.5) node {\scriptsize $\ds a_n = \frac{3^n}{n!}$};
+
+                      \end{axis}
+
+                      \node [right] at (myplot.right of origin) {\scriptsize $n$};
+
+
+                      \end{tikzpicture}
+                      ]]>
+                    </latex-image-code>
+                  </image>
+                  <!-- figures/fig_seq1a.tex END -->
+                </figure>
+
+                <figure xml:id="fig_seq1b">
+                  <caption/>
+                  <!-- START figures/fig_seq1b.tex -->
+                  <image xml:id="img_seq1b" >
+                    <description></description>
+                    <latex-image-code>
+                      <![CDATA[
+                      \begin{tikzpicture}
+                      \begin{axis}[%
+                      axis on top,%
+			xtick={1,2,3,4},%
+                      %			extra x ticks={3.14,1.57},
+                      %			extra x tick labels={$\pi$,$\pi/2$},
+			ytick={1,2,3,4,5},
+			%%extra y ticks={-5,-3,...,7},%
+                      %			minor x tick num=4,
+			ymin=-.1,ymax=5.5,%
+			xmin=-.1,xmax=4.5%
+                      ]
+
+                      \addplot [only marks,{\colorone},mark size={1.75pt},domain=1:4] {4+(-1)^x};
+
+                      \draw (axis cs:2,1) node {\scriptsize $\ds a_n = 4+(-1)^n$};
+
+                      \end{axis}
+
+                      \node [right] at (myplot.right of origin) {\scriptsize $n$};
+
+
+                      \end{tikzpicture}
+                      ]]>
+                    </latex-image-code>
+                  </image>
+                  <!-- figures/fig_seq1b.tex END -->
+                </figure>
+
+                <figure xml:id="fig_seq1c">
+                  <caption/>
+                  <!-- START figures/fig_seq1c.tex -->
+                  <image xml:id="img_seq1c" >
+                    <description></description>
+                    <latex-image-code>
+                      <![CDATA[
+                      \begin{tikzpicture}
+                      \begin{axis}[%
+                      axis on top,%
+			xtick={1,2,3,4,5},%
+                      %			extra x ticks={3.14,1.57},
+                      %			extra x tick labels={$\pi$,$\pi/2$},
+			ytick={-1},
+			%
+			extra y ticks={.5,.25},
+			extra y tick labels={$1/2$,$1/4$},
+                      %			minor x tick num=4,
+			ymin=-1.1,ymax=0.6,%
+			xmin=-.1,xmax=5.5%
+                      ]
+
+                      \addplot [only marks,{\colorone},mark size={1.75pt}] coordinates{(1,-1)(2,-.25)(3,.111)(4,0.0625)(5,-.04)};
+
+                      \draw (axis cs:3,-.5) node {\scriptsize $\ds a_n = \frac{(-1)^{n(n+1)/2}}{n^2}$};
+
+                      \end{axis}
+
+                      \node [right] at (myplot.right of origin) {\scriptsize $n$};
+
+
+                      \end{tikzpicture}
+                      ]]>
+                    </latex-image-code>
+                  </image>
+                  <!-- figures/fig_seq1c.tex END -->
+                </figure>
+            </sidebyside>
+
+            </p></li>
+        </ol>
+      </solution>
+    </example>
+
+    <example xml:id="ex_seq2">
+      <title>Determining a formula for a sequence</title>
+      <statement>
+        <p>Find the <m>n^\text{ th }</m> term of the following sequences, i.e., find a function that describes each of the given sequences.</p>
+
+        <ol>
+          <li><p><m>\{a_n\}=\{2, 5, 8, 11, 14, \ldots\}</m></p></li>
+
+          <li><p><m>\{b_n\}=\{2,-5, 10, -17, 26, -37,\ldots\}</m></p></li>
+
+          <li><p><m>\{c_n\}=\{1, 1, 2, 6, 24, 120, 720, \ldots\}</m></p></li>
+
+          <li><p><m>\{d_n\}=\{\frac52, \frac52, \frac{15}8, \frac54,\frac{25}{32},\ldots\}</m></p></li>
+        </ol>
+      </statement>
+      <solution>
+        <p>We should first note that there is never exactly one function that describes a finite set of numbers as a sequence. There are many sequences that start with 2, then 5, as our first example does. We are looking for a simple formula that describes the terms given, knowing there is possibly more than one answer.</p>
+
+        <ol>
+          <li><p>Note how each term is 3 more than the previous one. This implies a linear function would be appropriate: <m>a(n) = a_n = 3n + b</m> for some appropriate value of <m>b</m>. If we were to think in terms of ordered pairs, they would be of the form <m>(n,a(n))</m>. So one such ordered pair would be <m>(1,2)</m>. As we want <m>a_1=2</m>, we set <m>b=-1</m>. Thus <m>a_n = 3n-1</m>.</p></li>
+
+          <li><p>First notice how the sign changes from term to term. This is most commonly accomplished by multiplying the terms by either <m>(-1)^n</m> or <m>(-1)^{n+1}</m>. Using <m>(-1)^n</m> multiplies the odd indexed terms by <m>(-1)</m>. Thus the first term would be negative and the second term would be positive.  Multiplying by <m>(-1)^{n+1}</m> multiplies the even indexed terms by <m>(-1)</m>. Thus the second term would be negative and the first term would be positive. As this sequence has negative even indexed terms, we will multiply by <m>(-1)^{n+1}</m>.</p>
+
+          <p>After this, we might feel a bit stuck as to how to proceed. At this point, we are just looking for a pattern of some sort among the absolute values of the terms: what do the numbers 2, 5, 10, 17, etc., have in common? There are many correct answers, but the one that we'll use here is that each is one more than a perfect square. That is, <m>2=1^1+1</m>, <m>5=2^2+1</m>, <m>10=3^2+1</m>, etc. Thus our formula is <m>b_n= (-1)^{n+1}(n^2+1)</m>.</p></li>
+
+          <li><p>One who is familiar with the factorial function will readily recognize these numbers. They are <m>0!</m>, <m>1!</m>, <m>2!</m>, <m>3!</m>, etc. Since our sequences start with <m>n=1</m>, we cannot write <m>c_n = n!</m>, for this misses the <m>0!</m> term. Instead, we shift by 1, and write <m>c_n = (n-1)!</m>.</p></li>
+
+          <li><p>This one may appear difficult, especially as the first two terms are the same, but a little <q>sleuthing</q> will help. Notice how the terms in the numerator are always multiples of 5, and the terms in the denominator are always powers of 2. Does something as simple as <m>d_n = \frac{5n}{2^n}</m> work?</p>
+
+          <p>When <m>n=1</m>, we see that we indeed get <m>5/2</m> as desired. When <m>n=2</m>, we get <m>10/4 = 5/2</m>. Further checking shows that this formula indeed matches the other terms of the sequence.</p></li>
+        </ol>
+      </solution>
+    </example>
+
+    <p>A common mathematical endeavor is to create a new mathematical object (for instance, a sequence) and then apply previously known mathematics to the new object. We do so here. The fundamental concept of calculus is the limit, so we will investigate what it means to find the limit of a sequence.</p>
+
+    <definition xml:id="def_seq_limit">
+      <title>Limit of a Sequence, Convergent, Divergent</title>
+      <statement>
+        <p>Let <m>\{a_n\}</m> be a sequence and let <m>L</m> be a real number. Given any <m>\varepsilon>0</m>, if an <m>N</m> can be found such that <m>\abs{a_n-L}\lt \varepsilon</m> for all <m>n\gt N</m>, then we say the <term>limit of <m>\{a_n\}</m>, as <m>n</m> approaches infinity, is <m>L</m></term>, denoted
+          <me>
+            \lim_{n\to\infty}a_n = L.
+          </me>
+        </p>
+
+        <p>If <m>\lim\limits_{n\to\infty} a_n</m> exists, we say the sequence <term>converges</term>; otherwise, the sequence <term>diverges</term>.<index><main>limit</main><sub>of sequence</sub></index><index><main>sequences</main><sub>limit</sub></index><index><main>convergence</main><sub>of sequence</sub></index><index><main>divergence</main><sub>of sequence</sub></index><index><main>sequences</main><sub>convergent</sub></index><index><main>sequences</main><sub>divergent</sub></index></p>
+      </statement>
+    </definition>
+
+    <p>This definition states, informally, that if the limit of a sequence is <m>L</m>, then if you go far enough out along the sequence, all subsequent terms will be <em>really close</em> to <m>L</m>. Of course, the terms <q>far enough</q> and <q>really close</q> are subjective terms, but hopefully the intent is clear.</p>
+
+    <p>This definition is reminiscent of the <m>\varepsilon</m><ndash /><m>\delta</m> proofs of <xref ref="chapter_limits">Chapter</xref>. In that chapter we developed other tools to evaluate limits apart from the formal definition; we do so here as well.</p>
+
+    <definition xml:id="def_seq_limit_infinity">
+      <title>Limit of Infinity, Divergent Sequence</title>
+      <statement>
+        <p> Let <m>\{a_n\}</m> be a sequence. We say <m>\lim\limits_{n\to\infty} a_n=\infty</m> if for all <m>M \gt 0</m>, there exists a number <m>N</m> such that if <m>n\ge N</m>, then <m>a_n>M</m>. In this case, we say the sequence diverges to <m>\infty.</m></p>
+       
+      </statement>
+    </definition>
+
+    <p>This definition states, informally, that if the limit of <m>a_n</m> is <m>\infty</m>, then you can guarantee that the terms of <m>a_n</m> will get arbitrarily large (larger than any value of <m>M</m> that you think of), by going out far enough in the sequence.</p>
+
+    <theorem xml:id="thm_seq_limit">
+      <title>Limit of a Sequence</title>
+      <statement>
+        <p>Let <m>\{a_n\}</m> be a sequence, let <m>L</m> be a real number, and let <m>f(x)</m> be a function whose domain contains the positive real numbers where <m>f(n) = a_n</m> for all <m>n</m> in <m>\mathbb{N}</m>.</p>
+        <ol>
+          <li><p>If <m>\lim\limits_{x\to\infty} f(x) = L</m>, then <m>\lim\limits_{n\to\infty} a_n = L</m>.</p></li>
+          <li><p>If <m>\lim\limits_{x\to\infty} f(x) = \infty</m>, then <m>\lim\limits_{n\to\infty} a_n = \infty</m>.</p></li>
+        </ol>
+
+        
+      </statement>
+    </theorem>
+
+    <p><xref ref="thm_seq_limit">Theorem</xref> allows us, in certain cases, to apply the tools developed in <xref ref="chapter_limits">Chapter</xref> to limits of sequences. Note two things <em>not</em> stated by the theorem:</p>
+
+    <ol>
+      <li><p>If <m>\lim\limits_{x\to\infty}f(x)</m> does not exist, we cannot conclude that <m>\lim\limits_{n\to\infty} a_n</m> does not exist. It may, or may not, exist. For instance, we can define a sequence <m>\{a_n\} = \{\cos(2\pi n)\}</m>. Let <m>f(x) = \cos(2\pi x)</m>. Since the cosine function oscillates over the real numbers, the limit <m>\lim\limits_{x\to\infty}f(x)</m> does not exist.
+		
+		However, for every positive integer <m>n</m>, <m>\cos(2\pi n) = 1</m>, so <m>\lim\limits_{n\to\infty} a_n = 1</m>.</p></li>
+
+      <li><p>If we cannot find a function <m>f(x)</m> whose domain contains the positive real numbers where <m>f(n) = a_n</m> for all <m>n</m> in <m>\mathbb{N}</m>, we cannot conclude <m>\lim\limits_{n\to\infty} a_n</m> does not exist. It may, or may not, exist.</p></li>
+    </ol>
+
+    <example xml:id="ex_seq4">
+      <title>Determining convergence/divergence of a sequence</title>
+      <statement>
+        <p>Determine the convergence or divergence of the following sequences.</p>
+
+        <p>
+
+          <ol>
+            <li><m>\ds\{a_n\} = \left\{\frac{3n^2-2n+1}{n^2-1000}\right\}</m></li>
+            <li><m>\{b_n\} = \{\cos(n) \}</m></li>
+            <li><m>\ds\{c_n\} = \left\{\frac{(-1)^n}{n}\right\}</m></li>
+          </ol>
+        </p>
+      </statement>
+      <solution>
+        <ol>
+          <li><p>Using <xref ref="thm_lim_rational_fn_at_infty">Theorem</xref>, we can state that <m>\lim\limits_{x\to\infty} \frac{3x^2-2x+1}{x^2-1000} = 3</m>. (We could have also directly applied l'H&#xf4;pital's Rule.) Thus the sequence <m>\{a_n\}</m> converges, and its limit is 3. A scatter plot of every 5 values of <m>a_n</m> is given in <xref ref="fig_seq4a">Figure</xref>. The values of <m>a_n</m> vary widely near <m>n=30</m>, ranging from about <m>-73</m> to <m>125</m>, but as <m>n</m> grows, the values approach 3.</p></li>
+
+          <li><p>The limit <m>\lim\limits_{x\to\infty}\cos(x)</m> does not exist, as <m>\cos(x)</m> oscillates (and takes on every value in <m>[-1,1]</m> infinitely many times). Thus we cannot apply <xref ref="thm_seq_limit">Theorem</xref>.
+
+              The fact that the cosine function oscillates strongly hints that <m>\cos(n)</m>, when <m>n</m> is restricted to <m>\mathbb{N}</m>, will also oscillate. <xref ref="fig_seq4b">Figure</xref>, where the sequence is plotted, shows that this is true. Because only discrete values of cosine are plotted, it does not bear strong resemblance to the familiar cosine wave.
+
+              We conclude that <m>\lim\limits_{n\to\infty}a_n</m> does not exist.</p></li>
+
+          <li><p>We cannot actually apply <xref ref="thm_seq_limit">Theorem</xref> here, as the function <m>f(x) = (-1)^x/x</m> is not well defined. (What does <m>(-1)^{\sqrt{2}}</m> mean? In actuality, there is an answer, but it involves <em>complex analysis</em>, beyond the scope of this text.) So for now we say that we cannot determine the limit. (But we will be able to very soon.) By looking at the plot in <xref ref="fig_seq4c">Figure</xref>, we would like to conclude that the sequence converges to 0. That is true, but at this point we are unable to decisively say so.</p></li>
+        </ol>
+
+          <sidebyside  xml:id="fig_seq4" widths="31% 31% 31%">
+              <caption>Scatter plots of the sequences in <xref ref="ex_seq4">Example</xref>.</caption>
+                <figure xml:id="fig_seq4a">
+                  <caption/>
+                  <!-- START figures/fig_seq4a.tex -->
+                  <image xml:id="img_seq4a" >
+                    <description></description>
+                    <latex-image-code>
+                      <![CDATA[
+                      \begin{tikzpicture}
+                      \begin{axis}[%
+                      axis on top,%
+			xtick={20,40,60,80,100},%
+                      %			extra x ticks={3.14,1.57},
+                      %			extra x tick labels={$\pi$,$\pi/2$},
+                      %			ytick={1,2,3,4,5},
+			%%extra y ticks={-5,-3,...,7},%
+                      %			minor x tick num=4,
+			ymin=-11,ymax=11,%
+			xmin=-.1,xmax=110%
+                      ]
+
+                      \addplot [only marks,{\colorone},mark size={.75pt},domain=1:100,samples=21] {(3*x^2 - 2*x + 1)/(x^2 - 1000)};
+
+                      \draw (axis cs:60,-8) node {\scriptsize $\ds a_n = \frac{3x^2 - 2x + 1}{x^2 - 1000}$};
+
+                      \end{axis}
+
+                      \node [right] at (myplot.right of origin) {\scriptsize $n$};
+
+
+                      \end{tikzpicture}
+                      ]]>
+                    </latex-image-code>
+                  </image>
+                  <!-- figures/fig_seq4a.tex END -->
+                </figure>
+
+                <figure xml:id="fig_seq4b">
+                  <caption/>
+                  <!-- START figures/fig_seq4b.tex -->
+                  <image xml:id="img_seq4b" >
+                    <description></description>
+                    <latex-image-code>
+                      <![CDATA[
+                      \begin{tikzpicture}
+                      \begin{axis}[%
+                      axis on top,%
+			xtick={20,40,60,80,100},%
+                      %			extra x ticks={3.14,1.57},
+                      %			extra x tick labels={$\pi$,$\pi/2$},
+                      %			ytick={1,2,3,4,5},
+			%%extra y ticks={-5,-3,...,7},%
+                      %			minor x tick num=4,
+			ymin=-1.1,ymax=1.1,%
+			xmin=-.1,xmax=110%
+                      ]
+
+                      \addplot [only marks,{\colorone},mark size={.75pt},domain=1:100,samples=100] {cos(deg(x))};
+
+                      %\draw (axis cs:60,-.8) node {\scriptsize $\ds a_n = \cos(n) $};
+
+                      \end{axis}
+
+                      \node [right] at (myplot.right of origin) {\scriptsize $n$};
+
+                      \node [] at (myplot.north) {\scriptsize $\ds a_n = \cos(n) $};
+
+                      \end{tikzpicture}
+                      ]]>
+                    </latex-image-code>
+                  </image>
+                  <!-- figures/fig_seq4b.tex END -->
+                </figure>
+
+                <figure xml:id="fig_seq4c">
+                  <caption/>
+                  <!-- START figures/fig_seq4c.tex -->
+                  <image xml:id="img_seq4c" >
+                    <description></description>
+                    <latex-image-code>
+                      <![CDATA[
+                      \begin{tikzpicture}
+                      \begin{axis}[%
+                      axis on top,%
+                      %			xtick={20,40,60,80,100},%
+                      %			extra x ticks={3.14,1.57},
+                      %			extra x tick labels={$\pi$,$\pi/2$},
+                      %			ytick={1,2,3,4,5},
+			%%extra y ticks={-5,-3,...,7},%
+                      %			minor x tick num=4,
+			ymin=-1.1,ymax=1.1,%
+			xmin=-.1,xmax=22%
+                      ]
+
+                      \addplot [only marks,{\colorone},mark size={.75pt},domain=1:20,samples=20] {((-1)^x)/x};
+
+                      \draw (axis cs:10,-.7) node {\scriptsize $\ds a_n = \frac{(-1)^n}{n}$};
+
+                      \end{axis}
+
+                      \node [right] at (myplot.right of origin) {\scriptsize $n$};
+
+                      %\node [] at (myplot.north) {\scriptsize $\ds a_n = \cos(n) $};
+
+                      \end{tikzpicture}
+                      ]]>
+                    </latex-image-code>
+                  </image>
+                  <!-- figures/fig_seq4c.tex END -->
+                </figure>
+              </sidebyside>
+
+      </solution>
+    </example>
+
+    <p>It seems that
+      <m>\{(-1)^n/n\}</m> converges to 0 but we lack the formal tool to prove it. The following theorem gives us that tool.</p>
+
+    <theorem xml:id="thm_abs_val_seq">
+      <title>Absolute Value Theorem</title>
+      <statement>
+        <p>Let <m>\{a_n\}</m> be a sequence. If <m>\lim\limits_{n\to\infty} \abs{a_n} = 0</m>, then <m>\lim\limits_{n\to\infty} a_n = 0</m><index><main>Absolute Value Theorem</main></index><index><main>limit</main><sub>Absolute Value Theorem</sub></index><index><main>sequence</main><sub>Absolute Value Theorem</sub></index></p>
+      </statement>
+    </theorem>
+
+    <proof statement="thm_abs_val_seq">
+      <p>Let <m>\lim\limits_{n\to\infty} \abs{a_n} = 0</m>. We start by noting that <m>-\abs{a_n}\leq a_n \leq \abs{a_n}</m>. If we apply limits to this inequality:
+      <md>
+        <mrow>\lim\limits_{n \to \infty}\left(-\abs{a_n}\right) \leq \lim\limits_{n \to \infty} a_n \leq \lim\limits_{n \to \infty} \abs{a_n}</mrow>
+        <mrow>-\lim\limits_{n \to \infty}\abs{a_n} \leq \lim\limits_{n \to \infty} a_n \leq \lim\limits_{n \to \infty} \abs{a_n}</mrow>
+        <intertext>Using the fact that <m>\lim\limits_{n\to\infty} \abs{a_n} = 0</m>:</intertext>
+        <mrow>0 \leq \lim\limits_{n \to \infty} a_n \leq 0</mrow>
+      </md>
+      We conclude that the only possible answer for <m>\lim\limits_{n \to \infty} a_n</m> is <m>0</m>.
+      </p>
+    </proof>
+
+    <example xml:id="ex_seq5">
+      <title>Determining the convergence/divergence of a sequence</title>
+      <statement>
+        <p>Determine the convergence or divergence of the following sequences.</p>
+
+        <p>
+          <ol cols="2">
+            <li><m>\ds \{a_n\} = \left\{\frac{(-1)^n}{n}\right\}</m></li>
+            <li><m>\ds \{a_n\} = \left\{\frac{(-1)^n(n+1)}{n}\right\}</m></li>
+          </ol>
+        </p>
+      </statement>
+      <solution>
+        <ol>
+          <li><p>This appeared in <xref ref="ex_seq4">Example</xref>. We want to apply <xref ref="thm_abs_val_seq">Theorem</xref>, so consider the limit of <m>\{\abs{a_n}\}</m>:
+              <md>
+                <mrow>\lim_{n\to\infty} \abs{a_n} \amp = \lim_{n\to\infty} \abs{\frac{(-1)^n}{n}}</mrow>
+                <mrow>\amp = \lim_{n\to\infty} \frac{1}{n}</mrow>
+                <mrow>\amp = 0.</mrow>
+              </md>
+              Since this limit is 0, we can apply <xref ref="thm_abs_val_seq">Theorem</xref> and state that <m>\lim\limits_{n\to\infty} a_n=0</m>.</p></li>
+
+          <li><p>Because of the alternating nature of this sequence (i.e., every other term is multiplied by <m>-1</m>), we cannot simply look at the limit <m>\lim\limits_{x\to\infty} \frac{(-1)^x(x+1)}{x}</m>. We can try to apply the techniques of <xref ref="thm_abs_val_seq">Theorem</xref>:
+              <md>
+                <mrow>\lim_{n\to\infty} \abs{a_n} \amp = \lim_{n\to\infty} \abs{\frac{(-1)^n(n+1)}{n}}</mrow>
+                <mrow>\amp = \lim_{n\to\infty} \frac{n+1}{n}</mrow>
+                <mrow>\amp = 1.</mrow>
+              </md>
+              We have concluded that when we ignore the alternating sign, the sequence approaches 1. This means we cannot apply <xref ref="thm_abs_val_seq">Theorem</xref>; it states the the limit must be 0 in order to conclude anything.
+
+              <figure xml:id="fig_seq5" >
+                <caption>A plot of a sequence in <xref ref="ex_seq5">Example</xref>, part 2.</caption>
+                <!-- START figures/fig_seq5.tex -->
+                <image xml:id="img_seq5" width="47%" >
+                  <description></description>
+                  <latex-image-code>
+                    <![CDATA[
+                    \begin{tikzpicture}
+                    \begin{axis}[%
+                    axis on top,%
+                    %			xtick={20,40,60,80,100},%
+                    %			extra x ticks={3.14,1.57},
+                    %			extra x tick labels={$\pi$,$\pi/2$},
+			ytick={-1,-2,1,2},
+			%%extra y ticks={-5,-3,...,7},%
+                    %			minor x tick num=4,
+			ymin=-2.5,ymax=2.5,%
+			xmin=-.1,xmax=22%
+                    ]
+
+                    \addplot [only marks,{\colorone},mark size={1.5pt},domain=1:20,samples=20] {((-1)^x*(x+1))/x};
+
+                    \draw (axis cs:15,1.9) node {\scriptsize $\ds a_n = \frac{(-1)^n(n+1)}{n}$};
+
+                    \end{axis}
+
+                    \node [right] at (myplot.right of origin) {\scriptsize $n$};
+
+
+                    \end{tikzpicture}
+                    ]]>
+                  </latex-image-code>
+                </image>
+                <!-- figures/fig_seq5.tex END -->
+              </figure>
+
+              Since we know that the signs of the terms alternate <em>and</em> we know that the limit of <m>\abs{a_n}</m> is 1, we know that as <m>n</m> approaches infinity, the terms will alternate between values close to 1 and <m>-1</m>, meaning the sequence diverges. A plot of this sequence is given in <xref ref="fig_seq5">Figure</xref>.</p></li>
+        </ol>
+      </solution>
+    </example>
+
+    <p>We continue our study of the limits of sequences by considering some of the properties of these limits.</p>
+
+    <theorem xml:id="thm_seq_properties">
+      <title>Properties of the Limits of Sequences</title>
+      <statement>
+        <p>Let <m>\{a_n\}</m> and <m>\{b_n\}</m> be sequences such that <m>\lim\limits_{n\to\infty} a_n = L</m>, <m>\lim\limits_{n\to\infty} b_n = K</m>, and let <m>c</m> be a real number.</p>
+
+        <ol cols="2" >
+          <li><p><m>\lim\limits_{n\to\infty} (a_n\pm b_n) = L\pm K</m>
+              <index><main>sequences</main><sub>limit properties</sub></index></p></li>
+
+          <li><p><m>\lim\limits_{n\to\infty} (a_n\cdot b_n) = L\cdot K</m></p></li>
+
+          <li><p><m>\lim\limits_{n\to\infty} (a_n/b_n) = L/K</m>, <m>K\neq 0</m></p></li>
+
+          <li><p><m>\lim\limits_{n\to\infty} c\cdot a_n = c\cdot L</m></p></li>
+        </ol>
+      </statement>
+    </theorem>
+
+    <example xml:id="ex_seq6">
+      <title>Applying properties of limits of sequences</title>
+      <statement>
+        <p>Let the following sequences, and their limits, be given:</p>
+
+        <ul>
+          <li><p><m>\ds \{a_n\} = \left\{\frac{n+1}{n^2}\right\}</m>, and <m>\lim\limits_{n\to\infty} a_n = 0</m>;</p></li>
+
+          <li><p><m>\ds \{b_n\} = \left\{\left(1+\frac1n\right)^{n}\right\}</m>, and <m>\lim\limits_{n\to\infty} b_n = e</m>; and</p></li>
+
+          <li><p><m>\ds \{c_n\} = \big\{n\cdot \sin(5/n)\big\}</m>, and <m>\lim\limits_{n\to\infty} c_n = 5</m>.</p></li>
+        </ul>
+
+        <p>Evaluate the following limits.</p>
+
+        <p>
+          <ol cols="3">
+            <li><m>\lim\limits_{n\to\infty} (a_n+b_n)</m></li>
+            <li><m>\lim\limits_{n\to\infty} (b_n\cdot c_n)</m> </li>
+            <li><m>\lim\limits_{n\to\infty} (1000\cdot a_n)</m></li>
+          </ol> </p>
+      </statement>
+      <solution>
+        <p>We will use <xref ref="thm_seq_properties">Theorem</xref> to answer each of these.</p>
+
+        <ol>
+          <li><p>Since <m>\lim\limits_{n\to\infty} a_n = 0</m> and <m>\lim\limits_{n\to\infty} b_n = e</m>, we conclude that <m>\lim\limits_{n\to\infty} (a_n+b_n) = 0+e = e</m>. So even though we are adding something to each term of the sequence <m>b_n</m>, we are adding something so small that the final limit is the same as before.</p></li>
+
+          <li><p>Since <m>\lim\limits_{n\to\infty} b_n = e</m> and <m>\lim\limits_{n\to\infty} c_n = 5</m>, we conclude that <m>\lim\limits_{n\to\infty} (b_n\cdot c_n) = e\cdot 5 = 5e</m>.</p></li>
+
+          <li><p>Since <m>\lim\limits_{n\to\infty} a_n = 0</m>, we have <m>\lim\limits_{n\to\infty} 1000a_n =1000\cdot 0 = 0</m>. It does not matter that we multiply each term by 1000; the sequence still approaches 0. (It just takes longer to get close to 0.)</p></li>
+        </ol>
+      </solution>
+    </example>
+
+    <p>There is more to learn about sequences than just their limits. We will also study their range and the relationships terms have with the terms that follow. We start with some definitions describing properties of the range.</p>
+
+    <definition xml:id="def_bounded">
+      <title>Bounded and Unbounded Sequences</title>
+      <statement>
+        <p>A sequence <m>\{a_n\}</m> is said to be <term>bounded</term> if there exists real numbers <m>m</m> and <m>M</m> such that <m>m \lt  a_n \lt  M</m> for all <m>n</m> in <m>\mathbb{N}</m>.</p>
+
+        <p>A sequence <m>\{a_n\}</m> is said to be <term>unbounded</term> if it is not bounded.</p>
+
+        <p>A sequence <m>\{a_n\}</m> is said to be <term>bounded above</term> if there exists an <m>M</m> such that <m>a_n \lt  M</m> for all <m>n</m> in <m>\mathbb{N}</m>; it is <term>bounded below</term> if there exists an <m>m</m> such that <m>m\lt a_n</m> for all <m>n</m> in <m>\mathbb{N}</m>.
+          <index><main>sequences</main><sub>boundedness</sub></index><index><main>bounded sequence</main></index><index><main>unbounded sequence</main></index></p>
+      </statement>
+    </definition>
+
+    <p>It follows from this definition that an unbounded sequence may be bounded above or bounded below; a sequence that is both bounded above and below is simply a bounded sequence.</p>
+
+    <example xml:id="ex_seq3">
+      <title>Determining boundedness of sequences</title>
+      <statement>
+        <p>Determine the boundedness of the following sequences.</p>
+
+        <p>
+          <ol cols="2">
+            <li><m>\ds\{a_n\}  = \left\{\frac1n\right\}</m></li>
+            <li><m>\{a_n\} = \{2^n\}</m></li>
+          </ol>
+        </p>
+      </statement>
+      <solution>
+        <ol>
+          <li><p>The terms of this sequence are always positive but are decreasing, so we have <m>0\lt a_n\lt 2</m> for all <m>n</m>. Thus this sequence is bounded. <xref ref="fig_seq3a">Figure</xref>illustrates this.
+          </p></li>
+
+          <li><p>The terms of this sequence obviously grow without bound. However, it is also true that these terms are all positive, meaning <m>0\lt a_n</m>. Thus we can say the sequence is unbounded, but also bounded below. <xref ref="fig_seq3b">Figure</xref> illustrates this.</p></li>
+        </ol>
+
+        <sidebyside xml:id="fig_seq3">
+          <caption>A plot of <m>\{a_n\} = \{1/n\}</m> and <m>\{a_n\} = \{2^n\}</m> from <xref ref="ex_seq3">Example</xref>.</caption>
+                <figure xml:id="fig_seq3a">
+                  <caption/>
+                  <!-- START figures/fig_seq3a.tex -->
+                  <image xml:id="img_seq3a" >
+                    <description></description>
+                    <latex-image-code>
+                      <![CDATA[
+                      \begin{tikzpicture}
+                      \begin{axis}[%
+                      axis on top,%
+      xtick={1,...,10},%
+                      %     extra x ticks={3.14,1.57},
+                      %     extra x tick labels={$\pi$,$\pi/2$},
+      ytick={1},
+      %
+      extra y ticks={.5,.25,.1},%
+      extra y tick labels={$1/2$,$1/4$,$1/10$},
+                      %     minor x tick num=4,
+      ymin=-.1,ymax=1.1,%
+      xmin=-.1,xmax=11%
+                      ]
+
+                      \addplot [only marks,{\colorone},mark size={1.75pt},domain=1:10,samples=10]  {1/x};
+
+                      \draw (axis cs:6,.75) node {\scriptsize $\ds a_n = \frac{1}{n}$};
+
+                      \end{axis}
+
+                      \node [right] at (myplot.right of origin) {\scriptsize $n$};
+
+
+                      \end{tikzpicture}
+                      ]]>
+                    </latex-image-code>
+                  </image>
+                  <!-- figures/fig_seq3a.tex END -->
+                </figure>
+
+                <figure xml:id="fig_seq3b">
+                  <caption/>
+                  <!-- START figures/fig_seq3b.tex -->
+                  <image xml:id="img_seq3b" >
+                    <description></description>
+                    <latex-image-code>
+                      <![CDATA[
+                      \begin{tikzpicture}
+                      \begin{axis}[%
+                      axis on top,%
+                      %     xtick={1,...,10},%
+                      %     extra x ticks={3.14,1.57},
+                      %     extra x tick labels={$\pi$,$\pi/2$},
+                      %     ytick={1},
+      %
+                      %     extra y ticks={.5,.25,.1},%
+                      %     extra y tick labels={$1/2$,$1/4$,$1/10$},
+                      %     minor x tick num=4,
+      ymin=-.1,ymax=275,%
+      xmin=-.1,xmax=9%
+                      ]
+
+                      \addplot [only marks,{\colorone},mark size={1.75pt},domain=1:8,samples=8]  {2^x};
+
+                      \draw (axis cs:4,150) node {\scriptsize $\ds a_n = 2^{n}$};
+
+                      \end{axis}
+
+                      \node [right] at (myplot.right of origin) {\scriptsize $n$};
+
+
+                      \end{tikzpicture}
+                      ]]>
+                    </latex-image-code>
+                  </image>
+                  <!-- figures/fig_seq3b.tex END -->
+                </figure>
+              </sidebyside>
+      </solution>
+    </example>
+
+    <p>The previous example produces some interesting concepts. First, we can recognize that the sequence <m>\ds\left\{1/n\right\}</m> converges to 0. This says, informally, that <q>most</q> of the terms of the sequence are <q>really close</q> to 0. This implies that the sequence is bounded, using the following logic. First, <q>most</q> terms are near 0, so we could find some sort of bound on these terms (using <xref ref="def_seq_limit">Definition</xref>, the bound is <m>\varepsilon</m>). That leaves a <q>few</q> terms that are not near 0 (i.e., a <em>finite</em> number of terms). A finite list of numbers is always bounded.</p>
+
+    <p>This logic implies that if a sequence converges, it must be bounded. This is indeed true, as stated by the following theorem.</p>
+
+    <theorem xml:id="thm_converge_bounded">
+      <title>Convergent Sequences are Bounded</title>
+      <statement>
+        <p>Let <m>\ds \left\{a_n\right\}</m> be a convergent sequence. Then <m>\{a_n\}</m> is bounded.
+          <index><main>bounded sequence</main><sub>convergence</sub></index><index><main>convergence</main><sub>of sequence</sub></index><index><main>sequences</main><sub>convergent</sub></index></p>
+      </statement>
+    </theorem>
+
+    <aside>
+      <p>Keep in mind what <xref ref="thm_converge_bounded">Theorem</xref> does <em>not</em> say. It does not say that bounded sequences must converge, nor does it say that if a sequence does not converge, it is not bounded.</p>
+    </aside>
+
+    <p>In <xref ref="ex_seq6">Example</xref> we saw the sequence <m>\ds \{b_n\} = \left\{\left(1+1/n\right)^{n}\right\}</m>, where it was stated that <m>\lim\limits_{n\to\infty} b_n = e</m>. (Note that this is simply restating part of <xref ref="thm_special_limits">Theorem</xref>. The limit can also be found using logarithms and L'Hopital's rule.) Even though it may be difficult to intuitively grasp the behavior of this sequence, we know immediately that it is bounded.</p>
+
+    <p>Another interesting concept to come out of <xref ref="ex_seq3">Example</xref> again involves the sequence <m>\{1/n\}</m>. We stated, without proof, that the terms of the sequence were decreasing. That is, that <m>a_{n+1} \lt  a_n</m> for all <m>n</m>. (This is easy to show. Clearly <m>n \lt  n+1</m>. Taking reciprocals flips the inequality: <m>1/n > 1/(n+1)</m>. This is the same as <m>a_n > a_{n+1}</m>.) Sequences that either steadily increase or decrease are important, so we give this property a name.</p>
+
+    <definition xml:id="def_monotonic">
+      <title>Monotonic Sequences</title>
+      <statement>
+        <ol>
+          <li><p>A sequence <m>\{a_n\}</m> is <em>monotonically increasing</em> if <m>a_n \leq a_{n+1}</m> for all <m>n</m>, i.e.,
+              <me>
+                a_1 \leq a_2 \leq a_3 \leq \cdots a_n \leq a_{n+1} \cdots
+              </me>
+            </p></li>
+
+          <li><p>A sequence <m>\{a_n\}</m> is <em>monotonically decreasing</em> if <m>a_n \geq a_{n+1}</m> for all <m>n</m>, i.e.,
+              <me>
+                a_1 \geq a_2 \geq a_3 \geq \cdots a_n \geq a_{n+1} \cdots
+              </me>
+            </p></li>
+
+          <li><p>A sequence is <em>monotonic</em> if it is monotonically increasing or monotonically decreasing.
+              <index><main>sequences</main><sub>monotonic</sub></index><index><main>monotonic sequence</main></index></p></li>
+        </ol>
+      </statement>
+    </definition>
+
+    <aside>
+      <p>It is sometimes useful to call a monotonically increasing sequence <em>strictly increasing</em> if <m>a_n \lt  a_{n+1}</m> for all <m>n</m>; i.e, we remove the possibility that subsequent terms are equal.</p>
+
+      <p>A similar statement holds for <em>strictly decreasing.</em></p>
+    </aside>
+
+    <example xml:id="ex_seq7">
+      <title>Determining monotonicity</title>
+      <statement>
+        <p>Determine the monotonicity of the following sequences.</p>
+
+        <ol cols="2" >
+          <li><p><m>\ds \{a_n\} = \left\{\frac{n+1}n\right\}</m></p></li>
+
+          <li><p><m>\ds \{a_n\} = \left\{\frac{n^2+1}{n+1}\right\}</m></p></li>
+
+          <li><p><m>\ds \{a_n\} = \left\{\frac{n^2-9}{n^2-10n+26}\right\}</m></p></li>
+
+          <li><p><m>\ds \{a_n\} = \left\{\frac{n^2}{n!}\right\}</m></p></li>
+        </ol>
+      </statement>
+      <solution>
+        <p>In each of the following, we will examine <m>a_{n+1}-a_n</m>. If <m>a_{n+1}-a_n \gt 0</m>, we conclude that <m>a_n\lt a_{n+1}</m> and hence the sequence is increasing. If <m>a_{n+1}-a_n\lt 0</m>, we conclude that <m>a_n\gt a_{n+1}</m> and the sequence is decreasing. Of course, a sequence need not be monotonic and perhaps neither of the above will apply.</p>
+
+        <p>We also give a scatter plot of each sequence. These are useful as they suggest a pattern of monotonicity, but analytic work should be done to confirm a graphical trend.</p>
+
+        <ol>
+          <li><p>
+            <md>
+              <mrow>a_{n+1}-a_n \amp = \frac{n+2}{n+1} - \frac{n+1}{n}</mrow>	
+              <mrow>\amp = \frac{(n+2)(n)-(n+1)^2}{(n+1)n}</mrow>
+					    <mrow>\amp = \frac{-1}{n(n+1)} </mrow>
+              <mrow>\amp \lt 0 \text{ for all \(n\). }</mrow>
+            </md>
+				
+          Since <m>a_{n+1}-a_n\lt 0</m> for all <m>n</m>, we conclude that the sequence is decreasing.
+
+            </p></li>
+
+          <li><p>
+            <md>
+              <mrow>a_{n+1}-a_n \amp = \frac{(n+1)^2+1}{n+2} - \frac{n^2+1}{n+1} </mrow>
+              <mrow>\amp = \frac{\big((n+1)^2+1\big)(n+1)- (n^2+1)(n+2)}{(n+1)(n+2)}</mrow>
+              <mrow>\amp =  \frac{n^2+4n+1}{(n+1)(n+2)}</mrow>
+              <mrow>\amp \gt 0  \text{ for all \(n\). }</mrow>
+            </md>
+					
+              Since <m>a_{n+1}-a_n\gt 0</m> for all <m>n</m>, we conclude the sequence is increasing.</p></li>
+
+          <li><p>We can clearly see in <xref ref="fig_seq7">Figure</xref> (c), where the sequence is plotted, that it is not monotonic. However, it does seem that after the first 4 terms it is decreasing. To understand why, perform the same analysis as done before:
+
+						 <m>\ds \begin{aligned}a_{n+1}-a_n \amp = \frac{(n+1)^2-9}{(n+1)^2-10(n+1)+26} - \frac{n^2-9}{n^2-10n+26} \\		
+								\amp = \frac{n^2+2n-8}{n^2-8n+17}-\frac{n^2-9}{n^2-10n+26}\\
+								\amp = \frac{(n^2+2n-8)(n^2-10n+26)-(n^2-9)(n^2-8n+17)}{(n^2-8n+17)(n^2-10n+26)}\\
+								\amp = \frac{-10n^2+60n-55}{(n^2-8n+17)(n^2-10n+26)}.
+              \end{aligned}</m> 		
+
+              We want to know when this is greater than, or less than, 0. The denominator is always positive, therefore we are only concerned with the numerator. Using the quadratic formula, we can determine that <m>-10n^2+60n-55=0</m> when <m>n\approx 1.13, 4.87</m>. So for <m>n\lt 1.13</m>, the sequence is decreasing. Since we are only dealing with the natural numbers, this means that <m>a_1 \gt a_2</m>.
+
+              Between <m>1.13</m> and <m>4.87</m>, i.e., for <m>n=2</m>, 3 and 4, we have that <m>a_{n+1} \gt a_n</m> and the sequence is increasing. (That is, when <m>n=2</m>, 3 and 4, the numerator <m>-10n^2+60n+55</m> from the fraction above is <m>\gt 0</m>.)
+
+              When <m>n\gt 4.87</m>, i.e, for <m>n\geq 5</m>, we have that <m>-10n^2+60n+55\lt 0</m>, hence <m>a_{n+1}-a_n\lt 0</m>, so the sequence is decreasing.
+
+              In short, the sequence is simply not monotonic. However, it is useful to note that for <m>n\geq 5</m>, the sequence is monotonically decreasing.</p></li>
+
+          <li xml:id="ex_seq7_4"><p>Again, the plot in <xref ref="fig_seq7d">Figure</xref> shows that the sequence is not monotonic, but it suggests that it is monotonically decreasing after the first term. We perform the usual analysis to confirm this.
+
+          <md>
+            <mrow>a_{n+1}-a_n \amp = \frac{(n+1)^2}{(n+1)!} - \frac{n^2}{n!}</mrow>
+            <mrow>\amp = \frac{(n+1)^2-n^2(n+1)}{(n+1)!} </mrow>
+            <mrow>\amp =  \frac{-n^3+2n+1}{(n+1)!}</mrow>
+          </md>
+
+					
+              When <m>n=1</m>, the above expression is <m>\gt 0</m>; for <m>n\geq 2</m>, the above expression is <m>\lt 0</m>. Thus this sequence is not monotonic, but it is monotonically decreasing after the first term.
+
+
+
+            </p></li>
+            </ol>
+      <sbsgroup widths="47% 47%">
+        <caption>Plots of sequences in <xref ref="ex_seq7">Example</xref>.</caption>
+        <sidebyside xml:id="fig_seq7" >
+          <figure xml:id="fig_seq7a" >
+            <caption/>
+            <!-- START figures/fig_seq7a.tex -->
+                    <image xml:id="img_seq7a" >
+                      <description></description>
+                      <latex-image-code>
+                        <![CDATA[
+                        \begin{tikzpicture}
+                        \begin{axis}[%
+                        axis on top,%
+                        %     xtick={20,40,60,80,100},%
+                        %     extra x ticks={3.14,1.57},
+                        %     extra x tick labels={$\pi$,$\pi/2$},
+      ytick={-1,-2,1,2},
+      %%extra y ticks={-5,-3,...,7},%
+                        %     minor x tick num=4,
+      ymin=-.1,ymax=2.5,%
+      xmin=-1,xmax=11%
+                        ]
+
+                        \addplot [only marks,{\colorone},mark size={1.5pt},domain=1:10,samples=10] {(x+1)/x};
+
+                        \draw (axis cs:6,1.9) node {\scriptsize $\ds a_n = \frac{n+1}{n}$};
+
+                        \end{axis}
+
+                        \node [right] at (myplot.right of origin) {\scriptsize $n$};
+
+
+                        \end{tikzpicture}
+                        ]]>
+                      </latex-image-code>
+                    </image>
+                    <!-- figures/fig_seq7a.tex END --></figure>
+
+         <figure xml:id="fig_seq7b" >
+            <caption/>
+            <!-- START figures/fig_seq7b.tex -->
+                    <image xml:id="img_seq7b" >
+                      <description></description>
+                      <latex-image-code>
+                        <![CDATA[
+                        \begin{tikzpicture}
+                        \begin{axis}[%
+                        axis on top,%
+                        %     xtick={20,40,60,80,100},%
+                        %     extra x ticks={3.14,1.57},
+                        %     extra x tick labels={$\pi$,$\pi/2$},
+                        %     ytick={-1,-2,1,2},
+      %%extra y ticks={-5,-3,...,7},%
+                        %     minor x tick num=4,
+      ymin=-1,ymax=11,%
+      xmin=-1,xmax=11%
+                        ]
+
+                        \addplot [only marks,{\colorone},mark size={1.5pt},domain=1:10,samples=10] {(x^2+1)/(x+1)};
+
+                        \draw (axis cs:7.5,1.9) node {\scriptsize $\ds a_n = \frac{n^2+1}{n+1}$};
+
+                        \end{axis}
+
+                        \node [right] at (myplot.right of origin) {\scriptsize $n$};
+
+
+                        \end{tikzpicture}
+                        ]]>
+                      </latex-image-code>
+                    </image>
+                    <!-- figures/fig_seq7b.tex END --></figure>
+        </sidebyside>
+
+        <sidebyside>
+         <figure xml:id="fig_seq7c" >
+            <caption/>
+            <!-- START figures/fig_seq7c.tex -->
+                    <image xml:id="img_seq7c" >
+                      <description></description>
+                      <latex-image-code>
+                        <![CDATA[
+                        \begin{tikzpicture}
+                        \begin{axis}[%
+                        axis on top,%
+                        %     xtick={20,40,60,80,100},%
+                        %     extra x ticks={3.14,1.57},
+                        %     extra x tick labels={$\pi$,$\pi/2$},
+                        %     ytick={-1,-2,1,2},
+      %%extra y ticks={-5,-3,...,7},%
+                        %     minor x tick num=4,
+      ymin=-1,ymax=16,%
+      xmin=-1,xmax=11%
+                        ]
+
+                        \addplot [only marks,{\colorone},mark size={1.5pt},domain=1:10,samples=10] {(x^2-9)/(x^2-10*x+26)};
+
+                        \draw (axis cs:3.4,11) node {\scriptsize $\ds a_n = \frac{n^2-9}{n^2-10n+26}$};
+
+                        \end{axis}
+
+                        \node [right] at (myplot.right of origin) {\scriptsize $n$};
+
+
+                        \end{tikzpicture}
+                        ]]>
+                      </latex-image-code>
+                    </image>
+                    <!-- figures/fig_seq7c.tex END -->
+                  </figure>
+
+                                <figure xml:id="fig_seq7d" >
+                <caption>A plot of <m>\{a_n\} = \{n^2/n!\}</m> in <xref ref="ex_seq7_4">Example</xref>.</caption>
+                <!-- START figures/fig_seq7d.tex -->
+                <image xml:id="img_seq7d" >
+                  <description></description>
+                  <latex-image-code>
+                    <![CDATA[
+                    \begin{tikzpicture}
+                    \begin{axis}[%
+                    axis on top,%
+                    %     xtick={20,40,60,80,100},%
+                    %     extra x ticks={3.14,1.57},
+                    %     extra x tick labels={$\pi$,$\pi/2$},
+                    %     ytick={-1,-2,1,2},
+      %%extra y ticks={-5,-3,...,7},%
+                    %     minor x tick num=4,
+      ymin=-.1,ymax=2.1,%
+      xmin=-1,xmax=11%
+                    ]
+
+                    \addplot [only marks,{\colorone},mark size={1.5pt},domain=1:10,samples=10] {(x^2)/(factorial(x))};
+
+                    \draw (axis cs:7,1.25) node {\scriptsize $\ds a_n = \frac{n^2}{n!}$};
+
+                    \end{axis}
+
+                    \node [right] at (myplot.right of origin) {\scriptsize $n$};
+
+
+                    \end{tikzpicture}
+                    ]]>
+                  </latex-image-code>
+                </image>
+                <!-- figures/fig_seq7d.tex END -->
+              </figure>
+            </sidebyside>
+
+          </sbsgroup>
+        
+      </solution>
+    </example>
+
+    <p>Knowing that a sequence is monotonic can be useful. In particular, if we know that a sequence is bounded and monotonic, we can conclude it converges! Consider, for example, a sequence that is monotonically decreasing and is bounded below. We know the sequence is always getting smaller, but that there is a bound to how small it can become. This is enough to prove that the sequence will converge, as stated in the following theorem.</p>
+
+    <theorem xml:id="thm_monotonic_converge">
+      <title>Bounded Monotonic Sequences are Convergent</title>
+      <statement>
+        <ol>
+          <li><p>Let <m>\{a_n\}</m> be a bounded, monotonic sequence. Then <m>\{a_n\}</m> converges; i.e., <m>\lim\limits_{n \to\infty}a_n</m> exists.</p></li>
+
+          <li><p>Let <m>\{a_n\}</m> be a monotonically increasing sequence that is bounded above. Then <m>\{a_n\}</m> converges.</p></li>
+
+          <li><p>Let <m>\{a_n\}</m> be a monotonically decreasing sequence that is bounded below. Then <m>\{a_n\}</m> converges.
+              <index><main>sequences</main><sub>convergent</sub></index><index><main>convergence</main><sub>of monotonic sequences</sub></index></p></li>
+        </ol>
+      </statement>
+    </theorem>
+
+    <p>Consider once again the sequence <m>\{a_n\} = \{1/n\}</m>. It is easy to show it is monotonically decreasing and that it is always positive (i.e., bounded below by 0). Therefore we can conclude by <xref ref="thm_monotonic_converge">Theorem</xref> that the sequence converges. We already knew this by other means, but in the following section this theorem will become very useful.</p>
+
+    <p>Sequences are a great source of mathematical inquiry. The On-Line Encyclopedia of Integer Sequences (<url href="http://oeis.org"/>) contains thousands of sequences and their formulae. (As of this writing, there are 257,537 sequences in the database.) Perusing this database quickly demonstrates that a single sequence can represent several different <q>real life</q> phenomena.</p>
+
+    <p>Interesting as this is, our interest actually lies elsewhere. We are more interested in the <em>sum</em> of a sequence. That is, given a sequence <m>\{a_n\}</m>, we are very interested in <m>a_1+a_2+a_3+\cdots</m>. Of course, one might immediately counter with <q>Doesn't this just add up to `infinity'?</q> Many times, yes, but there are many important cases where the answer is no. This is the topic of <em>series</em>, which we begin to investigate in <xref ref="sec_series">Section</xref>.</p>
+  </introduction>
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Use your own words to define a <em>sequence.</em></p>
+          </statement>
+          <solution>
+            <p>Answers will vary.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>The domain of a sequence is the <fillin /> numbers.</p>
+          </statement>
+          <solution>
+            <p>natural</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Use your own words to describe the <em>range</em> of a sequence.</p>
+          </statement>
+          <solution>
+            <p>Answers will vary.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Describe what it means for a sequence to be <em>bounded</em>.</p>
+          </statement>
+          <solution>
+            <p>Answers will vary.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, give the first five terms of the given sequence.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \{a_n\} = \left\{\frac{4^n}{(n+1)!}\right\}</m></p>
+          </statement>
+          <solution>
+            <p><m>2,\frac{8}{3},\frac{8}{3},\frac{32}{15},\frac{64}{45}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \{b_n\} = \left\{\left(-\frac32\right)^n\right\}</m></p>
+          </statement>
+          <solution>
+            <p><m>-\frac{3}{2},\frac{9}{4},-\frac{27}{8},\frac{81}{16},
+                 -\frac{243}{32}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \{c_n\} = \left\{-\frac{n^{n+1}}{n+2}\right\}</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{1}{3},2,\frac{81}{5},\frac{512}{3},\frac{15625}{7}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \{d_n\} = \left\{\frac{1}{\sqrt{5}}\left(\left(\frac{1+\sqrt{5}}{2}\right)^n-\left(\frac{1-\sqrt{5}}{2}\right)^n\right)\right\}</m></p>
+          </statement>
+          <solution>
+            <p><m>1, 1, 2, 3, 5</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, determine the <m>n^\text{ th }</m> term of the given sequence.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>4, 7, 10, 13, 16, <m>\ldots</m></p>
+          </statement>
+          <solution>
+            <p><m>a_n = 3n+1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds 3,\ -\frac32,\ \frac34,\ -\frac38,\ \ldots</m></p>
+          </statement>
+          <solution>
+            <p><m>a_n = (-1)^{n+1}\frac{3}{2^{n-1}}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>10,\ 20,\ 40,\ 80,\ 160,\ \ldots</m></p>
+          </statement>
+          <solution>
+            <p><m>a_n = 10\cdot 2^{n-1}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds 1, 1,\ \frac12,\ \frac16,\ \frac1{24},\ \frac1{120},\ \ldots</m></p>
+          </statement>
+          <solution>
+            <p><m>a_n = 1/(n-1)!</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, use the following information to determine the limit of the given sequences.</p>
+
+      <ul>
+        <li><p><m>\ds \{a_n\} = \left\{\frac{2^n-20}{2^n}\right\}</m>;  <m>\lim\limits_{n\to\infty} a_n = 1</m></p></li>
+
+        <li><p><m>\ds \{b_n\} = \left\{\left(1+\frac{2}{n}\right)^n\right\}</m>;  <m>\lim\limits_{n\to\infty} b_n = e^2</m></p></li>
+
+        <li><p><m>\ds \{c_n\} = \left\{\sin(3/n)\right\}</m>;  <m>\lim\limits_{n\to\infty} c_n = 0</m></p></li>
+      </ul>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\{a_n\} = \left\{   \frac{2^n-20}{7\cdot2^n}   \right\}</m></p>
+          </statement>
+          <solution>
+            <p><m>1/7</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\{a_n\} = \left\{   3b_n-a_n   \right\}</m></p>
+          </statement>
+          <solution>
+            <p><m>3e^2-1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\{a_n\} = \left\{   \sin(3/n)\left(1+\frac2n\right)^n   \right\}</m></p>
+          </statement>
+          <solution>
+            <p><m>0</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\{a_n\} = \left\{   \left(1+\frac2n\right)^{2n}   \right\}</m></p>
+          </statement>
+          <solution>
+            <p><m>e^4</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, determine whether the sequence converges or diverges. If convergent, give the limit of the sequence.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\{a_n\} = \left\{(-1)^n\frac{n}{n+1}\right\}</m></p>
+          </statement>
+          <solution>
+            <p>diverges</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\{a_n\} = \left\{\frac{4n^2-n+5}{3n^2+1}\right\}</m></p>
+          </statement>
+          <solution>
+            <p>converges to <m>4/3</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\{a_n\} = \left\{\frac{4^n}{5^n}\right\}</m></p>
+          </statement>
+          <solution>
+            <p>converges to <m>0</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\{a_n\} = \left\{\frac{n-1}{n}-\frac{n}{n-1}\right\}</m>, <m>n\geq 2</m></p>
+          </statement>
+          <solution>
+            <p>converges to <m>0</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\{a_n\} = \left\{\ln(n)\right\}</m></p>
+          </statement>
+          <solution>
+            <p>diverges</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\{a_n\} = \left\{\frac{3n}{\sqrt{n^2+1}}\right\}</m></p>
+          </statement>
+          <solution>
+            <p>converges to 3</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\{a_n\} = \left\{\left(1+\frac1n\right)^n\right\}</m></p>
+          </statement>
+          <solution>
+            <p>converges to <m>e</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\{a_n\} = \left\{5-\frac1n\right\}</m></p>
+          </statement>
+          <solution>
+            <p>converges to 5</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\{a_n\} = \left\{\frac{(-1)^{n+1}}{n}\right\}</m></p>
+          </statement>
+          <solution>
+            <p>converges to 0</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\{a_n\} = \left\{\frac{1.1^n}{n}\right\}</m></p>
+          </statement>
+          <solution>
+            <p>diverges</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\{a_n\} = \left\{\frac{2n}{n+1}\right\}</m></p>
+          </statement>
+          <solution>
+            <p>converges to 2</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\{a_n\} = \left\{(-1)^n\frac{n^2}{2^n-1}\right\}</m></p>
+          </statement>
+          <solution>
+            <p>converges to 0</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>}
+        In the following exercises, determine whether the sequence is bounded, bounded above, bounded below, or none of the above.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\{a_n\} = \left\{\sin(n) \right\}</m></p>
+          </statement>
+          <solution>
+            <p>bounded</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\{a_n\} = \left\{\tan(n) \right\}</m></p>
+          </statement>
+          <solution>
+            <p>neither bounded above or below</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\{a_n\} = \left\{(-1)^n\frac{3n-1}{n}\right\}</m></p>
+          </statement>
+          <solution>
+            <p>bounded</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\{a_n\} = \left\{\frac{3n^2-1}{n}\right\}</m></p>
+          </statement>
+          <solution>
+            <p>bounded below</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\{a_n\} = \left\{n\cos(n) \right\}</m></p>
+          </statement>
+          <solution>
+            <p>neither bounded above or below</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\{a_n\} = \left\{2^n-n!\right\}</m></p>
+          </statement>
+          <solution>
+            <p>bounded above</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>}
+        In the following exercises, determine whether the sequence is monotonically increasing or decreasing. If it is not, determine if there is an <m>m</m> such that it is monotonic for all <m>n\geq m</m>.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\{a_n\} = \left\{\frac{n}{n+2}\right\}</m></p>
+          </statement>
+          <solution>
+            <p>monotonically increasing</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\{a_n\} = \left\{\frac{n^2-6n+9}{n}\right\}</m></p>
+          </statement>
+          <solution>
+            <p>monotonically increasing for <m>n\geq 3</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\{a_n\} = \left\{(-1)^n\frac{1}{n^3}\right\}</m></p>
+          </statement>
+          <solution>
+            <p>never monotonic</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\{a_n\} = \left\{\frac{n^2}{2^n}\right\}</m></p>
+          </statement>
+          <solution>
+            <p>monotonically decreasing for <m>n\geq 3</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Prove <xref ref="thm_abs_val_seq">Theorem</xref>; that is,
+		use the definition of the limit of a sequence to show that if <m>\lim\limits_{n\to\infty} \abs{a_n} = 0</m>, then <m>\lim\limits_{n\to\infty} a_n = 0</m>.</p>
+          </statement>
+          <solution>
+            <p>Let <m>\{a_n\}</m> be given such that <m>\lim\limits_{n\to\infty} \abs{a_n} = 0</m>. By the definition of the limit of a sequence, given any <m>\varepsilon >0</m>, there is a <m>m</m> such that for all <m>n>m, \abs{\ }a_n\abs{ - 0} \lt \varepsilon</m>. Since <m>\abs{\ }a_n\abs{-0} = \abs{a_n - 0}</m>, this directly implies that for all <m>n>m</m>, <m>\abs{a_n - 0} \lt  \varepsilon</m>, meaning that <m>\lim\limits_{n\to\infty} a_n = 0</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Let <m>\{a_n\}</m> and <m>\{b_n\}</m> be sequences such that <m>\lim\limits_{n\to\infty} a_n = L</m> and <m>\lim\limits_{n\to\infty} b_n = K</m>.</p>
+
+            <ol>
+              <li><p>Show that if <m>a_n\lt b_n</m> for all <m>n</m>, then <m>L\leq K</m>.</p></li>
+
+              <li><p>Give an example where <m>L = K</m>.</p></li>
+            </ol>
+          </statement>
+          <solution>
+            <ol>
+              <li><p>Left to reader</p></li>
+
+              <li><p><m>a_n = 1/3^n</m> and <m>b_n = 1/2^n</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Prove the Squeeze Theorem for sequences: Let <m>\{a_n\}</m> and <m>\{b_n\}</m> be such that <m>\lim\limits_{n\to\infty} a_n = L</m> and <m>\lim\limits_{n\to\infty} b_n = L</m>, and let <m>\{c_n\}</m> be such that <m>a_n\leq c_n\leq b_n</m> for all <m>n</m>. Then <m>\lim\limits_{n\to\infty} c_n = L</m></p>
+          </statement>
+          <solution>
+            <p>Left to reader</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

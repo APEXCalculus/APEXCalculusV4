@@ -1,0 +1,248 @@
+\section{Flow, Flux, Green's Theorem and the Divergence Theorem}\label{sec:greensthm}
+
+\noindent\textbf{\large Flow and Flux}\\
+
+Line integrals over vector fields have the natural interpretation of computing work when $\vec F$ represents a force field. It is also common to use vector fields to represent velocities. In these cases, the line integral $\int_C \vec F\cdot d\vec r$ is said to represent \sword{flow}.
+
+\mfigure{.7}{Illustrating the principles of flow and flux.}{fig:flowfluxintro}{figures/figflowfluxintro}
+
+Let the vector field $\vec F = \la 1,0\ra$ represent the velocity of water as it moves across a smooth surface, depicted in Figure \ref{fig:flowfluxintro}. A line integral over $C$ will compute ``how much water is moving \emph{along} the path $C$.'' 
+
+In the figure, ``all'' of the water above $C_1$ is moving along that curve, whereas ``none'' of the water above $C_2$ is moving along that curve (the curve and the flow of water are at right angles to each other). Because $C_3$ has nonzero horizontal and vertical components, ``some'' of the water above that curve is moving along the curve.
+
+When $C$ is a closed curve, we call flow \sword{circulation}, represented by $\oint_C \vec F\cdot d\vec r$.
+
+% This section on unit could be returned ...
+%The units of flow require understanding. If $\vec F$ has units feet/second and $C$ is measured in feet, then $\vec F\cdot d\vec r$ has units ft/s$\cdot$ft = ft$^2$/s, an ``area of water per second.'' We generally do not measure quantity of water by area, but rather by volume (surface area \emph{covered} by water is an entirely different matter). We resolve this by recognizing that inherently our water flowing across the surface has \emph{depth}; by accounting for this extra dimension, the units become ft$^3$/s.
+
+The ``opposite'' of flow is \sword{flux}, a measure of ``how much water is moving \emph{across} the path $C$.'' If a curve represents a filter in flowing water, flux measures how much water will pass through the filter. Considering again Figure \ref{fig:flowfluxintro}, we see that a screen along $C_1$ will not filter any water as no water passes across that curve. Because of the nature of this field,  $C_2$ and $C_3$ each filter the same amount of water per second. 
+
+The terms ``flow'' and ``flux'' are used apart from velocity fields, too. Flow is measured by $\int_C \vec F\cdot d\vec r$, which is the same as $\int_C \vec F\cdot\vec T\ ds$ by Definition \ref{def:line_integral2}. That is, flow is a summation of the amount of $\vec F$ that is \emph{tangent} to the curve $C$. %is the measure of ``how much of the field is tangent to (or, in line with) the curve.'' 
+
+By contrast, flux is a summation of the amount of $\vec F$ that is \emph{orthogonal} to the direction of travel. To capture this orthogonal amount of $\vec F$, we use $\int_C \vec F \cdot \vec n\ ds$ to measure flux, where $\vec n$ is a unit vector orthogonal to the curve $C$. %is the measure of ``how much of the field is orthogonal to (or, across) the curve.'' 
+(Later, we'll measure flux across surfaces, too. %Whenever we want to measure the amount of something across a curve or surface, we will be measuring flux. 
+For example, in physics it is useful to measure the amount of a magnetic field that passes through a surface.)
+
+%The terms ``flow'' and ``flux'' are used apart from velocity fields, too. Flow is the measure of ``how much of the field is tangent to (or, in line with) the curve.'' Flux is the measure of ``how much of the field is orthogonal to (or, across) the curve.'' Later, we'll measure flux across surfaces, too. %Whenever we want to measure the amount of something across a curve or surface, we will be measuring flux. 
+%For example, in physics it is useful to measure the amount of a magentic field that passes across a surface: this is a measure of flux.
+
+%In the plane, flow is measured by $\int_C \vec F\cdot d\vec r$, which is the same as $\int_C \vec F\cdot\vec T\ ds$ by Definition \ref{def:line_integral2}. That is, flow is a summation of the amount of $\vec F$ that is \emph{parallel} to the direction of travel $\vec T$. 
+%
+%By contrast, flux is a summation of the amount of $\vec F$ that is \emph{orthogonal} to the direction of travel. To capture this orthogonal amount of $\vec F$, we use $\int_C \vec F \cdot \vec n\ ds$ to measure flux, where $\vec n$ is a vector orthogonal to the direction of travel. 
+
+How is $\vec n$ determined? We'll later see that if $C$ is a closed curve, we'll want $\vec n$ to point to the outside of the curve (measuring how much is ``going out''). We'll also adopt the convention that closed curves should be traversed counterclockwise. 
+
+(If $C$ is a complicated closed curve, it can be difficult to determine what ``counterclockwise'' means. Consider Figure \ref{fig:fluxcounterclockwise}. Seeing the curve as a whole, we know which way ``counterclockwise'' is. If we zoom in on point $A$, one might incorrectly choose to traverse the path in the wrong direction. So we offer this definition: \textit{a closed curve is being traversed counterclockwise if the outside is to the right of the path and the inside is to the left.})
+\mfigure{.35}{Determining ``counterclockwise'' is not always simple without a good definition.}{fig:fluxcounterclockwise}{figures/figfluxcounterclockwise}
+
+When a curve $C$ is traversed counterclockwise by $\vrt = \la f(t), g(t)\ra$, we rotate $\vec T$ clockwise 90$^\circ$  to obtain $\vec n$:
+$$\vec T = \frac{\la \fp(t),g'(t)\ra}{\norm{\vrp(t)}} \quad \Rightarrow \quad \vec n = \frac{\la g'(t),-\fp(t)\ra}{\norm{\vrp(t)}}.$$
+
+Letting $\vec F = \la M, N\ra$, we calculate flux as:
+\begin{align*}
+\int_C \vec F\cdot \vec n\ ds &= \int_C \vec F\cdot \frac{\la g'(t),-\fp(t)\ra}{\norm{\vrp(t)}} \norm{\vrp(t)}\ dt \\
+				&= \int_C \la M, N\ra \cdot \la g'(t),-\fp(t)\ra\ dt \\
+				&= \int_C \Big(M\,g'(t) - N\,\fp(t)\Big)dt\\
+				&= \int_C M\,g'(t)\ dt - \int_C N\,\fp(t)\ dt.\\
+				\intertext{As the $x$ and $y$ components of $\vrt$ are $f(t)$ and $g(t)$ respectively, the differentials of $x$ and $y$ are $dx = \fp(t)dt$ and $dy=g'(t)dt$. We can then write the above integrals as:}
+				&= \int_C M\ dy - \int_C N\ dx.\\
+				\intertext{This is often written as one integral (not incorrectly, though somewhat confusingly, as this one integral has two ``$d$\,'s''):}
+				&=\int_CM\ dy -N\ dx.
+\end{align*}
+We summarize the above in the following definition.
+
+\definition{def:flowflux}{Flow, Flux}
+{Let $\vec F=\la M,N\ra$ be a vector field with continuous components defined on a smooth curve $C$, parametrized by $\vrt =\la f(t),g(t)\ra$, let $\vec T$ be the unit tangent vector of $\vrt$, and let $\vec n$ be the clockwise 90$^\circ$degree rotation of $\vec T$.
+\begin{itemize}
+	\item The \sword{flow} of $\vec F$ over $C$ is
+$$\int_C \vec F\cdot\vec T\ ds=\int_C \vec F\cdot d\vec r.$$
+	\item The \sword{flux} of $\vec F$ over $C$ is
+$$\int_C \vec F\cdot \vec n\ ds =  \int_C M\ dy -N\ dx = \int_C\Big(M\,g'(t) - N\,\fp(t)\Big)dt. $$
+\end{itemize}
+}
+
+This definition of flow also holds for curves in space, though it does not make sense to measure ``flux across a curve'' in space.
+
+Measuring flow is essentially the same as finding work performed by a force as done in the previous examples. Therefore we practice finding only flux in the following example.\\
+
+\example{ex_flux1}{Finding flux across curves in the plane}
+{Curves $C_1$ and $C_2$ each start at $(1,0)$ and end at $(0,1)$, where $C_1$ follows the line $y=1-x$ and $C_2$ follows the unit circle, as shown in Figure \ref{fig:flux1}. Find the flux across both curves for the vector fields $\vec F_1 = \la y, -x+1\ra$ and $\vec F_2 = \la -x, 2y-x\ra$. 
+}
+{\mtable{.55}{Illustrating the curves and vector fields in Example \ref{ex_flux1}. In (a) the vector field is $\vec F_1$, and in (b) the vector field is $\vec F_2$.}{fig:flux1}{%
+\begin{tabular}{c}
+\myincludegraphics{figures/figflux1a}\\
+(a)\\
+\myincludegraphics{figures/figflux1b}\\
+(b)
+\end{tabular}
+}%
+We begin by finding parametrizations of $C_1$ and $C_2$. As done in Example \ref{ex_livf3}, parametrize $C_1$ by creating the line that starts at $(1,0)$ and moves in the $\la -1,1\ra$ direction: $\vec r_1(t) = \la 1,0\ra + t\la -1,1\ra = \la 1-t, t\ra$, for $0\leq t\leq 1$. We parametrize $C_2$ with the familiar $\vec r_2(t) = \la \cos t,\sin t\ra$ on $0\leq t\leq \pi/2$. For reference later, we give each function and its derivative below:
+$$ \vec r_1(t) = \la 1-t, t\ra, \quad \vrp_1(t) = \la -1,1\ra.$$
+$$\vec r_2(t) = \la \cos t, \sin t\ra, \quad \vrp_2(t) = \la -\sin t ,\cos t\ra.$$
+
+When $\vec F = \vec F_1 = \la y, -x+1\ra$ (as shown in Figure \ref{fig:flux1}(a)), over $C_1$ we have $M = y =t$ and $N = -x+1 = -(1-t)+1 = t$. Using Definition \ref{def:flowflux}, we compute the flux:
+\begin{align*}
+\int_{C_1} \vec F\cdot \vec n\ ds & = \int_{C_1} \Big(M\,g'(t) - N\,\fp(t)\Big)\ dt\\
+			&= \int_0^1 \Big( t(1) - t(-1)\Big)\ dt \\
+			&= \int_0^1 2t\ dt\\
+			&= 1.
+\end{align*}
+Over $C_2$, we have $M = y = \sin t$ and $N = -x+1 = 1-\cos t$. Thus the flux across $C_2$ is:
+\begin{align*}
+\int_{C_1} \vec F\cdot \vec n\ ds & = \int_{C_1} \Big(M\,g'(t) - N\,\fp(t)\Big)\ dt\\
+				&= \int_0^{\pi/2}\Big((\sin t)(\cos t) - (1-\cos t)(-\sin t)\Big)\ dt\\
+				&= \int_0^{\pi/2} \sin t\ dt\\
+				&=1.
+\end{align*}
+Notice how the flux was the same across both curves. This won't hold true when we change the vector field.
+\drawexampleline%
+
+When $\vec F = \vec F_2 = \la -x,2y-x\ra$ (as shown in Figure \ref{fig:flux1}(b)), over $C_1$ we have $M = -x = t-1$ and $N = 2y-x = 2t-(1-t) = 3t-1$. Computing the flux across $C_1$:
+\begin{align*}
+\int_{C_1} \vec F\cdot \vec n\ ds & = \int_{C_1} \Big(M\,g'(t) - N\,\fp(t)\Big)\ dt\\
+			&= \int_0^1 \Big( (t-1)(1) - (3t-1)(-1)\Big)\ dt \\
+			&= \int_0^1 (4t-2)\ dt\\
+			&= 0.
+\end{align*}
+Over $C_2$, we have $M = -x = -\cos t$ and $N = 2y-x = 2\sin t-\cos t$. Thus the flux across $C_2$ is:
+\begin{align*}
+\int_{C_1} \vec F\cdot \vec n\ ds & = \int_{C_1} \Big(M\,g'(t) - N\,\fp(t)\Big)\ dt\\
+				&= \int_0^{\pi/2}\Big((-\cos t)(\cos t) - (2\sin t-\cos t)(-\sin t)\Big)\ dt\\
+				&= \int_0^{\pi/2} \big(2\sin^2 t-\sin t\cos t-\cos^2t\big)\ dt\\
+				&=\pi/4 - 1/2\approx 0.285.
+\end{align*}
+We analyze the results of this example below.
+}\\
+
+In Example \ref{ex_flux1}, we saw that the flux across the two curves was the same when the vector field was $\vec F_1 = \la y, -x+1\ra$. This is not a coincidence. We show why they are equal in Example \ref{ex_div2}. In short, the reason is this: the divergence of $\vec F_1$ is 0, and when $\divv \vec F = 0$, the flux across any two paths with common beginning and ending points will be the same.
+
+We also saw in the example that the flux across $C_1$ was 0 when the field was $\vec F_2 = \la -x, 2y-x\ra$. Flux measures ``how much'' of the field crosses the path from left to right (following the conventions established before). Positive flux means most of the field is crossing from left to right; negative flux means most of the field is crossing from right to left; zero flux means the same amount crosses from left to right as from right to left. When we consider Figure \ref{fig:flux1}(b), it seems plausible that the same amount of $\vec F_2$ was crossing $C_1$ from left to right as from right to left.
+
+%In short, the flux across $C_2$ was different than the flux across $C_1$ because $\divv \vec F_2 \neq 0$.
+%
+%In the next section, we'll investigate the connection between flux and divergence, as well as the connection between flow and curl.
+
+\vskip \baselineskip
+\noindent\textbf{\large Green's Theorem}\\
+
+There is an important connection between the circulation around a closed region $R$ and the curl of the vector field inside of $R$, as well as a connection between the flux across the boundary of $R$ and the divergence of the field inside $R$. These connections are described by Green's Theorem and the Divergence Theorem, respectively. We'll explore each in turn.
+
+Green's Theorem states ``the counterclockwise circulation around a closed region $R$ is equal to the sum of the curls over $R$.''
+
+\theorem{thm:greens}{Green's Theorem}
+{Let $R$ be a closed, bounded region of the plane whose boundary $C$ is composed of finitely many smooth curves, let $\vec r(t)$ be a counterclockwise parametrization of $C$, and let $\vec F =\la M,N\ra$ where $N_x$ and $M_y$ are continuous over $R$. Then
+$$\oint_C \vec F\cdot d\vec r = \iint_R\curl \vec F\ dA.$$
+}
+
+We'll explore Green's Theorem through an example. \\
+
+\example{ex_green1}{Confirming Green's Theorem}
+{Let $\vec F =\la -y,x^2+1\ra$ and let $R$ be the region of the plane bounded by the triangle with vertices $(-1,0)$, $(1,0)$ and $(0,2)$, shown in Figure \ref{fig:green1}. Verify Green's Theorem; that is, find the circulation of $\vec F$ around the boundary of $R$ and show that is equal to the double integral of $\curl \vec F$ over $R$.
+\mfigure{.55}{The vector field and planar region used in Example \ref{ex_green1}.}{fig:green1}{figures/figgreen1}
+}
+{The curve $C$ that bounds $R$ is composed of 3 lines. While we need to traverse the boundary of $R$ in a counterclockwise fashion, we may start anywhere we choose. We arbitrarily choose to start at $(-1,0)$, move to $(1,0)$, etc., with each line parametrized by $\vec r_1(t)$, $\vec r_2(t)$ and $\vec r_3(t)$, respectively.
+
+We leave it to the reader to confirm that the following parametrizations of the three lines are accurate:
+
+\begin{tabular}{lll}
+$\vec r_1(t) = \la 2t-1,0\ra$,& for $0\leq t\leq 1$,& with $\vrp_1(t) = \la 2,0\ra$,\\
+$\vec r_2(t) = \la 1-t,2t\ra$,& for $0\leq t\leq 1$,& with $\vrp_2(t) = \la -1,2\ra$, and\\
+$\vec r_3(t) = \la -t,2-2t\ra$,& for $0\leq t\leq 1$,& with $\vrp_3(t) = \la -1,-2\ra$.
+\end{tabular}
+
+The circulation around $C$ is found by summing the flow along each of the sides of the triangle. We again leave it to the reader to confirm the following computations:
+\begin{align*}
+\int_{C_1}\vec F\cdot d\vec r_1 &= \int_0^1 \la 0,(2t-1)^2+1\ra\cdot \la 2,0\ra dt = 0,\\
+\int_{C_2}\vec F\cdot d\vec r_2 &= \int_0^1 \la -2t,(1-t)^2+1\ra\cdot \la -1,2\ra dt = 11/3, \text{and}\\
+\int_{C_3}\vec F\cdot d\vec r_3 &= \int_0^1 \la 2t-2,t^2+1\ra\cdot \la -1,-2\ra dt = -5/3.
+\end{align*}
+The circulation is the sum of the flows: $2$.
+
+We confirm Green's Theorem by computing $\iint_R \curl \vec F\ dA$. We find $\curl \vec F = 2x+1$. The region $R$ is bounded by the lines $y = 2x+2$, $y=-2x+2$ and $y=0$. Integrating with the order $dx\, dy$ is most straightforward, leading to
+$$\int_0^2\int_{y/2-1}^{1-y/2} (2x+1)\ dx\ dy = \int_0^2 (2-y)\ dy = 2,$$
+which matches our previous measurement of circulation. 
+}\\
+
+\example{ex_green2}{Using Green's Theorem}
+{Let $\vec F = \la \sin x,\cos y\ra$ and let $R$ be the region enclosed by the curve $C$ parametrized by $\vec r(t) = \la 2\cos t+ \frac1{10}\cos(10t),2\sin t+\frac1{10}\sin(10t)\ra$ on $0\leq t\leq 2\pi$, as shown in Figure \ref{fig:green2}. Find the circulation around $C$.
+\mfigure{.7}{The vector field and planar region used in Example \ref{ex_green2}.}{fig:green2}{figures/figgreen2}
+}
+{Computing the circulation directly using the line integral looks difficult, as the integrand will include terms like ``$\sin\big(2\cos t + \frac1{10}\cos(10t)\big)$.'' 
+
+Green's Theorem states that $\oint_C\vec F\cdot d\vec r = \iint_R \curl\vec F\ dA$; since $\curl \vec F = 0$ in this example, the double integral is simply 0 and hence the circulation is 0.
+
+Since $\curl \vec F = 0$, we can conclude that the circulation is 0 in two ways. One method is to employ Green's Theorem as done above. The second way is to recognize that $\vec F$ is a conservative field, hence there is a function $z=f(x,y)$ wherein $\vec F = \nabla f$. Let $A$ be any point on the curve $C$; since $C$ is closed, we can say that $C$ ``begins'' and ``end'' at $A$. By the Fundamental Theorem of Line Integrals, $\oint_C \vec F\ d\vec r = f(A)-f(A) = 0$.\vskip-6pt
+}\\
+
+One can use Green's Theorem to find the area of an enclosed region by integrating along its boundary. Let $C$ be a closed curve, enclosing the region $R$, parametrized by $\vec r(t) = \la f(t),g(t)\ra$. We know the area of $R$ is computed by the double integral $\iint_R \ dA$, where the integrand is $1$. By creating a field $\vec F$ where $\curl \vec F =1$, we can employ Green's Theorem to compute the area of $R$ as $\oint_C \vec F\cdot d\vec r$. 
+
+One is free to choose any field $\vec F$ to use as long as $\curl\vec F = 1$. Common choices are $\vec F = \la 0,x\ra$, $\vec F = \la -y,0\ra$ and $\vec F = \la -y/2,x/2\ra$. We demonstrate this below.
+
+%Note: take this sentnec out and make as exerciseChoosing $\vec F = \la -y,0\ra$ has special significance. This field leads to the line integral $\oint_C \la 0,-f(t)\ra\cdot \la \fp(t),\gp(t)\ra\ dt$. \\
+
+\example{ex_green3}{Using Green's Theorem to find area}
+{Let $C$ be the closed curve parametrized by $\vrt = \la t-t^3,t^2\ra$ on $-1\leq t\leq 1$, enclosing the region $R$, as shown in Figure \ref{fig:green3}. Find the area of $R$. 
+\mfigure{.3}{The region $R$, whose area is found in Example \ref{ex_green3}.}{fig:green3}{figures/figgreen3}
+}
+{We can choose any field $\vec F$, as long as $\curl \vec F = 1$. We choose $\vec F = \la -y,0\ra$. We also confirm (left to the reader) that $\vrt$ traverses the region $R$ in a counterclockwise fashion. Thus
+\begin{align*}
+\text{Area of $R$} &= \iint_R\ dA \\
+									&= \oint_C \vec F\cdot d\vec r\\
+									&= \int_{-1}^1 \la -t^2,0\ra\cdot \la 1-3t^2,2t\ra\ dt\\
+									&= \int_{-1}^1 (-t^2)(1-3t^2)\ dt \\
+									&= \frac8{15}.
+\end{align*}
+\vskip-1.5\baselineskip
+}\\
+
+\vskip \baselineskip
+\noindent\textbf{\large The Divergence Theorem}\\
+
+Green's Theorem makes a connection between the circulation around a closed region $R$ and the sum of the curls over $R$. The Divergence Theorem makes a somewhat ``opposite'' connection: the total flux across the boundary of $R$ is equal to the sum of the divergences over $R$. 
+
+\theorem{thm:divergence1}{The Divergence Theorem (in the plane)}
+{Let $R$ be a closed, bounded region of the plane whose boundary $C$ is composed of finitely many smooth curves, let $\vec r(t)$ be a counterclockwise parametrization of $C$, and let $\vec F =\la M,N\ra$ where $M_x$ and $N_y$ are continuous over $R$. Then
+$$\oint_C \vec F\cdot \vec n\ ds = \iint_R\divv \vec F\ dA.$$
+}
+
+\example{ex_div1}{Confirming the Divergence Theorem}
+{Let $\vec F = \la x-y,x+y\ra$, let $C$ be the circle of radius 2 centered at the origin and define $R$ to be the interior of that circle, as shown in Figure \ref{fig:div1}. Verify the Divergence Theorem; that is, find the flux across $C$ and show it is equal to the double integral of $\divv \vec F$ over $R$.
+\mfigure{.3}{The region $R$ used in Example \ref{ex_div1}.}{fig:div1}{figures/figdiv1}
+}
+{We parametrize the circle in the usual way, with $\vrt =\la 2\cos t,2\sin t\ra$, $0\leq t\leq 2\pi$. The flux across $C$ is
+\begin{align*}
+\oint_C \vec F\cdot \vec n\ ds &= \oint_C\big(M\gp(t)-N\fp(t)\big)\ dt\\ &= \int_0^{2\pi} \big((2\cos t-2\sin t)(2\cos t) - (2\cos t+2\sin t)(-2\sin t)\big)\ dt\\
+		&= \int_0^{2\pi} 4\ dt = 8\pi.
+\end{align*}
+We compute the divergence of $\vec F$ as $\divv \vec F = M_x+N_y = 2$. Since the divergence is constant, we can compute the following double integral easily:
+$$\iint_R \divv \vec F\ dA = \iint_R 2\ dA = 2\iint_R\ dA = 2(\text{area of $R$}) = 8\pi,$$
+which matches our previous result.
+}\\
+
+\example{ex_div2}{Flux when $\divv \vec F = 0$}
+{Let $\vec F$ be any field where $\divv \vec F = 0$, and let $C_1$ and $C_2$ be any two nonintersecting paths, except that each begin at point $A$ and end at point $B$ (see Figure \ref{fig:div2}). Show why the flux across $C_1$ and $C_2$ is the same.
+}
+{By referencing Figure \ref{fig:div2}, we see we can make a closed path $C$ that combines $C_1$ with $C_2$, where $C_2$ is traversed with its opposite orientation. We label the enclosed region $R$. Since $\divv \vec F = 0$, the Divergence Theorem states that
+$$\oint_C \vec F\cdot \vec n\ ds = \iint_R \divv \vec F\ dA = \iint_R 0\ dA = 0.$$
+Using the properties and notation given in Theorem 
+\ref{thm:line_int_properties_vector}, consider:
+\mfigure{.55}{As used in Example \ref{ex_div2}, the vector field has a divergence of 0 and the two paths only intersect at their initial and terminal points.}{fig:div2}{figures/figdiv3}
+\begin{align*}
+0 &= \oint_C \vec F\cdot \vec n\ ds \\
+ &= \int_{C_1} \vec F\cdot \vec n\ ds +\int_{C_2^*} \vec F\cdot \vec n\ ds
+\intertext{(where $C_2^*$ is the path $C_2$ traversed with opposite orientation)}
+	&= \int_{C_1} \vec F\cdot \vec n\ ds -\int_{C_2} \vec F\cdot \vec n\ ds.\\
+	\int_{C_2} \vec F\cdot \vec n\ ds&= \int_{C_1} \vec F\cdot \vec n\ ds.
+\end{align*}
+Thus the flux across each path is equal.
+}
+
+%Regular S, math $S$, and mathcal $\mathcal{S}$. $\mathcal{U}$
+%\begin{tikzpicture}[x={(.55ex,0)},y={(0,.55ex)}]
+	%\draw[smooth, thin] (0.9667,0.545) -- (0.8273,0.6541) -- (0.6696,0.7624) -- (0.5,0.866) -- (0.3254,0.961) -- (0.1528,1.043) -- (-0.01133,1.11) -- (-0.1607,1.156) -- (-0.2899,1.181) -- (-0.3945,1.181) -- (-0.471,1.155) -- (-0.5173,1.103) -- (-0.5326,1.025) -- (-0.5173,0.9226) -- (-0.4734,0.7971) -- (-0.4038,0.6515) -- (-0.3127,0.4894) -- (-0.2051,0.3147) -- (-0.08684,0.1318) -- (0.03595,-0.05447) -- (0.1569,-0.2394) -- (0.2696,-0.418) -- (0.3682,-0.5859) -- (0.4473,-0.7388) -- (0.5024,-0.873) -- (0.5299,-0.9855) -- (0.5274,-1.074) -- (0.494,-1.137) -- (0.4299,-1.173) -- (0.3366,-1.184) -- (0.2172,-1.169) -- (0.07558,-1.132) -- (-0.08312,-1.073) -- (-0.253,-0.9971) -- (-0.4276,-0.9068) -- (-0.6001,-0.8063) -- (-0.7635,-0.6994) -- (-0.9113,-0.5902);
+	%\draw[thin] (-1.18431, -0.959643)--(-0.638322, -0.220787)
+								%(0.693671, 0.175596)--(1.23965, 0.914452);
+%\end{tikzpicture}
+%
+
+\printexercises{exercises/14_04_exercises}

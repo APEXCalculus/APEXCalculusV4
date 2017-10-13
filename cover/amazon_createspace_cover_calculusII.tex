@@ -1,0 +1,115 @@
+\documentclass{article}
+
+%%% Width is 0.002252 x page count + 0.125 bleed + 0.125 bleed + 8.5*2
+\usepackage[paperwidth=17.87in,paperheight=11.25in]{geometry}
+%\usepackage{fontspec}
+%\usepackage{pgfplots}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\pagestyle{empty}
+
+\sffamily
+	%%\usepackage{fontspec}
+	\usepackage{mathspec}
+	\setallmainfonts[Mapping=tex-text]{Calibri}
+	\setmainfont[Mapping=tex-text]{Calibri}
+	\setsansfont[Mapping=tex-text]{Calibri}
+	\setmathsfont(Greek){[cmmi10]}
+
+
+
+\newcommand{\apex}{A\kern -1pt \lower -2pt\hbox{P}\kern -3pt \lower .65ex\hbox{E}\kern 0pt X}
+
+\begin{document}
+
+
+\begin{tikzpicture}[remember picture,overlay]
+\coordinate (top left) at (current page.north west);
+\coordinate (top right) at (current page.north east);
+\coordinate (bot left) at (current page.south west);
+\coordinate (bot right) at (current page.south east);
+\coordinate [xshift=.125in,yshift=-.125in] (ptop left) at (current page.north west) ;
+\coordinate [xshift=.125in,yshift=.125in] (pbot left) at (current page.south west);
+\coordinate [xshift=-.125in,yshift=-.125in] (ptop right) at (current page.north east);
+\coordinate [xshift=-.125in,yshift=.125in] (pbot right) at (current page.south east);
+\coordinate [xshift=8.625in] (lspine top) at (current page.north west);
+\coordinate [xshift=-8.625in] (rspine top) at (current page.north east);
+\coordinate [xshift=8.625in] (lspine bot) at (current page.south west);
+\coordinate [xshift=-8.625in] (rspine bot) at (current page.south east);
+\coordinate (frontpagecenter) at ($.5*(lspine top)+.5*(pbot right)$);
+
+\end{tikzpicture}
+
+\begin{tikzpicture}[remember picture,overlay]
+%\shade [bottom color=red!50!black,top color=red!70!black!60]
+%(top left) rectangle (bot right);
+\draw [fill=yellow] (top left) rectangle (bot right);
+
+
+
+%%
+%% Draws lines for reference. Turn off for final product.
+%%%
+%\draw[green] (ptop left) -- (ptop right) -- (pbot right) -- (pbot left) -- (ptop left);
+%\draw [green] (lspine top) -- (lspine bot) (rspine top) -- (rspine bot);
+%%%\draw[green] (ptop right) -- (pbot left);
+
+
+
+\node[xshift=4.475in,yshift=2.75in,scale=4,red] at (current page.center) {\fontspec[Scale=3]{Calibri}\scshape C\fontspec[Scale=2.5]{Calibri}alculus \fontspec[Scale=3]{Calibri}2};
+
+\node[xshift=.2in,yshift=1.94in,scale=2,white,right color=blue,left color=blue!25!white] at (frontpagecenter) {\fontspec[Scale=1]{Calibri} \rule{0pt}{4pt} \hskip3.1in\ };
+
+
+\node[xshift=7in,yshift=2.in,scale=2,white] at (current page.center) {\fontspec[Scale=1]{Calibri} Version 3.0};
+
+\node [xshift=2.475in,yshift=3.2in,black,scale=2] at (current page.center) {\fontspec[Scale=1]{Calibri} \apex};
+
+%\node[xshift=3.25in,yshift=3.2in,scale=3,black] at (current page.center) {\fontspec[Scale=1]{Calibri} \apex};
+
+
+\draw [black] ($(current page.center)!.75!(current page.south)$) node [xshift=6.9in] {\fontspec[Scale=2]{Calibri}\parbox{4in}{{ Volume Two of }\apex\ Calculus\\ Chapters 5 - 8}};
+
+
+
+%\draw (current page.center) node [yshift=0in,rotate=-90,black] {\fontspec[Scale=2]{Calibri} \scshape \apex \fontspec[Scale=4]{Calibri} \hskip 2in \phantom{Calculus 2} \hskip 2in \fontspec[Scale=2]{Calibri} Version 2.0};
+%
+%\draw (current page.center) node [yshift=0in,rotate=-90,red] {\fontspec[Scale=2]{Calibri} \scshape \phantom{\apex} \fontspec[Scale=4]{Calibri} \hskip 2in Calculus 2 \hskip 2in \fontspec[Scale=2]{Calibri} \phantom{Version 2.0}};
+
+\draw (current page.center) node [yshift=0in,rotate=-90,black] {\fontspec[Scale=2]{Calibri} \scshape \apex \fontspec[Scale=4]{Calibri} \hskip 2in \hskip 2.5in\hskip 2in \fontspec[Scale=2]{Calibri} Version 3.0};
+
+\draw (current page.center) node [yshift=0in,rotate=-90,red] { \scshape  \fontspec[Scale=4]{Calibri}  Calculus 2 };
+
+\end{tikzpicture}
+
+
+
+\end{document}
+
+
+%\node [xshift=-2in,scale=20,gray] at (current page.center) {\fontspec{Calibri}$\displaystyle \int_0^3f(x)\ dx$};
+%
+%\node [xshift=-1.in,scale=3.5] at (current page.center) {
+%\begin{tikzpicture}
+%\begin{axis}[width=4.5in,height=3in,tick label style={font=\scriptsize},axis y line=middle,axis x line=middle,name=myplot,axis on top,%
+%%			xtick={-4,...,-1,1,2,...,4},% 
+%%			ytick={-6,-4,-2,0,2,4,6},
+%%			minor y tick num=1,
+%%			extra y ticks={-5,-3,...,7},%
+			%ymin=-.25,ymax=1.1,%
+			%xmin=-1,xmax=105%
+%]
+%
+%\addplot [very thin,gray,domain=.1:100,samples=150,smooth,fill=gray] {sin(deg(1*x))/x}--(axis cs:0,0);
+%
+%\addplot [very thick,red,domain=.1:100,samples=150,smooth] {sin(deg(1*x))/x};
+%
+%%\addplot [thick,{\colorone},domain=-.9:0.5,samples=50] {1/(x+1)^2};
+%%\draw [{\colorone},dashed] (axis cs:-1,105) -- (axis cs:-1,-5);
+%
+%
+%\end{axis}
+%\node [right] at (myplot.right of origin) {\scriptsize $x$};
+%\node [above] at (myplot.above origin) {\scriptsize $y$};
+%\end{tikzpicture}
+%};

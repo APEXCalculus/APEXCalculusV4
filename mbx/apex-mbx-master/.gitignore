@@ -1,0 +1,10 @@
+**/.DS_Store
+output/html/*
+output/pdf/*
+output/pg/*
+output/images/*
+output/*.txt
+*.tex
+*.swp
+
+Makefile.paths

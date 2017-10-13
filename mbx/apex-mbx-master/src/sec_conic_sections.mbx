@@ -1,0 +1,2662 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_conic_sections">
+  <title>Conic Sections</title>
+  <introduction>
+    <p>The ancient Greeks recognized that interesting shapes can be formed by intersecting a plane with a
+      <em>double napped</em> cone (i.e., two identical cones placed tip<ndash />to<ndash />tip as shown in the following figures). As these shapes are formed as sections of conics, they have earned the official name <q>conic sections.</q></p>
+
+    <p>The three <q>most interesting</q> conic sections are given in the top row of <xref ref="fig_nondeg_conic">Figure</xref>. They are the parabola, the ellipse (which includes circles) and the hyperbola. In each of these cases, the plane does not intersect the tips of the cones (usually taken to be the origin).</p>
+
+    <!--
+    <caption>Conic Sections</caption>
+    -->
+
+    <sidebyside>
+      <figure>
+        <caption>Parabola &amp; Ellipse &amp;  Circle &amp;   Hyperbola</caption>
+        &amp;
+        &amp;
+        &amp;
+      </figure>
+
+      <figure>
+        <caption>Point&amp;  Line &amp;  Crossed Lines</caption>
+        &amp;
+        &amp;
+      </figure>
+    </sidebyside>
+
+    <p>When the plane does contain the origin, three <em>degenerate</em> cones can be formed as shown the bottom row of <xref ref="fig_nondeg_conic">Figure</xref>: a point, a line, and crossed lines. We focus here on the nondegenerate cases. <index><main>conic sections</main></index><index><main>conic sections</main><sub>degenerate</sub></index></p>
+
+    <p>While the above geometric constructs define the conics in an intuitive, visual way, these constructs are not very helpful when trying to analyze the shapes algebraically or consider them as the graph of a function. It can be shown that all conics can be defined by the general second<ndash />degree equation
+      <me>
+        Ax^2+Bxy+Cy^2+Dx+Ey+F=0.
+      </me>
+    </p>
+
+    <p>While this algebraic definition has its uses, most find another geometric perspective of the conics more beneficial.</p>
+
+    <p>Each nondegenerate conic can be defined as the <em>locus</em>, or set, of points that satisfy a certain distance property. These distance properties can be used to generate an algebraic formula, allowing us to study each conic as the graph of a function.</p>
+
+    <p><em> Parabolas</em></p>
+
+    <definition xml:id="def_parabola">
+      <title>Parabola</title>
+      <statement>
+        <p>A <term>parabola</term> is the locus of all points equidistant from a point (called a <term>focus</term>) and a line (called the <term>directrix</term>) that does not contain the focus.
+          <index><main>conic sections</main><sub>parabola</sub></index><index><main>parabola</main><sub>definition</sub></index><index><main>directrix</main></index><index><main>focus</main></index></p>
+      </statement>
+    </definition>
+
+    <figure xml:id="fig_parabola_def" >
+      <caption>Illustrating the definition of the parabola and establishing an algebraic formula.</caption>
+      <!-- START figures/fig_parabola_def.tex -->
+      <image xml:id="img_parabola_def" >
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}[scale=.8]
+	
+	\draw [thick,{\colorone}] (-3,-1) node [above,black,shift={(12pt,0pt)}] {\scriptsize Directrix} %node [below,black,shift={(12pt,0pt)}] {\scriptsize $y=-p$}
+	-- (3,-1);
+	
+	\filldraw [black] (0,1) circle (1.5pt) node [above left] {\scriptsize Focus};% node [below ] {\scriptsize $F=(0,p)$};
+	\draw [thick,{\colortwo}](-3,2.25) parabola bend (0,0) (3,2.25);
+	\filldraw (0,0) circle (1.5pt) node [below left] {\scriptsize Vertex};
+	\draw (.3,.5) node[] {\scriptsize $\left.\rule{0pt}{12pt}\right\}p$};
+	\draw (.3,-.5) node[] {\scriptsize $\left.\rule{0pt}{12pt}\right\}p$};
+	
+	\coordinate (A) at (2.5,1.5625);
+	\filldraw [black] (A) circle (1.5pt) node [right] {\scriptsize $(x,y)$};
+	\draw [thick,dashed](0,1) -- (A) node [pos=.5,above] {\scriptsize $d$} -- (2.5,-1) node [pos=.5,right] {\scriptsize $d$};
+	
+	\draw [thick,dashed] (0,-1.5) -- node [pos=.85,above,rotate=90] {\scriptsize Axis of} node [pos=.85,below,rotate=90] {\scriptsize Symmetry} (0,3.2);
+	
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_parabola_def.tex END -->
+    </figure>
+
+    <p><xref ref="fig_parabola_def">Figure</xref> illustrates this definition. The point halfway between the focus and the directrix is the <em>vertex</em>. The line through the focus, perpendicular to the directrix, is the <em>axis of symmetry</em>, as the portion of the parabola on one side of this line is the mirror<ndash />image of the portion on the opposite side.</p>
+
+    <p>The definition leads us to an algebraic formula for the parabola. Let <m>P=(x,y)</m> be a point on a parabola whose focus is at <m>F=(0,p)</m> and whose directrix is at <m>y=-p</m>. (We'll assume for now that the focus lies on the <m>y</m>-axis; by placing the focus <m>p</m> units above the <m>x</m>-axis and the directrix <m>p</m> units below this axis, the vertex will be at <m>(0,0)</m>.)</p>
+
+    <p>We use the Distance Formula to find the distance <m>d_1</m> between <m>F</m> and <m>P</m>:
+      <me>
+        d_1=\sqrt{(x-0)^2+(y-p)^2}.
+      </me>
+    </p>
+
+    <p>The distance <m>d_2</m> from <m>P</m> to the directrix is more straightforward:
+      <me>
+        d_2=y-(-p) = y+p.
+      </me>
+    </p>
+
+    <p>These two distances are equal. Setting <m>d_1=d_2</m>, we can solve for <m>y</m> in terms of <m>x</m>:
+      <md>
+        <mrow>d_1\amp = d_2</mrow>
+        <mrow>\sqrt{x^2+(y-p)^2} \amp = y+p</mrow>
+        <intertext>Now square both sides.</intertext>
+        <mrow>x^2+(y-p)^2 \amp = (y+p)^2</mrow>
+        <mrow>x^2+y^2-2yp+p^2 \amp = y^2+2yp+p^2</mrow>
+        <mrow>x^2 \amp =4yp</mrow>
+        <mrow>y\amp = \frac{1}{4p}x^2.</mrow>
+      </md>
+    </p>
+
+    <p>The geometric definition of the parabola has led us to the familiar quadratic function whose graph is a parabola with vertex at the origin. When we allow the vertex to not be at <m>(0,0)</m>, we get the following standard form of the parabola.</p>
+
+    <insight xml:id="idea_parabola">
+      <title>General Equation of a Parabola</title>
+      <ol>
+        <li><p><em>Vertical Axis of Symmetry:</em> The equation of the parabola with vertex at <m>(h,k)</m> and directrix <m>y=k-p</m> in standard form is
+            <me>
+              y=\frac{1}{4p}(x-h)^2+k.
+            </me>
+            The focus is at <m>(h,k+p)</m>.</p></li>
+
+        <li><p><em>Horizontal Axis of Symmetry:</em> The  equation of the parabola with vertex at <m>(h,k)</m> and directrix <m>x=h-p</m> in standard form is
+            <me>
+              x=\frac{1}{4p}(y-k)^2+h.
+            </me>
+            The focus is at <m>(h+p,k)</m>.</p></li>
+      </ol>
+
+      <p>Note: <m>p</m> is not necessarily a positive number.
+	<index><main>parabola</main><sub>general equation</sub></index></p>
+    </insight>
+
+    <example xml:id="ex_conic1">
+      <title>Finding the equation of a parabola</title>
+      <statement>
+        <p>Give the equation of the parabola with focus at <m>(1,2)</m> and directrix at <m>y=3</m>.</p>
+      </statement>
+      <solution>
+        <p>The vertex is located halfway between the focus and directrix, so <m>(h,k) = (1,2.5)</m>. This gives <m>p=-0.5</m>. Using <xref ref="idea_parabola">Key Idea</xref> we have the equation of the parabola as
+          <me>
+            y=\frac{1}{4(-0.5)}(x-1)^2+2.5 = -\frac12(x-1)^2+2.5.
+          </me>
+        </p>
+
+        <figure xml:id="fig_conic1" >
+          <caption>The parabola described in <xref ref="ex_conic1">Example</xref>.</caption>
+          <!-- START figures/fig_conic1.tex -->
+          <image xml:id="img_conic1" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[%
+              %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+              %			xtick={1,2,3,4},%
+              %			extra x ticks={.33},
+              %			extra x tick labels={$1/3$},
+			%ytick={1},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-6.5,ymax=2.9,%
+			xmin=-3.5,xmax=5.5%
+              ]
+
+              \addplot [thick, {\colorone},smooth,domain=-3:5] {-.5*(x-1)^2+2.5};
+              %\filldraw (axis cs:-1,10) node [shift={(0pt,-20pt)}] {\tiny \parbox{50pt}{\centering c. down \vskip 2pt $\Rightarrow$ rel. max}} circle (1pt);
+              %\filldraw (axis cs:1,-10) node [shift={(0pt,20pt)}] {\tiny \parbox{50pt}{\centering c. up \vskip 2pt $\Rightarrow$ rel. min}} circle (1pt);
+              %\filldraw (axis cs:1.16,11.04) circle (1pt);
+
+              \end{axis}
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_conic1.tex END -->
+        </figure>
+
+        <p>The parabola is sketched in <xref ref="fig_conic1">Figure</xref>.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_conic2">
+      <title>Finding the focus and directrix of a parabola</title>
+      <statement>
+        <p>Find the focus and directrix of the parabola <m>x=\frac18y^2-y+1</m>. The point <m>(7,12)</m> lies on the graph of this parabola; verify that it is equidistant from the focus and directrix.</p>
+      </statement>
+      <solution>
+        <p>We need to put the equation of the parabola in its general form. This requires us to complete the square:
+          <md>
+            <mrow>x \amp = \frac18y^2-y+1</mrow>
+            <mrow>\amp = \frac18\big(y^2-8y+8\big)</mrow>
+            <mrow>\amp =	\frac18\big(y^2-8y+16 -16+8\big)</mrow>
+            <mrow>\amp =	\frac18\big((y-4)^2 - 8\big)</mrow>
+            <mrow>\amp =	\frac18(y-4)^2 -1.</mrow>
+          </md>
+        </p>
+
+        <p>Hence the vertex is located at <m>(-1,4)</m>. We have <m>\frac18=\frac1{4p}</m>, so <m>p=2</m>. We conclude that the focus is located at <m>(1,4)</m> and the directrix is <m>x=-3</m>. The parabola is graphed in <xref ref="fig_conic2">Figure</xref>, along with its focus and directrix.</p>
+
+        <figure xml:id="fig_conic2" >
+          <caption>The parabola described in <xref ref="ex_conic2">Example</xref>. The distances from a point on the parabola to the focus and directrix is given.</caption>
+          <!-- START figures/fig_conic2.tex -->
+          <image xml:id="img_conic2" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[%
+              %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={-10,-5,5,10},%
+              %			extra x ticks={.33},
+              %			extra x tick labels={$1/3$},
+			%ytick={1},
+			%minor y tick num=4,%extra y ticks={-5,-3,...,7},%
+			ymin=-5.5,ymax=14.5,%
+			xmin=-11,xmax=14%
+              ]
+
+              \addplot [thick, {\colorone},smooth,domain=-5:14] ({x^2/8-x+1},x);
+              \addplot [thick, {\colortwo},smooth,domain=-5:14] (-3,x);
+
+              \draw [dashed,{\colorone!70},thick] (axis cs:-3,12) -- node [above,pos=.5,black] {\scriptsize 10} (axis cs:7,12) -- node [pos=.6,right,black] {\scriptsize 10} (axis cs: 1,4);
+              \filldraw [{\colortwo}] (axis cs: 1,4) circle (1.5pt)
+												(axis cs: 7,12) circle (1.5pt);
+
+              \end{axis}
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_conic2.tex END -->
+        </figure>
+
+        <p>The point <m>(7,12)</m> lies on the graph and is <m>7-(-3)=10</m> units from the directrix. The distance from <m>(7,12)</m> to the focus is:
+          <me>
+            \sqrt{(7-1)^2 + (12-4)^2} = \sqrt{100}=10.
+          </me>
+        </p>
+
+        <p>Indeed, the point on the parabola is equidistant from the focus and directrix.</p>
+      </solution>
+    </example>
+  </introduction>
+
+  <subsection>
+    <title>Reflective Property</title>
+    <p>One of the fascinating things about the nondegenerate conic sections is their reflective properties. Parabolas have the following reflective property:
+	
+	Any ray emanating from the focus that intersects the parabola reflects off along a line perpendicular to the directrix.
+	
+	
+	This is illustrated in <xref ref="fig_conic_reflect">Figure</xref>. The following theorem states this more rigorously.</p>
+
+    <figure xml:id="fig_conic_reflect" >
+      <caption>Illustrating the parabola's reflective property.</caption>
+      <!-- START figures/fig_conic_reflect.tex -->
+      <image xml:id="img_conic_reflect" >
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+          \begin{axis}[%
+          axis y line=none,axis x line=none,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-10,-5,5,10},%
+          %			extra x ticks={.33},
+          %			extra x tick labels={$1/3$},
+			%ytick={1},
+			%minor y tick num=4,%extra y ticks={-5,-3,...,7},%
+			ymin=-6.5,ymax=14.5,%
+			xmin=-4,xmax=12%
+          ]
+
+          \coordinate (focus) at (axis cs: 1,4);
+
+          \addplot [very thick, {\colorone},smooth,domain=-6:14] ({x^2/8-x+1},x);
+          \addplot [very thick, {\colortwo},smooth,domain=-6:14] (-3,x);
+
+
+          \draw [thick]%(axis cs: 12,10) -- (axis cs: 3.5,10) -- (focus)
+			(axis cs: 12,12) -- (axis cs: 7,12) -- (focus)
+			(axis cs: 12,8) -- (axis cs: 1,8) -- (focus)
+			(axis cs: 12,3) -- (axis cs: -.875,3)
+			(axis cs: -.875,3)-- (focus)
+			%(axis cs: 12,0) -- (axis cs: 1,0) -- (focus)
+			(axis cs: 12,-3) -- (axis cs: 5.125,-3) -- (focus);
+			
+          \filldraw [{\colortwo}] (focus) circle (1.5pt);
+
+          \end{axis}
+
+          %
+          %
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_conic_reflect.tex END -->
+    </figure>
+
+    <theorem xml:id="thm_parabola_reflect">
+      <title>Reflective Property of the Parabola</title>
+      <statement>
+        <p>Let <m>P</m> be a point on a parabola. The tangent line to the parabola at <m>P</m> makes equal angles with the following two lines:</p>
+
+        <ol>
+          <li><p>The line containing <m>P</m> and the focus <m>F</m>, and</p></li>
+
+          <li><p>The line perpendicular to the directrix through <m>P</m>.
+		<index><main>parabola</main><sub>reflective property</sub></index></p></li>
+        </ol>
+      </statement>
+    </theorem>
+
+    <p>Because of this reflective property, paraboloids (the 3D analogue of parabolas) make for useful flashlight reflectors as the light from the bulb, ideally located at the focus, is reflected along parallel rays. Satellite dishes also have paraboloid shapes. Signals coming from satellites effectively approach the dish along parallel rays. The dish then <em>focuses</em> these rays at the focus, where the sensor is located.</p>
+
+    <p><em> Ellipses</em></p>
+
+    <definition xml:id="def_ellipse">
+      <title>Ellipse</title>
+      <statement>
+        <p>An <term>ellipse</term> is the locus of all points whose sum of distances from two fixed points, each a <term>focus</term> of the ellipse, is constant.<index><main>conic sections</main><sub>ellipse</sub></index><index><main>ellipse</main><sub>definition</sub></index><index><main>focus</main></index></p>
+      </statement>
+    </definition>
+
+    <p>An easy way to visualize this construction of an ellipse is to pin both ends of a string to a board. The pins become the foci. Holding a pencil tight against the string places the pencil on the ellipse; the sum of distances from the pencil to the pins is constant: the length of the string. See <xref ref="fig_ellipse_def">Figure</xref>.</p>
+
+    <figure xml:id="fig_ellipse_def" >
+      <caption>Illustrating the construction of an ellipse with pins, pencil and string.</caption>
+      <!-- START figures/fig_ellipse_def.tex -->
+      <image xml:id="img_ellipse_def" >
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+	
+	\draw [thick,dashed] (0,0) circle [x radius=2,y radius=1.5];
+	\filldraw (1.3,0) circle (1.5pt)
+						(-1.3,0) circle (1.5pt);
+	
+	\draw  (1.3,0) -- node [right,pos=.5] {\scriptsize $d_1$} (1.39,1.07) -- node [above,pos=.5] {\scriptsize $d_2$} (-1.3,0);
+	\draw (0,-.7) node {\scriptsize $d_1+d_2=$ constant};
+	
+	\begin{scope}[shift={(1.9cm,1.225cm)}]
+	\begin{scope}[rotate=120]
+	\begin{scope}[xscale=.25,yscale=.5]
+	
+	\draw (0,0) -- (0,-2) -- (1,-2)--(1,0) -- (.5,1) -- cycle;
+	\draw [fill=black] (.3,.6) -- ( .5,1)--(.7,.6)--cycle;
+	
+	\draw (0,0) cos (.5,-.1) sin (1,0);
+	
+	
+	\end{scope}
+	\end{scope}
+	\end{scope}
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_ellipse_def.tex END -->
+    </figure>
+
+    <p>We can again find an algebraic equation for an ellipse using this geometric definition. Let the foci be located along the <m>x</m>-axis, <m>c</m> units from the origin. Let these foci be labeled as <m>F_1 = (-c,0)</m> and <m>F_2=(c,0)</m>. Let <m>P=(x,y)</m> be a point on the ellipse. The sum of distances from <m>F_1</m> to <m>P</m> (<m>d_1</m>) and from <m>F_2</m> to <m>P</m> (<m>d_2</m>) is a constant <m>d</m>. That is, <m>d_1+d_2=d</m>. Using the Distance Formula, we have
+      <me>
+        \sqrt{(x+c)^2+y^2} + \sqrt{(x-c)^2+y^2} = d.
+      </me>
+    </p>
+
+    <p>Using a fair amount of algebra can produce the following equation of an ellipse (note that the equation is an implicitly defined function; it has to be, as an ellipse fails the Vertical Line Test):
+      <me>
+        \frac{x^2}{\left(\frac d2\right)^2} + \frac{y^2}{\left(\frac d2\right)^2-c^2} = 1.
+      </me>
+    </p>
+
+    <p>This is not particularly illuminating, but by making the substitution <m>a=d/2</m> and <m>b=\sqrt{a^2-c^2}</m>, we can rewrite the above equation as
+      <me>
+        \frac{x^2}{a^2} + \frac{y^2}{b^2} = 1.
+      </me>
+    </p>
+
+    <p>This choice of <m>a</m> and <m>b</m> is not without reason; as shown in <xref ref="fig_ellipse_label">Figure</xref>, the values of <m>a</m> and <m>b</m> have geometric meaning in the graph of the ellipse.</p>
+
+    <figure xml:id="fig_ellipse_label" >
+      <caption>Labeling the significant features of an ellipse.</caption>
+      <!-- START figures/fig_ellipse_label.tex -->
+      <image xml:id="img_ellipse_label" >
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+	
+	\draw [thick,{\colorone}] (0,0) circle [x radius=2,y radius=1.5];
+	
+	
+	\draw [thick,dashed] (-2.4,0) -- (2.4,0)
+												(0,1.8) -- (0,-1.9);
+												
+	\filldraw [{\colortwo}] (1.3,0) circle (1.5pt)
+						(-1.3,0) circle (1.5pt);
+	\draw [->,>=latex] (-2,-2) node [fill=white] {\scriptsize Major axis} -- (-2.2,-.1);
+	
+	\draw [->,>=latex] (2,-2) node [fill=white] {\scriptsize Minor axis} -- (.1,-1.8);
+	
+	\draw [->,>=latex] 	(-2,2)  -- (-2,.3);
+	\draw [->,>=latex] 	(-2,2) node [fill=white] {\scriptsize Vertices} -- (1.9,.1);
+	
+	\draw [->,>=latex] 	(2,2)  -- (-1.2,.1);
+	\draw [->,>=latex] 	(2,2) node [fill=white] {\scriptsize Foci} -- (1.3,.1);
+	\filldraw [{\colorone}] (2,0) circle (1.5pt)
+						(-2,0) circle (1.5pt);
+						
+	\draw (-1,-.25) node {\scriptsize $\underbrace{\rule{1.8cm}{0pt}}_a$};
+	\draw (.65,-.25) node {\scriptsize $\underbrace{\rule{1.1cm}{0pt}}_c$};
+	%\draw (.25,.75) node [fill=white] {\scriptsize $\left.\rule[-.65cm]{0pt}{1.3cm}\right\}b$};
+	\draw (-.25,.75) node [] {\scriptsize $b\left\{\rule[-.65cm]{0pt}{1.3cm}\right.$};
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_ellipse_label.tex END -->
+    </figure>
+
+    <p>In general, the two foci of an ellipse lie on the <em>major axis</em> of the ellipse, and the midpoint of the segment joining the two foci is the <em>center</em>. The major axis intersects the ellipse at two points, each of which is a <em>vertex</em>. The line segment through the center and perpendicular to the major axis is the <em>minor axis</em>. The <q>constant sum of distances</q> that defines the ellipse is the length of the major axis, i.e., <m>2a</m>.
+	
+	Allowing for the shifting of the ellipse gives the following standard equations.</p>
+
+    <insight xml:id="idea_ellipse">
+      <title>Standard Equation of the Ellipse</title>
+      <p>The equation of an ellipse centered at <m>(h,k)</m> with major axis of length <m>2a</m> and minor axis of length <m>2b</m> in standard form is:</p>
+
+      <ol>
+        <li><p><em>Horizontal major axis:</em> <m>\ds \frac{(x-h)^2}{a^2}+\frac{(y-k)^2}{b^2}=1</m>.</p></li>
+
+        <li><p><em>Vertical major axis:</em> <m>\ds \frac{(x-h)^2}{b^2}+\frac{(y-k)^2}{a^2}=1</m>.</p></li>
+      </ol>
+
+      <p>The foci lie along the major axis, <m>c</m> units from the center, where <m>c^2=a^2-b^2</m>.
+	<index><main>ellipse</main><sub>standard equation</sub></index></p>
+    </insight>
+
+    <example xml:id="ex_conic3">
+      <title>Finding the equation of an ellipse</title>
+      <statement>
+        <p>Find the general equation of the ellipse graphed in <xref ref="fig_conic3">Figure</xref>.</p>
+      </statement>
+      <solution>
+        <p>The center is located at <m>(-3,1)</m>. The distance from the center to a vertex is 5 units, hence <m>a=5</m>. The minor axis seems to have length 4, so <m>b=2</m>. Thus the equation of the ellipse is
+          <me>
+            \frac{(x+3)^2}{4}+\frac{(y-1)^2}{25} = 1.
+          </me>
+        </p>
+
+        <figure xml:id="fig_conic3" >
+          <caption>The ellipse used in <xref ref="ex_conic3">Example</xref>.</caption>
+          <!-- START figures/fig_conic3.tex -->
+          <image xml:id="img_conic3" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[%
+              %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={-6,-4,-2,2,4,6},%
+              %			extra x ticks={.33},
+              %			extra x tick labels={$1/3$},
+			ytick={-4,-2,2,4,6},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-4.9,ymax=6.9,%
+			xmin=-6.9,xmax=6.9%
+              ]
+
+              \addplot [thick, {\colorone},smooth,domain=0:360,samples=60] ({2*cos(x)-3},{5*sin(x)+1});
+              \filldraw (axis cs:-3,1)  circle (1.5pt);
+              %\filldraw (axis cs:1,-10) node [shift={(0pt,20pt)}] {\tiny \parbox{50pt}{\centering c. up \vskip 2pt $\Rightarrow$ rel. min}} circle (1pt);
+              %\filldraw (axis cs:1.16,11.04) circle (1pt);
+
+              \end{axis}
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_conic3.tex END -->
+        </figure>
+      </solution>
+    </example>
+
+    <example xml:id="ex_conic4">
+      <title>Graphing an ellipse</title>
+      <statement>
+        <p>Graph the ellipse defined by <m>4x^2+9y^2-8x-36y=-4</m>.</p>
+      </statement>
+      <solution>
+        <p>It is simple to graph an ellipse once it is in standard form. In order to put the given equation in standard form, we must complete the square with both the <m>x</m> and <m>y</m> terms. We first rewrite the equation by regrouping:
+          <me>
+            4x^2+9y^2-8x-36y=-4  \Rightarrow  (4x^2-8x) + (9y^2-36y) = -4.
+          </me>
+        </p>
+
+        <p>Now we complete the squares.
+          <md>
+            <mrow>(4x^2-8x) + (9y^2-36y) \amp = -4</mrow>
+            <mrow>4(x^2-2x) + 9(y^2-4y) \amp = -4</mrow>
+            <mrow>4(x^2-2x +1 - 1) + 9(y^2-4y+4-4) \amp = - 4</mrow>
+            <mrow>4\big((x-1)^2-1\big) + 9\big((y-2)^2-4\big) \amp = -4</mrow>
+            <mrow>4(x-1)^2 -4 + 9(y-2)^2-36 \amp = -4</mrow>
+            <mrow>4(x-1)^2 + 9(y-2)^2 \amp = 36</mrow>
+            <mrow>\frac{(x-1)^2}{9} + \frac{(y-2)^2}{4} \amp = 1.</mrow>
+          </md>
+        </p>
+
+        <p>We see the center of the ellipse is at <m>(1,2)</m>. We have <m>a=3</m> and <m>b=2</m>; the major axis is horizontal, so the vertices are located at <m>(-2,2)</m> and <m>(4,2)</m>. We find <m>c=\sqrt{9-4} = \sqrt{5}\approx 2.24</m>. The foci are located along the major axis, approximately <m>2.24</m> units from the center, at <m>(1\pm 2.24,2)</m>. This is all graphed in <xref ref="fig_conic4">Figure</xref></p>
+
+        <figure xml:id="fig_conic4" >
+          <caption>Graphing the ellipse in <xref ref="ex_conic4">Example</xref>.</caption>
+          <!-- START figures/fig_conic4.tex -->
+          <image xml:id="img_conic4" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[%
+              %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={-2,-1,1,2,3,4},%
+              %			extra x ticks={.33},
+              %			extra x tick labels={$1/3$},
+			ytick={-1,1,2,3,4},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-2,ymax=5,%
+			xmin=-3,xmax=5%
+              ]
+
+              \addplot [thick, {\colorone},smooth,domain=0:360,samples=60] ({3*cos(x)+1},{2*sin(x)+2});
+              \filldraw (axis cs:1,2)  circle (1.5pt)
+					(axis cs:3.24,2) circle (1pt)
+					(axis cs:-1.24,2) circle (1pt);
+					
+              \filldraw [{\colorone}] (axis cs: 4,2) circle (1.5pt)
+												(axis cs: -2,2) circle (1.5pt);
+              %\filldraw (axis cs:1,-10) node [shift={(0pt,20pt)}] {\tiny \parbox{50pt}{\centering c. up \vskip 2pt $\Rightarrow$ rel. min}} circle (1pt);
+              %\filldraw (axis cs:1.16,11.04) circle (1pt);
+
+              \end{axis}
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_conic4.tex END -->
+        </figure>
+      </solution>
+    </example>
+  </subsection>
+
+  <subsection>
+    <title>Eccentricity</title>
+    <p>When <m>a=b</m>, we have a circle. The general equation becomes
+      <me>
+        \frac{(x-h)^2}{a^2} + \frac{(y-k)^2}{a^2} = 1  \Rightarrow (x-h)^2 + (y-k)^2 = a^2,
+      </me>
+      the familiar equation of the circle centered at <m>(h,k)</m> with radius <m>a</m>. Since <m>a=b</m>, <m>c = \sqrt{a^2-b^2}=0</m>. The circle has <q>two</q> foci, but they lie on the same point, the center of the circle.</p>
+
+    <p>Consider <xref ref="fig_ellipse_ecc">Figure</xref>, where several ellipses are graphed with <m>a=1</m>. In (a), we have <m>c=0</m> and the ellipse is a circle. As <m>c</m> grows, the resulting ellipses look less and less circular. A measure of this <q>noncircularness</q> is <em>eccentricity</em>.</p>
+
+    <figure xml:id="fig_ellipse_ecc" >
+    <caption>Understanding the eccentricity of an ellipse.</caption>
+    <sidebyside>
+      <figure>
+        <caption>(a)</caption>
+        <!-- START figures/fig_ellipse_ecca.tex -->
+        <image xml:id="img_ellipse_ecca" >
+          <description></description>
+          <latex-image-code>
+            <![CDATA[
+            \begin{tikzpicture}
+            \begin{axis}[%
+            %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={-1,1},%
+            %			extra x ticks={.33},
+            %			extra x tick labels={$1/3$},
+			ytick={-1,1},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-1.1,ymax=1.1,%
+			xmin=-1.35,xmax=1.35%
+            ]
+
+            \addplot [thick, {\colorone},smooth,domain=0:360,samples=60] ({cos(x)},{sin(x)});
+            \filldraw (axis cs:0,0)  circle (1.5pt);
+
+            \draw (axis cs:.8,-.9) node {\scriptsize $e=0$};
+            %\draw (axis cs:0,0) circle (49pt);
+					
+            \end{axis}
+
+
+
+            \end{tikzpicture}
+            ]]>
+          </latex-image-code>
+        </image>
+        <!-- figures/fig_ellipse_ecca.tex END -->
+      </figure>
+
+      <figure>
+        <caption>(b)</caption>
+        <!-- START figures/fig_ellipse_eccb.tex -->
+        <image xml:id="img_ellipse_eccb" >
+          <description></description>
+          <latex-image-code>
+            <![CDATA[
+            \begin{tikzpicture}
+            \begin{axis}[%
+            %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={-1,1},%
+            %			extra x ticks={.33},
+            %			extra x tick labels={$1/3$},
+			ytick={-1,1},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-1.1,ymax=1.1,%
+			xmin=-1.35,xmax=1.35%
+            ]
+
+            \addplot [thick, {\colorone},smooth,domain=0:360,samples=60] ({cos(x)},{.95*sin(x)});
+            \filldraw (axis cs:.3,0)  circle (1.5pt)
+					(axis cs:-.3,0)  circle (1.5pt);
+
+            \draw (axis cs:.8,-.9) node {\scriptsize $e=0.3$};					
+            \end{axis}
+
+
+
+            \end{tikzpicture}
+            ]]>
+          </latex-image-code>
+        </image>
+        <!-- figures/fig_ellipse_eccb.tex END -->
+      </figure>
+
+      <figure>
+        <caption>(c)</caption>
+        <!-- START figures/fig_ellipse_eccc.tex -->
+        <image xml:id="img_ellipse_eccc" >
+          <description></description>
+          <latex-image-code>
+            <![CDATA[
+            \begin{tikzpicture}
+            \begin{axis}[%
+            %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={-1,1},%
+            %			extra x ticks={.33},
+            %			extra x tick labels={$1/3$},
+			ytick={-1,1},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-1.1,ymax=1.1,%
+			xmin=-1.35,xmax=1.35%
+            ]
+
+            \addplot [thick, {\colorone},smooth,domain=0:360,samples=60] ({cos(x)},{.6*sin(x)});
+            \filldraw (axis cs:.8,0)  circle (1.5pt)
+					(axis cs:-.8,0)  circle (1.5pt);
+
+            \draw (axis cs:.8,-.9) node {\scriptsize $e=0.8$};					
+            \end{axis}
+
+
+
+            \end{tikzpicture}
+            ]]>
+          </latex-image-code>
+        </image>
+        <!-- figures/fig_ellipse_eccc.tex END -->
+      </figure>
+
+      <figure>
+        <caption>(d)</caption>
+        <!-- START figures/fig_ellipse_eccd.tex -->
+        <image xml:id="img_ellipse_eccd" >
+          <description></description>
+          <latex-image-code>
+            <![CDATA[
+            \begin{tikzpicture}
+            \begin{axis}[%
+            %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={-1,1},%
+            %			extra x ticks={.33},
+            %			extra x tick labels={$1/3$},
+			ytick={-1,1},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-1.1,ymax=1.1,%
+			xmin=-1.35,xmax=1.35%
+            ]
+
+            \addplot [thick, {\colorone},smooth,domain=0:360,samples=60] ({cos(x)},{.141*sin(x)});
+            \filldraw (axis cs:.99,0)  circle (1.5pt)
+					(axis cs:-.99,0)  circle (1.5pt);
+
+            \draw (axis cs:.8,-.9) node {\scriptsize $e=0.99$};					
+            \end{axis}
+
+
+
+            \end{tikzpicture}
+            ]]>
+          </latex-image-code>
+        </image>
+        <!-- figures/fig_ellipse_eccd.tex END -->
+      </figure>
+    </sidebyside>
+
+    </figure>
+
+    <definition xml:id="def_eccentricity_ellipse">
+      <title>Eccentricity of an Ellipse</title>
+      <statement>
+        <p>The eccentricity <m>e</m> of an ellipse is <m>\ds e=\frac{c}{a}</m>.
+          <index><main>ellipse</main><sub>eccentricity</sub></index><index><main>eccentricity</main></index></p>
+      </statement>
+    </definition>
+
+    <p>The eccentricity of a circle is 0; that is, a circle has no <q>noncircularness.</q> As <m>c</m> approaches <m>a</m>, <m>e</m> approaches 1, giving rise to a very noncircular ellipse, as seen in <xref ref="fig_ellipse_ecc">Figure</xref> (d).</p>
+
+    <p>It was long assumed that planets had circular orbits. This is known to be incorrect; the orbits are elliptical. Earth has an eccentricity of <m>0.0167</m> <mdash /> it has a nearly circular orbit. Mercury's orbit is the most eccentric, with <m>e=0.2056</m>. (Pluto's eccentricity is greater, at <m>e=0.248</m>, the greatest of all the currently known dwarf planets.) The planet with the most circular orbit is Venus, with <m>e=0.0068</m>. The Earth's moon has an eccentricity of <m>e=0.0549</m>, also very circular.</p>
+
+    <p><em> Reflective Property</em>
+      The ellipse also possesses an interesting reflective property. Any ray emanating from one focus of an ellipse reflects off the ellipse along a line through the other focus, as illustrated in <xref ref="fig_ellipse_reflect">Figure</xref>. This property is given formally in the following theorem.</p>
+
+    <figure xml:id="fig_ellipse_reflect" >
+      <caption>Illustrating the reflective property of an ellipse.</caption>
+      <!-- START figures/fig_ellipse_reflect.tex -->
+      <image xml:id="img_ellipse_reflect" >
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}[scale=1.2]%[width=\marginparwidth+25pt]
+
+          \draw [thick] (0,0) circle[x radius=2cm,y radius = 1.2cm];
+
+          \filldraw (1.6,0)  circle (1.5pt) node [above left] {\scriptsize $F_2$}
+					(-1.6,0)  circle (1.5pt) node [above] {\scriptsize $F_1$};
+					
+          \draw[->,>=latex,{\colorone},thick] (1.6,0) -- ({2*cos(30)},{1.2*sin(30)});% -- (-1.6,0);
+          \draw[->,>=latex,{\colorone},thick]({2*cos(30)},{1.2*sin(30)}) -- (-1.55,0);
+          \draw[->,>=latex,{\colortwo},thick] (-1.6,0) -- ({2*cos(250)},{1.2*sin(250)});% -- (-1.6,0);
+          \draw[->,>=latex,{\colortwo},thick]  ({2*cos(250)},{1.2*sin(250)}) -- (1.55,0);
+
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_ellipse_reflect.tex END -->
+    </figure>
+
+    <theorem xml:id="thm_ellipse_reflect">
+      <title>Reflective Property of an Ellipse</title>
+      <statement>
+        <p>Let <m>P</m> be a point on a ellipse with foci <m>F_1</m> and <m>F_2</m>. The tangent line to the ellipse at <m>P</m> makes equal angles with the following two lines:<index><main>ellipse</main><sub>reflective property</sub></index></p>
+
+        <ol>
+          <li><p>The line through <m>F_1</m> and <m>P</m>, and</p></li>
+
+          <li><p>The line through <m>F_2</m> and <m>P</m>.</p></li>
+        </ol>
+      </statement>
+    </theorem>
+
+    <p>This reflective property is useful in optics and is the basis of the phenomena experienced in whispering halls.</p>
+  </subsection>
+
+  <subsection>
+    <title>Hyperbolas</title>
+    <p>The definition of a hyperbola is very similar to the definition of an ellipse; we essentially just change the word <q>sum</q> to <q>difference.</q></p>
+
+    <definition xml:id="def_hyperbola">
+      <title>Hyperbola</title>
+      <statement>
+        <p>A <term>hyperbola</term> is the locus of all points where the absolute value of difference of distances from two fixed points, each a focus of the hyperbola, is constant.
+          <index><main>conic sections</main><sub>hyperbola</sub></index><index><main>hyperbola</main><sub>definition</sub></index><index><main>focus</main></index></p>
+      </statement>
+    </definition>
+
+    <p>We do not have a convenient way of visualizing the construction of a hyperbola as we did for the ellipse. The geometric definition does allow us to find an algebraic expression that describes it. It will be useful to define some terms first.</p>
+
+    <p>The two foci lie on the <em>transverse axis</em> of the hyperbola; the midpoint of the line segment joining the foci is the <em>center</em> of the hyperbola. The transverse axis intersects the hyperbola at two points, each a <em>vertex</em> of the hyperbola. The line through the center and perpendicular to the transverse axis is the <em>conjugate axis.</em> This is illustrated in <xref ref="fig_hyperbola_def">Figure</xref>. It is easy to show that the constant difference of distances used in the definition of the hyperbola is the distance between the vertices, i.e., <m>2a</m>.</p>
+
+    <figure xml:id="fig_hyperbola_def" >
+      <caption>Labeling the significant features of a hyperbola.</caption>
+      <!-- START figures/fig_hyperbola_def.tex -->
+      <image xml:id="img_hyperbola_def" >
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+          \begin{axis}[%
+          axis y line=none,axis x line=none,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-1,1},%
+          %			extra x ticks={.33},
+          %			extra x tick labels={$1/3$},
+			%ytick={-1,1},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-3.2,ymax=3.2,%
+			xmin=-3.2,xmax=3.2%
+          ]
+
+          \addplot [thick, {\colorone},smooth,domain=-70:70,samples=60] ({sec(x)},{tan(x)});
+          \addplot [thick, {\colorone},smooth,domain=-70:70,samples=60] ({-sec(x)},{tan(x)});
+          \filldraw (axis cs:0,0)  circle (1.5pt);
+
+												
+
+
+          \draw [thick,dashed] 	(axis cs:-3.2,0) --  node [above,pos=.88] {\scriptsize Transverse} node [below,pos=.88] {\scriptsize axis}(axis cs:3.2,0)
+											(axis cs:0,-3.2) -- node [below,rotate=90,pos=.8] {\scriptsize  axis }node [above,rotate=90,pos=.8] {\scriptsize Conjugate}(axis cs:0,3.2);
+											
+          \filldraw [{\colorone}] (axis cs:1,0)  circle (1.5pt)
+												(axis cs:-1,0)  circle (1.5pt);
+											
+          \filldraw [{\colortwo}] (axis cs:1.4,0)  circle (1.5pt) node (f1) {}
+												(axis cs:-1.4,0)  circle (1.5pt) node (f2) {};
+
+          \draw [->,>=latex] (axis cs: 1.25,-2.8) -- (axis cs: -1.35,-.1);
+          \draw [->,>=latex] (axis cs: 1.25,-2.8) node [fill=white] {\scriptsize Foci } -- (axis cs: 1.4,-.1);	
+
+          \draw [->,>=latex] (axis cs: -1.25,-2.8) -- (axis cs: -1,-.1);
+          \draw [->,>=latex] (axis cs: -1.25,-2.8) node [fill=white] {\scriptsize Vertices} -- (axis cs: .95,-.1);	
+
+          \draw (axis cs:-.5,.4) node {\scriptsize $\overbrace{\rule{18pt}{0pt}}^a$};
+
+          \draw (axis cs:.7,.4) node {\scriptsize $\overbrace{\rule{25pt}{0pt}}^c$};									
+
+          \end{axis}
+
+          %
+          %
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_hyperbola_def.tex END -->
+    </figure>
+
+    <insight xml:id="idea_hyperbola">
+      <title>Standard Equation of a Hyperbola</title>
+      <p>The equation of a hyperbola centered at <m>(h,k)</m> in standard form is:
+        <index><main>hyperbola</main><sub>standard equation</sub></index></p>
+
+      <ol>
+        <li><p><em>Horizontal Transverse Axis:</em>  <m>\ds \frac{(x-h)^2}{a^2} - \frac{(y-k)^2}{b^2} = 1</m>.</p></li>
+
+        <li><p><em>Vertical Transverse Axis:</em>  <m>\ds \frac{(y-k)^2}{a^2}-\frac{(x-h)^2}{b^2} = 1</m>.</p></li>
+      </ol>
+
+      <p>The vertices are located <m>a</m> units from the center and the foci are located <m>c</m> units from the center, where <m>c^2 = a^2+b^2</m>.</p>
+    </insight>
+
+    <p><em> Graphing Hyperbolas</em>
+      Consider the hyperbola <m>\frac{x^2}9-\frac{y^2}1 = 1</m>. Solving for <m>y</m>, we find <m>y=\pm\sqrt{x^2/9-1}</m>. As <m>x</m> grows large, the <q><m>-1</m></q> part of the equation for <m>y</m> becomes less significant and <m>y\approx \pm\sqrt{x^2/9} = \pm x/3</m>. That is, as <m>x</m> gets large, the graph of the hyperbola looks very much like the lines <m>y=\pm x/3</m>. These lines are asymptotes of the hyperbola, as shown in <xref ref="fig_hyperbola_asy1">Figure</xref>.</p>
+
+    <figure xml:id="fig_hyperbola_asy1" >
+      <caption>Graphing the hyperbola <m>\frac{x^2}9-\frac{y^2}1 = 1</m> along with its asymptotes, <m>y=\pm x/3</m>.</caption>
+      <!-- START figures/fig_hyperbola_asy1.tex -->
+      <image xml:id="img_hyperbola_asy1" >
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+          \begin{axis}[%
+          %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-5,-3,-1,3,5,1},%
+          %			extra x ticks={.33},
+          %			extra x tick labels={$1/3$},
+			%ytick={-1,-2,2,1},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-3.2,ymax=3.2,%
+			xmin=-8.2,xmax=8.2%
+          ]
+
+          \addplot [thick, {\colorone},smooth,domain=-70:70,samples=60] ({3*sec(x)},{tan(x)});
+          \addplot [thick, {\colorone},smooth,domain=-70:70,samples=60] ({-3*sec(x)},{tan(x)});
+
+          \addplot [thick,dashed,{\colortwo},domain=-8:8] {x/3};
+          \addplot [thick,dashed,{\colortwo},domain=-8:8] {-x/3};
+												%
+							
+
+          \end{axis}
+
+
+
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_hyperbola_asy1.tex END -->
+    </figure>
+
+    <p>This is a valuable tool in sketching. Given the equation of a hyperbola in general form, draw a rectangle centered at <m>(h,k)</m> with sides of length <m>2a</m> parallel to the transverse axis and sides of length <m>2b</m> parallel to the conjugate axis. (See <xref ref="fig_hyperbola_asy2">Figure</xref> for an example with a horizontal transverse axis.) The diagonals of the rectangle lie on the asymptotes.</p>
+
+    <figure xml:id="fig_hyperbola_asy2" >
+      <caption>Using the asymptotes of a hyperbola as a graphing aid.</caption>
+      <!-- START figures/fig_hyperbola_asy2.tex -->
+      <image xml:id="img_hyperbola_asy2" >
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+          \begin{axis}[%
+          %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick=\empty,
+			extra x ticks={2,8,5},
+			extra x tick labels={$h-a$, $h+a$,$h$},
+			ytick=\empty,
+			%
+			extra y ticks={2,4,6},
+			extra y tick labels={$k-b$, $k$, $k+b$},%
+			ymin=-2.2,ymax=10.2,%
+			xmin=-3.2,xmax=13.2%
+          ]
+
+          \addplot [thick, {\colorone},smooth,domain=-70:70,samples=60] ({3*sec(x)+5},{2*tan(x)+4});
+          \addplot [thick, {\colorone},smooth,domain=-70:70,samples=60] ({-3*sec(x)+5},{2*tan(x)+4});
+
+          \draw [thick,dashed] (axis cs: 2,6) -- (axis cs:8,6) -- (axis cs:8,2) -- (axis cs: 2,2) -- cycle;
+          \addplot [thick,dashed,{\colortwo},domain=-3:13] {2*(x-5)/3+4};
+          \addplot [thick,dashed,{\colortwo},domain=-3:13] {-2*(x-5)/3+4};
+
+          \filldraw (axis cs:5,4) circle (1.5pt);
+          \filldraw [{\colorone}] (axis cs:2,4) circle (1.5pt);
+          \filldraw [{\colorone}] (axis cs:8,4) circle (1.5pt);
+
+          %\draw (axis cs:2,3.5) node {\scriptsize $\overbrace{\rule{47pt}{0pt}}^{2b}$};
+          %\draw (axis cs:4,1) node {\scriptsize $2a\left\{\rule{0pt}{35pt}\right.$};
+												%
+							
+
+          \end{axis}
+
+
+
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_hyperbola_asy2.tex END -->
+    </figure>
+
+    <p>These lines pass through <m>(h,k)</m>. When the transverse axis is horizontal, the slopes are <m>\pm b/a</m>; when the transverse axis is vertical, their slopes are <m>\pm a/b</m>. This gives equations:</p>
+    <tabular>
+      <row>
+        <cell>\text{ Horizontal</cell>
+      </row>
+      <row>
+        <cell>Transverse Axis }</cell>
+        <cell>\text{ Vertical</cell>
+      </row>
+      <row>
+        <cell>Transverse Axis }</cell>
+      </row>
+      <row>
+        <cell><nbsp /></cell>
+      </row>
+      <row>
+        <cell><m>\ds y=\pm\frac ba(x-h)+k</m></cell>
+        <cell><m>\ds  y=\pm\frac ab(x-h)+k</m>.</cell>
+      </row>
+    </tabular>
+
+    <example xml:id="ex_conic5">
+      <title>Graphing a hyperbola</title>
+      <statement>
+        <p>Sketch the hyperbola given by <m>\ds \frac{(y-2)^2}{25}-\frac{(x-1)^2}{4}=1</m>.</p>
+      </statement>
+      <solution>
+        <p>The hyperbola is centered at <m>(1,2)</m>; <m>a=5</m> and <m>b=2</m>. In <xref ref="fig_conic5">Figure</xref> we draw the prescribed rectangle centered at <m>(1,2)</m> along with the asymptotes defined by its diagonals. The hyperbola has a vertical transverse axis, so the vertices are located at <m>(1,7)</m> and <m>(1,-3)</m>. This is enough to make a good sketch.</p>
+
+        <figure xml:id="fig_conic5" >
+          <caption>Graphing the hyperbola in <xref ref="ex_conic5">Example</xref>.</caption>
+          <!-- START figures/fig_conic5.tex -->
+          <image xml:id="img_conic5" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[%
+              %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick=\empty,
+			minor x tick num=4,
+			%extra x ticks={2,8,5},
+			%extra x tick labels={$h-a$, $h+a$,$h$},
+			%ytick=\empty,
+			minor y tick num=4,
+			%extra y ticks={2,4,6},
+			%extra y tick labels={$k-b$, $k$, $k+b$},%
+			ymin=-7.2,ymax=11.2,%
+			xmin=-5.2,xmax=7.2%
+              ]
+
+              \addplot [thick, {\colorone},smooth,domain=-70:70,samples=60] ({2*tan(x)+1},{5*sec(x)+2});
+              \addplot [thick, {\colorone},smooth,domain=-70:70,samples=60] ({2*tan(x)+1},{-5*sec(x)+2});
+
+              \draw [thick,dashed] (axis cs: -1,7) -- (axis cs:3,7) -- (axis cs:3,-3) -- (axis cs: -1,-3) -- cycle;
+              \addplot [thick,dashed,{\colortwo},domain=-3:13] {5*(x-1)/2+2};
+              \addplot [thick,dashed,{\colortwo},domain=-3:13] {-5*(x-1)/2+2};
+
+              \filldraw (axis cs:1,2) circle (1.5pt);
+              \filldraw [{\colorone}] (axis cs:1,7) circle (1.5pt);
+              \filldraw [{\colorone}] (axis cs:1,-3) circle (1.5pt);
+              \filldraw [{\colortwo}] (axis cs:1,7.4) circle (1.5pt);
+              \filldraw [{\colortwo}] (axis cs:1,-3.4) circle (1.5pt);
+
+
+
+              %\draw (axis cs:2,3.5) node {\scriptsize $\overbrace{\rule{47pt}{0pt}}^{2b}$};
+              %\draw (axis cs:4,1) node {\scriptsize $2a\left\{\rule{0pt}{35pt}\right.$};
+												%
+							
+
+              \end{axis}
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_conic5.tex END -->
+        </figure>
+
+        <p>We also find the location of the foci: as <m>c^2= a^2+b^2</m>, we have <m>c=\sqrt{29}\approx 5.4</m>. Thus the foci are located at <m>(1,2\pm 5.4)</m> as shown in the figure.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_conic6">
+      <title>Graphing a hyperbola</title>
+      <statement>
+        <p>Sketch the hyperbola given by <m>9x^2-y^2+2y=10</m>.</p>
+      </statement>
+      <solution>
+        <p>We must complete the square to put the equation in general form. (We recognize this as a hyperbola since it is a general quadratic equation and the <m>x^2</m> and <m>y^2</m> terms have opposite signs.)
+          <md>
+            <mrow>9x^2-y^2+2y \amp =10</mrow>
+            <mrow>9x^2- (y^2-2y) \amp = 10</mrow>
+            <mrow>9x^2 - (y^2-2y+1-1) \amp = 10</mrow>
+            <mrow>9x^2 -\big((y-1)^2-1\big) \amp = 10</mrow>
+            <mrow>9x^2 - (y-1)^2 \amp = 9</mrow>
+            <mrow>x^2 - \frac{(y-1)^2}{9} \amp =1</mrow>
+          </md>
+        </p>
+
+        <figure xml:id="fig_conic6" >
+          <caption>Graphing the hyperbola in <xref ref="ex_conic6">Example</xref>.</caption>
+          <!-- START figures/fig_conic6.tex -->
+          <image xml:id="img_conic6" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[%
+              %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick=\empty,
+			%extra x ticks={2,8,5},
+			%extra x tick labels={$h-a$, $h+a$,$h$},
+			%ytick=\empty,
+			minor y tick num=4,
+			%extra y ticks={2,4,6},
+			%extra y tick labels={$k-b$, $k$, $k+b$},%
+			ymin=-10.9,ymax=11.9,%
+			xmin=-4.2,xmax=4.2%
+              ]
+
+              \addplot [thick, {\colorone},smooth,domain=-75:75,samples=60] ({sec(x)},{3*tan(x)+1});
+              \addplot [thick, {\colorone},smooth,domain=-75:75,samples=60] ({-sec(x)},{3*tan(x)+1});
+
+              \draw [thick,dashed] (axis cs: -1,4) -- (axis cs:1,4) -- (axis cs:1,-2) -- (axis cs: -1,-2) -- cycle;
+              \addplot [thick,dashed,{\colortwo},domain=-4:4] {3*(x-0)/1+1};
+              \addplot [thick,dashed,{\colortwo},domain=-4:4] {-3*(x-0)/1+1};
+
+              \filldraw (axis cs:0,1) circle (1.5pt);
+              \filldraw [{\colorone}] (axis cs:-1,1) circle (1.5pt);
+              \filldraw [{\colorone}] (axis cs:1,1) circle (1.5pt);
+              \filldraw [{\colortwo}] (axis cs:3.2,1) circle (1.5pt);
+              \filldraw [{\colortwo}] (axis cs:-3.2,1) circle (1.5pt);
+
+
+
+              %\draw (axis cs:2,3.5) node {\scriptsize $\overbrace{\rule{47pt}{0pt}}^{2b}$};
+              %\draw (axis cs:4,1) node {\scriptsize $2a\left\{\rule{0pt}{35pt}\right.$};
+												%
+							
+
+              \end{axis}
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_conic6.tex END -->
+        </figure>
+
+        <p>We see the hyperbola is centered at <m>(0,1)</m>, with a horizontal transverse axis, where <m>a=1</m> and <m>b=3</m>. The appropriate rectangle is sketched in <xref ref="fig_conic6">Figure</xref> along with the asymptotes of the hyperbola. The vertices are located at <m>(\pm 1,1)</m>. We have <m>c=\sqrt{10}\approx 3.2</m>, so the foci are located at <m>(\pm 3.2,1)</m> as shown in the figure.</p>
+      </solution>
+    </example>
+  </subsection>
+
+  <subsection>
+    <title>Eccentricity</title>
+    <definition xml:id="def_hyperbola_eccentricity">
+      <title>Eccentricity of a Hyperbola</title>
+      <statement>
+        <p>The eccentricity of a hyperbola is <m>\ds e=\frac ca</m>.<index><main>hyperbola</main><sub>eccentricity</sub></index><index><main>eccentricity</main></index></p>
+      </statement>
+    </definition>
+
+    <figure xml:id="fig_hyperbola_ecc" >
+    <caption>Understanding the eccentricity of a hyperbola.</caption>
+    <sidebyside>
+      <figure>
+        <caption>(a)</caption>
+        <!-- START figures/fig_hyperbola_ecca.tex -->
+        <image xml:id="img_hyperbola_ecca" >
+          <description></description>
+          <latex-image-code>
+            <![CDATA[
+            \begin{tikzpicture}
+            \begin{axis}[%
+            %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={-10,-5,5,10},
+			minor x tick num=4,%
+            %			extra x ticks={.33},
+            %			extra x tick labels={$1/3$},
+			ytick={-10,-5,5,10},
+			minor y tick num=4,%extra y ticks={-5,-3,...,7},%
+			ymin=-11.9,ymax=11.9,%
+			xmin=-11.9,xmax=11.9%
+            ]
+
+            \addplot [thick, {\colorone},smooth,domain=-85:85,samples=60] ({sec(x)},{.32*tan(x)});
+            \addplot [thick, {\colorone},smooth,domain=-85:85,samples=60] ({-sec(x)},{.32*tan(x)});
+
+            \filldraw (axis cs:0,0) circle (1.5pt);
+            \filldraw [{\colorone}] (axis cs:-1,0) circle (1.5pt);
+            \filldraw [{\colorone}] (axis cs:1,0) circle (1.5pt);
+            \filldraw [{\colortwo}] (axis cs:1.05,0) circle (1.5pt);
+            \filldraw [{\colortwo}] (axis cs:-1.05,0) circle (1.5pt);
+
+            \draw (axis cs: 9,-6) node {\scriptsize $e = 1.05$};					
+
+            \end{axis}
+
+
+
+            \end{tikzpicture}
+            ]]>
+          </latex-image-code>
+        </image>
+        <!-- figures/fig_hyperbola_ecca.tex END -->
+      </figure>
+
+      <figure>
+        <caption>(b)</caption>
+        <!-- START figures/fig_hyperbola_eccb.tex -->
+        <image xml:id="img_hyperbola_eccb" >
+          <description></description>
+          <latex-image-code>
+            <![CDATA[
+            \begin{tikzpicture}
+            \begin{axis}[%
+            %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={-10,-5,5,10},
+			minor x tick num=4,%
+            %			extra x ticks={.33},
+            %			extra x tick labels={$1/3$},
+			ytick={-10,-5,5,10},
+			minor y tick num=4,%extra y ticks={-5,-3,...,7},%
+			ymin=-11.9,ymax=11.9,%
+			xmin=-11.9,xmax=11.9%
+            ]
+
+            \addplot [thick, {\colorone},smooth,domain=-85:85,samples=60] ({sec(x)},{1.12*tan(x)});
+            \addplot [thick, {\colorone},smooth,domain=-85:85,samples=60] ({-sec(x)},{1.12*tan(x)});
+
+            \filldraw (axis cs:0,0) circle (1.5pt);
+            \filldraw [{\colorone}] (axis cs:-1,0) circle (1.5pt);
+            \filldraw [{\colorone}] (axis cs:1,0) circle (1.5pt);
+            \filldraw [{\colortwo}] (axis cs:1.5,0) circle (1.5pt);
+            \filldraw [{\colortwo}] (axis cs:-1.5,0) circle (1.5pt);
+
+            \draw (axis cs: 9,-6) node {\scriptsize $e = 1.5$};					
+
+            \end{axis}
+
+
+
+            \end{tikzpicture}
+            ]]>
+          </latex-image-code>
+        </image>
+        <!-- figures/fig_hyperbola_eccb.tex END -->
+      </figure>
+
+      <figure>
+        <caption>(c)</caption>
+        <!-- START figures/fig_hyperbola_eccc.tex -->
+        <image xml:id="img_hyperbola_eccc" >
+          <description></description>
+          <latex-image-code>
+            <![CDATA[
+            \begin{tikzpicture}
+            \begin{axis}[%
+            %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={-10,-5,5,10},
+			minor x tick num=4,%
+            %			extra x ticks={.33},
+            %			extra x tick labels={$1/3$},
+			ytick={-10,-5,5,10},
+			minor y tick num=4,%extra y ticks={-5,-3,...,7},%
+			ymin=-11.9,ymax=11.9,%
+			xmin=-11.9,xmax=11.9%
+            ]
+
+            \addplot [thick, {\colorone},smooth,domain=-85:85,samples=60] ({sec(x)},{2.83*tan(x)});
+            \addplot [thick, {\colorone},smooth,domain=-85:85,samples=60] ({-sec(x)},{2.83*tan(x)});
+
+            \filldraw (axis cs:0,0) circle (1.5pt);
+            \filldraw [{\colorone}] (axis cs:-1,0) circle (1.5pt);
+            \filldraw [{\colorone}] (axis cs:1,0) circle (1.5pt);
+            \filldraw [{\colortwo}] (axis cs:3,0) circle (1.5pt);
+            \filldraw [{\colortwo}] (axis cs:-3,0) circle (1.5pt);
+
+            \draw (axis cs: 9,-6) node {\scriptsize $e = 3$};					
+
+            \end{axis}
+
+
+
+            \end{tikzpicture}
+            ]]>
+          </latex-image-code>
+        </image>
+        <!-- figures/fig_hyperbola_eccc.tex END -->
+      </figure>
+
+      <figure>
+        <caption>(d)</caption>
+        <!-- START figures/fig_hyperbola_eccd.tex -->
+        <image xml:id="img_hyperbola_eccd" >
+          <description></description>
+          <latex-image-code>
+            <![CDATA[
+            \begin{tikzpicture}
+            \begin{axis}[%
+            %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={-10,-5,5,10},
+			minor x tick num=4,%
+            %			extra x ticks={.33},
+            %			extra x tick labels={$1/3$},
+			ytick={-10,-5,5,10},
+			minor y tick num=4,%extra y ticks={-5,-3,...,7},%
+			ymin=-11.9,ymax=11.9,%
+			xmin=-11.9,xmax=11.9%
+            ]
+
+            \addplot [thick, {\colorone},smooth,domain=-85:85,samples=60] ({sec(x)},{9.95*tan(x)});
+            \addplot [thick, {\colorone},smooth,domain=-85:85,samples=60] ({-sec(x)},{9.95*tan(x)});
+
+            \filldraw (axis cs:0,0) circle (1.5pt);
+            \filldraw [{\colorone}] (axis cs:-1,0) circle (1.5pt);
+            \filldraw [{\colorone}] (axis cs:1,0) circle (1.5pt);
+            \filldraw [{\colortwo}] (axis cs:10,0) circle (1.5pt);
+            \filldraw [{\colortwo}] (axis cs:-10,0) circle (1.5pt);
+
+            \draw (axis cs: 9,-6) node {\scriptsize $e = 10$};					
+
+            \end{axis}
+
+
+
+            \end{tikzpicture}
+            ]]>
+          </latex-image-code>
+        </image>
+        <!-- figures/fig_hyperbola_eccd.tex END -->
+      </figure>
+    </sidebyside>
+
+    </figure>
+
+    <p>Note that this is the definition of eccentricity as used for the ellipse. When <m>c</m> is close in value to <m>a</m> (i.e., <m>e\approx 1</m>), the hyperbola is very narrow (looking almost like crossed lines). <xref ref="fig_hyperbola_ecc">Figure</xref> shows hyperbolas centered at the origin with <m>a=1</m>. The graph in (a) has <m>c=1.05</m>, giving an eccentricity of <m>e=1.05</m>, which is close to 1. As <m>c</m> grows larger, the hyperbola widens and begins to look like parallel lines, as shown in part (d) of the figure.</p>
+  </subsection>
+
+  <subsection>
+    <title>Reflective Property</title>
+    <p>Hyperbolas share a similar reflective property with ellipses. However, in the case of a hyperbola, a ray emanating from a focus that intersects the hyperbola reflects along a line containing the other focus, but moving <em>away</em> from that focus. This is illustrated in <xref ref="fig_hyperbola_reflect">Figure</xref> (on the next page). Hyperbolic mirrors are commonly used in telescopes because of this reflective property. It is stated formally in the following theorem.</p>
+
+    <theorem xml:id="thm_reflective_hyperbola">
+      <title>Reflective Property of Hyperbolas</title>
+      <statement>
+        <p>Let <m>P</m> be a point on a hyperbola with foci <m>F_1</m> and <m>F_2</m>. The tangent line to the hyperbola at <m>P</m> makes equal angles with the following two lines:<index><main>hyperbola</main><sub>reflective property</sub></index></p>
+
+        <ol>
+          <li><p>The line through <m>F_1</m> and <m>P</m>, and</p></li>
+
+          <li><p>The line through <m>F_2</m> and <m>P</m>.</p></li>
+        </ol>
+      </statement>
+    </theorem>
+  </subsection>
+
+  <subsection xml:id="fig_hyperbola_locate">
+    <title>Location Determination</title>
+    <p>Determining the location of a known event has many practical uses (locating the epicenter of an earthquake, an airplane crash site, the position of the person speaking in a large room, etc.).</p>
+
+    <p>To determine the location of an earthquake's epicenter, seismologists use <em>trilateration</em> (not to be confused with <em>triangulation</em>). A seismograph allows one to determine how far away the epicenter was; using three separate readings, the location of the epicenter can be approximated.</p>
+
+    <p>A key to this method is knowing distances. What if this information is not available? Consider three microphones at positions <m>A</m>, <m>B</m> and <m>C</m> which all record a noise (a person's voice, an explosion, etc.) created at unknown location <m>D</m>. The microphone does not <q>know</q> when the sound was <em>created</em>, only when the sound was <em>detected</em>. How can the location be determined in such a situation?</p>
+
+    <figure xml:id="fig_hyperbola_reflect" >
+      <caption>Illustrating the reflective property of a hyperbola.</caption>
+      <!-- START figures/fig_hyperbola_reflect.tex -->
+      <image xml:id="img_hyperbola_reflect" >
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+          \begin{axis}[%
+          axis y line=none,axis x line=none,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-10,-5,5,10},
+			%minor x tick num=4,%
+          %			extra x ticks={.33},
+          %			extra x tick labels={$1/3$},
+			%ytick={-10,-5,5,10},
+			%minor y tick num=4,%extra y ticks={-5,-3,...,7},%
+			ymin=-11.9,ymax=11.9,%
+			xmin=-5,xmax=5%
+          ]
+
+          \addplot [thick, smooth,domain=-85:85,samples=60] ({sec(x)},{2.83*tan(x)});
+          \addplot [thick,smooth,domain=-85:85,samples=60] ({-sec(x)},{2.83*tan(x)});
+
+          \filldraw (axis cs:0,0) circle (1.5pt);
+          \filldraw [{\colorone}] (axis cs:-1,0) circle (1.5pt);
+          \filldraw [{\colorone}] (axis cs:1,0) circle (1.5pt);
+
+          \draw [{\colortwo},thick,->,>=latex] (axis cs:-3,0) -- (axis cs: 1.4,2.83);
+          \draw [{\colortwo},thick,->,>=latex] (axis cs:1.4,2.83)--(axis cs: -1.8,8.49);
+          \draw [dashed,{\colortwo},thick] (axis cs:1.4,2.83)--(axis cs: 3,0);
+          \filldraw [] (axis cs:1.4,2.83) circle (1.5pt);
+          \filldraw [] (axis cs:3,0) circle (1.5pt) node [below] {\scriptsize $F_2$};
+          \filldraw [] (axis cs:-3,0) circle (1.5pt) node [below] {\scriptsize $F_1$};
+
+			
+
+          \end{axis}
+
+          %
+          %
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_hyperbola_reflect.tex END -->
+    </figure>
+
+    <p>If each location has a clock set to the same time, hyperbolas can be used to determine the location. Suppose the microphone at position <m>A</m> records the sound at exactly 12:00, location <m>B</m> records the time exactly 1 second later, and location <m>C</m> records the noise exactly 2 seconds after that. We are interested in the <em>difference</em> of times. Since the speed of sound is approximately 340 m/s, we can conclude quickly that the sound was created 340 meters closer to position <m>A</m> than position <m>B</m>. If <m>A</m> and <m>B</m> are a known distance apart (as shown in <xref ref="fig_hyperbola_locate">Figure</xref> (a)), then we can determine a hyperbola on which <m>D</m> must lie.</p>
+
+    <p>The <q>difference of distances</q> is 340; this is also the distance between vertices of the hyperbola. So we know <m>2a= 340</m>. Positions <m>A</m> and <m>B</m> lie on the foci, so <m>2c=1000</m>. From this we can find <m>b\approx 470</m> and can sketch the hyperbola, given in part (b) of the figure. We only care about the side closest to <m>A</m>. (Why?)</p>
+
+    <p>We can also find the hyperbola defined by positions <m>B</m> and <m>C</m>. In this case, <m>2a = 680</m> as the sound traveled an extra 2 seconds to get to <m>C</m>. We still have <m>2c=1000</m>, centering this hyperbola at <m>(-500,500)</m>. We find <m>b\approx 367</m>. This hyperbola is sketched in part (c) of the figure. The intersection point of the two graphs is the location of the sound, at approximately <m>(188,-222.5)</m>.</p>
+
+    <!--
+    <caption>Using hyperbolas in location detection.</caption>
+    -->
+
+    <figure>
+      <caption>(a) &amp; &amp; (b) &amp; &amp; (c)</caption>
+      <!-- START figures/fig_hyperbola_locate1.tex -->
+      <image xml:id="img_hyperbola_locate1" >
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+          \begin{axis}[%
+          %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-10,-5,5,10},
+			%minor x tick num=4,%
+          %			extra x ticks={.33},
+          %			extra x tick labels={$1/3$},
+			%ytick={-10,-5,5,10},
+			%minor y tick num=4,%extra y ticks={-5,-3,...,7},%
+			ymin=-1100,ymax=1100,%
+			xmin=-1100,xmax=1100%
+          ]
+
+          %\addplot [thick, smooth,domain=-85:85,samples=60] ({170*sec(x)},{470*tan(x)});
+          %\addplot [thick,smooth,domain=-85:85,samples=60] ({-170*sec(x)},{470*tan(x)});
+
+          \filldraw (axis cs:500,0) circle (1.5pt) node [above] {\scriptsize $A$};
+          \filldraw (axis cs:-500,0) circle (1.5pt) node [above] {\scriptsize $B$};
+          \filldraw (axis cs:-500,1000) circle (1.5pt) node [left] {\scriptsize $C$};
+
+          %\draw (axis cs:0,0) node [below] {\scriptsize $\underbrace{\rule{50pt}{0pt}}$};
+          %\draw (axis cs:0,-300) node {\scriptsize 1000m};
+          %\draw (axis cs: -500,500) node [shift={(-15pt,0pt)}] {\scriptsize 1000m$\left\{\rule{0pt}{27pt}\right.$};
+
+
+			
+
+          \end{axis}
+
+          %
+          %
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_hyperbola_locate1.tex END -->
+      <!-- START figures/fig_hyperbola_locate2.tex -->
+      <image xml:id="img_hyperbola_locate2" >
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+          \begin{axis}[%
+          %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-10,-5,5,10},
+			%minor x tick num=4,%
+          %			extra x ticks={.33},
+          %			extra x tick labels={$1/3$},
+			%ytick={-10,-5,5,10},
+			%minor y tick num=4,%extra y ticks={-5,-3,...,7},%
+			ymin=-1100,ymax=1100,%
+			xmin=-1100,xmax=1100%
+          ]
+
+          \addplot [thick, smooth,domain=-85:85,samples=60] ({170*sec(x)},{470*tan(x)});
+          \addplot [dashed,thick,smooth,domain=-85:85,samples=60] ({-170*sec(x)},{470*tan(x)});
+
+          \filldraw (axis cs:500,0) circle (1.5pt) node [above] {\scriptsize $A$};
+          \filldraw (axis cs:-500,0) circle (1.5pt) node [above] {\scriptsize $B$};
+          \filldraw (axis cs:-500,1000) circle (1.5pt) node [left] {\scriptsize $C$};
+
+
+          %\draw (axis cs:0,0) node [below] {\scriptsize $\underbrace{\rule{50pt}{0pt}}$};
+          %\draw (axis cs:0,-300) node {\scriptsize 1000m};
+          %\draw (axis cs: -500,500) node [shift={(-15pt,0pt)}] {\scriptsize 1000m$\left\{\rule{0pt}{27pt}\right.$};
+
+
+			
+
+          \end{axis}
+
+          %
+          %
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_hyperbola_locate2.tex END -->
+      <!-- START figures/fig_hyperbola_locate3.tex -->
+      <image xml:id="img_hyperbola_locate3" >
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+          \begin{axis}[%
+          %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-10,-5,5,10},
+			%minor x tick num=4,%
+          %			extra x ticks={.33},
+          %			extra x tick labels={$1/3$},
+			%ytick={-10,-5,5,10},
+			%minor y tick num=4,%extra y ticks={-5,-3,...,7},%
+			ymin=-1100,ymax=1100,%
+			xmin=-1100,xmax=1100%
+          ]
+
+          \addplot [thick, smooth,domain=-85:85,samples=60] ({170*sec(x)},{470*tan(x)});
+
+          \addplot [dashed,thick, smooth,domain=-85:85,samples=60] ({367*tan(x)-500},{340*sec(x)+500});
+          \addplot [thick, smooth,domain=-85:85,samples=60] ({367*tan(x)-500},{-340*sec(x)+500});
+
+          \filldraw (axis cs:500,0) circle (1.5pt) node [above] {\scriptsize $A$};
+          \filldraw (axis cs:-500,0) circle (1.5pt) node [above] {\scriptsize $B$};
+          \filldraw (axis cs:-500,1000) circle (1.5pt) node [left] {\scriptsize $C$};
+          \filldraw (axis cs:188,-222) circle (1.5pt) node [below left] {\scriptsize $D$};
+
+
+
+			
+
+          \end{axis}
+
+          %
+          %
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_hyperbola_locate3.tex END -->
+    </figure>
+
+    <p>This chapter explores curves in the plane, in particular curves that cannot be described by functions of the form <m>y=f(x)</m>. In this section, we learned of ellipses and hyperbolas that are defined implicitly, not explicitly. In the following sections, we will learn completely new ways of describing curves in the plane, using <em>parametric equations</em> and <em>polar coordinates</em>, then study these curves using calculus techniques.</p>
+  </subsection>
+
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>What is the difference between degenerate and nondegenerate conics?</p>
+          </statement>
+          <solution>
+            <p>When defining the conics as the intersections of a plane and a double napped cone, degenerate conics are created when the plane intersects the tips of the cones (usually taken as the origin). Nondegenerate conics are formed when this plane does not contain the origin.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Use your own words to explain what the eccentricity of an ellipse measures.</p>
+          </statement>
+          <solution>
+            <p>Answers will vary.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>What has the largest eccentricity: an ellipse or a hyperbola?</p>
+          </statement>
+          <solution>
+            <p>Hyperbola</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Explain why the following is true: <q>If the coefficient of the <m>x^2</m> term in the equation of an ellipse in standard form is smaller than the coefficient of the <m>y^2</m> term, then the ellipse has a horizontal major axis.</q></p>
+          </statement>
+          <solution>
+            <p>With the equation <m>\frac{(x-h)^2}{a^2}+\frac{(y-k)^2}{b^2}=1</m>, the ellipse has a horizontal major axis if <m>a>b</m>. But the coefficient of the <m>x^2</m> term is <m>1/a^2</m> (not <m>a^2</m>), so if <m>1/a^2\lt 1/b^2</m>, then <m>a>b</m> and the major axis is horizontal.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Explain how one can quickly look at the equation of a hyperbola in standard form and determine whether the transverse axis is horizontal or vertical.</p>
+          </statement>
+          <solution>
+            <p>With a horizontal transverse axis, the <m>x^2</m> term has a positive coefficient; with a vertical transverse axis, the <m>y^2</m> term has a positive coefficient.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, find the equation of the parabola defined by the given information. Sketch the parabola.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Focus: <m>(3,2)</m>; directrix: <m>y=1</m></p>
+          </statement>
+          <solution>
+            <p><m>y=\frac12(x-3)^2+\frac32</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Focus: <m>(-1,-4)</m>; directrix: <m>y=2</m></p>
+          </statement>
+          <solution>
+            <p><m>y=\frac{-1}{12}(x+1)^2-1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Focus: <m>(1,5)</m>; directrix: <m>x=3</m></p>
+          </statement>
+          <solution>
+            <p><m>x=-\frac14(y-5)^2+2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Focus: <m>(1/4,0)</m>; directrix: <m>x=-1/4</m></p>
+          </statement>
+          <solution>
+            <p><m>x=y^2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Focus: <m>(1,1)</m>; vertex: <m>(1,2)</m></p>
+          </statement>
+          <solution>
+            <p><m>y=-\frac14(x-1)^2+2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Focus: <m>(-3,0)</m>; vertex: <m>(0,0)</m></p>
+          </statement>
+          <solution>
+            <p><m>x=-\frac1{12}y^2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Vertex: <m>(0,0)</m>; directrix: <m>y=-1/16</m></p>
+          </statement>
+          <solution>
+            <p><m>y=4x^2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Vertex: <m>(2,3)</m>; directrix: <m>x=4</m></p>
+          </statement>
+          <solution>
+            <p><m>x=-\frac18(y-3)^2+2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, the equation of a parabola and a point on its graph are given. Find the focus and directrix of the parabola, and verify that the given point is equidistant from the focus and directrix.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>y=\frac14x^2</m>, <m>P=(2,1)</m></p>
+          </statement>
+          <solution>
+            <p>focus: <m>(0,1)</m>; directrix: <m>y=-1</m>. The point <m>P</m> is 2 units from each.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>x=\frac18(y-2)^2+3</m>, <m>P=(11,10)</m></p>
+          </statement>
+          <solution>
+            <p>focus: <m>(5,2)</m>; directrix: <m>x=1</m>. The point <m>P</m> is 10 units from each.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, sketch the ellipse defined by the given equation. Label the center, foci and vertices.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \frac{(x-1)^2}{3}+\frac{(y-2)^2}{5}=1</m></p>
+          </statement>
+          <solution>
+            <!-- START\1END -->
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \frac{1}{25}x^2+\frac{1}{9}(y+3)^2=1</m></p>
+          </statement>
+          <solution>
+            <!-- START\1END -->
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, find the equation of the ellipse shown in the graph. Give the location of the foci and the eccentricity of the ellipse.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <!-- START figures/fig_09_01_ex_20.tex -->
+              <image xml:id="img_09_01_ex_20" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}
+                  \begin{axis}[%
+                  %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-1,1},
+			%
+                  %			extra x ticks={.33},
+                  %			extra x tick labels={$1/3$},
+			%ytick={-1,1},
+			%extra y ticks={-5,-3,...,7},%
+			ymin=-1.2,ymax=5.2,%
+			xmin=-5.2,xmax=3.2%
+                  ]
+
+                  %\draw (axis cs:4,-1) node (A) {}
+			%(axis cs:4,3) node (B) {} ;
+                  %\draw [->,>=latex] (A) parabola bend (axis cs:0,1) (B);
+                  \addplot [thick, smooth,domain=0:360,samples=60] ({3*cos(x)-1},{2*sin(x)+2)});
+
+                  %\filldraw (axis cs: 1,2) circle (1.5pt)
+					%(axis cs: 1,4.24) circle (1.5pt)
+					%(axis cs: 1,-.24) circle (1.5pt)
+					%(axis cs: 1,3.4) circle (1.5pt)
+					%(axis cs: 1,.6) circle (1.5pt);
+
+                  \end{axis}
+
+
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_09_01_ex_20.tex END -->
+            </figure>
+          </statement>
+          <solution>
+            <p><m>\frac{(x+1)^2}{9}+\frac{(y-2)^2}{4}=1</m>; foci at <m>(-1\pm\sqrt{5},2)</m>; <m>e=\sqrt{5}/3</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <!-- START figures/fig_09_01_ex_21.tex -->
+              <image xml:id="img_09_01_ex_21" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}
+                  \begin{axis}[%
+                  %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-1,1},
+			%
+                  %			extra x ticks={.33},
+                  %			extra x tick labels={$1/3$},
+			%ytick={-1,1},
+			%extra y ticks={-5,-3,...,7},%
+			ymin=-3.5,ymax=3.5,%
+			xmin=-1.2,xmax=2.2%
+                  ]
+
+                  %\draw (axis cs:4,-1) node (A) {}
+			%(axis cs:4,3) node (B) {} ;
+                  %\draw [->,>=latex] (A) parabola bend (axis cs:0,1) (B);
+                  \addplot [thick, smooth,domain=0:360,samples=60] ({.5*cos(x)+1},{3*sin(x))});
+
+                  %\filldraw (axis cs: 1,2) circle (1.5pt)
+					%(axis cs: 1,4.24) circle (1.5pt)
+					%(axis cs: 1,-.24) circle (1.5pt)
+					%(axis cs: 1,3.4) circle (1.5pt)
+					%(axis cs: 1,.6) circle (1.5pt);
+
+                  \end{axis}
+
+
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_09_01_ex_21.tex END -->
+            </figure>
+          </statement>
+          <solution>
+            <p><m>\frac{(x-1)^2}{1/4}+\frac{y^2}{9}=1</m>; foci at <m>(1,\pm \sqrt{8.75})</m>; <m>e=\sqrt{8.75}/3\approx 0.99</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, find the equation of the ellipse defined by the given information. Sketch the elllipse.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Foci: <m>(\pm 2,0)</m>; vertices: <m>(\pm 3,0)</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{x^2}{9}+\frac{y^2}{5}=1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Foci: <m>(-1,3)</m> and <m>(5,3)</m>; vertices: <m>(-3,3)</m> and <m>(7,3)</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{(x-2)^2}{25}+\frac{(y-3)^2}{16}=1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Foci: <m>(2,\pm 2)</m>; vertices: <m>(2,\pm 7)</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{(x-2)^2}{45}+\frac{y^2}{49}=1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Focus: <m>(-1,5)</m>; vertex: <m>(-1,-4)</m>; center: <m>(-1,1)</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{(x+1)^2}{9}+\frac{(y-1)^2}{25}=1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, write the equation of the given ellipse in standard form.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>x^2-2x+2y^2-8y=-7</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{(x-1)^2}{2}+(y-2)^2=1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>5x^2+3y^2=15</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{x^2}{3}+\frac{y^2}{5}=1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>3x^2+2y^2-12y+6=0</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{x^2}{4}+\frac{(y-3)^2}{6}=1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>x^2+y^2-4x-4y+4=0</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{(x-2)^2}{4}+\frac{(y-2)^2}{4}=1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Consider the ellipse given by <m>\ds \frac{(x-1)^2}{4}+\frac{(y-3)^2}{12}=1</m>.</p>
+
+            <ol>
+              <li><p>Verify that the foci are located at <m>(1,3\pm 2\sqrt{2})</m>.</p></li>
+
+              <li><p>The points <m>P_1 = (2,6)</m> and <m>P_2 = (1+\sqrt{2},3+\sqrt{6}) \approx (2.414,5.449)</m> lie on the ellipse. Verify that the sum of distances from each point to the foci is the same.</p></li>
+            </ol>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>c=\sqrt{12-4} = 2\sqrt{2}</m>.</p></li>
+
+              <li><p>The sum of distances for each point is <m>2\sqrt{12}\approx 6.9282</m>.</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, find the equation of the hyperbola shown in the graph.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <!-- START figures/fig_09_01_ex_27.tex -->
+              <image xml:id="img_09_01_ex_27" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}
+                  \begin{axis}[%
+                  %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={-1,1,2,-2},
+			%%
+                  %			extra x ticks={.33},
+                  %			extra x tick labels={$1/3$},
+			%ytick={-1,1},
+			%%extra y ticks={-5,-3,...,7},%
+			ymin=-3.5,ymax=3.5,%
+			xmin=-3.5,xmax=3.5%
+                  ]
+
+                  %\draw (axis cs:4,-1) node (A) {}
+			%(axis cs:4,3) node (B) {} ;
+                  %\draw [->,>=latex] (A) parabola bend (axis cs:0,1) (B);
+                  \addplot [thick, smooth,domain=-70:70,samples=30] ({sec(x)},{1.73*tan(x))});
+                  \addplot [thick, smooth,domain=-70:70,samples=30] ({-sec(x)},{1.73*tan(x))});
+
+                  \filldraw (axis cs: 2,0) circle (1.5pt)
+					(axis cs: -2,0) circle (1.5pt);
+					%(axis cs: 1,-.24) circle (1.5pt)
+					%(axis cs: 1,3.4) circle (1.5pt)
+					%(axis cs: 1,.6) circle (1.5pt);
+
+                  \end{axis}
+
+
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_09_01_ex_27.tex END -->
+            </figure>
+          </statement>
+          <solution>
+            <p><m>x^2-\frac{y^2}{3}=1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <!-- START figures/fig_09_01_ex_28.tex -->
+              <image xml:id="img_09_01_ex_28" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}
+                  \begin{axis}[%
+                  %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-1,1,2,-2},
+			minor x tick num=4,%
+                  %			extra x ticks={.33},
+                  %			extra x tick labels={$1/3$},
+			%ytick={-1,1},
+			minor y tick num=4,%extra y ticks={-5,-3,...,7},%
+			ymin=-6.5,ymax=6.5,%
+			xmin=-8.5,xmax=8.5%
+                  ]
+
+                  %\draw (axis cs:4,-1) node (A) {}
+			%(axis cs:4,3) node (B) {} ;
+                  %\draw [->,>=latex] (A) parabola bend (axis cs:0,1) (B);
+                  \addplot [thick, smooth,domain=-70:70,samples=30] ({4.9*tan(x)},{sec(x))});
+                  \addplot [thick, smooth,domain=-70:70,samples=30] ({4.9*tan(x)},{-sec(x))});
+
+                  \filldraw (axis cs: 0,5) circle (1.5pt)
+					(axis cs: 0,-5) circle (1.5pt);
+					%(axis cs: 1,-.24) circle (1.5pt)
+					%(axis cs: 1,3.4) circle (1.5pt)
+					%(axis cs: 1,.6) circle (1.5pt);
+
+                  \end{axis}
+
+
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_09_01_ex_28.tex END -->
+            </figure>
+          </statement>
+          <solution>
+            <p><m>y^2-\frac{x^2}{24}=1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <!-- START figures/fig_09_01_ex_29.tex -->
+              <image xml:id="img_09_01_ex_29" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}
+                  \begin{axis}[%
+                  %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-1,1,2,-2},
+			minor x tick num=4,%
+                  %			extra x ticks={.33},
+                  %			extra x tick labels={$1/3$},
+			%ytick={-1,1},
+			%extra y ticks={-5,-3,...,7},%
+			ymin=-1.5,ymax=7.5,%
+			xmin=-4.5,xmax=6.5%
+                  ]
+
+                  %\draw (axis cs:4,-1) node (A) {}
+			%(axis cs:4,3) node (B) {} ;
+                  %\draw [->,>=latex] (A) parabola bend (axis cs:0,1) (B);
+                  \addplot [thick, smooth,domain=-70:70,samples=30] ({3*tan(x)+1},{2*sec(x)+3});
+                  \addplot [thick, smooth,domain=-70:70,samples=30] ({3*tan(x)+1},{-2*sec(x)+3});
+
+                  \draw [thick,dashed,gray] (axis cs: -2,5) -- (axis cs:4,5) -- (axis cs:4,1) -- (axis cs: -2,1) --cycle;
+
+                  \addplot[thick,dashed,domain=-8:8] (x,{2/3*(x-1)+3});
+                  \addplot[thick,dashed,domain=-8:8] (x,{-2/3*(x-1)+3});
+
+                  \filldraw (axis cs: 1,3) circle (1.5pt);
+					%(axis cs: 0,-5) circle (1.5pt);
+					%(axis cs: 1,-.24) circle (1.5pt)
+					%(axis cs: 1,3.4) circle (1.5pt)
+					%(axis cs: 1,.6) circle (1.5pt);
+
+                  \end{axis}
+
+
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_09_01_ex_29.tex END -->
+            </figure>
+          </statement>
+          <solution>
+            <p><m>\frac{(y-3)^2}{4}-\frac{(x-1)^2}{9}=1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <!-- START figures/fig_09_01_ex_30.tex -->
+              <image xml:id="img_09_01_ex_30" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}
+                  \begin{axis}[%
+                  %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-1,1,2,-2},
+			minor x tick num=4,%
+                  %			extra x ticks={.33},
+                  %			extra x tick labels={$1/3$},
+			%ytick={-1,1},
+			%extra y ticks={-5,-3,...,7},%
+			ymin=-1.5,ymax=7.5,%
+			xmin=-4.5,xmax=6.5%
+                  ]
+
+                  %\draw (axis cs:4,-1) node (A) {}
+			%(axis cs:4,3) node (B) {} ;
+                  %\draw [->,>=latex] (A) parabola bend (axis cs:0,1) (B);
+                  \addplot [thick, smooth,domain=-70:70,samples=30] ({3*sec(x)+1},{2*tan(x)+3});
+                  \addplot [thick, smooth,domain=-70:70,samples=30] ({-3*sec(x)+1},{2*tan(x)+3});
+
+                  \draw [thick,dashed,gray] (axis cs: -2,5) -- (axis cs:4,5) -- (axis cs:4,1) -- (axis cs: -2,1) --cycle;
+
+                  \addplot[thick,dashed,domain=-8:8] (x,{2/3*(x-1)+3});
+                  \addplot[thick,dashed,domain=-8:8] (x,{-2/3*(x-1)+3});
+
+                  \filldraw (axis cs: 1,3) circle (1.5pt);
+					%(axis cs: 0,-5) circle (1.5pt);
+					%(axis cs: 1,-.24) circle (1.5pt)
+					%(axis cs: 1,3.4) circle (1.5pt)
+					%(axis cs: 1,.6) circle (1.5pt);
+
+                  \end{axis}
+
+
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_09_01_ex_30.tex END -->
+            </figure>
+          </statement>
+          <solution>
+            <p><m>\frac{(x-1)^2}{9}-\frac{(y-3)^2}{4}=1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, sketch the hyperbola defined by the given equation. Label the center and foci.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \frac{(x-1)^2}{16}-\frac{(y+2)^2}{9}=1</m></p>
+          </statement>
+          <solution>
+            <!-- START\1END -->
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds (y-4)^2-\frac{(x+1)^2}{25}=1</m></p>
+          </statement>
+          <solution>
+            <!-- START\1END -->
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, find the equation of the hyperbola defined by the given information. Sketch the hyperbola.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Foci: <m>(\pm 3,0)</m>; vertices: <m>(\pm 2, 0)</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{x^2}{4}-\frac{y^2}{5}=1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Foci: <m>(0,\pm 3)</m>; vertices: <m>(0,\pm 2)</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{y^2}{4}-\frac{x^2}{5}=1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Foci: <m>(-2,3)</m> and <m>(8,3)</m>; vertices: <m>(-1,3)</m> and <m>(7,3)</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{(x-3)^2}{16}-\frac{(y-3)^2}{9}=1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Foci: <m>(3,-2)</m> and <m>(3,8)</m>; vertices: <m>(3,0)</m> and <m>(3,6)</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{(y-3)^2}{9}-\frac{(x-3)^2}{16}=1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, write the equation of the hyperbola in standard form.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>3x^2-4y^2=12</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{x^2}{4}-\frac{y^2}{3}=1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>3x^2-y^2+2y=10</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{x^2}{3}-\frac{(y-1)^2}{9}=1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>x^2-10y^2+40y=30</m></p>
+          </statement>
+          <solution>
+            <p><m>(y-2)^2-\frac{x^2}{10}=1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>(4y-x)(4y+x)=4</m></p>
+          </statement>
+          <solution>
+            <p><m>4y^2-\frac{x^2}{4}=1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Johannes Kepler discovered that the planets of our solar system have elliptical orbits with the Sun at one focus. The Earth's elliptical orbit is used as a standard unit of distance; the distance from the center of Earth's elliptical orbit to one vertex is 1 Astronomical Unit, or A.U.</p>
+
+            <p>The following table gives information about the orbits of three planets.</p>
+            <tabular>
+              <row>
+                <cell></cell>
+                <cell>\text{ Distance from</cell>
+              </row>
+              <row>
+                <cell>center to vertex</cell>
+              </row>
+              <row>
+                <cell>}</cell>
+                <cell>eccentricity</cell>
+              </row>
+              <row bottom="minor">
+                <cell></cell>
+                <cell></cell>
+                <cell></cell>
+              </row>
+              <row>
+                <cell>Mercury</cell>
+                <cell>0.387 A.U.</cell>
+                <cell><m>0.2056</m></cell>
+              </row>
+              <row>
+                <cell>Earth</cell>
+                <cell>1 A.U.</cell>
+                <cell><m>0.0167</m></cell>
+              </row>
+              <row>
+                <cell>Mars</cell>
+                <cell>1.524 A.U.</cell>
+                <cell><m>0.0934</m></cell>
+              </row>
+            </tabular>
+
+            <ol>
+              <li><p>In an ellipse, knowing <m>c^2=a^2-b^2</m> and <m>e=c/a</m> allows us to find <m>b</m> in terms of <m>a</m> and <m>e</m>. Show <m>b=a\sqrt{1-e^2}</m>.</p></li>
+
+              <li><p>For each planet, find equations of their elliptical orbit of the form <m>\ds\frac{x^2}{a^2}+\frac{y^2}{b^2}=1</m>. (This places the center at <m>(0,0)</m>, but the Sun is in a different location for each planet.)</p></li>
+
+              <li><p>Shift the equations so that the Sun lies at the origin. Plot the three elliptical orbits.</p></li>
+            </ol>
+          </statement>
+          <solution>
+            <ol>
+              <li><p>Solve for <m>c</m> in <m>e=c/a</m>: <m>c=ae</m>. Thus <m>a^2e^2=a^2-b^2</m>, and <m>b^2=a^2-a^2e^2</m>. The result follows.</p></li>
+
+              <li><p>Mercury: <m>x^2/(0.387)^2 + y^2/(0.3787)^2=1</m>	
+
+				Earth:	<m>x^2+y^2/(0.99986)^2 = 1</m>
+
+				Mars:   <m>x^2/(1.524)^2+y^2/(1.517)^2=1</m></p></li>
+
+              <li><p>Mercury: <m>(x-0.08)^2/(0.387)^2 + y^2/(0.3787)^2=1</m>	
+
+				Earth:  <m>(x-0.0167)^2+y^2/(0.99986)^2 = 1</m>
+
+				Mars:   <m>(x-0.1423)^2/(1.524)^2+y^2/(1.517)^2=1</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>A loud sound is recorded at three stations that lie on a line as shown in the figure below. Station <m>A</m> recorded the sound 1 second after Station <m>B</m>, and Station <m>C</m> recorded the sound 3 seconds after <m>B</m>. Using the speed of sound as 340m/s, determine the location of the sound's origination.</p>
+            <image>
+              <description></description>
+              <latex-image-code>
+                <![CDATA[
+                \begin{tikzpicture}\draw [fill=black] (0,0) circle (1.5pt) node [below] {\(A\)}  -- node [pos=.5,below] {1000m} (1.5,0) circle (1.5pt) node [below] {\(B\)} -- node [pos=.5,below] {2000m} (4.5,0) circle (1.5pt) node [below] {\(C\)};\end{tikzpicture}]]>
+              </latex-image-code>
+            </image>
+          </statement>
+          <solution>
+            <p>The sound originated from a point approximately 31m to the left of <m>B</m> and 1340m above it.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

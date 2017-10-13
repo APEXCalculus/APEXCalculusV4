@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<mathbook xmlns:xi="http://www.w3.org/2001/XInclude" xml:lang="en-US">
+<docinfo>
+
+        <latex-preamble>
+            <package>cancel</package>
+        </latex-preamble>
+
+<macros>
+\newcommand{\highlight}[1]{{\color{blue}{#1}}}
+\newcommand{\apex}{A\kern -1pt \lower -2pt\mbox{P}\kern -4pt \lower .7ex\mbox{E}\kern -1pt X}
+\newcommand{\colorlinecolor}{blue!95!black!30}
+\newcommand{\bwlinecolor}{black!30}
+\newcommand{\thelinecolor}{\colorlinecolor}
+\newcommand{\colornamesuffix}{}
+\newcommand{\linestyle}{[thick, \thelinecolor]}
+\newcommand{\bmx}[1]{\left[\hskip -3pt\begin{array}{#1} }
+\newcommand{\emx}{\end{array}\hskip -3pt\right]}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\fp}{f'}
+\newcommand{\fpp}{f''}
+
+%  Leibniz notation
+%  Usage: \lz{y}{x}
+\newcommand{\lz}[2]{\frac{d#1}{d#2}}
+%
+%  higher Leibniz notation
+%  Usage: \lzn{n}{y}{x}
+\newcommand{\lzn}[3]{\frac{d^{#1}#2}{d#3^{#1}}}
+%
+%  Leibniz operator
+%  Usage: \lzo{x}
+\newcommand{\lzo}[1]{\frac{d}{d#1}}
+%
+%  Leibniz operator on ....
+%  Usage: \lzoo{x}{y}
+\newcommand{\lzoo}[2]{{\frac{d}{d#1}}{\left(#2\right)}}
+%
+%  higher Leibniz operator
+%  Usage: \lzon{n}{x}{y}
+\newcommand{\lzon}[2]{\frac{d^{#1}}{d#2^{#1}}}
+%
+%  Leibniz operator at ....
+%  Usage: \lzoa{y}{x}{a}
+\newcommand{\lzoa}[3]{\left.{\frac{d#1}{d#2}}\right|_{#3}}
+%
+%  partial Leibniz notation
+%  Usage: \plz{y}{x}
+\newcommand{\plz}[2]{\frac{\partial#1}{\partial#2}}
+%
+%  partial Leibniz operator at ....
+%  Usage: \plzoa{y}{x}{a}
+\newcommand{\plzoa}[3]{\left.{\frac{\partial#1}{\partial#2}}\right|_{#3}}
+
+%Limit at infinity for sequences
+%Usage: \inflim e^{-n} or \inflim[m] e^{-m}
+\newcommand{\inflim}[1][n]{\lim\limits_{#1 \to \infty}}
+
+%Infinite Series with index starting n=1
+%Usage: \infser \frac{1}{n} or \infser[0] 0.5^n
+\newcommand{\infser}[1][1]{\sum_{n=#1}^\infty}
+
+\newcommand{\Fp}{F\primeskip'}
+\newcommand{\Fpp}{F\primeskip''}
+\newcommand{\yp}{y\primeskip'}
+\newcommand{\gp}{g\primeskip'}
+\newcommand{\dx}{\Delta x}
+\newcommand{\dy}{\Delta y}
+\newcommand{\ddz}{\Delta z}
+\newcommand{\thet}{\theta}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\vnorm}[1]{\left\lVert\vec #1\right\rVert}
+\newcommand{\snorm}[1]{\left|\left|\ #1\ \right|\right|}
+\newcommand{\la}{\left\langle}
+\newcommand{\ra}{\right\rangle}
+\newcommand{\dotp}[2]{\vec #1 \cdot \vec #2}
+\newcommand{\proj}[2]{\text{proj}_{\,\vec #2}{\,\vec #1}}
+\newcommand{\crossp}[2]{\vec #1 \times \vec #2}
+\newcommand{\veci}{\vec i}
+\newcommand{\vecj}{\vec j}
+\newcommand{\veck}{\vec k}
+\newcommand{\vecu}{\vec u}
+\newcommand{\vecv}{\vec v}
+\newcommand{\vecw}{\vec w}
+\newcommand{\vecx}{\vec x}
+\newcommand{\vecy}{\vec y}
+\newcommand{\vrp}{\vec r\, '}
+\newcommand{\vsp}{\vec s\, '}
+\newcommand{\vrt}{\vec r(t)}
+\newcommand{\vst}{\vec s(t)}
+\newcommand{\vvt}{\vec v(t)}
+\newcommand{\vat}{\vec a(t)}
+\newcommand{\px}{\partial x}
+\newcommand{\py}{\partial y}
+\newcommand{\pz}{\partial z}
+\newcommand{\pf}{\partial f}
+\newcommand{\mathN}{\mathbb{N}}
+\newcommand{\zerooverzero}{\ds \raisebox{8pt}{\text{``\ }}\frac{0}{0}\raisebox{8pt}{\textit{ ''}}}
+\newcommand{\deriv}[2]{\myds\frac{d}{dx}\left(#1\right)=#2}
+\newcommand{\myint}[2]{\myds\int #1\ dx= {\ds #2}}
+\DeclareMathOperator{\sech}{sech}
+\DeclareMathOperator{\csch}{csch}
+\newcommand{\primeskip}{\hskip.75pt}
+\newcommand{\plotlinecolor}{blue}
+\newcommand{\colorone}{blue}
+\newcommand{\colortwo}{red}
+\newcommand{\coloronefill}{blue!15!white}
+\newcommand{\colortwofill}{red!15!white}
+\newcommand{\abs}[1]{\left\lvert #1\right\rvert}
+
+</macros>
+
+<latex-image-preamble><![CDATA[
+
+\usepackage{pgfplots}
+
+\usetikzlibrary{positioning,matrix,arrows,arrows.meta}
+
+\usetikzlibrary{shapes,decorations,shadows,fadings}
+\usepgfplotslibrary{fillbetween}
+
+\setlength{\marginparwidth}{215pt}
+
+\usepackage{tkz-euclide}
+\usetkzobj{all}
+
+\usepackage{ifthen}
+
+\newboolean{colorprint}
+\setboolean{colorprint}{true}
+
+\colorlet{firstcolor}{blue}
+\colorlet{secondcolor}{red}
+\colorlet{thirdcolor}{magenta}
+\pgfplotsset{firstcurvestyle/.style={color=firstcolor,mark=none,thick,{Kite}-{Kite},solid}}
+\pgfplotsset{secondcurvestyle/.style={color=secondcolor,mark=none,thick,{Kite}-{Kite},dashdotted}}
+\pgfplotsset{thirdcurvestyle/.style={color=thirdcolor,mark=none,thick,{Kite}-{Kite},dashdotdotted}}
+\pgfplotsset{tangentline/.style={color=black,mark=none,thick,{Kite}-{Kite},solid}}
+\pgfplotsset{tangentlineseg/.style={color=black,mark=none,thick,-,solid}}
+\pgfplotsset{lineseg/.style={color=black,mark=none,solid}}
+\pgfplotsset{normalline/.style={color=black,mark=none,thick,{Kite}-{Kite},dashed}}
+\pgfplotsset{normallineseg/.style={color=black,mark=none,thick,-,dashed}}
+\pgfplotsset{secantline/.style={color=black,mark=none,thin,{Kite}-{Kite},dashed}}
+\pgfplotsset{secantlineseg/.style={color=black,mark=none,thin,-,dashed}}
+\pgfplotsset{asymptote/.style={color=black,mark=none,thick,{Kite}-{Kite},dashed}}
+\pgfplotsset{guideline/.style={color=black,mark=none,-}}
+\pgfplotsset{symmetryline/.style={color=black,mark=none,-,dashed}}
+\pgfplotsset{openinterval/.style={color=black,mark=none,ultra thick,{Parenthesis}-{Parenthesis}}}
+\pgfplotsset{closedinterval/.style={color=black,mark=none,ultra thick,{Bracket}-{Bracket}}}
+
+\pgfplotscreateplotcyclelist{curvestylelist}{%
+        firstcurvestyle\\%
+        secondcurvestyle\\%
+        thirdcurvestyle\\%
+}
+
+%To disable arrows, edit these and the above lines accordingly
+\pgfplotsset{leftarrow/.style={{Kite}-}}
+\pgfplotsset{rightarrow/.style={-{Kite}}}
+
+
+
+% Redefine these to be empty to turn off axis discontinuities
+\pgfplotsset{xdiscontinuity/.style={axis x discontinuity=parallel}}
+\pgfplotsset{ydiscontinuity/.style={axis y discontinuity=crunch}}
+
+\pgfplotsset{hollowdot/.style={color=firstcolor,fill=white,only marks,mark=*}}
+\pgfplotsset{soliddot/.style={color=firstcolor,fill=firstcolor,only marks,mark=*}}
+
+\pgfplotsset{every axis/.append style = {
+    cycle list name = curvestylelist,
+    %tick label style = {font = \scriptsize},
+    axis x line = middle,
+    axis y line = middle,
+    xlabel = {$x$},
+    ylabel = {$y$},
+    %x label style = {font = \scriptsize},
+    %y label style = {font = \scriptsize},
+    minor x tick num = 1,
+    minor y tick num = 1,
+    width = {ifthenelse(.9\linewidth>240pt,240pt,.9\linewidth)},
+}}
+
+\pgfplotsset{numberline/.style     = {xmin=-10,xmax=10,
+                                      minor xtick={-11,-10,...,11},
+                                      xtick={-10,-5,...,10},
+                                      axis y line=none,
+                                      every axis x label/.style={at={(current axis.right of origin)},anchor=west},
+                                      y=15pt,
+                                      axis lines=middle,
+                                      enlarge x limits,
+                                      xlabel={},
+                                      grid=none,
+                                      clip=false,
+                                      axis background/.style={},
+                                      }}
+
+]]></latex-image-preamble>
+
+<rename element="insight" lang="en-US">Key Idea</rename>
+
+</docinfo>
+
+
+<book>
+<title>APEX Calculus</title>
+<frontmatter>
+<titlepage>
+  <author>
+      <personname>Gregory Hartman, Ph.D.</personname>
+      <department>Department of Applied Mathematics</department>
+      <institution>Virginia Military Institute</institution>
+  </author>
+
+  <editor>
+      <personname>Jennifer Bowen, Ph.D.</personname>
+      <department>Department of Mathematics and Computer Science</department>
+      <institution>The College of Wooster</institution>
+  </editor>
+
+  <editor>
+      <personname>Alex Jordan, Ph.D.</personname>
+      <department>Department of Mathematics</department>
+      <institution>Portland Community College</institution>
+  </editor>
+
+  <editor>
+      <personname>Carly Vollet, M.S.</personname>
+      <department>Department of Mathematics</department>
+      <institution>Portland Community College</institution>
+  </editor>
+
+  <date><today /></date>
+
+</titlepage>
+
+
+<colophon>
+
+    <copyright>
+        <year>2015<ndash />2017</year>
+        <holder>Gregory Hartman</holder>
+        <minilicense>Creative Commons BY NC</minilicense>
+        <shortlicense>Licensed to the public under Creative Commons Attribution-Noncommercial 4.0 International Public License</shortlicense>
+    </copyright>
+
+</colophon>
+
+<preface>
+  <title>Contributors to the <m>4</m>th Edition</title>
+
+  <contributors>
+    <contributor>
+        <personname>Troy Siemers, Ph.D.</personname>
+        <department>Department of Applied Mathematics</department>
+        <institution>Virginia Military Institute</institution>
+    </contributor>
+
+    <contributor>
+        <personname>Brian Heinold, Ph.D.</personname>
+        <department>Department of Mathematics and Computer Science</department>
+        <institution>Mount Saint Mary's University</institution>
+    </contributor>
+
+    <contributor>
+        <personname>Dimplekumar Chalishajar, Ph.D.</personname>
+        <department>Department of Applied Mathematics</department>
+        <institution>Virginia Military Institute</institution>
+    </contributor>
+  </contributors>
+</preface>
+
+
+</frontmatter>
+<xi:include href="./chapter_limits.mbx" />
+
+<xi:include href="./chapter_derivatives.mbx" />
+
+<xi:include href="./chapter_graphbehavior.mbx" />
+
+<xi:include href="./chapter_deriv_apps.mbx" />
+
+<xi:include href="./chapter_integration.mbx" />
+
+<xi:include href="./chapter_anti_tech.mbx" />
+
+<xi:include href="./chapter_app_of_int.mbx" />
+
+<xi:include href="./chapter_sequences_series.mbx" />
+
+<xi:include href="./chapter9.mbx" />
+
+<xi:include href="./chapter10.mbx" />
+
+<xi:include href="./chap_vvf.mbx" />
+
+<xi:include href="./chap_multi.mbx" />
+
+<xi:include href="./chapter13.mbx" />
+
+<backmatter>
+<index-part>
+<title>Index</title>
+<index-list />
+</index-part>
+
+</backmatter>
+</book>
+</mathbook>

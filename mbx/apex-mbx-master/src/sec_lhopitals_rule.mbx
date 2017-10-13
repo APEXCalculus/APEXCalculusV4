@@ -1,0 +1,1184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_lhopitals_rule">
+  <title>L'H&#xf4;pital's Rule</title>
+  <introduction>
+    <p>While this chapter is devoted to learning techniques of integration, this section is not about integration. Rather, it is concerned with a technique of evaluating certain limits that will be useful in the following section, where integration is once more discussed.</p>
+
+    <p>Our treatment of limits exposed us to <q>0/0</q>, an indeterminate form. If <m>\lim\limits_{x\to c}f(x)=0</m> and <m>\lim\limits_{x\to c} g(x) =0</m>, we do not conclude that <m>\lim\limits_{x\to c} f(x)/g(x)</m> is <m>0/0</m>; rather, we use <m>0/0</m> as notation to describe the fact that both the numerator and denominator approach 0. The expression 0/0 has no numeric value; other work must be done to evaluate the limit.</p>
+
+    <p>Other indeterminate forms exist; they are:
+      <m>\infty/\infty</m>, <m>0\cdot\infty</m>, <m>\infty-\infty</m>, <m>0^0</m>, <m>1^\infty</m> and <m>\infty^0</m>.
+      Just as <q>0/0</q> does not mean <q>divide 0 by 0,</q> the expression <q><m>\infty/\infty</m></q> does not mean <q>divide infinity by infinity.</q> Instead, it means <q>a quantity is growing without bound and is being divided by another quantity that is growing without bound.</q> We cannot determine from such a statement what value, if any, results in the limit. Likewise, <q><m>0\cdot \infty</m></q> does not mean <q>multiply zero by infinity.</q> Instead, it means <q>one quantity is shrinking to zero, and is being multiplied by a quantity that is growing without bound.</q> We cannot determine from such a description what the result of such a limit will be.</p>
+
+    <p>This section introduces l'H&#xf4;pital's Rule, a method of resolving limits that produce the indeterminate forms 0/0 and <m>\infty/\infty</m>. We'll also show how algebraic manipulation can be used to convert other indeterminate expressions into one of these two forms so that our new rule can be applied.</p>
+
+    <theorem xml:id="thm_LHR">
+      <title>L'H&#xf4;pital's Rule, Part 1</title>
+      <statement>
+        <p>Let <m>\lim\limits_{x\to c}f(x) = 0</m> and <m>\lim\limits_{x\to c}g(x)=0</m>, where <m>f</m> and <m>g</m> are differentiable functions on an open interval <m>I</m> containing <m>c</m>, and <m>g'(x)\neq 0</m> on <m>I</m> except possibly at <m>c</m>. Then <index><main>limit</main><sub>L'H&#xf4;pital's Rule</sub></index><index><main>L'H&#xf4;pital's Rule</main></index>
+          <me>
+            \lim_{x\to c} \frac{f(x)}{g(x)} = \lim_{x\to c} \frac{\fp(x)}{g'(x)}.
+          </me>
+        </p>
+      </statement>
+    </theorem>
+
+    <p>We demonstrate the use of l'H&#xf4;pital's Rule in the following examples; we will often use <q>LHR</q> as an abbreviation of <q>l'H&#xf4;pital's Rule.</q></p>
+
+    <example xml:id="ex_lhr1">
+      <title>Using l'H&#xf4;pital's Rule</title>
+      <statement>
+        <p>Evaluate the following limits, using l'H&#xf4;pital's Rule as needed.</p>
+
+        <ol cols="2" >
+          <li><p><m>\lim\limits_{x\to0}\frac{\sin(x) }x</m></p></li>
+
+          <li><p><m>\lim\limits_{x\to 1}\frac{\sqrt{x+3}-2}{1-x}</m></p></li>
+
+          <li><p><m>\lim\limits_{x\to0}\frac{x^2}{1-\cos(x) }</m></p></li>
+
+          <li><p><m>\lim\limits_{x\to 2}\frac{x^2+x-6}{x^2-3x+2}</m></p></li>
+        </ol>
+      </statement>
+      <solution>
+        <ol>
+          <li><p>We proved this limit is 1 in <xref ref="ex_limit_sinx_prove">Example</xref> using the Squeeze Theorem. Here we use l'H&#xf4;pital's Rule to show its power.
+              <me>
+                \lim_{x\to0}\frac{\sin(x) }x \stackrel{\ \text{ by LHR }  \ }{=} \lim_{x\to0} \frac{\cos(x) }{1}=1.
+              </me>
+            </p></li>
+
+          <li><p><m>\lim\limits_{x\to 1}\frac{\sqrt{x+3}-2}{1-x} 	 \stackrel{\ \text{ by LHR }  \ }{=} \lim_{x \to 1} \frac{\frac12(x+3)^{-1/2}}{-1} =-\frac 14</m>.</p></li>
+
+          <li><p><m>\lim\limits_{x\to 0}\frac{x^2}{1-\cos(x) }  \stackrel{\ \text{ by LHR }  \ }{=}  \lim_{x\to 0} \frac{2x}{\sin(x) }</m>.
+
+              This latter limit also evaluates to the 0/0 indeterminate form. To evaluate it, we apply l'H&#xf4;pital's Rule again.
+
+               <m>\lim\limits_{x\to 0} \frac{2x}{\sin(x) }  \stackrel{\ \text{ by LHR }  \ }{=} \frac{2}{\cos(x) } = 2</m>.
+
+              Thus <m>\lim\limits_{x\to0}\frac{x^2}{1-\cos(x) }=2</m>.</p></li>
+
+          <li><p>We already know how to evaluate this limit; first factor the numerator and denominator. We then have:
+              <me>
+                \lim_{x\to 2}\frac{x^2+x-6}{x^2-3x+2} = \lim_{x\to 2}\frac{(x-2)(x+3)}{(x-2)(x-1)} = \lim_{x\to 2}\frac{x+3}{x-1} = 5.
+              </me>
+              We now show how to solve this using l'H&#xf4;pital's Rule.
+              <me>
+                \lim_{x\to 2}\frac{x^2+x-6}{x^2-3x+2}\stackrel{\ \text{ by LHR }  \ }{=}  \lim_{x\to 2}\frac{2x+1}{2x-3} = 5.
+              </me>
+            </p></li>
+        </ol>
+      </solution>
+    </example>
+
+    <p>Note that at each step where l'H&#xf4;pital's Rule was applied, it was <em>needed</em>: the initial limit returned the indeterminate form of <q><m>0/0</m>.</q> If the initial limit returns, for example, 1/2, then l'H&#xf4;pital's Rule does not apply.</p>
+
+    <p>The following theorem extends our initial version of l'H&#xf4;pital's Rule in two ways. It allows the technique to be applied to the indeterminate form <m>\infty/\infty</m> and to limits where <m>x</m> approaches <m>\pm\infty</m>.</p>
+
+    <theorem xml:id="thm_LHR2">
+      <title>L'H&#xf4;pital's Rule, Part 2</title>
+      <statement>
+        <ol>
+          <li><p>Let <m>\lim\limits_{x\to a}f(x) = \pm\infty</m> and <m>\lim\limits_{x\to a}g(x)=\pm \infty</m>, where <m>f</m> and <m>g</m> are differentiable on an open interval <m>I</m> containing <m>a</m>. Then <index><main>limit</main><sub>L'H&#xf4;pital's Rule</sub></index><index><main>L'H&#xf4;pital's Rule</main></index>
+              <me>
+                \lim_{x\to a} \frac{f(x)}{g(x)} = \lim_{x\to a}\frac{\fp(x)}{g'(x)}.
+              </me>
+            </p></li>
+
+          <li><p>Let <m>f</m> and <m>g</m> be differentiable functions on the open interval <m>(a,\infty)</m> for some value <m>a</m>, where <m>g'(x)\neq 0</m> on <m>(a,\infty)</m> and <m>\lim\limits_{x\to\infty} f(x)/g(x)</m> returns either 0/0 or <m>\infty/\infty</m>. Then
+              <me>
+                \lim_{x\to \infty} \frac{f(x)}{g(x)} = \lim_{x\to \infty}\frac{\fp(x)}{g'(x)}.
+              </me>
+              A similar statement can be made for limits where <m>x</m> approaches <m>-\infty</m>.</p></li>
+        </ol>
+      </statement>
+    </theorem>
+
+    <example xml:id="ex_LHR2">
+      <title>Using l'H&#xf4;pital's Rule with limits involving <m>\infty</m></title>
+      <statement>
+        <p>Evaluate the following limits.</p>
+
+        <p><m>\ds 1.\ \lim_{x\to\infty} \frac{3x^2-100x+2}{4x^2+5x-1000} \qquad\qquad 2. \ \lim_{x\to \infty}\frac{e^x}{x^3}</m>.</p>
+      </statement>
+      <solution>
+        <ol>
+          <li><p>We can evaluate this limit already using <xref ref="thm_lim_rational_fn_at_infty">Theorem</xref>; the answer is 3/4. We apply l'H&#xf4;pital's Rule to demonstrate its applicability.
+              <me>
+                \lim_{x\to\infty} \frac{3x^2-100x+2}{4x^2+5x-1000}\stackrel{\ \text{ by LHR }  \ }{=} \lim_{x\to\infty} \frac{6x-100}{8x+5} \stackrel{\ \text{ by LHR }  \ }{=} \lim_{x\to\infty} \frac68 = \frac34.
+              </me>
+            </p></li>
+
+          <li><p><m>\lim\limits_{x\to \infty}\frac{e^x}{x^3} \stackrel{\ \text{ by LHR }  \ }{=} \lim_{x\to\infty} \frac{e^x}{3x^2} \stackrel{\ \text{ by LHR }  \ }{=} \lim_{x\to\infty} \frac{e^x}{6x} \stackrel{\ \text{ by LHR }  \ }{=} \lim_{x\to\infty} \frac{e^x}{6} = \infty</m>.
+
+              Recall that this means that the limit does not exist; as <m>x</m> approaches <m>\infty</m>, the expression <m>e^x/x^3</m> grows without bound. We can infer from this that <m>e^x</m> grows <q>faster</q> than <m>x^3</m>; as <m>x</m> gets large, <m>e^x</m> is far larger than <m>x^3</m>. (This has important implications in computing when considering efficiency of algorithms.)</p></li>
+        </ol>
+      </solution>
+    </example>
+  </introduction>
+
+  <subsection>
+    <title>Indeterminate Forms <m>0\cdot\infty</m> and <m>\infty-\infty</m></title>
+    <p>L'H&#xf4;pital's Rule can only be applied to ratios of functions. When faced with an indeterminate form such as <m>0\cdot\infty</m> or <m>\infty-\infty</m>, we can sometimes apply algebra to rewrite the limit so that l'H&#xf4;pital's Rule can be applied. We demonstrate the general idea in the next example.
+      <index><main>limit</main><sub>indeterminate form</sub></index><index><main>indeterminate form</main></index></p>
+
+    <example xml:id="ex_LHR3">
+      <title>Applying l'H&#xf4;pital's Rule to other indeterminate forms</title>
+      <statement>
+        <p>Evaluate the following limits.</p>
+
+        <ol cols="2" >
+          <li><p><m>\lim\limits_{x\to0^+} x\cdot e^{1/x}</m></p></li>
+
+          <li><p><m>\lim\limits_{x\to0^-} x\cdot e^{1/x}</m></p></li>
+
+          <li><p><m>\lim\limits_{x\to\infty} \ln(x+1)-\ln(x)</m></p></li>
+
+          <li><p><m>\lim\limits_{x\to\infty} x^2-e^x</m></p></li>
+        </ol>
+      </statement>
+      <solution>
+        <ol>
+          <li><p>As <m>x\rightarrow 0^+</m>, <m>x\rightarrow 0</m> and <m>e^{1/x}\rightarrow \infty</m>. Thus we have the indeterminate form <m>0\cdot\infty</m>. We rewrite the expression <m>x\cdot e^{1/x}</m> as <m>\ds\frac{e^{1/x}}{1/x}</m>; now, as <m>x\rightarrow 0^+</m>, we get the indeterminate form <m>\infty/\infty</m> to which l'H&#xf4;pital's Rule can be applied.
+              <me>
+                \lim_{x\to0^+} x\cdot e^{1/x} = \lim_{x\to 0^+} \frac{e^{1/x}}{1/x} \stackrel{\ \text{ by LHR }  \ }{=} \lim_{x\to 0^+}\frac{(-1/x^2)e^{1/x}}{-1/x^2} =\lim_{x\to 0^+}e^{1/x} =\infty.
+              </me>
+              Interpretation: <m>e^{1/x}</m> grows <q>faster</q> than <m>x</m> shrinks to zero, meaning their product grows without bound.</p></li>
+
+          <li><p>As <m>x\rightarrow 0^-</m>, <m>x\rightarrow 0</m> and <m>e^{1/x}\rightarrow e^{-\infty}\rightarrow 0</m>. The the limit evaluates to <m>0\cdot 0</m> which is not an indeterminate form. We conclude then that
+              <me>
+                \lim_{x\to 0^-}x\cdot e^{1/x} = 0.
+              </me>
+            </p></li>
+
+          <li><p>This limit initially evaluates to the indeterminate form <m>\infty-\infty</m>. By applying a logarithmic rule, we can rewrite the limit as
+              <me>
+                \lim_{x\to\infty} \ln(x+1)-\ln(x) = \lim_{x\to \infty} \ln\left(\frac{x+1}x\right).
+              </me>
+              As <m>x\rightarrow \infty</m>, the argument of the <m>\ln</m> term approaches <m>\infty/\infty</m>, to which we can apply l'H&#xf4;pital's Rule.
+              <me>
+                \lim_{x\to\infty} \frac{x+1}x \stackrel{\ \text{ by LHR }  \ }{=} \frac11=1.
+              </me>
+              Since <m>x\rightarrow \infty</m> implies <m>\ds\frac{x+1}x\rightarrow 1</m>, it follows that
+              <me>
+                x\rightarrow \infty  \text{ implies }  \ln\left(\frac{x+1}x\right)\rightarrow \ln(1) =0.
+              </me>
+              Thus
+              <me>
+                \lim_{x\to\infty} \ln(x+1)-\ln(x) = \lim_{x\to \infty} \ln\left(\frac{x+1}x\right)=0.
+              </me>
+              Interpretation: since this limit evaluates to 0, it means that for large <m>x</m>, there is essentially no difference between <m>\ln(x+1)</m> and <m>\ln(x)</m>; their difference is essentially 0.</p></li>
+
+          <li><p>The limit <m>\lim\limits_{x\to\infty} x^2-e^x</m> initially returns the indeterminate form <m>\infty-\infty</m>. We can rewrite the expression by factoring out <m>x^2</m>; <m>\ds x^2-e^x = x^2\left(1-\frac{e^x}{x^2}\right)</m>. We need to evaluate how <m>e^x/x^2</m> behaves as <m>x\rightarrow \infty</m>:
+              <me>
+                \lim_{x\to\infty}\frac{e^x}{x^2} \stackrel{\ \text{ by LHR }  \ }{=} \lim_{x\to\infty} \frac{e^x}{2x} \stackrel{\ \text{ by LHR }  \ }{=} \lim_{x\to\infty} \frac{e^x}{2} = \infty.
+              </me>
+              Thus <m>\lim_{x\to\infty}x^2(1-e^x/x^2)</m> evaluates to <m>\infty\cdot(-\infty)</m>, which is not an indeterminate form; rather, <m>\infty\cdot(-\infty)</m> evaluates to <m>-\infty</m>. We conclude that
+              <m>\lim\limits_{x\to\infty} x^2-e^x = -\infty</m>.
+
+              Interpretation: as <m>x</m> gets large, the difference between <m>x^2</m> and <m>e^x</m> grows very large.</p></li>
+        </ol>
+      </solution>
+    </example>
+  </subsection>
+
+  <subsection>
+    <title>Indeterminate Forms<nbsp /> <m>0^0</m>, <m>1^\infty</m> and <m>\infty^0</m></title>
+    <p>When faced with an indeterminate form that involves a power, it often helps to employ the natural logarithmic function. The following Key Idea expresses the concept, which is followed by an example that demonstrates its use.</p>
+
+    <insight xml:id="idea_LHR_power">
+      <title>Evaluating Limits Involving Indeterminate Forms <m>0^0</m>, <m>1^\infty</m> and <m>\infty^0</m></title>
+      <p>If <m>\lim\limits_{x\to c} \ln\big(f(x)\big) = L</m>,then
+        <m>\lim\limits_{x\to c} f(x) = \lim_{x\to c} e^{\ln(f(x))} = e^L</m>. <index><main>limit</main><sub>indeterminate form</sub></index><index><main>indeterminate form</main></index></p>
+    </insight>
+
+    <example xml:id="ex_LHR4">
+      <title>Using l'H&#xf4;pital's Rule with indeterminate forms involving exponents</title>
+      <statement>
+        <p>Evaluate the following limits.</p>
+
+        <p><m>\ds 1. \lim_{x\to\infty} \left(1+\frac1x\right)^x \qquad\qquad 2. \lim_{x\to0^+} x^x</m>.</p>
+      </statement>
+      <solution>
+        <ol>
+          <li><p>This equivalent to a special limit given in <xref ref="thm_lim_continuous">Theorem</xref>; these limits have important applications within mathematics and finance. Note that the exponent approaches <m>\infty</m> while the base approaches 1, leading to the indeterminate form <m>1^\infty</m>. Let <m>f(x) = (1+1/x)^x</m>; the problem asks to evaluate <m>\lim\limits_{x\to\infty}f(x)</m>. Let's first evaluate <m>\lim\limits_{x\to\infty}\ln\big(f(x)\big)</m>.
+              <md>
+                <mrow>\lim_{x\to\infty}\ln\big(f(x)\big) \amp  = \lim_{x\to\infty} \ln\left(1+\frac1x\right)^x</mrow>
+                <mrow>\amp = \lim_{x\to\infty} x\ln\left(1+\frac1x\right)</mrow>
+                <mrow>\amp =  \lim_{x\to\infty} \frac{\ln\left(1+\frac1x\right)}{1/x}</mrow>
+                <intertext>This produces the indeterminate form 0/0, so we apply l'H\^opital's Rule.</intertext>
+                <mrow>\amp =	\lim_{x\to\infty} \frac{\frac{1}{1+1/x}\cdot(-1/x^2)}{(-1/x^2)}</mrow>
+                <mrow>\amp = \lim_{x\to\infty}\frac{1}{1+1/x}</mrow>
+                <mrow>\amp = 1.</mrow>
+              </md>
+              Thus <m>\lim\limits_{x\to\infty} \ln\big(f(x)\big) = 1</m>. We return to the original limit and apply <xref ref="idea_LHR_power">Key Idea</xref>.
+              <me>
+                \lim_{x\to\infty}\left(1+\frac1x\right)^x = \lim_{x\to\infty} f(x) =  \lim_{x\to\infty}e^{\ln(f(x))} = e^1 = e.
+              </me>
+            </p></li>
+
+          <li><p>This limit leads to the indeterminate form <m>0^0</m>. Let <m>f(x) = x^x</m> and consider first <m>\lim\limits_{x\to0^+} \ln\big(f(x)\big)</m>.
+              <md>
+                <mrow>\lim_{x\to0^+} \ln\big(f(x)\big) \amp = \lim_{x\to0^+} \ln\left(x^x\right)</mrow>
+                <mrow>\amp = \lim_{x\to0^+} x\ln(x) </mrow>
+                <mrow>\amp = \lim_{x\to0^+} \frac{\ln(x) }{1/x}.</mrow>
+                <intertext>This produces the indeterminate form <m>-\infty/\infty</m> so we apply l'H\^opital's Rule.</intertext>
+                <mrow>\amp =	\lim_{x\to0^+} \frac{1/x}{-1/x^2}</mrow>
+                <mrow>\amp = \lim_{x\to0^+} -x</mrow>
+                <mrow>\amp = 0.</mrow>
+              </md>
+              Thus <m>\lim\limits_{x\to0^+} \ln\big(f(x)\big) =0</m>. We return to the original limit and apply <xref ref="idea_LHR_power">Key Idea</xref>.
+              <me>
+                \lim_{x\to0^+} x^x = \lim_{x\to0^+} f(x) = \lim_{x\to0^+} e^{\ln(f(x))} = e^0 = 1.
+              </me>
+              This result is supported by the graph of <m>f(x)=x^x</m> given in <xref ref="fig_LHR4">Figure</xref>.
+
+              <figure xml:id="fig_LHR4" >
+                <caption>A graph of <m>f(x)=x^x</m> supporting the fact that as <m>x\to 0^+</m>, <m>f(x)\to 1</m>.</caption>
+                <!-- START figures/fig_LHR4.tex -->
+                <image xml:id="img_LHR4" >
+                  <description></description>
+                  <latex-image-code>
+                    <![CDATA[
+                    \begin{tikzpicture}
+                    \begin{axis}[%
+                    axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+                    %			xtick=\empty,%
+                    %			extra x ticks={.5,3},
+                    %			extra x tick labels={$a$,$b$},
+			ytick={1,2,3,4},
+                    %			yticklabels={$-0.002$,$0.002$,$0.004$},
+			%
+                    %			extra y ticks={0.001},%
+                    %			minor x tick num=4,
+			ymin=-.4,ymax=4.5,%
+			xmin=-.1,xmax=2.2,%
+			scaled ticks=false
+                    ]
+
+                    \addplot [{\colorone},thick,smooth] coordinates {(0.01,0.955)(0.02,0.9247)(0.03,0.9001)(0.04,0.8792)(0.05,0.8609)(0.06,0.8447)(0.07,0.8302)(0.08,0.817)(0.09,0.8052)(0.1,0.7943)(0.2,0.7248)(0.3,0.6968)(0.4,0.6931)(0.5,0.7071)(0.6,0.736)(0.7,0.7791)(0.8,0.8365)(0.9,0.9095)(1.,1.)(1.1,1.111)(1.2,1.245)(1.3,1.406)(1.4,1.602)(1.5,1.837)(1.6,2.121)(1.7,2.465)(1.8,2.881)(1.9,3.386)(2.,4.)
+                    };
+
+                    \draw (axis cs:1,1) node [below right] {\scriptsize $f(x)=x^x$};
+
+
+
+                    %\draw (axis cs:2.4,-0.002) node {\scriptsize $f(x)$};
+                    \end{axis}
+
+
+
+                    \end{tikzpicture}
+                    ]]>
+                  </latex-image-code>
+                </image>
+                <!-- figures/fig_LHR4.tex END -->
+              </figure>
+
+            </p></li>
+        </ol>
+      </solution>
+    </example>
+
+    <p>Our brief revisit of limits will be rewarded in the next section where we consider <em>improper integration.</em> So far, we have only considered definite integrals where the bounds are finite numbers, such as <m>\ds \int_0^1 f(x)\ dx</m>. Improper integration considers integrals where one, or both, of the bounds are <q>infinity.</q> Such integrals have many uses and applications, in addition to generating ideas that are enlightening.</p>
+  </subsection>
+
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>List the different indeterminate forms described in this section.</p>
+          </statement>
+          <solution>
+            <p><m>0/0, \infty/\infty, 0\cdot\infty,\infty-\infty,0^0,1^\infty,\infty^0</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>T/F: l'H&#xf4;pital's Rule provides a faster method of computing derivatives.</p>
+          </statement>
+          <solution>
+            <p>F</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>T/F: l'H&#xf4;pital's Rule states that <m>\ds \frac{d}{dx}\left[\frac{f(x)}{g(x)}\right] = \frac{\fp(x)}{g'(x)}</m>.</p>
+          </statement>
+          <solution>
+            <p>F</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Explain what the indeterminate form <q><m>1^\infty</m></q> means.</p>
+          </statement>
+          <solution>
+            <p>The base of an expression is approaching 1 while its power is growing without bound.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Fill in the blanks: The Quotient Rule is applied to <m>\ds \frac{f(x)}{g(x)}</m> when taking <fillin />; l'H&#xf4;pital's Rule is applied when taking certain <fillin />.</p>
+          </statement>
+          <solution>
+            <p>derivatives; limits</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Create (but do not evaluate!) a limit that returns <q><m>\infty^0</m></q>.</p>
+          </statement>
+          <solution>
+            <p>Answers will vary.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Create a function <m>f(x)</m> such that <m>\lim\limits_{x\to 1}f(x)</m> returns <q><m>0^0</m></q>.</p>
+          </statement>
+          <solution>
+            <p>Answers will vary.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, evaluate the given limit.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to 1} \frac{x^2+x-2}{x-1}</m></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to 2} \frac{x^2+x-6}{x^2-7x+10}</m></p>
+          </statement>
+          <solution>
+            <p><m>-5/3</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to \pi} \frac{\sin(x) }{x-\pi}</m></p>
+          </statement>
+          <solution>
+            <p><m>-1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to \pi/4} \frac{\sin(x) -\cos(x) }{\cos(2x)}</m></p>
+          </statement>
+          <solution>
+            <p><m>-\sqrt{2}/2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to 0} \frac{\sin(5x)}{x}</m></p>
+          </statement>
+          <solution>
+            <p><m>5</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to 0} \frac{\sin(2x)}{x+2}</m></p>
+          </statement>
+          <solution>
+            <p><m>0</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to 0} \frac{\sin(2x)}{\sin(3x)}</m></p>
+          </statement>
+          <solution>
+            <p><m>2/3</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to 0} \frac{\sin(ax)}{\sin(bx)}</m></p>
+          </statement>
+          <solution>
+            <p><m>a/b</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to 0^+} \frac{e^x-1}{x^2}</m></p>
+          </statement>
+          <solution>
+            <p><m>\infty</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to 0^+} \frac{e^x-x-1}{x^2}</m></p>
+          </statement>
+          <solution>
+            <p><m>1/2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to 0^+} \frac{x-\sin(x) }{x^3-x^2}</m></p>
+          </statement>
+          <solution>
+            <p><m>0</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to \infty} \frac{x^4}{e^x}</m></p>
+          </statement>
+          <solution>
+            <p><m>0</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to \infty} \frac{\sqrt{x}}{e^x}</m></p>
+          </statement>
+          <solution>
+            <p><m>0</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to \infty} \frac{e^x}{\sqrt{x}}</m></p>
+          </statement>
+          <solution>
+            <p><m>\infty</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to \infty} \frac{e^x}{2^x}</m></p>
+          </statement>
+          <solution>
+            <p><m>\infty</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to \infty} \frac{e^x}{3^x}</m></p>
+          </statement>
+          <solution>
+            <p><m>0</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to 3} \frac{x^3-5x^2+3x+9}{x^3-7x^2+15x-9}</m></p>
+          </statement>
+          <solution>
+            <p><m>2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to -2} \frac{x^3+4x^2+4x}{x^3+7x^2+16x+12}</m></p>
+          </statement>
+          <solution>
+            <p><m>-2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to \infty} \frac{\ln(x) }{x}</m></p>
+          </statement>
+          <solution>
+            <p><m>0</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to \infty} \frac{\ln(x^2)}{x}</m></p>
+          </statement>
+          <solution>
+            <p><m>0</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to \infty} \frac{\Big(\ln(x) \Big)^2}{x}</m></p>
+          </statement>
+          <solution>
+            <p><m>0</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to 0^+} x\cdot \ln(x)</m></p>
+          </statement>
+          <solution>
+            <p><m>0</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to 0^+} \sqrt{x}\cdot \ln(x)</m></p>
+          </statement>
+          <solution>
+            <p><m>0</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to 0^+} xe^{1/x}</m></p>
+          </statement>
+          <solution>
+            <p><m>\infty</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to \infty} x^3-x^2</m></p>
+          </statement>
+          <solution>
+            <p><m>\infty</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to \infty} \sqrt{x}-\ln(x)</m></p>
+          </statement>
+          <solution>
+            <p><m>\infty</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to -\infty} xe^x</m></p>
+          </statement>
+          <solution>
+            <p><m>0</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to 0^+} \frac{1}{x^2}e^{-1/x}</m></p>
+          </statement>
+          <solution>
+            <p><m>0</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to 0^+} (1+x)^{1/x}</m></p>
+          </statement>
+          <solution>
+            <p><m>e</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to 0^+} (2x)^{x}</m></p>
+          </statement>
+          <solution>
+            <p><m>1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to 0^+} (2/x)^{x}</m></p>
+          </statement>
+          <solution>
+            <p><m>1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to 0^+} (\sin(x) )^{x}</m> Hint: use the Squeeze Theorem.</p>
+          </statement>
+          <solution>
+            <p><m>1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to 1^+} (1-x)^{1-x}</m></p>
+          </statement>
+          <solution>
+            <p><m>1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to \infty} (x)^{1/x}</m></p>
+          </statement>
+          <solution>
+            <p><m>1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to \infty} (1/x)^{x}</m></p>
+          </statement>
+          <solution>
+            <p><m>0</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to 1^+} (\ln(x) )^{1-x}</m></p>
+          </statement>
+          <solution>
+            <p><m>1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to \infty} (1+x)^{1/x}</m></p>
+          </statement>
+          <solution>
+            <p><m>1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to \infty} (1+x^2)^{1/x}</m></p>
+          </statement>
+          <solution>
+            <p><m>1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to \pi/2} \tan(x) \cos(x)</m></p>
+          </statement>
+          <solution>
+            <p><m>1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to \pi/2} \tan(x) \sin(2x)</m></p>
+          </statement>
+          <solution>
+            <p><m>2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to 1^+} \frac{1}{\ln(x) } - \frac{1}{x-1}</m></p>
+          </statement>
+          <solution>
+            <p><m>1/2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to 3^+} \frac{5}{x^2-9} - \frac{x}{x-3}</m></p>
+          </statement>
+          <solution>
+            <p><m>-\infty</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to \infty} x\tan(1/x)</m></p>
+          </statement>
+          <solution>
+            <p><m>1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to \infty} \frac{(\ln(x) )^3}{x}</m></p>
+          </statement>
+          <solution>
+            <p><m>0</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to 1} \frac{x^2+x-2}{\ln(x) }</m></p>
+          </statement>
+          <solution>
+            <p><m>3</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

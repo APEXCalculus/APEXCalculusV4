@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<chapter xmlns:xi="http://www.w3.org/2001/XInclude"  xml:id="chap_vvf">
+  <title>Vector Valued Functions</title>
+  <introduction>
+    <p>In the previous chapter, we learned about vectors and were introduced to the power of vectors within mathematics. In this chapter, we'll build on this foundation to define functions whose input is a real number and whose output is a vector. We'll see how to graph these functions and apply calculus techniques to analyze their behavior. Most importantly, we'll see <em>why</em> we are interested in doing this: we'll see beautiful applications to the study of moving objects.</p>
+  </introduction>
+  <xi:include  href="sec_vvf.mbx" />
+  <xi:include  href="sec_vvf_calc.mbx" />
+  <xi:include  href="sec_vvf_motion.mbx" />
+  <xi:include  href="sec_tan_norm.mbx" />
+  <xi:include  href="sec_curvature.mbx" />
+</chapter>

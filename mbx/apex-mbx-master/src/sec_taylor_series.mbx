@@ -1,0 +1,1240 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_taylor_series">
+  <title>Taylor Series</title>
+  <introduction>
+    <p>In <xref ref="sec_power_series">Section</xref>, we showed how certain functions can be represented by a power series function. <xref ref="sec_taylor_poly">In</xref>, we showed how we can approximate functions with polynomials, given that enough derivative information is available. In this section we combine these concepts: if a function <m>f(x)</m> is infinitely differentiable, we show how to represent it with a power series function.</p>
+
+    <definition xml:id="def_taylor_series">
+      <title>Taylor and Maclaurin Series</title>
+      <statement>
+        <p>Let <m>f(x)</m> have derivatives of all orders at <m>x=c</m>.
+          <index><main>Taylor Series</main><sub>definition</sub></index><index><main>Maclaurin Series</main><sub>definition</sub></index><index><main>Maclaurin Series|see{Taylor Series}</main></index><index><main>series</main><sub>Taylor</sub></index><index><main>series</main><sub>Maclaurin</sub></index></p>
+
+        <ol>
+          <li><p>The <em>Taylor Series of <m>f(x)</m>, centered at <m>c</m></em> is
+              <me>
+                \infser[0] \frac{f^{(n)}(c)}{n!}(x-c)^n.
+              </me>
+            </p></li>
+
+          <li><p>Setting <m>c=0</m> gives the <em>Maclaurin Series of <m>f(x)</m></em>:
+              <me>
+                \infser[0] \frac{f^{(n)}(0)}{n!}x^n.
+              </me>
+            </p></li>
+        </ol>
+      </statement>
+    </definition>
+
+    <p>The difference between a Taylor polynomial and a Taylor series is the former is a polynomial, containing only a finite number of terms, whereas the latter is a series, a summation of an infinite set of terms. When creating the Taylor polynomial of degree <m>n</m> for a function <m>f(x)</m> at <m>x=c</m>, we needed to evaluate <m>f</m>, and the first <m>n</m> derivatives of <m>f</m>, at <m>x=c</m>. When creating the Taylor series of <m>f</m>, it helps to find a pattern that describes the <m>n^\text{ th }</m> derivative of <m>f</m> at <m>x=c</m>. We demonstrate this in the next two examples.</p>
+
+    <example xml:id="ex_ts1">
+      <title>The Maclaurin series of <m>f(x) = \cos(x)</m></title>
+      <statement>
+        <p>Find the Maclaurin series of <m>f(x)=\cos(x)</m>.</p>
+      </statement>
+      <solution>
+        <p>In <xref ref="ex_taypoly4">Example</xref> we found the <m>8^\text{ th }</m> degree Maclaurin polynomial of <m>\cos(x)</m>. In doing so, we created the table shown in <xref ref="fig_ts1">Figure</xref>.</p>
+
+        <table xml:id="fig_ts1" >
+          <caption>A table of the derivatives of <m>f(x)=\cos(x)</m> evaluated at <m>x=0</m>.</caption>
+          <tabular>
+            <row>
+              <cell><m>f(x) = \cos(x)</m></cell>
+              <cell><m>\Rightarrow</m></cell>
+              <cell><m>f(0) = 1</m></cell>
+            </row>
+            <row>
+              <cell><m>\fp(x) = -\sin(x)</m></cell>
+              <cell><m>\Rightarrow</m></cell>
+              <cell><m>\fp(0) = 0</m></cell>
+            </row>
+            <row>
+              <cell><m>\fp'(x) = -\cos(x)</m></cell>
+              <cell><m>\Rightarrow</m></cell>
+              <cell><m>\fp'(0) = -1</m></cell>
+            </row>
+            <row>
+              <cell><m>\fp''(x) = \sin(x)</m></cell>
+              <cell><m>\Rightarrow</m></cell>
+              <cell><m>\fp''(0) = 0</m></cell>
+            </row>
+            <row>
+              <cell><m>f^{(4)}(x) = \cos(x)</m></cell>
+              <cell><m>\Rightarrow</m></cell>
+              <cell><m>f^{(4)}(0) = 1</m></cell>
+            </row>
+            <row>
+              <cell><m>f^{(5)}(x) = -\sin(x)</m></cell>
+              <cell><m>\Rightarrow</m></cell>
+              <cell><m>f^{(5)}(0) = 0</m></cell>
+            </row>
+            <row>
+              <cell><m>f^{(6)}(x) = -\cos(x)</m></cell>
+              <cell><m>\Rightarrow</m></cell>
+              <cell><m>f^{(6)}(0) = -1</m></cell>
+            </row>
+            <row>
+              <cell><m>f^{(7)}(x) = \sin(x)</m></cell>
+              <cell><m>\Rightarrow</m></cell>
+              <cell><m>f^{(7)}(0) = 0</m></cell>
+            </row>
+            <row>
+              <cell><m>f^{(8)}(x) = \cos(x)</m></cell>
+              <cell><m>\Rightarrow</m></cell>
+              <cell><m>f^{(8)}(0) = 1</m></cell>
+            </row>
+            <row>
+              <cell><m>f^{(9)}(x) = -\sin(x)</m></cell>
+              <cell><m>\Rightarrow</m></cell>
+              <cell><m>f^{(9)}(0) = 0</m></cell>
+            </row>
+          </tabular>
+        </table>
+
+        <p>Notice how <m>f^{(n)}(0)=0</m> when <m>n</m> is odd, <m>f^{(n)}(0)=1</m> when <m>n</m> is divisible by <m>4</m>, and <m>f^{(n)}(0)=-1</m> when <m>n</m> is even but not divisible by 4. Thus the Maclaurin series of <m>\cos(x)</m> is
+          <me>
+            1-\frac{x^2}2+\frac{x^4}{4!}-\frac{x^6}{6!}+\frac{x^8}{8!} - \cdots
+          </me>
+        </p>
+
+        <p>We can go further and write this as a summation. Since we only need the terms where the power of <m>x</m> is even, we write the power series in terms of <m>x^{2n}</m>:
+          <me>
+            \infser[0] (-1)^{n}\frac{x^{2n}}{(2n)!}.
+          </me>
+        </p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_ts2">
+      <title>The Taylor series of <m>f(x)=\ln(x)</m> at <m>x=1</m></title>
+      <statement>
+        <p>Find the Taylor series of <m>f(x) = \ln(x)</m> centered at <m>x=1</m>.</p>
+      </statement>
+      <solution>
+        <p><xref ref="fig_ts2">Figure</xref> shows the <m>n^\text{ th }</m> derivative of <m>\ln(x)</m> evaluated at <m>x=1</m> for <m>n=0,\ldots,5</m>, along with an expression for the <m>n^\text{ th }</m> term:
+          <me>
+            f^{(n)}(1) = (-1)^{n+1}(n-1)! \text{ for \(n\geq 1\). }
+          </me>
+        </p>
+
+        <p>Remember that this is what distinguishes Taylor series from Taylor polynomials; we are very interested in finding a pattern for the <m>n^\text{ th }</m> term, not just finding a finite set of coefficients for a polynomial.</p>
+
+        <table xml:id="fig_ts2" >
+          <caption>Derivatives of <m>\ln(x)</m> evaluated at <m>x=1</m>.</caption>
+          <tabular>
+            <row>
+              <cell><m>f(x) = \ln(x)</m></cell>
+              <cell><m>\Rightarrow</m></cell>
+              <cell><m>f(1) = 0</m></cell>
+            </row>
+            <row>
+              <cell><m>\fp(x) = 1/x</m></cell>
+              <cell><m>\Rightarrow</m></cell>
+              <cell><m>\fp(1) = 1</m></cell>
+            </row>
+            <row>
+              <cell><m>\fp'(x) = -1/x^2</m></cell>
+              <cell><m>\Rightarrow</m></cell>
+              <cell><m>\fp'(1) = -1</m></cell>
+            </row>
+            <row>
+              <cell><m>\fp''(x) = 2/x^3</m></cell>
+              <cell><m>\Rightarrow</m></cell>
+              <cell><m>\fp''(1) = 2</m></cell>
+            </row>
+            <row>
+              <cell><m>f^{(4)}(x) = -6/x^4</m></cell>
+              <cell><m>\Rightarrow</m></cell>
+              <cell><m>f^{(4)}(1) = -6</m></cell>
+            </row>
+            <row>
+              <cell><m>f^{(5)}(x) = 24/x^5</m></cell>
+              <cell><m>\Rightarrow</m></cell>
+              <cell><m>f^{(5)}(1) = 24</m></cell>
+            </row>
+            <row>
+              <cell><m>\ \vdots</m></cell>
+              <cell></cell>
+              <cell><m>\ \vdots</m></cell>
+            </row>
+            <row>
+              <cell><m>f^{(n)}(x) =</m></cell>
+              <cell><m>\Rightarrow</m></cell>
+              <cell><m>f^{(n)}(1) =</m></cell>
+            </row>
+            <row>
+              <cell><m>\ds \frac{(-1)^{n+1}(n-1)!}{x^n}</m></cell>
+              <cell></cell>
+              <cell><m>(-1)^{n+1}(n-1)!</m></cell>
+            </row>
+          </tabular>
+        </table>
+
+        <p>Since <m>f(1) = \ln(1) = 0</m>, we skip the first term and start the summation with <m>n=1</m>, giving the Taylor series for <m>\ln(x)</m>, centered at <m>x=1</m>, as
+          <me>
+            \infser (-1)^{n+1}(n-1)!\frac{1}{n!}(x-1)^n = \infser (-1)^{n+1}\frac{(x-1)^n}{n}.
+          </me>
+        </p>
+      </solution>
+    </example>
+
+    <p>It is important to note that <xref ref="def_taylor_series">Definition</xref> defines a Taylor series given a function <m>f(x)</m>; however, we <em>cannot</em> yet state that <m>f(x)</m> <em>is equal</em> to its Taylor series. We will find that <q>most of the time</q> they are equal, but we need to consider the conditions that allow us to conclude this.</p>
+
+    <p><xref ref="thm_taylorthm">Theorem</xref> states that the error between a function <m>f(x)</m> and its <m>n^\text{ th }</m><ndash />degree Taylor polynomial <m>p_n(x)</m> is <m>R_n(x)</m>, where
+      <me>
+        \abs{R_n(x)} \leq \frac{\max\abs{\,f^{(n+1)}(z)}}{(n+1)!}\abs{(x-c)^{(n+1)}}.
+      </me>
+    </p>
+
+    <p>If <m>R_n(x)</m> goes to 0 for each <m>x</m> in an interval <m>I</m> as <m>n</m> approaches infinity, we conclude that the function is equal to its Taylor series expansion.</p>
+
+    <theorem xml:id="thm_function_series_equality">
+      <title>Function and Taylor Series Equality</title>
+      <statement>
+        <p>Let <m>f(x)</m> have derivatives of all orders at <m>x=c</m>, let <m>R_n(x)</m> be as stated in <xref ref="thm_taylorthm">Theorem</xref>, and let <m>I</m> be an interval on which the Taylor series of <m>f(x)</m> converges.
+          If <m>\lim\limits_{n\to\infty} R_n(x) = 0</m> for all <m>x</m> in <m>I</m>, then
+          <index><main>Taylor Series</main><sub>equality with generating function</sub></index>
+          <me>
+            f(x) = \infser[0] \frac{f^{(n)}(c)}{n!}(x-c)^n\ \text{ on \(I\). }
+          </me>
+        </p>
+      </statement>
+    </theorem>
+
+    <p>We demonstrate the use of this theorem in an example.</p>
+
+    <example xml:id="ex_ts3">
+      <title>Establishing equality of a function and its Taylor series</title>
+      <statement>
+        <p>Show that <m>f(x) = \cos(x)</m> is equal to its Maclaurin series, as found in <xref ref="ex_ts1">Example</xref>, for all <m>x</m>.</p>
+      </statement>
+      <solution>
+        <p>Given a value <m>x</m>, the magnitude of the error term <m>R_n(x)</m> is bounded by
+          <me>
+            \abs{R_n(x)} \leq \frac{\max\abs{\,f^{(n+1)}(z)}}{(n+1)!}\abs{x^{n+1}}.
+          </me>
+        </p>
+
+        <p>Since all derivatives of <m>\cos(x)</m> are <m>\pm \sin(x)</m> or <m>\pm\cos(x)</m>, whose magnitudes are bounded by <m>1</m>, we can state
+          <me>
+            \abs{R_n(x)} \leq \frac{1}{(n+1)!}\abs{x^{n+1}}
+          </me>
+          which implies
+          <men xml:id="eq_coseqtaylor" >
+            -\frac{\abs{x^{n+1}}}{(n+1)!} \leq R_n(x) \leq\frac{\abs{x^{n+1}}}{(n+1)!}.
+          </men>
+        </p>
+
+        <p>For any <m>x</m>, <m>\lim\limits_{n\to\infty} \frac{x^{n+1}}{(n+1)!} = 0</m>. Applying the Squeeze Theorem to Equation <xref ref="eq_coseqtaylor" />, we conclude that <m>\lim\limits_{n\to\infty} R_n(x) = 0</m> for all <m>x</m>, and hence
+          <me>
+            \cos(x) = \infser[0] (-1)^{n}\frac{x^{2n}}{(2n)!} \text{ for all \(x\) } .
+          </me>
+        </p>
+      </solution>
+    </example>
+
+    <p>It is natural to assume that a function is equal to its Taylor series on the series' interval of convergence, but this is not the case. In order to properly establish equality, one must use <xref ref="thm_function_series_equality">Theorem</xref>. This is a bit disappointing, as we developed beautiful techniques for determining the interval of convergence of a power series, and proving that <m>R_n(x)\to 0</m> can be cumbersome as it deals with high order derivatives of the function.</p>
+
+    <p>There is good news. A function <m>f(x)</m> that is equal to its Taylor series, centered at any point the domain of <m>f(x)</m>, is said to be an <em>analytic function</em>,<index><main>analytic function</main></index> and most, if not all, functions that we encounter within this course are analytic functions. Generally speaking, any function that one creates with elementary functions (polynomials, exponentials, trigonometric functions, etc.) that is not piecewise defined is probably analytic. For most functions, we assume the function is equal to its Taylor series on the series' interval of convergence and only use <xref ref="thm_function_series_equality">Theorem</xref> when we suspect something may not work as expected.</p>
+
+    <p>We develop the Taylor series for one more important function, then give a table of the Taylor series for a number of common functions.<index><main>Binomial Series</main></index><index><main>series</main><sub>Binomial</sub></index></p>
+
+    <example xml:id="ex_ts4">
+      <title>The Binomial Series</title>
+      <statement>
+        <p>Find the Maclaurin series of <m>f(x) = (1+x)^k</m>, <m>k\neq 0</m>.</p>
+      </statement>
+      <solution>
+        <p>When <m>k</m> is a positive integer, the Maclaurin series is finite. For instance, when <m>k=4</m>, we have
+          <me>
+            f(x) = (1+x)^4 = 1+4x+6x^2+4x^3+x^4.
+          </me>
+        </p>
+
+        <p>The coefficients of <m>x</m> when <m>k</m> is a positive integer are known as the <em>binomial coefficients</em>, giving the series we are developing its name.</p>
+
+        <p>When <m>k=1/2</m>, we have <m>f(x) = \sqrt{1+x}</m>. Knowing a series representation of this function would give a useful way of approximating <m>\sqrt{1.3}</m>, for instance.</p>
+
+        <p>To develop the Maclaurin series for <m>f(x) = (1+x)^k</m> for any value of <m>k\neq0</m>, we consider the derivatives of <m>f</m> evaluated at <m>x=0</m>:</p>
+        <md>
+          <mrow>f(x) \amp = (1+x)^k \amp  f(0) \amp = 1</mrow>
+          <mrow>\fp(x) \amp = k(1+x)^{k-1} \amp  \fp(0) \amp =k</mrow>
+          <mrow>\fp'(x) \amp = k(k-1)(1+x)^{k-2} \amp  \fp'(0) \amp =k(k-1)</mrow>
+          <mrow>\fp''(x) \amp = k(k-1)(k-2)(1+x)^{k-3} \amp  \fp''(0) \amp =k(k-1)(k-2)</mrow>
+          <mrow>\amp \vdots \amp  \amp \vdots</mrow>
+          <mrow>f^{(n)}(x) \amp = k(k-1)\cdots\big(k-(n-1)\big)(1+x)^{k-n} \amp  f^{(n)}(0) \amp =k(k-1)\cdots\big(k-(n-1)\big)</mrow>
+        </md>
+        <p>Thus the Maclaurin series for <m>f(x) = (1+x)^k</m> is
+          <me>
+            1+ k + \frac{k(k-1)}{2!} + \frac{k(k-1)(k-2)}{3!} + \ldots + \frac{k(k-1)\cdots\big(k-(n-1)\big)}{n!}+\ldots
+          </me>
+        </p>
+
+        <p>It is important to determine the interval of convergence of this series. With
+          <me>
+            a_n = \frac{k(k-1)\cdots\big(k-(n-1)\big)}{n!}x^n,
+          </me>
+          we apply the Ratio Test:
+          <md>
+            <mrow>\lim_{n\to\infty}\frac{\abs{a_{n+1}}}{\abs{a_n}}\amp =\lim_{n\to\infty} \abs{\frac{k(k-1)\cdots(k-n)}{(n+1)!}x^{n+1}}\Bigg/\abs{\frac{k(k-1)\cdots\big(k-(n-1)\big)}{n!}x^n}</mrow>
+            <mrow>\amp =\lim_{n\to\infty} \abs{\frac{k-n}{n}x}</mrow>
+            <mrow>\amp = \abs{x}.</mrow>
+          </md>
+        </p>
+
+        <p>The series converges absolutely when the limit of the Ratio Test is less than 1; therefore, we have absolute convergence when <m>\abs{x}\lt 1</m>.</p>
+
+        <p>While outside the scope of this text, the interval of convergence depends on the value of <m>k</m>. When <m>k>0</m>, the interval of convergence is <m>[-1,1]</m>. When <m>-1\lt k\lt 0</m>, the interval of convergence is <m>[-1,1)</m>. If <m>k\leq -1</m>, the interval of convergence is <m>(-1,1)</m>.</p>
+      </solution>
+    </example>
+
+    <p>We learned that Taylor polynomials offer a way of approximating a <q>difficult to compute</q> function with a polynomial. Taylor series offer a way of exactly representing a function with a series. One probably can see the use of a good approximation; is there any use of representing a function exactly as a series?</p>
+
+    <p>While we should not overlook the mathematical beauty of Taylor series (which is reason enough to study them), there are practical uses as well. They provide a valuable tool for solving a variety of problems, including problems relating to integration and differential equations.</p>
+
+    <p>In <xref ref="idea_common_taylor">Key Idea</xref> (on the following page) we give a table of the Taylor series of a number of common functions. We then give a theorem about the <q>algebra of power series,</q> that is, how we can combine power series to create power series of new functions. This allows us to find the Taylor series of functions like <m>f(x) = e^x\cos(x)</m> by knowing the Taylor series of <m>e^x</m> and <m>\cos(x)</m>.</p>
+
+    <p>Before we investigate combining functions, consider the Taylor series for the arctangent function (see <xref ref="idea_common_taylor">Key Idea</xref>). Knowing that <m>\tan^{-1}(1) = \pi/4</m>, we can use this series to approximate the value of <m>\pi</m>:
+      <md>
+        <mrow>\frac{\pi}4 \amp = \tan^{-1}(1) = 1-\frac13+\frac15-\frac17+\frac19-\cdots</mrow>
+        <mrow>\pi \amp = 4\left(1-\frac13+\frac15-\frac17+\frac19-\cdots\right)</mrow>
+      </md>
+    </p>
+
+    <p>Unfortunately, this particular expansion of <m>\pi</m> converges very slowly. The first
+      100 terms approximate <m>\pi</m> as <m>3.13159</m>, which is not particularly good.</p>
+
+      <insight xml:id="idea_common_taylor">
+        <title>Important Taylor Series Expansions</title>
+        <tabular>
+          <row>
+            <cell><term>Function and Series</term></cell>
+            <cell><term>First Few Terms</term></cell>
+            <cell>\text{ <term>Interval of</term></cell>
+          </row>
+          <row>
+            <cell><term>Convergence</term> }</cell>
+          </row>
+          <row>
+            <cell><m>\ds e^x = \infser[0] \frac{x^n}{n!}</m></cell>
+            <cell><m>\ds 1+ x+\frac{x^2}{2!} + \frac{x^3}{3!}+\cdots</m></cell>
+            <cell><m>(-\infty,\infty)</m></cell>
+          </row>
+          <row>
+            <cell><m>\ds \sin(x) = \infser[0] (-1)^n\frac{x^{2n+1}}{(2n+1)!}</m></cell>
+            <cell><m>\ds x-\frac{x^3}{3!}+\frac{x^5}{5!} - \frac{x^7}{7!}+\cdots</m></cell>
+            <cell><m>(-\infty,\infty)</m></cell>
+          </row>
+          <row>
+            <cell><m>\ds \cos(x) = \infser[0] (-1)^n\frac{x^{2n}}{(2n)!}</m></cell>
+            <cell><m>\ds 1-\frac{x^2}{2!}+\frac{x^4}{4!} - \frac{x^6}{6!} +\cdots</m></cell>
+            <cell><m>(-\infty,\infty)</m></cell>
+          </row>
+          <row>
+            <cell><m>\ds \ln(x) = \infser(-1)^{n+1}\frac{(x-1)^n}{n}</m></cell>
+            <cell><m>\ds (x-1)- \frac{(x-1)^2}{2} +\frac{(x-1)^3}{3}-\cdots</m></cell>
+            <cell><m>(0,2]</m></cell>
+          </row>
+          <row>
+            <cell><m>\ds \frac{1}{1-x} = \infser[0] x^n</m></cell>
+            <cell><m>\ds 1+x+x^2+x^3+\cdots</m></cell>
+            <cell><m>(-1,1)</m></cell>
+          </row>
+          <row>
+            <cell>\small<m>\ds (1+x)^k=\infser[0] \frac{k(k-1)\cdots\big(k-(n-1)\big)}{n!}x^n</m></cell>
+            <cell><m>\ds 1+kx+\frac{k(k-1)}{2!}x^2 + \cdots</m></cell>
+            <cell><m>(-1,1)</m><fn>Convergence at <m>x=\pm1</m> depends on the value of <m>k</m>.</fn></cell>
+          </row>
+          <row>
+            <cell><m>\ds \tan^{-1}(x) = \infser[0] (-1)^n\frac{x^{2n+1}}{2n+1}</m></cell>
+            <cell><m>\ds x-\frac{x^3}{3}+\frac{x^5}{5}-\frac{x^7}{7}+\cdots</m></cell>
+            <cell><m>[-1,1]</m></cell>
+          </row>
+        </tabular>
+        <p><index><main>Taylor Series</main><sub>common series</sub></index></p>
+      </insight>
+
+      <theorem xml:id="thm_series_alg">
+        <title>Algebra of Power Series</title>
+        <statement>
+          <p>Let <m>\ds f(x) = \infser[0] a_nx^n</m> and <m>\ds g(x) = \infser[0] b_nx^n</m> converge absolutely for <m>\abs{x}\lt R</m>, and let <m>h(x)</m> be continuous.
+            <index><main>power series</main><sub>algebra of</sub></index></p>
+
+          <ol>
+            <li><p><m>\ds f(x)\pm g(x) = \infser[0] (a_n\pm b_n)x^n</m>   for <m>\abs{x}\lt R</m>.</p></li>
+
+            <li><p><m>\ds 	f(x)g(x) = \left(\infser[0] a_nx^n\right)\left(\infser[0] b_nx^n\right) = \infser[0]\big(a_0b_n+a_1b_{n-1}+\ldots a_nb_0\big)x^n</m> for <m>\abs{x}\lt R</m>.</p></li>
+
+            <li><p><m>\ds f\big(h(x)\big) = \infser[0] a_n\big(h(x)\big)^n</m>   for <m>\abs{h(x)}\lt R</m>.</p></li>
+          </ol>
+        </statement>
+      </theorem>
+
+    <example xml:id="ex_ts5">
+      <title>Combining Taylor series</title>
+      <statement>
+        <p>Write out the first 3 terms of the Taylor Series for <m>f(x) = e^x\cos(x)</m> using <xref ref="idea_common_taylor">Key Idea</xref> and <xref ref="thm_series_alg">Theorem</xref>.</p>
+      </statement>
+      <solution>
+        <p><xref ref="idea_common_taylor">Key Idea</xref> informs us that
+          <me>
+            e^x = 1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\cdots \text{ and }  \cos(x) = 1-\frac{x^2}{2!}+\frac{x^4}{4!}+\cdots.
+          </me>
+        </p>
+
+        <p>Applying <xref ref="thm_series_alg">Theorem</xref>, we find that
+          <md>
+            <mrow>e^x\cos(x) \amp = \left(1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\cdots\right)\left(1-\frac{x^2}{2!}+\frac{x^4}{4!}+\cdots\right).</mrow>
+            <intertext>Distribute the right hand expression across the left:</intertext>
+            <mrow>\amp = 1\left(1-\frac{x^2}{2!}+\frac{x^4}{4!}+\cdots\right)+x\left(1-\frac{x^2}{2!}+\frac{x^4}{4!}+\cdots\right)+\frac{x^2}{2!}\left(1-\frac{x^2}{2!}+\frac{x^4}{4!}+\cdots\right)</mrow>
+            <mrow>\amp +\frac{x^3}{3!}\left(1-\frac{x^2}{2!}+\frac{x^4}{4!}+\cdots\right) + \frac{x^4}{4!}\left(1-\frac{x^2}{2!}+\frac{x^4}{4!}+\cdots\right)+\cdots</mrow>
+            <intertext>Distribute again and collect like terms.</intertext>
+            <mrow>\amp = 1 + x -\frac{x^3}{3}-\frac{x^4}{6} - \frac{x^5}{30}+\frac{x^7}{630}+\cdots</mrow>
+          </md>
+        </p>
+
+        <p>While this process is a bit tedious, it is much faster than evaluating all the necessary derivatives of <m>e^x\cos(x)</m> and computing the Taylor series directly.</p>
+
+        <p>Because the series for <m>e^x</m> and <m>\cos(x)</m> both converge on <m>(-\infty,\infty)</m>, so does the series expansion for <m>e^x\cos(x)</m>.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_ts6">
+      <title>Creating new Taylor series</title>
+      <statement>
+        <p>Use <xref ref="thm_series_alg">Theorem</xref> to create series for <m>y=\sin(x^2)</m> and <m>y=\ln(\sqrt{x})</m>.</p>
+      </statement>
+      <solution>
+        <p>Given that
+          <me>
+            \sin(x) = \infser[0] (-1)^n\frac{x^{2n+1}}{(2n+1)!} = x-\frac{x^3}{3!}+\frac{x^5}{5!} -\frac{x^7}{7!}+\cdots,
+          </me>
+          we simply substitute <m>x^2</m> for <m>x</m> in the series, giving
+          <me>
+            \sin(x^2) = \infser[0] (-1)^n\frac{(x^2)^{2n+1}}{(2n+1)!} = x^2-\frac{x^6}{3!}+\frac{x^{10}}{5!} -\frac{x^{14}}{7!}\cdots.
+          </me>
+        </p>
+
+        <p>Since the Taylor series for <m>\sin(x)</m> has an infinite radius of convergence, so does the Taylor series for <m>\sin(x^2)</m>.</p>
+
+        <p>The Taylor expansion for <m>\ln(x)</m> given in <xref ref="idea_common_taylor">Key Idea</xref> is centered at <m>x=1</m>, so we will center the series for <m>\ln(\sqrt{x})</m> at <m>x=1</m> as well.
+          With
+          <me>
+            \ln(x) = \infser(-1)^{n+1}\frac{(x-1)^n}{n} = (x-1)- \frac{(x-1)^2}{2} +\frac{(x-1)^3}{3}-\cdots,
+          </me>
+          we substitute <m>\sqrt{x}</m> for <m>x</m> to obtain
+          <me>
+            \ln(\sqrt{x}) = \infser(-1)^{n+1}\frac{(\sqrt{x}-1)^n}{n} = (\sqrt{x}-1)- \frac{(\sqrt{x}-1)^2}{2} +\frac{(\sqrt{x}-1)^3}{3}-\cdots.
+          </me>
+        </p>
+
+        <p>While this is not strictly a power series, it is a series that allows us to study the function <m>\ln(\sqrt{x})</m>. Since the interval of convergence of <m>\ln(x)</m> is <m>(0,2]</m>, and the range of <m>\sqrt{x}</m> on <m>(0,4]</m> is <m>(0,2]</m>, the interval of convergence of this series expansion of <m>\ln(\sqrt{x})</m> is <m>(0,4]</m>.</p>
+
+        <aside>
+          <p>In <xref ref="ex_ts6">Example</xref>, one could create a series for <m>\ln(\sqrt{x})</m> by simply recognizing that <m>\ln(\sqrt{x}) = \ln(x^{1/2}) = 1/2\ln(x)</m>, and hence multiplying the Taylor series for <m>\ln(x)</m> by <m>1/2</m>. This example was chosen to demonstrate other aspects of series, such as the fact that the interval of convergence changes.</p>
+        </aside>
+      </solution>
+    </example>
+
+    <example xml:id="ex_ts7">
+      <title>Using Taylor series to evaluate definite integrals</title>
+      <statement>
+        <p>Use the Taylor series of <m>e^{-x^2}</m> to evaluate <m>\ds \int_0^1e^{-x^2}\ dx</m>.</p>
+      </statement>
+      <solution>
+        <p>We learned, when studying Numerical Integration, that <m>e^{-x^2}</m> does not have an antiderivative expressible in terms of elementary functions. This means any definite integral of this function must have its value approximated, and not computed exactly.</p>
+
+        <p>We can quickly write out the Taylor series for <m>e^{-x^2}</m> using the Taylor series of <m>e^x</m>:
+          <md>
+            <mrow>e^x \amp = \infser[0] \frac{x^n}{n!} = 1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\cdots</mrow>
+            <intertext>and so</intertext>
+            <mrow>e^{-x^2} \amp = \infser[0] \frac{(-x^2)^n}{n!}</mrow>
+            <mrow>\amp = \infser[0] (-1)^n\frac{x^{2n}}{n!}</mrow>
+            <mrow>\amp = 1-x^2+\frac{x^4}{2!}-\frac{x^6}{3!}+\cdots.</mrow>
+          </md>
+        </p>
+
+        <p>We use <xref ref="thm_calc_power_series">Theorem</xref> to integrate:
+          <me>
+            \int e^{-x^2}\ dx = C + x - \frac{x^3}{3}+\frac{x^5}{5\cdot2!}-\frac{x^7}{7\cdot3!}+\cdots +(-1)^n\frac{x^{2n+1}}{(2n+1)n!}+\cdots
+          </me>
+        </p>
+
+        <p>This <em>is</em> the antiderivative of <m>e^{-x^2}</m>; while we can write it out as a series, we cannot write it out in terms of elementary functions. We can evaluate the definite integral <m>\ds \int_0^1e^{-x^2}\ dx</m> using this antiderivative; substituting 1 and 0 for <m>x</m> and subtracting gives
+          <me>
+            \int_0^1e^{-x^2}\ dx = 1-\frac{1}{3}+\frac{1}{5\cdot 2!}-\frac{1}{7\cdot3!} + \frac{1}{9\cdot4!}\cdots.
+          </me>
+        </p>
+
+        <p>Summing the 5 terms shown above give the approximation of <m>0.74749</m>. Since this is an alternating series, we can use the Alternating Series Approximation Theorem, (<xref ref="thm_alt_series_approx">Theorem</xref>), to determine how accurate this approximation is. The next term of the series is <m>1/(11\cdot5!) \approx 0.00075758</m>. Thus we know our approximation is within <m>0.00075758</m> of the actual value of the integral. This is arguably much less work than using Simpson's Rule to approximate the value of the integral.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_ts8">
+      <title>Using Taylor series to solve differential equations</title>
+      <statement>
+        <p>Solve the differential equation <m>y'=2y</m> in terms of a power series, and use the theory of Taylor series to recognize the solution in terms of an elementary function.</p>
+      </statement>
+      <solution>
+        <p>We found the first 5 terms of the power series solution to this differential equation in <xref ref="ex_ps5">Example</xref> in <xref ref="sec_power_series">Section</xref>. These are:
+          <me>
+            a_0=1, a_1 = 2, a_2 = \frac42=2, a_3=\frac{8}{2\cdot3}=\frac43, a_4=\frac{16}{2\cdot3\cdot4} = \frac23.
+          </me>
+        </p>
+
+        <p>We include the <q>unsimplified</q> expressions for the coefficients found in <xref ref="ex_ps5">Example</xref> as we are looking for a pattern. It can be shown that <m>a_n = 2^n/n!</m>. Thus the solution, written as a power series, is
+          <me>
+            y = \infser[0] \frac{2^n}{n!}x^n = \infser[0] \frac{(2x)^n}{n!}.
+          </me>
+        </p>
+
+        <p>Using <xref ref="idea_common_taylor">Key Idea</xref> and <xref ref="thm_series_alg">Theorem</xref>, we recognize <m>f(x) = e^{2x}</m>:
+          <me>
+            e^x = \infser[0] \frac{x^n}{n!} \qquad \Rightarrow \qquad e^{2x} = \infser[0] \frac{(2x)^n}{n!}.
+          </me>
+        </p>
+      </solution>
+    </example>
+
+    <p>Finding a pattern in the coefficients that match the series expansion of a known function, such as those shown in <xref ref="idea_common_taylor">Key Idea</xref>, can be difficult. What if the coefficients in the previous example were given in their reduced form; how could we still recover the function <m>y=e^{2x}</m>?</p>
+
+    <p>Suppose that all we know is that
+      <me>
+        a_0=1, a_1=2, a_2=2, a_3=\frac43, a_4=\frac23.
+      </me>
+    </p>
+
+    <p><xref ref="def_taylor_series">Definition</xref> states that each term of the Taylor expansion of a function includes an <m>n!</m>. This allows us to say that
+      <me>
+        a_2=2=\frac{b_2}{2!}, a_3 = \frac43=\frac{b_3}{3!}, \text{ and }  a_4 = \frac23=\frac{b_4}{4!}
+      </me>
+      for some values <m>b_2</m>, <m>b_3</m> and <m>b_4</m>.
+      Solving for these values, we see that <m>b_2=4</m>, <m>b_3 = 8</m> and <m>b_4=16</m>. That is, we are recovering the pattern we had previously seen, allowing us to write
+      <md>
+        <mrow>f(x) = \infser[0] a_nx^n \amp = \infser[0] \frac{b_n}{n!}x^n</mrow>
+        <mrow>\amp = 1+2x+ \frac{4}{2!}x^2 + \frac{8}{3!}x^3+\frac{16}{4!}x^4 + \cdots</mrow>
+      </md>
+    </p>
+
+    <p>From here it is easier to recognize that the series is describing an exponential function.</p>
+
+    <p>There are simpler, more direct ways of solving the differential equation <m>y' = 2y</m>. We applied power series techniques to this equation to demonstrate its utility, and went on to show how <em>sometimes</em> we are able to recover the solution in terms of elementary functions using the theory of Taylor series. Most differential equations faced in real scientific and engineering situations are much more complicated than this one, but power series can offer a valuable tool in finding, or at least approximating, the solution.</p>
+
+    <p>This chapter introduced sequences, which are ordered lists of numbers, followed by series, wherein we add up the terms of a sequence. We quickly saw that such sums do not always add up to <q>infinity,</q> but rather converge. We studied tests for convergence, then ended the chapter with a formal way of defining functions based on series. Such <q>series<ndash />defined functions</q> are a valuable tool in solving a number of different problems throughout science and engineering.</p>
+
+    <p>Coming in the next chapters are new ways of defining curves in the plane apart from using functions of the form <m>y=f(x)</m>. Curves created by these new methods can be beautiful, useful, and important.</p>
+  </introduction>
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>What is the difference between a Taylor polynomial and a Taylor series?</p>
+          </statement>
+          <solution>
+            <p>A Taylor polynomial is a <em>polynomial</em>, containing a finite number of terms. A Taylor series is a <em>series</em>, the summation of an infinite number of terms.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>What theorem must we use to show that a function is equal to its Taylor series?</p>
+          </statement>
+          <solution>
+            <p><xref ref="thm_function_series_equality">Theorem</xref>, entitled <q>Function and Taylor Series Equality</q></p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+    <exercisegroup>
+      <title>Problems</title>
+      <p>{ <xref ref="idea_common_taylor">Key Idea</xref> gives the <m>n^\text{ th }</m> term of the Taylor series of common functions. In Exercises}
+        {, verify the formula given in the Key Idea by finding the first few terms of the Taylor series of the given function and identifying a pattern.
+        }</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = e^x</m>;<m>c=0</m></p>
+          </statement>
+          <solution>
+            <p>All derivatives of <m>e^x</m> are <m>e^x</m> which evaluate to 1 at <m>x=0</m>.</p>
+
+            <p>The Taylor series starts <m>1+x+\frac12x^2+\frac{1}{3!}x^3+\frac{1}{4!}x^4+\cdots</m>;</p>
+
+            <p>the Taylor series is <m>\ds \infser[0] \frac{x^n}{n!}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = \sin(x)</m>;<m>c=0</m></p>
+          </statement>
+          <solution>
+            <p>All derivatives of <m>\sin(x)</m> are either <m>\pm\cos(x)</m> or <m>\pm \sin(x)</m>, which evaluate to <m>\pm 1</m> or <m>0</m> at <m>x=0</m>. The Taylor series starts <m>0+x+0x^2-\frac16x^3+0x^4+\frac1{120}x^5</m>;</p>
+
+            <p>the Taylor series is <m>\ds \infser[0] (-1)^n\frac{x^{2n+1}}{(2n+1)!}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = 1/(1-x)</m>;<m>c=0</m></p>
+          </statement>
+          <solution>
+            <p>The <m>n^\text{ th }</m> derivative of <m>1/(1-x)</m> is <m>f^{(n)}(x) = (n)!/(1-x)^{n+1}</m>, which evaluates to <m>n!</m> at <m>x=0</m>.</p>
+
+            <p>The Taylor series starts <m>1+x+x^2+x^3+\cdots</m>;</p>
+
+            <p>the Taylor series is <m>\ds \infser[0] x^n</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = \tan^{-1}(x)</m>;<m>c=0</m></p>
+          </statement>
+          <solution>
+            <p>The derivative of <m>\tan^{-1}(x)</m> is <m>1/(1+x^2)</m>. Taking successive derivatives using the Quotient Rule, the derivatives of <m>\tan^{-1}(x)</m> fall into two categories in terms of their evaluation at <m>x=0</m>.</p>
+
+            <p>When <m>n</m> is even, <m>\ds f^{(n)}(x) = (-1)^{(n-1)/2}\frac{p(x)}{(1+x^2)^n}</m>, where <m>p(x)</m> is a polynomial such that <m>p(0) = 0</m>. Hence <m>f^{(n)}(0) = 0</m> when <m>n</m> is even.</p>
+
+            <p>When <m>n</m> is odd, <m>\ds f^{(n)}(x) = (-1)^{(n-1)/2}\frac{p(x)}{(1+x^2)^n}</m>, where <m>p(x)</m> is a polynomial such that <m>p(0) = (n-1)!</m>. Hence <m>f^{(n)}(0) = (-1)^{(n-1)/2}(n-1)!</m> when <m>n</m> is odd. (The unusual power of <m>(-1)</m> is such that every other odd term is negative.)</p>
+
+            <p>The Taylor series starts <m>x-\frac13x^3+\frac15x^5+\cdots</m>; by reindexing to only obtain odd powers of <m>x</m>, we get</p>
+
+            <p>the Taylor series is <m>\ds \infser[0] (-1)^n\frac{x^{2n+1}}{2n+1}</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, find a formula for the <m>n^\text{ th }</m> term of the Taylor series of <m>f(x)</m>, centered at <m>c</m>, by finding the coefficients of the first few powers of <m>x</m> and looking for a pattern. (The formulas for several of these are found in <xref ref="idea_common_taylor">Key Idea</xref>; show work verifying these formula.)</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = \cos(x)</m>;<m>c=\pi/2</m></p>
+          </statement>
+          <solution>
+            <p>The Taylor series starts <m>0-(x-\pi/2)+0x^2+\frac16(x-\pi/2)^3+0x^4-\frac1{120}(x-\pi/2)^5</m>;</p>
+
+            <p>the Taylor series is <m>\ds \infser[0] (-1)^{n+1}\frac{(x-\pi/2)^{2n+1}}{(2n+1)!}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = 1/x</m>;<m>c=1</m></p>
+          </statement>
+          <solution>
+            <p>The Taylor series starts <m>1-(x-1)+(x-1)^2-(x-1)^3+(x-1)^4-(x-1)^5</m>;</p>
+
+            <p>the Taylor series is <m>\ds \infser[0] (-1)^{n}(x-1)^n</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = e^{-x}</m>;<m>c=0</m></p>
+          </statement>
+          <solution>
+            <p><m>f^{(n)}(x) = (-1)^ne^{-x}</m>; at <m>x=0</m>, <m>f^{(n)}(0)=-1</m> when <m>n</m> is odd and <m>f^{(n)}(0)=1</m> when <m>n</m> is even.</p>
+
+            <p>The Taylor series starts <m>1-x+\frac12x^2-\frac1{3!}x^3+\cdots</m>;</p>
+
+            <p>the Taylor series is <m>\ds \infser[0] (-1)^n\frac{x^n}{n!}</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = \ln(1+x)</m>;<m>c=0</m></p>
+          </statement>
+          <solution>
+            <p><m>f^{(n)}(x) = (-1)^{n+1}\frac{(n-1)!}{(1+x)^n}</m>; at <m>x=0</m>, <m>f^{(n)}(0)=(-1)^{n+1}(n-1)!</m></p>
+
+            <p>The Taylor series starts <m>x-\frac{x^2}2+\frac{x^3}3-\frac{x^4}4+\cdots</m>;</p>
+
+            <p>the Taylor series is <m>\ds \infser (-1)^{n+1}\frac{x^n}{n}</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = x/(x+1)</m>;<m>c=1</m></p>
+          </statement>
+          <solution>
+            <p><m>f^{(n)}(x) = (-1)^{n+1}\frac{n!}{(x+1)^{n+1}}</m>; at <m>x=1</m>, <m>f^{(n)}(1)=(-1)^{n+1}\frac{n!}{2^{n+1}}</m></p>
+
+            <p>The Taylor series starts <m>\frac12+\frac14(x-1)-\frac18(x-1)^2+\frac1{16}(x-1)^3\cdots</m>;</p>
+
+            <p>the Taylor series is <m>\ds \infser[0] (-1)^{n+1}\frac{(x-1)^n}{2^{n+1}}</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = \sin(x)</m>;<m>c=\pi/4</m></p>
+          </statement>
+          <solution>
+            <p>The derivatives of <m>\sin(x)</m> are <m>\pm \cos(x)</m> and <m>\pm \sin(x)</m>; at <m>x=\pi/4</m>, these derivatives evaluate to <m>\pm \sqrt{2}/2</m>.</p>
+
+            <p>The Taylor series starts <m>\frac{\sqrt{2}}2+\frac{\sqrt{2}}2(x-\pi/4) - \frac{\sqrt{2}}2\frac{(x-\pi/4)^2}{2}-\frac{\sqrt{2}}2\frac{(x-\pi/4)^3}{3!}+\frac{\sqrt{2}}2\frac{(x-\pi/4)^4}{4!}+\frac{\sqrt{2}}2\frac{(x-\pi/4)^5}{5!}\cdots</m>. Note how the signs are ``even, even, odd, odd, even, even, odd, odd,<m>\ldots</m> We saw signs like these in <xref ref="ex_seq1">Example</xref> of <xref ref="sec_sequences">Section</xref>; one way of producing such signs is to raise <m>(-1)</m> to a special quadratic power. While many possibilities exist,
+              one such quadratic is <m>(n+3)(n+4)/2</m>.</p>
+
+            <p>Thus the Taylor series is <m>\ds \infser[0] (-1)^{\frac{(n+3)(n+4)}{2}}\frac{\sqrt2}{2}\frac{(x-\pi/4)^n}{n!}</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, show that the Taylor series for <m>f(x)</m>, as given in <xref ref="idea_common_taylor">Key Idea</xref>, is equal to <m>f(x)</m> by applying <xref ref="thm_function_series_equality">Theorem</xref>; that is, show <m>\lim\limits_{n\to\infty}R_n(x) =0</m>.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = e^x</m></p>
+          </statement>
+          <solution>
+            <p>Given a value <m>x</m>, the magnitude of the error term <m>R_n(x)</m> is bounded by
+              <me>
+                \abs{R_n(x)} \leq \frac{\max\abs{\,f^{(n+1)}(z)}}{(n+1)!}\abs{x^{(n+1)}},
+              </me>
+              where <m>z</m> is between <m>0</m> and <m>x</m>.</p>
+
+            <p>If <m>x>0</m>, then <m>z\lt x</m> and <m>f^{(n+1)}(z) =e^z\lt e^x</m>. If <m>x\lt 0</m>, then <m>x\lt z\lt 0</m> and <m>f^{(n+1)}(z) =e^z\lt 1</m>. So given a fixed <m>x</m> value, let <m>M = \max\{e^x,1\}</m>; <m>f^{(n)}(z)\lt M</m>. This allows us to state
+              <me>
+                \abs{R_n(x)} \leq \frac{M}{(n+1)!}\abs{x^{(n+1)}}.
+              </me>
+            </p>
+
+            <p>For any <m>x</m>, <m>\lim\limits_{n\to\infty} \frac{M}{(n+1)!}\abs{x^{(n+1)}}= 0</m>. Thus by the Squeeze Theorem, we conclude that <m>\lim\limits_{n\to\infty} R_n(x) = 0</m> for all <m>x</m>, and hence
+              <me>
+                e^x = \infser[0] \frac{x^{n}}{n!} \text{ for all \(x\) } .
+              </me>
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = \sin(x)</m></p>
+          </statement>
+          <solution>
+            <p>The following argument is essentially the same as that given for <m>f(x) = \cos(x)</m> in <xref ref="ex_ts3">Example</xref>.</p>
+
+            <p>Given a value <m>x</m>, the magnitude of the error term <m>R_n(x)</m> is bounded by
+              <me>
+                \abs{R_n(x)} \leq \frac{\max\abs{\,f^{(n+1)}(z)}}{(n+1)!}\abs{x^{(n+1)}}.
+              </me>
+            </p>
+
+            <p>Since all derivatives of <m>\sin(x)</m> are <m>\pm \cos(x)</m> or <m>\pm\sin(x)</m>, whose magnitudes are bounded by <m>1</m>, we can state
+              <me>
+                \abs{R_n(x)} \leq \frac{1}{(n+1)!}\abs{x^{(n+1)}}.
+              </me>
+            </p>
+
+            <p>For any <m>x</m>, <m>\lim\limits_{n\to\infty} \frac{x^{n+1}}{(n+1)!} = 0</m>. Thus by the Squeeze Theorem, we conclude that <m>\lim\limits_{n\to\infty} R_n(x) = 0</m> for all <m>x</m>, and hence
+              <me>
+                \sin(x) = \infser[0] (-1)^{n}\frac{x^{2n+1}}{(2n+1)!} \text{ for all \(x\) } .
+              </me>
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = \ln(x)</m></p>
+          </statement>
+          <solution>
+            <p>Given a value <m>x</m>, the magnitude of the error term <m>R_n(x)</m> is bounded by
+              <me>
+                \abs{R_n(x)} \leq \frac{\max\abs{\,f^{(n+1)}(z)}}{(n+1)!}\abs{(x-1)^{(n+1)}},
+              </me>
+              where <m>z</m> is between <m>1</m> and <m>x</m>.</p>
+
+            <p>Note that <m>\abs{f^{(n+1)}(x)} = \frac{n!}{x^{n+1}}</m>.</p>
+
+            <p>We consider the cases when <m>x>1</m> and when <m>x\lt 1</m> separately.</p>
+
+            <p>If <m>x>1</m>, then <m>1\lt z\lt x</m> and <m>f^{(n+1)}(z) =\frac{n!}{z^{n+1}}\lt n!</m>. Thus
+              <me>
+                \abs{R_n(x)} \leq \frac{n!}{(n+1)!}\abs{(x-1)^{(n+1)}}= \frac{(x-1)^{n+1}}{n+1}.
+              </me>
+            </p>
+
+            <p>For a fixed <m>x</m>,
+              <me>
+                \lim_{n\to\infty} \frac{(x-1)^{n+1}}{n+1}=0.
+              </me>
+            </p>
+
+            <p>If <m>0\lt x\lt 1</m>, then <m>x\lt z\lt 1</m> and <m>f^{(n+1)}(z) =\frac{n!}{z^{n+1}}\lt \frac{n!}{x^{n+1}}</m>. Thus
+              <me>
+                \abs{R_n(x)} \leq \frac{n!/x^{n+1}}{(n+1)!}\abs{(x-1)^{(n+1)}} = \frac{x^{n+1}}{n+1}(1-x)^{n+1}.
+              </me>
+            </p>
+
+            <p>Since <m>0\lt x\lt 1</m>, <m>x^{n+1}\lt 1</m> and <m>(1-x)^{n+1}\lt 1</m>. We can then extend the inequality from above to state
+              <me>
+                \abs{R_n(x)} \leq \frac{x^{n+1}}{n+1}(1-x)^{n+1}\lt \frac1{n+1}.
+              </me>
+            </p>
+
+            <p>As <m>n\to\infty</m>, <m>1/(n+1)\to0</m>. Thus by the Squeeze Theorem, we conclude that <m>\lim\limits_{n\to\infty} R_n(x) = 0</m> for all <m>x</m>, and hence
+              <me>
+                \ln(x) = \infser (-1)^{n+1}\frac{(x-1)^{n}}{n} \text{ for all \(0\lt x\leq 2\) } .
+              </me>
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = 1/(1-x)</m> (show equality only on <m>(-1,0)</m>)</p>
+          </statement>
+          <solution>
+            <p>Given a value <m>x</m>, the magnitude of the error term <m>R_n(x)</m> is bounded by
+              <me>
+                \abs{R_n(x)} \leq \frac{\max\abs{\,f^{(n+1)}(z)}}{(n+1)!}\abs{x^{(n+1)}},
+              </me>
+              where <m>z</m> is between <m>0</m> and <m>x</m>.</p>
+
+            <p>Note that <m>\abs{f^{(n+1)}(x)} = \frac{(n+1)!}{(1-x)^{n+2}}</m>.</p>
+
+            <p>If <m>0\lt x\lt 1</m>, then <m>0\lt z\lt x</m> and <m>f^{(n+1)}(z) =\frac{(n+1)!}{(1-z)^{n+2}}\lt \frac{(n+1)!}{(1-x)^{n+2}}</m>.
+              Thus
+              <me>
+                \abs{R_n(x)} \leq \frac{(n+1)!}{(1-x)^{n+2}}\frac{1}{(n+1)!}\abs{x^{n+1}}= \frac{(x-1)^{n+1}}{n+1}.
+              </me>
+            </p>
+
+            <p>For a fixed <m>x</m>,
+              <me>
+                \lim_{n\to\infty} \frac{(x-1)^{n+1}}{n+1}=0,
+              </me>
+              hence
+              <me>
+                \frac{1}{1-x} = \infser[0] x^n \text{ on }  (-1,0).
+              </me>
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, use the Taylor series given in <xref ref="idea_common_taylor">Key Idea</xref> to verify the given identity.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\cos(-x) = \cos(x)</m></p>
+          </statement>
+          <solution>
+            <p>Given <m>\ds \cos(x) = \infser[0] (-1)^n\frac{x^{2n}}{(2n)!}</m>,</p>
+
+            <p><m>\ds\cos(-x) = \infser[0] (-1)^n\frac{(-x)^{2n}}{(2n)!}=\infser[0] (-1)^n\frac{x^{2n}}{(2n)!}=\cos(x)</m>, as all powers in the series are even.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\sin(-x) = -\sin(x)</m></p>
+          </statement>
+          <solution>
+            <p>Given <m>\ds \sin(x) = \infser[0] (-1)^n\frac{x^{2n+1}}{(2n+1)!}</m>,</p>
+
+            <p><m>\ds\sin(-x) = \infser[0] (-1)^n\frac{(-x)^{2n+1}}{(2n+1)!}=\infser[0] (-1)^n\frac{-x^{2n+1}}{(2n+1)!}=-\sin(x)</m>, as all powers in the series are odd.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\frac{d}{dx}\big(\sin(x) \big) = \cos(x)</m></p>
+          </statement>
+          <solution>
+            <p>Given <m>\ds \sin(x) = \infser[0] (-1)^n\frac{x^{2n+1}}{(2n+1)!}</m>,</p>
+
+            <p><m>\ds\frac{d}{dx}\big(\sin(x) \big)  = \frac{d}{dx}\left(\infser[0] (-1)^n\frac{x^{2n+1}}{(2n+1)!}\right)=\infser[0] (-1)^n\frac{(2n+1)x^{2n}}{(2n+1)!}=\infser[0] (-1)^n\frac{x^{2n}}{(2n)!}=\cos(x)</m>. (The summation still starts at <m>n=0</m> as there was no constant term in the expansion of <m>\sin(x)</m>).</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\frac{d}{dx}\big(\cos(x) \big) = -\sin(x)</m></p>
+          </statement>
+          <solution>
+            <p>Given <m>\ds \cos(x) = \infser[0] (-1)^n\frac{x^{2n}}{(2n)!}</m>,</p>
+
+            <p><m>\ds\frac{d}{dx}\big(\cos(x) \big)  = \frac{d}{dx}\left(\infser[0] (-1)^n\frac{x^{2n}}{(2n)!}\right)=\infser (-1)^n\frac{(2n)x^{2n-1}}{(2n)!}=\infser (-1)^n\frac{x^{2n-1}}{(2n-1)!}</m>. We can re-index this summation to start at <m>n=0</m> by replacing <m>n</m> with <m>n+1</m> in the summation:
+              <me>
+                \infser (-1)^n\frac{x^{2n-1}}{(2n-1)!} =\infser[0] (-1)^{n+1}\frac{x^{2n+1}}{(2n+1)!}.
+              </me>
+            </p>
+
+            <p>Note that this series has the opposite sign of the Taylor series for <m>\sin(x)</m>; thus <m>\frac{d}{dx}(\cos(x) ) = -\sin(x)</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, write out the first 5 terms of the Binomial series with the given <m>k</m>-value.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>k=1/2</m></p>
+          </statement>
+          <solution>
+            <p><m>\ds 1+\frac x2-\frac{x^2}{8}+\frac{x^3}{16}-\frac{5x^4}{128}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>k=-1/2</m></p>
+          </statement>
+          <solution>
+            <p><m>\ds 1-\frac x2+\frac{3x^2}{8}-\frac{5x^3}{16}+\frac{35x^4}{128}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>k=1/3</m></p>
+          </statement>
+          <solution>
+            <p><m>\ds 1+\frac x3-\frac{x^2}{9}+\frac{5x^3}{81}-\frac{10x^4}{243}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>k=4</m></p>
+          </statement>
+          <solution>
+            <p><m>\ds 1+4x+6x^2+4x^3+x^4</m> (note the series is finite, and the formula still applies)</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, use the Taylor series given in <xref ref="idea_common_taylor">Key Idea</xref> to create the Taylor series of the given functions.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = \cos\big(x^2\big)</m></p>
+          </statement>
+          <solution>
+            <p><m>\ds \infser[0] (-1)^n\frac{(x^2)^{2n}}{(2n)!} = \infser[0] (-1)^n\frac{x^{4n}}{(2n)!}</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = e^{-x}</m></p>
+          </statement>
+          <solution>
+            <p><m>\ds \infser[0] \frac{(-x)^n}{n!}</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = \sin\big(2x+3\big)</m></p>
+          </statement>
+          <solution>
+            <p><m>\ds \infser[0] (-1)^n\frac{(2x+3)^{2n+1}}{(2n+1)!}</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = \tan^{-1}\big(x/2\big)</m></p>
+          </statement>
+          <solution>
+            <p><m>\ds \infser[0] (-1)^n\frac{(x/2)^{2n+1}}{(2n+1)}</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = e^x\sin(x)</m>(only find the first 4 terms)</p>
+          </statement>
+          <solution>
+            <p><m>\ds x+x^2+\frac{x^3}{3}-\frac{x^5}{30}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = (1+x)^{1/2}\cos(x)</m>(only find the first 4 terms)</p>
+          </statement>
+          <solution>
+            <p><m>\ds 1+\frac x2-\frac{5x^2}{8}-\frac{3x^3}{16}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, approximate the value of the given definite integral by using the first 4 nonzero terms of the integrand's Taylor series.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_0^{\sqrt{\pi}} \sin\big(x^2\big)\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\ds \int_0^{\sqrt{\pi}} \sin\big(x^2\big)\ dx \approx \int_0^{\sqrt{\pi}} \left(x^2-\frac{x^6}6+\frac{x^{10}}{120}-\frac{x^{14}}{5040}\right) dx = 0.8877</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_0^{\pi^2/4} \cos\big(\sqrt{x}\big)\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\ds \int_0^{\pi^2/4} \cos\big(\sqrt{x}\big)\ dx \approx \int_0^{\pi^2/4} \left(1-\frac x2+\frac{x^2}{24}-\frac{x^3}{720}\right)\ dx = 1.1412</m>. (Actual answer: <m>\pi-2</m>)</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

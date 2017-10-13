@@ -1,0 +1,2530 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_numerical_integration">
+  <title>Numerical Integration</title>
+  <introduction>
+    <p>The Fundamental Theorem of Calculus gives a concrete technique for finding the exact value of a definite integral. That technique is based on computing antiderivatives. Despite the power of this theorem, there are still situations where we must <em>approximate</em> the value of the definite integral instead of finding its exact value. The first situation we explore is where we <em>cannot</em> compute the antiderivative of the integrand. The second case is when we actually do not know the integrand, but only its value when evaluated at certain points.<index><main>integration</main><sub>numerical</sub></index><index><main>numerical integration</main></index></p>
+
+    <p>An <em>elementary function</em><index><main>elementary function</main></index> is any function that is a combination of polynomials, <m>n^{\text{ th } }</m> roots, rational, exponential, logarithmic and trigonometric functions. We can compute the derivative of any elementary function, but there are many elementary functions of which we cannot compute an antiderivative. For example, the following functions do not have antiderivatives that we can express with elementary functions:
+      <me>
+        e^{-x^2},  \sin(x^3) \text{ and }   \frac{\sin(x) }{x}.
+      </me>
+    </p>
+
+    <p>The simplest way to refer to the antiderivatives of <m>e^{-x^2}</m> is to simply write <m>\int e^{-x^2}\ dx</m>.</p>
+
+    <p>This section outlines three common methods of approximating the value of definite integrals. We describe each as a systematic method of approximating area under a curve. By approximating this area accurately, we find an accurate approximation of the corresponding definite integral.</p>
+
+    <p>We will apply the methods we learn in this section to the following definite integrals:
+      <me>
+        \int_0^1 e^{-x^2} \ dx,  \int_{-\frac{\pi}{4}}^{\frac{\pi}{2}} \sin(x^3) \ dx,  \text{ and }   \int_{0.5}^{4\pi} \frac{\sin(x)}{x} \ dx,
+      </me>
+      as pictured in <xref ref="fig_numerical1">Figure</xref>.</p>
+
+  <sidebyside xml:id="fig_numerical1" widths="31% 31% 31%">
+     <caption>Graphically representing three definite integrals that cannot be evaluated using antiderivatives.</caption>
+
+    <figure xml:id="fig_numerical1a" >
+      <caption/>
+     
+      <!-- START figures/fig_numerical1a.tex -->
+      <image xml:id="img_numerical1a" >
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+          \begin{axis}[%
+          axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+          %			xtick=\empty,%
+          %			extra x ticks={.5,3},
+          %			extra x tick labels={$a$,$b$},
+          %			ytick=\empty,
+			%%extra y ticks={-5,-3,...,7},%
+          %			minor x tick num=4,
+			ymin=-.2,ymax=1.2,%
+			xmin=-.2,xmax=1.1%
+          ]
+
+          \addplot [{\coloronefill},fill={\coloronefill}] coordinates {(0.0000,1.0000)  (0.0526,0.9972) (0.1053,0.9890)
+          (0.1579,0.9754)  (0.2105,0.9566) (0.2632,0.9331)
+          (0.3158,0.9051)  (0.3684,0.8731) (0.4211,0.8375)
+          (0.4737,0.7990)  (0.5263,0.7580) (0.5789,0.7152)
+          (0.6316,0.6711)  (0.6842,0.6262) (0.7368,0.5810)
+          (0.7895,0.5362)  (0.8421,0.4921) (0.8947,0.4491)
+          (0.9474,0.4076)  (1.0000,0.3679) }
+          |-(axis cs:0,0)--cycle;
+
+          \addplot [{\colorone},thick] coordinates {(0.0000,1.0000)  (0.0526,0.9972) (0.1053,0.9890)
+          (0.1579,0.9754)  (0.2105,0.9566) (0.2632,0.9331)
+          (0.3158,0.9051)  (0.3684,0.8731) (0.4211,0.8375)
+          (0.4737,0.7990)  (0.5263,0.7580) (0.5789,0.7152)
+          (0.6316,0.6711)  (0.6842,0.6262) (0.7368,0.5810)
+          (0.7895,0.5362)  (0.8421,0.4921) (0.8947,0.4491)
+          (0.9474,0.4076)  (1.0000,0.3679) };
+
+          \draw (axis cs:.75,1) node {\scriptsize $y=e^{-x^2}$};
+          \end{axis}
+
+
+
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+    </figure>
+      <!-- figures/fig_numerical1a.tex END -->
+
+      <!-- START figures/fig_numerical1b.tex -->
+      <figure xml:id="fig_numerical1b">
+        <caption/>
+      <image xml:id="img_numerical1b" >
+        
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+          \begin{axis}[%
+          axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+          %			xtick=\empty,%
+          %			extra x ticks={.5,3},
+          %			extra x tick labels={$a$,$b$},
+          %			ytick=\empty,
+			%%extra y ticks={-5,-3,...,7},%
+          %			minor x tick num=4,
+			ymin=-.6,ymax=1.2,%
+			xmin=-1,xmax=1.7%
+          ]
+
+          \addplot [{\coloronefill},fill={\coloronefill}] coordinates {(-0.7854,-0.4657)  (-0.7373,-0.3902) (-0.6892,-0.3216)
+          (-0.6411,-0.2605)  (-0.5931,-0.2071) (-0.5450,-0.1611)
+          (-0.4969,-0.1224)  (-0.4488,-0.0903) (-0.4007,-0.0643)
+          (-0.3526,-0.0438)  (-0.3045,-0.0282) (-0.2565,-0.0169)
+          (-0.2084,-0.0090)  (-0.1603,-0.0041) (-0.1122,-0.0014)
+          (-0.0641,-0.0003)  (-0.0160,-0.0000) (0.0321,0.0000)
+          (0.0801,0.0005)  (0.1282,0.0021) (0.1763,0.0055)
+          (0.2244,0.0113)  (0.2725,0.0202) (0.3206,0.0329)
+          (0.3687,0.0501)  (0.4167,0.0723) (0.4648,0.1003)
+          (0.5129,0.1345)  (0.5610,0.1756) (0.6091,0.2240)
+          (0.6572,0.2800)  (0.7053,0.3436) (0.7533,0.4146)
+          (0.8014,0.4923)  (0.8495,0.5754) (0.8976,0.6618)
+          (0.9457,0.7485)  (0.9938,0.8313) (1.0419,0.9048)
+          (1.0899,0.9622)  (1.1380,0.9953) (1.1861,0.9952)
+          (1.2342,0.9526)  (1.2823,0.8589) (1.3304,0.7082)
+          (1.3785,0.4989)  (1.4265,0.2363) (1.4746,-0.0650)
+          (1.5227,-0.3793)  (1.5708,-0.6700) }
+          |-(axis cs:-0.7854,0 )--cycle;
+
+          \addplot [{\colorone},thick,smooth] coordinates {(-0.7854,-0.4657)  (-0.7373,-0.3902) (-0.6892,-0.3216)
+          (-0.6411,-0.2605)  (-0.5931,-0.2071) (-0.5450,-0.1611)
+          (-0.4969,-0.1224)  (-0.4488,-0.0903) (-0.4007,-0.0643)
+          (-0.3526,-0.0438)  (-0.3045,-0.0282) (-0.2565,-0.0169)
+          (-0.2084,-0.0090)  (-0.1603,-0.0041) (-0.1122,-0.0014)
+          (-0.0641,-0.0003)  (-0.0160,-0.0000) (0.0321,0.0000)
+          (0.0801,0.0005)  (0.1282,0.0021) (0.1763,0.0055)
+          (0.2244,0.0113)  (0.2725,0.0202) (0.3206,0.0329)
+          (0.3687,0.0501)  (0.4167,0.0723) (0.4648,0.1003)
+          (0.5129,0.1345)  (0.5610,0.1756) (0.6091,0.2240)
+          (0.6572,0.2800)  (0.7053,0.3436) (0.7533,0.4146)
+          (0.8014,0.4923)  (0.8495,0.5754) (0.8976,0.6618)
+          (0.9457,0.7485)  (0.9938,0.8313) (1.0419,0.9048)
+          (1.0899,0.9622)  (1.1380,0.9953) (1.1861,0.9952)
+          (1.2342,0.9526)  (1.2823,0.8589) (1.3304,0.7082)
+          (1.3785,0.4989)  (1.4265,0.2363) (1.4746,-0.0650)
+          (1.5227,-0.3793)  (1.5708,-0.6700) };
+
+          \draw (axis cs:.6,.9) node {\scriptsize $y=\sin(x^3)$};
+          \end{axis}
+
+
+
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      </figure>
+      <!-- figures/fig_numerical1b.tex END -->
+
+      
+      <!-- START figures/fig_numerical1c.tex -->
+      <figure xml:id="fig_numerical1c">
+        <caption/>
+      <image xml:id="img_numerical1c" >
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+          \begin{axis}[%
+          axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={5,10,15},%
+          %			extra x ticks={.5,3},
+          %			extra x tick labels={$a$,$b$},
+          %			ytick=\empty,
+			%%extra y ticks={-5,-3,...,7},%
+          %			minor x tick num=4,
+			ymin=-.3,ymax=1.1,%
+			xmin=-.9,xmax=15.9%
+          ]
+
+          \addplot [{\coloronefill},fill={\coloronefill}] coordinates {(0.5000,0.9589)  (0.7463,0.9097) (0.9925,0.8437)
+          (1.2388,0.7632)  (1.4850,0.6709) (1.7313,0.5702)
+          (1.9775,0.4644)  (2.2238,0.3572) (2.4700,0.2519)
+          (2.7163,0.1519)  (2.9625,0.0601) (3.2088,-0.0209)
+          (3.4550,-0.0892)  (3.7013,-0.1434) (3.9475,-0.1828)
+          (4.1938,-0.2071)  (4.4400,-0.2169) (4.6863,-0.2133)
+          (4.9325,-0.1978)  (5.1788,-0.1725) (5.4250,-0.1395)
+          (5.6713,-0.1013)  (5.9176,-0.0604) (6.1638,-0.0193)
+          (6.4101,0.0197)  (6.6563,0.0548) (6.9026,0.0841)
+          (7.1488,0.1065)  (7.3951,0.1212) (7.6413,0.1279)
+          (7.8876,0.1267)  (8.1338,0.1182) (8.3801,0.1032)
+          (8.6263,0.0830)  (8.8726,0.0591) (9.1188,0.0330)
+          (9.3651,0.0064)  (9.6113,-0.0193) (9.8576,-0.0425)
+          (10.1038,-0.0622)  (10.3501,-0.0772) (10.5964,-0.0870)
+          (10.8426,-0.0912)  (11.0889,-0.0898) (11.3351,-0.0832)
+          (11.5814,-0.0719)  (11.8276,-0.0569) (12.0739,-0.0392)
+          (12.3201,-0.0198)  (12.5664,-0.0000)}
+          |-(axis cs:0.5,0)--cycle;
+
+          \addplot [{\colorone},thick,smooth] coordinates {(0.5000,0.9589)  (0.7463,0.9097) (0.9925,0.8437)
+          (1.2388,0.7632)  (1.4850,0.6709) (1.7313,0.5702)
+          (1.9775,0.4644)  (2.2238,0.3572) (2.4700,0.2519)
+          (2.7163,0.1519)  (2.9625,0.0601) (3.2088,-0.0209)
+          (3.4550,-0.0892)  (3.7013,-0.1434) (3.9475,-0.1828)
+          (4.1938,-0.2071)  (4.4400,-0.2169) (4.6863,-0.2133)
+          (4.9325,-0.1978)  (5.1788,-0.1725) (5.4250,-0.1395)
+          (5.6713,-0.1013)  (5.9176,-0.0604) (6.1638,-0.0193)
+          (6.4101,0.0197)  (6.6563,0.0548) (6.9026,0.0841)
+          (7.1488,0.1065)  (7.3951,0.1212) (7.6413,0.1279)
+          (7.8876,0.1267)  (8.1338,0.1182) (8.3801,0.1032)
+          (8.6263,0.0830)  (8.8726,0.0591) (9.1188,0.0330)
+          (9.3651,0.0064)  (9.6113,-0.0193) (9.8576,-0.0425)
+          (10.1038,-0.0622)  (10.3501,-0.0772) (10.5964,-0.0870)
+          (10.8426,-0.0912)  (11.0889,-0.0898) (11.3351,-0.0832)
+          (11.5814,-0.0719)  (11.8276,-0.0569) (12.0739,-0.0392)
+          (12.3201,-0.0198)  (12.5664,-0.0000)};
+
+          \draw (axis cs:10,.7) node {\scriptsize $\displaystyle y=\frac{\sin(x) }{x}$};
+          \end{axis}
+
+
+
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_numerical1c.tex END -->
+    </figure>
+
+  </sidebyside>
+  </introduction>
+
+  <subsection>
+    <title>The Left and Right Hand Rule Methods</title>
+    <p>In <xref ref="sec_riemann">Section</xref> we addressed the problem of evaluating definite integrals by approximating the area under the curve using rectangles. We revisit those ideas here before introducing other methods of approximating definite integrals. <index><main>numerical integration</main><sub>Left/Right Hand Rule</sub></index><index><main>Right Hand Rule</main></index><index><main>Left Hand Rule</main></index><index><main>integration</main><sub>numerical!Left/Right Hand Rule</sub></index></p>
+
+    <p>We start with a review of notation. Let <m>f</m> be a continuous function on the interval <m>[a,b]</m>. We wish to approximate <m>\ds \int_a^b f(x)\ dx</m>. We partition <m>[a,b]</m> into <m>n</m> equally spaced subintervals, each of length <m>\ds\dx = \frac{b-a}{n}</m>. The endpoints of these subintervals are labeled as
+      <me>
+        x_1=a,\ x_2 = a+\dx,\ x_3 = a+ 2\dx,\ \ldots,\ x_i = a+(i-1)\dx,\ \ldots,\ x_{n+1} = b.
+      </me>
+    </p>
+
+    <p><xref ref="idea_riemann">Key Idea</xref> states that to use the Left Hand Rule we use the summation <m>\ds \sum_{i=1}^n f(x_i)\dx</m> and to use the Right Hand Rule we use <m>\ds \sum_{i=1}^n f(x_{i+1})\dx</m>. We review the use of these rules in the context of examples.</p>
+
+    <example xml:id="ex_num1">
+      <title>Approximating definite integrals with rectangles</title>
+      <statement>
+        <p>Approximate <m>\ds \int_0^1e^{-x^2}\ dx</m> using the Left and Right Hand Rules with 5 equally spaced subintervals.</p>
+      </statement>
+      <solution>
+        <p>We begin by partitioning the interval <m>[0,1]</m> into 5 equally spaced intervals. We have <m>\dx = \frac{1-0}5 = 1/5=0.2</m>, so
+          <me>
+            x_1 = 0,\ x_2 = 0.2,\ x_3 = 0.4,\ x_4 = 0.6,\ x_5 = 0.8,\ \text{ and } \ x_6 = 1.
+          </me>
+        </p>
+
+        <p>Using the Left Hand Rule, we have:
+          <md>
+            <mrow>\sum_{i=1}^n f(x_i)\dx \amp = \big(f(x_1)+f(x_2) + f(x_3) + f(x_4) + f(x_5)\big)\dx</mrow>
+            <mrow>\amp = \big(f(0) + f(0.2) + f(0.4) + f(0.6) + f(0.8)\big)\dx</mrow>
+            <mrow>\amp \approx (1+0.9608 +0.8521 + 0.6977 + 0.5273)(0.2)</mrow>
+            <mrow>\amp \approx 0.8076.</mrow>
+          </md>
+        </p>
+
+        <p>Using the Right Hand Rule, we have:
+          <md>
+            <mrow>\sum_{i=1}^n f(x_{i+1})\dx \amp = \big(f(x_2) + f(x_3) + f(x_4) + f(x_5)+f(x_6)\big)\dx</mrow>
+            <mrow>\amp = \big(f(0.2) + f(0.4) + f(0.6) + f(0.8)+f(1)\big)\dx</mrow>
+            <mrow>\amp \approx (0.9608 +0.8521 + 0.6977 + 0.5273 + 0.3678)(0.2)</mrow>
+            <mrow>\amp \approx 0.6812.</mrow>
+          </md>
+        </p>
+
+      <sidebyside xml:id="fig_num1" widths="47% 47%">
+        <caption>Approximating <m>\int_0^1e^{-x^2}\ dx</m> in <xref ref="ex_num1">Example</xref>.</caption>
+
+      <!-- START figures/fig_num1b.tex -->
+        <figure xml:id="fig_num1b">
+          <caption>Using the Left Hand Rule</caption>
+          <image xml:id="img_num1b">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[%
+              axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={.2,.4,.6,.8,1},%
+              %			extra x ticks={.5,3},
+              %			extra x tick labels={$a$,$b$},
+              %			ytick=\empty,
+			%%extra y ticks={-5,-3,...,7},%
+              %			minor x tick num=4,
+			ymin=-.2,ymax=1.2,%
+			xmin=-.2,xmax=1.1%
+              ]
+
+              \addplot [{\coloronefill},fill={\coloronefill}] coordinates {(0.0000,1.0000)  (0.0526,0.9972) (0.1053,0.9890)
+              (0.1579,0.9754)  (0.2105,0.9566) (0.2632,0.9331)
+              (0.3158,0.9051)  (0.3684,0.8731) (0.4211,0.8375)
+              (0.4737,0.7990)  (0.5263,0.7580) (0.5789,0.7152)
+              (0.6316,0.6711)  (0.6842,0.6262) (0.7368,0.5810)
+              (0.7895,0.5362)  (0.8421,0.4921) (0.8947,0.4491)
+              (0.9474,0.4076)  (1.0000,0.3679) }
+              |-(axis cs:0,0)--cycle;
+
+              \addplot [{\colorone},thick] coordinates {(0.0000,1.0000)  (0.0526,0.9972) (0.1053,0.9890)
+              (0.1579,0.9754)  (0.2105,0.9566) (0.2632,0.9331)
+              (0.3158,0.9051)  (0.3684,0.8731) (0.4211,0.8375)
+              (0.4737,0.7990)  (0.5263,0.7580) (0.5789,0.7152)
+              (0.6316,0.6711)  (0.6842,0.6262) (0.7368,0.5810)
+              (0.7895,0.5362)  (0.8421,0.4921) (0.8947,0.4491)
+              (0.9474,0.4076)  (1.0000,0.3679) };
+
+              \foreach \x / \y in {0 / 1, 0.2 / 0.96, 0.4 / .85, 0.6 / .7, .8 / .53}
+  	{\addplot [thick,draw={\colortwo}] coordinates {(\x+.2,0) (\x+.2,\y) (\x,\y) (\x,0) (\x+.2,0)};
+  	}
+
+              \draw (axis cs:.75,1) node {\scriptsize $y=e^{-x^2}$};
+              \end{axis}
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+        </figure>
+          <!-- figures/fig_num1b.tex END -->
+
+          <!-- START figures/fig_num1a.tex -->
+        <figure xml:id="fig_num1a">
+          <caption>Using the Right Hand Rule</caption>
+          <image xml:id="img_num1a">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[%
+              axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={.2,.4,.6,.8,1},%
+              %			extra x ticks={.5,3},
+              %			extra x tick labels={$a$,$b$},
+              %			ytick=\empty,
+			%%extra y ticks={-5,-3,...,7},%
+              %			minor x tick num=4,
+			ymin=-.2,ymax=1.2,%
+			xmin=-.2,xmax=1.1%
+              ]
+
+              \addplot [{\coloronefill},fill={\coloronefill}] coordinates {(0.0000,1.0000)  (0.0526,0.9972) (0.1053,0.9890)
+              (0.1579,0.9754)  (0.2105,0.9566) (0.2632,0.9331)
+              (0.3158,0.9051)  (0.3684,0.8731) (0.4211,0.8375)
+              (0.4737,0.7990)  (0.5263,0.7580) (0.5789,0.7152)
+              (0.6316,0.6711)  (0.6842,0.6262) (0.7368,0.5810)
+              (0.7895,0.5362)  (0.8421,0.4921) (0.8947,0.4491)
+              (0.9474,0.4076)  (1.0000,0.3679) }
+              |-(axis cs:0,0)--cycle;
+
+              \addplot [{\colorone},thick] coordinates {(0.0000,1.0000)  (0.0526,0.9972) (0.1053,0.9890)
+              (0.1579,0.9754)  (0.2105,0.9566) (0.2632,0.9331)
+              (0.3158,0.9051)  (0.3684,0.8731) (0.4211,0.8375)
+              (0.4737,0.7990)  (0.5263,0.7580) (0.5789,0.7152)
+              (0.6316,0.6711)  (0.6842,0.6262) (0.7368,0.5810)
+              (0.7895,0.5362)  (0.8421,0.4921) (0.8947,0.4491)
+              (0.9474,0.4076)  (1.0000,0.3679) };
+
+              \foreach \x / \y in {0.2 / 0.96, 0.4 / .85, 0.6 / .7, .8 / .53, 1/ .37}
+  	{\addplot [thick,draw={\colortwo}] coordinates {(\x-.2,0) (\x-.2,\y) (\x,\y) (\x,0) (\x-.2,0)};
+  	}
+
+              \draw (axis cs:.75,1) node {\scriptsize $y=e^{-x^2}$};
+              \end{axis}
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_num1a.tex END -->
+        </figure>
+      </sidebyside>
+
+        <p><xref ref="fig_num1">Figure</xref> shows the rectangles used in each method to approximate the definite integral. These graphs show that in this particular case, the Left Hand Rule is an over approximation and the Right Hand Rule is an under approximation. To get a better approximation, we could use more rectangles, as we did in <xref ref="sec_riemann">Section</xref>. We could also average the Left and Right Hand Rule results together, giving
+          <me>
+            \frac{0.8076 + 0.6812}{2} = 0.7444.
+          </me>
+        </p>
+
+        <p>The actual answer, accurate to 4 places after the decimal, is 0.7468, showing our average is a good approximation.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_num2">
+      <title>Approximating definite integrals with rectangles</title>
+      <statement>
+        <p>Approximate <m>\ds\int_{-\frac{\pi}4}^{\frac{\pi}2} \sin(x^3)\ dx</m> using the Left and Right Hand Rules with 10 equally spaced subintervals.</p>
+      </statement>
+      <solution>
+        <p>We begin by finding <m>\dx</m>:
+          <me>
+            \frac{b-a}{n} = \frac{\pi/2 - (-\pi/4)}{10} = \frac{3\pi}{40}\approx 0.2356.
+          </me>
+        </p>
+
+        <p>It is useful to write out the endpoints of the subintervals in a table; in <xref ref="fig_num2a">Table</xref>, we give the exact values of the endpoints, their decimal approximations, and decimal approximations of <m>\sin(x^3)</m> evaluated at these points.</p>
+
+        <table xml:id="fig_num2a" >
+          <caption>Table of values used to approximate <m>\int_{-\frac{\pi}4}^{\frac{\pi}2}\sin(x^3)\ dx</m> in <xref ref="ex_num2">Example</xref>.</caption>
+          <tabular>
+            <row>
+              <cell><m>x_i</m></cell>
+              <cell>Exact</cell>
+              <cell>Approx.</cell>
+              <cell><m>\sin(x_i^3)</m></cell>
+            </row>
+            <row bottom="minor">
+              <cell></cell>
+              <cell></cell>
+              <cell></cell>
+              <cell></cell>
+            </row>
+            <row>
+              <cell><m>x_1</m></cell>
+              <cell><m>-\pi/4</m></cell>
+              <cell><m>-0.7854</m></cell>
+              <cell><m>-0.4657</m></cell>
+            </row>
+            <row>
+              <cell><m>x_2</m></cell>
+              <cell><m>-7 \pi/40</m></cell>
+              <cell><m>-0.5498</m></cell>
+              <cell><m>-0.1654</m></cell>
+            </row>
+            <row>
+              <cell><m>x_3</m></cell>
+              <cell><m>-{\pi }/{10}</m></cell>
+              <cell><m>-0.3142</m></cell>
+              <cell><m>-0.0310</m></cell>
+            </row>
+            <row>
+              <cell><m>x_4</m></cell>
+              <cell><m>-{\pi }/{40}</m></cell>
+              <cell><m>-0.0785</m></cell>
+              <cell><m>-0.0005</m></cell>
+            </row>
+            <row>
+              <cell><m>x_5</m></cell>
+              <cell><m>{\pi }/{20}</m></cell>
+              <cell><m>0.1571</m></cell>
+              <cell><m>0.0039</m></cell>
+            </row>
+            <row>
+              <cell><m>x_6</m></cell>
+              <cell><m>{\pi }/{8}</m></cell>
+              <cell><m>0.3927</m></cell>
+              <cell><m>0.0605</m></cell>
+            </row>
+            <row>
+              <cell><m>x_7</m></cell>
+              <cell><m>{\pi }/{5}</m></cell>
+              <cell><m>0.6283</m></cell>
+              <cell><m>0.2455</m></cell>
+            </row>
+            <row>
+              <cell><m>x_8</m></cell>
+              <cell><m>{11 \pi }/{40}</m></cell>
+              <cell><m>0.8639</m></cell>
+              <cell><m>0.6011</m></cell>
+            </row>
+            <row>
+              <cell><m>x_9</m></cell>
+              <cell><m>{7 \pi }/{20}</m></cell>
+              <cell><m>1.0996</m></cell>
+              <cell><m>0.9710</m></cell>
+            </row>
+            <row>
+              <cell><m>x_{10}</m></cell>
+              <cell><m>{17 \pi }/{40}</m></cell>
+              <cell><m>1.3352</m></cell>
+              <cell><m>0.6899</m></cell>
+            </row>
+            <row>
+              <cell><m>x_{11}</m></cell>
+              <cell><m>{\pi }/{2}</m></cell>
+              <cell><m>1.5708</m></cell>
+              <cell><m>-0.6700</m></cell>
+            </row>
+            <row>
+              <cell></cell>
+            </row>
+          </tabular>
+        </table>
+
+        <p>Once this table is created, it is straightforward to approximate the definite integral using the Left and Right Hand Rules. (Note: the table itself is easy to create, especially with a standard spreadsheet program on a computer. The last two columns are all that are needed.) The Left Hand Rule sums the first 10 values of <m>\sin(x_i^3)</m> and multiplies the sum by <m>\dx</m>; the Right Hand Rule sums the last 10 values of <m>\sin(x_i^3)</m> and multiplies by <m>\dx</m>. Therefore we have:</p>
+
+        <p>Left Hand Rule: <m>\ds \int_{-\frac{\pi}4}^{\frac{\pi}2}\sin(x^3)\ dx \approx (1.9093)(0.2356) \approx 0.4498</m>.</p>
+
+        <p>Right Hand Rule: <m>\ds \int_{-\frac{\pi}4}^{\frac{\pi}2}\sin(x^3)\ dx \approx (1.705)(0.2356) \approx 0.4017</m>.</p>
+
+        <p>Average of the Left and Right Hand Rules: 0.4258.</p>
+
+
+      <sidebyside xml:id="fig_num2" widths="47% 47%">
+        <caption>Approximating <m>\int_{-\frac{\pi}4}^{\frac{\pi}2}\sin(x^3)\ dx</m> in <xref ref="ex_num2">Example</xref>.</caption>
+      <!-- START figures/fig_num2b.tex -->
+        <figure xml:id="fig_num2b">
+          <caption/>    
+          <image xml:id="img_num2b">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[%
+              axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+              %			xtick=\empty,%
+              %			extra x ticks={.5,3},
+              %			extra x tick labels={$a$,$b$},
+              %			ytick=\empty,
+			%%extra y ticks={-5,-3,...,7},%
+              %			minor x tick num=4,
+			ymin=-.7,ymax=1.2,%
+			xmin=-1,xmax=1.7%
+              ]
+
+              \addplot [{\coloronefill},fill={\coloronefill}] coordinates {(-0.7854,-0.4657)  (-0.7373,-0.3902) (-0.6892,-0.3216)
+              (-0.6411,-0.2605)  (-0.5931,-0.2071) (-0.5450,-0.1611)
+              (-0.4969,-0.1224)  (-0.4488,-0.0903) (-0.4007,-0.0643)
+              (-0.3526,-0.0438)  (-0.3045,-0.0282) (-0.2565,-0.0169)
+              (-0.2084,-0.0090)  (-0.1603,-0.0041) (-0.1122,-0.0014)
+              (-0.0641,-0.0003)  (-0.0160,-0.0000) (0.0321,0.0000)
+              (0.0801,0.0005)  (0.1282,0.0021) (0.1763,0.0055)
+              (0.2244,0.0113)  (0.2725,0.0202) (0.3206,0.0329)
+              (0.3687,0.0501)  (0.4167,0.0723) (0.4648,0.1003)
+              (0.5129,0.1345)  (0.5610,0.1756) (0.6091,0.2240)
+              (0.6572,0.2800)  (0.7053,0.3436) (0.7533,0.4146)
+              (0.8014,0.4923)  (0.8495,0.5754) (0.8976,0.6618)
+              (0.9457,0.7485)  (0.9938,0.8313) (1.0419,0.9048)
+              (1.0899,0.9622)  (1.1380,0.9953) (1.1861,0.9952)
+              (1.2342,0.9526)  (1.2823,0.8589) (1.3304,0.7082)
+              (1.3785,0.4989)  (1.4265,0.2363) (1.4746,-0.0650)
+              (1.5227,-0.3793)  (1.5708,-0.6700) }
+              |-(axis cs:-0.7854,0 )--cycle;
+
+              \addplot [{\colorone},thick,smooth] coordinates {(-0.7854,-0.4657)  (-0.7373,-0.3902) (-0.6892,-0.3216)
+              (-0.6411,-0.2605)  (-0.5931,-0.2071) (-0.5450,-0.1611)
+              (-0.4969,-0.1224)  (-0.4488,-0.0903) (-0.4007,-0.0643)
+              (-0.3526,-0.0438)  (-0.3045,-0.0282) (-0.2565,-0.0169)
+              (-0.2084,-0.0090)  (-0.1603,-0.0041) (-0.1122,-0.0014)
+              (-0.0641,-0.0003)  (-0.0160,-0.0000) (0.0321,0.0000)
+              (0.0801,0.0005)  (0.1282,0.0021) (0.1763,0.0055)
+              (0.2244,0.0113)  (0.2725,0.0202) (0.3206,0.0329)
+              (0.3687,0.0501)  (0.4167,0.0723) (0.4648,0.1003)
+              (0.5129,0.1345)  (0.5610,0.1756) (0.6091,0.2240)
+              (0.6572,0.2800)  (0.7053,0.3436) (0.7533,0.4146)
+              (0.8014,0.4923)  (0.8495,0.5754) (0.8976,0.6618)
+              (0.9457,0.7485)  (0.9938,0.8313) (1.0419,0.9048)
+              (1.0899,0.9622)  (1.1380,0.9953) (1.1861,0.9952)
+              (1.2342,0.9526)  (1.2823,0.8589) (1.3304,0.7082)
+              (1.3785,0.4989)  (1.4265,0.2363) (1.4746,-0.0650)
+              (1.5227,-0.3793)  (1.5708,-0.6700) };
+
+              \foreach \x / \y in %
+		{-0.785/ -0.466, -0.550/-0.165, -0.314/ -0.0310,%
+		 -0.0785/-0.000484, 0.157/ 0.00388, 0.393/ 0.0605,
+		 0.628/ 0.246, 0.864/ 0.601, 1.10/ 0.971, 1.34/ 0.690}
+  	{\addplot [thick,draw={\colortwo}] coordinates {(\x+.2356,0) (\x+.2356,\y) (\x,\y) (\x,0) (\x+.2356,0)};
+  	}
+
+              \draw (axis cs:.6,.9) node {\scriptsize $y=\sin(x^3)$};
+              \end{axis}
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+        </figure>
+      <!-- figures/fig_num2b.tex END -->
+
+      <!-- START figures/fig_num2a.tex -->
+        <figure xml:id="fig_num2c">
+          <caption/>
+          <image xml:id="img_num2c">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[%
+              axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+              %			xtick=\empty,%
+              %			extra x ticks={.5,3},
+              %			extra x tick labels={$a$,$b$},
+              %			ytick=\empty,
+			%%extra y ticks={-5,-3,...,7},%
+              %			minor x tick num=4,
+			ymin=-.7,ymax=1.2,%
+			xmin=-1,xmax=1.7%
+              ]
+
+              \addplot [{\coloronefill},fill={\coloronefill}] coordinates {(-0.7854,-0.4657)  (-0.7373,-0.3902) (-0.6892,-0.3216)
+              (-0.6411,-0.2605)  (-0.5931,-0.2071) (-0.5450,-0.1611)
+              (-0.4969,-0.1224)  (-0.4488,-0.0903) (-0.4007,-0.0643)
+              (-0.3526,-0.0438)  (-0.3045,-0.0282) (-0.2565,-0.0169)
+              (-0.2084,-0.0090)  (-0.1603,-0.0041) (-0.1122,-0.0014)
+              (-0.0641,-0.0003)  (-0.0160,-0.0000) (0.0321,0.0000)
+              (0.0801,0.0005)  (0.1282,0.0021) (0.1763,0.0055)
+              (0.2244,0.0113)  (0.2725,0.0202) (0.3206,0.0329)
+              (0.3687,0.0501)  (0.4167,0.0723) (0.4648,0.1003)
+              (0.5129,0.1345)  (0.5610,0.1756) (0.6091,0.2240)
+              (0.6572,0.2800)  (0.7053,0.3436) (0.7533,0.4146)
+              (0.8014,0.4923)  (0.8495,0.5754) (0.8976,0.6618)
+              (0.9457,0.7485)  (0.9938,0.8313) (1.0419,0.9048)
+              (1.0899,0.9622)  (1.1380,0.9953) (1.1861,0.9952)
+              (1.2342,0.9526)  (1.2823,0.8589) (1.3304,0.7082)
+              (1.3785,0.4989)  (1.4265,0.2363) (1.4746,-0.0650)
+              (1.5227,-0.3793)  (1.5708,-0.6700) }
+              |-(axis cs:-0.7854,0 )--cycle;
+
+              \addplot [{\colorone},thick,smooth] coordinates {(-0.7854,-0.4657)  (-0.7373,-0.3902) (-0.6892,-0.3216)
+              (-0.6411,-0.2605)  (-0.5931,-0.2071) (-0.5450,-0.1611)
+              (-0.4969,-0.1224)  (-0.4488,-0.0903) (-0.4007,-0.0643)
+              (-0.3526,-0.0438)  (-0.3045,-0.0282) (-0.2565,-0.0169)
+              (-0.2084,-0.0090)  (-0.1603,-0.0041) (-0.1122,-0.0014)
+              (-0.0641,-0.0003)  (-0.0160,-0.0000) (0.0321,0.0000)
+              (0.0801,0.0005)  (0.1282,0.0021) (0.1763,0.0055)
+              (0.2244,0.0113)  (0.2725,0.0202) (0.3206,0.0329)
+              (0.3687,0.0501)  (0.4167,0.0723) (0.4648,0.1003)
+              (0.5129,0.1345)  (0.5610,0.1756) (0.6091,0.2240)
+              (0.6572,0.2800)  (0.7053,0.3436) (0.7533,0.4146)
+              (0.8014,0.4923)  (0.8495,0.5754) (0.8976,0.6618)
+              (0.9457,0.7485)  (0.9938,0.8313) (1.0419,0.9048)
+              (1.0899,0.9622)  (1.1380,0.9953) (1.1861,0.9952)
+              (1.2342,0.9526)  (1.2823,0.8589) (1.3304,0.7082)
+              (1.3785,0.4989)  (1.4265,0.2363) (1.4746,-0.0650)
+              (1.5227,-0.3793)  (1.5708,-0.6700) };
+
+              \foreach \x / \y in %
+		{-0.550/-0.165, -0.314/ -0.0310,%
+		 -0.0785/-0.000484, 0.157/ 0.00388, 0.393/ 0.0605,
+		 0.628/ 0.246, 0.864/ 0.601, 1.10/ 0.971, 1.34/ 0.690, 1.57/ -0.670}
+  	{\addplot [thick,draw={\colortwo}] coordinates {(\x-.2356,0) (\x-.2356,\y) (\x,\y) (\x,0) (\x-.2356,0)};
+  	}
+
+              \draw (axis cs:.6,1.1) node {\scriptsize $y=\sin(x^3)$};
+              \end{axis}
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_num2a.tex END -->
+        </figure>
+      </sidebyside>
+
+
+        <p>The actual answer, accurate to 4 places after the decimal, is 0.4609. Our approximations were once again fairly good. The rectangles used in each approximation are shown in <xref ref="fig_num2b">Figure</xref>. It is clear from the graphs that using more rectangles (and hence, narrower rectangles) should result in a more accurate approximation.</p>
+      </solution>
+    </example>
+  </subsection>
+
+  <subsection>
+    <title>The Trapezoidal Rule</title>
+    <p>In <xref ref="ex_num1">Example</xref> we approximated the value of <m>\ds \int_0^1 e^{-x^2}\ dx</m> with 5 rectangles of equal width. <xref ref="fig_num1">Figure</xref> shows the rectangles used in the Left and Right Hand Rules. These graphs clearly show that rectangles do not match the shape of the graph all that well, and that accurate approximations will only come by using lots of rectangles. <index><main>Trapezoidal Rule</main></index><index><main>numerical integration</main><sub>Trapezoidal Rule</sub></index><index><main>integration</main><sub>numerical!Trapezoidal Rule</sub></index></p>
+
+    <p>Instead of using rectangles to approximate the area, we can instead use <em>trapezoids.</em> In <xref ref="fig_num3a">Figure</xref>, we show the region under <m>f(x) = e^{-x^2}</m> on <m>[0,1]</m> approximated with 5 trapezoids of equal width; the top <q>corners</q> of each trapezoid lies on the graph of <m>f(x)</m>. It is clear from this figure that these trapezoids more accurately approximate the area under <m>f</m> and hence should give a better approximation of <m>\int_0^1 e^{-x^2}\ dx</m>. (In fact, these trapezoids seem to give a <em>great</em> approximation of the area!)</p>
+
+    <figure xml:id="fig_num3a" >
+      <caption>Approximating <m>\int_0^1 e^{-x^2}\ dx</m> using 5 trapezoids of equal widths.</caption>
+      <!-- START figures/fig_num3a.tex -->
+      <image xml:id="img_num3a"  width="47%">
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+          \begin{axis}[%
+          axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={.2,.4,.6,.8,1},%
+          %			extra x ticks={.5,3},
+          %			extra x tick labels={$a$,$b$},
+          %			ytick=\empty,
+			%%extra y ticks={-5,-3,...,7},%
+          %			minor x tick num=4,
+			ymin=-.2,ymax=1.2,%
+			xmin=-.2,xmax=1.1%
+          ]
+
+          \addplot [{\coloronefill},fill={\coloronefill},thick] coordinates {(0.0000,1.0000)  (0.0526,0.9972) (0.1053,0.9890)
+          (0.1579,0.9754)  (0.2105,0.9566) (0.2632,0.9331)
+          (0.3158,0.9051)  (0.3684,0.8731) (0.4211,0.8375)
+          (0.4737,0.7990)  (0.5263,0.7580) (0.5789,0.7152)
+          (0.6316,0.6711)  (0.6842,0.6262) (0.7368,0.5810)
+          (0.7895,0.5362)  (0.8421,0.4921) (0.8947,0.4491)
+          (0.9474,0.4076)  (1.0000,0.3679) }
+          |-(axis cs:0,0)--cycle;
+
+          \addplot [{\colorone},thick] coordinates {(0.0000,1.0000)  (0.0526,0.9972) (0.1053,0.9890)
+          (0.1579,0.9754)  (0.2105,0.9566) (0.2632,0.9331)
+          (0.3158,0.9051)  (0.3684,0.8731) (0.4211,0.8375)
+          (0.4737,0.7990)  (0.5263,0.7580) (0.5789,0.7152)
+          (0.6316,0.6711)  (0.6842,0.6262) (0.7368,0.5810)
+          (0.7895,0.5362)  (0.8421,0.4921) (0.8947,0.4491)
+          (0.9474,0.4076)  (1.0000,0.3679) };
+
+          \foreach \x / \y / \z in {0/1 /0.96 , 0.2/0.96 / .85, 0.4 /.85 / .7, .6 / .7/ .53, .8 / .53 / .37}
+  	{\addplot [thick,draw={\colortwo}] coordinates {(\x,0) (\x,\y) (\x+.2,\z) (\x+.2,0) (\x,0)};
+  	}
+
+          \draw (axis cs:.75,1) node {\scriptsize $y=e^{-x^2}$};
+          \end{axis}
+
+
+
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_num3a.tex END -->
+    </figure>
+
+    <p>The formula for the area of a trapezoid is given in <xref ref="fig_trapezoid">Figure</xref>. We approximate <m>\int_0^1 e^{-x^2}\ dx</m> with these trapezoids in the following example.
+
+            <figure xml:id="fig_trapezoid" >
+          <caption>The area of a trapezoid.</caption>
+          <!-- START figures/fig_trapezoid.tex -->
+          <image xml:id="img_trapezoid"  width="47%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+
+              \draw (0,0) -- node [pos=.5,left] {\small $a$} (0,1) -- (1,1.5) -- node [pos=.5,right] {\small $b$} (1,0) -- node [pos=.5,below] {\small $h$} (0,0);
+
+              \draw (0,.1) -- (.1,.1) -- (.1,0);
+              \draw (.9,0) -- (.9,.1) -- (1,.1);
+
+              \draw (3,.75) node {Area = $\frac{a+b}2h$};
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_trapezoid.tex END -->
+        </figure>
+      </p>
+
+<example xml:id="ex_num3">
+      <title>Approximating definite integrals using trapezoids</title>
+      <statement>
+        <p>Use 5 trapezoids of equal width to approximate <m>\ds \int_0^1e^{-x^2}\ dx</m>.</p>
+      </statement>
+      <solution>
+        <p>To compute the areas of the 5 trapezoids in <xref ref="fig_num3a">Figure</xref>, it will again be useful to create a table of values as shown in <xref ref="fig_num3b">Table</xref>.</p>
+
+        <table xml:id="fig_num3b" >
+          <caption>A table of values of <m>e^{-x^2}</m>.</caption>
+          <tabular>
+            <row>
+              <cell><m>x_i</m></cell>
+              <cell><m>e^{-x_i^2}</m></cell>
+            </row>
+            <row bottom="minor">
+              <cell></cell>
+              <cell></cell>
+            </row>
+            <row>
+              <cell><m>0</m></cell>
+              <cell><m>1</m></cell>
+            </row>
+            <row>
+              <cell><m>0.2</m></cell>
+              <cell><m>0.9608</m></cell>
+            </row>
+            <row>
+              <cell><m>0.4</m></cell>
+              <cell><m>0.8521</m></cell>
+            </row>
+            <row>
+              <cell><m>0.6</m></cell>
+              <cell><m>0.6977</m></cell>
+            </row>
+            <row>
+              <cell><m>0.8</m></cell>
+              <cell><m>0.5273</m></cell>
+            </row>
+            <row>
+              <cell><m>1</m></cell>
+              <cell><m>0.3679</m></cell>
+            </row>
+          </tabular>
+        </table>
+
+        <p>The leftmost trapezoid has legs of length <m>1</m> and <m>0.9607</m> and a height of 0.2. Thus, by our formula, the area of the leftmost trapezoid is:
+          <me>
+            \frac{1+0.9608}{2}(0.2) = 0.1961.
+          </me>
+        </p>
+
+        <p>Moving right, the next trapezoid has legs of length <m>0.9607</m> and <m>0.8521</m> and a height of 0.2. Thus its area is:
+          <me>
+            \frac{0.9608+0.8521}2(0.2) = 0.1813.
+          </me>
+        </p>
+
+        <p>The sum of the areas of all 5 trapezoids is:
+          <md>
+            <mrow>\frac{1+0.9608}{2}(0.2) + \frac{0.9608+0.8521}2(0.2)+\frac{0.8521+0.6977}2(0.2)\amp +</mrow>
+            <mrow>\frac{0.6977+0.5273}2(0.2)+\frac{0.5273+0.3679}2(0.2)\amp = 0.7444.</mrow>
+          </md>
+        </p>
+
+        <p>We approximate <m>\ds \int_0^1 e^{-x^2}\ dx \approx 0.7444</m>.</p>
+      </solution>
+    </example>
+
+    <p>There are many things to observe in this example. Note how each term in the final summation was multiplied by both 1/2 and by <m>\dx = 0.2</m>. We can factor these coefficients out, leaving a more concise summation as:
+      <me>
+        \frac12(0.2)\Big[(1+0.9608) + (0.9608+0.8521) + (0.8521+0.6977) + ( 0.6977+ 0.5273) +(0.5273 + 0.3679)\Big].
+      </me>
+    </p>
+
+    <p>Now notice that all numbers except for the first and the last are added twice. Therefore we can write the summation even more concisely as
+      <me>
+        \frac{0.2}{2}\Big[1 + 2(0.9608+0.8521+0.6977+0.5273) + 0.3679\Big].
+      </me>
+    </p>
+
+    <p>This is the heart of the <em>Trapezoidal Rule</em>, wherein a definite integral <m>\ds \int_a^b f(x) \ dx</m> is approximated by using trapezoids of equal widths to approximate the corresponding area under <m>f</m>. Using <m>n</m> equally spaced subintervals with endpoints <m>x_1</m>, <m>x_2</m>, <m>\ldots</m>, <m>x_{n+1}</m>, we again have <m>\ds \dx = \frac{b-a}n</m>. Thus:
+      <md>
+        <mrow>\int_a^b f(x)\ dx \amp  \approx \sum_{i=1}^n \frac{f(x_i)+f(x_{i+1})}2\dx</mrow>
+        <mrow>\amp  = \frac{\dx}2 \sum_{i=1}^n \big(f(x_i)+f(x_{i+1})\big)</mrow>
+        <mrow>\amp  = \frac{\dx}2\Big[f(x_1)+ \left(2\sum_{i=2}^n f(x_i)\right) + f(x_{n+1})\Big].</mrow>
+      </md>
+    </p>
+
+    <example xml:id="ex_num4">
+      <title>Using the Trapezoidal Rule</title>
+      <statement>
+        <p>Revisit <xref ref="ex_num2">Example</xref>
+          and approximate <m>\ds\int_{-\frac{\pi}{4}}^{\frac{\pi}{2}} \sin(x^3)\ dx</m> using the Trapezoidal Rule and 10 equally spaced subintervals.</p>
+      </statement>
+      <solution>
+        <p>We refer back to <xref ref="fig_num2a">Table</xref> for the table of values of <m>\sin(x^3)</m>. Recall that <m>\dx = 3\pi/40 \approx 0.236</m>. Thus we have:
+          <md>
+            <mrow>\amp \int_{-\frac{\pi}4}^{\frac{\pi}2} \sin(x^3)\ dx </mrow>
+            <mrow>\amp \approx \frac{0.236}{2}\Big[-0.4657 + 2\Big(-0.1654+(-0.031)+\ldots+
+            0.68999\Big)+(-0.67)\Big]</mrow>
+            <mrow>\amp = 0.4258.</mrow>
+          </md>
+          The actual answer, accurate to 4 decimal places is <m>0.4609</m>. So the Trapezoidal Rule with 10 subintervals is an underapproximation by about <m>0.0351.</m>
+        </p>
+      </solution>
+    </example>
+
+    <p>Notice how <q>quickly</q> the Trapezoidal Rule can be implemented once the table of values is created. This is true for all the methods explored in this section; the real work is creating a table of <m>x_i</m> and <m>f(x_i)</m> values. Once this is completed, approximating the definite integral is not difficult. Again, using technology is wise. Spreadsheets can make quick work of these computations and make using lots of subintervals easy.</p>
+
+    <p>Also notice the approximations the Trapezoidal Rule gives. It is the average of the approximations given by the Left and Right Hand Rules! This effectively renders the Left and Right Hand Rules obsolete. They are useful when first learning about definite integrals, but if a real approximation is needed, one is generally better off using the Trapezoidal Rule instead of either the Left or Right Hand Rule. However, there are two other methods that are also generally  more accurate than the Left or Right Hand Rule.</p>
+
+    <subsection>
+      <title>The Midpoint Rule</title>
+
+    <p>Another method that can be more accurate than the Trapezoidal Rule is the Midpoint Rule:
+      <md>
+        <mrow>S_M(n)\amp =\sum_{i=1}^n f\left(\frac{x_i+x_{i+1}}{2}\right)\Delta x</mrow>
+        <mrow>\amp = \sum_{i=1}^n f\left(\overline{x_i}\right)\Delta x </mrow>
+        <mrow>\amp \text{ where } \overline{x_i} \text{ is the midpoint of each subinterval,}</mrow>
+        <mrow> \amp \overline{x_i}=a+\dx\left(i-\frac12\right)</mrow>
+      </md></p>
+
+    <example xml:id="ex_num3_2">
+      <title>Using the Midpoint Rule</title>
+      <statement>
+        <p>Use the Midpoint Rule with <m>n=5</m> to approximate <m>\ds \int_0^1e^{-x^2}\ dx</m>.</p>
+      </statement>
+      <solution>
+         <p>We cannot use the same table (<xref ref="fig_num3b">Table</xref>) that we used for the Trapezoidal, Right and Left Hand Rules when using the Midpoint Rule. The Trapezoidal rule averages the <em>outputs</em> of the function to obtain a more accurate estimate of the definite integral. The Midpoint Rule averages the <em>inputs</em> of each subinterval to create a rectangle with height <m>f\left(\frac{x_i+x_{i+1}}{2}\right)</m>. Generally <m>f\left(\frac{x_i+x_{i+1}}{2}\right)\neq \frac{f(x_i)+f(x_{i+1})}{2}</m>. </p>
+
+        <p>So we will create a new table of values as shown in <xref ref="fig_num3_2b">Table</xref>. We have <m>\dx=(1-0)/5=0.2</m>. The midpoint of the first subinteval is at <m>0+0.2(1/2)=0.1</m> and each successive midpoint is <m>0.2</m> from the last.</p>
+
+
+
+        <table xml:id="fig_num3_2b" >
+          <caption>A table of values of <m>e^{-x^2}</m>.</caption>
+          <tabular>
+            <row>
+              <cell><m>x_i</m></cell>
+              <cell><m>e^{-x_i^2}</m></cell>
+            </row>
+            <row bottom="minor">
+              <cell></cell>
+              <cell></cell>
+            </row>
+            <row>
+              <cell><m>0.1</m></cell>
+              <cell><m>0.9900</m></cell>
+            </row>
+            <row>
+              <cell><m>0.3</m></cell>
+              <cell><m>0.9139</m></cell>
+            </row>
+            <row>
+              <cell><m>0.5</m></cell>
+              <cell><m>0.7788</m></cell>
+            </row>
+            <row>
+              <cell><m>0.7</m></cell>
+              <cell><m>0.6126</m></cell>
+            </row>
+            <row>
+              <cell><m>0.9</m></cell>
+              <cell><m>0.4449</m></cell>
+            </row>
+          </tabular>
+        </table>
+
+        <p>So we have 
+          <md>
+            <mrow>\int_0^1 e^{-x^2}\ dx \amp \approx 0.2(0.99+0.9139+0.7788+0.6126+0.4449)</mrow>
+            <mrow>\amp \approx 0.7480</mrow>
+          </md>
+        </p>
+
+        <p>We approximate <m>\ds \int_0^1 e^{-x^2}\ dx \approx 0.7480</m>.</p>
+      </solution>
+    </example>
+
+
+    <example xml:id="ex_num4_2">
+      <title>Using the Midpoint Rule</title>
+      <statement>
+        <p>Revisit <xref ref="ex_num4">Example</xref>
+          and approximate <m>\ds\int_{-\frac{\pi}{4}}^{\frac{\pi}{2}} \sin(x^3)\ dx</m> using the Midpoint Rule and 10 equally spaced subintervals.</p>
+      </statement>
+      <solution>
+       
+        <p>Again, a table will be useful. Recall that <m>\dx = 3\pi/40 \approx 0.2356</m>. The midpoint of the first subinterval is <m>\overline{x_1}=a+\dx/2=-\pi/4+3\pi/40(1/2)=-17\pi/80</m> (notice that <m>\overline{x_1}</m> is half of a subinterval width to the right of <m>a</m>). Each successive midpoint is <m>\dx=3 \pi/40=6\pi/80</m> to the right of the last. So we have:
+
+        <table xml:id="fig_num4_2" >
+          <caption>Table of values used to approximate <m>\int_{-\frac{\pi}4}^{\frac{\pi}2}\sin(x^3)\ dx</m> in <xref ref="ex_num4_2 ">Example</xref>.</caption>
+          <tabular>
+            <row>
+              <cell><m>\overline{x_i}</m></cell>
+              <cell>Exact</cell>
+              <cell>Approx.</cell>
+              <cell><m>\sin(x_i^3)</m></cell>
+            </row>
+            <row bottom="minor">
+              <cell></cell>
+              <cell></cell>
+              <cell></cell>
+              <cell></cell>
+            </row>
+            <row>
+              <cell><m>\overline{x_1}</m></cell>
+              <cell><m>-17\pi/80</m></cell>
+              <cell><m>-0.6676</m></cell>
+              <cell><m>-0.2932</m></cell>
+            </row>
+            <row>
+              <cell><m>\overline{x_2}</m></cell>
+              <cell><m>-11 \pi/80</m></cell>
+              <cell><m>-0.4320</m></cell>
+              <cell><m>-0.0805</m></cell>
+            </row>
+            <row>
+              <cell><m>\overline{x_3}</m></cell>
+              <cell><m>-5{\pi }/{80}</m></cell>
+              <cell><m>-0.1963</m></cell>
+              <cell><m>-0.0076</m></cell>
+            </row>
+            <row>
+              <cell><m>\overline{x_4}</m></cell>
+              <cell><m>1{\pi }/{80}</m></cell>
+              <cell><m>-0.0393</m></cell>
+              <cell><m>0.0001</m></cell>
+            </row>
+            <row>
+              <cell><m>\overline{x_5}</m></cell>
+              <cell><m>7{\pi }/{80}</m></cell>
+              <cell><m>0.2749</m></cell>
+              <cell><m>0.0208</m></cell>
+            </row>
+            <row>
+              <cell><m>\overline{x_6}</m></cell>
+              <cell><m>{13\pi }/{80}</m></cell>
+              <cell><m>0.5105</m></cell>
+              <cell><m>0.1327</m></cell>
+            </row>
+            <row>
+              <cell><m>\overline{x_7}</m></cell>
+              <cell><m>{19\pi }/{80}</m></cell>
+              <cell><m>0.7461</m></cell>
+              <cell><m>0.4035</m></cell>
+            </row>
+            <row>
+              <cell><m>\overline{x_8}</m></cell>
+              <cell><m>{25 \pi }/{80}</m></cell>
+              <cell><m>0.9817</m></cell>
+              <cell><m>0.8112</m></cell>
+            </row>
+            <row>
+              <cell><m>\overline{x_9}</m></cell>
+              <cell><m>{31 \pi }/{80}</m></cell>
+              <cell><m>1.2174</m></cell>
+              <cell><m>0.9729</m></cell>
+            </row>
+            <row>
+              <cell><m>\overline{x_{10}}</m></cell>
+              <cell><m>{37 \pi }/{80}</m></cell>
+              <cell><m>1.4530</m></cell>
+              <cell><m>0.0740</m></cell>
+            </row>
+            <row>
+              <cell></cell>
+            </row>
+          </tabular>
+        </table>
+Thus we have:
+          <md>
+            <mrow>\amp \int_{-\frac{\pi}4}^{\frac{\pi}2} \sin(x^3)\ dx </mrow>
+            <mrow>\amp \approx 0.2356\Big[-0.2932+(-0.0805)+(-0.0076)+\dots+0.9729+0.0740\Big]</mrow>
+            <mrow>\amp=0.2356\cdot 2.0339</mrow>
+            <mrow>\amp \approx 0.4792.</mrow>
+          </md>
+          The actual answer, accurate to 4 decimal places is <m>0.4609</m>. So the Midpoint Rule with 10 subintervals is an overrapproximation by about <m>0.0183 </m>. Notice that this error is about half of the error in using the Trapezoidal Rule. 
+        </p>
+      </solution>
+    </example>
+
+  
+
+
+    </subsection>
+    <p>In many cases, the Midpoint Rule will more accurate than the Trapezoidal Rule. You may wonder though, how can we improve on the Trapezoidal and Midpoint Rules, apart from using more and more subintervals? The answer is clear once we look back and consider what we have <em>really</em> done so far. The Left Hand Rule, Right Hand Rule and Midpoint Rules are not <em>really</em> about using rectangles to approximate area. Instead, they approximates a function <m>f</m> with constant functions on small subintervals and then computes the definite integral of these constant functions. The Trapezoidal Rule is really approximating a function <m>f</m> with a linear function on a small subinterval, then computes the definite integral of this linear function.  In all of these cases the definite integrals are easy to compute in geometric terms.</p>
+
+    <p>So we have a progression: we start by approximating <m>f</m> with a constant function and then with a linear function. What is next? A quadratic function. By approximating the curve of a function with lots of parabolas, we generally get an even better approximation of the definite integral. We call this process <em>Simpson's Rule</em>, named after Thomas Simpson (1710-1761), even though others had used this rule as much as 100 years prior.</p>
+  </subsection>
+
+  <subsection>
+    <title>Simpson's Rule</title>
+    <p>Given one point, we can create a constant function that goes through that point. Given two points, we can create a linear function that goes through those points. Given three points, we can create a quadratic function that goes through those three points (given that no two have the same <m>x</m><ndash />value).<index><main>Simpson's Rule</main></index><index><main>numerical integration</main><sub>Simpson's Rule</sub></index><index><main>integration</main><sub>numerical!Simpson's Rule</sub></index></p>
+
+    <p>Consider three points <m>(x_1,y_1)</m>, <m>(x_2,y_2)</m> and <m>(x_3,y_3)</m> whose <m>x</m><ndash />values are equally spaced and <m>x_1\lt x_2\lt x_3</m>. Let <m>f</m> be the quadratic function that goes through these three points. It is not hard to show that
+      <men xml:id="eq_simpsons" >
+        \int_{x_1}^{x_3} f(x)\ dx = \frac{x_3-x_1}{6}\big(y_1+4y_2+y_3\big).
+      </men>
+    </p>
+
+    <todo>Fix the aside to include this video (either embedded or as a link)</todo>
+    <aside><p>While it's not <em>hard</em> to show the results of <xref ref="eq_simpsons">Equation</xref>, it's also not exactly easy. This video might help (Note that they use <m>y_0, y_1 \text{ and } y_2</m> instead of <m>y_1, y_2 \text{ and } y_3</m>): <url href="https://www.youtube.com/embed/uc4xJsi99bk"></url></p></aside>
+    
+    <!--<iframe width="560" height="315" src="https://www.youtube.com/embed/uc4xJsi99bk" frameborder="0" allowfullscreen></iframe>-->
+
+
+    <p>Consider <xref ref="fig_numsimpsons">Figure</xref>. A function <m>f</m> goes through the 3 points shown and the parabola <m>g</m> that also goes through those points is graphed with a dashed line. Using our equation from above, we know exactly that
+      <me>
+        \int_1^3 g(x) \ dx = \frac{3-1}{6}\big(3+4(1)+2\big)= 3.
+      </me>
+    </p>
+
+    <p>Since <m>g</m> is a good approximation for <m>f</m> on <m>[1,3]</m>, we can state that
+      <me>
+        \int_1^3 f(x)\ dx \approx 3.
+      </me>
+    </p>
+
+    <figure xml:id="fig_numsimpsons" >
+      <caption>A graph of a function <m>f</m> and a parabola that approximates it well on <m>[1,3]</m>.</caption>
+      <!-- START figures/fig_numsimpsons.tex -->
+      <image xml:id="img_numsimpsons"  width="47%">
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+          \begin{axis}[%
+          axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={1,2,3},%
+          %			extra x ticks={1,2,3},
+          %			extra x tick labels={$x_1$,$x_2$,$x_3$},
+			ytick={1,2,3},
+			%%extra y ticks={-5,-3,...,7},%
+          %			minor x tick num=4,
+			ymin=-.2,ymax=4,%
+			xmin=.5,xmax=3.5%
+          ]
+
+          \addplot [{\colorone},domain=.9:3.1,thick] {11-12*x+4.5*x^2-.5*x^3};
+          \addplot [{\colortwo},dashed,domain=.9:3.1,thick] {8-6.5*x+1.5*x^2};
+
+          \filldraw (axis cs:1,3) circle (1pt);
+          \filldraw (axis cs:2,1) circle (1pt);
+          \filldraw (axis cs:3,2) circle (1pt);
+
+          \end{axis}
+
+
+
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_numsimpsons.tex END -->
+    </figure>
+
+    <p>Notice how the interval <m>[1,3]</m> was split into two subintervals as we needed 3 points. Because of this, whenever we use Simpson's Rule, we need to break the interval into an even number of subintervals.</p>
+
+    <p>In general, to approximate <m>\ds \int_a^b f(x)\ dx</m> using Simpson's Rule, subdivide <m>[a,b]</m> into <m>n</m> subintervals, where <m>n</m> is even and each subinterval has width <m>\dx = (b-a)/n</m>. We approximate <m>f</m> with <m>n/2</m> parabolic curves, using Equation <xref ref="eq_simpsons" /> to compute the area under these parabolas. Adding up these areas gives the formula:
+      <me>
+        \int_a^b f(x) \ dx \approx \frac{\dx}3\Big[f(x_1)+4f(x_2)+2f(x_3)+4f(x_4)+\ldots+2f(x_{n-1})+4f(x_n)+f(x_{n+1})\Big].
+      </me>
+    </p>
+
+    <p>Note how the coefficients of the terms in the summation have the pattern 1, 4, 2, 4, 2, 4, <m>\ldots</m>, 2, 4, 1.</p>
+    <p><xref ref="fig_simpsons2">Figure</xref> illustrates how the area calculated by Simpson's Rule approximates <m>\int_0^5 f(x)\ dx</m> for the function <m>f(x)=\sin(\pi x)</m>. In this case, <m>8</m> subintervals were used, resulting in <m>4</m> quadratic curves (dashed lines) being fitted to each pair of subintervals. The actual answer (accurate to <m>4</m> decimal places) is about <m>10.6366</m>, while Simpson's rule gives <m>10.7294</m>. Of course more subintervals would result in better accuracy. However <m>8</m> intervals were chosen specifically so that you could see how the parabolas compare to the original function. With larger values of <m>n</m>, it becomes difficult to distinguish the function and its quadratic approximations on each subinterval.</p>
+   
+
+     
+    <figure xml:id="fig_simpsons2">
+      <caption>An illustration of Simpson's rule on <m>f(x)=\sin(\pi x)+2</m> over <m>[0,5]</m> using <m>8</m> subintervals, resulting in <m>4</m> quadratic approximations. </caption>
+          <image xml:id="img_simpsons2" width="47%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[axis on top,
+                           ymin=-.2,ymax=3.2,
+                           xmin=-1,xmax=6.5,
+                          ]
+
+              \addplot+[name path=F,domain={-0.9:5.2},samples=100,smooth] {sin(deg(3.14159*x))+2} node[pos=.9, right]{\scriptsize $y=\sin(\pi x)$};
+              \addplot[name path=G,domain={0:5}]{0};
+              \addplot[color=blue!50]fill between[of=F and G, soft clip={domain=0:5}];
+             
+              \addplot+[secondcurvestyle,-,name path=H,domain=0:1.25]{-3.27*x^2+3.52*x+2};
+              \addplot[color=gray!30]fill between[of=H and G, soft clip={domain=0:1.25}];
+
+              \addplot+[secondcurvestyle,-,name path=I,domain=1.25:2.5]{1.35*x^2-3.71*x+3.82};
+              \addplot[color=gray!30]fill between[of=I and G, soft clip={domain=1.25:2.5}];
+
+              \addplot+[secondcurvestyle,-,name path=J,domain=2.5:3.75]{1.35*x^2-9.83*x+19.11};
+              \addplot[color=gray!30]fill between[of=J and G, soft clip={domain=2.5:3.75}];
+
+              \addplot+[secondcurvestyle,-,name path=K,domain=3.75:5]{-3.27*x^2+29.18*x-62.145};
+              \addplot[color=gray!30]fill between[of=K and G, soft clip={domain=3.75:5}];
+
+              \addplot[-,color=gray!70, dashed, thin,domain=0:2.924]({.625},{x});
+              \addplot[-,color=gray, dashed, thin,domain=0:1.293]({1.25},{x});
+              \addplot[-,color=gray!70, dashed, thin,domain=0:1.617]({1.875},{x});
+              \addplot[-,color=gray, dashed, thin,domain=0:3]({2.5},{x});
+              \addplot[-,color=gray!70, dashed, thin,domain=0:1.617]({3.125},{x});
+              \addplot[-,color=gray, dashed, thin,domain=0:1.293]({3.75},{x});
+              \addplot[-,color=gray!70, dashed, thin,domain=0:2.924]({4.375},{x});
+              \addplot[-,color=gray, dashed, thin,domain=0:3]({5},{x});
+  
+    }
+
+              \end{axis}
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+        </figure>
+
+
+
+    <p>Let's demonstrate Simpson's Rule with a concrete example.</p>
+
+    <example xml:id="ex_num5">
+      <title>Using Simpson's Rule</title>
+      <statement>
+        <p>Approximate <m>\ds\int_0^1 e^{-x^2}\ dx</m> using Simpson's Rule and 4 equally spaced subintervals.</p>
+      </statement>
+      <solution>
+        <p>We begin by making a table of values as we have in the past, as shown in <xref ref="fig_num5a">Figure</xref>.</p>
+
+      <sidebyside xml:id="fig_num5" widths ="40% 54%" >
+        <caption>A table of values to approximate <m>\int_0^1e^{-x^2}\ dx</m>, along with a graph of the function.</caption>
+
+        <table xml:id="fig_num5a">
+          <caption/>
+          <tabular>
+            <row>
+              <cell><m>x_i</m></cell>
+              <cell><m>e^{-x_i^2}</m></cell>
+            </row>
+            <row bottom="minor">
+              <cell></cell>
+              <cell></cell>
+            </row>
+            <row>
+              <cell><m>0</m></cell>
+              <cell><m>1</m></cell>
+            </row>
+            <row>
+              <cell><m>0.25</m></cell>
+              <cell><m>0.939</m></cell>
+            </row>
+            <row>
+              <cell><m>0.5</m></cell>
+              <cell><m>0.779</m></cell>
+            </row>
+            <row>
+              <cell><m>0.75</m></cell>
+              <cell><m>0.570</m></cell>
+            </row>
+            <row>
+              <cell><m>1</m></cell>
+              <cell><m>0.368</m></cell>
+            </row>
+            <row>
+              <cell></cell>
+            </row>
+          </tabular>
+        </table>
+
+
+          <figure xml:id="fig_num5b"><!-- START figures/fig_num5b.tex -->
+            <caption/>
+            <image xml:id="img_num5b">
+              <description></description>
+              <latex-image-code>
+                <![CDATA[
+                \begin{tikzpicture}
+                \begin{axis}[%
+                axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={.25,.5,.75,1},%
+                %			extra x ticks={.5,3},
+                %			extra x tick labels={$a$,$b$},
+                %			ytick=\empty,
+			%%extra y ticks={-5,-3,...,7},%
+                %			minor x tick num=4,
+			ymin=-.2,ymax=1.2,%
+			xmin=-.2,xmax=1.1%
+                ]
+
+                \addplot [{\coloronefill},fill={\coloronefill},thick] coordinates {(0.0000,1.0000)  (0.0526,0.9972) (0.1053,0.9890)
+                (0.1579,0.9754)  (0.2105,0.9566) (0.2632,0.9331)
+                (0.3158,0.9051)  (0.3684,0.8731) (0.4211,0.8375)
+                (0.4737,0.7990)  (0.5263,0.7580) (0.5789,0.7152)
+                (0.6316,0.6711)  (0.6842,0.6262) (0.7368,0.5810)
+                (0.7895,0.5362)  (0.8421,0.4921) (0.8947,0.4491)
+                (0.9474,0.4076)  (1.0000,0.3679) }
+                |-(axis cs:0,0)--cycle;
+
+                \addplot [{\colorone},thick] coordinates {(0.0000,1.0000)  (0.0526,0.9972) (0.1053,0.9890)
+                (0.1579,0.9754)  (0.2105,0.9566) (0.2632,0.9331)
+                (0.3158,0.9051)  (0.3684,0.8731) (0.4211,0.8375)
+                (0.4737,0.7990)  (0.5263,0.7580) (0.5789,0.7152)
+                (0.6316,0.6711)  (0.6842,0.6262) (0.7368,0.5810)
+                (0.7895,0.5362)  (0.8421,0.4921) (0.8947,0.4491)
+                (0.9474,0.4076)  (1.0000,0.3679) };
+
+                \addplot [{\colortwo},domain=0:.5,thick] {1-0.042*x-0.8*x^2};
+                \addplot [{\colortwo},domain=.5:1,thick] {1.218-0.907*x+0.0569*x^2};
+                \addplot [thick,{\colortwo}] coordinates {(0,1) (0,0) (.5,0) (.5,.779)};
+                \addplot [thick,{\colortwo}] coordinates {(.5,0) (1,0) (1,.368)};
+
+                \draw (axis cs:.75,1) node {\scriptsize $y=e^{-x^2}$};
+
+                \filldraw (axis cs:0,1) circle (1pt)
+					(axis cs:.25,.939) circle (1pt)
+					(axis cs:.5,.779) circle (1pt)
+					(axis cs:.75,.57) circle (1pt)
+					(axis cs:1,.368) circle (1pt);
+
+                \end{axis}
+
+
+
+                \end{tikzpicture}
+                ]]>
+              </latex-image-code>
+            </image>
+            <!-- figures/fig_num5b.tex END -->
+          </figure>
+
+        </sidebyside>
+
+        <p>Simpson's Rule states that
+          <me>
+            \int_0^1e^{-x^2}\ dx \approx \frac{0.25}{3}\Big[1+4(0.939)+2(0.779)+4(0.570) + 0.368\Big] = 0.7468\overline{3}.
+          </me>
+        </p>
+
+        <p>Recall in <xref ref="ex_num1">Example</xref> we stated that the correct answer, accurate to 4 places after the decimal, was 0.7468. Our approximation with Simpson's Rule, with 4 subintervals, is better than our approximation with the Trapezoidal Rule using 5!</p>
+
+        <p><xref ref="fig_num5b">Table</xref> shows <m>f(x) = e^{-x^2}</m> along with its approximating parabolas, demonstrating how good our approximation is. The approximating curves are nearly indistinguishable from the actual function.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_num6">
+      <title>Using Simpson's Rule</title>
+      <statement>
+        <p>Approximate <m>\ds\int_{-\frac{\pi}4}^{\frac{\pi}2} \sin(x^3)\ dx</m> using Simpson's Rule and 10 equally spaced intervals.</p>
+      </statement>
+      <solution>
+        <p><xref ref="fig_num6a">Figure</xref> shows the table of values that we used in the past for this problem, shown here again for convenience. Again, <m>\dx = (\pi/2+\pi/4)/10 \approx 0.236</m>.</p>
+
+        <table xml:id="fig_num6a" >
+          <caption>Table of values used to approximate <m>\int_{-\frac{\pi}4}^{\frac{\pi}2}\sin(x^3)\ dx</m> in <xref ref="ex_num2">Example</xref>.</caption>
+          <tabular>
+            <row>
+              <cell><m>x_i</m></cell>
+              <cell><m>\sin(x_i^3)</m></cell>
+            </row>
+            <row bottom="minor">
+              <cell></cell>
+              <cell></cell>
+              <cell></cell>
+              <cell></cell>
+            </row>
+            <row>
+              <cell><m>-0.7854</m></cell>
+              <cell><m>-0.4657</m></cell>
+            </row>
+            <row>
+              <cell><m>-0.5498</m></cell>
+              <cell><m>-0.1654</m></cell>
+            </row>
+            <row>
+              <cell><m>-0.3142</m></cell>
+              <cell><m>-0.0310</m></cell>
+            </row>
+            <row>
+              <cell><m>-0.0785</m></cell>
+              <cell><m>-0.0005</m></cell>
+            </row>
+            <row>
+              <cell><m>0.1571</m></cell>
+              <cell><m>0.0039</m></cell>
+            </row>
+            <row>
+              <cell><m>0.3927</m></cell>
+              <cell><m>0.0605</m></cell>
+            </row>
+            <row>
+              <cell><m>0.6283</m></cell>
+              <cell><m>0.2455</m></cell>
+            </row>
+            <row>
+              <cell><m>0.8639</m></cell>
+              <cell><m>0.6011</m></cell>
+            </row>
+            <row>
+              <cell><m>1.0996</m></cell>
+              <cell><m>0.9710</m></cell>
+            </row>
+            <row>
+              <cell><m>1.3352</m></cell>
+              <cell><m>0.6899</m></cell>
+            </row>
+            <row>
+              <cell><m>1.5708</m></cell>
+              <cell><m>-0.6700</m></cell>
+            </row>
+            <row>
+              <cell></cell>
+            </row>
+          </tabular>
+        </table>
+
+
+        <p>Simpson's Rule states that
+          <md>
+            <mrow>\int_{-\frac{\pi}4}^{\frac{\pi}2} \sin(x^3)\ dx \amp \approx \frac{0.2356}3\Big[(-0.4657)+4(-0.1654)+2(-0.0310) + \ldots</mrow>
+            <mrow>\amp  \ldots + 2(0.9710) + 4(0.6899) + (-0.6700)\big]</mrow>
+            <mrow>\amp \approx 0.4701</mrow>
+          </md>
+        </p>
+
+        <figure xml:id="fig_num6b" >
+          <caption>Approximating <m>\int_{-\frac{\pi}4}^{\frac{\pi}2}\sin(x^3)\ dx</m> in <xref ref="ex_num6">Example</xref> with Simpson's Rule and 10 equally spaced intervals.</caption>
+          <!-- START figures/fig_num6b.tex -->
+          <image xml:id="img_num6b"  width="47%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[%
+              axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+              %			xtick=\empty,%
+              %			extra x ticks={.5,3},
+              %			extra x tick labels={$a$,$b$},
+              %			ytick=\empty,
+			%%extra y ticks={-5,-3,...,7},%
+              %			minor x tick num=4,
+			ymin=-.7,ymax=1.2,%
+			xmin=-1,xmax=1.7%
+              ]
+
+              \addplot [{\coloronefill},fill={\coloronefill}] coordinates {(-0.7854,-0.4657)  (-0.7373,-0.3902) (-0.6892,-0.3216)
+              (-0.6411,-0.2605)  (-0.5931,-0.2071) (-0.5450,-0.1611)
+              (-0.4969,-0.1224)  (-0.4488,-0.0903) (-0.4007,-0.0643)
+              (-0.3526,-0.0438)  (-0.3045,-0.0282) (-0.2565,-0.0169)
+              (-0.2084,-0.0090)  (-0.1603,-0.0041) (-0.1122,-0.0014)
+              (-0.0641,-0.0003)  (-0.0160,-0.0000) (0.0321,0.0000)
+              (0.0801,0.0005)  (0.1282,0.0021) (0.1763,0.0055)
+              (0.2244,0.0113)  (0.2725,0.0202) (0.3206,0.0329)
+              (0.3687,0.0501)  (0.4167,0.0723) (0.4648,0.1003)
+              (0.5129,0.1345)  (0.5610,0.1756) (0.6091,0.2240)
+              (0.6572,0.2800)  (0.7053,0.3436) (0.7533,0.4146)
+              (0.8014,0.4923)  (0.8495,0.5754) (0.8976,0.6618)
+              (0.9457,0.7485)  (0.9938,0.8313) (1.0419,0.9048)
+              (1.0899,0.9622)  (1.1380,0.9953) (1.1861,0.9952)
+              (1.2342,0.9526)  (1.2823,0.8589) (1.3304,0.7082)
+              (1.3785,0.4989)  (1.4265,0.2363) (1.4746,-0.0650)
+              (1.5227,-0.3793)  (1.5708,-0.6700) }
+              |-(axis cs:-0.7854,0 )--cycle;
+
+              \addplot [{\colorone},thick,smooth] coordinates {(-0.7854,-0.4657)  (-0.7373,-0.3902) (-0.6892,-0.3216)
+              (-0.6411,-0.2605)  (-0.5931,-0.2071) (-0.5450,-0.1611)
+              (-0.4969,-0.1224)  (-0.4488,-0.0903) (-0.4007,-0.0643)
+              (-0.3526,-0.0438)  (-0.3045,-0.0282) (-0.2565,-0.0169)
+              (-0.2084,-0.0090)  (-0.1603,-0.0041) (-0.1122,-0.0014)
+              (-0.0641,-0.0003)  (-0.0160,-0.0000) (0.0321,0.0000)
+              (0.0801,0.0005)  (0.1282,0.0021) (0.1763,0.0055)
+              (0.2244,0.0113)  (0.2725,0.0202) (0.3206,0.0329)
+              (0.3687,0.0501)  (0.4167,0.0723) (0.4648,0.1003)
+              (0.5129,0.1345)  (0.5610,0.1756) (0.6091,0.2240)
+              (0.6572,0.2800)  (0.7053,0.3436) (0.7533,0.4146)
+              (0.8014,0.4923)  (0.8495,0.5754) (0.8976,0.6618)
+              (0.9457,0.7485)  (0.9938,0.8313) (1.0419,0.9048)
+              (1.0899,0.9622)  (1.1380,0.9953) (1.1861,0.9952)
+              (1.2342,0.9526)  (1.2823,0.8589) (1.3304,0.7082)
+              (1.3785,0.4989)  (1.4265,0.2363) (1.4746,-0.0650)
+              (1.5227,-0.3793)  (1.5708,-0.6700) };
+
+              \addplot [{\colortwo},domain=-.785:-.314,thick] {-.11-.721*x-1.49*x^2};
+              \addplot [thick,{\colortwo}] coordinates {(-.785,-.466) (-.785,0) (-.314,0) (-.314,-.03)};
+
+              \addplot [{\colortwo},domain=-.314:.157,thick] {.004+.037*x-.236*x^2};
+              \addplot [thick,{\colortwo}] coordinates {(-.314,0) (.157,0) (.157,.004)};
+
+              \addplot [{\colortwo},domain=.157:.628,thick] {.037-.395*x+1.156*x^2};
+              \addplot [thick,{\colortwo}] coordinates {(.157,0) (.628,0) (.628,.246)};
+
+              \addplot [{\colortwo},domain=.628:1.1,thick] {-.632+1.32*x+.13*x^2};
+              \addplot [thick,{\colortwo}] coordinates {(.628,0) (1.1,0) (1.1,.971)};
+
+              \addplot [{\colortwo},domain=1.1:1.57,thick] {-11.98+22.46*x-9.72*x^2};
+              \addplot [thick,{\colortwo}] coordinates {(1.1,0) (1.57,0) (1.57,-.67)};
+
+              \filldraw (axis cs:-.785,-.466 ) circle (1pt)
+					(axis cs:-.55,-.165 ) circle (1pt)
+					(axis cs:-.314,-.031 ) circle (1pt)
+					(axis cs:-.0785,0 ) circle (1pt)
+					(axis cs:.157,.004 ) circle (1pt)
+					(axis cs:.393,.061 ) circle (1pt)
+					(axis cs:.628,.246 ) circle (1pt)
+					(axis cs:.864,.601 ) circle (1pt)
+					(axis cs:1.1,.971 ) circle (1pt)
+					(axis cs:1.34,.69 ) circle (1pt)
+					(axis cs:1.57,-.67 ) circle (1pt);
+
+              \draw (axis cs:.6,.9) node {\scriptsize $y=\sin(x^3)$};
+              \end{axis}
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_num6b.tex END -->
+        </figure>
+
+        <p>Recall that the actual value, accurate to 3 decimal places, is 0.4609. Our approximation is within one 1/100<m>^\text{ th }</m> of the correct value. The graph in <xref ref="fig_num6b">Figure</xref> shows how closely the parabolas match the shape of the graph.</p>
+      </solution>
+    </example>
+  </subsection>
+
+  <subsection>
+    <title>Summary and Error Analysis</title>
+    <p>We summarize the key concepts of this section thus far in the following Key Idea.</p>
+
+      <insight xml:id="idea_numerical">
+        <title>Numerical Integration</title>
+        <p>Let <m>f</m> be a continuous function on <m>[a,b]</m>, let <m>n</m> be a positive integer, and let <m>\ds\dx = \frac{b-a}{n}</m>. <index><main>integration</main><sub>numerical!Left/Right Hand Rule</sub></index><index><main>integration</main><sub>numerical!Trapezoidal Rule</sub></index><index><main>integration</main><sub>numerical!Simpson's Rule</sub></index>
+          <index><main>Left/Right Hand Rule</main></index><index><main>Trapezoidal Rule</main></index><index><main>Simpson's Rule</main></index>
+          <index><main>numerical integration</main><sub>Left/Right Hand Rule</sub></index><index><main>numerical integration</main><sub>Trapezoidal Rule</sub></index><index><main>numerical integration</main><sub>Simpson's Rule</sub></index></p>
+
+        <p>Set <m>x_1=a</m>, <m>x_2 = a+\dx</m>, <m>\ldots</m>, <m>x_i = a+(i-1)\dx</m>, <m>x_{n+1}=b</m>.</p>
+
+        <p>Consider <m>\ds\int_a^b f(x)\ dx</m>.</p>
+
+        <p>Left Hand Rule:  <m>\ds\int_a^b f(x)\ dx \approx \dx\big[f(x_1) + f(x_2) + \ldots + f(x_n)\big]</m>.</p>
+
+        <p>Right Hand Rule:  <m>\ds\int_a^b f(x)\ dx \approx \dx\big[f(x_2) + f(x_3) + \ldots + f(x_{n+1})\big]</m>.</p>
+
+        <p>Trapezoidal Rule:  <m>\ds\int_a^b f(x)\ dx \approx \frac{\dx}2\big[f(x_1) + 2f(x_2) + 2f(x_3) +\ldots + 2f(x_n)+ f(x_{n+1})\big]</m>.</p>
+
+        <p>Midpoint Rule: <m>\ds \int_a^b f(x)\ dx \approx \sum_{i=1}^n f\left(\frac{x_i+x_{i+1}}{2}\right)\Delta x</m>.</p>
+
+        <p>Simpson's Rule:  <m>\ds\int_a^b f(x)\ dx \approx \frac{\dx}3\big[f(x_1) + 4f(x_2) + 2f(x_3) +\ldots + 4f(x_n)+ f(x_{n+1})\big] \text{ for } n \text{ even}</m>.</p>
+      </insight>
+
+    <p>In our examples, we approximated the value of a definite integral using a given method then compared it to the <q>right</q> answer. This should have raised several questions in the reader's mind, such as:</p>
+
+    <ol>
+      <li><p>How was the <q>right</q> answer computed?</p></li>
+
+      <li><p>If the right answer can be found, what is the point of approximating?</p></li>
+
+      <li><p>If there is value to approximating, how are we supposed to know if the approximation is any good?</p></li>
+    </ol>
+
+    <p>These are good questions, and their answers are educational. In the examples, <em>the</em> right answer was never computed. Rather, an approximation accurate to a certain number of places after the decimal was given. In <xref ref="ex_num1">Example</xref>, we do not know the <em>exact</em> answer, but we know it starts with <m>0.7468</m>. These more accurate approximations were computed using numerical integration but with more precision (i.e., more subintervals and the help of a computer).</p>
+
+    <p>Since the exact answer cannot be found, approximation still has its place. How are we to tell if the approximation is any good?</p>
+
+    <p><q>Trial and error</q> provides one way.
+      Using technology, make an approximation with, say, 10, 100, and 200 subintervals. This likely will not take much time at all, and a trend should emerge. If a trend does not emerge, try using yet more subintervals. Keep in mind that trial and error is never foolproof; you might stumble upon a problem in which a trend will not emerge.</p>
+
+    <p>A second method is to use Error Analysis. While the details are beyond the scope of this text, there are some formulas that give <em>bounds</em> for how good your approximation will be. For instance, the formula might state that the approximation is within 0.1 of the correct answer. If the approximation is 1.58, then one knows that the correct answer is between 1.48 and 1.68. By using lots of subintervals, one can get an approximation as accurate as one likes. <xref ref="thm_numerical_error">Theorem</xref> states what these bounds are.</p>
+
+    <theorem xml:id="thm_numerical_error">
+      <title>Error Bounds in the Trapezoidal and Simpson's Rules</title>
+      <statement>
+        <ol>
+          <index><main>integration</main><sub>numerical!Trapezoidal Rule</sub></index><index><main>integration</main><sub>numerical!Simpson's Rule</sub></index>
+          <index><main>Trapezoidal Rule</main><sub>error bounds</sub></index><index><main>Simpson's Rule</main><sub>error bounds</sub></index>
+          <index><main>numerical integration</main><sub>Trapezoidal Rule!error bounds</sub></index><index><main>numerical integration</main><sub>Simpson's Rule!error bounds</sub></index>
+
+          <li><p>Let <m>E_T</m> and <m>E_M</m>be the error in approximating <m>\ds \int_a^b f(x)\ dx</m> using the Trapezoidal and Midpoint Rules respectively.
+
+              If <m>f</m> has a continuous 2<m>^\text{ nd }</m> derivative on <m>[a,b]</m> and <m>K</m> is any upper bound of <m>\abs{\fpp(x)}</m> on <m>[a,b]</m>, then
+              <me>
+                \ds E_T \leq \frac{(b-a)^3}{12n^2}K.
+              </me>
+              and 
+              <me>
+                \ds E_M \leq \frac{(b-a)^3}{24n^2}K.
+              </me>
+            </p></li>
+
+          <li><p>Let <m>E_S</m> be the error in approximating <m>\ds \int_a^b f(x)\ dx</m> using Simpson's Rule.
+
+              If <m>f</m> has a continuous 4<m>^\text{ th }</m> derivative on <m>[a,b]</m> and <m>K</m> is any upper bound of <m>\abs{f^{(4)}(x)}</m> on <m>[a,b]</m>, then
+              <me>
+                E_S \leq \frac{(b-a)^5}{180n^4}K.
+              </me>
+            </p></li>
+        </ol>
+      </statement>
+    </theorem>
+
+    <p>There are some key things to note about this theorem.</p>
+
+    <ol>
+      <li><p>The larger the interval, the larger the error. This should make sense intuitively.</p></li>
+
+      <li><p>The error shrinks as more subintervals are used (i.e., as <m>n</m> gets larger).</p></li>
+
+      <li><p>The maximum error in the Midpoint Rule is half of the maximum error in the Trapezoidal Rule. (<em>Usually</em> the errors in these two rules have opposite signs as well, that is one will be an under approximation and the other will be an over approximation). </p></li>
+
+      <li><p>The error in Simpson's Rule has a term relating to the 4<m>^{\text{ th } }</m> derivative of <m>f</m>. Consider a cubic polynomial: it's <m>4^{\text{ th } }</m> derivative is 0. Therefore, the error in approximating the definite integral of a cubic polynomial with Simpson's Rule is 0 <mdash /> Simpson's Rule computes the exact answer!</p></li>
+    </ol>
+
+    <p>We revisit <xref ref="ex_num3">Examples</xref> and <xref ref="ex_num5"></xref> and compute the error bounds using <xref ref="thm_numerical_error">Theorem</xref> in the following example.</p>
+
+    <example xml:id="ex_num7">
+      <title>Computing error bounds</title>
+      <statement>
+        <p>Find the error bounds when approximating <m>\ds \int_0^1 e^{-x^2}\ dx</m> using the Trapezoidal and Midpoint Rules and 5 subintervals, and using Simpson's Rule with 4 subintervals.</p>
+      </statement>
+      <solution>
+        <p><em>Trapezoidal and Midpoints Rules with <m>n=5</m>:</em></p>
+
+        <p>We start by computing the <m>2^\text{ nd }</m> derivative of <m>f(x) = e^{-x^2}</m>:
+          <me>
+            \fpp(x) = e^{-x^2}(4x^2-2).
+          </me>
+        </p>
+
+        <p><xref ref="fig_num7a">Figure</xref> shows a graph of <m>\fpp(x)</m> on <m>[0,1]</m>. It is clear that the largest value of <m>\fpp</m>, in absolute value, is 2.
+
+        <figure xml:id="fig_num7a" >
+          <caption>Graphing <m>\fpp(x)</m> in <xref ref="ex_num7">Example</xref> to help establish error bounds.</caption>
+          <!-- START figures/fig_num7a.tex -->
+          <image xml:id="img_num7a"  width="47%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[%
+              axis on top,%
+      %x=.37\marginparwidth,
+      %y=.37\marginparwidth,
+              %     xtick=\empty,%
+              %     extra x ticks={.5,3},
+              %     extra x tick labels={$a$,$b$},
+              %     ytick=\empty,
+      %%extra y ticks={-5,-3,...,7},%
+              %     minor x tick num=4,
+      ymin=-2.1,ymax=.7,%
+      xmin=-.1,xmax=1.1%
+              ]
+
+              \addplot [{\colorone},smooth,thick] coordinates {(0,-2.) (0.1,-1.9405) (0.2,-1.7679) (0.3,-1.4988) (0.4,-1.1589)(0.5,-0.7788) (0.6,-0.3907) (0.7,-0.024505) (0.8,0.29528) (0.9,0.55162) (1.,0.73576)};
+
+
+              \draw (axis cs:.8,-1.5) node {\scriptsize $y=e^{-x^2}(4x^2-2)$};
+              \end{axis}
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_num7a.tex END -->
+        </figure>
+
+      Thus we let <m>K=2</m> and apply the error formula from <xref ref="thm_numerical_error">Theorem</xref>.
+          <me>
+            E_T \leq \frac{(1-0)^3}{12\cdot 5^2}\cdot 2 = 0.00\overline{6}.
+          </me>
+          Since the maximum error in the Midpoint rule is half the error in the Trapezoidal Rule, we can say:
+          <m>E_M \leq 0.00\overline{3}</m>
+        </p>
+
+        <todo>Update everything to 4 decimal places.</todo>
+        <p>Our error estimation formula states that our approximation of 0.7444 found in <xref ref="ex_num3">Example</xref> is within 0.0067 of the correct answer. Hence we know that the actual value is within <m>[0.7444-0.0067, 0.7444+0.0067]=[.7377,.7511]. So:</m>
+          <me>
+         0.7377 \leq \int_0^1e^{-x^2}\ dx \leq 0.7511
+          </me>
+          But we can do better than this with the Midpoint Rule since it's error is at most half of the error of the Trapezoidal Rule.  Our error estimate formula state that our approximate of <m>0.7480</m> found in <xref ref="ex_num3_2">Example</xref> is within <m>0.0034</m> of the correct answer. Hence Hence we know that the actual value is within <m>[0.7480-0.0034, 0.7480+0.0033]=[.7447,.7513]</m>. 
+        </p>
+
+        <p>We had earlier stated the actual answer, correct to 4 decimal places, to be 0.7468, affirming the validity of <xref ref="thm_numerical_error">Theorem</xref>.</p>
+
+        <p><em>Simpson's Rule with <m>n=4</m>:</em></p>
+
+        <p>We start by computing the <m>4^\text{ th }</m> derivative of <m>f(x) = e^{-x^2}</m>:
+          <me>
+            f^{(4)}(x) = e^{-x^2}(16x^4-48x^2+12).
+          </me>
+        </p>
+
+        <p><xref ref="fig_num7b">Figure</xref> shows a graph of <m>f^{(4)}(x)</m> on <m>[0,1]</m>. It is clear that the largest value of <m>f^{(4)}</m>, in absolute value, is 12. Thus we let <m>K=12</m> and apply the error formula from <xref ref="thm_numerical_error">Theorem</xref>.
+          <me>
+            E_s =\leq \frac{(1-0)^5}{180\cdot 4^4}\cdot 12 = 0.00026.
+          </me>
+        </p>
+
+        <figure xml:id="fig_num7b" >
+          <caption>Graphing <m>f\ ^{(4)}(x)</m> in <xref ref="ex_num7">Example</xref> to help establish error bounds.</caption>
+          <!-- START figures/fig_num7b.tex -->
+          <image xml:id="img_num7b"  width="47%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[%
+              axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+              %			xtick=\empty,%
+              %			extra x ticks={.5,3},
+              %			extra x tick labels={$a$,$b$},
+              %			ytick=\empty,
+			minor y tick num=4,
+			%extra y ticks={-5,-3,...,7},%
+              %			minor x tick num=4,
+			ymin=-8,ymax=13.5,%
+			xmin=-.1,xmax=1.1%
+              ]
+
+              \addplot [{\colorone},smooth,thick] coordinates {(0,12.) (0.066667,11.735) (0.13333,10.955) (0.2,9.7094)(0.26667,8.0726) (0.33333,6.1424) (0.4,4.0303) (0.46667,1.8543)(0.53333,-0.26997) (0.6,-2.237) (0.66667,-3.9579) (0.73333,-5.3651)(0.8,-6.4153) (0.86667,-7.0902) (0.93333,-7.3955) (1.,-7.3576)};
+
+
+              \draw (axis cs:.7,11) node {\scriptsize $y=e^{-x^2}(16x^4-48x^2+12)$};
+              \end{axis}
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_num7b.tex END -->
+        </figure>
+
+        <p>Our error estimation formula states that our approximation of <m>0.7468\overline{3}</m> found in <xref ref="ex_num5">Example</xref> is within 0.00026 of the correct answer, hence we know that the correct answer is in the interval <m>[0.74683-0.00026 , 0.74683 + 0.00026]=[0.74657,0.74709]. So:</m>
+          <me>
+            0.74657 \leq \int_0^1e^{-x^2}\ dx \leq 0.74709 
+          </me>
+        </p>
+
+        <p>Once again we affirm the validity of <xref ref="thm_numerical_error">Theorem</xref> since the answer to 4 decimal places is actually <m>0.7468</m>.</p>
+      </solution>
+    </example>
+
+    <p>At the beginning of this section we mentioned two main situations where numerical integration was desirable. We have considered the case where an antiderivative of the integrand cannot be computed. We now investigate the situation where the integrand is not known. This is, in fact, the most widely used application of Numerical Integration methods. <q>Most of the time</q> we observe behavior but do not know <q>the</q> function that describes it. We instead collect data about the behavior and make approximations based off of this data. We demonstrate this in an example.</p>
+
+    <example xml:id="ex_num8">
+      <title>Approximating distance traveled</title>
+      <statement>
+        <p>One of the authors drove his daughter home from school while she recorded their speed every 30 seconds. The data is given in <xref ref="fig_num8">Figure</xref>. Approximate the distance they traveled.</p>
+      </statement>
+      <solution>
+        <p>Recall that by integrating a speed function we get distance traveled. We have information about <m>v(t)</m>; we will use Simpson's Rule to approximate <m>\ds \int_a^b v(t)\ dt.</m></p>
+
+        <p>The most difficult aspect of this problem is converting the given data into the form we need it to be in. The speed is measured in miles per hour, whereas the time is measured in 30 second increments.</p>
+
+        <table xml:id="fig_num8" >
+          <caption>Speed data collected at 30 second intervals for <xref ref="ex_num8">Example</xref>.</caption>
+          <tabular>
+            <row>
+              <cell>Time Interval Number</cell>
+              <cell>Speed</cell>
+            </row>
+            <row>
+              <cell>(mph) }</cell>
+            </row>
+            <row bottom="minor">
+              <cell></cell>
+              <cell></cell>
+            </row>
+            <row>
+              <cell><m>0</m></cell>
+              <cell><m>0</m></cell>
+            </row>
+            <row>
+              <cell><m>1</m></cell>
+              <cell><m>25</m></cell>
+            </row>
+            <row>
+              <cell><m>2</m></cell>
+              <cell><m>22</m></cell>
+            </row>
+            <row>
+              <cell><m>3</m></cell>
+              <cell><m>19</m></cell>
+            </row>
+            <row>
+              <cell><m>4</m></cell>
+              <cell><m>39</m></cell>
+            </row>
+            <row>
+              <cell><m>5</m></cell>
+              <cell><m>0</m></cell>
+            </row>
+            <row>
+              <cell><m>6</m></cell>
+              <cell><m>43</m></cell>
+            </row>
+            <row>
+              <cell><m>7</m></cell>
+              <cell><m>59</m></cell>
+            </row>
+            <row>
+              <cell><m>8</m></cell>
+              <cell><m>54</m></cell>
+            </row>
+            <row>
+              <cell><m>9</m></cell>
+              <cell><m>51</m></cell>
+            </row>
+            <row>
+              <cell><m>10</m></cell>
+              <cell><m>43</m></cell>
+            </row>
+            <row>
+              <cell><m>11</m></cell>
+              <cell><m>35</m></cell>
+            </row>
+            <row>
+              <cell><m>12</m></cell>
+              <cell><m>40</m></cell>
+            </row>
+            <row>
+              <cell><m>13</m></cell>
+              <cell><m>43</m></cell>
+            </row>
+            <row>
+              <cell><m>14</m></cell>
+              <cell><m>30</m></cell>
+            </row>
+            <row>
+              <cell><m>15</m></cell>
+              <cell><m>0</m></cell>
+            </row>
+            <row>
+              <cell><m>16</m></cell>
+              <cell><m>0</m></cell>
+            </row>
+            <row>
+              <cell><m>17</m></cell>
+              <cell><m>28</m></cell>
+            </row>
+            <row>
+              <cell><m>18</m></cell>
+              <cell><m>40</m></cell>
+            </row>
+            <row>
+              <cell><m>19</m></cell>
+              <cell><m>42</m></cell>
+            </row>
+            <row>
+              <cell><m>20</m></cell>
+              <cell><m>40</m></cell>
+            </row>
+            <row>
+              <cell><m>21</m></cell>
+              <cell><m>39</m></cell>
+            </row>
+            <row>
+              <cell><m>22</m></cell>
+              <cell><m>40</m></cell>
+            </row>
+            <row>
+              <cell><m>23</m></cell>
+              <cell><m>23</m></cell>
+            </row>
+            <row>
+              <cell><m>24</m></cell>
+              <cell><m>0</m></cell>
+            </row>
+            <row>
+              <cell></cell>
+            </row>
+          </tabular>
+        </table>
+
+        <p>We need to compute <m>\dx = (b-a)/n</m>. Clearly, <m>n=24</m>. What are <m>a</m> and <m>b</m>? Since we start at time <m>t=0</m>, we have that <m>a=0</m>. The final recorded time came after 24 periods of 30 seconds, which is 12 minutes or 1/5 of an hour. Thus we have
+          <me>
+            \dx = \frac{b-a}{n} = \frac{1/5-0}{24} = \frac1{120};  \frac{\dx}{3} = \frac{1}{360}.
+          </me>
+        </p>
+
+        <p>Thus the distance traveled is approximately:
+          <md>
+            <mrow>\int_0^{0.2}v(t)\ dt \amp \approx \frac{1}{360}\Big[f(x_1)+4f(x_2) + 2f(x_3) + \cdots + 4f(x_n)+f(x_{n+1})\Big]</mrow>
+            <mrow>\amp = \frac{1}{360}\Big[0+4\cdot25+2\cdot 22 + \cdots + 2\cdot40+4\cdot 23 + 0\Big]</mrow>
+            <mrow>\amp \approx 6.2167 \ \text{ miles. }</mrow>
+          </md>
+        </p>
+
+        <p>We approximate the author drove 6.2 miles. (Because we are sure the reader wants to know, the author's odometer recorded the distance as about 6.05 miles.)</p>
+      </solution>
+    </example>
+    We have seen in this section several techniques to find approximations to definite integrals. 
+
+  </subsection>
+
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>T/F: Simpson's Rule is a method of approximating antiderivatives.</p>
+          </statement>
+          <solution>
+            <p>F</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>What are the two basic situations where approximating the value of a definite integral is necessary?</p>
+          </statement>
+          <solution>
+            <p>When the antiderivative cannot be computed and when the integrand is unknown.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Why are the Left and Right Hand Rules rarely used?</p>
+          </statement>
+          <solution>
+            <p>They are superseded by the Trapezoidal Rule; it takes an equal amount of work and is generally more accurate.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, a definite integral is given.</p>
+      </introduction>
+
+      <ol>
+        <li>
+          <title>(a)</title>
+          <p>Approximate the definite integral with the Trapezoidal Rule and <m>n=4</m>.</p></li>
+
+        <li>
+          <title>(b)</title>
+          <p>Approximate the definite integral with Simpson's Rule and <m>n=4</m>.</p></li>
+
+        <li>
+          <title>(c)</title>
+          <p>Find the exact value of the integral.</p></li>
+      </ol>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{-1}^1 x^2\ dx</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>3/4</m></p></li>
+
+              <li><p><m>2/3</m></p></li>
+
+              <li><p><m>2/3</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{0}^{10} 5x\ dx</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>250</m></p></li>
+
+              <li><p><m>250</m></p></li>
+
+              <li><p><m>250</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{0}^{\pi} \sin(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>\frac14(1+\sqrt2)\pi\approx 1.896</m></p></li>
+
+              <li><p><m>\frac1{6}(1+2\sqrt{2})\pi\approx 2.005</m></p></li>
+
+              <li><p><m>2</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{0}^{4} \sqrt x\ dx</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>2+\sqrt2+\sqrt3\approx 5.15</m></p></li>
+
+              <li><p><m>2/3(3+\sqrt2+2\sqrt3)\approx 5.25</m></p></li>
+
+              <li><p><m>16/3\approx 5.33</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{0}^{3} (x^3+2x^2-5x+7)\ dx</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>38.5781</m></p></li>
+
+              <li><p><m>147/4\approx 36.75</m></p></li>
+
+              <li><p><m>147/4\approx 36.75</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{0}^{1} x^4\ dx</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>0.2207</m></p></li>
+
+              <li><p><m>0.2005</m></p></li>
+
+              <li><p><m>1/5</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{0}^{2\pi} \cos(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>0</m></p></li>
+
+              <li><p><m>0</m></p></li>
+
+              <li><p><m>0</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{-3}^{3} \sqrt{9-x^2} \ dx</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>9/2(1+\sqrt3)\approx 12.294</m></p></li>
+
+              <li><p><m>3+6\sqrt3\approx 13.392</m></p></li>
+
+              <li><p><m>9\pi/2\approx 14.137</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, approximate the definite integral with the Trapezoidal Rule and Simpson's Rule, with <m>n=6</m>.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{0}^{1} \cos\big(x^2\big) \ dx</m></p>
+          </statement>
+          <solution>
+            <p>Trapezoidal Rule: 	<m>0.9006</m></p>
+
+            <p>Simpson's Rule: <m>0.90452</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{-1}^{1} e^{x^2} \ dx</m></p>
+          </statement>
+          <solution>
+            <p>Trapezoidal Rule: 	<m>3.0241</m></p>
+
+            <p>Simpson's Rule: <m>2.9315</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{0}^{5} \sqrt{x^2+1} \ dx</m></p>
+          </statement>
+          <solution>
+            <p>Trapezoidal Rule: 	<m>13.9604</m></p>
+
+            <p>Simpson's Rule: <m>13.9066</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{0}^{\pi} x\sin(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p>Trapezoidal Rule: 	<m>3.0695</m></p>
+
+            <p>Simpson's Rule: <m>3.14295</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{0}^{\pi/2} \sqrt{\cos(x) } \ dx</m></p>
+          </statement>
+          <solution>
+            <p>Trapezoidal Rule: 	<m>1.1703</m></p>
+
+            <p>Simpson's Rule: <m>1.1873</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{1}^{4} \ln(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p>Trapezoidal Rule: 	<m>2.52971</m></p>
+
+            <p>Simpson's Rule: <m>2.5447</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{-1}^{1} \frac{1}{\sin(x) +2} \ dx</m></p>
+          </statement>
+          <solution>
+            <p>Trapezoidal Rule: 	<m>1.0803</m></p>
+
+            <p>Simpson's Rule: <m>1.077</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{0}^{6} \frac{1}{\sin(x) +2} \ dx</m></p>
+          </statement>
+          <solution>
+            <p>Trapezoidal Rule: 	<m>3.5472</m></p>
+
+            <p>Simpson's Rule: <m>3.6133</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, find <m>n</m> such that the error in approximating the given definite integral is less than <m>0.0001</m> when using:</p>
+
+      <ol>
+        <li>
+          <title>(a)</title>
+          <p>the Trapezoidal Rule</p></li>
+
+        <li>
+          <title>(b)</title>
+          <p>Simpson's Rule</p></li>
+      </ol>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{0}^{\pi} \sin(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>n=161</m> (using <m>\max\big(\fpp(x)\big)=1</m>)</p></li>
+
+              <li><p><m>n=12</m>	(using <m>\max\big(f^{(4)}(x)\big)=1</m>)</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{1}^{4} \frac{1}{\sqrt x} \ dx</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>n=150</m> (using <m>\max\big(\fpp(x)\big)=1</m>)</p></li>
+
+              <li><p><m>n=18</m>	(using <m>\max\big(f^{(4)}(x)\big)=7</m>)</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{0}^{\pi} \cos\big(x^2\big) \ dx</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>n=1004</m> (using <m>\max\big(\fpp(x)\big)=39</m>)</p></li>
+
+              <li><p><m>n=62</m>	(using <m>\max\big(f^{(4)}(x)\big)=800</m>)</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{0}^{5} x^4 \ dx</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>n=5591</m> (using <m>\max\big(\fpp(x)\big)=300</m>)</p></li>
+
+              <li><p><m>n=46</m>	(using <m>\max\big(f^{(4)}(x)\big)=24</m>)</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, a region is given. Find the area of the region using Simpson's Rule:</p>
+
+      <ol>
+        <li>
+          <title>(a)</title>
+          <p>where the measurements are in centimeters, taken in 1 cm increments, and</p></li>
+
+        <li>
+          <title>(b)</title>
+          <p>where the measurements are in hundreds of yards, taken in 100 yd increments.</p></li>
+      </ol>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <!-- START figures/fig_05_05_ex_01.tex -->
+              <image xml:id="img_05_05_ex_01" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}[yscale=.6]%[width=\marginparwidth+25pt]
+                  %\begin{axis}[%
+                  %axis on top,%
+                  %			%x=.37\marginparwidth,
+                  %			%y=.37\marginparwidth,
+                  %			xtick={1,2,3,4,5,6,7,8,9,10,11,12},%
+                  %%			extra x ticks={12.57},
+                  %%			extra x tick labels={$4\pi$},
+                  %%			ytick=\empty,
+                  %			%%extra y ticks={-5,-3,...,7},%
+                  %%			minor x tick num=4,
+                  %			ymin=-.1,ymax=8.5,%
+                  %			xmin=-.1,xmax=12.5%
+                  %]
+
+                  \draw [{\colorone},thick,fill={\coloronefill},smooth] plot coordinates {(0,2.)(0.06639,2.527)(0.2407,2.839)(0.4857,3.009)(0.7641,3.112)(1.039,
+                  3.221)(1.294,3.367)(1.532,3.53)(1.759,3.689)(1.98,3.823)(2.2,3.915)(2.
+                  42,3.967)(2.64,3.992)(2.86,4.)(3.08,4.)(3.305,3.987)(3.543,3.93)(3.
+                  808,3.797)(4.107,3.558)(4.45,3.185)(4.815,2.703)(5.17,2.152)(5.483,1.
+                  577)(5.723,1.018)(5.872,0.5022)(5.938,0.02083)(5.93,-0.4363)(5.861,-0.
+                  88)(5.741,-1.319)(5.58,-1.742)(5.389,-2.128)(5.179,-2.456)(4.96,-2.
+                  705)(4.737,-2.865)(4.502,-2.953)(4.243,-2.991)(3.95,-3.)(3.614,-2.999)
+                  (3.244,-2.984)(2.86,-2.935)(2.484,-2.829)(2.137,-2.646)(1.832,-2.378)(
+                  1.558,-2.06)(1.299,-1.734)(1.039,-1.443)(0.7641,-1.222)(0.4857,-0.
+                  9779)(0.2407,-0.5015)(0.06639,0.4201)(0,2.)};
+
+                  \draw (1,3.22) -- (1,-1.443) node [shift={(-3pt,0pt)},rotate=90,pos=.5] {\scriptsize 4.7};
+
+                  \draw (2,3.823) -- (2,-2.5) node [shift={(-3pt,0pt)},rotate=90,pos=.5] {\scriptsize 6.3};
+
+                  \draw (3,4) -- (3,-2.95) node [shift={(-3pt,0pt)},rotate=90,pos=.5] {\scriptsize 6.9};
+
+                  \draw (4,3.62) -- (4,-3) node [shift={(-3pt,0pt)},rotate=90,pos=.5] {\scriptsize 6.6};
+
+                  \draw (5,2.4) -- (5,-2.7) node [shift={(-3pt,0pt)},rotate=90,pos=.5] {\scriptsize 5.1};
+
+                  %\end{axis}
+                  %
+                  %
+                  %
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_05_05_ex_01.tex END -->
+            </figure>
+          </statement>
+          <solution>
+            <ol>
+              <li><p>Area is <m>30.8667</m> cm<m>^2</m>.</p></li>
+
+              <li><p>Area is <m>308,667</m> yd<m>^2</m>.</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <!-- START figures/fig_05_05_ex_02.tex -->
+              <image xml:id="img_05_05_ex_02" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}[yscale=.6]%[width=\marginparwidth+25pt]
+                  %\begin{axis}[%
+                  %axis on top,%
+                  %			%x=.37\marginparwidth,
+                  %			%y=.37\marginparwidth,
+                  %			xtick={1,2,3,4,5,6,7,8,9,10,11,12},%
+                  %%			extra x ticks={12.57},
+                  %%			extra x tick labels={$4\pi$},
+                  %%			ytick=\empty,
+                  %			%%extra y ticks={-5,-3,...,7},%
+                  %%			minor x tick num=4,
+                  %			ymin=-.1,ymax=8.5,%
+                  %			xmin=-.1,xmax=12.5%
+                  %]
+
+                  \draw [{\colorone},thick,fill={\coloronefill},smooth] plot coordinates {(0,1.)(0.05533,1.541)(0.2027,1.965)(0.414,2.278)(0.6613,2.483)(0.9167,
+                  2.583)(1.157,2.588)(1.382,2.521)(1.595,2.409)(1.799,2.282)(2.,2.167)(
+                  2.2,2.089)(2.4,2.068)(2.6,2.119)(2.8,2.257)(3.,2.5)(3.201,2.847)(3.
+                  411,3.233)(3.636,3.58)(3.885,3.807)(4.167,3.833)(4.483,3.604)(4.815,3.
+                  159)(5.139,2.561)(5.431,1.876)(5.667,1.167)(5.828,0.488)(5.917,-0.
+                  1427)(5.943,-0.7173)(5.912,-1.228)(5.833,-1.667)(5.715,-2.028)(5.564,-
+                  2.317)(5.389,-2.543)(5.199,-2.712)(5.,-2.833)(4.799,-2.912)(4.589,-2.
+                  943)(4.364,-2.917)(4.115,-2.828)(3.833,-2.667)(3.513,-2.432)(3.153,-2.
+                  149)(2.753,-1.851)(2.313,-1.568)(1.833,-1.333)(1.323,-1.155)(0.828,-0.
+                  944)(0.4053,-0.5893)(0.1107,0.02133)(0,1)};
+
+                  \draw (1,2.6) -- (1,-1.) node [shift={(-3pt,0pt)},rotate=90,pos=.5] {\scriptsize 3.6};
+
+                  \draw (2,2.167) -- (2,-1.43) node [shift={(-3pt,0pt)},rotate=90,pos=.5] {\scriptsize 3.6};
+
+                  \draw (3,2.5) -- (3,-2) node [shift={(-3pt,0pt)},rotate=90,pos=.5] {\scriptsize 4.5};
+
+                  \draw (4,3.8) -- (4,-2.75) node [shift={(-3pt,0pt)},rotate=90,pos=.5] {\scriptsize 6.6};
+
+                  \draw (5,2.8) -- (5,-2.83) node [shift={(-3pt,0pt)},rotate=90,pos=.5] {\scriptsize 5.6};
+
+                  %\end{axis}
+                  %
+                  %
+                  %
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_05_05_ex_02.tex END -->
+            </figure>
+          </statement>
+          <solution>
+            <ol>
+              <li><p>Area is 25.0667 cm<m>^2</m></p></li>
+
+              <li><p>Area is 250,667 yd<m>^2</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

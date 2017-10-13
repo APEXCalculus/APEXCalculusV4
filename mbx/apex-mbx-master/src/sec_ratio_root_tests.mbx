@@ -1,0 +1,772 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_ratio_root_tests">
+  <title>Ratio and Root Tests</title>
+  <introduction>
+    <p>The <m>n^\text{ th }</m><ndash />Term Test of <xref ref="thm_series_nth_term">Theorem</xref> states that in order for a series <m>\ds \infser a_n</m> to converge, <m>\lim\limits_{n\to\infty}a_n = 0</m>. That is, the terms of <m>\{a_n\}</m> must get very small. Not only must the terms approach 0, they must approach 0 <q>fast enough</q>: while <m>\lim\limits_{n\to\infty}1/n=0</m>, the Harmonic Series <m>\ds\infser \frac1n</m> diverges as the terms of <m>\{1/n\}</m> do not approach 0 <q>fast enough.</q></p>
+
+    <p>The comparison tests of the previous section determine convergence by comparing terms of a series to terms of another series whose convergence is known. This section introduces the Ratio and Root Tests, which determine convergence by analyzing the terms of a series to see if they approach 0 <q>fast enough.</q></p>
+  </introduction>
+
+  <subsection>
+    <title>Ratio Test</title>
+    <theorem xml:id="thm_ratio_test">
+      <title>Ratio Test</title>
+      <statement>
+        <p>Let <m>\{a_n\}</m> be a positive sequence and consider<m>\lim\limits_{n\to\infty}\dfrac{a_{n+1}}{a_n}</m>.
+          <index><main>series</main><sub>Ratio Comparison Test</sub></index><index><main>Ratio Comparison Test</main><sub>for series</sub></index><index><main>convergence</main><sub>Ratio Comparison Test</sub></index><index><main>divergence</main><sub>Ratio Comparison Test</sub></index></p>
+
+        <ol>
+          <li><p>If <m>\lim\limits_{n\to\infty}\dfrac{a_{n+1}}{a_n}\lt 1</m>, then <m>\ds\infser a_n</m> converges.</p></li>
+
+          <li><p>If <m>\lim\limits_{n\to\infty}\dfrac{a_{n+1}}{a_n} \gt 1</m> or <m>\lim\limits_{n\to\infty}\frac{a_{n+1}}{a_n}=\infty</m>, then <m>\ds\infser a_n</m> diverges.</p></li>
+
+          <li><p>If <m>\lim\limits_{n\to\infty}\dfrac{a_{n+1}}{a_n}=1</m>, the Ratio Test is inconclusive.</p></li>
+        </ol>
+      </statement>
+    </theorem>
+
+    <aside>
+      <p><xref ref="thm_series_behavior">Theorem</xref> allows us to apply the Ratio Test to series where <m>\{a_n\}</m> is positive for all but a finite number of terms.</p>
+    </aside>
+
+    <p>The principle of the Ratio Test is this: if <m>\lim\limits_{n\to\infty}\frac{a_{n+1}}{a_n} = L\lt 1</m>, then for large <m>n</m>, each term of <m>\{a_n\}</m> is significantly smaller than its previous term which is enough to ensure convergence.</p>
+
+    <example xml:id="ex_ratio1">
+      <title>Applying the Ratio Test</title>
+      <statement>
+        <p>Use the Ratio Test to determine the convergence of the following series:</p>
+
+        <ol cols="3">
+          <li><p><m>\ds \infser \frac{2^n}{n!}</m></p></li>
+          <li><m>\ds \infser \frac{3^n}{n^3}</m></li>
+          <li><m>\ds \infser \frac{1}{n^2+1}</m></li>
+        </ol> 
+      </statement>
+      <solution>
+        <ol>
+          <li><p><m>\ds \infser \frac{2^n}{n!}</m>:
+              <md>
+                <mrow>\inflim{\frac{a_{n+1}}{a_n}} \amp = \lim_{n\to\infty}\frac{2^{n+1}/(n+1)!}{2^n/n!}</mrow>
+                <mrow> \amp = \lim_{n\to\infty} \frac{2^{n+1}n!}{2^n(n+1)!}</mrow>
+                <mrow>\amp = \lim_{n\to\infty} \frac{2}{n+1}</mrow>
+                <mrow>\amp =0.</mrow>
+              </md>
+              Since the limit is <m>0\lt 1</m>, by the Ratio Test <m>\ds\infser \frac{2^n}{n!}</m> converges. The fact that <m>\inflim{\frac{a_{n+1}}{a_n}}=0</m> can be interpreted to mean that in the long run, the term <m>a_{n+1}</m> is roughly <m>0</m> times as large as <m>a_n</m>. In other words, not only is <m>a_n</m> decreasing to <m>0</m>, it is decreasing <em>very quickly</em>. That is, the terms of <m>a_n</m> decrease to <m>0</m> sufficiently fast enough to guarantee the convergence of <m>\infser a_n</m>. </p></li>
+
+          <li><p><m>\ds\infser \frac{3^n}{n^3}</m>:
+              <md>
+                <mrow>\inflim{\frac{a_{n+1}}{a_n}} \amp = \lim_{n\to\infty} \frac{3^{n+1}/(n+1)^3}{3^n/n^3}</mrow>
+                <mrow> \amp = \lim_{n\to\infty}\frac{3^{n+1}n^3}{3^n(n+1)^3}</mrow>
+                <mrow>\amp = \lim_{n\to\infty} \frac{3n^3}{(n+1)^3}</mrow>
+                <mrow>\amp = 3.</mrow>
+              </md>
+              Since the limit is <m>3>1</m>, by the Ratio Test <m>\ds\infser \frac{3^n}{n^3}</m> diverges. The fact that <m>\inflim{\frac{a_{n+1}}{a_n}}=3</m> can be interpreted to mean that in the long run, the term <m>a_{n+1}</m> is roughly <m>3</m> times as large as <m>a_n</m>, so <m>a_n</m> is <em>increasing</em> by roughly a factor of <m>3</m> in the long run. We could also use <xref ref="thm_series_nth_term_2">Part</xref> of <xref ref="thm_series_nth_term">Theorem</xref> to determine that this series converges. The exponential will dominate the polynomial in the long runs, so <m>\inflim 3^n/n^3=\infty</m>.</p></li>
+
+          <li><p><m>\infser\frac{1}{n^2+1}</m>:
+              <md>
+                <mrow>\inflim\frac{a_{n+1}}{a_n} \amp = \lim_{n\to\infty} \frac{1/\big((n+1)^2+1\big)}{1/(n^2+1)}</mrow>
+                <mrow> \amp = \lim_{n\to\infty} \frac{n^2+1}{(n+1)^2+1}</mrow>
+                <mrow>\amp = 1.</mrow>
+              </md>
+              Since the limit is 1, the Ratio Test is inconclusive. We can easily show this series converges using the <xref ref="thm_integral_test" autoname="title"/>. We can also use <xref ref="thm_series_direct_compare" autoname="title"/> or  <xref ref="thm_series_limit_compare" autoname="title"/>, with each comparing to the series <m>\ds \infser \frac{1}{n^2}</m>.</p></li>
+        </ol>
+      </solution>
+    </example>
+
+    <p>The Ratio Test is not effective when the terms of a series <em>only</em> contain algebraic functions (e.g., polynomials). It is most effective when the terms contain some factorials or exponentials. The previous example also reinforces our developing intuition: factorials dominate exponentials, which dominate algebraic functions, which dominate logarithmic functions. In Part 1 of the example, the factorial in the denominator dominated the exponential in the numerator, causing the series to converge. In Part 2, the exponential in the numerator dominated the algebraic function in the denominator, causing the series to diverge.</p>
+
+    <p>While we have used factorials in previous sections, we have not explored them closely and one is likely to not yet have a strong intuitive sense for how they behave. The following example gives more practice with factorials.</p>
+
+    <example xml:id="ex_ratio2">
+      <title>Applying the Ratio Test</title>
+      <statement>
+        <p>Determine the convergence of <m>\ds\infser \frac{n!n!}{(2n)!}</m>.</p>
+      </statement>
+      <solution>
+        <p>Before we begin, be sure to note the difference between <m>(2n)!</m> and <m>2n!</m>. When <m>n=4</m>, the former is <m>8!=8\cdot7\cdot\ldots\cdot 2\cdot1=40,320</m>, whereas the latter is <m>2(4\cdot3\cdot2\cdot1) = 48</m>.</p>
+
+        <p>Applying the Ratio Test:
+          <md>
+            <mrow>\inflim\frac{a_{n+1}}{a_n} \amp = \lim_{n\to\infty} \frac{(n+1)!(n+1)!/\big(2(n+1)\big)!}{n!n!/(2n)!}</mrow>
+            <mrow> \amp = \lim_{n\to\infty}\frac{(n+1)!(n+1)!(2n)!}{n!n!(2n+2)!}</mrow>
+            <intertext>Noting that <m>(n+1)!=(n+1)\cdot n!</m> and <m>(2n+2)! = (2n+2)\cdot(2n+1)\cdot(2n)!</m>, we have</intertext>
+            <mrow>\amp = \lim_{n\to\infty}\frac{(n+1)(n+1)}{(2n+2)(2n+1)}</mrow>
+            <mrow>\amp = 1/4.</mrow>
+          </md>
+        </p>
+
+        <p>Since the limit is <m>1/4\lt 1</m>, by the Ratio Test we conclude <m>\ds \infser \frac{n!n!}{(2n)!}</m> converges.</p>
+        <p>To find the limit in the second to last line, recall that we just need to examine the leading terms of the numerator and denominator, which are <m>n^2</m> and <m>4n^2</m> respectively.</p>
+      </solution>
+    </example>
+  </subsection>
+
+  <subsection>
+    <title>Root Test</title>
+    <p>The final test we introduce is the Root Test, which works particularly well on series where each term is raised to a power, and does not work well with terms containing factorials.</p>
+
+    <theorem xml:id="thm_root_test">
+      <title>Root Test</title>
+      <statement>
+        <p>Let <m>\{a_n\}</m> be a positive sequence,
+          and consider <m>\lim\limits_{n\to \infty} (a_n)^{1/n}</m>.
+          <index><main>series</main><sub>Root Comparison Test</sub></index><index><main>Root Comparison Test</main><sub>for series</sub></index><index><main>convergence</main><sub>Root Comparison Test</sub></index><index><main>divergence</main><sub>Root Comparison Test</sub></index></p>
+
+        <ol>
+          <li><p>If <m>\lim\limits_{n\to \infty} (a_n)^{1/n}\lt 1</m>, then <m>\ds\infser a_n</m> converges.</p></li>
+
+          <li><p>If <m>\lim\limits_{n\to \infty} (a_n)^{1/n} \gt1</m> or <m>\lim\limits_{n\to \infty} (a_n)^{1/n}=\infty</m>, then <m>\ds\infser a_n</m> diverges.</p></li>
+
+          <li><p>If <m>\lim\limits_{n\to \infty} (a_n)^{1/n}=1</m>, the Root Test is inconclusive.</p></li>
+        </ol>
+      </statement>
+    </theorem>
+
+    <example xml:id="ex_root1">
+      <title>Applying the Root Test</title>
+      <statement>
+        <p>Determine the convergence of the following series using the Root Test:</p>
+        <ol cols="3">
+          <li><p><m>\ds \infser \left(\frac{3n+1}{5n-2}\right)^n</m></p></li>
+          <li><p><m>\ds \infser\frac{n^4}{(\ln(n) )^n}</m></p></li>
+          <li><p><m>\ds \infser \frac{2^n}{n^2}</m></p></li>
+        </ol>
+      </statement>
+      <solution>
+        <ol>
+          <li><p>
+            <md>
+              <mrow>\inflim \left(a_n\right)^{1/n} \amp = \inflim \left(\left(\frac{3n+1}{5n-2}\right)^n\right)^{1/n} </mrow>
+              <mrow>\amp =\inflim \frac{3n+1}{5n-2} = \frac 35</mrow> 
+            </md>.
+	
+	Since the limit is less than 1, we conclude the series converges. Note: it is difficult to apply the Ratio Test to this series.</p></li>
+
+          <li xml:id="ex_root1_b"><p>
+            <md>
+              <mrow>\inflim \left(a_n \right)^{1/n} \amp =\inflim \left(\frac{n^4}{(\ln(n))^n}\right)^{1/n} </mrow>
+              <mrow>\amp = \inflim \frac{\big(n^{4/n}\big)}{\ln(n)}</mrow>
+              <intertext>The limit of the numerator must be found using L'H&#xf4;pital's Rule for indeterminate powers</intertext>
+              <mrow>\inflim \left(n^{4/n}\right) \amp = \inflim e^{\ln\left(n^{4/n}\right)}</mrow>
+              <mrow>\amp = \inflim e^{{4\ln\left(n\right)}/n}</mrow>
+              <intertext> Now apply L'H&#xf4;pital's to the expression in the exponent:</intertext>
+              <mrow>\amp \stackrel{\ \text{ by LHR }  \ }{=} \inflim e^{4/n}</mrow>
+              <mrow>\amp = e^0=1</mrow>
+            </md>.
+	
+	Since the numerator approaches 1 (by L'H&#xf4;pital's Rule) and the denominator
+	grows to infinity, we have 
+            
+                <me>\inflim \frac{\big(n^{4/n}\big)}{\ln(n)} =0</me>.
+              
+              Since the limit is less than 1, we conclude the series converges.</p></li>
+
+          <li><p><m>\inflim \left(\frac{2^n}{n^2}\right)^{1/n} = \inflim \frac{2}{\big(n^{2/n}\big)} = 2</m>.
+	
+	Since this is greater than 1, we conclude the series diverges. Note: The <xref ref="thm_ratio_test" autoname="title"/> is easy to apply to this series. </p>
+  <p>(Also note: The limit in the denominator is found in a similar fashion as was illustrated in <xref ref="ex_root1_b">Part</xref>. In general <m>\inflim (n)^{b/n}=1</m> for any real number <m>b</m>.)</p></li>
+        </ol>
+      </solution>
+    </example>
+
+    <aside>
+      <p><xref ref="thm_series_behavior">Theorem</xref> allows us to apply the Root Test to series where <m>\{a_n\}</m> is positive for all but a finite number of terms.</p>
+    </aside>
+
+    <p>Each of the tests we have encountered so far has required that we analyze series from <em>positive</em> sequences. <xref ref="sec_alt_series">Section</xref> relaxes this restriction by considering <em>alternating series</em>, where the underlying sequence has terms that alternate between being positive and negative.</p>
+  </subsection>
+
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>The Ratio Test is not effective when the terms of a sequence only contain \underlinespace<nbsp />functions.</p>
+          </statement>
+          <solution>
+            <p>algebraic, or polynomial.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>The Ratio Test is most effective when the terms of a sequence contains \underlinespace<nbsp />and/or \underlinespace<nbsp />functions.</p>
+          </statement>
+          <solution>
+            <p>factorial and/or exponential</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>What three convergence tests do not work well with terms containing factorials?</p>
+          </statement>
+          <solution>
+            <p>Integral Test, Limit Comparison Test, and Root Test</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>The Root Test works particularly well on series where each term is \underlinespace<nbsp />to a \underlinespace.</p>
+          </statement>
+          <solution>
+            <p>raised to a power</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, determine the convergence of the given series using the Ratio Test. If the Ratio Test is inconclusive, state so and determine convergence with another test.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser[0] \frac{2n}{n!}</m></p>
+          </statement>
+          <solution>
+            <p>Converges</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser[0] \frac{5^n-3n}{4^n}</m></p>
+          </statement>
+          <solution>
+            <p>Diverges</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser[0] \frac{n!10^n}{(2n)!}</m></p>
+          </statement>
+          <solution>
+            <p>Converges</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser \frac{5^n+n^4}{7^n+n^2}</m></p>
+          </statement>
+          <solution>
+            <p>Converges</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser \frac{1}{n}</m></p>
+          </statement>
+          <solution>
+            <p>The Ratio Test is inconclusive; the <m>p</m>-Series Test states it diverges.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser \frac{1}{3n^3+7}</m></p>
+          </statement>
+          <solution>
+            <p>The Ratio Test is inconclusive; the Direct Comparison Test with <m>1/n^3</m> shows it converges.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser \frac{10\cdot5^n}{7^n-3}</m></p>
+          </statement>
+          <solution>
+            <p>Converges</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser n\cdot\left(\frac35\right)^n</m></p>
+          </statement>
+          <solution>
+            <p>Converges</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser \frac{2\cdot4\cdot6\cdot8\cdots 2n}{3\cdot6\cdot9\cdot12\cdots 3n}</m></p>
+          </statement>
+          <solution>
+            <p>Converges; note the summation can be rewritten as <m>\ds\infser \frac{2^nn!}{3^nn!}</m>, from which the Ratio Test can be applied.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser \frac{n!}{5\cdot10\cdot15\cdots (5n)}</m></p>
+          </statement>
+          <solution>
+            <p>Converges; rewrite the summation as <m>\ds\infser \frac{n!}{5^nn!}</m> then apply the Ratio Test.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, determine the convergence of the given series using the Root Test. If the Root Test is inconclusive, state so and determine convergence with another test.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser \left(\frac{2n+5}{3n+11}\right)^n</m></p>
+          </statement>
+          <solution>
+            <p>Converges</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser \left(\frac{.9n^2-n-3}{n^2+n+3}\right)^n</m></p>
+          </statement>
+          <solution>
+            <p>Converges</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser \frac{2^nn^2}{3^n}</m></p>
+          </statement>
+          <solution>
+            <p>Converges</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser \frac{1}{n^n}</m></p>
+          </statement>
+          <solution>
+            <p>Converges</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser \frac{3^n}{n^22^{n+1}}</m></p>
+          </statement>
+          <solution>
+            <p>Diverges</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser \frac{4^{n+7}}{7^n}</m></p>
+          </statement>
+          <solution>
+            <p>Converges</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser \left(\frac{n^2-n}{n^2+n}\right)^n</m></p>
+          </statement>
+          <solution>
+            <p>Diverges. The Root Test is inconclusive, but the <m>n^\text{ th }</m>-Term Test shows divergence. (The terms of the sequence approach <m>e^2</m>, not 0, as <m>n\to\infty</m>.)</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser \left(\frac1n-\frac{1}{n^2}\right)^n</m></p>
+          </statement>
+          <solution>
+            <p>Converges</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser \frac1{\big(\ln(n) \big)^n}</m></p>
+          </statement>
+          <solution>
+            <p>Converges</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser \frac{n^2}{\big(\ln(n) \big)^n}</m></p>
+          </statement>
+          <solution>
+            <p>Converges</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, determine the convergence of the given series. State the test used; more than one test may be appropriate.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser \frac{n^2+4n-2}{n^3+4n^2-3n+7}</m></p>
+          </statement>
+          <solution>
+            <p>Diverges; Limit Comparison Test</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser \frac{n^44^n}{n!}</m></p>
+          </statement>
+          <solution>
+            <p>Converges; Ratio Test</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser \frac{n^2}{3^n+n}</m></p>
+          </statement>
+          <solution>
+            <p>Converges; Ratio Test or Limit Comparison Test with <m>1/3^n</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser \frac{3^n}{n^n}</m></p>
+          </statement>
+          <solution>
+            <p>Converges; Root Test</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser \frac{n}{\sqrt{n^2+4n+1}}</m></p>
+          </statement>
+          <solution>
+            <p>Diverges; <m>n^\text{ th }</m>-Term Test or Limit Comparison Test with 1.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser \frac{n!n!n!}{(3n)!}</m></p>
+          </statement>
+          <solution>
+            <p>Converges; Ratio Test</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser \frac{1}{\ln(n) }</m></p>
+          </statement>
+          <solution>
+            <p>Diverges; Direct Comparison Test with <m>1/n</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser \left(\frac{n+2}{n+1}\right)^n</m></p>
+          </statement>
+          <solution>
+            <p>Diverges; <m>n^\text{ th }</m>-Term Test (<m>n^\text{ th }</m> term approaches <m>e</m>.)</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser \frac{n^3}{\big(\ln(n) \big)^n}</m></p>
+          </statement>
+          <solution>
+            <p>Converges; Root Test</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\infser \left(\frac1n-\frac1{n+2}\right)</m></p>
+          </statement>
+          <solution>
+            <p>Converges; Limit Comparison Test with <m>1/n^2</m> (get common denominator first). It is also a Telescoping Series.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

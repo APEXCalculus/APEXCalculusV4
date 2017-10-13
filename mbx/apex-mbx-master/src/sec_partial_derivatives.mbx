@@ -1,0 +1,2090 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_partial_derivatives">
+  <title>Partial Derivatives</title>
+  <introduction>
+    <p>Let <m>y</m> be a function of <m>x</m>. We have studied in great detail the derivative of <m>y</m> with respect to <m>x</m>, that is, <m>\frac{dy}{dx}</m>, which measures the rate at which <m>y</m> changes with respect to <m>x</m>. Consider now <m>z=f(x,y)</m>. It makes sense to want to know how <m>z</m> changes with respect to <m>x</m> and/or <m>y</m>. This section begins our investigation into these rates of change.</p>
+
+    <p>Consider the function <m>z=f(x,y) = x^2+2y^2</m>, as graphed in <xref ref="fig_partialintro">Figure</xref>(a). By fixing <m>y=2</m>, we focus our attention to all points on the surface where the <m>y</m>-value is 2, shown in both parts (a) and (b) of the figure. These points form a curve in space: <m>z = f(x,2) = x^2+8</m> which is a function of just one variable. We can take the derivative of <m>z</m> with respect to <m>x</m> along this curve and find equations of tangent lines, etc.</p>
+
+    <table xml:id="fig_partialintro" >
+      <caption>By fixing <m>y=2</m>, the surface <m>f(x,y) = x^2+2y^2</m> is a curve in space.</caption>
+      <tabular>
+        <row>
+          <cell>
+          <figure><!--
+           \includemedia[width=125pt,3Dmenu,activate=onclick,deactivate=onclick,
+          3Droll=1.320775024146522,
+          3Dortho=0.004999999888241291,
+          3Dc2c=0.6570873856544495 0.6839641332626343 0.31690558791160583,
+          3Dcoo=-3.0739071369171143 -0.40104401111602783 58.57058334350586,
+          3Droo=129.99999696026478,
+          3Dlights=Headlamp,add3Djscript=asylabels.js]
+           -->
+
+
+          <!-- START figures/figpartialintro_3D.asy -->
+          <image xml:id="img_partialintro_3D" >
+            <asymptote>
+              <![CDATA[
+              import graph3;
+
+              //ASY file for figpartialintro3D.asy in Chapter 12
+
+              size(200,200,IgnoreAspect);
+              //size(200,200,Aspect);
+              //currentprojection=perspective(7,2,1);
+              currentprojection=orthographic(16,16,36);
+              defaultrender.merge=true;
+
+              usepackage("mathspec");
+              texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+              // setup and draw the axes
+              real[] myxchoice={-4,-2,2,4};
+              real[] myychoice={-4,-2,2,4};
+              real[] myzchoice={10,20};
+              defaultpen(0.5mm);
+              pair xbounds=(-5,5);
+              pair ybounds=(-5,5);
+              pair zbounds=(-1,22);
+
+              xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+              yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+              zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+              label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+              label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+              label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+              //Draw surface z=x^2+2*y^2
+              triple f(pair t) {
+                return (t.x,t.y,t.x^2+2*t.y^2);
+              }
+              surface s=surface(f,(-3,-3),(3,3),16,16,usplinetype=new splinetype[] {notaknot,notaknot,monotonic},
+                        vsplinetype=new splinetype[] {notaknot,notaknot,monotonic});
+              pen p=rgb(0,0,.7);
+              draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //Draw the trace for y=2
+              triple g(real t) {return (t,2,t^2+8);}
+              path3 mypath=graph(g,-3,3,operator ..); draw(mypath,blue);
+
+
+
+
+              // ////////////////////////////////////
+              //    SAMPLE CODE
+
+              // defaultpen(fontsize(10pt));
+
+              //Draw the parabola z=y^2 for t from -2 to 2
+              //triple g(real t) {return (0,t,t^2);}
+              //path3 mypath=graph(g,-2,2,operator ..); draw(mypath,blue);
+
+
+              //Draw the surface z=1/(1+x^2+y^2)
+              //triple f(pair t) {
+              //  return (t.x,t.y,1/(1+(t.x)^2+(t.y)^2));
+              //}
+              //surface s=surface(f,(-2,-2),(2,2),8,8,Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+
+              //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+              //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+
+              //triple f(pair t) {
+              //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+              //}
+              //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+
+              //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+              //path3 mypath=graph(g,-2,2,operator ..);
+
+              //pen p=rgb(0,0,1);
+              //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+
+              //draw(s,paleblue);
+              //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+              //draw(mypath,2bp+blue);
+              ]]>
+            </asymptote>
+          </image>
+          <!-- figures/figpartialintro_3D.asy END --></figure>
+          </cell>
+        </row>
+        <row>
+          <cell>(a)</cell>
+        </row>
+        <row>
+          <cell><!--
+           \includemedia[width=125pt,3Dmenu,activate=onclick,deactivate=onclick,
+          3Droll=1.320775024146522,
+          3Dortho=0.004999999888241291,
+          3Dc2c=0.6570873856544495 0.6839641332626343 0.31690558791160583,
+          3Dcoo=-3.0739071369171143 -0.40104401111602783 58.57058334350586,
+          3Droo=129.99999696026478,
+          3Dlights=Headlamp,add3Djscript=asylabels.js]
+           -->
+
+
+          <!-- START figures/figpartialintrob_3D.asy -->
+          <image xml:id="img_partialintrob_3D" >
+            <asymptote>
+              <![CDATA[
+              import graph3;
+
+              //ASY file for figpartialintrob3D.asy in Chapter 12
+
+              size(200,200,IgnoreAspect);
+              //size(200,200,Aspect);
+              //currentprojection=perspective(7,2,1);
+              currentprojection=orthographic(16,16,36);
+              defaultrender.merge=true;
+
+              usepackage("mathspec");
+              texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+
+              // setup and draw the axes
+              real[] myxchoice={-4,-2,2,4};
+              real[] myychoice={-4,-2,2,4};
+              real[] myzchoice={10,20};
+              defaultpen(0.5mm);
+              pair xbounds=(-5,5);
+              pair ybounds=(-5,5);
+              pair zbounds=(-1,22);
+
+              xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+              yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+              zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+              label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+              label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+              label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+
+              //Draw the trace for y=2
+              triple g(real t) {return (t,2,t^2+8);}
+              path3 mypath=graph(g,-3,3,operator ..); draw(mypath,blue);
+
+
+
+
+              // ////////////////////////////////////
+              //    SAMPLE CODE
+
+              // defaultpen(fontsize(10pt));
+
+              //Draw the parabola z=y^2 for t from -2 to 2
+              //triple g(real t) {return (0,t,t^2);}
+              //path3 mypath=graph(g,-2,2,operator ..); draw(mypath,blue);
+
+
+              //Draw the surface z=1/(1+x^2+y^2)
+              //triple f(pair t) {
+              //  return (t.x,t.y,1/(1+(t.x)^2+(t.y)^2));
+              //}
+              //surface s=surface(f,(-2,-2),(2,2),8,8,Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+
+              //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+              //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+
+              //triple f(pair t) {
+              //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+              //}
+              //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+
+              //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+              //path3 mypath=graph(g,-2,2,operator ..);
+
+              //pen p=rgb(0,0,1);
+              //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+
+              //draw(s,paleblue);
+              //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+              //draw(mypath,2bp+blue);
+              ]]>
+            </asymptote>
+          </image>
+          <!-- figures/figpartialintrob_3D.asy END -->
+
+
+          (b)</cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>The key notion to extract from this example is: by treating <m>y</m> as constant (it does not vary) we can consider how <m>z</m> changes with respect to <m>x</m>. In a similar fashion, we can hold <m>x</m> constant and consider how <m>z</m> changes with respect to <m>y</m>. This is the underlying principle of <em>partial derivatives</em>. We state the formal, limit<ndash />based definition first, then show how to compute these partial derivatives without directly taking limits.</p>
+
+    <definition xml:id="def_partial_derivative">
+      <title>Partial Derivative</title>
+      <statement>
+        <p>Let <m>z=f(x,y)</m> be a continuous function on an open set <m>S</m> in <m>\mathbb{R}^2</m>.</p>
+
+        <ol>
+          <li><p>The <em>partial derivative of <m>f</m> with respect to <m>x</m></em> is:
+              <me>
+                f_x(x,y) = \lim_{h\to 0} \frac{f(x+h,y) - f(x,y)}h.
+              </me>
+            </p></li>
+
+          <li><p>The <em>partial derivative of <m>f</m> with respect to <m>y</m></em> is:
+              <me>
+                f_y(x,y) = \lim_{h\to 0} \frac{f(x,y+h) - f(x,y)}h.
+              </me>
+            </p></li>
+        </ol>
+
+        <p><index><main>partial derivative</main></index><index><main>derivative</main><sub>partial</sub></index></p>
+      </statement>
+    </definition>
+
+    <aside>
+      <p>Alternate notations for <m>f_x(x,y)</m> include:
+        <me>
+          \frac{\partial}{\partial x}f(x,y),\ \ \frac{\pf}{\px},\ \ \frac{\pz}{\px},\ \ \text{ and } \ z_x,
+        </me>
+        with similar notations for <m>f_y(x,y)</m>. For ease of notation, <m>f_x(x,y)</m> is often abbreviated <m>f_x</m>.</p>
+    </aside>
+
+    <example xml:id="ex_partial1">
+      <title>Computing partial derivatives with the limit definition</title>
+      <statement>
+        <p>Let <m>f(x,y) = x^2y + 2x+y^3</m>. Find <m>f_x(x,y)</m> using the limit definition.</p>
+      </statement>
+      <solution>
+        <p>Using <xref ref="def_partial_derivative">Definition</xref>, we have:
+          <md>
+            <mrow>f_x(x,y) \amp = \lim_{h\to 0} \frac{f(x+h,y) - f(x,y)}{h}</mrow>
+            <mrow>\amp = \lim_{h\to 0} \frac{(x+h)^2y+2(x+h)+y^3 - (x^2y+2x+y^3)}{h}</mrow>
+            <mrow>\amp = \lim_{h\to 0} \frac{x^2y+2xhy+h^2y+2x+2h+y^3-(x^2y+2x+y^3)}{h}</mrow>
+            <mrow>\amp = \lim_{h\to 0} \frac{2xhy+h^2y+2h}{h}</mrow>
+            <mrow>\amp =\lim_{h\to 0} 2xy+hy+2</mrow>
+            <mrow>\amp = 2xy+2.</mrow>
+          </md>
+        </p>
+
+        <p>We have found <m>f_x(x,y) = 2xy+2</m>.</p>
+      </solution>
+    </example>
+
+    <p><xref ref="ex_partial1">Example</xref> found a partial derivative using the formal, limit<ndash />based definition. Using limits is not necessary, though, as we can rely on our previous knowledge of derivatives to compute partial derivatives easily. When computing <m>f_x(x,y)</m>, we hold <m>y</m> fixed <mdash /> it does not vary. Therefore we can compute the derivative with respect to <m>x</m> by treating <m>y</m> as a constant or coefficient.</p>
+
+    <p>Just as <m>\frac{d}{dx}\big(5x^2\big) = 10x</m>, we compute <m>\frac{\partial}{\px}\big(x^2y\big) = 2xy</m>. Here we are treating <m>y</m> as a coefficient.</p>
+
+    <p>Just as <m>\frac{d}{dx}\big(5^3\big) = 0</m>, we compute <m>\frac{\partial}{\px}\big(y^3\big) = 0</m>. Here we are treating <m>y</m> as a constant. More examples will help make this clear.</p>
+
+    <example xml:id="ex_partial2">
+      <title>Finding partial derivatives</title>
+      <statement>
+        <p>Find <m>f_x(x,y)</m> and <m>f_y(x,y)</m> in each of the following.</p>
+
+        <ol>
+          <li><p><m>f(x,y) = x^3y^2+ 5y^2-x+7</m></p></li>
+
+          <li><p><m>f(x,y) = \cos(xy^2)+\sin(x)</m></p></li>
+
+          <li><p><m>f(x,y) = e^{x^2y^3}\sqrt{x^2+1}</m></p></li>
+        </ol>
+      </statement>
+      <solution>
+        <ol>
+          <li><p>We have <m>f(x,y) = x^3y^2+ 5y^2-x+7</m>.
+
+	Begin with <m>f_x(x,y)</m>. Keep <m>y</m> fixed, treating it as a constant or coefficient, as appropriate:
+              <me>
+                f_x(x,y) = 3x^2y^2-1.
+              </me>
+              Note how the <m>5y^2</m> and <m>7</m> terms go to zero.
+	
+	To compute <m>f_y(x,y)</m>, we hold <m>x</m> fixed:
+              <me>
+                f_y(x,y) = 2x^3y+10y.
+              </me>
+              Note how the <m>-x</m> and <m>7</m> terms go to zero.</p></li>
+
+          <li><p>We have <m>f(x,y) = \cos(xy^2)+\sin(x)</m>.
+
+	Begin with <m>f_x(x,y)</m>. We need to apply the Chain Rule with the cosine term; <m>y^2</m> is the coefficient of the <m>x</m>-term inside the cosine function.
+              <me>
+                f_x(x,y) = -\sin(xy^2)(y^2)+\cos(x) = -y^2\sin(xy^2)+\cos(x) .
+              </me>
+              To find <m>f_y(x,y)</m>, note that <m>x</m> is the coefficient of the <m>y^2</m> term inside of the cosine term; also note that since <m>x</m> is fixed, <m>\sin(x)</m> is also fixed, and we treat it as a constant.
+              <me>
+                f_y(x,y) = -\sin(xy^2)(2xy) = -2xy\sin(xy^2).
+              </me>
+            </p></li>
+
+          <li><p>We have <m>f(x,y) = e^{x^2y^3}\sqrt{x^2+1}</m>.
+
+	Beginning with <m>f_x(x,y)</m>, note how we need to apply the Product Rule.
+              <md>
+                <mrow>f_x(x,y) \amp = e^{x^2y^3}(2xy^3)\sqrt{x^2+1} + e^{x^2y^3}\frac12\big(x^2+1\big)^{-1/2}(2x)</mrow>
+                <mrow>\amp = 2xy^3e^{x^2y^3}\sqrt{x^2+1}+\frac{xe^{x^2y^3}}{\sqrt{x^2+1}}.</mrow>
+              </md>
+              Note that when finding <m>f_y(x,y)</m> we do not have to apply the Product Rule; since <m>\sqrt{x^2+1}</m> does not contain <m>y</m>, we treat it as fixed and hence becomes a coefficient of the <m>e^{x^2y^3}</m> term.
+              <me>
+                f_y(x,y) = e^{x^2y^3}(3x^2y^2)\sqrt{x^2+1} = 3x^2y^2e^{x^2y^3}\sqrt{x^2+1}.
+              </me>
+            </p></li>
+        </ol>
+      </solution>
+    </example>
+
+    <p>We have shown <em>how</em> to compute a partial derivative, but it may still not be clear what a partial derivative <em>means</em>. Given <m>z=f(x,y)</m>, <m>f_x(x,y)</m> measures the rate at which <m>z</m> changes as only <m>x</m> varies: <m>y</m> is held constant. <index><main>partial derivative</main><sub>meaning</sub></index></p>
+
+    <p>Imagine standing in a rolling meadow, then beginning to walk due east. Depending on your location, you might walk up, sharply down, or perhaps not change elevation at all. This is similar to measuring <m>z_x</m>: you are moving only east (in the <q><m>x</m></q>-direction) and not north/south at all. Going back to your original location, imagine now walking due north (in the <q><m>y</m></q>-direction). Perhaps walking due north does not change your elevation at all. This is analogous to <m>z_y=0</m>: <m>z</m> does not change with respect to <m>y</m>. We can see that <m>z_x</m> and <m>z_y</m> do not have to be the same, or even similar, as it is easy to imagine circumstances where walking east means you walk downhill, though walking north makes you walk uphill.</p>
+
+    <p>The following example helps us visualize this more.</p>
+
+    <example xml:id="ex_partial3">
+      <title>Evaluating partial derivatives</title>
+      <statement>
+        <p>Let <m>z=f(x,y)=-x^2-\frac12y^2+xy+10</m>. Find <m>f_x(2,1)</m> and <m>f_y(2,1)</m> and interpret their meaning.</p>
+      </statement>
+      <solution>
+        <p>We begin by computing <m>f_x(x,y) = -2x+y</m> and <m>f_y(x,y) = -y+x</m>. Thus
+          <me>
+            f_x(2,1) = -3  \text{ and }  f_y(2,1) = 1.
+          </me>
+        </p>
+
+        <p>It is also useful to note that <m>f(2,1) = 7.5</m>. What does each of these numbers mean?</p>
+
+        <p>Consider <m>f_x(2,1)=-3</m>, along with <xref ref="fig_partial3">Figure</xref>(a). If one <q>stands</q> on the surface at the point <m>(2,1,7.5)</m> and moves parallel to the <m>x</m>-axis (i.e., only the <m>x</m>-value changes, not the <m>y</m>-value), then the instantaneous rate of change is <m>-3</m>. Increasing the <m>x</m>-value will decrease the <m>z</m>-value; decreasing the <m>x</m>-value will increase the <m>z</m>-value.</p>
+
+        <figure xml:id="fig_partial3" >
+        <caption>Illustrating the meaning of partial derivatives.</caption>
+        <sidebyside>
+          <figure>
+            <caption>(a)</caption>
+            <!--
+             \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
+            3Droll=0.,
+            3Dortho=0.004999999888241291,
+            3Dc2c=0.6528097987174988 0.6841705441474915 0.3251922130584717,
+            3Dcoo=7.158430576324463 9.488722801208496 72.96935272216797,
+            3Droo=129.9999938624484,
+            3Dlights=Headlamp,add3Djscript=asylabels.js]
+             -->
+
+
+            <!-- START figures/figpartial3a_3D.asy -->
+            <image xml:id="img_partial3a_3D" >
+              <asymptote>
+                <![CDATA[
+                import graph3;
+
+                //ASY file for figpartial3a3D.asy in Chapter 12
+
+                size(200,200,IgnoreAspect);
+                //size(200,200,Aspect);
+                //currentprojection=perspective(7,2,1);
+                currentprojection=orthographic(8,8,10);
+                defaultrender.merge=true;
+
+                usepackage("mathspec");
+                texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+                texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+                texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+                texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+                // setup and draw the axes
+                real[] myxchoice={2};
+                real[] myychoice={2};
+                real[] myzchoice={5,10};
+                defaultpen(0.5mm);
+                pair xbounds=(-1,3);
+                pair ybounds=(-1,3);
+                pair zbounds=(-1,12);
+
+                xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+                yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+                zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+                label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+                label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+                label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+                //Draw surface z=-x^2-(1/2)*y^2+xy+10
+                triple f(pair t) {
+                  return (t.x,t.y,-t.x^2-(1/2)*t.y^2+t.x*t.y+10);
+                }
+                surface s=surface(f,(0,0),(3,3),16,16,Spline);
+                pen p=rgb(0,0,.7);
+                draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+                //Draw the point (2,1,7.5) trace for y=1
+                dotfactor=3;dot((2,1,7.5));
+                triple g(real t) {return (t,1,-t^2-(1/2)+t+10);}
+                path3 mypath=graph(g,0,3,operator ..); draw(mypath,blue);
+
+                //Draw the tan line (y=1) L=(2,1,7.5)+t(1,0,-3) for t=-1.5,1
+                draw((0.5,1,12)--(3,1,4.5),red);
+
+
+
+
+
+
+
+
+
+
+
+
+
+                // ////////////////////////////////////
+                //    SAMPLE CODE
+
+                // defaultpen(fontsize(10pt));
+
+                //Draw the parabola z=y^2 for t from -2 to 2
+                //triple g(real t) {return (0,t,t^2);}
+                //path3 mypath=graph(g,-2,2,operator ..); draw(mypath,blue);
+
+
+                //Draw the surface z=1/(1+x^2+y^2)
+                //triple f(pair t) {
+                //  return (t.x,t.y,1/(1+(t.x)^2+(t.y)^2));
+                //}
+                //surface s=surface(f,(-2,-2),(2,2),8,8,Spline);
+                //pen p=rgb(0,0,.7);
+                //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+
+                //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+                //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+
+                //triple f(pair t) {
+                //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+                //}
+                //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+
+                //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+                //path3 mypath=graph(g,-2,2,operator ..);
+
+                //pen p=rgb(0,0,1);
+                //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+
+                //draw(s,paleblue);
+                //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+                //draw(mypath,2bp+blue);
+                ]]>
+              </asymptote>
+            </image>
+            <!-- figures/figpartial3a_3D.asy END -->
+          </figure>
+
+          <figure>
+            <caption>(b)</caption>
+            <!--
+             \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
+            3Droll=0.,
+            3Dortho=0.004999999888241291,
+            3Dc2c=0.6528097987174988 0.6841705441474915 0.3251922130584717,
+            3Dcoo=7.158430576324463 9.488722801208496 72.96935272216797,
+            3Droo=129.9999938624484,
+            3Dlights=Headlamp,add3Djscript=asylabels.js]
+             -->
+
+
+            <!-- START figures/figpartial3b_3D.asy -->
+            <image xml:id="img_partial3b_3D" >
+              <asymptote>
+                <![CDATA[
+                import graph3;
+
+                //ASY file for figpartial3a3D.asy in Chapter 12
+
+                size(200,200,IgnoreAspect);
+                //size(200,200,Aspect);
+                //currentprojection=perspective(7,2,1);
+                currentprojection=orthographic(8,8,10);
+                defaultrender.merge=true;
+
+                usepackage("mathspec");
+                texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+                texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+                texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+                texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+                // setup and draw the axes
+                real[] myxchoice={2};
+                real[] myychoice={2};
+                real[] myzchoice={5,10};
+                defaultpen(0.5mm);
+                pair xbounds=(-1,3);
+                pair ybounds=(-1,3);
+                pair zbounds=(-1,12);
+
+                xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+                yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+                zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+                label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+                label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+                label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+                //Draw surface z=-x^2-(1/2)*y^2+xy+10
+                triple f(pair t) {
+                  return (t.x,t.y,-t.x^2-(1/2)*t.y^2+t.x*t.y+10);
+                }
+                surface s=surface(f,(0,0),(3,3),16,16,Spline);
+                pen p=rgb(0,0,.7);
+                draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+
+                //Draw the point (2,1,7.5) trace for x=2
+                dotfactor=3;dot((2,1,7.5));
+                triple g(real t) {return (2,t,-4-(1/2)*t^2+2*t+10);}
+                path3 mypath=graph(g,0,3,operator ..); draw(mypath,blue);
+
+                //Draw the tan line (x=2) L=(2,1,7.5)+t(0,1,1) for t=-1,2
+                draw((2,0,6.5)--(2,3,9.5),red);
+
+
+                // ////////////////////////////////////
+                //    SAMPLE CODE
+
+                // defaultpen(fontsize(10pt));
+
+                //Draw the parabola z=y^2 for t from -2 to 2
+                //triple g(real t) {return (0,t,t^2);}
+                //path3 mypath=graph(g,-2,2,operator ..); draw(mypath,blue);
+
+
+                //Draw the surface z=1/(1+x^2+y^2)
+                //triple f(pair t) {
+                //  return (t.x,t.y,1/(1+(t.x)^2+(t.y)^2));
+                //}
+                //surface s=surface(f,(-2,-2),(2,2),8,8,Spline);
+                //pen p=rgb(0,0,.7);
+                //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+
+                //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+                //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+
+                //triple f(pair t) {
+                //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+                //}
+                //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+
+                //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+                //path3 mypath=graph(g,-2,2,operator ..);
+
+                //pen p=rgb(0,0,1);
+                //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+
+                //draw(s,paleblue);
+                //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+                //draw(mypath,2bp+blue);
+                ]]>
+              </asymptote>
+            </image>
+            <!-- figures/figpartial3b_3D.asy END -->
+          </figure>
+        </sidebyside>
+
+        </figure>
+
+        <p>Now consider <m>f_y(2,1)=1</m>, illustrated in <xref ref="fig_partial3">Figure</xref>(b). Moving along the curve drawn on the surface, i.e., parallel to the <m>y</m>-axis and not changing the <m>x</m>-values, increases the <m>z</m>-value instantaneously at a rate of 1. Increasing the <m>y</m>-value by 1 would increase the <m>z</m>-value by approximately 1.</p>
+
+        <p>Since the magnitude of <m>f_x</m> is greater than the magnitude of <m>f_y</m> at <m>(2,1)</m>, it is <q>steeper</q> in the <m>x</m>-direction than in the <m>y</m>-direction.</p>
+      </solution>
+    </example>
+  </introduction>
+
+  <subsection>
+    <title>Second Partial Derivatives</title>
+    <p>Let <m>z=f(x,y)</m>. We have learned to find the partial derivatives <m>f_x(x,y)</m> and <m>f_y(x,y)</m>, which are each functions of <m>x</m> and <m>y</m>. Therefore we can take partial derivatives of them, each with respect to <m>x</m> and <m>y</m>. We define these <q>second partials</q> along with the notation, give examples, then discuss their meaning.</p>
+
+    <definition xml:id="def_second_partial">
+      <title>Second Partial Derivative, Mixed Partial Derivative</title>
+      <statement>
+        <p>Let <m>z=f(x,y)</m> be continuous on an open set <m>S</m>.</p>
+
+        <ol>
+          <li><p>The <em>second partial derivative of <m>f</m> with respect to <m>x</m> then <m>x</m></em> is
+              <me>
+                \frac{\partial}{\partial x}\left(\frac{\partial f}{\px}\right) = \frac{\partial^2 f}{\px^2} = \big(\,f_x\,\big)_x = f_{xx}
+              </me>
+            </p></li>
+
+          <li><p>The <em>second partial derivative of <m>f</m> with respect to <m>x</m> then <m>y</m></em> is
+              <me>
+                \frac{\partial}{\partial y}\left(\frac{\partial f}{\px}\right) = \frac{\partial^2f}{\py\px} = \big(\,f_x\,\big)_y = f_{xy}
+              </me>
+            </p></li>
+        </ol>
+
+        <p>Similar definitions hold for <m>\ds \frac{\partial^2f}{\py^2} = f_{yy}</m> and <m>\ds \frac{\partial^2f}{\px\py} = f_{yx}</m>.</p>
+
+        <p>The second partial derivatives <m>f_{xy}</m> and <m>f_{yx}</m> are <term>mixed partial derivatives</term>.
+          <index><main>partial derivative</main><sub>mixed</sub></index><index><main>partial derivative</main><sub>second derivative</sub></index><index><main>derivative</main><sub>mixed partial</sub></index></p>
+      </statement>
+    </definition>
+
+    <p>The notation of second partial derivatives gives some insight into the notation of the second derivative of a function of a single variable. If <m>y=f(x)</m>, then <m>\ds \fp'(x) = \frac{d^2 y}{dx^2}</m>. The <q><m>d^2y</m></q> portion means <q>take the derivative of <m>y</m> twice,</q> while <q><m>dx^2</m></q> means <q>with respect to <m>x</m> both times.</q> When we only know of functions of a single variable, this latter phrase seems silly: there is only one variable to take the derivative with respect to. Now that we understand functions of multiple variables, we see the importance of specifying which variables we are referring to.</p>
+
+    <aside>
+      <p>The terms in <xref ref="def_second_partial">Definition</xref> all depend on limits, so each definition comes with the caveat <q>where the limit exists.</q></p>
+    </aside>
+
+    <example xml:id="ex_partial6">
+      <title>Second partial derivatives</title>
+      <statement>
+        <p>For each of the following, find all six first and second partial derivatives. That is, find
+          <me>
+            f_x, f_y, f_{xx}, f_{yy}, f_{xy} \text{ and }  f_{yx}\,.
+          </me>
+        </p>
+
+        <ol>
+          <li><p><m>f(x,y) = x^3y^2 + 2xy^3+\cos(x)</m></p></li>
+
+          <li><p><m>\ds f(x,y) = \frac{x^3}{y^2}</m></p></li>
+
+          <li><p><m>f(x,y)=e^{x}\sin(x^2y)</m></p></li>
+        </ol>
+      </statement>
+      <solution>
+        <p>In each, we give <m>f_x</m> and <m>f_y</m> immediately and then spend time deriving the second partial derivatives.</p>
+
+        <ol>
+          <li><p><m>f(x,y) = x^3y^2+2xy^3+\cos(x)</m>
+		
+		<m>f_x(x,y) = 3x^2y^2+2y^3-\sin(x)</m>
+		
+		<m>f_y(x,y) = 2x^3y+6xy^2</m>
+		
+		<m>\ds f_{xx}(x,y) = \frac{\partial}{\px}\big(f_x\big) = \frac{\partial}{\px}\big(3x^2y^2+2y^3-\sin(x) \big) = 6xy^2-\cos(x)</m>
+		
+		<m>\ds f_{yy}(x,y) = \frac{\partial}{\py}\big(f_y\big) = \frac{\partial}{\py}\big(2x^3y+6xy^2\big) = 2x^3+12xy</m>
+		
+		<m>\ds f_{xy}(x,y) = \frac{\partial}{\py}\big(f_x\big) = \frac{\partial}{\py}\big(3x^2y^2+2y^3-\sin(x) \big) = 6x^2y+6y^2</m>
+		
+		<m>\ds f_{yx}(x,y) = \frac{\partial}{\px}\big(f_x\big) = \frac{\partial}{\px}\big(2x^3y+6xy^2\big) = 6x^2y+6y^2</m></p></li>
+
+          <li><p><m>\ds f(x,y) = \frac{x^3}{y^2} = x^3y^{-2}</m>
+	
+	<m>\ds f_x(x,y) = \frac{3x^2}{y^2}</m>
+	
+	<m>\ds f_y(x,y) = -\frac{2x^3}{y^3}</m>
+	
+	<m>\ds f_{xx}(x,y) = \frac{\partial}{\px}\big(f_x\big) = \frac{\partial}{\px}\big(\frac{3x^2}{y^2}\big) = \frac{6x}{y^2}</m>
+		
+		<m>\ds f_{yy}(x,y) = \frac{\partial}{\py}\big(f_y\big) = \frac{\partial}{\py}\big(-\frac{2x^3}{y^3}\big) = \frac{6x^3}{y^4}</m>
+		
+		<m>\ds f_{xy}(x,y) = \frac{\partial}{\py}\big(f_x\big) = \frac{\partial}{\py}\big(\frac{3x^2}{y^2}\big) = -\frac{6x^2}{y^3}</m>
+		
+		<m>\ds f_{yx}(x,y) = \frac{\partial}{\px}\big(f_x\big) = \frac{\partial}{\px}\big(-\frac{2x^3}{y^3}\big) =
+              -\frac{6x^2}{y^3}</m></p></li>
+
+          <li><p><m>\ds f(x,y) = e^x\sin(x^2y)</m>
+
+                Because the following partial derivatives get rather long, we omit the extra notation and just give the results. In several cases, multiple applications of the Product and Chain Rules will be necessary, followed by some basic combination of like terms.
+
+              <m>\ds f_x(x,y) = e^x\sin(x^2y) + 2xye^x\cos(x^2y)</m>
+	
+	<m>\ds f_y(x,y) = x^2e^x\cos(x^2y)</m>
+	
+	<m>\ds f_{xx}(x,y) = e^x\sin(x^2y)+4xye^x\cos(x^2y)+2ye^x\cos(x^2y)-4x^2y^2e^x\sin(x^2y)</m>
+	
+	
+		<m>\ds f_{yy}(x,y) =  -x^4e^x\sin(x^2y)</m>
+		
+		<m>\ds f_{xy}(x,y) = x^2e^x\cos(x^2y)+2xe^x\cos(x^2y)-2x^3ye^x\sin(x^2y)</m>
+		
+		<m>\ds f_{yx}(x,y) = x^2e^x\cos(x^2y)+2xe^x\cos(x^2y)-2x^3ye^x\sin(x^2y)</m></p></li>
+        </ol>
+      </solution>
+    </example>
+
+    <p>Notice how in each of the three functions in <xref ref="ex_partial6">Example</xref>, <m>f_{xy} = f_{yx}</m>. Due to the complexity of the examples, this likely is not a coincidence. The following theorem states that it is not.</p>
+
+    <theorem xml:id="thm_mixed_partial">
+      <title>Mixed Partial Derivatives</title>
+      <statement>
+        <p>Let <m>f</m> be defined such that <m>f_{xy}</m> and <m>f_{yx}</m> are continuous on an open set <m>S</m>. Then for each point <m>(x,y)</m> in <m>S</m>, <m>f_{xy}(x,y) = f_{yx}(x,y)</m>.</p>
+      </statement>
+    </theorem>
+
+    <p>Finding <m>f_{xy}</m> and <m>f_{yx}</m> independently and comparing the results provides a convenient way of checking our work.</p>
+  </subsection>
+
+  <subsection>
+    <title>Understanding Second Partial Derivatives</title>
+    <p>Now that we know <em>how</em> to find second partials, we investigate <em>what</em> they tell us.</p>
+
+    <p>Again we refer back to a function <m>y=f(x)</m> of a single variable. The second derivative of <m>f</m> is <q>the derivative of the derivative,</q> or <q>the rate of change of the rate of change.</q> The second derivative measures how much the derivative is changing. If <m>\fp'(x)\lt 0</m>, then the derivative is getting smaller (so the graph of <m>f</m> is concave down); if <m>\fp'(x)>0</m>, then the derivative is growing, making the graph of <m>f</m> concave up.</p>
+
+    <p>Now consider <m>z=f(x,y)</m>. Similar statements can be made about <m>f_{xx}</m> and <m>f_{yy}</m> as could be made about <m>\fp'(x)</m> above. When taking derivatives with respect to <m>x</m> twice, we measure how much <m>f_x</m> changes with respect to <m>x</m>. If <m>f_{xx}(x,y)\lt 0</m>, it means that as <m>x</m> increases, <m>f_x</m> decreases, and the graph of <m>f</m> will be concave down <em>in the <m>x</m>-direction</em>. Using the analogy of standing in the rolling meadow used earlier in this section, <m>f_{xx}</m> measures whether one's path is concave up/down when walking due east.</p>
+
+    <p>Similarly, <m>f_{yy}</m> measures the concavity in the <m>y</m>-direction. If <m>f_{yy}(x,y)>0</m>, then <m>f_y</m> is increasing with respect to <m>y</m> and the graph of <m>f</m> will be concave up in the <m>y</m>-direction. Appealing to the rolling meadow analogy again, <m>f_{yy}</m> measures whether one's path is concave up/down when walking due north.</p>
+
+    <p>We now consider the mixed partials <m>f_{xy}</m> and <m>f_{yx}</m>. The mixed partial <m>f_{xy}</m> measures how much <m>f_x</m> changes with respect to <m>y</m>. Once again using the rolling meadow analogy, <m>f_{x}</m> measures the slope if one walks due east. Looking east, begin walking <em>north</em> (side<ndash />stepping). Is the path towards the east getting steeper? If so, <m>f_{xy}>0</m>. Is the path towards the east not changing in steepness? If so, then <m>f_{xy}=0</m>. A similar thing can be said about <m>f_{yx}</m>: consider the steepness of paths heading north while side<ndash />stepping to the east.</p>
+
+    <p>The following example examines these ideas with concrete numbers and graphs.</p>
+
+    <example xml:id="ex_partial7">
+      <title>Understanding second partial derivatives</title>
+      <statement>
+        <p>Let <m>z=x^2-y^2+xy</m>. Evaluate the 6 first and second partial derivatives at <m>(-1/2,1/2)</m> and interpret what each of these numbers mean.</p>
+      </statement>
+      <solution>
+        <p>We find that:</p>
+
+        <p><m>f_x(x,y) = 2x+y</m>,<m>f_y(x,y) = -2y+x</m>,<m>f_{xx}(x,y) = 2</m>, <m>f_{yy}(x,y) = -2</m> and <m>f_{xy}(x,y) = f_{yx}(x,y) = 1</m>. Thus at <m>(-1/2,1/2)</m> we have
+          <me>
+            f_x(-1/2,1/2) = -1/2,\qquad f_y(-1/2,1/2) = -3/2.
+          </me>
+        </p>
+
+        <p>The slope of the tangent line at <m>(-1/2, 1/2, -1/4)</m> in the direction of <m>x</m> is <m>-1/2</m>: if one moves from that point parallel to the <m>x</m>-axis, the instantaneous rate of change will be <m>-1/2</m>. The slope of the tangent line
+          at this point in the direction of <m>y</m> is <m>-3/2</m>: if one moves from this point parallel to the <m>y</m>-axis, the instantaneous rate of change will be <m>-3/2</m>. These tangents lines are graphed in <xref ref="fig_partial7">Figure</xref>(a) and (b), respectively, where the tangent lines are drawn in a solid line.</p>
+
+        <figure xml:id="fig_partial7" >
+        <caption>Understanding the second partial derivatives in <xref ref="ex_partial7">Example</xref>.</caption>
+        <sidebyside>
+          <figure>
+            <caption>(a)</caption>
+            <!--
+             \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
+            3Droll=0.4263461176034552,
+            3Dortho=0.004999999888241291,
+            3Dc2c=0.358655720949173 0.8657855987548828 0.34897172451019287,
+            3Dcoo=14.456816673278809 24.785551071166992 12.880075454711914,
+            3Droo=129.9999903526944,
+            3Dlights=Headlamp,add3Djscript=asylabels.js]
+             -->
+
+
+            <!-- START figures/figpartial6_3D.asy -->
+            <image xml:id="img_partial6_3D" >
+              <asymptote>
+                <![CDATA[
+                import graph3;
+
+                //ASY file for figpartial63D.asy in Chapter 12
+
+                size(200,200,IgnoreAspect);
+                //size(200,200,Aspect);
+                //currentprojection=perspective(7,2,1);
+                currentprojection=orthographic(2.5,8.4,3.4);
+                defaultrender.merge=true;
+
+                usepackage("mathspec");
+                texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+                texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+                texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+                texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+                // setup and draw the axes
+                real[] myxchoice={-1,1};
+                real[] myychoice={-1,1};
+                real[] myzchoice={-1,1};
+                defaultpen(0.5mm);
+                pair xbounds=(-1.5,1.5);
+                pair ybounds=(-1.5,1.5);
+                pair zbounds=(-2,2);
+
+                xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+                yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+                zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+                label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+                label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+                label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+                //Draw surface z=x^2-y^2+xy
+                triple f(pair t) {
+                  return (t.x,t.y,t.x^2-t.y^2+t.x*t.y);
+                }
+                surface s=surface(f,(-1,-1),(1,1),16,16,Spline);
+                pen p=rgb(0,0,.7);
+                draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+                //Draw the point (-0.5,0.5,-0.25) trace for x=-0.5
+                dotfactor=3;dot((-0.5,0.5,-0.25));
+                triple g(real t) {return (-0.5,t,0.25-t^2-0.5*t);}
+                path3 mypath=graph(g,-1,1,operator ..); draw(mypath,red);
+
+                //Draw the tangent lines in x direction, slope -0.5
+                //  L=(-0.5,0.5,-0.25)+t(1,0,-0.5) for t=-1,1
+                draw((-1.5,0.5,0.25)--(0.5,0.5,-0.75),blue);
+
+                //Draw the tangent lines in x direction, slope -0.75 and dot
+                //  L=(-0.5,0.25,0.065)+t(1,0,-0.75) for t=-1,1
+                dot((-0.5,0.25,0.065));
+                draw((-1.5,0.25,0.815)--(0.5,0.25,-0.685),dashed+blue);
+
+                //Draw the tangent lines in x direction, slope -0.25 and dot
+                //  L=(-0.5,0.75,-0.6875)+t(1,0,-0.25) for t=-1,1
+                dot((-0.5,0.75,-0.6875));
+                draw((-1.5,0.75,-0.4375)--(0.5,0.75,-0.9375),dashed+blue);
+
+
+
+                // ////////////////////////////////////
+                //    SAMPLE CODE
+
+                // defaultpen(fontsize(10pt));
+
+                //Draw the parabola z=y^2 for t from -2 to 2
+                //triple g(real t) {return (0,t,t^2);}
+                //path3 mypath=graph(g,-2,2,operator ..); draw(mypath,blue);
+
+
+                //Draw the surface z=1/(1+x^2+y^2)
+                //triple f(pair t) {
+                //  return (t.x,t.y,1/(1+(t.x)^2+(t.y)^2));
+                //}
+                //surface s=surface(f,(-2,-2),(2,2),8,8,Spline);
+                //pen p=rgb(0,0,.7);
+                //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+
+                //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+                //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+
+                //triple f(pair t) {
+                //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+                //}
+                //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+
+                //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+                //path3 mypath=graph(g,-2,2,operator ..);
+
+                //pen p=rgb(0,0,1);
+                //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+
+                //draw(s,paleblue);
+                //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+                //draw(mypath,2bp+blue);
+                ]]>
+              </asymptote>
+            </image>
+            <!-- figures/figpartial6_3D.asy END -->
+          </figure>
+
+          <figure>
+            <caption>(b)</caption>
+            <!--
+             \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
+            3Droll=0.4263461176034552,
+            3Dortho=0.004999999888241291,
+            3Dc2c=0.358655720949173 0.8657855987548828 0.34897172451019287,
+            3Dcoo=14.456816673278809 24.785551071166992 12.880075454711914,
+            3Droo=129.9999903526944,
+            3Dlights=Headlamp,add3Djscript=asylabels.js]
+             -->
+
+
+            <!-- START figures/figpartial6b_3D.asy -->
+            <image xml:id="img_partial6b_3D" >
+              <asymptote>
+                <![CDATA[
+                import graph3;
+
+                //ASY file for figpartial6b3D.asy in Chapter 12
+
+                size(200,200,IgnoreAspect);
+                //size(200,200,Aspect);
+                //currentprojection=perspective(7,2,1);
+                currentprojection=orthographic(2.5,8.4,3.);
+                defaultrender.merge=true;
+
+                usepackage("mathspec");
+                texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+                texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+                texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+                texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+
+                // setup and draw the axes
+                real[] myxchoice={-1,1};
+                real[] myychoice={-1,1};
+                real[] myzchoice={-1,1};
+                defaultpen(0.5mm);
+                pair xbounds=(-1.5,1.5);
+                pair ybounds=(-1.5,1.5);
+                pair zbounds=(-2,2);
+
+                xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+                yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+                zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+                label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+                label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+                label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+                //Draw surface z=x^2-y^2+xy
+                triple f(pair t) {
+                  return (t.x,t.y,t.x^2-t.y^2+t.x*t.y);
+                }
+                surface s=surface(f,(-1,-1),(1,1),16,16,Spline);
+                pen p=rgb(0,0,.7);
+                draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+                //Draw the point (-0.5,0.5,-0.25) and trace for y=0.5
+                dotfactor=3;dot((-0.5,0.5,-0.25));
+                triple g(real t) {return (t,0.5,t^2-0.25+0.5*t);}
+                path3 mypath=graph(g,-1,1,operator ..); draw(mypath,red);
+
+                //Draw the tangent lines in y direction, slope -1.5
+                //  L=(-0.5,0.5,-0.25)+t(0,1,-1.5) for t=-1,1
+                draw((-0.5,-0.3,.95)--(-0.5,1.3,-1.45),blue);
+
+                //Draw the tangent lines in y direction, slope -1.75 and dot
+                //  L=(-0.75,0.5,-0.0625)+t(0,1,-1.75) for t=-1,1
+                dot((-0.75,0.5,-0.0625));
+                draw((-0.75, -0.3, 1.3375)--(-0.75, 1.3, -1.4625),dashed+blue);
+
+                //Draw the tangent lines in y direction, slope -1.25 and dot
+                //  L=(-0.25,0.5,-0.3125)+t(0,1,-1.25) for t=-1,1
+                dot((-0.25,0.5,-0.3125));
+                draw((-0.25, -0.3, 0.6875)--(-0.25, 1.3, -1.3125),dashed+blue);
+
+
+
+                // ////////////////////////////////////
+                //    SAMPLE CODE
+
+                // defaultpen(fontsize(10pt));
+
+                //Draw the parabola z=y^2 for t from -2 to 2
+                //triple g(real t) {return (0,t,t^2);}
+                //path3 mypath=graph(g,-2,2,operator ..); draw(mypath,blue);
+
+
+                //Draw the surface z=1/(1+x^2+y^2)
+                //triple f(pair t) {
+                //  return (t.x,t.y,1/(1+(t.x)^2+(t.y)^2));
+                //}
+                //surface s=surface(f,(-2,-2),(2,2),8,8,Spline);
+                //pen p=rgb(0,0,.7);
+                //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+
+                //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+                //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+
+                //triple f(pair t) {
+                //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+                //}
+                //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+
+                //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+                //path3 mypath=graph(g,-2,2,operator ..);
+
+                //pen p=rgb(0,0,1);
+                //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+
+                //draw(s,paleblue);
+                //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+                //draw(mypath,2bp+blue);
+                ]]>
+              </asymptote>
+            </image>
+            <!-- figures/figpartial6b_3D.asy END -->
+          </figure>
+        </sidebyside>
+
+        </figure>
+
+        <p>Now consider only <xref ref="fig_partial7">Figure</xref>(a). Three directed tangent lines are drawn (two are dashed), each in the direction of <m>x</m>; that is, each has a slope determined by <m>f_x</m>. Note how as <m>y</m> increases, the slope of these lines get closer to <m>0</m>. Since the slopes are all negative, getting closer to 0 means the <em>slopes are increasing.</em> The slopes given by <m>f_x</m> are increasing as <m>y</m> increases, meaning <m>f_{xy}</m> must be positive.</p>
+
+        <p>Since <m>f_{xy}=f_{yx}</m>, we also expect <m>f_y</m> to increase as <m>x</m> increases. Consider <xref ref="fig_partial7">Figure</xref>(b) where again three directed tangent lines are drawn, this time each in the direction of <m>y</m> with slopes determined by <m>f_y</m>. As <m>x</m> increases, the slopes become less steep (closer to 0). Since these are negative slopes, this means the slopes are increasing.</p>
+
+        <p>Thus far we have a visual understanding of <m>f_x</m>, <m>f_y</m>, and <m>f_{xy}=f_{yx}</m>. We now interpret <m>f_{xx}</m> and <m>f_{yy}</m>. In <xref ref="fig_partial7">Figure</xref>(a), we see a curve drawn where <m>x</m> is held constant at <m>x=-1/2</m>: only <m>y</m> varies. This curve is clearly concave down, corresponding to the fact that <m>f_{yy}\lt 0</m>. In part (b) of the figure, we see a similar curve where <m>y</m> is constant and only <m>x</m> varies. This curve is concave up, corresponding to the fact that <m>f_{xx}>0</m>.</p>
+      </solution>
+    </example>
+  </subsection>
+
+  <subsection>
+    <title>Partial Derivatives and Functions of Three Variables</title>
+    <p>The concepts underlying partial derivatives can be easily extend to more than two variables. We give some definitions and examples in the case of three variables and trust the reader can extend these definitions to more variables if needed.</p>
+
+    <definition xml:id="def_partial_multiple">
+      <title>Partial Derivatives with Three Variables</title>
+      <statement>
+        <p>Let <m>w=f(x,y,z)</m> be a continuous function on an open set <m>S</m> in <m>\mathbb{R}^3</m>.</p>
+
+        <p>The <term>partial derivative of <m>f</m> with respect to <m>x</m></term> is:
+          <me>
+            f_x(x,y,z) = \lim_{h\to 0} \frac{f(x+h,y,z)-f(x,y,z)}{h}.
+          </me>
+        </p>
+
+        <p>Similar definitions hold for <m>f_y(x,y,z)</m> and <m>f_z(x,y,z)</m>.
+	
+          <index><main>derivative</main><sub>partial</sub></index><index><main>partial derivative</main></index></p>
+      </statement>
+    </definition>
+
+    <p>By taking partial derivatives of partial derivatives, we can find second partial derivatives of <m>f</m> with respect to <m>z</m> then <m>y</m>, for instance, just as before.</p>
+
+    <example xml:id="ex_partial8">
+      <title>Partial derivatives of functions of three variables</title>
+      <statement>
+        <p>For each of the following, find <m>f_x</m>,<nbsp /> <m>f_y</m>,<nbsp /> <m>f_z</m>,<nbsp /> <m>f_{xz}</m>,<nbsp /> <m>f_{yz}</m>, and <m>f_{zz}</m>.</p>
+
+        <ol>
+          <li><p><m>f(x,y,z) = x^2y^3z^4+x^2y^2+x^3z^3+y^4z^4</m></p></li>
+
+          <li><p><m>f(x,y,z) = x\sin(yz)</m></p></li>
+        </ol>
+      </statement>
+      <solution>
+        <ol>
+          <li><p><m>f_x = 2xy^3z^4+2xy^2+3x^2z^3</m>;  <m>f_y = 3x^2y^2z^4+2x^2y+4y^3z^4</m>;
+	
+	<m>f_z = 4x^2y^3z^3+3x^3z^2+4y^4z^3</m>;  <m>f_{xz} = 8xy^3z^3+9x^2z^2</m>;
+	
+	<m>f_{yz} = 12x^2y^2z^3+16y^3z^3</m>;  <m>f_{zz} = 12x^2y^3z^2+6x^3z+12y^4z^2</m></p></li>
+
+          <li><p><m>f_x = \sin(yz)</m>;  <m>f_y = xz\cos(yz)</m>;  <m>f_z = xy\cos(yz)</m>;
+	
+	<m>f_{xz} = y\cos(yz)</m>;  <m>f_{yz} = x\cos(yz) - xyz\sin(yz)</m>;  <m>f_{zz} = -xy^2\sin(xy)</m></p></li>
+        </ol>
+      </solution>
+    </example>
+  </subsection>
+
+  <subsection>
+    <title>Higher Order Partial Derivatives</title>
+    <p>We can continue taking partial derivatives of partial derivatives of partial derivatives of <ellipsis />; we do not have to stop with second partial derivatives. These higher order partial derivatives do not have a tidy graphical interpretation; nevertheless they are not hard to compute and worthy of some practice.
+      <index><main>partial derivative</main><sub>high order</sub></index></p>
+
+    <p>We do not formally define each higher order derivative, but rather give just a few examples of the notation.
+      <me>
+        f_{xyx}(x,y)  =\frac{\partial}{\px}\left(\frac{\partial}{\py}\left(\frac{\pf}{\px}\right)\right)  \text{ and }
+      </me>
+      <me>
+        f_{xyz}(x,y,z)  =\frac{\partial}{\partial z}\left(\frac{\partial}{\py}\left(\frac{\pf}{\px}\right)\right)  .
+      </me>
+    </p>
+
+    <example xml:id="ex_partial9">
+      <title>Higher order partial derivatives</title>
+      <statement>
+        <ol>
+          <li><p>Let <m>f(x,y) = x^2y^2+\sin(xy)</m>. Find <m>f_{xxy}</m> and <m>f_{yxx}</m>.</p></li>
+
+          <li><p>Let <m>f(x,y,z) = x^3e^{xy}+\cos(z)</m>. Find <m>f_{xyz}</m>.</p></li>
+        </ol>
+      </statement>
+      <solution>
+        <ol>
+          <li><p>To find <m>f_{xxy}</m>, we first find <m>f_x</m>, then <m>f_{xx}</m>, then <m>f_{xxy}</m>:
+              <md>
+                <mrow>f_x \amp = 2xy^2+y\cos(xy)  f_{xx} = 2y^2-y^2\sin(xy)</mrow>
+                <mrow>f_{xxy} \amp = 4y-2y\sin(xy) - xy^2\cos(xy).</mrow>
+              </md>
+              To find <m>f_{yxx}</m>, we first find <m>f_y</m>, then <m>f_{yx}</m>, then <m>f_{yxx}</m>:
+              <md>
+                <mrow>f_y \amp = 2x^2y+x\cos(xy)   f_{yx} = 4xy + \cos(xy) - xy\sin(xy)</mrow>
+                <mrow>f_{yxx} \amp = 4y-y\sin(xy) - \big(y\sin(xy) + xy^2\cos(xy)\big)</mrow>
+                <mrow>\amp = 4y-2y\sin(xy)-xy^2\cos(xy).</mrow>
+              </md>
+              Note how <m>f_{xxy} = f_{yxx}</m>.</p></li>
+
+          <li><p>To find <m>f_{xyz}</m>, we find <m>f_x</m>, then <m>f_{xy}</m>, then <m>f_{xyz}</m>:
+              <md>
+                <mrow>f_x \amp = 3x^2e^{xy}+ x^3ye^{xy}   f_{xy} = 3x^3e^{xy}+x^3e^{xy}+x^4ye^{xy} = 4x^3e^{xy}+x^4ye^{xy}</mrow>
+                <mrow>f_{xyz} \amp = 0.</mrow>
+              </md>
+            </p></li>
+        </ol>
+      </solution>
+    </example>
+
+    <p>In the previous example we saw that <m>f_{xxy} = f_{yxx}</m>; this is not a coincidence. While we do not state this as a formal theorem, as long as each partial derivative is continuous, it does not matter the order in which the partial derivatives are taken. For instance, <m>f_{xxy} = f_{xyx} = f_{yxx}</m>.</p>
+
+    <p>This can be useful at times. Had we known this, the second part of <xref ref="ex_partial9">Example</xref> would have been much simpler to compute. Instead of computing <m>f_{xyz}</m> in the <m>x</m>, <m>y</m> then <m>z</m> orders, we could have applied the <m>z</m>, then <m>x</m> then <m>y</m> order (as <m>f_{xyz} = f_{zxy}</m>). It is easy to see that <m>f_z = -\sin(z)</m>; then <m>f_{zx}</m> and <m>f_{zxy}</m> are clearly 0 as <m>f_z</m> does not contain an <m>x</m> or <m>y</m>.</p>
+
+    <p>A brief review of this section: partial derivatives measure the instantaneous rate of change of a multivariable function with respect to one variable.
+      With <m>z=f(x,y)</m>, the partial derivatives <m>f_x</m> and <m>f_y</m> measure the instantaneous rate of change of <m>z</m> when moving parallel to the <m>x</m>- and <m>y</m>-axes, respectively. How do we measure the rate of change at a point when we do not move parallel to one of these axes? What if we move in the direction given by the vector <m>\la 2,1\ra</m>? Can we measure that rate of change? The answer is, of course, yes, we can. This is the topic of <xref ref="sec_directional_derivative">Section</xref>. First, we need to define what it means for a function of two variables to be <em>differentiable.</em></p>
+  </subsection>
+
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>What is the difference between a constant and a coefficient?</p>
+          </statement>
+          <solution>
+            <p>A constant is a number that is added or subtracted in an expression; a coefficient is a number that is being multiplied by a nonconstant function.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Given a function <m>z=f(x,y)</m>, explain in your own words how to compute <m>f_x</m>.</p>
+          </statement>
+          <solution>
+            <p>Answers will vary; each should include something about treating <m>y</m> as a constant or a coefficient.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$first">
+              <set>
+                <member correct="yes">f_{x}</member>
+                <member>f_{y}</member>
+              </set>
+            </var>
+            <pg-code>
+              $first=RadioButtons(['\(f_x\)', '\(f_y\)'],0,labels=>[f_x,f_y],displayLabels => 0 );
+            </pg-code>
+          </setup>
+          <statement>
+            <p>In the mixed partial fraction <m>f_{xy}</m>, which is computed first, <m>f_x</m> or <m>f_y</m>?</p>
+            <p><var name="$first" form="buttons" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$first">
+              <set>
+                <member correct="yes">f_{x}</member>
+                <member>f_{y}</member>
+              </set>
+            </var>
+            <pg-code>
+              $first=RadioButtons(['\(f_x\)', '\(f_y\)'],1,labels=>[f_x,f_y],displayLabels => 0 );
+            </pg-code>
+          </setup>
+          <statement>
+            <p>In the mixed partial fraction <m>\frac{\partial^2f}{\partial x\partial y}</m>, which is computed first, <m>f_x</m> or <m>f_y</m>?</p>
+            <p><var name="$first" form="buttons" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, evaluate <m>f_x(x,y)</m> and <m>f_y(x,y)</m> at the indicated point.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x,y) = x^2y-x+2y+3</m> at <m>(1,2)</m></p>
+          </statement>
+          <solution>
+            <p><m>f_x=2xy-1</m>, <m>f_y=x^2+2</m></p>
+
+            <p><m>f_x(1,2) = 3</m>, <m>f_y(1,2) = 3</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$fx">
+              <static>0</static>
+            </var>
+            <var name="$fy">
+              <static>0</static>
+            </var>
+            <pg-code>
+              $fx=0;
+              $fy=0;
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Let <m>f(x,y) = x^3-3x+y^2-6y</m>. Find:</p>
+            <p><m>f_x(-1,3)=</m><var name="$fx" width="10" /></p>
+            <p><m>f_y(-1,3)=</m><var name="$fy" width="10" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x,y) = \sin(y) \cos(x)</m> at <m>(\pi/3,\pi/3)</m></p>
+          </statement>
+          <solution>
+            <p><m>f_x=-\sin(x) \sin(y)</m>, <m>f_y=\cos(x) \cos(y)</m></p>
+
+            <p><m>f_x(\pi/3,\pi/3) = -3/4</m>, <m>f_y(\pi/3,\pi/3) = 1/4</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$fx">
+              <static>-1/2</static>
+            </var>
+            <var name="$fy">
+              <static>-1/3</static>
+            </var>
+            <pg-code>
+              Context("Fraction");
+              $fx=Fraction(-1,2);
+              $fy=Fraction(-1,3);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Let <m>f(x,y) = \ln(xy)</m>. Find:</p>
+            <p><m>f_x(-2,-3)=</m><var name="$fx" width="10" /></p>
+            <p><m>f_y(-2,-3)=</m><var name="$fy" width="10" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, find <m>f_x</m>, <m>f_y</m>, <m>f_{xx}</m>, <m>f_{yy}</m>, <m>f_{xy}</m> and <m>f_{yx}</m>.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x,y) = x^2y+3x^2+4y-5</m></p>
+          </statement>
+          <solution>
+            <p><m>f_x=2xy+6x</m>, <m>f_y=x^2+4</m></p>
+
+            <p><m>f_{xx}=2y+6</m>, <m>f_{yy}=0</m></p>
+
+            <p><m>f_{xy}=2x</m>, <m>f_{yx}=2x</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$fx">
+              <static>3x^2+6xy+3y^2</static>
+            </var>
+            <var name="$fy">
+              <static>3x^2+6xy+3y^2</static>
+            </var>
+            <var name="$fxx">
+              <static>6x+6y</static>
+            </var>
+            <var name="$fxy">
+              <static>6x+6y</static>
+            </var>
+            <var name="$fyx">
+              <static>6x+6y</static>
+            </var>
+            <var name="$fyy">
+              <static>6x+6y</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real');
+              $fx=Compute("3x^2+6xy+3y^2");
+              $fy=Compute("3x^2+6xy+3y^2");
+              $fxx=Compute("6x+6y");
+              $fxy=Compute("6x+6y");
+              $fyx=Compute("6x+6y");
+              $fyy=Compute("6x+6y");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Let <m>f(x,y) = y^3+3xy^2+3x^2y+x^3</m>. Find:</p>
+            <p><m>f_{x}(x,y)=</m><var name="$fx" width="40" /></p>
+            <p><m>f_{y}(x,y)=</m><var name="$fy" width="40" /></p>
+            <p><m>f_{xx}(x,y)=</m><var name="$fxx" width="40" /></p>
+            <p><m>f_{xy}(x,y)=</m><var name="$fxy" width="40" /></p>
+            <p><m>f_{yx}(x,y)=</m><var name="$fyx" width="40" /></p>
+            <p><m>f_{yy}(x,y)=</m><var name="$fyy" width="40" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y) = \frac xy</m></p>
+          </statement>
+          <solution>
+            <p><m>f_x=1/y</m>, <m>f_y=-x/y^2</m></p>
+
+            <p><m>f_{xx}=0</m>, <m>f_{yy}=2x/y^3</m></p>
+
+            <p><m>f_{xy}=-1/y^2</m>, <m>f_{yx}=-1/y^2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$fx">
+              <static>-\frac{4}{x^2y}</static>
+            </var>
+            <var name="$fy">
+              <static>-\frac{4}{xy^2}</static>
+            </var>
+            <var name="$fxx">
+              <static>\frac{8}{x^3y}</static>
+            </var>
+            <var name="$fxy">
+              <static>\frac{4}{x^2y^2}</static>
+            </var>
+            <var name="$fyx">
+              <static>\frac{4}{x^2y^2}</static>
+            </var>
+            <var name="$fyy">
+              <static>\frac{8}{xy^3}</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real');
+              $fx=Compute("-4/(x^2y)");
+              $fy=Compute("-4/(xy^2)");
+              $fxx=Compute("8/(x^3y)");
+              $fxy=Compute("4/(x^2y^2)");
+              $fyx=Compute("4/(x^2y^2)");
+              $fyy=Compute("8/(xy^3)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Let <m>f(x,y) = \frac{4}{xy}</m>. Find:</p>
+            <p><m>f_{x}(x,y)=</m><var name="$fx" width="40" /></p>
+            <p><m>f_{y}(x,y)=</m><var name="$fy" width="40" /></p>
+            <p><m>f_{xx}(x,y)=</m><var name="$fxx" width="40" /></p>
+            <p><m>f_{xy}(x,y)=</m><var name="$fxy" width="40" /></p>
+            <p><m>f_{yx}(x,y)=</m><var name="$fyx" width="40" /></p>
+            <p><m>f_{yy}(x,y)=</m><var name="$fyy" width="40" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y) = e^{x^2+y^2}</m></p>
+          </statement>
+          <solution>
+            <p><m>f_x=2xe^{x^2+y^2}</m>, <m>f_y=2ye^{x^2+y^2}</m></p>
+
+            <p><m>f_{xx}=2e^{x^2+y^2}+4x^2e^{x^2+y^2}</m>, <m>f_{yy}=2e^{x^2+y^2}+4y^2e^{x^2+y^2}</m></p>
+
+            <p><m>f_{xy}=4xye^{x^2+y^2}</m>, <m>f_{yx}=4xye^{x^2+y^2}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$fx">
+              <static>e^{x+2y}</static>
+            </var>
+            <var name="$fy">
+              <static>2e^{x+2y}</static>
+            </var>
+            <var name="$fxx">
+              <static>e^{x+2y}</static>
+            </var>
+            <var name="$fxy">
+              <static>2e^{x+2y}</static>
+            </var>
+            <var name="$fyx">
+              <static>2e^{x+2y}</static>
+            </var>
+            <var name="$fyy">
+              <static>4e^{x+2y}</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real');
+              $fx=Compute("e^(x+2y)");
+              $fy=Compute("2e^(x+2y)");
+              $fxx=Compute("e^(x+2y)");
+              $fxy=Compute("2e^(x+2y)");
+              $fyx=Compute("2e^(x+2y)");
+              $fyy=Compute("4e^(x+2y)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Let <m>f(x,y) = e^{x+2y}</m>. Find:</p>
+            <p><m>f_{x}(x,y)=</m><var name="$fx" width="40" /></p>
+            <p><m>f_{y}(x,y)=</m><var name="$fy" width="40" /></p>
+            <p><m>f_{xx}(x,y)=</m><var name="$fxx" width="40" /></p>
+            <p><m>f_{xy}(x,y)=</m><var name="$fxy" width="40" /></p>
+            <p><m>f_{yx}(x,y)=</m><var name="$fyx" width="40" /></p>
+            <p><m>f_{yy}(x,y)=</m><var name="$fyy" width="40" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y) = \sin(x) \cos(y)</m></p>
+          </statement>
+          <solution>
+            <p><m>f_x=\cos(x) \cos(y)</m>, <m>f_y=-\sin(x) \sin(y)</m></p>
+
+            <p><m>f_{xx}=-\sin(x) \cos(y)</m>, <m>f_{yy}=-\sin(x) \cos(y)</m></p>
+
+            <p><m>f_{xy}=-\sin(y) \cos(x)</m>, <m>f_{yx}=-\sin(y) \cos(x)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$fx">
+              <static>3(x+y)^2</static>
+            </var>
+            <var name="$fy">
+              <static>3(x+y)^2</static>
+            </var>
+            <var name="$fxx">
+              <static>6(x+y)</static>
+            </var>
+            <var name="$fxy">
+              <static>6(x+y)</static>
+            </var>
+            <var name="$fyx">
+              <static>6(x+y)</static>
+            </var>
+            <var name="$fyy">
+              <static>6(x+y)</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real');
+              $fx=Compute("3(x+y)^2");
+              $fy=Compute("3(x+y)^2");
+              $fxx=Compute("6(x+y)");
+              $fxy=Compute("6(x+y)");
+              $fyx=Compute("6(x+y)");
+              $fyy=Compute("6(x+y)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Let <m>f(x,y) = (x+y)^3</m>. Find:</p>
+            <p><m>f_{x}(x,y)=</m><var name="$fx" width="40" /></p>
+            <p><m>f_{y}(x,y)=</m><var name="$fy" width="40" /></p>
+            <p><m>f_{xx}(x,y)=</m><var name="$fxx" width="40" /></p>
+            <p><m>f_{xy}(x,y)=</m><var name="$fxy" width="40" /></p>
+            <p><m>f_{yx}(x,y)=</m><var name="$fyx" width="40" /></p>
+            <p><m>f_{yy}(x,y)=</m><var name="$fyy" width="40" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x,y) = \cos(5xy^3)</m></p>
+          </statement>
+          <solution>
+            <p><m>f_x=-5y^3\sin(5xy^3)</m>, <m>f_y=-15xy^2\sin(5xy^3)</m></p>
+
+            <p><m>f_{xx}=-25y^6\cos(5xy^3)</m>, <m>f_{yy}=-225x^2y^4\cos(5xy^3)-30xy\sin(5xy^3)</m></p>
+
+            <p><m>f_{xy}=-75xy^5\cos(5xy^3)-15y^2\sin(5xy^3)</m>, <m>f_{yx}=-75xy^5\cos(5xy^3)-15y^2\sin(5xy^3)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$fx">
+              <static>10x cos\mathopen{}\left(5x^2+2y^3\right)\mathclose{}</static>
+            </var>
+            <var name="$fy">
+              <static>6y^2 cos\mathopen{}\left(5x^2+2y^3\right)\mathclose{}</static>
+            </var>
+            <var name="$fxx">
+              <static>10 cos\mathopen{}\left(5x^2+2y^3\right)\mathclose{}-100x^2 sin\mathopen{}\left(5x^2+2y^3\right)\mathclose{}</static>
+            </var>
+            <var name="$fxy">
+              <static>-60xy^2 sin\mathopen{}\left(5x^2+2y^3\right)\mathclose{}</static>
+            </var>
+            <var name="$fyx">
+              <static>-60xy^2 sin\mathopen{}\left(5x^2+2y^3\right)\mathclose{}</static>
+            </var>
+            <var name="$fyy">
+              <static>12y cos\mathopen{}\left(5x^2+2y^3\right)\mathclose{}-36y^4 sin\mathopen{}\left(5x^2+2y^3\right)\mathclose{}</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real');
+              $fx=Compute("10x cos(5x^2+2y^3)");
+              $fy=Compute("6y^2 cos(5x^2+2y^3)");
+              $fxx=Compute("10 cos(5x^2+2y^3)-100x^2 sin(5x^2+2y^3)");
+              $fxy=Compute("-60xy^2 sin(5x^2+2y^3)");
+              $fyx=Compute("-60xy^2 sin(5x^2+2y^3)");
+              $fyy=Compute("12y cos(5x^2+2y^3)-36y^4 sin(5x^2+2y^3)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Let <m>f(x,y) = \sin\mathopen{}\left(5x^2+2y^3\right)\mathclose{}</m>. Find:</p>
+            <p><m>f_{x}(x,y)=</m><var name="$fx" width="40" /></p>
+            <p><m>f_{y}(x,y)=</m><var name="$fy" width="40" /></p>
+            <p><m>f_{xx}(x,y)=</m><var name="$fxx" width="40" /></p>
+            <p><m>f_{xy}(x,y)=</m><var name="$fxy" width="40" /></p>
+            <p><m>f_{yx}(x,y)=</m><var name="$fyx" width="40" /></p>
+            <p><m>f_{yy}(x,y)=</m><var name="$fyy" width="40" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$fx">
+              <static>\frac{2y^2}{\sqrt{4xy^2+1}}</static>
+            </var>
+            <var name="$fy">
+              <static>\frac{4xy}{\sqrt{4xy^2+1}}</static>
+            </var>
+            <var name="$fxx">
+              <static>-\frac{4y^4}{\sqrt{4xy^2+1}^3}</static>
+            </var>
+            <var name="$fxy">
+              <static>-\frac{8xy^3}{\sqrt{4xy^2+1}^3}+\frac{4y}{\sqrt{4xy^2+1}}</static>
+            </var>
+            <var name="$fyx">
+              <static>-\frac{8xy^3}{\sqrt{4xy^2+1}^3}+\frac{4y}{\sqrt{4xy^2+1}}</static>
+            </var>
+            <var name="$fyy">
+              <static>-\frac{16x^2y^2}{\sqrt{4xy^2+1}^3}+\frac{4x}{\sqrt{4xy^2+1}}</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real');
+              $fx=Compute("2y^2/sqrt(4xy^2+1)");
+              $fy=Compute("4xy/sqrt(4xy^2+1)");
+              $fxx=Compute("-4y^4/sqrt(4xy^2+1)^3");
+              $fxy=Compute("-8xy^3/sqrt(4xy^2+1)^3+4y/sqrt(4xy^2+1)");
+              $fyx=Compute("-8xy^3/sqrt(4xy^2+1)^3+4y/sqrt(4xy^2+1)");
+              $fyy=Compute("-16x^2y^2/sqrt(4xy^2+1)^3+4x/sqrt(4xy^2+1)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Let <m>f(x,y) = \sqrt{4xy^2+1}</m>. Find:</p>
+            <p><m>f_{x}(x,y)=</m><var name="$fx" width="40" /></p>
+            <p><m>f_{y}(x,y)=</m><var name="$fy" width="40" /></p>
+            <p><m>f_{xx}(x,y)=</m><var name="$fxx" width="40" /></p>
+            <p><m>f_{xy}(x,y)=</m><var name="$fxy" width="40" /></p>
+            <p><m>f_{yx}(x,y)=</m><var name="$fyx" width="40" /></p>
+            <p><m>f_{yy}(x,y)=</m><var name="$fyy" width="40" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y) =(2x+5y)\sqrt{y}</m></p>
+          </statement>
+          <solution>
+            <p><m>f_x=2\sqrt{y}</m>, <m>f_y=5\sqrt{y}+\frac{2x+5y}{2\sqrt{y}}</m></p>
+
+            <p><m>f_{xx}=0</m>, <m>f_{yy}=\frac{5}{\sqrt{y}}-\frac{2x+5y}{4y^{3/2}}</m></p>
+
+            <p><m>f_{xy}=\frac{1}{\sqrt{y}}</m>, <m>f_{yx}=\frac{1}{\sqrt{y}}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y) =\frac{1}{x^2+y^2+1}</m></p>
+          </statement>
+          <solution>
+            <p><m>f_x=-\frac{2x}{(x^2+y^2+1)^2}</m>, <m>f_y=-\frac{2y}{(x^2+y^2+1)^2}</m></p>
+
+            <p><m>f_{xx}=\frac{8x^2}{(x^2+y^2+1)^3}-\frac{2}{(x^2+y^2+1)^2}</m>, <m>f_{yy}=\frac{8y^2}{(x^2+y^2+1)^3}-\frac{2}{(x^2+y^2+1)^2}</m></p>
+
+            <p><m>f_{xy}=\frac{8xy}{(x^2+y^2+1)^3}</m>, <m>f_{yx}=\frac{8xy}{(x^2+y^2+1)^3}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$fx">
+              <static>5</static>
+            </var>
+            <var name="$fy">
+              <static>-17</static>
+            </var>
+            <var name="$fxx">
+              <static>0</static>
+            </var>
+            <var name="$fxy">
+              <static>0</static>
+            </var>
+            <var name="$fyx">
+              <static>0</static>
+            </var>
+            <var name="$fyy">
+              <static>0</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real');
+              $fx=Compute("5");
+              $fy=Compute("-17");
+              $fxx=Compute("0");
+              $fxy=Compute("0");
+              $fyx=Compute("0");
+              $fyy=Compute("0");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Let <m>f(x,y) = 5x-17y</m>. Find:</p>
+            <p><m>f_{x}(x,y)=</m><var name="$fx" width="40" /></p>
+            <p><m>f_{y}(x,y)=</m><var name="$fy" width="40" /></p>
+            <p><m>f_{xx}(x,y)=</m><var name="$fxx" width="40" /></p>
+            <p><m>f_{xy}(x,y)=</m><var name="$fxy" width="40" /></p>
+            <p><m>f_{yx}(x,y)=</m><var name="$fyx" width="40" /></p>
+            <p><m>f_{yy}(x,y)=</m><var name="$fyy" width="40" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y) =3x^2+1</m></p>
+          </statement>
+          <solution>
+            <p><m>f_x=6x</m>, <m>f_y=0</m></p>
+
+            <p><m>f_{xx}=6</m>, <m>f_{yy}=0</m></p>
+
+            <p><m>f_{xy}=0</m>, <m>f_{yx}=0</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$fx">
+              <static>\frac{2x}{x^2+y}</static>
+            </var>
+            <var name="$fy">
+              <static>\frac{1}{x^2+y}</static>
+            </var>
+            <var name="$fxx">
+              <static>-\frac{4x^2}{(x^2+y)^2}+\frac{2}{x^2+y}</static>
+            </var>
+            <var name="$fxy">
+              <static>-\frac{2x}{(x^2+y)^2}</static>
+            </var>
+            <var name="$fyx">
+              <static>-\frac{2x}{(x^2+y)^2}</static>
+            </var>
+            <var name="$fyy">
+              <static>-\frac{1}{(x^2+y)^2}</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real');
+              $fx=Compute("2x/(x^2+y)");
+              $fy=Compute("1/(x^2+y)");
+              $fxx=Compute("-4x^2/(x^2+y)^2+2/(x^2+y)");
+              $fxy=Compute("-2x/(x^2+y)^2");
+              $fyx=Compute("-2x/(x^2+y)^2");
+              $fyy=Compute("-1/(x^2+y)^2");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Let <m>f(x,y) = \ln(x^2+y)</m>. Find:</p>
+            <p><m>f_{x}(x,y)=</m><var name="$fx" width="40" /></p>
+            <p><m>f_{y}(x,y)=</m><var name="$fy" width="40" /></p>
+            <p><m>f_{xx}(x,y)=</m><var name="$fxx" width="40" /></p>
+            <p><m>f_{xy}(x,y)=</m><var name="$fxy" width="40" /></p>
+            <p><m>f_{yx}(x,y)=</m><var name="$fyx" width="40" /></p>
+            <p><m>f_{yy}(x,y)=</m><var name="$fyy" width="40" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y) =\frac{\ln(x) }{4y}</m></p>
+          </statement>
+          <solution>
+            <p><m>f_x=\frac{1}{4xy}</m>, <m>f_y=-\frac{\ln(x) }{4y^2}</m></p>
+
+            <p><m>f_{xx}=-\frac{1}{4x^2y}</m>, <m>f_{yy}=\frac{\ln(x) }{2y^3}</m></p>
+
+            <p><m>f_{xy}=-\frac{1}{4xy^2}</m>, <m>f_{yx}=-\frac{1}{4xy^2}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$fx">
+              <static>5e^x\sin(y)</static>
+            </var>
+            <var name="$fy">
+              <static>5e^x\cos(y)</static>
+            </var>
+            <var name="$fxx">
+              <static>5e^x\sin(y)</static>
+            </var>
+            <var name="$fxy">
+              <static>5e^x\cos(y)</static>
+            </var>
+            <var name="$fyx">
+              <static>5e^x\cos(y)</static>
+            </var>
+            <var name="$fyy">
+              <static>-5e^x\sin(y)</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real');
+              $fx=Compute("5e^x sin(y)");
+              $fy=Compute("5e^x cos(y)");
+              $fxx=Compute("5e^x sin(y)");
+              $fxy=Compute("5e^x cos(y)");
+              $fyx=Compute("5e^x cos(y)");
+              $fyy=Compute("-5e^x sin(y)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Let <m>f(x,y) = 5e^x\sin(y)+9</m>. Find:</p>
+            <p><m>f_{x}(x,y)=</m><var name="$fx" width="40" /></p>
+            <p><m>f_{y}(x,y)=</m><var name="$fy" width="40" /></p>
+            <p><m>f_{xx}(x,y)=</m><var name="$fxx" width="40" /></p>
+            <p><m>f_{xy}(x,y)=</m><var name="$fxy" width="40" /></p>
+            <p><m>f_{yx}(x,y)=</m><var name="$fyx" width="40" /></p>
+            <p><m>f_{yy}(x,y)=</m><var name="$fyy" width="40" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, form a function <m>z=f(x,y)</m> such that <m>f_x</m> and <m>f_y</m> match those given.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f_x = \sin(y) +1</m>,<m>f_y = x\cos(y)</m></p>
+          </statement>
+          <solution>
+            <p><m>f(x,y) = x\sin(y) + x+ C</m>, where <m>C</m> is any constant.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <pg-macros>
+            <macro-file>parserFormulaUpToConstant.pl</macro-file>
+          </pg-macros>
+          <setup>
+            <var name="$f">
+              <static>\frac{1}{2}x^2+xy+\frac{1}{2}y^2+C</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real');
+              $f=Compute("1/2x^2+xy+1/2y^2");
+              $fev=$f->cmp(upToConstant=>1);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Form a function <m>f(x,y)</m> such that <m>f_x = x+y</m> and <m>f_y = x+y</m>.</p>
+            <p><m>f(x,y)=</m><var name="$f" evaluator="$fev" width="40" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f_x = 6xy-4y^2</m>,<m>f_y = 3x^2-8xy+2</m></p>
+          </statement>
+          <solution>
+            <p><m>f(x,y) = 3x^2y-4xy^2+2y +C</m>, where <m>C</m> is any constant.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <pg-macros>
+            <macro-file>parserFormulaUpToConstant.pl</macro-file>
+          </pg-macros>
+          <setup>
+            <var name="$f">
+              <static>\ln(x^2+y^2)+C</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real');
+              $f=Compute("ln(x^2+y^2)");
+              $fev=$f->cmp(upToConstant=>1);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Form a function <m>f(x,y)</m> such that <m>f_x = \frac{2x}{x^2+y^2}</m> and <m>f_y = \frac{2y}{x^2+y^2}</m>.</p>
+            <p><m>f(x,y)=</m><var name="$f" evaluator="$fev" width="40" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, find <m>f_x</m>, <m>f_y</m>, <m>f_z</m>, <m>f_{yz}</m> and <m>f_{zy}</m>.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y,z) = x^2e^{2y-3z}</m></p>
+          </statement>
+          <solution>
+            <p><m>f_x = 2xe^{2y-3z}</m>, <m>f_y = 2x^2e^{2y-3z}</m>, <m>f_z = -3x^2e^{2y-3z}</m></p>
+
+            <p><m>f_{yz} = -6x^2e^{2y-3z}</m>, <m>f_{zy} = -6x^2e^{2y-3z}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$fx">
+              <static>3x^2y^2+3x^2z</static>
+            </var>
+            <var name="$fy">
+              <static>2x^3y+2yz</static>
+            </var>
+            <var name="$fz">
+              <static>x^3+y^2</static>
+            </var>
+            <var name="$fyz">
+              <static>2y</static>
+            </var>
+            <var name="$fzy">
+              <static>2y</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real',z=>'Real');
+              $fx=Compute("3x^2y^2+3x^2z");
+              $fy=Compute("2x^3y+2yz");
+              $fz=Compute("x^3+y^2");
+              $fyz=Compute("2y");
+              $fzy=Compute("2y");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Let <m>f(x,y,z) = x^3y^2+x^3z+y^2z</m>. Find:</p>
+            <p><m>f_{x}(x,y,z)=</m><var name="$fx" width="40" /></p>
+            <p><m>f_{y}(x,y,z)=</m><var name="$fy" width="40" /></p>
+            <p><m>f_{z}(x,y,z)=</m><var name="$fz" width="40" /></p>
+            <p><m>f_{yz}(x,y,z)=</m><var name="$fyz" width="40" /></p>
+            <p><m>f_{zy}(x,y,z)=</m><var name="$fzy" width="40" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y,z) = \frac{3x}{7y^2z}</m></p>
+          </statement>
+          <solution>
+            <p><m>f_x = \frac{3}{7y^2z}</m>, <m>f_y = -\frac{6x}{7y^3z}</m>, <m>f_z = -\frac{3x}{7y^2z^2}</m></p>
+
+            <p><m>f_{yz} = \frac{6x}{7y^3z^2}</m>, <m>f_{zy} = \frac{6x}{7y^3z^2}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$fx">
+              <static>\frac{1}{x}</static>
+            </var>
+            <var name="$fy">
+              <static>\frac{1}{y}</static>
+            </var>
+            <var name="$fz">
+              <static>\frac{1}{z}</static>
+            </var>
+            <var name="$fyz">
+              <static>0</static>
+            </var>
+            <var name="$fzy">
+              <static>0</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real',z=>'Real');
+              $fx=Compute("1/x");
+              $fy=Compute("1/y");
+              $fz=Compute("1/z");
+              $fyz=Compute("0");
+              $fzy=Compute("0");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Let <m>f(x,y,z) = \ln(xyz)</m>. Find:</p>
+            <p><m>f_{x}(x,y,z)=</m><var name="$fx" width="40" /></p>
+            <p><m>f_{y}(x,y,z)=</m><var name="$fy" width="40" /></p>
+            <p><m>f_{z}(x,y,z)=</m><var name="$fz" width="40" /></p>
+            <p><m>f_{yz}(x,y,z)=</m><var name="$fyz" width="40" /></p>
+            <p><m>f_{zy}(x,y,z)=</m><var name="$fzy" width="40" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

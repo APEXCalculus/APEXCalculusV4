@@ -1,0 +1,1591 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_tan_norm">
+  <title>Unit Tangent and Normal Vectors</title>
+  <subsection>
+    <title>Unit Tangent Vector</title>
+    <p>Given a smooth vector-valued function <m>\vrt</m>, we defined in <xref ref="def_vector_tangent">Definition</xref> that any vector parallel to <m>\vrp(t_0)</m> is <em>tangent</em> to the graph of <m>\vrt</m> at <m>t=t_0</m>. It is often useful to consider just the <em>direction</em> of <m>\vrp(t)</m> and not its magnitude. Therefore we are interested in the unit vector in the direction of <m>\vrp(t)</m>. This leads to a definition.</p>
+
+    <definition xml:id="def_unit_tangent">
+      <title>Unit Tangent Vector</title>
+      <statement>
+        <p>Let <m>\vrt</m> be a smooth function on an open interval <m>I</m>. The unit tangent vector <m>\vec T(t)</m> is
+          <index><main>unit tangent vector</main><sub>definition</sub></index> <index><main>unit vector</main><sub>unit tangent vector</sub></index>
+          <me>
+            \vec T(t) = \frac{1}{\norm{\vrp(t)}}\vrp(t).
+          </me>
+        </p>
+      </statement>
+    </definition>
+
+    <example xml:id="ex_tannorm1">
+      <title>Computing the unit tangent vector</title>
+      <statement>
+        <p>Let <m>\vrt = \la 3\cos(t) , 3\sin(t) , 4t\ra</m>. Find <m>\vec T(t)</m> and compute <m>\vec T(0)</m> and <m>\vec T(1)</m>.</p>
+      </statement>
+      <solution>
+        <p>We apply <xref ref="def_unit_tangent">Definition</xref> to find <m>\vec T(t)</m>.
+          <md>
+            <mrow>\vec T(t) \amp = \frac{1}{\norm{\vrp(t)}}\vrp(t)</mrow>
+            <mrow>\amp =\frac{1}{\sqrt{\big(-3\sin(t) \big)^2+\big(3\cos(t) \big)^2+ 4^2}}\la -3\sin(t) ,3\cos(t) , 4\ra</mrow>
+            <mrow>\amp = \la -\frac35\sin(t) ,\frac35\cos(t) ,\frac45\ra.</mrow>
+          </md>
+        </p>
+
+        <p>We can now easily compute <m>\vec T(0)</m> and <m>\vec T(1)</m>:
+          <me>
+            \vec T(0) = \la 0,\frac35,\frac45\ra\,; \vec T(1) = \la -\frac35\sin(1) ,\frac35\cos(1) ,\frac45\ra \approx \la -0.505,0.324,0.8\ra.
+          </me>
+        </p>
+
+        <p>These are plotted in <xref ref="fig_tannorm1">Figure</xref> with their initial points at <m>\vec r(0)</m> and <m>\vec r(1)</m>, respectively. (They look rather <q>short</q> since they are only length 1.)</p>
+
+        <figure xml:id="fig_tannorm1" >
+          <caption>Plotting unit tangent vectors in <xref ref="ex_tannorm1">Example</xref>.</caption>
+          <!--
+           \includemedia[width=125pt,3Dmenu,activate=onclick,deactivate=onclick,
+          3Droll=0.4623610114058449,
+          3Dortho=0.004905222449451685,
+          3Dc2c=0.6268976330757141 0.5422312617301941 0.5594503283500671,
+          3Dcoo=-3.587019205093384 4.6990532875061035 15.216367721557617,
+          3Droo=150.00000240039893,
+          3Dlights=Headlamp,add3Djscript=asylabels.js]
+           -->
+
+
+          <!-- START figures/figtannorm1_3D.asy -->
+          <image xml:id="img_tannorm1" >
+            <asymptote>
+              <![CDATA[
+              import graph3;
+
+              //ASY file for figtannorm13D.asy in Chapter 11
+              //ASPECT RATIO IS MAKING THE UNIT NORMAL LOOK LONGER THAN THE UNIT TANGENT
+
+              size(200,200,IgnoreAspect);
+              //currentprojection=perspective(7,2,1);
+              currentprojection=orthographic(10,10,43);
+              defaultrender.merge=true;
+
+              usepackage("mathspec");
+              texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+
+              // setup and draw the axes
+              real[] myxchoice={-2,2};
+              real[] myychoice={-2,2};
+              real[] myzchoice={-10,10};
+              defaultpen(0.5mm);
+              pair xbounds=(-4,4);
+              pair ybounds=(-4,4);
+              pair zbounds=(-15,15);
+
+              xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+              yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+              zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+              label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+              label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+              label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+              //Draw the curve <3cos t,3sin t,4t> for t from -pi to pi
+              triple g(real t) {return (3*cos(t),3*sin(t),4*t);}
+              path3 mypath=graph(g,-pi,pi,operator ..); draw(mypath,blue);
+              //Draw the unit tangent and norma on the curve at t=pi/2
+              draw((3,0,0)--(3,.6,.8),red+linewidth(2),Arrow3(size=3mm));//T
+              draw((1.62,2.52,4)--(1.12,2.85,4.8),red+linewidth(2),Arrow3(size=3mm));//N
+
+
+
+
+              // ////////////////////////////////////
+              //    SAMPLE CODE
+
+              // defaultpen(fontsize(10pt));
+
+              //Draw the parabola z=y^2 for t from -2 to 2
+              //triple g(real t) {return (0,t,t^2);}
+              //path3 mypath=graph(g,-2,2,operator ..); draw(mypath,blue);
+
+              //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+              //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+
+              //triple f(pair t) {
+              //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+              //}
+              //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+
+              //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+              //path3 mypath=graph(g,-2,2,operator ..);
+
+              //pen p=rgb(0,0,1);
+              //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+
+              //draw(s,paleblue);
+              //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+              //draw(mypath,2bp+blue);
+              ]]>
+            </asymptote>
+          </image>
+          <!-- figures/figtannorm1_3D.asy END -->
+        </figure>
+
+        <p>The unit tangent vector <m>\vec T(t)</m> always has a magnitude of 1, though it is sometimes easy to doubt that is true. We can help solidify this thought in our minds by computing <m>\norm{\vec T(1)}</m>:
+          <me>
+            \norm{\vec T(1)} \approx \sqrt{(-0.505)^2+0.324^2+0.8^2} = 1.000001.
+          </me>
+        </p>
+
+        <p>We have rounded in our computation of <m>\vec T(1)</m>, so we don't get 1 exactly. We leave it to the reader to use the exact representation of <m>\vec T(1)</m> to verify it has length 1.</p>
+      </solution>
+    </example>
+
+    <p>In many ways, the previous example was <q>too nice.</q> It turned out that <m>\vrp(t)</m> was always of length 5. In the next example the length of <m>\vrp(t)</m> is variable, leaving us with a formula that is not as clean.</p>
+
+    <example xml:id="ex_tannorm2">
+      <title>Computing the unit tangent vector</title>
+      <statement>
+        <p>Let <m>\vrt=\la t^2-t,t^2+t\ra</m>. Find <m>\vec T(t)</m> and compute <m>\vec T(0)</m> and <m>\vec T(1)</m>.</p>
+      </statement>
+      <solution>
+        <p>We find <m>\vrp(t) = \la 2t-1,2t+1\ra</m>, and
+          <me>
+            \norm{\vrp(t)} = \sqrt{(2t-1)^2+(2t+1)^2} = \sqrt{8t^2+2}.
+          </me>
+        </p>
+
+        <p>Therefore
+          <me>
+            \vec T(t) = \frac{1}{\sqrt{8t^2+2}}\la 2t-1,2t+1\ra = \la \frac{2t-1}{\sqrt{8t^2+2}},\frac{2t+1}{\sqrt{8t^2+2}}\ra.
+          </me>
+        </p>
+
+        <p>When <m>t=0</m>, we have <m>\vec T(0) = \la -1/\sqrt{2},1/\sqrt{2}\ra</m>; when <m>t=1</m>, we have <m>\vec T(1) = \la 1/\sqrt{10}, 3/\sqrt{10}\ra</m>. We leave it to the reader to verify each of these is a unit vector. They are plotted in <xref ref="fig_tannorm2">Figure</xref></p>
+
+        <figure xml:id="fig_tannorm2" >
+          <caption>Plotting unit tangent vectors in <xref ref="ex_tannorm2">Example</xref>.</caption>
+          <!-- START figures/fig_tannorm2.tex -->
+          <image xml:id="img_tannorm2" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}[>=stealth]
+              \begin{axis}[%
+              %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-6,-4,-2,2,4,6},
+			%minor x tick num=4,%
+              %			extra x ticks={.33},
+              %			extra x tick labels={$1/3$},
+			%ytick={-1,1},
+			%minor y tick num=4,%extra y ticks={-5,-3,...,7},%
+			ymin=-1.1,ymax=6.5,%
+			xmin=-2.1,xmax=7%
+              ]
+
+
+              \addplot [thick,{\colorone}, smooth,domain=-2:2,samples=30] ({x^2-x},{x^2+x});
+
+
+              \draw [thick,->,{\colortwo}] (axis cs:0,0)--(axis cs:-.707,.707);
+              \draw [thick,->,{\colortwo}] (axis cs:0,2)--(axis cs:0.32,2.95);
+              \draw [thick,->,{\colorone}] (axis cs:3.79,.77)--(axis cs:3.75,.75);
+              %\draw [thick,->,{\colortwo}] (axis cs:0.5,0.25)--(axis cs:1.5,1.25);
+              %\draw [thick,->,{\colortwo}] (axis cs:1.,1.)--(axis cs:2.,3.);
+              %
+              %\draw [thick,->] (axis cs:-1.,1.)--(axis cs:-1.,3.);
+              %\draw [thick,->] (axis cs:-0.5,0.25)--(axis cs:-0.5,2.25);\draw [thick,->] (axis cs:0.,0.)--(axis cs:0.,2.);\draw [thick,->] (axis cs:0.5,0.25)--(axis cs:0.5,2.25);\draw [thick,->] (axis cs:1.,1.)--(axis cs:1.,3.);
+              %
+              %\draw [thick,->,{\colorone}] (axis cs:-.9,.81) -- (axis cs: -.89,.7921);
+
+
+              \end{axis}
+
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_tannorm2.tex END -->
+        </figure>
+      </solution>
+    </example>
+  </subsection>
+
+  <subsection>
+    <title>Unit Normal Vector</title>
+    <p>Just as knowing the direction tangent to a path is important, knowing a direction orthogonal to a path is important. When dealing with real-valued functions, we defined the normal line at a point to the be the line through the point that was perpendicular to the tangent line at that point. We can do a similar thing with vector-valued functions. Given <m>\vrt</m> in <m>\mathbb{R}^2</m>, we have 2 directions perpendicular to the tangent vector, as shown in <xref ref="fig_tannorm_intro1">Figure</xref>. It is good to wonder <q>Is one of these two directions preferable over the other?</q></p>
+
+    <figure xml:id="fig_tannorm_intro1" >
+      <caption>Given a direction in the plane, there are always two directions orthogonal to it.</caption>
+      <!-- START figures/fig_tannorm_intro1.tex -->
+      <image xml:id="img_tannorm_intro1" >
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}[>=stealth]
+          \begin{axis}[%
+          %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick=\empty,
+			%minor x tick num=4,%
+          %			extra x ticks={.33},
+          %			extra x tick labels={$1/3$},
+			ytick=\empty,
+			%minor y tick num=4,%extra y ticks={-5,-3,...,7},%
+			ymin=-.1,ymax=1.9,%
+			xmin=-.1,xmax=2.3%
+          ]
+
+
+          \addplot [thick,{\colorone}, smooth,domain=-1:1,samples=30] ({x^2-x+.6},{x^2+x+.3});
+
+          \draw[thick,->,black] (axis cs:.51,.41) -- (axis cs:.233,.83);
+
+          \draw[thick,->,{\colortwo}] (axis cs:.51,.41) -- (axis cs:.1,0.13);
+          \draw[thick,->,{\colortwo}] (axis cs:.51,.41) -- (axis cs:.93,.69);
+
+          \draw [thick,->,{\colorone}] (axis cs:0.71, 0.21)--(axis cs:.698,.218);
+
+
+
+          \end{axis}
+
+
+
+
+
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_tannorm_intro1.tex END -->
+    </figure>
+
+    <p>Given <m>\vrt</m> in <m>\mathbb{R}^3</m>, there are infinite vectors orthogonal to the tangent vector at a given point. Again, we might wonder <q>Is one of these infinite choices preferable over the others? Is one of these the `right' choice?</q></p>
+
+    <p>The answer in both <m>\mathbb{R}^2</m> and <m>\mathbb{R}^3</m> is <q>Yes, there is one vector that is not only preferable, it is the `right' one to choose.</q> Recall <xref ref="thm_vects_of_constant_length">Theorem</xref>, which states that if <m>\vrt</m> has constant length, then <m>\vrt</m> is orthogonal to <m>\vrp(t)</m> for all <m>t</m>. We know <m>\vec T(t)</m>, the unit tangent vector, has constant length. Therefore <m>\vec T(t)</m> is orthogonal to <m>\vec T\,'(t)</m>.<index><main>vector-valued function</main><sub>of constant length</sub></index></p>
+
+    <p>We'll see that <m>\vec T\,'(t)</m> is more than just a convenient choice of vector that is orthogonal to <m>\vrp(t)</m>; rather, it is the <q>right</q> choice. Since all we care about is the direction, we define this newly found vector to be a unit vector.</p>
+
+    <aside>
+      <p><m>\vec T(t)</m> is a unit vector, by definition. This <em>does not</em> imply that <m>\vec T\,'(t)</m> is also a unit vector.</p>
+    </aside>
+
+    <definition xml:id="def_unit_normal">
+      <title>Unit Normal Vector</title>
+      <statement>
+        <p>Let <m>\vrt</m> be a vector-valued function where the unit tangent vector, <m>\vec T(t)</m>, is smooth on an open interval <m>I</m>. The <term>unit normal vector</term> <m>\vec N(t)</m> is
+          <index><main>unit normal vector</main><sub>definition</sub></index><index><main>unit vector</main><sub>unit normal vector</sub></index>
+          <me>
+            \vec N(t) = \frac1{\norm{\vec T\,'(t)}}\vec T\,'(t).
+          </me>
+        </p>
+      </statement>
+    </definition>
+
+    <example xml:id="ex_tannorm3">
+      <title>Computing the unit normal vector</title>
+      <statement>
+        <p>Let <m>\vrt = \la 3\cos(t) , 3\sin(t) , 4t\ra</m> as in <xref ref="ex_tannorm1">Example</xref>. Sketch both <m>\vec T(\pi/2)</m> and <m>\vec N(\pi/2)</m> with initial points at <m>\vec r(\pi/2)</m>.</p>
+      </statement>
+      <solution>
+        <p>In <xref ref="ex_tannorm1">Example</xref>, we found <m>\vec T(t) = \la  (-3/5)\sin(t) ,(3/5)\cos(t) ,4/5\ra</m>. Therefore
+          <me>
+            \vec T\,'(t) = \la -\frac35\cos(t) ,-\frac35\sin(t) ,0\ra \text{ and }   \norm{\vec T\,'(t)} = \frac35.
+          </me>
+        </p>
+
+        <p>Thus
+          <me>
+            \vec N(t) = \frac{\vec T\,'(t)}{3/5} = \la -\cos(t) ,-\sin(t) ,0\ra.
+          </me>
+        </p>
+
+        <p>We compute <m>\vec T(\pi/2) = \la -3/5,0,4/5\ra</m> and <m>\vec N(\pi/2) = \la 0,-1,0\ra</m>. These are sketched in <xref ref="fig_tannorm3">Figure</xref>.</p>
+
+        <figure xml:id="fig_tannorm3" >
+          <caption>Plotting unit tangent and normal vectors in <xref ref="fig_tannorm3">Example</xref>.</caption>
+          <!--
+           \includemedia[width=125pt,3Dmenu,activate=onclick,deactivate=onclick,
+          3Droll=0.9552187107340909,
+          3Dortho=0.005093402229249477,
+          3Dc2c=0.5105816125869751 0.5339998006820679 0.6739070415496826,
+          3Dcoo=4.143548488616943 1.2702205181121826 14.294137954711914,
+          3Droo=150.0000014005964,
+          3Dlights=Headlamp,add3Djscript=asylabels.js]
+           -->
+
+
+          <!-- START figures/figtannorm3_3D.asy -->
+          <image xml:id="img_tannorm3" >
+            <asymptote>
+              <![CDATA[
+              import graph3;
+
+              //ASY file for figtannorm13D.asy in Chapter 11
+              //ASPECT RATIO IS MAKING THE UNIT NORMAL LOOK LONGER THAN THE UNIT TANGENT
+
+              size(200,200,IgnoreAspect);
+              //currentprojection=perspective(7,2,1);
+              currentprojection=orthographic(10,10,34);
+              defaultrender.merge=true;
+
+              usepackage("mathspec");
+              texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+              // setup and draw the axes
+              real[] myxchoice={-3,3};
+              real[] myychoice={-3,3};
+              real[] myzchoice={-10,10};
+              defaultpen(0.5mm);
+              //pair xbounds=(-5,5);
+              //pair ybounds=(-5,5);
+              //pair zbounds=(-1,9);
+
+              pair xbounds=(-4,4);
+              pair ybounds=(-4,4);
+              pair zbounds=(-15,15);
+
+              xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+              yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+              zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+              label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+              label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+              label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+              //Draw the curve <3cos t,3sin t,4t> for t from -pi to pi
+              triple g(real t) {return (3*cos(t),3*sin(t),4*t);}
+              //path3 mypath=graph(g,0,pi/2+pi/4,operator ..); draw(mypath,blue);
+              path3 mypath=graph(g,-pi,pi,operator ..); draw(mypath,blue);
+
+              //Draw the unit tangent and norma on the curve at t=pi/2
+              //draw((0,3,2*pi)--(-3/5,3,2*pi+4/5),red+linewidth(2),Arrow3(size=3mm));//T
+              draw((0,3,2*pi)--(-.942,3,2*pi+1.256),red+linewidth(2),Arrow3(size=3mm));//T
+              draw((0,3,2*pi)--(0,2,2*pi),red+linewidth(2),Arrow3(size=3mm));//N
+
+
+
+
+              // ////////////////////////////////////
+              //    SAMPLE CODE
+
+              // defaultpen(fontsize(10pt));
+
+              //Draw the parabola z=y^2 for t from -2 to 2
+              //triple g(real t) {return (0,t,t^2);}
+              //path3 mypath=graph(g,-2,2,operator ..); draw(mypath,blue);
+
+              //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+              //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+
+              //triple f(pair t) {
+              //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+              //}
+              //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+
+              //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+              //path3 mypath=graph(g,-2,2,operator ..);
+
+              //pen p=rgb(0,0,1);
+              //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+
+              //draw(s,paleblue);
+              //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+              //draw(mypath,2bp+blue);
+              ]]>
+            </asymptote>
+          </image>
+          <!-- figures/figtannorm3_3D.asy END -->
+        </figure>
+      </solution>
+    </example>
+
+    <p>The previous example was once again <q>too nice.</q> In general, the expression for <m>\vec T(t)</m> contains fractions of square roots, hence the expression of <m>\vec T\,'(t)</m> is very messy. We demonstrate this in the next example.</p>
+
+    <example xml:id="ex_tannorm4">
+      <title>Computing the unit normal vector</title>
+      <statement>
+        <p>Let <m>\vrt=\la t^2-t,t^2+t\ra</m> as in <xref ref="ex_tannorm2">Example</xref>. Find <m>\vec N(t)</m> and sketch <m>\vrt</m> with the unit tangent and normal vectors at <m>t=-1,0</m> and 1.</p>
+      </statement>
+      <solution>
+        <p>In <xref ref="ex_tannorm2">Example</xref>, we found
+          <me>
+            \vec T(t) = \la \frac{2t-1}{\sqrt{8t^2+2}},\frac{2t+1}{\sqrt{8t^2+2}}\ra.
+          </me>
+        </p>
+
+        <p>Finding <m>\vec T\,'(t)</m> requires two applications of the Quotient Rule:
+          <md>
+            <mrow>T\,'(t) \amp = \la \frac{\sqrt{8t^2+2}(2)-(2t-1)\left(\frac12(8t^2+2)^{-1/2}(16t)\right)}{8t^2+2},\right.</mrow>
+            <mrow>\amp  \left.\frac{\sqrt{8t^2+2}(2)-(2t+1)\left(\frac12(8t^2+2)^{-1/2}(16t)\right)}{8t^2+2} \ra</mrow>
+            <mrow>\amp = \la \frac{4 (2 t+1)}{\left(8 t^2+2\right)^{3/2}},\frac{4
+               (1-2 t)}{\left(8 t^2+2\right)^{3/2}}\ra</mrow>
+          </md>
+        </p>
+
+        <p>This is not a unit vector; to find <m>\vec N(t)</m>, we need to divide <m>\vec T\,'(t)</m> by it's magnitude.
+          <md>
+            <mrow>\norm{\vec T\,'(t)} \amp = \sqrt{\frac{16(2t+1)^2}{(8t^2+2)^3}+\frac{16(1-2t)^2}{(8t^2+2)^3}}</mrow>
+            <mrow>\amp = \sqrt{\frac{16(8t^2+2)}{(8t^2+2)^3}}</mrow>
+            <mrow>\amp = \frac{4}{8t^2+2}.</mrow>
+          </md>
+        </p>
+
+        <p>Finally,
+          <md>
+            <mrow>\vec N(t) \amp = \frac1{4/(8t^2+2)}\la \frac{4 (2 t+1)}{\left(8 t^2+2\right)^{3/2}},\frac{4
+               (1-2 t)}{\left(8 t^2+2\right)^{3/2}}\ra</mrow>
+            <mrow>\amp = \la \frac{2t+1}{\sqrt{8t^2+2}},-\frac{2t-1}{\sqrt{8t^2+2}}\ra.</mrow>
+          </md>
+        </p>
+
+        <p>Using this formula for <m>\vec N(t)</m>, we compute the unit tangent and normal vectors for <m>t=-1,0</m> and 1 and sketch them in <xref ref="fig_tannorm4">Figure</xref>.</p>
+
+        <figure xml:id="fig_tannorm4" >
+          <caption>Plotting unit tangent and normal vectors in <xref ref="ex_tannorm4">Example</xref>.</caption>
+          <!-- START figures/fig_tannorm4.tex -->
+          <image xml:id="img_tannorm4" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}[>=stealth]
+              \begin{axis}[%
+              %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-6,-4,-2,2,4,6},
+			%minor x tick num=4,%
+              %			extra x ticks={.33},
+              %			extra x tick labels={$1/3$},
+			%ytick={-1,1},
+			%minor y tick num=4,%extra y ticks={-5,-3,...,7},%
+			ymin=-1.1,ymax=6.5,%
+			xmin=-2.1,xmax=7%
+              ]
+
+
+              \addplot [thick,{\colorone}, smooth,domain=-2:2,samples=30] ({x^2-x},{x^2+x});
+
+
+              \draw [thick,->,{\colortwo}] (axis cs:0,0)--(axis cs:-.707,.707);
+              \draw [thick,->,{\colortwo}] (axis cs:0,2)--(axis cs:0.32,2.95);
+              \draw [thick,->,{\colortwo}] (axis cs:2,0)--(axis cs:1.05,-.32);
+
+              \draw [thick,->,{\colortwo}] (axis cs:0,0)--(axis cs:.707,.707);
+              \draw [thick,->,{\colortwo}] (axis cs:0,2)--(axis cs:.95,1.68);
+              \draw [thick,->,{\colortwo}] (axis cs:2,0)--(axis cs:1.68,0.95);
+
+              \draw [thick,->,{\colorone}] (axis cs:3.79,.77)--(axis cs:3.75,.75);
+
+
+
+              \end{axis}
+
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_tannorm4.tex END -->
+        </figure>
+      </solution>
+    </example>
+
+    <p>The final result for <m>\vec N(t)</m> in <xref ref="ex_tannorm4">Example</xref> is suspiciously similar to <m>\vec T(t)</m>. There is a clear reason for this. If <m>\vec u = \la u_1,u_2\ra</m> is a unit vector in <m>\mathbb{R}^2</m>, then the <em>only</em> unit vectors orthogonal to <m>\vec u</m> are <m>\la -u_2,u_1\ra</m> and <m>\la u_2,-u_1\ra</m>. Given <m>\vec T(t)</m>, we can quickly determine <m>\vec N(t)</m> if we know which term to multiply by <m>(-1)</m>.</p>
+
+    <p>Consider again <xref ref="fig_tannorm4">Figure</xref>, where we have plotted some unit tangent and normal vectors. Note how <m>\vec N(t)</m> always points <q>inside</q> the curve, or to the concave side of the curve. This is not a coincidence; this is true in general. Knowing the direction that <m>\vec r(t)</m> <q>turns</q> allows us to quickly find <m>\vec N(t)</m>.</p>
+
+    <theorem xml:id="thm_concave">
+      <title>Unit Normal Vectors in <m>\mathbb{R}^2</m></title>
+      <statement>
+        <p>Let <m>\vec r(t)</m> be a vector-valued function in <m>\mathbb{R}^2</m> where <m>\vec T\,'(t)</m> is smooth on an open interval <m>I</m>. Let <m>t_0</m> be in <m>I</m> and <m>\vec T(t_0) = \la t_1,t_2\ra</m> Then <m>\vec N(t_0)</m> is either
+          <me>
+            \vec N(t_0) = \la -t_2,t_1\ra  \text{ or }  \vec N(t_0) = \la t_2,-t_1\ra,
+          </me>
+          whichever is the vector that points to the concave side of the graph of <m>\vec r</m>.
+          <index><main>unit tangent vector</main><sub>in <m>\mathbb{R}^2</m></sub></index><index><main>unit normal vector</main><sub>in <m>\mathbb{R}^2</m></sub></index></p>
+      </statement>
+    </theorem>
+  </subsection>
+
+  <subsection>
+    <title>Application to Acceleration</title>
+    <p>Let <m>\vrt</m> be a position function. It is a fact (stated later in <xref ref="thm_acc_plane">Theorem</xref>)
+      that acceleration, \vat, lies in the plane defined by <m>\vec T</m> and <m>\vec N</m>. That is, there are scalars <m>a_{\text{T} }</m> and <m>a_{\text{N} }</m> such that
+      <me>
+        \vat = a_{\text{T} }\vec T(t) + a_{\text{N} }\vec N(t).
+      </me>
+    </p>
+
+    <p>The scalar <m>a_{\text{T} }</m> measures <q>how much</q> acceleration is in the direction of travel, that is, it measures the component of acceleration that affects the speed. The scalar <m>a_{\text{N} }</m> measures <q>how much</q> acceleration is perpendicular to the direction of travel, that is, it measures the component of acceleration that affects the direction of travel.
+      <index><main>unit tangent vector</main><sub>and acceleration</sub></index><index><main>unit normal vector</main><sub>and acceleration</sub></index></p>
+
+    <p>We can find <m>a_{\text{T} }</m> using the orthogonal projection of <m>\vec a(t)</m> onto <m>\vec T(t)</m> (review <xref ref="def_orthogonal_projection">Definition</xref> in <xref ref="sec_dot_product">Section</xref> if needed).
+      Recalling that since <m>\vec T(t)</m> is a unit vector, <m>\vec T(t)\cdot\vec T(t)=1</m>, so we have
+      <me>
+        \proj{a(t)}{T(t)} = \frac{\vec a(t)\cdot\vec T(t)}{\vec T(t)\cdot\vec T(t)}\vec T(t) = \underbrace{\big(\vec a(t)\cdot\vec T(t)\big)}_{a_{\text{T} }}\vec T(t).
+      </me>
+    </p>
+
+    <p>Thus the amount of \vat<nbsp />in the direction of <m>\vec T(t)</m> is <m>a_{\text{T} }=\vat\cdot\vec T(t)</m>. The same logic gives <m>a_{\text{N} } = \vat\cdot\vec N(t)</m>.</p>
+
+    <p>While this is a fine way of computing <m>a_{\text{T} }</m>, there are simpler ways of finding <m>a_{\text{N} }</m> (as finding <m>\vec N</m> itself can be complicated). The following theorem gives alternate formulas for <m>a_{\text{T} }</m> and <m>a_{\text{N} }</m>.</p>
+
+    <aside>
+      <p>Keep in mind that both <m>a_\text{T}</m> and <m>a_\text{N}</m> are functions of <m>t</m>; that is, the scalar changes depending on <m>t</m>. It is convention to drop the <q><m>(t)</m></q> notation from <m>a_\text{T} (t)</m> and simply write <m>a_\text{T}</m>.</p>
+    </aside>
+
+    <theorem xml:id="thm_acc_plane">
+      <title>Acceleration in the Plane Defined by <m>\vec T</m> and <m>\vec N</m></title>
+      <statement>
+        <p>Let <m>\vrt</m> be a position function with acceleration \vat<nbsp />and unit tangent and normal vectors <m>\vec T(t)</m> and <m>\vec N(t)</m>. Then <m>\vat</m> lies in the plane defined by <m>\vec T(t)</m> and <m>\vec N(t)</m>; that is, there exists scalars <m>a_\text{T}</m> and <m>a_\text{N}</m> such that
+          <me>
+            \vat = a_\text{T} \vec T(t) + a_\text{N} \vec N(t).
+          </me>
+        </p>
+
+        <p>Moreover,
+          <md>
+            <mrow>a_\text{T}  \amp = \vat\cdot\vec T(t) = \frac{d}{dt}\Big(\norm{\vec v(t)}\Big)</mrow>
+            <mrow>a_\text{N}  \amp = \vat\cdot \vec N(t) = \sqrt{\norm{\vec a(t)}^2-a_\text{T} ^2} = \frac{\norm{\vat\times\vvt}}{\norm{\vvt}} = \norm{\vvt}\,\norm{\vec T\,'(t)}</mrow>
+          </md>
+        </p>
+      </statement>
+    </theorem>
+
+    <p><index><main>unit tangent vector</main><sub>and acceleration</sub></index><index><main>unit normal vector</main><sub>and acceleration</sub></index><index><main>an@<m>a_\text{N}</m></main></index><index><main>at@<m>a_\text{T}</m></main></index><index><main>unit normal vector</main><sub>an@<m>a_\text{N}</m></sub></index><index><main>unit tangent vector</main><sub>at@<m>a_\text{T}</m></sub></index></p>
+
+    <p>Note the second formula for <m>a_\text{T}</m>: <m>\ds \frac{d}{dt}\Big(\norm{\vvt}\Big)</m>. This measures the rate of change of speed, which again is the amount of acceleration in the direction of travel.</p>
+
+    <example xml:id="ex_tannorm5">
+      <title>Computing <m>a_T</m> and <m>a_N</m></title>
+      <statement>
+        <p>Let <m>\vrt = \la 3\cos(t) , 3\sin(t) , 4t\ra</m> as in <xref ref="ex_tannorm1">Examples</xref> and <xref ref="ex_tannorm3"></xref>. Find <m>a_\text{T}</m> and <m>a_\text{N}</m>.</p>
+      </statement>
+      <solution>
+        <p>The previous examples give <m>\vat = \la -3\cos(t) ,-3\sin(t) ,0\ra</m> and
+          <me>
+            \vec T(t) = \la -\frac35\sin(t) ,\frac35\cos(t) ,\frac45\ra  \text{ and }  \vec N(t) = \la -\cos(t) ,-\sin(t) ,0\ra.
+          </me>
+        </p>
+
+        <p>We can find <m>a_\text{T}</m> and <m>a_\text{N}</m> directly with dot products:
+          <md>
+            <mrow>a_\text{T}  \amp = \vat\cdot \vec T(t) = \frac95\cos(t) \sin(t) -\frac95\cos(t) \sin(t) +0 = 0.</mrow>
+            <mrow>a_\text{N}  \amp = \vat\cdot \vec N(t) = 3\cos^2(t) +3\sin^2(t) + 0 = 3.</mrow>
+          </md>
+        </p>
+
+        <p>Thus <m>\vat = 0\vec T(t) + 3\vec N(t) = 3\vec N(t)</m>, which is clearly the case.</p>
+
+        <p>What is the practical interpretation of these numbers? <m>a_\text{T} =0</m> means the object is moving at a constant speed, and hence all acceleration comes in the form of direction change.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_tannorm6">
+      <title>Computing <m>a_T</m> and <m>a_N</m></title>
+      <statement>
+        <p>Let <m>\vrt=\la t^2-t,t^2+t\ra</m> as in <xref ref="ex_tannorm2">Examples</xref> and <xref ref="ex_tannorm4"></xref>. Find <m>a_\text{T}</m> and <m>a_\text{N}</m>.</p>
+      </statement>
+      <solution>
+        <p>The previous examples give <m>\vat = \la 2,2\ra</m> and
+          <me>
+            \vec T(t) = \la \frac{2t-1}{\sqrt{8t^2+2}},\frac{2t+1}{\sqrt{8t^2+2}}\ra  \text{ and }  \vec N(t) = \la \frac{2t+1}{\sqrt{8t^2+2}},-\frac{2t-1}{\sqrt{8t^2+2}}\ra.
+          </me>
+        </p>
+
+        <p>While we can compute <m>a_\text{N}</m> using <m>\vec N(t)</m>, we instead demonstrate using another formula from <xref ref="thm_acc_plane">Theorem</xref>.
+          <md>
+            <mrow>a_\text{T}  \amp = \vat\cdot\vec T(t) = \frac{4t-2}{\sqrt{8t^2+2}}+\frac{4t+2}{\sqrt{8t^2+2}} = \frac{8t}{\sqrt{8t^2+2}}.</mrow>
+            <mrow>a_\text{N}  \amp = \sqrt{\norm{\vat}^2-a_\text{T} ^2} = \sqrt{8-\left(\frac{8t}{\sqrt{8t^2+2}}\right)^2}=\frac{4}{\sqrt{8t^2+2}}.</mrow>
+          </md>
+        </p>
+
+        <p>When <m>t=2</m>, <m>\ds a_\text{T}  = \frac{16}{\sqrt{34}}\approx 2.74</m> and <m>\ds a_\text{N}  = \frac{4}{\sqrt{34}} \approx 0.69</m>. We interpret this to mean that at <m>t=2</m>, the particle is acclerating mostly by increasing speed, not by changing direction. As the path near <m>t=2</m> is relatively straight, this should make intuitive sense. <xref ref="fig_tannorm6">Figure</xref> gives a graph of the path for reference.</p>
+
+        <figure xml:id="fig_tannorm6" >
+          <caption>Graphing <m>\vec r(t)</m> in <xref ref="ex_tannorm6">Example</xref>.</caption>
+          <!-- START figures/fig_tannorm6.tex -->
+          <image xml:id="img_tannorm6" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}[>=stealth]
+              \begin{axis}[%
+              %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-6,-4,-2,2,4,6},
+			%minor x tick num=4,%
+              %			extra x ticks={.33},
+              %			extra x tick labels={$1/3$},
+			%ytick={-1,1},
+			%minor y tick num=4,%extra y ticks={-5,-3,...,7},%
+			ymin=-1.1,ymax=6.5,%
+			xmin=-2.1,xmax=7%
+              ]
+
+
+              \addplot [thick,{\colorone}, smooth,domain=-2.1:2.1,samples=30] ({x^2-x},{x^2+x});
+
+              \filldraw [black] (axis cs: 2,6) circle (1.5pt) node [below right] {\scriptsize $t=2$};
+              \filldraw [black] (axis cs: 0,0) circle (1.5pt) node [above right] {\scriptsize $t=0$};
+
+              \draw (axis cs: 4.2,1.8) node {\scriptsize $\vec r(t)$};
+              \draw [thick,->,{\colorone}] (axis cs:3.79,.77)--(axis cs:3.75,.75);
+
+
+
+              \end{axis}
+
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_tannorm6.tex END -->
+        </figure>
+
+        <p>Contrast this with <m>t=0</m>, where <m>a_\text{T}  = 0</m> and <m>a_\text{N}  = 4/\sqrt{2}\approx 2.82</m>. Here the particle's speed is not changing and all acceleration is in the form of direction change.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_tannorm7">
+      <title>Analyzing projectile motion</title>
+      <statement>
+        <p>A ball is thrown from a height of 240ft with an initial speed of 64ft/s and an angle of elevation of <m>30^\circ</m>. Find the position function <m>\vrt</m> of the ball and analyze <m>a_\text{T}</m> and <m>a_\text{N}</m>.<index><main>projectile motion</main></index></p>
+      </statement>
+      <solution>
+        <p>Using <xref ref="idea_projectile">Key Idea</xref> of <xref ref="sec_vvf_motion">Section</xref> we form the position function of the ball:
+          <me>
+            \vrt = \la \big(64\cos(30^\circ) \big)t, -16t^2+\big(64\sin(30^\circ) \big)t+240\ra,
+          </me>
+          which we plot in <xref ref="fig_tannorm7b">Figure</xref>.</p>
+
+        <figure xml:id="fig_tannorm7b" >
+          <caption>Plotting the position of a thrown ball, with 1s increments shown.</caption>
+          <!-- START figures/fig_tannorm7b.tex -->
+          <image xml:id="img_tannorm7b" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}[>=stealth]
+              \begin{axis}[%
+              %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			%xtick={-6,-4,-2,2,4,6},
+			%minor x tick num=4,%
+              %			extra x ticks={.33},
+              %			extra x tick labels={$1/3$},
+			%ytick={-1,1},
+			%minor y tick num=4,%extra y ticks={-5,-3,...,7},%
+			ymin=-10,ymax=260,%
+			xmin=-10,xmax=310%
+              ]
+
+
+              \addplot [thick,{\colorone}, smooth,domain=0:5,samples=30] ({64*cos(30)*x},{-16*x^2+64*sin(30)*x+240});
+
+              \filldraw [black] (axis cs: 0,240) circle (1.5pt) node [below right] {\scriptsize $t=0$};
+              \filldraw [black] (axis cs: 55.4,256) circle (1.5pt) node (A)[ ] {};
+              \filldraw [black] (axis cs: 111,240) circle (1.5pt) node [above right] {\scriptsize $t=2$};
+              \filldraw [black] (axis cs: 166,192) circle (1.5pt) node [above right] {\scriptsize $t=3$};
+              \filldraw [black] (axis cs: 222,112) circle (1.5pt) node [above right] {\scriptsize $t=4$};
+              \filldraw [black] (axis cs: 277,0) circle (1.5pt) node (B) [] {};
+
+
+
+              \draw [thick,->,{\colorone}] (axis cs:149.649, 209.76)--(axis cs:152,207);
+
+
+
+              \end{axis}
+
+
+
+
+              \draw (A) node[above] {{\scriptsize $t=1$}};
+              \draw (B) node [shift={(9pt,8pt)}] {\scriptsize $t=5$};
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_tannorm7b.tex END -->
+        </figure>
+
+        <p>From this we find <m>\vvt = \la 64\cos(30^\circ) , -32t+64\sin(30^\circ) \ra</m> and <m>\vat = \la 0,-32\ra</m>. Computing <m>\vec T(t)</m> is not difficult, and with some simplification we find
+          <me>
+            \vec T(t) = \la \frac{\sqrt{3}}{\sqrt{t^2-2t+4}}, \frac{1-t}{\sqrt{t^2-2t+4}}\ra.
+          </me>
+        </p>
+
+        <p>With <m>\vat</m> as simple as it is, finding <m>a_\text{T}</m> is also simple:
+          <me>
+            a_\text{T}  = \vat\cdot \vec T(t) = \frac{32t-32}{\sqrt{t^2-2t+4}}.
+          </me>
+        </p>
+
+        <p>We choose to not find <m>\vec N(t)</m> and find <m>a_\text{N}</m> through the formula <m>a_\text{N}  = \sqrt{\norm{\vat}^2-a_\text{T} ^2\,}</m> :
+          <me>
+            a_\text{N}  = \sqrt{32^2-\left(\frac{32t-32}{\sqrt{t^2-2t+4}}\right)^2} = \frac{32\sqrt{3}}{\sqrt{t^2-2t+4}}.
+          </me>
+        </p>
+
+        <p><xref ref="fig_tannorm7a">Figure</xref> gives a table of values of <m>a_\text{T}</m> and <m>a_\text{N}</m>. When <m>t=0</m>, we see the ball's speed is decreasing; when <m>t=1</m> the speed of the ball is unchanged. This corresponds to the fact that at <m>t=1</m> the ball reaches its highest point.</p>
+
+        <p>After <m>t=1</m> we see that <m>a_\text{N}</m> is decreasing in value. This is because as the ball falls, it's path becomes straighter and most of the acceleration is in the form of speeding up the ball, and not in changing its direction.</p>
+
+        <table xml:id="fig_tannorm7a" >
+          <caption>A table of values of <m>a_T</m> and <m>a_N</m> in <xref ref="ex_tannorm7">Example</xref>.</caption>
+          <tabular>
+            <row>
+              <cell><m>t</m></cell>
+              <cell><m>a_\text{T}</m></cell>
+              <cell><m>a_\text{N}</m></cell>
+            </row>
+            <row bottom="minor">
+              <cell></cell>
+              <cell></cell>
+              <cell></cell>
+            </row>
+            <row>
+              <cell><m>0</m></cell>
+              <cell><m>-16</m></cell>
+              <cell><m>27.7</m></cell>
+            </row>
+            <row>
+              <cell><m>1</m></cell>
+              <cell><m>0</m></cell>
+              <cell><m>32</m></cell>
+            </row>
+            <row>
+              <cell><m>2</m></cell>
+              <cell><m>16</m></cell>
+              <cell><m>27.7</m></cell>
+            </row>
+            <row>
+              <cell><m>3</m></cell>
+              <cell><m>24.2</m></cell>
+              <cell><m>20.9</m></cell>
+            </row>
+            <row>
+              <cell><m>4</m></cell>
+              <cell><m>27.7</m></cell>
+              <cell><m>16</m></cell>
+            </row>
+            <row>
+              <cell><m>5</m></cell>
+              <cell><m>29.4</m></cell>
+              <cell><m>12.7</m></cell>
+            </row>
+          </tabular>
+        </table>
+      </solution>
+    </example>
+
+    <p>Our understanding of the unit tangent and normal vectors is aiding our understanding of motion. The work in <xref ref="ex_tannorm7">Example</xref> gave quantitative analysis of what we intuitively knew.</p>
+
+    <p>The next section provides two more important steps towards this analysis.
+      We currently describe position only in terms of time. In everyday life, though, we often describe position in terms of distance (<q>The gas station is about 2 miles ahead, on the left.</q>). The <em>arc length parameter</em> allows us to reference position in terms of distance traveled.</p>
+
+    <p>We also intuitively know that some paths are straighter than others <mdash /> and some are curvier than others, but we lack a measurement of <q>curviness.</q> The arc length parameter provides a way for us to compute <em>curvature</em>, a quantitative measurement of how curvy a curve is.</p>
+  </subsection>
+
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <statement>
+            <p>If <m>\vec T(t)</m> is a unit tangent vector, what is <m>\norm{\vec T(t)}</m>?</p>
+            <p><var name="1" width="5" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <statement>
+            <p>If <m>\vec N(t)</m> is a unit normal vector, what is <m>\vec N(t)\cdot \vrp(t)</m>?</p>
+            <p><var name="0" width="5" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>The acceleration vector <m>\vat</m> lies in the plane defined by what two vectors?</p>
+          </statement>
+          <solution>
+            <p><m>\vec T(t)</m> and <m>\vec N(t)</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>a_\text{T}</m> measures how much the acceleration is affecting the <fillin /> of an object.</p>
+          </statement>
+          <solution>
+            <p>the speed</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, given <m>\vrt</m>, find <m>\vec T(t)</m> and evaluate it at the indicated value of <m>t</m>.</p>
+      </introduction>
+      <exercise xml:id="x11_04_ex_05">
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\vrt = \la 2t^2,t^2-t\ra</m>,<m>t=1</m></p>
+          </statement>
+          <solution>
+            <p><m>\vec T(t) = \la\frac{4 t}{\sqrt{20 t^2-4t+1}},\frac{2 t-1}{\sqrt{20 t^2-4t+1}}\ra</m>;
+              <m>\vec T(1) = \la 4/\sqrt{17},1/\sqrt{17}\ra</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$T">
+              <static>\la \frac{1}{\sqrt{1+\sin^2(t) }},-\frac{\sin(t) }{\sqrt{1+\sin^2(t) }} \ra</static>
+            </var>
+            <var name="$Ta">
+              <static>\la \sqrt{2/3}, -1/\sqrt{3}\ra</static>
+            </var>
+            <pg-code>
+              Context("Vector2D");
+              Context()->variables->are(t=>'Real');
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $T=Compute("&lt;1/sqrt(1+sin^2(t)),-sin(t)/sqrt(1+sin^2(t))>");
+              $Ta=Compute("&lt;sqrt(2/3),-1/sqrt(3)>");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Given <m>\vrt = \la t,\cos(t) \ra</m>:<ol label="a">
+              <li>
+                <p>Find <m>\vec T(t)</m>.</p>
+                <p><var name="$T" width="30" /></p>
+              </li>
+              <li>
+                <p>Find <m>\vec T(\pi/4)</m>.</p>
+                <p><var name="$Ta" width="30" /></p>
+              </li>
+            </ol></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\vrt = \la \cos^3(t) ,\sin^3(t) \ra</m>,<m>t=\pi/4</m></p>
+          </statement>
+          <solution>
+            <p><m>\vec T(t) = \frac{\cos(t) \sin(t) }{\sqrt{\cos^2(t) \sin^2(t) }}\la -\cos(t) ,\sin(t) \ra</m>. (Be careful; this cannot be simplified as just <m>\la -\cos(t) ,\sin(t) \ra</m> as <m>\sqrt{\cos^2(t) \sin^2(t) }\neq \cos(t) \sin(t)</m>, but rather <m>\abs{\cos(t) \sin(t) }</m>.)
+              <m>\vec T(\pi/4) = \la -\sqrt{2}/2,\sqrt{2}/2\ra</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise xml:id="x11_04_ex_08">
+        <webwork seed="1">
+          <setup>
+            <var name="$T">
+              <static>\la -\sin(t) ,\cos(t) \ra</static>
+            </var>
+            <var name="$Ta">
+              <static>\la 0, -1\ra</static>
+            </var>
+            <pg-code>
+              Context("Vector2D");
+              Context()->variables->are(t=>'Real');
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $T=Compute("&lt;-sin(t), cos(t)>");
+              $Ta=Compute("&lt;0,-1>");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Given <m>\vrt = \la \cos(t) , \sin(t) \ra</m>:<ol label="a">
+              <li>
+                <p>Find <m>\vec T(t)</m>.</p>
+                <p><var name="$T" width="30" /></p>
+              </li>
+              <li>
+                <p>Find <m>\vec T(\pi)</m>.</p>
+                <p><var name="$Ta" width="30" /></p>
+              </li>
+            </ol></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, find the equation of the line tangent to the curve at the indicated <m>t</m>-value using the unit tangent vector. Note: these are the same problems as in <xref ref="x11_04_ex_05">Exercises</xref> <mdash /> <xref ref="x11_04_ex_08"></xref>.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$L">
+              <static>\la 2,0\ra + t\la 4/\sqrt{17},1/\sqrt{17}\ra</static>
+            </var>
+            <pg-code>
+              Context("Vector2D");
+              Context()->variables->are(t=>'Real');
+              $L=Compute("(2,0) + t*&lt;4/sqrt(17),1/sqrt(17)>");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find the vector equation of the line tangent to <m>\vrt = \la 2t^2,t^2-t \ra</m> at <m>t=1</m> using the unit tangent vector.</p>
+            <p><m>\ell(t)=</m><var name="$L" width="30" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$L">
+              <static>\la \pi/4,\sqrt{2}/{2}\ra + t\la \sqrt{2/3},-1/\sqrt{3}\ra</static>
+            </var>
+            <pg-code>
+              Context("Vector2D");
+              Context()->variables->are(t=>'Real');
+              $L=Compute("(pi/4,sqrt(2)/2) + t*&lt;sqrt(2/3),-1/sqrt(3)>");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find the vector equation of the line tangent to <m>\vrt = \la t,\cos(t) \ra</m> at <m>t=\pi/4</m> using the unit tangent vector.</p>
+            <p><m>\ell(t)=</m><var name="$L" width="30" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\vrt = \la \cos^3(t) ,\sin^3(t) \ra</m>,<m>t=\pi/4</m></p>
+          </statement>
+          <solution>
+            <p><m>\ell(t) = \la \sqrt{2}/4,\sqrt{2}/4\ra + t\la -\sqrt{2}/2,\sqrt{2}/2\ra</m>; in parametric form,</p>
+
+            <p><m>\ell(t) = \left\{\begin{array}{ccc} x\amp =\amp \sqrt{2}/4-\sqrt{2}t/2 \\ y \amp =\amp  \sqrt{2}/4+\sqrt{2}t/2
+              \end{array} \right.</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$L">
+              <static>\la -1,0\ra + t\la 0,-1\ra</static>
+            </var>
+            <pg-code>
+              Context("Vector2D");
+              Context()->variables->are(t=>'Real');
+              $L=Compute("(-1,0) + t*&lt;0,-1>");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find the vector equation of the line tangent to <m>\vrt = \la \cos(t) ,\sin(t) \ra</m> at <m>t=\pi</m> using the unit tangent vector.</p>
+            <p><m>\ell(t)=</m><var name="$L" width="30" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, find <m>\vec N(t)</m> using <xref ref="def_unit_normal">Definition</xref>. Confirm the result using <xref ref="thm_concave">Theorem</xref>.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\vrt = \la 3\cos(t) , 3\sin(t) \ra</m></p>
+          </statement>
+          <solution>
+            <p><m>\vec T(t) = \la -\sin(t) ,\cos(t) \ra</m>; <m>\vec N(t) = \la -\cos(t) ,-\sin(t) \ra</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\vrt = \la t, t^2 \ra</m></p>
+          </statement>
+          <solution>
+            <p><m>\vec T(t) = \la \frac{1}{\sqrt{1+4t^2}},\frac{2t}{\sqrt{1+4t^2}}\ra</m>; <m>\vec N(t) = \la -\frac{2t}{\sqrt{1+4t^2}},\frac{1}{\sqrt{1+4t^2}}\ra</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\vrt = \la \cos(t) ,2\sin(t) \ra</m></p>
+          </statement>
+          <solution>
+            <p><m>\vec T(t) = \la -\frac{\sin(t) }{\sqrt{4\cos^2(t) +\sin^2(t) }},\frac{2\cos(t) }{\sqrt{4\cos^2(t) +\sin^2(t) }}\ra</m>; <m>\vec N(t) = \la -\frac{2\cos(t) }{\sqrt{4\cos^2(t) +\sin^2(t) }},-\frac{\sin(t) }{\sqrt{4\cos^2(t) +\sin^2(t) }}\ra</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\vrt = \la e^t,e^{-t} \ra</m></p>
+          </statement>
+          <solution>
+            <p><m>\vec T(t) = \la \frac{e^t}{\sqrt{e^{2t}+e^{-2t}}},-\frac{e^{-t}}{\sqrt{e^{2t}+e^{-2t}}}\ra</m>; <m>\vec N(t) = \la \frac{e^{-t}}{\sqrt{e^{2t}+e^{-2t}}},\frac{e^{t}}{\sqrt{e^{2t}+e^{-2t}}}\ra</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, a position function <m>\vrt</m> is given along with its unit tangent vector <m>\vec T(t)</m> evaluated at <m>t=a</m>, for some value of <m>a</m>.</p>
+
+        <p><ol label="a">
+          <li>
+            <p>Confirm that <m>\vec T(a)</m> is as stated.</p>
+          </li>
+
+          <li>
+            <p>Using a graph of <m>\vrt</m> and <xref ref="thm_concave">Theorem</xref>, find <m>\vec N(a)</m>.</p>
+          </li>
+        </ol></p>
+      </introduction>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\vrt = \la 3\cos(t) ,5\sin(t) \ra</m>;<m>\ds \vec T(\pi/4) = \la -\frac3{\sqrt{34}}, \frac5{\sqrt{34}}\ra</m>.</p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p>Be sure to show work</p></li>
+
+              <li><p><m>\vec N(\pi/4) = \la -5/\sqrt{34}, -3/\sqrt{34}\ra</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \vrt = \la t,\frac{1}{t^2+1}\ra</m>;<m>\ds \vec T(1) = \la \frac2{\sqrt{5}}, -\frac1{\sqrt{5}}\ra</m>.</p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p>Be sure to show work</p></li>
+
+              <li><p><m>\vec N(1) = \la \frac1{\sqrt{5}}, \frac2{\sqrt{5}}\ra</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \vrt = (1+2\sin(t) )\la \cos(t) ,\sin(t) \ra</m>;<m>\ds \vec T(0) = \la \frac2{\sqrt{5}}, \frac1{\sqrt{5}}\ra</m>.</p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p>Be sure to show work</p></li>
+
+              <li><p><m>\vec N(0) = \la -\frac1{\sqrt{5}}, \frac2{\sqrt{5}}\ra</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \vrt = \la \cos^3(t) ,\sin^3(t) \ra</m>;<m>\ds \vec T(\pi/4) = \la -\frac1{\sqrt{2}}, \frac1{\sqrt{2}}\ra</m>.</p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p>Be sure to show work</p></li>
+
+              <li><p><m>\vec N(\pi/4) = \la \frac1{\sqrt{2}}, \frac1{\sqrt{2}}\ra</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, find <m>\vec N(t)</m>.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\vrt = \la 4t,2\sin(t) ,2\cos(t) \ra</m></p>
+          </statement>
+          <solution>
+            <p><m>\vec T(t) = \frac{1}{\sqrt{5}}\la 2,\cos(t) ,-\sin(t) \ra</m>; <m>\vec N(t) = \la 0,-\sin(t) ,-\cos(t) \ra</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$N">
+              <static>\la -\cos(t) ,-3/5\sin(t) ,-4/5\sin(t) \ra</static>
+            </var>
+            <pg-code>
+              Context("Vector");
+              Context()->variables->are(t=>'Real');
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $N=Compute("&lt;-cos(t), -3/5 sin(t), -4/5sin(t)>");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>If <m>\vrt = \la 5\cos(t) ,3\sin(t) ,4\sin(t) \ra</m>, find <m>\vec N(t)</m>.</p>
+            <p><var name="$N" width="40" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\vrt = \la a\cos(t) ,a\sin(t) ,b t \ra</m>; <m>a>0</m></p>
+          </statement>
+          <solution>
+            <p><m>\vec T(t) = \frac{1}{\sqrt{a^2+b^2}}\la -a\sin(t) ,a\cos(t) ,b \ra</m>; <m>\vec N(t) = \la  -\cos(t) ,-\sin(t) ,0\ra</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$N">
+              <static>\la  -\cos(at) ,-\sin(at) ,0\ra</static>
+            </var>
+            <pg-code>
+              Context("Vector");
+              Context()->variables->are(t=>'Real',a=>'Real');
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $N=Compute("&lt;-cos(at), -sin(at), 0>");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>If <m>\vrt = \la \cos(at),\sin(at),t \ra</m>, find <m>\vec N(t)</m>.</p>
+            <p><var name="$N" width="40" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, find <m>a_{\text{T} }</m> and <m>a_{\text{N} }</m> given <m>\vrt</m>. Sketch <m>\vrt</m> on the indicated interval, and comment on the relative sizes of <m>a_{\text{T} }</m> and <m>a_{\text{N} }</m> at the indicated <m>t</m> values.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\vrt = \la t,t^2 \ra</m> on <m>[-1,1]</m>; consider <m>t=0</m> and <m>t=1</m>.</p>
+          </statement>
+          <solution>
+            <p><m>a_{\text{T} } = \frac{4t}{\sqrt{1+4t^2}}</m> and <m>a_{\text{N} } = \sqrt{4-\frac{16t^2}{1+4t^2}}</m></p>
+
+            <p>At <m>t=0</m>, <m>a_{\text{T} } = 0</m> and <m>a_{\text{N} } = 2</m>;</p>
+
+            <p>At <m>t=1</m>, <m>a_{\text{T} } = 4/\sqrt{5}</m> and <m>a_{\text{N} } = 2/\sqrt{5}</m>.</p>
+
+            <p>At <m>t=0</m>, all acceleration comes in the form of changing the direction of velocity and not the speed; at <m>t=1</m>, more acceleration comes in changing the speed than in changing direction.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$aT">
+              <static>\frac{-2/t^5}{\sqrt{1+1/t^4}}</static>
+            </var>
+            <var name="$aN">
+              <static>\frac{2/t^3}{\sqrt{1+1/t^4}}</static>
+            </var>
+            <var name="$aT1">
+              <static>-\sqrt{2}</static>
+            </var>
+            <var name="$aN1">
+              <static>\sqrt{2}</static>
+            </var>
+            <var name="$aT2">
+              <static>-\frac{1}{4\sqrt{17}}</static>
+            </var>
+            <var name="$aN2">
+              <static>\frac{1}{\sqrt{17}}</static>
+            </var>
+            <pg-code>
+              Context()->variables->are(t=>'Real');
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              Context()->variables->set(t=>{limits=>[0.1,4]});
+              $aT=Compute("-2/t^5/sqrt(1+1/t^4)");
+              $aN=Compute("2/t^3/sqrt(1+1/t^4)");
+              $aT1=Formula("-sqrt(2)");
+              $aN1=Formula("sqrt(2)");
+              $aT2=Formula("-1/(4sqrt(17))");
+              $aN2=Formula("1/sqrt(17)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Given <m>\vrt = \la t,1/t \ra</m> on <m>(0,4]</m>:<ol label="a">
+              <li>
+                <p><m>a_{T}=</m><var name="$aT" width="20" /></p>
+              </li>
+              <li>
+                <p><m>a_{N}=</m><var name="$aN" width="20" /></p>
+              </li>
+              <li>
+                <p><m>a_{T}(1)=</m><var name="$aT1" width="20" /></p>
+              </li>
+              <li>
+                <p><m>a_{N}(1)=</m><var name="$aN1" width="20" /></p>
+              </li>
+              <li>
+                <p><m>a_{T}(2)=</m><var name="$aT2" width="20" /></p>
+              </li>
+              <li>
+                <p><m>a_{N}(2)=</m><var name="$aN2" width="20" /></p>
+              </li>
+              <li>
+                <p>Sketch <m>\vrt</m>.</p>
+              </li>
+              <li>
+                <p>Comment on the relative sizes of <m>a_{T}(1)</m>, <m>a_{N}(1)</m>, <m>a_{T}(2)</m>, and <m>a_{N}(2)</m>.</p>
+              </li>
+            </ol></p>
+          </statement>
+          <solution>
+            <p>At <m>t=1</m>, acceleration comes from changing speed and changing direction in <q>equal measure;</q> at <m>t=2</m>, acceleration is nearly <m>\vec 0</m> as it is; the low value of <m>a_{\text{T} }</m> shows that the speed is nearly constant and the low value of <m>a_{\text{N} }</m> shows the direction is not changing quickly.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\vrt = \la 2\cos(t) ,2\sin(t) \ra</m> on <m>[0,2\pi]</m>; consider <m>t=0</m> and <m>t=\pi/2</m>.</p>
+          </statement>
+          <solution>
+            <p><m>a_{\text{T} } = 0</m> and <m>a_{\text{N} } = 2</m></p>
+
+            <p>At <m>t=0</m>, <m>a_{\text{T} } = 0</m> and <m>a_{\text{N} } = 2</m>;</p>
+
+            <p>At <m>t=\pi/2</m>, <m>a_{\text{T} } = 0</m> and <m>a_{\text{N} } = 2</m>.</p>
+
+            <p>The object moves at constant speed, so all acceleration comes from changing direction, hence <m>a_{\text{T} }=0</m>. <m>\vat</m> is always parallel to <m>\vec N(t)</m>, but twice as long, hence <m>a_{\text{N} }=2</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$aT">
+              <static>2</static>
+            </var>
+            <var name="$aN">
+              <static>4t^2</static>
+            </var>
+            <var name="$aT1">
+              <static>2</static>
+            </var>
+            <var name="$aN1">
+              <static>2\pi</static>
+            </var>
+            <var name="$aT2">
+              <static>2</static>
+            </var>
+            <var name="$aN2">
+              <static>4\pi</static>
+            </var>
+            <pg-code>
+              Context()->variables->are(t=>'Real');
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $aT=Compute("2");
+              $aN=Compute("4t^2");
+              $aT1=Formula("2");
+              $aN1=Formula("2pi");
+              $aT2=Formula("2");
+              $aN2=Formula("4pi");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Given <m>\vrt = \la \cos(t^2),\sin(t^2) \ra</m> on <m>(0,2\pi]</m>:<ol label="a">
+              <li>
+                <p><m>a_{T}=</m><var name="$aT" width="20" /></p>
+              </li>
+              <li>
+                <p><m>a_{N}=</m><var name="$aN" width="20" /></p>
+              </li>
+              <li>
+                <p><m>a_{T}\mathopen{}\left(\sqrt{\pi/2}\right)\mathclose{}=</m><var name="$aT1" width="20" /></p>
+              </li>
+              <li>
+                <p><m>a_{N}\mathopen{}\left(\sqrt{\pi/2}\right)\mathclose{}=</m><var name="$aN1" width="20" /></p>
+              </li>
+              <li>
+                <p><m>a_{T}\mathopen{}\left(\sqrt{\pi}\right)\mathclose{}=</m><var name="$aT2" width="20" /></p>
+              </li>
+              <li>
+                <p><m>a_{N}\mathopen{}\left(\sqrt{\pi}\right)\mathclose{}=</m><var name="$aN2" width="20" /></p>
+              </li>
+              <li>
+                <p>Sketch <m>\vrt</m>.</p>
+              </li>
+              <li>
+                <p>Comment on the relative sizes of <m>a_{T}\mathopen{}\left(\sqrt{\pi/2}\right)\mathclose{}</m>, <m>a_{N}\mathopen{}\left(\sqrt{\pi/2}\right)\mathclose{}</m>, <m>a_{T}\mathopen{}\left(\sqrt{\pi}\right)\mathclose{}</m>, and <m>a_{N}\mathopen{}\left(\sqrt{\pi}\right)\mathclose{}</m>.</p>
+              </li>
+            </ol></p>
+          </statement>
+          <solution>
+            <p>The object moves at increasing speed (increasing at a constant rate of acceleration), hence <m>a_{\text{T} }=2</m>. Since the object is increasing speed yet always traveling in a circle of radius 1, the direction must change more quickly; the amount of acceleration that changes direction increases over time.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\vrt = \la a\cos(t) ,a\sin(t) , bt \ra</m> on <m>[0,2\pi]</m>, where <m>a,b>0</m>; consider <m>t=0</m> and <m>t=\pi/2</m>.</p>
+          </statement>
+          <solution>
+            <p><m>a_{\text{T} } = 0</m> and <m>a_{\text{N} } = a</m></p>
+
+            <p>At <m>t=0</m>, <m>a_{\text{T} } = 0</m> and <m>a_{\text{N} } = a</m>;</p>
+
+            <p>At <m>t=\pi/2</m>, <m>a_{\text{T} } = 0</m> and <m>a_{\text{N} } = a</m>.</p>
+
+            <p>The object moves at constant speed, meaning that <m>a_{\text{T} }</m> is always 0. The object <q>rises</q> along the <m>z</m>-axis at a constant rate, so all acceleration comes in the form of changing direction circling the <m>z</m>-axis. The greater the radius of this circle the greater the acceleration, hence <m>a_{\text{N} }=a</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$aT">
+              <static>0</static>
+            </var>
+            <var name="$aN">
+              <static>5</static>
+            </var>
+            <var name="$aT1">
+              <static>0</static>
+            </var>
+            <var name="$aN1">
+              <static>5</static>
+            </var>
+            <var name="$aT2">
+              <static>0</static>
+            </var>
+            <var name="$aN2">
+              <static>5</static>
+            </var>
+            <pg-code>
+              Context()->variables->are(t=>'Real');
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $aT=Compute("0");
+              $aN=Compute("5");
+              $aT1=Formula("0");
+              $aN1=Formula("5");
+              $aT2=Formula("0");
+              $aN2=Formula("5");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Given <m>\vrt = \la 5\cos(t) ,4\sin(t) , 3\sin(t) \ra</m> on <m>[0,2\pi]</m>:<ol label="a">
+              <li>
+                <p><m>a_{T}=</m><var name="$aT" width="20" /></p>
+              </li>
+              <li>
+                <p><m>a_{N}=</m><var name="$aN" width="20" /></p>
+              </li>
+              <li>
+                <p><m>a_{T}(0)=</m><var name="$aT1" width="20" /></p>
+              </li>
+              <li>
+                <p><m>a_{N}(0)=</m><var name="$aN1" width="20" /></p>
+              </li>
+              <li>
+                <p><m>a_{T}(\pi/2)=</m><var name="$aT2" width="20" /></p>
+              </li>
+              <li>
+                <p><m>a_{N}(\pi/2)=</m><var name="$aN2" width="20" /></p>
+              </li>
+              <li>
+                <p>Sketch <m>\vrt</m>.</p>
+              </li>
+              <li>
+                <p>Comment on the relative sizes of <m>a_{T}(0)</m>, <m>a_{N}(0)</m>, <m>a_{T}(\pi/2)</m>, and <m>a_{N}(\pi/2)</m>.</p>
+              </li>
+            </ol></p>
+          </statement>
+          <solution>
+            <p>The object moves at constant speed, meaning that <m>a_{\text{T} }</m> is always 0. Acceleration is thus always perpendicular to the direction of travel; in this particular case, it is always <m>5</m> times the unit vector pointing orthogonal to the direction of travel.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

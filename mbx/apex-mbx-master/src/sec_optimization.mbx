@@ -1,0 +1,709 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_optimization">
+  <title>Optimization</title>
+
+    <p>In <xref ref="sec_extreme_values">Section</xref> we learned about extreme values <mdash /> the largest and smallest values a function attains on an interval. We motivated our interest in such values by discussing how it made sense to want to know the highest/lowest values of a stock, or the fastest/slowest an object was moving. In this section we apply the concepts of extreme values to solve <q>word problems,</q> i.e., problems stated in terms of situations that require us to create the appropriate mathematical framework in which to solve the problem.<index><main>optimization</main></index></p>
+
+    <p>We start with a classic example which is followed by a discussion of the topic of optimization.</p>
+
+    <example xml:id="ex_opt1">
+      <title>Optimization: perimeter and area</title>
+      <statement>
+        <p>A man has <m>100</m> feet of fencing, a large yard, and a small dog. He wants to create a rectangular enclosure for his dog with the fencing that provides the maximal area. What dimensions provide the maximal area?</p>
+      </statement>
+      <solution>
+        <p>One can likely guess the correct answer <mdash /> that is great. We will proceed to show how calculus can provide this answer in a context that proves this answer is correct.</p>
+
+        <p>It helps to make a sketch of the situation. Our enclosure is sketched twice in <xref ref="fig_opt1">Figure</xref>, either with green grass and nice fence boards or as a simple rectangle. Either way, drawing a rectangle forces us to realize that we need to know the dimensions of this rectangle so we can create an area function <mdash /> after all, we are trying to maximize the area.</p>
+
+
+        <!-- START figures/fig_opt1b.tex -->
+        <sidebyside widths="47% 47%" xml:id="fig_opt1">
+          <caption>A sketch of the enclosure in <xref ref="ex_opt1">Example</xref>.</caption>
+
+          <image>
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+
+                \shadedraw [top color = green,bottom color = green!50!black] (0,0) -- (33.6pt,35.28pt) -- (95.2pt,35.28pt) -- (61.6pt,0) -- cycle;
+
+                \begin{scope}[cm={1,1.05,0,1,(0,0)}]
+                  \foreach \x in {0,...,7}
+                    {
+                      \shadedraw [xscale=.3,shift={(\x*14 pt,0)},left color=brown!40!white,right color = brown!99!white] (0,0) --   ++(0,20pt)  -- ++(4pt,4pt)  -- ++(6pt,0pt) -- ++(4pt,-4pt)-- ++(0pt,-20pt) -- cycle;
+                    }
+                \end{scope}
+
+                \begin{scope}[shift={(33.6pt,35.28pt)}]
+                  \foreach \x in {0,...,10}
+                    {
+                      \shadedraw [xscale=.4,shift={(\x*14 pt,0)},left color=brown!40!white,right color = brown!99!white] (0,0) --   ++(0,20pt)  -- ++(4pt,4pt)  -- ++(6pt,0pt) -- ++(4pt,-4pt)-- ++(0pt,-20pt) -- cycle;
+                    }
+                \end{scope}
+
+                \foreach \x in {0,...,10}
+                  {
+                    \shadedraw [xscale=.4,shift={(\x*14 pt,0)},left color=brown!40!white,right color = brown!99!white] (0,0) --   ++(0,20pt)  -- ++(4pt,4pt)  -- ++(6pt,0pt) -- ++(4pt,-4pt)-- ++(0pt,-20pt) -- cycle;
+                  }
+
+                \begin{scope}[cm={1,1.05,0,1,(61.6pt,0)}]
+                  \foreach \x in {0,...,7}
+                    {
+                      \shadedraw [xscale=.3,shift={(\x*14 pt,0)},left color=brown!40!white,right color = brown!99!white] (0,0) --   ++(0,20pt)  -- ++(4pt,4pt)  -- ++(6pt,0pt) -- ++(4pt,-4pt)-- ++(0pt,-20pt) -- cycle;
+                    }
+                \end{scope}
+
+                \draw [<->,>=latex] (0,-5pt) -- (61.6pt,-5pt) node [below,pos=.5] {$x$};
+                \draw [<->,>=latex] (100.2pt,35.28pt) -- (66.6pt,0pt) node [right,pos=.5] {$y$};
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+
+          <image>
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+                \draw [shift = {(150pt,0)}] (0,0) -- (80pt,0) node [pos=.5,below] {$x$} -- (80pt,50pt) node [pos=.5,right] {$y$} -- (0,50pt) -- cycle;
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+        </sidebyside>
+
+          <!-- figures/fig_opt1b.tex END -->
+
+        <p>We let <m>x</m> and <m>y</m> denote the lengths of the sides of the rectangle. Clearly, <me>\text{Area} =xy</me>.</p>
+
+        <p>We do not yet know how to handle functions with two variables; we need to reduce this down to a single variable. We know more about the situation: the man has <m>100</m> feet of fencing. By knowing the perimeter of the rectangle must be <m>100</m>, we can create another equation:<me>\text{Perimeter}  = 100 = 2x+2y</me>.</p>
+
+        <p>We now have two equations and two unknowns. In the latter equation, we solve for <m>y</m>:<me>y = 50-x</me>.</p>
+
+        <p>Now substitute this expression for <m>y</m> in the area equation:<me>\text{Area}  = A(x) = x(50-x)</me>.</p>
+
+        <p>Note we now have an equation of one variable; we can truly call the Area a function of <m>x</m>.</p>
+
+        <p>This function only makes sense when <m>0\leq x \leq 50</m>, otherwise we get negative values of area. So we find the extreme values of <m>A(x)</m> on the interval <m>[0,50]</m> using <xref ref="idea_extrema">Key Idea</xref>.</p>
+
+        <p>To find the critical points, we take the derivative of <m>A(x)</m> and set it equal to <m>0</m>, then solve for <m>x</m>.
+          <md>
+            <mrow>A(x) \amp = x(50-x)</mrow>
+            <mrow>\amp = 50x-x^2</mrow>
+            <mrow>A'(x)   \amp = 50-2x</mrow>
+          </md>
+        </p>
+
+        <p>We solve <m>50-2x=0</m> to find <m>x=25</m>; this is the only critical point. We evaluate <m>A(x)</m> at the endpoints of our interval and at this critical point to find the extreme values; in this case, all we care about is the maximum.</p>
+
+        <p>Clearly <m>A(0)=0</m> and <m>A(50)=0</m>, whereas <m>A(25) = 625</m> <quantity><unit base="foot" exp="2" /></quantity>. This is the maximum. Since we earlier found <m>y = 50-x</m>, we find that <m>y</m> is also <m>25</m>. Thus the dimensions of the rectangular enclosure with perimeter of <quantity><mag>100</mag><unit base="foot" /></quantity>. with maximum area is a square, with sides of length <quantity><mag>25</mag><unit base="foot" /></quantity>.</p>
+      </solution>
+    </example>
+
+    <p>This example is very simplistic and a bit contrived. (After all, most people create a design then buy fencing to meet their needs, and not buy fencing and plan later.) But it models well the necessary process: create equations that describe a situation, reduce an equation to a single variable, then find the needed extreme value.</p>
+
+    <p>In <q>real life,</q> problems are much more complex. The equations are often <em>not</em> reducible to a single variable (hence multi-variable calculus is needed) and the equations themselves may be difficult to form. Understanding the principles here will provide a good foundation for the mathematics you will likely encounter later.</p>
+
+    <p>We outline here the basic process of solving these optimization problems.</p>
+
+    <insight xml:id="idea_optimization">
+      <title>Solving Optimization Problems</title>
+      <p><ol>
+        <li>
+          <p>Understand the problem. Clearly identify what quantity is to be maximized or minimized. Make a sketch if helpful.</p>
+        </li>
+        <li>
+          <p>Create equations relevant to the context of the problem, using the information given. (One of these should describe the quantity to be optimized. We'll call this the <em>fundamental equation.</em>)</p>
+        </li>
+        <li>
+          <p>If the fundamental equation defines the quantity to be optimized as a function of more than one variable, reduce it to a single variable function using substitutions derived from the other equations (we'll call these <em>constraint</em> equations).</p>
+        </li>
+        <li>
+          <p>Identify the domain of this function, keeping in mind the context of the problem.</p>
+        </li>
+        <li>
+          <p>Find the extreme values of this function on the determined domain.</p>
+        </li>
+        <li>
+          <p>Identify the values of all relevant quantities of the problem.</p>
+        </li>
+      </ol></p>
+    </insight>
+
+    <p>We will use <xref ref="idea_optimization">Key Idea</xref> in a variety of examples.</p>
+
+    <example xml:id="ex_opt2">
+      <title>Optimization: perimeter and area</title>
+      <statement>
+        <p>Here is another classic calculus problem: A woman has a 100 feet of fencing, a small dog, and a large yard that contains a stream (that is mostly straight). She wants to create a rectangular enclosure with maximal area that uses the stream as one side. (Apparently her dog won't swim away.) What dimensions provide the maximal area?</p>
+      </statement>
+      <solution>
+        <p>We will follow the steps outlined by <xref ref="idea_optimization">Key Idea</xref>.</p>
+
+        <p><ol>
+          <li>
+            <p>We are maximizing <em>area</em>. A sketch of the region will help; <xref ref="fig_opt2">Figure</xref> gives two sketches of the proposed enclosed area. A key feature of the sketches is to acknowledge that one side is not fenced.</p>
+
+            <sidebyside xml:id="fig_opt2" widths="47% 47%">
+              <caption>A sketch of the enclosure in <xref ref="ex_opt2">Example</xref>.</caption>
+                <!-- START figures/fig_opt2a.tex -->
+              <image>
+                  <description></description>
+                  <latex-image-code>
+                    <![CDATA[
+                    \begin{tikzpicture}
+
+                      \shadedraw [top color = green,bottom color = green!50!black] (0,0) -- (33.6pt,35.28pt) -- (95.2pt,35.28pt) -- (61.6pt,0) -- cycle;
+
+                      \begin{scope}[cm={1,1.05,0,1,(0,0)}]
+                        \foreach \x in {0,...,7}
+                          {
+                            \shadedraw [xscale=.3,shift={(\x*14 pt,0)},left color=brown!40!white,right color = brown!99!white] (0,0) --   ++(0,20pt)  -- ++(4pt,4pt)  -- ++(6pt,0pt) -- ++(4pt,-4pt)-- ++(0pt,-20pt) -- cycle;
+                          }
+                      \end{scope}
+
+                      \begin{scope}[shift={(33.6pt,35.28pt)}]
+                        \foreach \x in {0,...,10}
+                          {
+                            \shadedraw [xscale=.4,shift={(\x*14 pt,0)},left color=brown!40!white,right color = brown!99!white] (0,0) --   ++(0,20pt)  -- ++(4pt,4pt)  -- ++(6pt,0pt) -- ++(4pt,-4pt)-- ++(0pt,-20pt) -- cycle;
+                          }
+                      \end{scope}
+
+                      \begin{scope}[cm={1,1.05,0,1,(61.6pt,0)}]
+                        \foreach \x in {0,...,7}
+                          {
+                            \shadedraw [xscale=.3,shift={(\x*14 pt,0)},left color=brown!40!white,right color = brown!99!white] (0,0) --   ++(0,20pt)  -- ++(4pt,4pt)  -- ++(6pt,0pt) -- ++(4pt,-4pt)-- ++(0pt,-20pt) -- cycle;
+                          }
+                      \end{scope}
+
+                      \shadedraw [top color=blue, bottom color=blue!50!white] (-10pt,0) sin (30pt,2pt) cos (70pt,0pt) -- (70pt,-10pt) sin (35pt,-8pt) cos (-10pt,-10pt) --cycle;
+
+                      %\foreach \x in {0,...,10}
+                      %  {
+                          %\shadedraw [xscale=.4,shift={(\x*14 pt,0)},left color=brown!40!white,right color = brown!99!white] (0,0) --   ++(0,20pt)  -- ++(4pt,4pt)  -- ++(6pt,0pt) -- ++(4pt,-4pt)-- ++(0pt,-20pt) -- cycle;
+                      %  }
+
+                      \draw [<->,>=latex] (0,-15pt) -- (61.6pt,-15pt) node [below,pos=.5] {$x$};
+                      \draw [<->,>=latex] (100.2pt,35.28pt) -- (66.6pt,0pt) node [right,pos=.5] {$y$};
+                    \end{tikzpicture}
+                    ]]>
+                  </latex-image-code>
+              </image>
+
+              <image>
+                  <description></description>
+                  <latex-image-code>
+                    <![CDATA[
+                    \begin{tikzpicture}
+
+                      \draw [shift = {(0,-80pt)}] (0,0) -- (0,50pt) -- (80pt,50pt) node [pos=.5,below] {$x$} --(80pt,0) node [pos=.5,right] {$y$};
+                      \draw [{\colorone},very thick,shift = {(0,-80pt)}] (0,0) sin (40pt,2pt) cos (80pt,0);
+
+                    \end{tikzpicture}
+                    ]]>
+                  </latex-image-code>
+              </image>
+            </sidebyside>
+                <!-- figures/fig_opt2a.tex END -->
+              <!-- </figure> -->
+          </li>
+
+          <li>
+            <p>We want to maximize the area; as in the example before, <me>\text{Area}  = xy</me>. This is our fundamental equation. This defines area as a function of two variables, so we need another equation to  reduce it to one variable.</p>
+
+            <p>We again appeal to the perimeter; here the perimeter is<me>\text{Perimeter}  = 100 = x+2y</me>. The perimeter is our constraint equation. Note how this is a different equation for perimeter than in <xref ref="ex_opt1">Example</xref>, since one of the sides does not need to be fenced.</p>
+          </li>
+
+          <li>
+            <p>We now reduce the fundamental equation to a single variable using our constraint equation. In the perimeter equation, solve for <m>y</m>: <m>y = 50 - x/2</m>. We can now write Area as<md>
+                <mrow>\text{ Area }  = A(x) \amp= x(50-x/2) </mrow>
+                <mrow>\amp = 50x - \frac12x^2</mrow>
+            </md>. Area is now defined as a function of one variable.</p>
+          </li>
+
+          <li>
+            <p>We want the area to be nonnegative. Since <m>A(x) = x(50-x/2)</m>, we want <m>x\geq 0</m> and <m>50-x/2\geq 0</m>. The latter inequality implies that <m>x\leq100</m>, so <m>0\leq x\leq 100</m>.</p>
+          </li>
+
+          <li>
+            <p>We now find the extreme values. At the endpoints, the minimum is found, giving an area of <m>0</m>.</p>
+
+            <p>Find the critical points. We have <m>A'(x) = 50-x</m>; setting this equal to 0 and solving for <m>x</m> returns <m>x=50</m>. This gives an area of<me>A(50) = 50(25) = 1250</me>.</p>
+          </li>
+
+          <li>
+            <p>We earlier set <m>y = 50-x/2</m>; thus <m>y = 25</m>. Thus our rectangle will have two sides of length <m>25</m> and one side of length <m>50</m>, with a total area of <quantity><mag>1250</mag><unit base="foot" exp="2" /></quantity>.</p>
+          </li>
+        </ol></p>
+      </solution>
+    </example>
+
+    <p>Keep in mind as we do these problems that we are practicing a <em>process</em>; that is, we are learning to turn a situation into a system of equations. These equations allow us to write a certain quantity as a function of one variable, which we then optimize.</p>
+
+    <example xml:id="ex_opt3">
+      <title>Optimization: minimizing cost</title>
+      <statement>
+        <p>A power line needs to be run from an power station located on the beach to an offshore facility. <xref ref="fig_opt3b">Figure</xref> shows the distances between the power station to the facility.</p>
+
+        <p>It costs <dollar />50/ft. to run a power line along the land, and <dollar />130/ft. to run a power line under water. How much of the power line should be run along the land to minimize the overall cost? What is the minimal cost?</p>
+
+        <figure xml:id="fig_opt3b" >
+          <caption>Running a power line from the power station to an offshore facility with minimal cost in <xref ref="ex_opt3">Example</xref>.</caption>
+          <!-- START figures/fig_opt3b.tex -->
+          <image xml:id="img_opt3b" width="47%" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}[>=latex]
+
+                \begin{scope}
+                  \clip (0,0) rectangle (140pt,50pt);
+                  \draw [inner color={\colorone},draw = white] (-10,-25pt) rectangle (180pt,70pt);
+                \end{scope}
+                \draw [top color=brown, bottom color=white,draw=white] (0,0) rectangle (140pt,-15pt);
+                \draw (0,0) -- (150pt,0);
+                \filldraw [fill=white] (10pt,-5pt) rectangle (20pt,5pt);
+                %\filldraw [fill=white] (130pt,35pt) circle (7pt);
+
+                \draw [<->] (15pt,-10pt) -- (130pt,-10pt) node [below,pos=.5] {\scriptsize 5000 ft};
+                \draw [<->] (140pt,0pt) -- (140pt,35pt) node [right, pos=.5] {\scriptsize 1000 ft};
+
+                \draw [ultra thick] (20pt,0) -- (70pt,0);
+                \filldraw (70pt,0) circle (2pt);
+                \draw [dashed,thick] (70pt,0) -- (130pt,35pt);
+                \filldraw [fill=white] (130pt,35pt) circle (7pt);
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_opt3b.tex END -->
+        </figure>
+      </statement>
+      <solution>
+        <p>We will follow the strategy of <xref ref="idea_optimization">Key Idea</xref> implicitly, without specifically numbering steps.</p>
+
+        <p>There are two immediate solutions that we could consider, each of which we will reject through <q>common sense.</q> First, we could minimize the distance by directly connecting the two locations with a straight line. However, this requires that all the wire be laid underwater, the most costly option. Second, we could minimize the underwater length by running a wire all <quantity><mag>5000</mag><unit base="foot" /></quantity> along the beach, directly across from the offshore facility. This has the undesired effect of having the longest distance of all, probably ensuring a non-minimal cost.</p>
+
+        <p>The optimal solution likely has the line being run along the ground for a while, then underwater, as the figure implies. We need to label our unknown distances <mdash /> the distance run along the ground and the distance run underwater. Recognizing that the underwater distance can be measured as the hypotenuse of a right triangle, we choose to label the distances as shown in <xref ref="fig_opt3c">Figure</xref>.</p>
+
+        <figure xml:id="fig_opt3c" >
+          <caption>Labeling unknown distances in <xref ref="ex_opt3">Example</xref>.</caption>
+          <!-- START figures/fig_opt3c.tex -->
+          <image xml:id="img_opt3c" width="47%" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}[>=latex]
+
+                \begin{scope}
+                  \clip (0,0) rectangle (140pt,50pt);
+                  \draw [inner color={\colorone},draw = white] (-10,-25pt) rectangle (180pt,70pt);
+                \end{scope}
+                \draw [top color=brown, bottom color=white,draw=white] (0,0) rectangle (140pt,-15pt);
+                \draw (0,0) -- (150pt,0);
+                \filldraw [fill=white] (10pt,-5pt) rectangle (20pt,5pt);
+                %\filldraw [fill=white] (130pt,35pt) circle (7pt);
+
+                \draw [<->] (15pt,-10pt) -- (70pt,-10pt) node [below,pos=.5] {\scriptsize $5000 -x$};
+                \draw [<->] (70pt,-10pt) -- (130pt,-10pt) node [below,pos=.5] {\scriptsize $x$};
+                \draw [<->] (140pt,0pt) -- (140pt,35pt) node [right, pos=.5] {\scriptsize 1000 ft};
+
+                \draw [ultra thick] (20pt,0) -- (70pt,0);
+                \filldraw (70pt,0) circle (2pt);
+                \draw [dashed,thick] (70pt,0) -- (130pt,35pt) ;
+                \draw (100pt,23pt) node [rotate=30] {\scriptsize $\sqrt{x^2+1000^2}$};
+                \filldraw [fill=white] (130pt,35pt) circle (7pt);
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_opt3c.tex END -->
+        </figure>
+
+        <p>By choosing <m>x</m> as we did (instead of letting <m>x</m> be the distance along the land), we make the expression under the square root simple. We now create the cost function.<md alignment="alignat">
+          <mrow>\text{Cost} \amp ={}\amp\amp \text{land cost}              \amp\amp +\text{water cost}</mrow>
+          <mrow>            \amp\amp\amp   \$50\times \text{land distance} \amp\amp +\$130 \times \text{water distance}</mrow>
+          <mrow>            \amp\amp\amp   50(5000-x)                      \amp\amp +130\sqrt{x^2+1000^2}</mrow>
+        </md>.</p>
+
+        <p>So we have <m>c(x) = 50(5000-x)+ 130\sqrt{x^2+1000^2}</m>. This function only makes sense on the interval <m>[0,5000]</m>. While we are fairly certain the endpoints will not give a minimal cost, we still evaluate <m>c(x)</m> at each to verify.<md>
+            <mrow>c(0) \amp = 380{,}000\amp c(5000) \amp \approx 662{,}873.</mrow>
+        </md>(Notice that if <m>x=0</m>, the line is run the full <quantity><mag>5000</mag><unit base="foot" /></quantity> along land and a full <quantity><mag>1000</mag><unit base="foot" /></quantity> under water. If <m>x=5000</m>, the line is run the maximum distance underwater.)
+        </p>
+
+        <p>We now find the critical values of <m>c(x)</m>. We compute <m>c'(x)</m> as<me>c'(x) = -50+\frac{130x}{\sqrt{x^2+1000^2}}</me>.</p>
+
+        <p>Recognize that this is never undefined. Setting <m>c'(x)=0</m> and solving for <m>x</m>, we have:<md>
+            <mrow>-50+\frac{130x}{\sqrt{x^2+1000^2}} \amp = 0</mrow>
+            <mrow>\frac{130x}{\sqrt{x^2+1000^2}}  \amp = 50</mrow>
+            <mrow>\frac{130^2x^2}{x^2+1000^2} \amp = 50^2</mrow>
+            <mrow>130^2x^2 \amp = 50^2(x^2+1000^2)</mrow>
+            <mrow>130^2x^2-50^2x^2 \amp = 50^2\cdot1000^2</mrow>
+            <mrow>(130^2-50^2)x^2 \amp = 50,000^2</mrow>
+            <mrow>x^2 \amp = \frac{50,000^2}{130^2-50^2}</mrow>
+            <mrow>x \amp = \frac{50,000}{\sqrt{130^2-50^2}}</mrow>
+            <mrow>x \amp  = \frac{50,000}{120} </mrow>
+            <mrow>\amp = 416\frac23</mrow>
+            <mrow>\amp \approx 416.67</mrow>
+        </md>.</p>
+
+        <p>Evaluating <m>c(x)</m> at <m>x=416.67</m> gives aminimal cost of about <m>\$370{,}000</m>. The distance the power line is laid along land is <m>5000-416.67 = 4583.33</m> ft., and the underwater distance is <m>\sqrt{416.67^2+1000^2} \approx 1083</m> ft.</p>
+      </solution>
+    </example>
+
+    <p>In the exercises you will see a variety of situations that require you to combine problem-solving skills with calculus. Focus on the <em>process</em>; learn how to form equations from situations that can be manipulated into what you need. Eschew memorizing how to do <q>this kind of problem</q> as opposed to <q>that kind of problem.</q> Learning a process will benefit one far longer than memorizing a specific technique.</p>
+
+    <p>The <xref ref="sec_differentials">Section</xref> introduces our final application of the derivative: <em>differentials</em>. Given <m>y=f(x)</m>, they offer a method of approximating the change in <m>y</m> after <m>x</m> changes by a small amount.</p>
+
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>T/F: An <q>optimization problem</q> is essentially an <q>extreme values</q> problem in a <q>story problem</q> setting.</p>
+          </statement>
+          <solution>
+            <p>T</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>T/F: This section teaches one to find the extreme values of function that have more than one variable.</p>
+          </statement>
+          <solution>
+            <p>F</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+    <exercisegroup>
+      <introduction>
+        <p>Problems</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find the maximum product of two numbers (not necessarily integers) that have a sum of 100.</p>
+          </statement>
+          <solution>
+            <p>2500; the two numbers are each 50.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find the minimum sum of two numbers whose product is 500.</p>
+          </statement>
+          <solution>
+            <p>The minimum sum is <m>2\sqrt{500}</m>; the two numbers are each <m>\sqrt{500}</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find the maximum sum of two numbers whose product is 500.</p>
+          </statement>
+          <solution>
+            <p>There is no maximum sum; the fundamental equation has only 1 critical value that corresponds to a minimum.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find the maximum sum of two numbers, each of which is in <m>[0,300]</m> whose product is 500.</p>
+          </statement>
+          <solution>
+            <p>The only critical point of the fundamental equation corresponds to a minimum; to find maximum, we check the endpoints.</p>
+
+            <p>If one number is 300, the other number <m>y</m> satisfies <m>300y = 500</m>; <m>y = 5/3</m>. Thus the sum is <m>300+5/3</m>.</p>
+
+            <p>The other endpoint, 0, is not feasible as we cannot solve <m>0\cdot y = 500</m> for <m>y</m>. In fact, if <m>0\lt x\lt 5/3</m>, then <m>x\cdot y = 500</m> forces <m>y>300</m>, which is not a feasible solution.</p>
+
+            <p>Hence the maximum sum is <m>301.\overline{6}</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find the maximal area of a right triangle with hypotenuse of length 1.</p>
+          </statement>
+          <solution>
+            <p>Area = 1/4, with sides of length <m>1/\sqrt{2}</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>A rancher has 1000 feet of fencing in which to construct adjacent, equally sized rectangular pens. What dimensions should these pens have to maximize the enclosed area?</p>
+
+            <figure>
+              <image xml:id="img_opt3cX" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}\draw [thick](0,0) rectangle (3,2);
+                  \draw [thick](1.5,0) -- (1.5,2);\end{tikzpicture}]]>
+                </latex-image-code>
+              </image>
+            </figure>
+          </statement>
+          <solution>
+            <p>Each pen should be <m>500/3\approx 166.67</m> feet by 125 feet.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>A standard soda can is roughly cylindrical and holds 355cm<m>^3</m> of liquid. What dimensions should the cylinder be to minimize the material needed to produce the can? Based on your dimensions, determine whether or not the standard can is produced to minimize the material costs.</p>
+          </statement>
+          <solution>
+            <p>The radius should be about <m>3.84</m>cm and the height should be <m>2r=7.67</m>cm. No, this is not the size of the standard can.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find the dimensions of a cylindrical can with a volume of 206in<m>^3</m> that minimizes the surface area.</p>
+
+            <p>The <q><hash />10 can</q>is a standard sized can used by the restaurant industry that holds about 206in<m>^3</m> with a diameter of 6 2/16in and height of 7in. Does it seem these dimensions where chosen with minimization in mind?</p>
+          </statement>
+          <solution>
+            <p>The radius should be about <m>3.2</m>in and the height should be <m>2r=6.4</m>in. As the <hash />10 is not a perfect cylinder (with extra material to aid in stacking, etc.), the dimensions are close enough to assume that minimizing surface area was a consideration.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>The United States Postal Service charges more for boxes whose combined length and girth exceeds 108'' (the <q>length</q> of a package is the length of its longest side; the girth is the perimeter of the cross section, i.e., <m>2w+2h</m>).</p>
+
+            <p>What is the maximum volume of a package with a square cross section (<m>w=h</m>) that does not exceed the 108'' standard?</p>
+          </statement>
+          <solution>
+            <p>The height and width should be <m>18</m> and the length should be <m>36</m>, giving a volume of <m>11,664</m>in<m>^3</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>The strength <m>S</m> of a wooden beam is directly proportional to its cross sectional width <m>w</m> and the square of its height <m>h</m>; that is, <m>S = kwh^2</m> for some constant <m>k</m>.</p>
+
+            <figure>
+              <image xml:id="img_opt3cX1" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}\draw [thick](0,0) circle (1cm);
+                  \draw [thick](-.6,.8) -- node [pos=.5,right] { \(12\)} (.6,-.8);
+                  \draw [thick](-.6,-.8) rectangle (.6,.8);
+                  \draw (.7,0) node { \(h\)} (0,.7) node { \(w\)};\end{tikzpicture}]]>
+                </latex-image-code>
+              </image>
+            </figure>
+
+            <p>Given a circular log with diameter of 12 inches, what sized beam can be cut from the log with maximum strength?</p>
+          </statement>
+          <solution>
+            <p><m>w=4\sqrt{3}</m>, <m>h=4\sqrt{6}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>A power line is to be run to an offshore facility in the manner described in <xref ref="ex_opt3">Example</xref>. The offshore facility is 2 miles at sea and 5 miles along the shoreline from the power plant. It costs <dollar />50,000 per mile to lay a power line underground and <dollar />80,000 to run the line underwater.</p>
+
+            <p>How much of the power line should be run underground to minimize the overall costs?</p>
+          </statement>
+          <solution>
+            <p><m>5-10/\sqrt{39} \approx 3.4</m> miles should be run underground, giving a minimum cost of <dollar />374,899.96.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>A power line is to be run to an offshore facility in the manner described in <xref ref="ex_opt3">Example</xref>. The offshore facility is 5 miles at sea and 2 miles along the shoreline from the power plant. It costs <dollar />50,000 per mile to lay a power line underground and <dollar />80,000 to run the line underwater.</p>
+
+            <p>How much of the power line should be run underground to minimize the overall costs?</p>
+          </statement>
+          <solution>
+            <p>The power line should be run directly to the off shore facility, skipping any underground, giving a cost of about <dollar />430,813.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>A woman throws a stick into a lake for her dog to fetch; the stick is 20 feet down the shore line and 15 feet into the water from there. The dog may jump directly into the water and swim, or run along the shore line to get closer to the stick before swimming. The dog runs about 22ft/s and swims about 1.5ft/s.</p>
+
+            <p>How far along the shore should the dog run to minimize the time it takes to get to the stick? (Hint: the figure from <xref ref="ex_opt3">Example</xref> can be useful.)</p>
+          </statement>
+          <solution>
+            <p>The dog should run about 19 feet along the shore before starting to swim.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>A woman throws a stick into a lake for her dog to fetch; the stick is 15 feet down the shore line and 30 feet into the water from there. The dog may jump directly into the water and swim, or run along the shore line to get closer to the stick before swimming. The dog runs about 22ft/s and swims about 1.5ft/s.</p>
+
+            <p>How far along the shore should the dog run to minimize the time it takes to get to the stick? <em> (Google <q>calculus dog</q> to learn more about a dog's ability to minimize times.)</em></p>
+          </statement>
+          <solution>
+            <p>The dog should run about 13 feet along the shore before starting to swim.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>What are the dimensions of the rectangle with largest area that can be drawn inside the unit circle?</p>
+          </statement>
+          <solution>
+            <p>The largest area is 2 formed by a square with sides of length <m>\sqrt{2}</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

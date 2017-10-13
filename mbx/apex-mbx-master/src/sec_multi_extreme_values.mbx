@@ -1,0 +1,1793 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_multi_extreme_values">
+  <title>Extreme Values</title>
+  <introduction>
+    <p>Given a function <m>z=f(x,y)</m>, we are often interested in points where <m>z</m> takes on the largest or smallest values. For instance, if <m>z</m> represents a cost function, we would likely want to know what <m>(x,y)</m> values minimize the cost. If <m>z</m> represents the ratio of a volume to surface area, we would likely want to know where <m>z</m> is greatest. This leads to the following definition.</p>
+
+    <definition xml:id="def_multi_extrema">
+      <title>Relative and Absolute Extrema</title>
+      <statement>
+        <p>Let <m>z=f(x,y)</m> be defined on a set <m>S</m> containing the point <m>P=(x_0,y_0)</m>.
+          <index><main>maximum</main><sub>relative/local</sub></index><index><main>minimum</main><sub>relative/local</sub></index><index><main>extrema</main><sub>relative</sub></index><index><main>extrema</main><sub>absolute</sub></index><index><main>maximum</main><sub>absolute</sub></index><index><main>minimum</main><sub>absolute</sub></index></p>
+
+        <ol>
+          <li><p>If there is an open disk <m>D</m> containing <m>P</m> such that <m>f(x_0,y_0) \geq f(x,y)</m> for all <m>(x,y)</m> in <m>D</m>, then <m>f</m> has a <em>relative maximum</em> at <m>P</m>; if <m>f(x_0,y_0) \leq f(x,y)</m> for all <m>(x,y)</m> in <m>D</m>, then <m>f</m> has a <em>relative minimum</em> at <m>P</m>.</p></li>
+
+          <li><p>If <m>f(x_0,y_0)\geq f(x,y)</m> for all <m>(x,y)</m> in <m>S</m>, then <m>f</m> has an <em>absolute maximum</em> at <m>P</m>; if <m>f(x_0,y_0)\leq f(x,y)</m> for all <m>(x,y)</m> in <m>S</m>, then <m>f</m> has an <em>absolute minimum</em> at <m>P</m>.</p></li>
+
+          <li><p>If <m>f</m> has a relative maximum or minimum at <m>P</m>, then <m>f</m> has a <em>relative extrema</em> at <m>P</m>; if <m>f</m> has an absolute maximum or minimum at <m>P</m>, then <m>f</m> has a <em>absolute extrema</em> at <m>P</m>.</p></li>
+        </ol>
+      </statement>
+    </definition>
+
+    <p>If <m>f</m> has a relative or absolute maximum at <m>P=(x_0,y_0)</m>, it means every curve on the surface of <m>f</m> through <m>P</m> will also have a relative or absolute maximum at <m>P</m>. Recalling what we learned in <xref ref="sec_extreme_values">Section</xref>, the slopes of the tangent lines to these curves at <m>P</m> must be 0 or undefined. Since directional derivatives are computed using <m>f_x</m> and <m>f_y</m>, we are led to the following definition and theorem.</p>
+
+    <definition xml:id="def_multi_critical_point">
+      <title>Critical Point</title>
+      <statement>
+        <p>Let <m>z = f(x,y)</m> be continuous on an open set <m>S</m>. A <term>critical point</term> <m>P=(x_0,y_0)</m> of <m>f</m> is a point in <m>S</m> such that <index><main>critical point</main></index></p>
+
+        <ul>
+          <li><p><m>f_x(x_0,y_0) = 0</m> and <m>f_y(x_0,y_0) = 0</m>, or</p></li>
+
+          <li><p><m>f_x(x_0,y_0)</m> and/or <m>f_y(x_0,y_0)</m> is undefined.</p></li>
+        </ul>
+      </statement>
+    </definition>
+
+    <theorem xml:id="thm_multi_critical_point">
+      <title>Critical Points and Relative Extrema</title>
+      <statement>
+        <p>Let <m>z=f(x,y)</m> be defined on an open set <m>S</m> containing <m>P=(x_0,y_0)</m>. If <m>f</m> has a relative extrema at <m>P</m>, then <m>P</m> is a critical point of <m>f</m>.<index><main>extrema</main><sub>relative</sub></index><index><main>critical point</main></index></p>
+      </statement>
+    </theorem>
+
+    <p>Therefore, to find relative extrema, we find the critical points of <m>f</m> and determine which correspond to relative maxima, relative minima, or neither. The following examples demonstrate this process.</p>
+
+    <example xml:id="ex_multi_extreme1">
+      <title>Finding critical points and relative extrema</title>
+      <statement>
+        <p>Let <m>f(x,y) = x^2+y^2-xy-x-2</m>. Find the relative extrema of <m>f</m>.</p>
+      </statement>
+      <solution>
+        <p>We start by computing the partial derivatives of <m>f</m>:
+          <me>
+            f_x(x,y) = 2x-y-1 \qquad \text{ and } \qquad f_y(x,y) = 2y-x.
+          </me>
+        </p>
+
+        <p>Each is never undefined. A critical point occurs when <m>f_x</m> and <m>f_y</m> are simultaneously 0, leading us to solve the following system of linear equations:
+          <me>
+            2x-y-1 = 0\qquad \text{ and } \qquad -x+2y = 0.
+          </me>
+        </p>
+
+        <p>This solution to this system is <m>x=2/3</m>, <m>y=1/3</m>. (Check that at <m>(2/3,1/3)</m>, both <m>f_x</m> and <m>f_y</m> are 0.)</p>
+
+        <figure xml:id="fig_multi_extreme1" >
+          <caption>The surface in <xref ref="ex_multi_extreme1">Example</xref> with its absolute minimum indicated.</caption>
+          <!--
+           \includemedia[width=125pt,3Dmenu,activate=onclick,deactivate=onclick,
+          3Droll=0,
+          3Dortho=0.0046491301618516445,
+          3Dc2c=0.6824884414672852 0.7120449542999268 0.16492848098278046,
+          3Dcoo=-1.6988685131072998 -2.1742968559265137 37.693851470947266,
+          3Droo=149.99999652386037,
+          3Dlights=Headlamp,add3Djscript=asylabels.js]
+           -->
+
+
+          <!-- START figures/figmulti_extreme1_3D.asy -->
+          <image xml:id="img_multi_extreme1" >
+            <asymptote>
+              <![CDATA[
+              import graph3;
+
+              //ASY file for figmulti_extreme13D.asy in Chapter 12
+
+              size(200,200,IgnoreAspect);
+              //size(200,200,Aspect);
+              //currentprojection=perspective(7,2,1);
+              currentprojection=orthographic(4,4,2);
+              defaultrender.merge=true;
+
+              usepackage("mathspec");
+              texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+              // setup and draw the axes
+              real[] myxchoice={2};
+              real[] myychoice={2};
+              real[] myzchoice={5};
+              defaultpen(0.5mm);
+              pair xbounds=(-3,3);
+              pair ybounds=(-3,3);
+              pair zbounds=(-1,6);
+
+              xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+              yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+              zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+              label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+              label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+              label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+              //Draw surface z=x^2+y^2-xy-x-2
+              triple f(pair t) {
+                return (t.x,t.y,t.x^2+t.y^2-t.x*t.y-t.x-2);
+              }
+              surface s=surface(f,(-1,-1),(2,2),16,16,Spline);
+              pen p=rgb(0,0,.7);
+              draw(s,rgb(.7,.7,1)+opacity(.7),meshpen=p);
+
+              //plot point on surface
+              dotfactor=4;dot((2/3,1/3,-7/3));
+
+
+
+
+
+              // ////////////////////////////////////
+              //    SAMPLE CODE
+
+              // defaultpen(fontsize(10pt));
+
+              //Draw the parabola z=y^2 for t from -2 to 2
+              //triple g(real t) {return (0,t,t^2);}
+              //path3 mypath=graph(g,-2,2,operator ..); draw(mypath,blue);
+
+
+              //Draw the surface z=1/(1+x^2+y^2)
+              //triple f(pair t) {
+              //  return (t.x,t.y,1/(1+(t.x)^2+(t.y)^2));
+              //}
+              //surface s=surface(f,(-2,-2),(2,2),8,8,Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+
+              //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+              //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+
+              //triple f(pair t) {
+              //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+              //}
+              //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+
+              //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+              //path3 mypath=graph(g,-2,2,operator ..);
+
+              //pen p=rgb(0,0,1);
+              //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+
+              //draw(s,paleblue);
+              //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+              //draw(mypath,2bp+blue);
+              ]]>
+            </asymptote>
+          </image>
+          <!-- figures/figmulti_extreme1_3D.asy END -->
+        </figure>
+
+        <p>The graph in <xref ref="fig_multi_extreme1">Figure</xref> shows <m>f</m> along with this critical point. It is clear from the graph that this is a relative minimum; further consideration of the function shows that this is actually the absolute minimum.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_multi_extreme2">
+      <title>Finding critical points and relative extrema</title>
+      <statement>
+        <p>Let <m>f(x,y) = -\sqrt{x^2+y^2}+2</m>. Find the relative extrema of <m>f</m>.</p>
+      </statement>
+      <solution>
+        <p>We start by computing the partial derivatives of <m>f</m>:
+          <me>
+            f_x(x,y) = \frac{-x}{\sqrt{x^2+y^2}}\qquad \text{ and } \qquad f_y(x,y) = \frac{-y}{\sqrt{x^2+y^2}}.
+          </me>
+        </p>
+
+        <p>It is clear that <m>f_x=0</m> when <m>x=0</m> <ampersand /> <m>y\neq0</m>, and that <m>f_y=0</m> when <m>y=0</m> <ampersand /> <m>x\neq0</m>. At <m>(0,0)</m>, both <m>f_x</m> and <m>f_y</m> are <em>not</em> <m>0</m>, but rather undefined. The point <m>(0,0)</m> is still a critical point, though, because the partial derivatives are undefined. This is the only critical point of <m>f</m>.</p>
+
+        <figure xml:id="fig_multi_extreme2" >
+          <caption>The surface in <xref ref="ex_multi_extreme2">Example</xref> with its absolute maximum indicated.</caption>
+          <!--
+           \includemedia[width=125pt,3Dmenu,activate=onclick,deactivate=onclick,
+          3Droll=0,
+          3Dortho=0.005137228406965733,
+          3Dc2c=0.6936245560646057 0.5807817578315735 0.4261191189289093,
+          3Dcoo=-10.144089698791504 -8.685287475585938 24.90442657470703,
+          3Droo=150.00000093140036,
+          3Dlights=Headlamp,add3Djscript=asylabels.js]
+           -->
+
+
+          <!-- START figures/figmulti_extreme2_3D.asy -->
+          <image xml:id="img_multi_extreme2" >
+            <asymptote>
+              <![CDATA[
+              import graph3;
+
+              //ASY file for figmulti_extreme23D.asy in Chapter 12
+
+              size(200,200,IgnoreAspect);
+              //size(200,200,Aspect);
+              //currentprojection=perspective(7,2,1);
+              currentprojection=orthographic(4,4,2);
+              defaultrender.merge=true;
+
+              usepackage("mathspec");
+              texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+              // setup and draw the axes
+              real[] myxchoice={-2,2};
+              real[] myychoice={-2,2};
+              real[] myzchoice={2};
+              defaultpen(0.5mm);
+              pair xbounds=(-3,3);
+              pair ybounds=(-3,3);
+              pair zbounds=(-1,3);
+
+              xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+              yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+              zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+              label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+              label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+              label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+              //Draw surface z=2-sqrt(x^2+y^2)
+              triple f(pair t) {
+                return (t.x,t.y,2-sqrt(t.x^2+t.y^2));
+              }
+              surface s=surface(f,(-2,-2),(2,2),32,32);
+              pen p=rgb(0,0,.7);
+              draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //plot point on surface
+              dotfactor=4;dot((0,0,2));
+
+
+
+
+
+              // ////////////////////////////////////
+              //    SAMPLE CODE
+
+              // defaultpen(fontsize(10pt));
+
+              //Draw the parabola z=y^2 for t from -2 to 2
+              //triple g(real t) {return (0,t,t^2);}
+              //path3 mypath=graph(g,-2,2,operator ..); draw(mypath,blue);
+
+
+              //Draw the surface z=1/(1+x^2+y^2)
+              //triple f(pair t) {
+              //  return (t.x,t.y,1/(1+(t.x)^2+(t.y)^2));
+              //}
+              //surface s=surface(f,(-2,-2),(2,2),8,8,Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+
+              //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+              //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+
+              //triple f(pair t) {
+              //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+              //}
+              //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+
+              //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+              //path3 mypath=graph(g,-2,2,operator ..);
+
+              //pen p=rgb(0,0,1);
+              //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+
+              //draw(s,paleblue);
+              //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+              //draw(mypath,2bp+blue);
+              ]]>
+            </asymptote>
+          </image>
+          <!-- figures/figmulti_extreme2_3D.asy END -->
+        </figure>
+
+        <p>The surface of <m>f</m> is graphed in <xref ref="fig_multi_extreme2">Figure</xref> along with the point <m>(0,0,2)</m>. The graph shows that this point is the absolute maximum of <m>f</m>.</p>
+      </solution>
+    </example>
+
+    <p>In each of the previous two examples, we found a critical point of <m>f</m> and then determined whether or not it was a relative (or absolute) maximum or minimum by graphing. It would be nice to be able to determine whether a critical point corresponded to a max or a min without a graph. Before we develop such a test, we do one more example that sheds more light on the issues our test needs to consider.</p>
+
+    <example xml:id="ex_multi_extreme3">
+      <title>Finding critical points and relative extrema</title>
+      <statement>
+        <p>Let <m>f(x,y) = x^3-3x-y^2+4y</m>. Find the relative extrema of <m>f</m>.</p>
+      </statement>
+      <solution>
+        <p>Once again we start by finding the partial derivatives of <m>f</m>:
+          <me>
+            f_x(x,y) = 3x^2-3\qquad \text{ and }  \qquad f_y(x,y) = -2y+4.
+          </me>
+        </p>
+
+        <p>Each is always defined. Setting each equal to 0 and solving for <m>x</m> and <m>y</m>, we find
+          <md>
+            <mrow>f_x(x,y) = 0  \amp \Rightarrow x=\pm 1</mrow>
+            <mrow>f_y(x,y) = 0 \amp \Rightarrow y = 2.</mrow>
+          </md>
+        </p>
+
+        <p>We have two critical points: <m>(-1,2)</m> and <m>(1,2)</m>. To determine if they correspond to a relative maximum or minimum, we consider the graph of <m>f</m> in <xref ref="fig_multi_extreme3">Figure</xref>.</p>
+
+        <figure xml:id="fig_multi_extreme3" >
+          <caption>The surface in <xref ref="ex_multi_extreme3">Example</xref> with both critical points marked.</caption>
+          <!--
+           \includemedia[width=125pt,3Dmenu,activate=onclick,deactivate=onclick,
+          3Droll=0,
+          3Dortho=0.0051372298039495945,
+          3Dc2c=0.3608144223690033 0.8669211864471436 0.3438902795314789,
+          3Dcoo=-26.171857833862305 -6.6333465576171875 36.54817199707031,
+          3Droo=200.99999267271468,
+          3Dlights=Headlamp,add3Djscript=asylabels.js]
+           -->
+
+
+          <!-- START figures/figmulti_extreme3_3D.asy -->
+          <image xml:id="img_multi_extreme3" >
+            <asymptote>
+              <![CDATA[
+              import graph3;
+
+              //ASY file for figmulti_extreme33D.asy in Chapter 12
+
+              size(300,200,IgnoreAspect);
+              //size(200,200,Aspect);
+              //currentprojection=perspective(7,2,1);
+              currentprojection=orthographic(3,10,9);
+              defaultrender.merge=true;
+
+              usepackage("mathspec");
+              texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+              // setup and draw the axes
+              real[] myxchoice={-1,1};
+              real[] myychoice={2};
+              real[] myzchoice={5};
+              defaultpen(0.5mm);
+              pair xbounds=(-1.5,2);
+              pair ybounds=(-.5,3.5);
+              pair zbounds=(-2,6);
+
+              xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+              yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+              zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+              label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+              label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+              label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+              //Draw surface z=x^3-3x-y^2+4y
+              triple f(pair t) {
+                return (t.x,t.y,t.x^3-3*t.x-t.y^2+4*t.y);
+              }
+              surface s=surface(f,(-2,1),(2,3),16,16,Spline);
+              pen p=rgb(0,0,.7);
+              draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //plot point on surface
+              dotfactor=4;dot((-1,2,6));
+              dot((1,2,2));
+
+
+
+
+
+              // ////////////////////////////////////
+              //    SAMPLE CODE
+
+              // defaultpen(fontsize(10pt));
+
+              //Draw the parabola z=y^2 for t from -2 to 2
+              //triple g(real t) {return (0,t,t^2);}
+              //path3 mypath=graph(g,-2,2,operator ..); draw(mypath,blue);
+
+
+              //Draw the surface z=1/(1+x^2+y^2)
+              //triple f(pair t) {
+              //  return (t.x,t.y,1/(1+(t.x)^2+(t.y)^2));
+              //}
+              //surface s=surface(f,(-2,-2),(2,2),8,8,Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+
+              //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+              //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+
+              //triple f(pair t) {
+              //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+              //}
+              //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+
+              //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+              //path3 mypath=graph(g,-2,2,operator ..);
+
+              //pen p=rgb(0,0,1);
+              //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+
+              //draw(s,paleblue);
+              //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+              //draw(mypath,2bp+blue);
+              ]]>
+            </asymptote>
+          </image>
+          <!-- figures/figmulti_extreme3_3D.asy END -->
+        </figure>
+
+        <p>The critical point <m>(-1,2)</m> clearly corresponds to a relative maximum. However, the critical point at <m>(1,2)</m> is neither a maximum nor a minimum, displaying a different, interesting characteristic.</p>
+
+        <p>If one walks parallel to the <m>y</m>-axis towards this critical point, then this point becomes a relative maximum along this path. But if one walks towards this point parallel to the <m>x</m>-axis, this point becomes a relative minimum along this path. A point that seems to act as both a max and a min is a <em>saddle point</em>. A formal definition follows.</p>
+      </solution>
+    </example>
+
+    <definition xml:id="def_saddle_point">
+      <title>Saddle Point</title>
+      <statement>
+        <p>Let <m>P=(x_0,y_0)</m> be in the domain of <m>f</m> where <m>f_x=0</m> and <m>f_y=0</m> at <m>P</m>. <m>P</m> is a <term>saddle point</term> of <m>f</m> if, for every open disk <m>D</m> containing <m>P</m>, there are points <m>(x_1,y_1)</m> and <m>(x_2,y_2)</m> in <m>D</m> such that <m>f(x_0,y_0)>f(x_1,y_1)</m> and <m>f(x_0,y_0)\lt f(x_2,y_2)</m>.
+          <index><main>saddle point</main></index><index><main>critical point</main></index></p>
+      </statement>
+    </definition>
+
+    <p>At a saddle point, the instantaneous rate of change in all directions is 0 and there are points nearby with <m>z</m>-values both less than and greater than the <m>z</m>-value of the saddle point.</p>
+
+    <p>Before <xref ref="ex_multi_extreme3">Example</xref> we mentioned the need for a test to differentiate between relative maxima and minima. We now recognize that our test also needs to account for saddle points. To do so, we consider the second partial derivatives of <m>f</m>.</p>
+
+    <p>Recall that with single variable functions, such as <m>y=f(x)</m>, if <m>\fp'(c)>0</m>, then <m>f</m> is concave up at <m>c</m>, and if <m>\fp(c) =0</m>, then <m>f</m> has a relative minimum at <m>x=c</m>. (We called this the Second Derivative Test.) Note that at a saddle point, it seems the graph is <q>both</q> concave up and concave down, depending on which direction you are considering.</p>
+
+    <p>It would be nice if the following were true:</p>
+    <tabular>
+      <row>
+        <cell><m>f_{xx}</m> and <m>f_{yy} >0</m></cell>
+        <cell><m>\Rightarrow</m></cell>
+        <cell>relative minimum</cell>
+      </row>
+      <row>
+        <cell><m>f_{xx}</m> and <m>f_{yy} \lt 0</m></cell>
+        <cell><m>\Rightarrow</m></cell>
+        <cell>relative maximum</cell>
+      </row>
+      <row>
+        <cell><m>f_{xx}</m> and <m>f_{yy}</m> have opposite signs</cell>
+        <cell><m>\Rightarrow</m></cell>
+        <cell>saddle point.</cell>
+      </row>
+    </tabular>
+    <p>However, this is not the case. Functions <m>f</m> exist where <m>f_{xx}</m> and <m>f_{yy}</m> are both positive but a saddle point still exists. In such a case, while the concavity in the <m>x</m>-direction is up (i.e., <m>f_{xx}>0</m>) and the concavity in the <m>y</m>-direction is also up (i.e., <m>f_{yy}>0</m>), the concavity switches somewhere in between the <m>x</m>- and <m>y</m>-directions.</p>
+
+    <p>To account for this, consider <m>D = f_{xx}f_{yy}-f_{xy}f_{yx}</m>. Since <m>f_{xy}</m> and <m>f_{yx}</m> are equal when continuous (refer back to <xref ref="thm_mixed_partial">Theorem</xref>), we can rewrite this as <m>D = f_{xx}f_{yy}-f_{xy}^{\,2}</m>. <m>D</m> can be used to test whether the concavity at a point changes depending on direction. If <m>D>0</m>, the concavity does not switch (i.e., at that point, the graph is concave up or down in all directions). If <m>D\lt 0</m>, the concavity does switch. If <m>D=0</m>, our test fails to determine whether concavity switches or not. We state the use of <m>D</m> in the following theorem.</p>
+
+    <theorem xml:id="thm_multi_second_test">
+      <title>Second Derivative Test</title>
+      <statement>
+        <p>Let <m>z=f(x,y)</m> be differentiable on an open set containing <m>P = (x_0,y_0)</m>, and let
+          <index><main>Second Derivative Test</main></index><index><main>maximum</main><sub>relative/local</sub></index><index><main>minimum</main><sub>relative/local</sub></index><index><main>saddle point</main></index>
+          <me>
+            D = f_{xx}(x_0,y_0)f_{yy}(x_0,y_0)-f_{xy}^{\,2}(x_0,y_0).
+          </me>
+        </p>
+
+        <ol>
+          <li><p>If <m>D>0</m> and <m>f_{xx}(x_0,y_0)>0</m>, then <m>P</m> is a relative minimum of <m>f</m>.</p></li>
+
+          <li><p>If <m>D>0</m> and <m>f_{xx}(x_0,y_0)\lt 0</m>, then <m>P</m> is a relative maximum of <m>f</m>.</p></li>
+
+          <li><p>If <m>D\lt 0</m>, then <m>P</m> is a saddle point of <m>f</m>.</p></li>
+
+          <li><p>If <m>D=0</m>, the test is inconclusive.</p></li>
+        </ol>
+      </statement>
+    </theorem>
+
+    <p>We first practice using this test with the function in the previous example, where we visually determined we had a relative maximum and a saddle point.</p>
+
+    <example xml:id="ex_multi_extreme4">
+      <title>Using the Second Derivative Test</title>
+      <statement>
+        <p>Let <m>f(x,y) = x^3-3x-y^2+4y</m> as in <xref ref="ex_multi_extreme3">Example</xref>. Determine whether the function has a relative minimum, maximum, or saddle point at each critical point.</p>
+      </statement>
+      <solution>
+        <p>We determined previously that the critical points of <m>f</m> are <m>(-1,2)</m> and <m>(1,2)</m>. To use the Second Derivative Test, we must find the second partial derivatives of <m>f</m>:
+          <me>
+            f_{xx} = 6x;\qquad f_{yy} = -2;\qquad f_{xy} = 0.
+          </me>
+        </p>
+
+        <p>Thus <m>D(x,y) = -12x</m>.</p>
+
+        <p>At <m>(-1,2)</m>: <m>D(-1,2) = 12>0</m>, and <m>f_{xx}(-1,2) = -6</m>. By the Second Derivative Test, <m>f</m> has a relative maximum at <m>(-1,2)</m>.</p>
+
+        <p>At <m>(1,2)</m>: <m>D(1,2) = -12 \lt 0</m>. The Second Derivative Test states that <m>f</m> has a saddle point at <m>(1,2)</m>.</p>
+
+        <p>The Second Derivative Test confirmed what we determined visually.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_multi_extreme5">
+      <title>Using the Second Derivative Test</title>
+      <statement>
+        <p>Find the relative extrema of <m>f(x,y) = x^2y+y^2+xy</m>.</p>
+      </statement>
+      <solution>
+        <p>We start by finding the first and second partial derivatives of <m>f</m>:
+          <me>
+            \begin{array}{ccc}
+            f_x = 2xy+y \amp  \amp  f_y = x^2+2y+x \\
+            f_{xx} = 2y \amp  \amp  f_{yy} = 2\\
+            f_{xy} = 2x+1	 \amp  \amp  f_{yx} = 2x+1.
+            \end{array}
+          </me>
+        </p>
+
+        <p>We find the critical points by finding where <m>f_x</m> and <m>f_y</m> are simultaneously 0 (they are both never undefined). Setting <m>f_x=0</m>, we have:
+          <me>
+            f_x=0  \Rightarrow  2xy+y=0 \Rightarrow  y(2x+1)=0.
+          </me>
+        </p>
+
+        <p>This implies that for <m>f_x=0</m>, either <m>y=0</m> or <m>2x+1=0</m>.</p>
+
+        <p>Assume <m>y=0</m> then consider <m>f_y=0</m>:
+          <md>
+            <mrow>f_y \amp = 0</mrow>
+            <mrow>x^2+2y+x \amp = 0,  \qquad \text{ and since \(y=0\), we have }</mrow>
+            <mrow>x^2+x \amp = 0</mrow>
+            <mrow>x(x+1) \amp  = 0.</mrow>
+          </md>
+        </p>
+
+        <p>Thus if <m>y=0</m>, we have either <m>x=0</m> or <m>x=-1</m>, giving two critical points: <m>(-1,0)</m> and <m>(0,0)</m>.</p>
+
+        <p>Going back to <m>f_x</m>, now assume <m>2x+1=0</m>, i.e., that <m>x=-1/2</m>, then consider <m>f_y=0</m>:
+          <md>
+            <mrow>f_y \amp = 0</mrow>
+            <mrow>x^2+2y+x \amp = 0,  \qquad \text{ and since \(x=-1/2\), we have }</mrow>
+            <mrow>1/4+2y-1/2 \amp = 0</mrow>
+            <mrow>y\amp = 1/8.</mrow>
+          </md>
+        </p>
+
+        <p>Thus if <m>x=-1/2</m>, <m>y=1/8</m> giving the critical point <m>(-1/2,1/8)</m>.</p>
+
+        <p>With <m>D = 4y-(2x+1)^2</m>, we apply the Second Derivative Test to each critical point.</p>
+
+        <p>At <m>(-1,0)</m>, <m>D \lt 0</m>, so <m>(-1,0)</m> is a saddle point.</p>
+
+        <p>At <m>(0,0)</m>, <m>D\lt 0</m>, so <m>(0,0)</m> is also a saddle point.</p>
+
+        <p>At <m>(-1/2,1/8)</m>, <m>D>0</m> and <m>f_{xx} > 0</m>, so <m>(-1/2,1/8)</m> is a relative minimum.</p>
+
+        <figure xml:id="fig_multi_extreme5" >
+          <caption>Graphing <m>f</m> from <xref ref="ex_multi_extreme5">Example</xref> and its relative extrema.</caption>
+          <!--
+           \includemedia[width=125pt,3Dmenu,activate=onclick,deactivate=onclick,
+          3Droll=0.0,
+          3Dortho=0.0046491301618516445,
+          3Dc2c=0.7690940499305725 0.052982430905103683 0.636935830116272,
+          3Dcoo=-7.478764533996582 19.195676803588867 15.916007995605469,
+          3Droo=150.0000019671413,
+          3Dlights=Headlamp,add3Djscript=asylabels.js]
+           -->
+
+
+          <!-- START figures/figmulti_extreme5_3D.asy -->
+          <image xml:id="img_multi_extreme5" >
+            <asymptote>
+              <![CDATA[
+              import graph3;
+
+              //ASY file for figmulti_extreme53D.asy in Chapter 12
+
+              size(200,200,IgnoreAspect);
+              //size(200,200,Aspect);
+              //currentprojection=perspective(7,2,1);
+              currentprojection=orthographic(24,.7,11.5);
+              defaultrender.merge=true;
+
+              usepackage("mathspec");
+              texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+              // setup and draw the axes
+              real[] myxchoice={-2};
+              real[] myychoice={-0.2,0.2,0.4};
+              real[] myzchoice={};
+              defaultpen(0.5mm);
+              pair xbounds=(-3,3);
+              pair ybounds=(-0.3,0.5);
+              pair zbounds=(-1,2);
+
+              xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+              yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+              zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+              label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+              label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+              label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+              //Draw surface z=x^2y+y^2+xy
+              triple f(pair t) {
+                return (t.x,t.y,t.x^2*t.y+t.y^2+t.x*t.y);
+              }
+              surface s=surface(f,(-2,-0.3),(1.5,0.5),16,16,Spline);
+              pen p=rgb(0,0,.7);
+              draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //plot point on surface
+              dotfactor=4;dot((0,0,0));dot((-1,0,0));dot((-1/2,1/8,-.016));
+
+
+
+
+
+              // ////////////////////////////////////
+              //    SAMPLE CODE
+
+              // defaultpen(fontsize(10pt));
+
+              //Draw the parabola z=y^2 for t from -2 to 2
+              //triple g(real t) {return (0,t,t^2);}
+              //path3 mypath=graph(g,-2,2,operator ..); draw(mypath,blue);
+
+
+              //Draw the surface z=1/(1+x^2+y^2)
+              //triple f(pair t) {
+              //  return (t.x,t.y,1/(1+(t.x)^2+(t.y)^2));
+              //}
+              //surface s=surface(f,(-2,-2),(2,2),8,8,Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+
+              //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+              //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+
+              //triple f(pair t) {
+              //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+              //}
+              //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+
+              //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+              //path3 mypath=graph(g,-2,2,operator ..);
+
+              //pen p=rgb(0,0,1);
+              //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+
+              //draw(s,paleblue);
+              //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+              //draw(mypath,2bp+blue);
+              ]]>
+            </asymptote>
+          </image>
+          <!-- figures/figmulti_extreme5_3D.asy END -->
+        </figure>
+
+        <p><xref ref="fig_multi_extreme5">Figure</xref> shows a graph of <m>f</m> and the three critical points. Note how this function does not vary much near the critical points <mdash /> that is, visually it is difficult to determine whether a point is a saddle point or relative minimum (or even a critical point at all!). This is one reason why the Second Derivative Test is so important to have.</p>
+      </solution>
+    </example>
+  </introduction>
+
+  <subsection>
+    <title>Constrained Optimization</title>
+    <p>When optimizing functions of one variable such as <m>y=f(x)</m>, we made use of <xref ref="thm_extreme_val">Theorem</xref>, the Extreme Value Theorem, that said that over a closed interval <m>I</m>, a continuous function has both a maximum and minimum value. To find these maximum and minimum values, we evaluated <m>f</m> at all critical points in the interval, as well as at the endpoints (the <q>boundary</q>) of the interval.
+      <index><main>constrained optimization</main></index><index><main>optimization</main><sub>constrained</sub></index></p>
+
+    <p>A similar theorem and procedure applies to functions of two variables. A continuous function over a closed set also attains a maximum and minimum value (see the following theorem). We can find these values by evaluating the function at the critical values in the set and over the boundary of the set. After formally stating this extreme value theorem, we give examples.</p>
+
+    <theorem xml:id="thm_extreme_val3">
+      <title>Extreme Value Theorem</title>
+      <statement>
+        <p>Let <m>z=f(x,y)</m> be a continuous function on a closed, bounded set <m>S</m>. Then <m>f</m> has a maximum and minimum value on <m>S</m>.
+          <index><main>Extreme Value Theorem</main></index></p>
+      </statement>
+    </theorem>
+
+    <example xml:id="ex_conopt1">
+      <title>Finding extrema on a closed set</title>
+      <statement>
+        <p>Let <m>f(x,y) = x^2-y^2+5</m> and let <m>S</m> be the triangle with vertices <m>(-1,-2)</m>, <m>(0,1)</m> and <m>(2,-2)</m>. Find the maximum and minimum values of <m>f</m> on <m>S</m>.</p>
+      </statement>
+      <solution>
+        <p>It can help to see a graph of <m>f</m> along with the set <m>S</m>. In <xref ref="fig_conopt1">Figure</xref>(a) the triangle defining <m>S</m> is shown in the <m>x</m>-<m>y</m> plane in a dashed line. Above it is the surface of <m>f</m>; we are only concerned with the portion of <m>f</m> enclosed by the <q>triangle</q> on its surface.</p>
+
+        <figure xml:id="fig_conopt1" >
+        <caption>Plotting the surface of <m>f</m> along with the restricted domain <m>S</m>.</caption>
+        <sidebyside>
+          <figure>
+            <caption>(a)</caption>
+            <!--
+             \includemedia[width=125pt,3Dmenu,activate=onclick,deactivate=onclick,
+            3Droll=0,
+            3Dortho=0.004952129442244768,
+            3Dc2c=0.4829294979572296 -0.6089988350868225 0.6292055249214172,
+            3Dcoo=16.360477447509766 -11.452425956726074 60.48027038574219,
+            3Droo=150.000003217617,
+            3Dlights=Headlamp,add3Djscript=asylabels.js]
+             -->
+
+
+            <!-- START figures/figconopt1_3D.asy -->
+            <image xml:id="img_conopt1_3D" >
+              <asymptote>
+                <![CDATA[
+                import graph3;
+
+                //ASY file for figconopt1.asy in Chapter 12
+
+                size(200,200,IgnoreAspect);
+                //size(200,200,Aspect);
+                //currentprojection=perspective(7,2,1);
+                currentprojection=orthographic(5.6,-7.8,20.3);
+                defaultrender.merge=true;
+
+                usepackage("mathspec");
+                texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+                texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+                texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+                texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+                // setup and draw the axes
+                real[] myxchoice={-1,2};
+                real[] myychoice={-2,1,2};
+                real[] myzchoice={5};
+                defaultpen(0.5mm);
+                pair xbounds=(-1.5,3);
+                pair ybounds=(-2.5,2.5);
+                pair zbounds=(-1,10);
+
+                xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+                yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+                zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+                label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+                label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+                label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+                //Draw surface z=x^2 - y^2 + 5
+                triple f(pair t) {
+                  return (t.x,t.y,t.x^2-t.y^2+5);
+                }
+                surface s=surface(f,(-1.5,-2.25),(2.25,1.75),16,16,vsplinetype=new splinetype[] {notaknot,notaknot,monotonic},usplinetype=new splinetype[] {notaknot,notaknot,monotonic});
+                pen p=rgb(0,0,.7);
+                draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+                //Draw triangle in plane
+                draw((-1,-2,0)--(0,1,0)--(2,-2,0)--cycle,red+dashed+linewidth(1));
+
+                //Draw triangle on surface
+                triple g(real t) {return (t,-2,t^2+1);}
+                path3 mypath=graph(g,-1,2,operator ..); draw(mypath,red); //side 1
+                triple g(real t) {return (t,3*t+1,t^2-(3*t+1)^2+5);}
+                path3 mypath=graph(g,-1,0,operator ..); draw(mypath,red); //side 2
+                triple g(real t) {return (t,-3*t/2+1,t^2-(-3*t/2+1)^2+5);}
+                path3 mypath=graph(g,0,2,operator ..); draw(mypath,red); //side 3
+
+
+
+                // ////////////////////////////////////
+                //    SAMPLE CODE
+
+                // defaultpen(fontsize(10pt));
+
+                //Draw the parabola z=y^2 for t from -2 to 2
+                //triple g(real t) {return (0,t,t^2);}
+                //path3 mypath=graph(g,-2,2,operator ..); draw(mypath,blue);
+
+
+                //Draw the surface z=1/(1+x^2+y^2)
+                //triple f(pair t) {
+                //  return (t.x,t.y,1/(1+(t.x)^2+(t.y)^2));
+                //}
+                //surface s=surface(f,(-2,-2),(2,2),8,8,Spline);
+                //pen p=rgb(0,0,.7);
+                //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+
+                //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+                //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+
+                //triple f(pair t) {
+                //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+                //}
+                //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+
+                //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+                //path3 mypath=graph(g,-2,2,operator ..);
+
+                //pen p=rgb(0,0,1);
+                //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+
+                //draw(s,paleblue);
+                //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+                //draw(mypath,2bp+blue);
+                ]]>
+              </asymptote>
+            </image>
+            <!-- figures/figconopt1_3D.asy END -->
+          </figure>
+
+          <figure>
+            <caption>(b)</caption>
+            <!-- START figures/fig_conopt1b.tex -->
+            <image xml:id="img_conopt1b" >
+              <description></description>
+              <latex-image-code>
+                <![CDATA[
+                \begin{tikzpicture}
+                \begin{axis}[%
+			xtick={-2,2},%
+                %			ytick={-6,-4,-2,0,2,4,6},
+			extra x ticks={-1,1},%
+			ymin=-2.5,ymax=1.5,%
+			xmin=-2.1,xmax=2.1%
+                ]
+
+                %\addplot [thick,{\colorone},smooth,domain=0:.9] {1/(x-1)^2};
+                %\addplot [{\colorone},thick,smooth,domain=1.1:2] {1/(x-1)^2};
+                \draw [thick,{\colorone}] (axis cs:-1,-2)-- node [black,pos=.2,above,sloped] {\scriptsize $y=3x+1$} (axis cs:0,1)--node [black,pos=.6,below,sloped] {\scriptsize $y=-3/2x+1$} (axis cs:2,-2)--node [black,pos=.5,below,sloped] {\scriptsize $y=-2$}(axis cs:-1,-2);
+                %\draw [thick,{\colorone}] (axis cs:-1,-2) -- (axis cs:2,-2);
+
+                \fill[black,draw=black] (axis cs:-1,-2) circle (1.5pt);
+                \fill[black,draw=black] (axis cs:2,-2) circle (1.5pt);
+                \fill[black,draw=black] (axis cs:0,1) circle (1.5pt);
+                %\fill[black,draw=black] (axis cs:2,2) circle (1.5pt);
+                %\fill[white,draw=black] (axis cs:1,0) circle (1.5pt);
+                \end{axis}
+
+
+                \end{tikzpicture}
+                ]]>
+              </latex-image-code>
+            </image>
+            <!-- figures/fig_conopt1b.tex END -->
+          </figure>
+        </sidebyside>
+
+        </figure>
+
+        <p>We begin by finding the critical points of <m>f</m>. With <m>f_x = 2x</m> and <m>f_y = -2y</m>, we find only one critical point, at <m>(0,0)</m>.</p>
+
+        <p>We now find the maximum and minimum values that <m>f</m> attains along the boundary of <m>S</m>, that is, along the edges of the triangle. In <xref ref="fig_conopt1">Figure</xref>(b) we see the triangle sketched in the plane with the equations of the lines forming its edges labeled.</p>
+
+        <p>Start with the bottom edge, along the line <m>y=-2</m>. If <m>y</m> is <m>-2</m>, then on the surface, we are considering points <m>f(x,-2)</m>; that is, our function reduces to <m>f(x,-2) = x^2-(-2)^2+5 = x^2+1=f_1(x)</m>. We want to maximize/minimize <m>f_1(x)=x^2+1</m> on the interval <m>[-1,2]</m>. To do so, we evaluate <m>f_1(x)</m> at its critical points and at the endpoints.</p>
+
+        <p>The critical points of <m>f_1</m> are found by setting its derivative equal to 0:
+          <me>
+            \fp_1(x)=0\qquad \Rightarrow x=0.
+          </me>
+        </p>
+
+        <p>Evaluating <m>f_1</m> at this critical point, and at the endpoints of <m>[-1,1]</m> gives:
+          <md>
+            <mrow>f_1(-1) = 2 \qquad\amp \Rightarrow\qquad f(-1,-2) = 2</mrow>
+            <mrow>f_1(0) = 1 \qquad\amp \Rightarrow \qquad f(0,-2) = 1</mrow>
+            <mrow>f_1(2) = 5 \qquad\amp \Rightarrow \qquad f(2,-2) = 5.</mrow>
+          </md>
+        </p>
+
+        <p>Notice how evaluating <m>f_1</m> at a point is the same as evaluating <m>f</m> at its corresponding point.</p>
+
+        <p>We need to do this process twice more, for the other two edges of the triangle.</p>
+
+        <p>Along the left edge, along the line <m>y=3x+1</m>, we substitute <m>3x+1</m> in for <m>y</m> in <m>f(x,y)</m>:
+          <me>
+            f(x,y) = f(x,3x+1) = x^2-(3x+1)^2+5 = -8x^2-6x+4 = f_2(x).
+          </me>
+        </p>
+
+        <p>We want the maximum and minimum values of <m>f_2</m> on the interval <m>[-1,0]</m>, so we evaluate <m>f_2</m> at its critical points and the endpoints of the interval. We find the critical points:
+          <me>
+            \fp_2(x) = -16x-6=0 \qquad \Rightarrow \qquad x=-3/8.
+          </me>
+        </p>
+
+        <p>Evaluate <m>f_2</m> at its critical point and the endpoints of <m>[-1,0]</m>:
+          <md>
+            <mrow>f_2(-1) = 2 \qquad\amp \Rightarrow\qquad f(-1,-2) = 2</mrow>
+            <mrow>f_2(-3/8) = 41/8=5.125  \qquad\amp \Rightarrow \qquad f(-3/8,-0.125) = 5.125</mrow>
+            <mrow>f_2(0) = 1 \qquad\amp \Rightarrow \qquad f(0,1) = 4.</mrow>
+          </md>
+        </p>
+
+        <p>Finally, we evaluate <m>f</m> along the right edge of the triangle, where <m>y = -3/2x+1</m>.
+          <me>
+            f(x,y) = f(x,-3/2x+1) = x^2-(-3/2x+1)^2+5 = -\frac54x^2+3x+4=f_3(x).
+          </me>
+        </p>
+
+        <p>The critical points of <m>f_3(x)</m> are:
+          <me>
+            \fp_3(x) = 0 \qquad \Rightarrow \qquad x=6/5=1.2.
+          </me>
+        </p>
+
+        <p>We evaluate <m>f_3</m> at this critical point and at the endpoints of the interval <m>[0,2]</m>:
+          <md>
+            <mrow>f_3(0) = 4 \qquad\amp \Rightarrow\qquad f(0,1) = 4</mrow>
+            <mrow>f_3(1.2) = 5.8  \qquad\amp \Rightarrow \qquad f(1.2,-0.8) = 5.8</mrow>
+            <mrow>f_3(2) = 5 \qquad\amp \Rightarrow \qquad f(2,-2) = 5.</mrow>
+          </md>
+        </p>
+
+        <p>One last point to test: the critical point of <m>f</m>, <m>(0,0)</m>. We find <m>f(0,0) = 5</m>.</p>
+
+        <figure xml:id="fig_conopt1b" >
+          <caption>The surface of <m>f</m> along with important points along the boundary of <m>S</m> and the interior.</caption>
+          <!--
+           \includemedia[width=125pt,3Dmenu,activate=onclick,deactivate=onclick,
+          3Droll=0,
+          3Dortho=0.00476991618052125,
+          3Dc2c=0.2722506821155548 -0.5407805442810059 0.7958868741989136,
+          3Dcoo=2.6561195850372314 25.95724868774414 7.351059436798096,
+          3Droo=200.99999823503413,
+          3Dlights=Headlamp,add3Djscript=asylabels.js]
+           -->
+
+
+          <!-- START figures/figconopt1c_3D.asy -->
+          <image xml:id="img_conopt1bX" >
+            <asymptote>
+              <![CDATA[
+              import graph3;
+
+              //ASY file for figconopt1c3D.asy in Chapter 12
+
+              size(200,200,IgnoreAspect);
+              //size(200,200,Aspect);
+              //currentprojection=perspective(7,2,1);
+              currentprojection=orthographic(2.6,-7.,24);
+              defaultrender.merge=true;
+
+              usepackage("mathspec");
+              texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+              // setup and draw the axes
+              real[] myxchoice={-1,2};
+              real[] myychoice={-2,1,2};
+              real[] myzchoice={5};
+              defaultpen(0.5mm);
+              pair xbounds=(-1.5,3);
+              pair ybounds=(-2.5,2.5);
+              pair zbounds=(-1,10);
+
+              xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+              yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+              zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+              label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+              label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+              label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+              //Draw surface z=x^2 - y^2 + 5
+              triple f(pair t) {
+                return (t.x,t.y,t.x^2-t.y^2+5);
+              }
+              surface s=surface(f,(-1.5,-2.25),(2.25,1.75),16,16,Spline);
+              pen p=rgb(0,0,.7);
+              draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //Draw triangle in plane
+              draw((-1,-2,0)--(0,1,0)--(2,-2,0)--cycle,red+dashed+linewidth(1));
+
+              //Draw triangle on surface
+              triple g(real t) {return (t,-2,t^2+1);}
+              path3 mypath=graph(g,-1,2,operator ..); draw(mypath,red); //side 1
+              triple g(real t) {return (t,3*t+1,t^2-(3*t+1)^2+5);}
+              path3 mypath=graph(g,-1,0,operator ..); draw(mypath,red); //side 2
+              triple g(real t) {return (t,-3*t/2+1,t^2-(-3*t/2+1)^2+5);}
+              path3 mypath=graph(g,0,2,operator ..); draw(mypath,red); //side 3
+
+              //Dots at 7 points
+              dotfactor=4;
+              dot((-1,-2,2));dot((2,-2,5)); dot((0,1,4)); //at corner of triangles
+              dot((0,0,5)); //maximum
+              dot((0,-2,1)); //minimum
+              dot((1.2,-0.8,5.8));dot((-3/8,-1/8,5.125)); //along edges of triangles
+
+
+
+
+
+              // ////////////////////////////////////
+              //    SAMPLE CODE
+
+              // defaultpen(fontsize(10pt));
+
+              //Draw the parabola z=y^2 for t from -2 to 2
+              //triple g(real t) {return (0,t,t^2);}
+              //path3 mypath=graph(g,-2,2,operator ..); draw(mypath,blue);
+
+
+              //Draw the surface z=1/(1+x^2+y^2)
+              //triple f(pair t) {
+              //  return (t.x,t.y,1/(1+(t.x)^2+(t.y)^2));
+              //}
+              //surface s=surface(f,(-2,-2),(2,2),8,8,Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+
+              //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+              //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+
+              //triple f(pair t) {
+              //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+              //}
+              //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+
+              //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+              //path3 mypath=graph(g,-2,2,operator ..);
+
+              //pen p=rgb(0,0,1);
+              //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+
+              //draw(s,paleblue);
+              //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+              //draw(mypath,2bp+blue);
+              ]]>
+            </asymptote>
+          </image>
+          <!-- figures/figconopt1c_3D.asy END -->
+        </figure>
+
+        <p>We have evaluated <m>f</m> at a total of 7 different places, all shown in <xref ref="fig_conopt1b">Figure</xref>. We checked each vertex of the triangle twice, as each showed up as the endpoint of an interval twice. Of all the <m>z</m>-values found, the maximum is 5.8, found at <m>(1.2,-0.8)</m>; the minimum is 1, found at <m>(0,-2)</m>.</p>
+      </solution>
+    </example>
+
+    <p>This portion of the text is entitled <q>Constrained Optimization</q> because we want to optimize a function (i.e., find its maximum and/or minimum values) subject to a <em>constraint</em> <mdash /> some limit to what values the function can attain. In the previous example, we constrained ourselves by considering a function only within the boundary of a triangle. This was largely arbitrary; the function and the boundary were chosen just as an example, with no real <q>meaning</q> behind the function or the chosen constraint.</p>
+
+    <p>However, solving constrained optimization problems is a very important topic in applied mathematics. The techniques developed here are the basis for solving larger problems, where more than two variables are involved.</p>
+
+    <p>We illustrate the technique once more with a classic problem.</p>
+
+    <example xml:id="ex_conopt2">
+      <title>Constrained Optimization</title>
+      <statement>
+        <p>The U.S. Postal Service states that the girth+length of Standard Post Package must not exceed 130''. Given a rectangular box, the <q>length</q> is the longest side, and the <q>girth</q> is twice the width+height.</p>
+
+        <p>Given a rectangular box where the width and height are equal, what are the dimensions of the box that give the maximum volume subject to the constraint of the size of a Standard Post Package?</p>
+      </statement>
+      <solution>
+        <p>Let <m>w</m>, <m>h</m> and <m>\ell</m> denote the width, height and length of a rectangular box; we assume here that <m>w=h</m>. The girth is then <m>2(w+h) = 4w</m>. The volume of the box is <m>V(w,\ell) = wh\ell = w^2\ell</m>. We wish to maximize this volume subject to the constraint <m>4w+\ell\leq 130</m>, or <m>\ell\leq 130-4w</m>. (Common sense also indicates that <m>\ell>0, w>0</m>.)</p>
+
+        <p>We begin by finding the critical values of <m>V</m>. We find that <m>V_w = 2w\ell</m> and <m>V_\ell = w^2</m>; these are simultaneously 0 only at <m>(0,0)</m>. This gives a volume of 0, so we can ignore this critical point.</p>
+
+        <p>We now consider the volume along the constraint <m>\ell=130-4w</m>. Along this line, we have:
+          <me>
+            V(w\ell) = V(w,130-4w) = w^2(130-4w) = 130w^2-4w^3 = V_1(w).
+          </me>
+        </p>
+
+        <p>The constraint is applicable on the <m>w</m>-interval <m>[0,32.5]</m> as indicated in the figure. Thus we want to maximize <m>V_1</m> on <m>[0,32.5]</m>.</p>
+
+        <p>Finding the critical values of <m>V_1</m>, we take the derivative and set it equal to 0:
+          <me>
+            V\,'_1(w) = 260w-12w^2 = 0  \Rightarrow  w(260-12w)= 0  \Rightarrow  w=0,\frac{260}{12}\approx 21.67.
+          </me>
+        </p>
+
+        <p>We found two critical values: when <m>w=0</m> and when <m>w=21.67</m>. We again ignore the <m>w=0</m> solution; the maximum volume, subject to the constraint, comes at <m>w=h=21.67</m>, <m>\ell = 130-4(21.6) =43.33</m>. This gives a volume of <m>V(21.67,43.33) \approx 19,408</m>in<m>^3</m>.</p>
+
+        <figure xml:id="fig_conopt2" >
+          <caption>Graphing the volume of a box with girth <m>4w</m> and length <m>\ell</m>, subject to a size constraint.</caption>
+          <!--
+           \includemedia[width=125pt,3Dmenu,activate=onclick,deactivate=onclick,
+          3Droll=0,
+          3Dortho=0.005153999198228121,
+          3Dc2c=0.31346064805984497 -0.9024837017059326 0.2954072952270508,
+          3Dcoo=45.312767028808594 65.24303436279297 62.16134262084961,
+          3Droo=149.9999931723703,
+          3Dlights=Headlamp,add3Djscript=asylabels.js]
+           -->
+
+
+          <!-- START figures/figconopt2_3D.asy -->
+          <image xml:id="img_conopt2" >
+            <asymptote>
+              <![CDATA[
+              import graph3;
+
+              //ASY file for figconopt23D.asy in Chapter 12
+
+              size(200,200,IgnoreAspect);
+              //size(200,200,Aspect);
+              //currentprojection=perspective(7,2,1);
+              currentprojection=orthographic(176,-2075,580);
+              defaultrender.merge=true;
+
+              usepackage("mathspec");
+              texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+              // setup and draw the axes
+              real[] myxchoice={20};
+              real[] myychoice={50,100};
+              real[] myzchoice={20,40,60,80};
+              defaultpen(0.5mm);
+              pair xbounds=(-5,40);
+              pair ybounds=(-2,150);
+              //pair zbounds=(0,100000);
+              pair zbounds=(0,100);
+
+              xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+              yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+              zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+              label("$w$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+              label("$\ell$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+              label("\centering $V$\\ (in thousands)",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)),N);
+
+              //Draw surface z=x^2*y
+              triple f(pair t) {
+                return (t.x,t.y,t.x^2*t.y/1000);
+              }
+              surface s=surface(f,(0,0),(32.5,130),16,16,Spline);
+              //s=crop(s,(-1,-1,-1),(33,135,100));
+              pen p=rgb(0,0,.7);
+              draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //Draw path in plane
+              draw((32.5,0,0)--(0,130,0),red+dashed+linewidth(1));
+
+              //Draw path on surface
+              triple g(real t) {return (t,130-4*t,t^2*(130-4*t)/1000);}
+              path3 mypath=graph(g,0,32.5,operator ..); draw(mypath,red); //side 1
+
+
+              //Dots at max point
+              dotfactor=4; dot((21.67,43.33,19.4));
+
+
+
+
+
+              // ////////////////////////////////////
+              //    SAMPLE CODE
+
+              // defaultpen(fontsize(10pt));
+
+              //Draw the parabola z=y^2 for t from -2 to 2
+              //triple g(real t) {return (0,t,t^2);}
+              //path3 mypath=graph(g,-2,2,operator ..); draw(mypath,blue);
+
+
+              //Draw the surface z=1/(1+x^2+y^2)
+              //triple f(pair t) {
+              //  return (t.x,t.y,1/(1+(t.x)^2+(t.y)^2));
+              //}
+              //surface s=surface(f,(-2,-2),(2,2),8,8,Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+
+              //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+              //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+
+              //triple f(pair t) {
+              //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+              //}
+              //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+
+              //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+              //path3 mypath=graph(g,-2,2,operator ..);
+
+              //pen p=rgb(0,0,1);
+              //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+
+              //draw(s,paleblue);
+              //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+              //draw(mypath,2bp+blue);
+              ]]>
+            </asymptote>
+          </image>
+          <!-- figures/figconopt2_3D.asy END -->
+        </figure>
+
+        <p>The volume function <m>V(w,\ell)</m> is shown in <xref ref="fig_conopt2">Figure</xref> along with the constraint <m>\ell = 130-4w</m>. As done previously, the constraint is drawn dashed in the <m>x</m>-<m>y</m> plane and also along the surface of the function. The point where the volume is maximized is indicated.</p>
+      </solution>
+    </example>
+
+    <p>It is hard to overemphasize the importance of optimization. In <q>the real world,</q> we routinely seek to make <em>something</em> better. By expressing the <em>something</em> as a mathematical function, <q>making <em>something</em> better</q> means <q>optimize <em>some function.</em></q></p>
+
+    <p>The techniques shown here are only the beginning of an incredibly important field. Many functions that we seek to optimize are incredibly complex, making the step of <q>find the gradient and set it equal to <m>\vec 0</m></q> highly nontrivial. Mastery of the principles here are key to being able to tackle these more complicated problems.</p>
+  </subsection>
+
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$true">
+              <set>
+                <member correct="yes">True</member>
+                <member>False</member>
+              </set>
+            </var>
+            <var name="$false">
+              <set>
+                <member>True</member>
+                <member correct="yes">False</member>
+              </set>
+            </var>
+            <pg-code>
+              $true=PopUp(['?','True','False'],1);
+              $false=PopUp(['?','True','False'],2);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>True or False? <xref ref="thm_multi_critical_point">Theorem</xref> states that if <m>f</m> has a critical point at <m>P</m>, then <m>f</m> has a relative extrema at <m>P</m>. <var name="$false" form="popup"/></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$true">
+              <set>
+                <member correct="yes">True</member>
+                <member>False</member>
+              </set>
+            </var>
+            <var name="$false">
+              <set>
+                <member>True</member>
+                <member correct="yes">False</member>
+              </set>
+            </var>
+            <pg-code>
+              $true=PopUp(['?','True','False'],1);
+              $false=PopUp(['?','True','False'],2);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>True or False? A point <m>P</m> is a critical point of <m>f</m> if <m>f_x</m> and <m>f_y</m> are both <m>0</m> at <m>P</m>. <var name="$true" form="popup"/></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$true">
+              <set>
+                <member correct="yes">True</member>
+                <member>False</member>
+              </set>
+            </var>
+            <var name="$false">
+              <set>
+                <member>True</member>
+                <member correct="yes">False</member>
+              </set>
+            </var>
+            <pg-code>
+              $true=PopUp(['?','True','False'],1);
+              $false=PopUp(['?','True','False'],2);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>True or False? A point <m>P</m> is a critical point of <m>f</m> if <m>f_x</m> or <m>f_y</m> are undefined at <m>P</m>. <var name="$true" form="popup"/></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Explain what it means to <q>solve a constrained optimization</q> problem.</p>
+          </statement>
+          <solution>
+            <p>Answers will vary. A good answer will state that we are optimizing a function subject to a constraint, or limit, on the domain of the function. We are looking to maximize/minimize the function while <q>looking</q> at only a certain part of the domain.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, find the critical points of the given function. Use the Second Derivative Test to determine if each critical point corresponds to a relative maximum, minimum, or saddle point.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x,y) = \frac12x^2+2y^2-8y+4x</m></p>
+          </statement>
+          <solution>
+            <p>One critical point at <m>(-4,2)</m>; <m>f_{xx} = 1</m> and <m>D = 4</m>, so this point corresponds to a relative minimum.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$max">
+              <static>\text{None}</static>
+            </var>
+            <var name="$min">
+              <static>\text{None}</static>
+            </var>
+            <var name="$sad">
+              <static>(7,-6)</static>
+            </var>
+            <var name="$inc">
+              <static>\text{None}</static>
+            </var>
+            <pg-code>
+              Context("Point");
+              $max=List("None");
+              $min=List("None");
+              $sad=List("(7,-6)");
+              $inc=List("None");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Let <m>f(x,y) = x^2+4x+y^2-9y+3xy</m>. List all critical points (or report that there are <c>none</c>) of <m>f</m> where the Second Derivative Test:<ol label="a">
+              <li>
+                <p>indicates the critical point is a relative maximum.</p>
+                <p><var name="$max" width="30" /></p>
+              </li>
+              <li>
+                <p>indicates the critical point is a relative minimum.</p>
+                <p><var name="$min" width="30" /></p>
+              </li>
+              <li>
+                <p>indicates the critical point is a saddle point.</p>
+                <p><var name="$sad" width="30" /></p>
+              </li>
+              <li>
+                <p>is inconclusive.</p>
+                <p><var name="$inc" width="30" /></p>
+              </li>
+            </ol></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x,y) = x^2+3y^2-6y+4xy</m></p>
+          </statement>
+          <solution>
+            <p>One critical point at <m>(6,-3)</m>; <m>D = -4</m>, so this point corresponds to a saddle point.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$max">
+              <static>\text{None}</static>
+            </var>
+            <var name="$min">
+              <static>(0,0)</static>
+            </var>
+            <var name="$sad">
+              <static>\text{None}</static>
+            </var>
+            <var name="$inc">
+              <static>\text{None}</static>
+            </var>
+            <pg-code>
+              Context("Point");
+              $max=List("(0,0)");
+              $min=List("None");
+              $sad=List("None");
+              $inc=List("None");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Let <m>f(x,y) = \frac{1}{x^2+y^2+1}</m>. List all critical points (or report that there are <c>none</c>) of <m>f</m> where the Second Derivative Test:<ol label="a">
+              <li>
+                <p>indicates the critical point is a relative maximum.</p>
+                <p><var name="$max" width="30" /></p>
+              </li>
+              <li>
+                <p>indicates the critical point is a relative minimum.</p>
+                <p><var name="$min" width="30" /></p>
+              </li>
+              <li>
+                <p>indicates the critical point is a saddle point.</p>
+                <p><var name="$sad" width="30" /></p>
+              </li>
+              <li>
+                <p>is inconclusive.</p>
+                <p><var name="$inc" width="30" /></p>
+              </li>
+            </ol></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y) = x^2+y^3-3y+1</m></p>
+          </statement>
+          <solution>
+            <p>Two critical points: at <m>(0,-1)</m>; <m>f_{xx} = 2</m> and <m>D = -12</m>, so this point corresponds to a saddle point;</p>
+
+            <p>at <m>(0,1)</m>, <m>f_{xx} = 2</m> and <m>D = 12</m>, so this corresponds to a relative minimum.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$max">
+              <static>(-1,-2)</static>
+            </var>
+            <var name="$min">
+              <static>(1,2)</static>
+            </var>
+            <var name="$sad">
+              <static>(1,-2), (-1,2)</static>
+            </var>
+            <var name="$inc">
+              <static>\text{None}</static>
+            </var>
+            <pg-code>
+              Context("Point");
+              $max=List("(-1,-2)");
+              $min=List("(1,2)");
+              $sad=List("(1,-2), (-1,2)");
+              $inc=List("None");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Let <m>f(x,y) = \frac13x^3-x+\frac13y^3-4y</m>. List all critical points (or report that there are <c>none</c>) of <m>f</m> where the Second Derivative Test:<ol label="a">
+              <li>
+                <p>indicates the critical point is a relative maximum.</p>
+                <p><var name="$max" width="30" /></p>
+              </li>
+              <li>
+                <p>indicates the critical point is a relative minimum.</p>
+                <p><var name="$min" width="30" /></p>
+              </li>
+              <li>
+                <p>indicates the critical point is a saddle point.</p>
+                <p><var name="$sad" width="30" /></p>
+              </li>
+              <li>
+                <p>is inconclusive.</p>
+                <p><var name="$inc" width="30" /></p>
+              </li>
+            </ol></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y) = x^2y^2</m></p>
+          </statement>
+          <solution>
+            <p>One critical point at <m>(0,0)</m>. <m>D = -12x^2y^2</m>, so at <m>(0,0)</m>, <m>D = 0</m> and the test is inconclusive. (Some elementary thought shows that it is the absolute minimum.)</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$max">
+              <static>(0,-3)</static>
+            </var>
+            <var name="$min">
+              <static>(-1,3), (1,3)</static>
+            </var>
+            <var name="$sad">
+              <static>(-1,-3), (0,3), (1,-3)</static>
+            </var>
+            <var name="$inc">
+              <static>\text{None}</static>
+            </var>
+            <pg-code>
+              Context("Point");
+              $max=List("(0,-3)");
+              $min=List("(-1,3), (1,3)");
+              $sad=List("(-1,-3), (0,3), (1,-3)");
+              $inc=List("None");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Let <m>f(x,y) = x^4-2x^2+y^3-27y-15</m>. List all critical points (or report that there are <c>none</c>) of <m>f</m> where the Second Derivative Test:<ol label="a">
+              <li>
+                <p>indicates the critical point is a relative maximum.</p>
+                <p><var name="$max" width="30" /></p>
+              </li>
+              <li>
+                <p>indicates the critical point is a relative minimum.</p>
+                <p><var name="$min" width="30" /></p>
+              </li>
+              <li>
+                <p>indicates the critical point is a saddle point.</p>
+                <p><var name="$sad" width="30" /></p>
+              </li>
+              <li>
+                <p>is inconclusive.</p>
+                <p><var name="$inc" width="30" /></p>
+              </li>
+            </ol></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y) = \sqrt{16-(x-3)^2-y^2}</m></p>
+          </statement>
+          <solution>
+            <p>One critical point: <m>f_x = 0</m> when <m>x=3</m>; <m>f_y = 0</m> when <m>y = 0</m>, so one critical point at <m>(3,0)</m>, which is a relative maximum, where
+              <m>f_{xx} = \frac{y^2-16}{(16-(x-3)^2-y^2)^{3/2}}</m> and <m>D = \frac{16}{(16-(x-3)^2-y^2)^{2}}</m>.</p>
+
+            <p>Both <m>f_x</m> and <m>f_y</m> are undefined along the circle <m>(x-3)^2+y^2=16</m>; at any point along this curve, <m>f(x,y)=0</m>, the absolute minimum of the function.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$max">
+              <static>\text{None}</static>
+            </var>
+            <var name="$min">
+              <static>\text{None}</static>
+            </var>
+            <var name="$sad">
+              <static>\text{None}</static>
+            </var>
+            <var name="$inc">
+              <static>(0,0)</static>
+            </var>
+            <pg-code>
+              Context("Point");
+              $max=List("None");
+              $min=List("None");
+              $sad=List("None");
+              $inc=List("(0,0)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Let <m>f(x,y) = \sqrt{x^2+y^2}</m>. List all critical points (or report that there are <c>none</c>) of <m>f</m> where the Second Derivative Test:<ol label="a">
+              <li>
+                <p>indicates the critical point is a relative maximum.</p>
+                <p><var name="$max" width="30" /></p>
+              </li>
+              <li>
+                <p>indicates the critical point is a relative minimum.</p>
+                <p><var name="$min" width="30" /></p>
+              </li>
+              <li>
+                <p>indicates the critical point is a saddle point.</p>
+                <p><var name="$sad" width="30" /></p>
+              </li>
+              <li>
+                <p>is inconclusive.</p>
+                <p><var name="$inc" width="30" /></p>
+              </li>
+            </ol></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, find the absolute maximum and minimum of the function subject to the given constraint.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$maxout">
+              <static>3</static>
+            </var>
+            <var name="$maxin">
+              <static>(0,1)</static>
+            </var>
+            <var name="$minout">
+              <static>\frac{3}{4}</static>
+            </var>
+            <var name="$minin">
+              <static>(0,-1/2)</static>
+            </var>
+            <pg-code>
+              Context("Point");
+              $maxout = Compute("3");
+              $maxin = Compute("(0,1)");
+              $minout = Compute("3/4");
+              $minin = Compute("(0,-1/2)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Let <m>f(x,y) = x^2+y^2+y+1</m>, constrained to the triangle with vertices <m>(0,1)</m>, <m>(-1,-1)</m> and <m>(1,-1)</m>.</p>
+            <p>The absolute maximum value is <var name="$maxout" width="5" /> which happens for input <var name="$maxin" width="10" />.</p>
+            <p>The absolute minimum value is <var name="$minout" width="5" /> which happens for input <var name="$minin" width="10" />.</p>
+          </statement>
+          <solution>
+            <p>The triangle is bound by the lines <m>y=-1</m>, <m>y=2x+1</m> and <m>y=-2x+1</m>.</p>
+
+            <p>Along <m>y=-1</m>, there is a critical point at <m>(0,-1)</m>.</p>
+
+            <p>Along <m>y=2x+1</m>, there is a critical point at <m>(-3/5,-1/5)</m>.</p>
+
+            <p>Along <m>y=-2x+1</m>, there is a critical point at <m>(3/5,-1/5)</m>.</p>
+
+            <p>The function <m>f</m> has one critical point, irrespective of the constraint, at <m>(0,-1/2)</m>.</p>
+
+            <p>Checking the value of <m>f</m> at these four points, along with the three vertices of the triangle, we find the absolute maximum is at <m>(0,1,3)</m> and the absolute minimum is at <m>(0,-1/2,3/4)</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$maxout">
+              <static>25/28</static>
+            </var>
+            <var name="$maxin">
+              <static>(5/14,25/196)</static>
+            </var>
+            <var name="$minout">
+              <static>-12</static>
+            </var>
+            <var name="$minin">
+              <static>(-1,1)</static>
+            </var>
+            <pg-code>
+              Context("Point");
+              $maxout = Compute("25/28");
+              $maxin = Compute("(5/14,25/196)");
+              $minout = Compute("-12");
+              $minin = Compute("(-1,1)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Let <m>f(x,y) = 5x-7y</m>, constrained to the region bounded by <m>y=x^2</m> and <m>y=1</m>.</p>
+            <p>The absolute maximum value is <var name="$maxout" width="5" /> which happens for input <var name="$maxin" width="10" />.</p>
+            <p>The absolute minimum value is <var name="$minout" width="5" /> which happens for input <var name="$minin" width="10" />.</p>
+          </statement>
+          <solution>
+            <p>The region has two <q>corners</q> at <m>(1,1)</m> and <m>(-1,1)</m>.</p>
+
+            <p>Along <m>y=1</m>, there is no critical point.</p>
+
+            <p>Along <m>y=x^2</m>, there is a critical point at <m>(5/14,25/196)\approx (0.357,0.128)</m>.</p>
+
+            <p>The function <m>f</m> itself has no critical points.
+              Checking the value of <m>f</m> at the corners <m>(1,1)</m>, <m>(-1,1)</m> and the critical point <m>(5/14,25/196)</m>, we find the absolute maximum is at <m>(5/14,25/196,25/28) \approx (0.357,0.128,0.893)</m> and the absolute minimum is at <m>(-1,1,-12)</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y) = x^2+2x+y^2+2y</m>, constrained to the region bounded by the circle <m>x^2+y^2=4</m>.</p>
+          </statement>
+          <solution>
+            <p>The region has no <q>corners</q> or <q>vertices,</q> just a smooth edge.</p>
+
+            <p>To find critical points along the circle <m>x^2+y^2=4</m>, we solve for <m>y^2</m>: <m>y^2=4-x^2</m>. We can go further and state <m>y=\pm\sqrt{4-x^2}</m>.</p>
+
+            <p>We can rewrite <m>f</m> as <m>f(x)=x^2+2x + (4-x^2) + \sqrt{4-x^2} = 2x+4+\sqrt{4-x^2}</m>. (We will return and use <m>-\sqrt{4-x^2}</m> later.) Solving <m>f\,'(x)=0</m>, we get <m>x=\sqrt{2} \Rightarrow y=\sqrt{2}</m>. <m>f\,'(x)</m> is also undefined at <m>x=\pm 2</m>, where <m>y=0</m>.</p>
+
+            <p>Using <m>y=-\sqrt{4-x^2}</m>, we rewrite <m>f(x,y)</m> as <m>f(x) = 2x+4-\sqrt{4-x^2}</m>. Solving <m>\fp(x) =0</m>, we get <m>x=-\sqrt{2},\ y=-\sqrt{2}</m>.</p>
+
+            <p>The function <m>f</m> itself has a critical point at <m>(-1,-1)</m>.</p>
+
+            <p>Checking the value of <m>f</m> at <m>(-1,-1)</m>, <m>(\sqrt{2},\sqrt{2})</m>, <m>(-\sqrt{2},-\sqrt{2})</m>, <m>(2,0)</m> and <m>(-2,0)</m>, we find the absolute maximum is at <m>(2,0,8)</m> and the absolute minimum is at <m>(-1,-1,-2)</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x,y) = 3y-2x^2</m>, constrained to the region bounded by the parabola <m>y=x^2+x-1</m> and the line <m>y=x</m>.</p>
+          </statement>
+          <solution>
+            <p>The region has two <q>corners</q> at <m>(-1,-1)</m> and <m>(1,1)</m>.</p>
+
+            <p>Along the line <m>y=x</m>, <m>f(x,y)</m> becomes <m>f(x) = 3x-2x^2</m>. Along this line, we have a critical point at <m>(3/4,3/4)</m>.</p>
+
+            <p>Along the curve <m>y=x^2+x-1</m>, <m>f(x,y)</m> becomes <m>f(x) =x^2+3x-3</m>. There is a critical point along this curve at <m>(-3/2, -1/4)</m>. Since <m>x=-3/2</m> lies outside our bounded region, we ignore this critical point.</p>
+
+            <p>The function <m>f</m> itself has no critical points.</p>
+
+            <p>Checking the value of <m>f</m> at <m>(-1,-1)</m>, <m>(1,1)</m>, <m>(3/4,3/4)</m>, we find the absolute maximum is at <m>(3/4,3/4,9/8)</m> and the absolute minimum is at <m>(-1,-1,-5)</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

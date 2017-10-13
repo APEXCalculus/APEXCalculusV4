@@ -1,0 +1,717 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_total_differential">
+  <title>Differentiability and the Total Differential</title>
+  <introduction>
+    <p>We studied <em>differentials</em> in <xref ref="sec_differentials">Section</xref>, where <xref ref="def_differential">Definition</xref> states that if <m>y=f(x)</m> and <m>f</m> is differentiable, then <m>dy=\fp(x)dx</m>. One important use of this differential is in Integration by Substitution. Another important application is approximation. Let <m>\dx = dx</m> represent a change in <m>x</m>. When <m>dx</m> is small, <m>dy\approx \dy</m>, the change in <m>y</m> resulting from the change in <m>x</m>. Fundamental in this understanding is this: as <m>dx</m> gets small, the difference between <m>\dy</m> and <m>dy</m> goes to 0. Another way of stating this: as <m>dx</m> goes to 0, the <em>error</em> in approximating <m>\dy</m> with <m>dy</m> goes to 0.</p>
+
+    <p>We extend this idea to functions of two variables. Let <m>z=f(x,y)</m>, and let <m>\dx = dx</m> and <m>\dy=dy</m> represent changes in <m>x</m> and <m>y</m>, respectively. Let <m>\ddz = f(x+dx,y+dy) - f(x,y)</m> be the change in <m>z</m> over the change in <m>x</m> and <m>y</m>. Recalling that <m>f_x</m> and <m>f_y</m> give the instantaneous rates of <m>z</m>-change in the <m>x</m>- and <m>y</m>-directions, respectively, we can approximate <m>\ddz</m> with <m>dz = f_xdx+f_ydy</m>; in words, the total change in <m>z</m> is approximately the change caused by changing <m>x</m> plus the change caused by changing <m>y</m>. In a moment we give an indication of whether or not this approximation is any good. First we give a name to <m>dz</m>.</p>
+
+    <definition xml:id="def_total_differential">
+      <title>Total Differential</title>
+      <statement>
+        <p>Let <m>z=f(x,y)</m> be continuous on an open set <m>S</m>. Let <m>dx</m> and <m>dy</m> represent changes in <m>x</m> and <m>y</m>, respectively. Where the partial derivatives <m>f_x</m> and <m>f_y</m> exist, the <term>total differential of <m>z</m></term> is <index><main>total differential</main></index><index><main>partial derivative</main><sub>total differential</sub></index>
+          <me>
+            dz = f_x(x,y)dx + f_y(x,y)dy.
+          </me>
+        </p>
+      </statement>
+    </definition>
+
+    <example xml:id="ex_total_diff_10">
+      <title>Finding the total differential</title>
+      <statement>
+        <p>Let <m>z = x^4e^{3y}</m>. Find <m>dz</m>.</p>
+      </statement>
+      <solution>
+        <p>We compute the partial derivatives: <m>f_x = 4x^3e^{3y}</m> and <m>f_y = 3x^4e^{3y}</m>. Following <xref ref="def_total_differential">Definition</xref>, we have
+          <me>
+            dz = 4x^3e^{3y}dx+3x^4e^{3y}dy.
+          </me>
+        </p>
+      </solution>
+    </example>
+
+    <p>We <em>can</em> approximate <m>\ddz</m> with <m>dz</m>, but as with all approximations, there is error involved. A good approximation is one in which the error is small. At a given point <m>(x_0,y_0)</m>, let <m>E_x</m> and <m>E_y</m> be functions of <m>dx</m> and <m>dy</m> such that <m>E_xdx+E_ydy</m> describes this error. Then
+      <md>
+        <mrow>\ddz \amp = dz + E_xdx+ E_ydy</mrow>
+        <mrow>\amp = f_x(x_0,y_0)dx+f_y(x_0,y_0)dy + E_xdx+E_ydy.</mrow>
+      </md>
+    </p>
+
+    <p>If the approximation of <m>\ddz</m> by <m>dz</m> is good, then as <m>dx</m> and <m>dy</m> get small, so does <m>E_xdx+E_ydy</m>. The approximation of <m>\ddz</m> by <m>dz</m> is even better if, as <m>dx</m> and <m>dy</m> go to 0, so do <m>E_x</m> and <m>E_y</m>. This leads us to our definition of differentiability.</p>
+
+    <definition xml:id="def_multi_differentiability">
+      <title>Multivariable Differentiability</title>
+      <statement>
+        <p>Let <m>z=f(x,y)</m> be defined on an open set <m>S</m> containing <m>(x_0,y_0)</m> where <m>f_x(x_0,y_0)</m> and <m>f_y(x_0,y_0)</m> exist. Let <m>dz</m> be the total differential of <m>z</m> at <m>(x_0,y_0)</m>, let <m>\ddz = f(x_0+dx,y_0+dy) - f(x_0,y_0)</m>, and let <m>E_x</m> and <m>E_y</m> be functions of <m>dx</m> and <m>dy</m> such that
+          <me>
+            \ddz = dz + E_xdx + E_ydy.
+          </me>
+        </p>
+
+        <ol>
+          <li><p><m>f</m> is <em>differentiable at <m>(x_0,y_0)</m></em> if, given <m>\varepsilon >0</m>, there is a <m>\delta >0</m> such that if <m>\norm{\la dx,dy\ra} \lt  \delta</m>, then <m>\norm{\la E_x,E_y\ra} \lt  \varepsilon</m>. That is, as <m>dx</m> and <m>dy</m> go to 0, so do <m>E_x</m> and <m>E_y</m>.</p></li>
+
+          <li><p><m>f</m> is <em>differentiable on <m>S</m></em> if <m>f</m> is differentiable at every point in <m>S</m>. If <m>f</m> is differentiable on <m>\mathbb{R}^2</m>, we say that <m>f</m> is <em>differentiable everywhere</em>.
+	<index><main>differentiable</main></index><index><main>derivative</main><sub>multivariable differentiability</sub></index><index><main>multivariable function</main><sub>differentiability</sub></index></p></li>
+        </ol>
+      </statement>
+    </definition>
+
+    <example xml:id="ex_totaldiff1">
+      <title>Showing a function is differentiable</title>
+      <statement>
+        <p>Show <m>f(x,y) = xy+3y^2</m> is differentiable using <xref ref="def_multi_differentiability">Definition</xref>.</p>
+      </statement>
+      <solution>
+        <p>We begin by finding <m>f(x+dx,y+dy)</m>, <m>\ddz</m>, <m>f_x</m> and <m>f_y</m>.
+          <md>
+            <mrow>f(x+dx,y+dy) \amp = (x+dx)(y+dy) + 3(y+dy)^2</mrow>
+            <mrow>\amp = xy + xdy+ydx+dxdy + 3y^2+6ydy+3dy^2.</mrow>
+          </md>
+        </p>
+
+        <p><m>\ddz = f(x+dx,y+dy) - f(x,y)</m>, so
+          <me>
+            \ddz = xdy + ydx + dxdy + 6ydy+3dy^2.
+          </me>
+        </p>
+
+        <p>It is straightforward to compute <m>f_x = y</m> and <m>f_y = x+6y</m>. Consider once more <m>\ddz</m>:
+          <md>
+            <mrow>\ddz \amp = xdy + ydx + dxdy + 6ydy+3dy^2 \qquad \text{ (now reorder) }</mrow>
+            <mrow>\amp = ydx + xdy+6ydy+ dxdy + 3dy^2</mrow>
+            <mrow>\amp = \underbrace{(y)}_{f_x}dx + \underbrace{(x+6y)}_{f_y}dy + \underbrace{(dy)}_{E_x}dx+\underbrace{(3dy)}_{E_y}dy</mrow>
+            <mrow>\amp = f_xdx + f_ydy + E_xdx+E_ydy.</mrow>
+          </md>
+        </p>
+
+        <p>With <m>E_x = dy</m> and <m>E_y = 3dy</m>, it is clear that as <m>dx</m> and <m>dy</m> go to 0, <m>E_x</m> and <m>E_y</m> also go to 0. Since this did not depend on a specific point <m>(x_0,y_0)</m>, we can say that <m>f(x,y)</m> is differentiable for all pairs <m>(x,y)</m> in <m>\mathbb{R}^2</m>, or, equivalently, that <m>f</m> is differentiable everywhere.</p>
+      </solution>
+    </example>
+
+    <p>Our intuitive understanding of differentiability of functions <m>y=f(x)</m> of one variable was that the graph of <m>f</m> was <q>smooth.</q> A similar intuitive understanding of functions <m>z=f(x,y)</m> of two variables is that the surface defined by <m>f</m> is also <q>smooth,</q> not containing cusps, edges, breaks, etc. The following theorem states that differentiable functions are continuous, followed by another theorem that provides a
+      more tangible way of determining whether a great number of functions are differentiable or not.</p>
+
+    <theorem xml:id="thm_diff_cont_multi">
+      <title>Continuity and Differentiability of Multivariable Functions</title>
+      <statement>
+        <p>Let <m>z=f(x,y)</m> be defined on an open set <m>S</m> containing <m>(x_0,y_0)</m>.
+          If <m>f</m> is differentiable at <m>(x_0,y_0)</m>, then <m>f</m> is continuous at <m>(x_0,y_0)</m>.
+          <index><main>multivariable function</main><sub>differentiability</sub></index><index><main>multivariable function</main><sub>continuity</sub></index></p>
+      </statement>
+    </theorem>
+
+    <theorem xml:id="thm_differentiable">
+      <title>Differentiability of Multivariable Functions</title>
+      <statement>
+        <p>Let <m>z=f(x,y)</m> be defined on an open set <m>S</m> containing <m>(x_0,y_0)</m>.
+          If <m>f_x</m> and <m>f_y</m> are both continuous on <m>S</m>, then <m>f</m> is differentiable on <m>S</m>.
+          <index><main>multivariable function</main><sub>differentiability</sub></index></p>
+      </statement>
+    </theorem>
+
+    <p>The theorems assure us that essentially all functions that we see in the course of our studies here are differentiable (and hence continuous) on their natural domains. There is a difference between <xref ref="def_multi_differentiability">Definition</xref> and <xref ref="thm_differentiable">Theorem</xref>, though: it is possible for a function <m>f</m> to be differentiable yet <m>f_x</m> and/or <m>f_y</m> is <em>not</em> continuous. Such strange behavior of functions is a source of delight for many mathematicians.</p>
+
+    <p>When <m>f_x</m> and <m>f_y</m> exist at a point but are not continuous at that point, we need to use other methods to determine whether or not <m>f</m> is differentiable at that point.</p>
+
+    <p>For instance, consider the function
+      <me>
+        f(x,y) = \left\{\begin{array}{cl} \frac{xy}{x^2+y^2} \amp  (x,y)\neq (0,0) \\
+																0 \amp  (x,y) = (0,0)
+        \end{array} \right.
+      </me>
+    </p>
+
+    <p>We can find <m>f_x(0,0)</m> and <m>f_y(0,0)</m> using <xref ref="def_partial_derivative">Definition</xref>:
+      <md>
+        <mrow>f_x(0,0) \amp = \lim_{h\to 0} \frac{f(0+h,0) - f(0,0)}{h}</mrow>
+        <mrow>\amp = \lim_{h\to 0} \frac{0}{h^2} = 0;</mrow>
+        <mrow>f_y(0,0) \amp = \lim_{h\to 0} \frac{f(0,0+h) - f(0,0)}{h}</mrow>
+        <mrow>\amp = \lim_{h\to 0} \frac{0}{h^2} = 0.</mrow>
+      </md>
+    </p>
+
+    <p>Both <m>f_x</m> and <m>f_y</m> <em>exist</em> at <m>(0,0)</m>, but they are not continuous at <m>(0,0)</m>, as
+      <me>
+        f_x(x,y) = \frac{y(y^2-x^2)}{(x^2+y^2)^2} \qquad \text{ and } \qquad f_y(x,y) = \frac{x(x^2-y^2)}{(x^2+y^2)^2}
+      </me>
+      are not continuous at <m>(0,0)</m>. (Take the limit of <m>f_x</m> as <m>(x,y)\to(0,0)</m> along the <m>x</m>- and <m>y</m>-axes; they give different results.) So even though <m>f_x</m> and <m>f_y</m> <em>exist</em> at every point in the <m>x</m>-<m>y</m> plane, they are not continuous. Therefore it is possible, by <xref ref="thm_differentiable">Theorem</xref>, for <m>f</m> to not be differentiable.</p>
+
+    <p>Indeed, it is not. One can show that <m>f</m> is not continuous at <m>(0,0)</m> (see <xref ref="ex_multilimit4">Example</xref>), and by <xref ref="thm_diff_cont_multi">Theorem</xref>, this means <m>f</m> is not differentiable at <m>(0,0)</m>.</p>
+  </introduction>
+
+  <subsection>
+    <title>Approximating with the Total Differential</title>
+    <p>By the definition, when <m>f</m> is differentiable <m>dz</m> is a good approximation for <m>\ddz</m> when <m>dx</m> and <m>dy</m> are small. We give some simple examples of how this is used here.</p>
+
+    <example xml:id="ex_totaldiff2">
+      <title>Approximating with the total differential</title>
+      <statement>
+        <p>Let <m>z = \sqrt{x}\sin(y)</m>. Approximate <m>f(4.1,0.8)</m>.</p>
+      </statement>
+      <solution>
+        <p>Recognizing that <m>\pi/4 \approx 0.785\approx 0.8</m>, we can approximate <m>f(4.1,0.8)</m> using <m>f(4,\pi/4)</m>. We can easily compute <m>f(4,\pi/4) = \sqrt{4}\sin(\pi/4) = 2\left(\frac{\sqrt{2}}2\right) = \sqrt{2}\approx 1.414</m>. Without calculus, this is the best approximation we could reasonably come up with. The total differential gives us a way of adjusting this initial approximation to hopefully get a more accurate answer.</p>
+
+        <p>We let <m>\ddz = f(4.1,0.8) - f(4,\pi/4)</m>. The total differential <m>dz</m> is approximately equal to <m>\ddz</m>, so
+          <men xml:id="eq_totaldiff2" >
+            f(4.1,0.8) - f(4,\pi/4) \approx dz  \Rightarrow  f(4.1,0.8) \approx dz + f(4,\pi/4).
+          </men>
+        </p>
+
+        <p>To find <m>dz</m>, we need <m>f_x</m> and <m>f_y</m>.
+          <md>
+            <mrow>f_x(x,y) \amp = \frac{\sin(y) }{2\sqrt{x}} \Rightarrow\amp
+            f_x(4,\pi/4) \amp = \frac{\sin(\pi) /4}{2\sqrt{4}}</mrow>
+            <mrow>\amp  \amp \amp = \frac{\sqrt{2}/2}{4} = \sqrt{2}/8.</mrow>
+            <mrow>f_y(x,y) \amp = \sqrt{x}\cos(y) \Rightarrow\amp
+            f_y(4,\pi/4) \amp = \sqrt{4}\frac{\sqrt{2}}2</mrow>
+            <mrow>\amp  \amp  \amp = \sqrt{2}.</mrow>
+          </md>
+        </p>
+
+        <p>Approximating <m>4.1</m> with 4 gives <m>dx = 0.1</m>; approximating <m>0.8</m> with <m>\pi/4</m> gives <m>dy \approx 0.015</m>. Thus
+          <md>
+            <mrow>dz(4,\pi/4) \amp =  f_x(4,\pi/4)(0.1) + f_y(4,\pi/4)(0.015)</mrow>
+            <mrow>\amp = \frac{\sqrt{2}}8(0.1) + \sqrt{2}(0.015)</mrow>
+            <mrow>\amp \approx 0.039.</mrow>
+          </md>
+        </p>
+
+        <p>Returning to Equation <xref ref="eq_totaldiff2" />, we have
+          <me>
+            f(4.1,0.8) \approx 0.039 + 1.414 = 1.4531.
+          </me>
+        </p>
+
+        <p>We, of course, can compute the actual value of <m>f(4.1,0.8)</m> with a calculator; the actual value, accurate to 5 places after the decimal, is <m>1.45254</m>. Obviously our approximation is quite good.</p>
+      </solution>
+    </example>
+
+    <p>The point of the previous example was <em>not</em> to develop an approximation method for known functions. After all, we can very easily compute <m>f(4.1,0.8)</m> using readily available technology. Rather, it serves to illustrate how well this method of approximation works, and to reinforce the following concept:</p>
+
+    <p><q>New position = old position <m>+</m> amount of change,</q> so</p>
+
+    <p><q>New position <m>\approx</m> old position + approximate amount of change.</q></p>
+
+    <p>In the previous example, we could easily compute <m>f(4,\pi/4)</m> and could approximate the amount of <m>z</m>-change when computing <m>f(4.1,0.8)</m>, letting us approximate the new <m>z</m>-value.</p>
+
+    <p>It may be surprising to learn that it is not uncommon to know the values of <m>f</m>, <m>f_x</m> and <m>f_y</m> at a particular point without actually knowing the function <m>f</m>. The total differential gives a good method of approximating <m>f</m> at nearby points.</p>
+
+    <example xml:id="ex_totaldiff3">
+      <title>Approximating an unknown function</title>
+      <statement>
+        <p>Given that <m>f(2,-3) = 6</m>, <m>f_x(2,-3) = 1.3</m> and <m>f_y(2,-3) = -0.6</m>, approximate <m>f(2.1,-3.03)</m>.</p>
+      </statement>
+      <solution>
+        <p>The total differential approximates how much <m>f</m> changes from the point <m>(2,-3)</m> to the point <m>(2.1,-3.03)</m>. With <m>dx = 0.1</m> and <m>dy = -0.03</m>, we have
+          <md>
+            <mrow>dz \amp = f_x(2,-3)dx + f_y(2,-3)dy</mrow>
+            <mrow>\amp = 1.3(0.1) + (-0.6)(-0.03)</mrow>
+            <mrow>\amp = 0.148.</mrow>
+          </md>
+        </p>
+
+        <p>The change in <m>z</m> is approximately <m>0.148</m>, so we approximate <m>f(2.1,-3.03)\approx 6.148</m>.</p>
+      </solution>
+    </example>
+  </subsection>
+
+  <subsection>
+    <title>Error/Sensitivity Analysis</title>
+    <p>The total differential gives an approximation of the change in <m>z</m> given small changes in <m>x</m> and <m>y</m>. We can use this to approximate error propagation; that is, if the input is a little off from what it should be, how far from correct will the output be? We demonstrate this in an example.</p>
+
+    <p><index><main>sensitivity analysis</main></index><index><main>total differential</main><sub>sensitivity analysis</sub></index></p>
+
+    <example xml:id="ex_totaldiff4">
+      <title>Sensitivity analysis</title>
+      <statement>
+        <p>A cylindrical steel storage tank is to be built that is 10ft tall and 4ft across in diameter. It is known that the steel will expand/contract with temperature changes; is the overall volume of the tank more sensitive to changes in the diameter or in the height of the tank?</p>
+      </statement>
+      <solution>
+        <p>A cylindrical solid with height <m>h</m> and radius <m>r</m> has volume <m>V = \pi r^2h</m>. We can view <m>V</m> as a function of two variables, <m>r</m> and <m>h</m>. We can compute partial derivatives of <m>V</m>:
+          <me>
+            \frac{\partial V}{\partial r} = V_r(r,h) = 2\pi rh \qquad \text{ and } \qquad \frac{\partial V}{\partial h} = V_h(r,h) = \pi r^2.
+          </me>
+        </p>
+
+        <p>The total differential is <m>dV = (2\pi rh)dr + (\pi r^2)dh</m>. When <m>h = 10</m> and <m>r = 2</m>, we have <m>dV = 40\pi dr + 4\pi dh</m>.
+          Note that the coefficient of <m>dr</m> is <m>40\pi\approx 125.7</m>; the coefficient of <m>dh</m> is a tenth of that, approximately <m>12.57</m>. A small change in radius will be multiplied by 125.7, whereas a small change in height will be multiplied by 12.57. Thus the volume of the tank is more sensitive to changes in radius than in height.</p>
+      </solution>
+    </example>
+
+    <p>The previous example showed that the volume of a particular tank was more sensitive to changes in radius than in height. Keep in mind that this analysis only applies to a tank of those dimensions. A tank with a height of 1ft and radius of 5ft would be more sensitive to changes in height than in radius.</p>
+
+    <p>One could make a chart of small changes in radius and height and find exact changes in volume given specific changes. While this provides exact numbers, it does not give as much insight as the error analysis using the total differential.</p>
+  </subsection>
+
+  <subsection>
+    <title>Differentiability of Functions of Three Variables</title>
+    <p>The definition of differentiability for functions of three variables is very similar to that of functions of two variables. We again start with the total differential.</p>
+
+    <definition xml:id="def_total_differential3">
+      <title>Total Differential</title>
+      <statement>
+        <p>Let <m>w=f(x,y,z)</m> be continuous on an open set <m>S</m>. Let <m>dx</m>, <m>dy</m> and <m>dz</m> represent changes in <m>x</m>, <m>y</m> and <m>z</m>, respectively. Where the partial derivatives <m>f_x</m>, <m>f_y</m> and <m>f_z</m> exist, the <term>total differential of <m>w</m></term> is
+          <index><main>total differential</main></index><index><main>partial derivative</main><sub>total differential</sub></index>
+          <me>
+            dz = f_x(x,y,z)dx + f_y(x,y,z)dy+f_z(x,y,z)dz.
+          </me>
+        </p>
+      </statement>
+    </definition>
+
+    <p>This differential can be a good approximation of the change in <m>w</m> when <m>w = f(x,y,z)</m> is <em>differentiable</em>.</p>
+
+    <definition xml:id="def_multi_differentiability3">
+      <title>Multivariable Differentiability</title>
+      <statement>
+        <p>Let <m>w=f(x,y,z)</m> be defined on an open ball <m>B</m> containing <m>(x_0,y_0,z_0)</m> where <m>f_x(x_0,y_0,z_0)</m>, <m>f_y(x_0,y_0,z_0)</m> and <m>f_z(x_0,y_0,z_0)</m> exist. Let <m>dw</m> be the total differential of <m>w</m> at <m>(x_0,y_0,z_0)</m>, let <m>\Delta w = f(x_0+dx,y_0+dy,z_0+dz) - f(x_0,y_0,z_0)</m>, and let <m>E_x</m>, <m>E_y</m> and <m>E_z</m> be functions of <m>dx</m>, <m>dy</m> and <m>dz</m> such that
+          <index><main>differentiable</main></index><index><main>derivative</main><sub>multivariable differentiability</sub></index><index><main>multivariable function</main><sub>differentiability</sub></index>
+          <me>
+            \Delta w = dw + E_xdx + E_ydy + E_zdz.
+          </me>
+        </p>
+
+        <ol>
+          <li><p><m>f</m> is <em>differentiable at <m>(x_0,y_0,z_0)</m></em> if, given <m>\varepsilon >0</m>, there is a <m>\delta >0</m> such that if <m>\norm{\la dx,dy,dz\ra} \lt  \delta</m>, then <m>\norm{\la E_x,E_y,E_z\ra} \lt  \varepsilon</m>.</p></li>
+
+          <li><p><m>f</m> is <em>differentiable on <m>B</m></em> if <m>f</m> is differentiable at every point in <m>B</m>. If <m>f</m> is differentiable on <m>\mathbb{R}^3</m>, we say that <m>f</m> is <em>differentiable everywhere</em>.</p></li>
+        </ol>
+      </statement>
+    </definition>
+
+    <p>Just as before, this definition gives a rigorous statement about what it means to be differentiable that is not very intuitive. We follow it with a theorem similar to <xref ref="thm_differentiable">Theorem</xref>.</p>
+
+    <theorem xml:id="thm_differentiable3">
+      <title>Continuity and Differentiability of Functions of Three Variables</title>
+      <statement>
+        <p>Let <m>w=f(x,y,z)</m> be defined on an open ball <m>B</m> containing <m>(x_0,y_0,z_0)</m>.</p>
+
+        <ol>
+          <li><p>If <m>f</m> is differentiable at <m>(x_0,y_0,z_0)</m>, then <m>f</m> is continuous at <m>(x_0,y_0,z_0)</m>.</p></li>
+
+          <li><p>If <m>f_x</m>, <m>f_y</m>  and <m>f_z</m> are continuous on <m>B</m>, then <m>f</m> is differentiable on <m>B</m>.
+              <index><main>multivariable function</main><sub>differentiability</sub></index><index><main>multivariable function</main><sub>continuity</sub></index></p></li>
+        </ol>
+      </statement>
+    </theorem>
+
+    <p>This set of definition and theorem extends to functions of any number of variables. The theorem again gives us a simple way of verifying that most functions that we enounter are differentiable on their natural domains.</p>
+
+    <p>This section has given us a formal definition of what it means for a functions to be <q>differentiable,</q> along with a theorem that gives a more accessible understanding. The following sections return to notions prompted by our study of partial derivatives that make use of the fact that most functions we encounter are differentiable.</p>
+  </subsection>
+
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>T/F: If <m>f(x,y)</m> is differentiable on <m>S</m>, the <m>f</m> is continuous on <m>S</m>.</p>
+          </statement>
+          <solution>
+            <p>T</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>T/F: If <m>f_x</m> and <m>f_y</m> are continuous on <m>S</m>, then <m>f</m> is differentiable on <m>S</m>.</p>
+          </statement>
+          <solution>
+            <p>T</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>T/F: If <m>z=f(x,y)</m> is differentiable, then the change in <m>z</m> over small changes <m>dx</m> and <m>dy</m> in <m>x</m> and <m>y</m> is approximately <m>dz</m>.</p>
+          </statement>
+          <solution>
+            <p>T</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Finish the sentence: <q>The new <m>z</m>-value is approximately the old <m>z</m>-value plus the approximate <fillin />.</q></p>
+          </statement>
+          <solution>
+            <p>amount of change</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, find the total differential <m>dz</m>.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>z = x\sin(y) + x^2</m></p>
+          </statement>
+          <solution>
+            <p><m>dz = (\sin(y) + 2x)dx + (x\cos(y) )dy</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>z = (2x^2+3y)^2</m></p>
+          </statement>
+          <solution>
+            <p><m>dz = 8x(2x^2+3y)dx + 6(2x^2+3y)dy</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>z = 5x-7y</m></p>
+          </statement>
+          <solution>
+            <p><m>dz = 5dx -7dy</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>z = xe^{x+y}</m></p>
+          </statement>
+          <solution>
+            <p><m>dz = (e^{x+y}+xe^{x+y})dx +xe^{x+y}dy</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, a function <m>z=f(x,y)</m> is given. Give the indicated approximation using the total differential.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x,y) = \sqrt{x^2+y}</m>. Approximate <m>f(2.95,7.1)</m> knowing <m>f(3,7) = 4</m>.</p>
+          </statement>
+          <solution>
+            <p><m>dz = \frac{x}{\sqrt{x^2+y}}dx + \frac{1}{2\sqrt{x^2+y}}dy</m>, with <m>dx = -0.05</m> and <m>dy = .1</m>. At <m>(3,7)</m>, <m>dz = 3/4(-0.05) + 1/8(.1) = -0.025</m>, so <m>f(2.95,7.1) \approx -0.025+4 = 3.975</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x,y) = \sin(x) \cos(y)</m>. Approximate <m>f(0.1,-0.1)</m> knowing <m>f(0,0) = 0</m>.</p>
+          </statement>
+          <solution>
+            <p><m>dz = (\cos(x) \cos(y) )dx - (\sin(x) \sin(y) )dy</m>, with <m>dx = 0.1</m> and <m>dy = -0.1</m>. At <m>(0,0)</m>, <m>dz = 1(.1) - (0)(-0.1) = 0.1</m>, so <m>f(0.1,-0.1) \approx 0.1+0 = 0.1</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x,y) = x^2y-xy^2</m>. Approximate <m>f(2.04,3.06)</m> knowing <m>f(2,3) = -6</m>.</p>
+          </statement>
+          <solution>
+            <p><m>dz = (2xy-y^2)dx + (x^2-2xy)dy</m>, with <m>dx = 0.04</m> and <m>dy = 0.06</m>. At <m>(2,3)</m>, <m>dz = 3(0.04) + (-8)(0.06) = -0.36</m>, so <m>f(2.04,3.06) \approx -0.36-6 = -6.36</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x,y) = \ln(x-y)</m>. Approximate <m>f(5.1,3.98)</m> knowing <m>f(5,4) = 0</m>.</p>
+          </statement>
+          <solution>
+            <p><m>dz = \frac1{x-y}dx -\frac{1}{x-y}dy</m>, with <m>dx = 0.1</m> and <m>dy = -0.02</m>. At <m>(5,4)</m>, <m>dz = 1(0.1) + (-1)(-0.02) = 0.12</m>, so <m>f(5.1,3.98) \approx 0.12+0 = 0.12</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>The following exercises ask a variety of questions dealing with approximating error and sensitivity analysis.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>A cylindrical storage tank is to be 2ft tall with a radius of 1ft. Is the volume of the tank more sensitive to changes in the radius or the height?</p>
+          </statement>
+          <solution>
+            <p>The total differential of volume is <m>dV = 4\pi dr + \pi dh</m>. The coefficient of <m>dr</m> is greater than the coefficient of <m>dh</m>, so the volume is more sensitive to changes in the radius.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><em>Projectile Motion:</em> The <m>x</m>-value of an object moving under the principles of projectile motion is <m>x(\theta,v_0,t)= (v_0\cos(\theta) )t</m>. A particular projectile is fired with an initial velocity of <m>v_0=250</m>ft/s and an angle of elevation of <m>\theta = 60^\circ</m>. It travels a distance of <m>375</m>ft in 3 seconds.</p>
+
+            <p>Is the projectile more sensitive to errors in initial speed or angle of elevation?</p>
+          </statement>
+          <solution>
+            <p>Distance of the projectile is a function of two variables (leaving <m>t=3</m>): <m>D(v_0,\theta) = 3\v_0\cos(\theta)</m>. The total differential of <m>D</m> is <m>dD = 3\cos(\theta) dv_0-3v_0\sin(\theta) d\theta</m>. The coefficient of <m>d\theta</m> has a much greater magnitude than the coefficient of <m>dv_0</m>, so a small change in the angle of elevation has a much greater effect on distance traveled than a small change in initial velocity.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>The length <m>\ell</m> of a long wall is to be approximated. The angle <m>\theta</m>, as shown in the diagram (not to scale), is measured to be <m>85^\circ</m>, and the distance <m>x</m> is measured to be 30'. Assume that the triangle formed is a right triangle.</p>
+
+            <p>Is the measurement of the length of <m>\ell</m> more sensitive to errors in the measurement of <m>x</m> or in <m>\theta</m>?</p>
+
+            <figure>
+              <image>
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}\draw [ultra thick] (1,-1) -- node [pos=.5,right] { \(\ell=\)?}(1,1);
+                  \draw [dashed] (1,1) -- (-1,-1) node [xshift=10pt,yshift=5pt] { \(\theta\)} -- node [pos=.5,below] { \(x\)} (1,-1);\end{tikzpicture}]]>
+                </latex-image-code>
+              </image>
+            </figure>
+          </statement>
+          <solution>
+            <p>Using trigonometry, <m>\ell = x\tan(\theta)</m>, so <m>d\ell = \tan(\theta) dx + x\sec^2(\theta) d\theta</m>. With <m>\theta = 85^\circ</m> and <m>x=30</m>, we have <m>d\ell = 11.43dx+3949.38d\theta</m>. The measured length of the wall is much more sensitive to errors in <m>\theta</m> than in <m>x</m>. While it can be difficult to compare sensitivities between measuring feet and measuring degrees (it is somewhat like <q>comparing apples to oranges</q>), here the coefficients are so different that the result is clear: a small error in degree has a much greater impact than a small error in distance.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>It is <q>common sense</q> that it is far better to measure a long distance with a long measuring tape rather than a short one. A measured distance <m>D</m> can be viewed as the product of the length <m>\ell</m> of a measuring tape times the number <m>n</m> of times it was used. For instance, using a 3' tape 10 times gives a length of 30'. To measure the same distance with a 12' tape, we would use the tape 2.5 times. (I.e., <m>30=12\times 2.5</m>.) Thus <m>D = n\ell</m>.</p>
+
+            <p>Suppose each time a measurement is taken with the tape, the recorded distance is within 1/16'' of the actual distance. (I.e., <m>d\ell = 1/16'' \approx 0.005</m>ft). Using differentials, show why common sense proves correct in that it is better to use a long tape to measure long distances.</p>
+          </statement>
+          <solution>
+            <p>With <m>D = n\ell</m>, the total differential is <m>dD = \ell\, dn+ n\,d\ell</m>. If one measures with a short tape, <m>n</m> must be large and hence <m>n\,d\ell</m> is going to be greater than when a large tape is used (wherein <m>n</m> will be small).</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, find the total differential <m>dw</m>.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>w= x^2yz^3</m></p>
+          </statement>
+          <solution>
+            <p><m>dw = 2xyz^3\,dx + x^2z^3\,dy + 3x^2yz^2\,dz</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>w= e^x\sin(y) \ln(z)</m></p>
+          </statement>
+          <solution>
+            <p><m>dw = e^x\sin(y) \ln(z) \,dx + e^x\cos(y) \ln(z) \,dy + e^x\sin(y) \frac1z\,dz</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, use the information provided and the total differential to make the given approximation.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(3,1) = 7</m>,<nbsp /> <m>f_x(3,1) = 9</m>,   <m>f_y(3,1) = -2</m>. Approximate <m>f(3.05, 0.9)</m>.</p>
+          </statement>
+          <solution>
+            <p><m>dx = 0.05</m>, <m>dy = -0.1</m>. <m>dz = 9(.05)+(-2)(-0.1) = 0.65</m>. So <m>f(3.05,0.9) \approx 7+0.65=7.65</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(-4,2) = 13</m>,<nbsp /> <m>f_x(-4,2) = 2.6</m>,   <m>f_y(-4,2) = 5.1</m>. Approximate <m>f(-4.12, 2.07)</m>.</p>
+          </statement>
+          <solution>
+            <p><m>dx = -0.12</m>, <m>dy = 0.07</m>. <m>dz = 2.6(-.12)+(5.1)(0.07) = 0.045</m>. So <m>f(-4.12, 2.07) \approx 13+0.045=13.045</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(2,4,5) = -1</m>,<nbsp /> <m>f_x(2,4,5) = 2</m>,<nbsp /> <m>f_y(2,4,5) = -3</m>,<nbsp /> <m>f_z(2,4,5) = 3.7</m>. Approximate <m>f(2.5,4.1,4.8)</m>.</p>
+          </statement>
+          <solution>
+            <p><m>dx = 0.5</m>, <m>dy = 0.1</m>, <m>dz = -0.2</m>.</p>
+
+            <p><m>dw = 2(0.5) + (-3)(0.1) + 3.7(-0.2) = -0.04</m>, so <m>f(2.5, 4.1, 4.8) \approx -1-0.04 = -1.04</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(3,3,3) = 5</m>,<nbsp /> <m>f_x(3,3,3) = 2</m>,<nbsp /> <m>f_y(3,3,3) = 0</m>,<nbsp /> <m>f_z(3,3,3) = -2</m>. Approximate <m>f(3.1, 3.1,3.1)</m>.</p>
+          </statement>
+          <solution>
+            <p><m>dx = 0.1</m>, <m>dy = 0.1</m>, <m>dz = 0.1</m>.</p>
+
+            <p><m>dw = 2(0.1) + (0)(0.1) + (-2)(.1) = 0</m>, so <m>f(3.1,3.1,3.1) \approx 5+0=5</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

@@ -1,0 +1,1030 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_trigint">
+  <title>Trigonometric Integrals</title>
+  <introduction>
+    <p>Functions involving trigonometric functions are useful as they are good at describing periodic behavior.
+      This section describes several techniques for finding antiderivatives of certain combinations of trigonometric functions.</p>
+  </introduction>
+
+  <subsection>
+    <title>Integrals of the form <m>\ds \int \sin^m(x) \cos^n(x) \ dx</m></title>
+    <p>In learning the technique of Substitution, we saw the integral <m>\int \sin(x) \cos(x) \ dx</m> in <xref ref="ex_sub10">Example</xref>. The integration was not difficult, and one could easily evaluate the indefinite integral by letting <m>u=\sin(x)</m> or by letting <m>u = \cos(x)</m>. This integral is easy since the power of both sine and cosine is 1.</p>
+
+    <p>We generalize this integral and consider integrals of the form <m>\int \sin^m(x) \cos^n(x) \ dx</m>, where <m>m,n</m> are nonnegative integers. Our strategy for evaluating these integrals is to use the identity <m>\cos^2(x) +\sin^2(x) =1</m> to convert high powers of one trigonometric function into the other, leaving a single sine or cosine term in the integrand. Let's see an example of how this technique works.
+
+    <example xml:id="ex_trigint0">
+       <title>Integrating powers of sine and cosine</title>
+       <statement>
+         <p>Evaluate <m>\ds\int\sin^3(x) \cos(x) \ dx</m>.</p>
+      </statement>
+      <solution>
+      <p> We have used substitution on problems similar to this problem in <xref ref="sec_substitution"> Section</xref> . If we let <m>u=\cos(x)</m>, then <m>du=-\sin(x)\,dx</m>.  Unfortunately, we have <m>\sin^3(x)</m> as part of our integrand, not just <m>\sin(x)</m>. The solution to this problem is to replace some of our powers of sine (two of them to be exact) with expressions that involve cosine. We will use the Pythagorean Identity <m>\sin^2(x)=1-\cos^2(x)</m>.
+
+      <md>
+        <mrow>\ds\int\sin^3(x) \cos(x) \ dx \amp =\int\sin(x)\cdot \sin^2(x) \cos(x) \ dx</mrow>
+        <mrow>\amp =\int\sin(x)\left(1-\cos^2(x)\right) \cos(x) \ dx</mrow>
+      </md>
+      </p>
+
+      <p>Now we let <m>u=\cos(x)</m> so that <m>-du=\sin(x)\,dx</m>.  
+        <md>
+          <mrow>\ds\int\sin^3(x) \cos(x) \ dx \amp =\int\sin(x)\left(1-\cos^2(x)\right) \cos(x) \ dx</mrow>
+          <mrow>\amp =\int -\left(1-u^2\right)u\ du</mrow>
+          <mrow>\amp =\int -\left(u-u^3\right)\ du</mrow>
+          <mrow>\amp =\frac{u^2}{2}-\frac{u^4}{4}+C</mrow>
+          <mrow>\amp =\frac{\cos^2(x)}{2}-\frac{\cos^4(x)}{4}+C</mrow>
+      </md></p>
+
+      </solution>
+      
+    </example>
+
+
+    We summarize the general technique in the following Key Idea.</p>
+
+      <insight xml:id="idea_trig_int_1">
+        <title>Integrals Involving Powers of Sine and Cosine</title>
+        <p>Consider <m>\ds \int \sin^m(x) \cos^n(x) \ dx</m>, where <m>m,n</m> are nonnegative integers.<index><main>integration</main><sub>of trig. powers</sub></index></p>
+
+        <ol>
+          <li><p>If <m>m</m> is odd, then <m>m=2k+1</m> for some integer <m>k</m>. Rewrite
+              <md>
+                <mrow>\sin^m(x) \amp = \sin^{2k+1}(x)</mrow>
+                <mrow>\amp  = \sin^{2k}(x) \sin(x) </mrow>
+                <mrow>\amp = (\sin^2(x) )^k\sin(x) </mrow>
+                <mrow>\amp = (1-\cos^2(x) )^k\sin(x)  </mrow>
+              </md>.
+              Then
+              <md>
+                <mrow>\int \sin^m(x) \cos^n(x) \ dx \amp = \int (1-\cos^2(x) )^k\sin(x) \cos^n(x) \ dx</mrow>
+                <mrow> \amp = -\int (1-u^2)^ku^n\ du</mrow>,
+              </md>
+              where <m>u = \cos(x)</m> and <m>du = -\sin(x) \ dx</m>.</p></li>
+
+          <li><p>If <m>n</m> is odd, then using substitutions similar to that outlined above (replacing all of the even powers of <m>cosine</m> using a Pythagorean identity) we have:
+              <me>
+                \int \sin^m(x) \cos^n(x) \ dx = \int u^m(1-u^2)^k\ du,
+              </me>
+              where <m>u = \sin(x)</m> and <m>du = \cos(x) \ dx</m>.</p></li>
+
+          <li><p>If both <m>m</m> and <m>n</m> are even, use the power<ndash />reducing identities:
+              <me>
+                \cos^2(x) = \frac{1+\cos(2x)}{2}  \text{ and }  \sin^2(x) = \frac{1-\cos(2x)}2
+              </me>
+              to reduce the degree of the integrand. Expand the result and apply the principles of this Key Idea again.</p></li>
+        </ol>
+      </insight>
+
+    <p>We practice applying <xref ref="idea_trig_int_1">Key Idea</xref> in the next examples.</p>
+
+    <example xml:id="ex_trigint1">
+      <title>Integrating powers of sine and cosine</title>
+      <statement>
+        <p>Evaluate <m>\ds\int\sin^5(x) \cos^8(x) \ dx</m>.</p>
+      </statement>
+      <solution>
+        <p>The power of the sine term is odd, so we rewrite <m>\sin^5(x)</m> as
+          <md>
+            <mrow>\sin^5(x) \amp = \sin^4(x) \sin(x) </mrow>
+            <mrow>\amp = (\sin^2(x) )^2\sin(x)</mrow>
+            <mrow>\amp = (1-\cos^2(x) )^2\sin(x) </mrow>
+          </md>.
+        </p>
+
+        <p>Our integral is now <m>\ds \int (1-\cos^2(x) )^2\cos^8(x) \sin(x) \ dx</m>. Let <m>u = \cos(x)</m>, hence <m>du = -\sin(x) \ dx</m>. Making the substitution and expanding the integrand gives
+          <md>
+            <mrow>\int (1-\cos^2)^2\cos^8(x) \sin(x) \ dx \amp = -\int (1-u^2)^2u^8\ du </mrow>
+            <mrow>\amp = -\int \big(1-2u^2+u^4\big)u^8\ du</mrow><mrow> \amp = -\int \big(u^8-2u^{10}+u^{12}\big)\ du</mrow>
+          </md>.
+        </p>
+
+        <p>This final integral is not difficult to evaluate, giving
+          <md>
+            <mrow>-\int \big(u^8-2u^{10}+u^{12}\big)\ du \amp = -\frac19u^9 + \frac2{11}u^{11} - \frac1{13}u^{13} + C</mrow>
+            <mrow>\amp =-\frac19\cos^9(x) + \frac2{11}\cos^{11}(x) - \frac1{13}\cos^{13}(x) + C.</mrow>
+          </md>
+        </p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_trigint2">
+      <title>Integrating powers of sine and cosine</title>
+      <statement>
+        <p>Evaluate <m>\ds \int\sin^5(x) \cos^9(x) \ dx</m>.</p>
+      </statement>
+      <solution>
+        <p>The powers of both the sine and cosine terms are odd, therefore we can apply the techniques of <xref ref="idea_trig_int_1">Key Idea</xref> to either power. We choose to work with the power of the cosine term since the previous example used the sine term's power.</p>
+
+        <p>We rewrite <m>\cos^9(x)</m> as
+          <md>
+            <mrow>\cos^9(x) \amp = \cos^8(x) \cos(x) </mrow>
+            <mrow>\amp = \left(\cos^2(x)\right)^4\cos(x) </mrow>
+            <mrow>\amp = \left(1-\sin^2(x)\right)^4\cos(x) </mrow>
+          </md>.
+        </p>
+
+        <p>We rewrite the integral as
+          <me>
+            \int\sin^5(x) \cos^9(x) \ dx = \int\sin^5(x)  \left(1-\sin^2(x)\right)^4\cos(x) \ dx.
+          </me>
+        </p>
+
+        <p>Now substitute and integrate, using <m>u = \sin(x)</m> and <m>du = \cos(x) \ dx</m>. Expand the binomial using algebra.</p>
+
+        <p>
+          <md>
+            <mrow>\amp \int u^5(1-u^2)^4\ du </mrow>
+              <mrow> \amp = \int u^5(1-4u^2+6u^4-4u^6+u^8)\ du</mrow>
+            <mrow>\amp = \int\big(u^5-4u^7+6u^9-4u^{11}+u^{13}\big)\ du</mrow>
+            <mrow>\amp = \frac16u^6-\frac12u^8+\frac35u^{10}-\frac13u^{12}+\frac{1}{14}u^{14}+C</mrow>
+            <mrow>\amp = \frac16\sin^6(x) -\frac12\sin^8(x) +\frac35\sin^{10}(x)-\frac13\sin^{12}(x) +\frac{1}{14}\sin^{14}(x) +C.</mrow>
+          </md>
+        </p>
+      </solution>
+    </example>
+
+    <p><em>Technology Note:</em> The work we are doing here can be a bit tedious, but the skills developed (problem solving, algebraic manipulation, etc.) are important. Nowadays problems of this sort are often solved using a computer algebra system. The powerful program <em>Mathematica</em><trademark /> integrates <m>\int \sin^5(x) \cos^9(x) \ dx</m> as
+      <me>
+        f(x)=-\frac{45 \cos(2 x)}{16384}-\frac{5 \cos(4 x)}{8192}+\frac{19 \cos(6
+           x)}{49152}+\frac{\cos(8 x)}{4096}-\frac{\cos(10 x)}{81920}-\frac{\cos(12
+           x)}{24576}-\frac{\cos(14 x)}{114688},
+      </me>
+      which clearly has a different form than our answer in <xref ref="ex_trigint2">Example</xref>, which is
+      <me>
+        g(x)=\frac16\sin^6(x) -\frac12\sin^8(x) +\frac35\sin^{10}(x) -\frac13\sin^{12}(x) +\frac{1}{14}\sin^{14}(x) .
+      </me>
+    </p>
+
+    <p><xref ref="fig_trigint2">Figure</xref> shows a graph of <m>f</m> and <m>g</m>; they are clearly not equal, but they differ <em>only by a constant</em>. That is <m>g(x) = f(x) + C</m> for some constant <m>C</m>. So we have two different antiderivatives of the same function, meaning both answers are correct.</p>
+
+    <figure xml:id="fig_trigint2" >
+      <caption>A plot of <m>f(x)</m> and <m>g(x)</m> from <xref ref="ex_trigint2">Example</xref> and the Technology Note.</caption>
+      <!-- START figures/fig_trigint2.tex -->
+      <image xml:id="img_trigint2" >
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+          \begin{axis}[%
+          axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+          %			xtick=\empty,%
+          %			extra x ticks={.5,3},
+          %			extra x tick labels={$a$,$b$},
+			ytick={-.002,.002,.004},
+			yticklabels={$-0.002$,$0.002$,$0.004$},
+			%
+          %			extra y ticks={0.001},%
+          %			minor x tick num=4,
+			ymin=-.003,ymax=0.005,%
+			xmin=-.1,xmax=3.15,%
+			scaled ticks=false
+          ]
+
+          \addplot [{\colortwo},thick,smooth] coordinates {(0,-0.0027879) (0.15708,-0.0027856) (0.31416,-0.0026798) (0.47124,-0.0020322) (0.62832,-0.00060997) (0.7854,0.00089518)(0.94248,0.0017233) (1.0996,0.0019485) (1.2566,0.0019734) (1.4137,0.0019741) (1.5708,0.0019741) (1.7279,0.0019741) (1.885,0.0019734) (2.042,0.0019485) (2.1991,0.0017233) (2.3562,0.00089518) (2.5133,-0.00060997) (2.6704,-0.0020322) (2.8274,-0.0026798) (2.9845,-0.0027856) (3.1416,-0.0027879)};
+
+          \draw (axis cs:2.6,0.004) node {\scriptsize $g(x)$};
+
+          \addplot [{\colorone},thick,smooth] coordinates {(0,0) (0.15708,0) (0.31416,0.00010807) (0.47124,0.0007557) (0.62832,0.0021779) (0.7854,0.003683) (0.94248,0.0045111)
+          (1.0996,0.0047364) (1.2566,0.0047612) (1.4137,0.0047619)
+          (1.5708,0.0047619) (1.7279,0.0047619) (1.885,0.0047612) (2.042,0.0047364) (2.1991,0.0045111) (2.3562,0.003683) (2.5133,0.0021779) (2.6704,0.0007557) (2.8274,0.00010807) (2.9845,0) (3.1416,0)};
+
+          \draw (axis cs:2.4,-0.002) node {\scriptsize $f(x)$};
+          \end{axis}
+
+
+
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_trigint2.tex END -->
+    </figure>
+
+    <example xml:id="ex_trigint3">
+      <title>Integrating powers of sine and cosine</title>
+      <statement>
+        <p>Evaluate <m>\ds\int\cos^4(x) \sin^2(x) \ dx</m>.</p>
+      </statement>
+      <solution>
+        <p>The powers of sine and cosine are both even, so we employ the power<ndash />reducing formulas and algebra as follows.
+          <md>
+            <mrow>\int \cos^4(x) \sin^2(x) \ dx \amp = \int\left(\frac{1+\cos(2x)}{2}\right)^2\left(\frac{1-\cos(2x)}2\right)\ dx</mrow>
+            <mrow>\amp = \int\frac{1+2\cos(2x)+\cos^2(2x)}4\cdot\frac{1-\cos(2x)}2\ dx</mrow>
+            <mrow>\amp =	\int \frac18\big(1+\cos(2x)+\cos^2(2x)-\cos^3(2x)\big)\ dx</mrow>
+            <mrow>\amp = \frac18 \left(\underbrace{\int 1 \ dx}_{a}+\underbrace{\int \cos(2x)\ dx}_{b}-\underbrace{\int \cos^2(2x)\ dx}_{c}-\underbrace{\int \cos^3(2x)\ dx}_{d}\right)</mrow>
+          </md>
+        </p>
+
+        <p>The first integral labelled a is easy to integrate. The <m>\cos(2x)</m> term is also easy to integrate, especially with <xref ref="idea_linearsub">Key Idea</xref>. The <m>\cos^2(2x)</m> term is another trigonometric integral with an even power, requiring the power<ndash />reducing formula again. The <m>\cos^3(2x)</m> term is a cosine function with an odd power, requiring a substitution as done before. We integrate each in turn below.
+          <md>
+           <mrow> \underbrace{\int\cos(2x)\ dx}_{b} \amp = \frac12\sin(2x)+C</mrow>
+            <mrow>\underbrace{\int\cos^2(2x)\ dx}_{c} \amp = \int \frac{1+\cos(4x)}2\ dx </mrow>
+            <mrow>\amp = \frac12\big(x+\frac14\sin(4x)\big)+C</mrow>
+          </md>.
+        </p>
+
+        <p>Finally, we rewrite <m>\cos^3(2x)</m> as
+          <md>
+            <mrow>\cos^3(2x) \amp = \cos^2(2x)\cos(2x)</mrow>
+            <mrow>\amp = \big(1-\sin^2(2x)\big)\cos(2x)</mrow>
+          </md>.
+        </p>
+
+        <p>Letting <m>u=\sin(2x)</m>, we have <m>du = 2\cos(2x)\ dx</m>, hence
+          <md>
+            <mrow>\underbrace{\int \cos^3(2x)\ dx}_{d} \amp = \int\big(1-\sin^2(2x)\big)\cos(2x)\ dx</mrow>
+            <mrow>\amp = \int \frac12(1-u^2)\ du</mrow>
+            <mrow>\amp = \frac12\Big(u-\frac13u^3\Big)+C</mrow>
+            <mrow>\amp =	\frac12\Big(\sin(2x)-\frac13\sin^3(2x)\Big)+C</mrow>
+          </md>.
+        </p>
+
+        <p>Putting all the pieces together, we have
+          <md>
+            <mrow>\amp \int \cos^4(x) \sin^2(x) \ dx</mrow>
+             <mrow>\amp =\int \frac18\big(1+\cos(2x)-\cos^2(2x)-\cos^3(2x)\big)\ dx</mrow>
+            <mrow>\amp = \frac18\Big[x+\frac12\sin(2x)-\frac12\big(x+\frac14\sin(4x)\big)-\frac12\Big(\sin(2x)-\frac13\sin^3(2x)\Big)\Big]+C</mrow>
+            <mrow>\amp =\frac18\Big[\frac12x-\frac18\sin(4x)+\frac16\sin^3(2x)\Big]+C</mrow>
+          </md>.
+        </p>
+      </solution>
+    </example>
+
+    <p>The process above was a bit long and tedious, but being able to work a problem such as this from start to finish is important.</p>
+  </subsection>
+
+  <subsection>
+    <title>Integrals of the form <m>\ds \int\sin(mx)\sin(nx)\ dx</m>, <m>\ds\int \cos(mx)\cos(nx)\ dx</m>, and <m>\ds\int \sin(mx)\cos(nx)\ dx</m>.</title>
+    <p>Functions that contain products of sines and cosines of differing periods are important in many applications including the analysis of sound waves. Integrals of the form
+      <me>
+        \int\sin(mx)\sin(nx)\ dx, \int \cos(mx)\cos(nx)\ dx  \text{ and } \int \sin(mx)\cos(nx)\ dx
+      </me>
+      are best approached by first applying the Product to Sum Formulas found in the back cover <todo>Add an xref to this</todo>of this text, namely
+      <md>
+        <mrow>\sin(mx)\sin(nx) \amp = \frac12\Big[\cos\big((m-n)x\big)-\cos\big((m+n)x\big)\Big]</mrow>
+        <mrow>\cos(mx)\cos(nx) \amp = \frac12\Big[\cos\big((m-n)x\big)+\cos\big((m+n)x\big)\Big]</mrow>
+        <mrow>\sin(mx)\cos(nx) \amp =	\frac12\Big[\sin\big((m-n)x\big)+\sin\big((m+n)x\big)\Big]</mrow>
+      </md>.
+    </p>
+
+    <example xml:id="ex_trigint4">
+      <title>Integrating products of <m>\sin(mx)</m> and <m>\cos(nx)</m></title>
+      <statement>
+        <p>Evaluate <m>\ds\int\sin(5x)\cos(2x)\ dx</m>.</p>
+      </statement>
+      <solution>
+        <p>The application of the formula and subsequent integration are straightforward:
+          <md>
+            <mrow>\int\sin(5x)\cos(2x)\ dx \amp = \int \frac12\Big[\sin((5-2)x)+\sin((5+2)x)\Big]\ dx</mrow>
+              <mrow>\amp= \int \frac12\Big[\sin(3x)+\sin(7x)\Big]\ dx</mrow>
+            <mrow>\amp = -\frac16\cos(3x) - \frac1{14}\cos(7x) + C</mrow>
+          </md>
+        </p>
+      </solution>
+    </example>
+  </subsection>
+
+  <subsection>
+    <title>Integrals of the form <m>\ds\int\tan^m(x) \sec^n(x) \ dx</m>.</title>
+    <p>When evaluating integrals of the form <m>\int \sin^m(x) \cos^n(x) \ dx</m>, the Pythagorean Theorem allowed us to convert even powers of sine into even powers of cosine, and vise<ndash />versa. If, for instance, the power of sine was odd, we pulled out one <m>\sin(x)</m> and converted the remaining even power of <m>\sin(x)</m> into a function using powers of <m>\cos(x)</m>, leading to an easy substitution.</p>
+
+    <p>The same basic strategy applies to integrals of the form <m>\int \tan^m(x) \sec^n(x) \ dx</m>, albeit a bit more nuanced. The following three facts will prove useful:</p>
+
+    <ul>
+      <li><p><m>\frac{d}{dx}(\tan(x) ) = \sec^2(x)</m>,</p></li>
+
+      <li><p><m>\frac{d}{dx}(\sec(x) ) = \sec(x) \tan(x)</m> , and</p></li>
+
+      <li><p><m>1+\tan^2(x) = \sec^2(x)</m> (the Pythagorean Theorem).</p></li>
+    </ul>
+
+    <p>If the integrand can be manipulated to separate a <m>\sec^2(x)</m> term with the remaining secant power even, or if a <m>\sec(x) \tan(x)</m> term can be separated with the remaining <m>\tan(x)</m> power even, the Pythagorean Theorem can be employed, leading to a simple substitution. This strategy is outlined in the following Key Idea.</p>
+
+    <insight xml:id="idea_trig_int_2">
+      <title>Integrals Involving Powers of Tangent and Secant</title>
+      <p>Consider <m>\ds\int\tan^m(x) \sec^n(x) \ dx</m>, where <m>m,n</m> are nonnegative integers.<index><main>integration</main><sub>of trig. powers</sub></index></p>
+
+      <ol>
+        <li xml:id="idea_trig_int_2a"><p>If <m>n</m> is even, then <m>n=2k</m> for some integer <m>k</m>. Rewrite <m>\sec^n(x)</m> as
+            <md>
+              <mrow>\sec^n(x) \amp = \sec^{2k}(x)</mrow>
+              <mrow>\amp = \sec^{2k-2}(x) \sec^2(x)</mrow>
+              <mrow>\amp = (1+\tan^2(x) )^{k-1}\sec^2(x)</mrow>
+            </md>.
+            Then
+            <md>
+              <mrow>\int\tan^m(x) \sec^n(x) \ dx \amp =\int\tan^m(x) (1+\tan^2(x) )^{k-1}\sec^2(x) \ dx</mrow>
+              <mrow>\amp =\int u^m(1+u^2)^{k-1}\ du</mrow>,
+            </md>
+            where <m>u = \tan(x)</m> and <m>du = \sec^2(x) \ dx</m>.</p></li>
+
+        <li xml:id="idea_trig_int_2b"><p>If <m>m</m> is odd, then <m>m=2k+1</m> for some integer <m>k</m>. Rewrite <m>\tan^m(x) \sec^n(x)</m> as
+            <md>
+              <mrow>\tan^m(x) \sec^n(x) \amp = \tan^{2k+1}(x) \sec^n(x)</mrow>
+              <mrow>\amp = \tan^{2k}(x) \sec^{n-1}(x) \sec(x) \tan(x) </mrow> 
+              <mrow>\amp = (\sec^2(x) -1)^k\sec^{n-1}(x) \sec(x) \tan(x) </mrow>
+            </md>.
+            Then
+            <md>
+              <mrow>\int\tan^m(x) \sec^n(x) \ dx \amp =\int(\sec^2(x) -1)^k\sec^{n-1}(x) \sec(x) \tan(x) \ dx</mrow>
+              <mrow>\amp = \int(u^2-1)^ku^{n-1}\ du</mrow>,
+            </md>
+            where <m>u = \sec(x)</m> and <m>du = \sec(x) \tan(x) \ dx</m>.</p></li>
+
+        <li xml:id="idea_trig_int_2c"><p>If <m>n</m> is odd and <m>m</m> is even, then <m>m=2k</m> for some integer <m>k</m>. Convert <m>\tan^m(x)</m> to <m>(\sec^2(x) -1)^k</m>. Expand the new integrand and use Integration By Parts, with <m>dv = \sec^2(x) \ dx</m>.</p></li>
+
+        <li xml:id="idea_trig_int_2d"><p>If <m>m</m> is even and <m>n=0</m>, rewrite <m>\tan^m(x)</m> as
+            <md>
+              <mrow>\tan^m(x) \amp = \tan^{m-2}(x) \tan^2(x)</mrow> 
+              <mrow>\amp = \tan^{m-2}(x) (\sec^2(x) -1)</mrow> 
+              <mrow>\amp = \tan^{m-2}\sec^2(x) -\tan^{m-2}(x) </mrow>
+            </md>.
+            So
+            <me>
+              \int\tan^m(x) \ dx = \underbrace{\int\tan^{m-2}\sec^2(x) \ dx}_{\text{ apply rule #1 } } - \underbrace{\int\tan^{m-2}(x) \ dx}_{\text{ apply rule #4 again } }.
+            </me>
+          </p></li>
+      </ol>
+    </insight>
+
+    <p>The techniques described in <xref ref="idea_trig_int_2a" > Item</xref> and <xref ref="idea_trig_int_2b" > Item</xref> of <xref ref="idea_trig_int_2">Key Idea</xref> are relatively straightforward, but the techniques in <xref ref="idea_trig_int_2c" > Item</xref> and <xref ref="idea_trig_int_2d" > Item</xref> can be rather tedious. A few examples will help with these methods.</p>
+
+    <example xml:id="ex_trigint5">
+      <title>Integrating powers of tangent and secant</title>
+      <statement>
+        <p>Evaluate <m>\ds\int \tan^2(x) \sec^6(x) \ dx</m>.</p>
+      </statement>
+      <solution>
+        <p>Since the power of secant is even, we use <xref ref="idea_trig_int_2a" > Rule</xref>from <xref ref="idea_trig_int_2">Key Idea</xref> and pull out a <m>\sec^2(x)</m> in the integrand. We convert the remaining powers of secant into powers of tangent.
+          <md>
+            <mrow>\int \tan^2(x) \sec^6(x) \ dx \amp = \int\tan^2(x) \sec^4(x) \sec^2(x) \ dx</mrow>
+            <mrow>\amp = \int \tan^2(x) \big(1+\tan^2(x) \big)^2\sec^2(x) \ dx</mrow>
+            <intertext>Now substitute, with <m>u=\tan(x)</m>, with <m>du = \sec^2(x) \ dx</m>.</intertext>
+            <mrow>\amp =\int u^2\big(1+u^2\big)^2\ du</mrow>
+            <intertext>We leave the integration and subsequent substitution to the reader. The final answer is</intertext>
+            <mrow>\amp =\frac13\tan^3(x) +\frac25\tan^5(x) +\frac17\tan^7(x) +C.</mrow>
+          </md>
+        </p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_trigint6">
+      <title>Integrating powers of tangent and secant</title>
+      <statement>
+        <p>Evaluate <m>\ds\int \sec^3(x) \ dx</m>.</p>
+      </statement>
+      <solution xml:id="fig_trigint1">
+        <p>We apply <xref ref="idea_trig_int_2c" > Rule</xref> from <xref ref="idea_trig_int_2">Key Idea</xref> as the power of secant is odd and the power of tangent is even (0 is an even number). We use Integration by Parts; the rule suggests letting <m>dv = \sec^2(x) \ dx</m>, meaning that <m>u = \sec(x)</m>.</p>
+
+        <!--
+        <caption>Setting up Integration by Parts.</caption>
+        -->
+      <p>
+          <tabular>
+            <col width="30%" halign="center"/>
+            <col width="30%" halign="center"/>
+            <col width="30%" halign="center"/>
+            <row>
+              <cell>
+                <md>
+                  <mrow>u\amp = \sec(x) \amp  v\amp =\text{?}</mrow>
+                  <mrow>du\amp = \text{?}  \amp  dv\amp =\sec^2(x) \ dx</mrow>
+                </md>
+              </cell>
+              <cell>
+                <md>\Rightarrow</md>
+              </cell>
+              <cell>
+                <md>
+                  <mrow>u\amp = \sec(x) \amp  v\amp =\tan(x) </mrow>
+                  <mrow>du\amp = \sec(x) \tan(x) \ dx \amp  dv\amp =\sec^2(x) \ dx</mrow>
+                </md>       
+              </cell>
+            </row>
+          </tabular>
+        </p>
+
+        <p>Employing Integration by Parts, we have
+          <md>
+            <mrow>\int \sec^3(x) \ dx  	\amp =	\int \underbrace{\sec(x) }_u\cdot\underbrace{\sec^2(x) \ dx}_{dv}</mrow>
+            <mrow>\amp =	\sec(x) \tan(x) - \int \sec(x) \tan^2(x) \ dx.</mrow>
+            <intertext>This new integral also requires applying <xref ref="idea_trig_int_2c" > Rule</xref> of <xref ref="idea_trig_int_2">Key Idea</xref>:</intertext>
+            <mrow>\int \sec^3(x)\ dx\amp = \sec(x) \tan(x) - \int \sec(x) \big(\sec^2(x) -1\big)\ dx</mrow>
+            <mrow>\amp =	\sec(x) \tan(x) - \int \sec^3(x) \ dx + \int \sec(x) \ dx</mrow>
+            <mrow>\amp = \sec(x) \tan(x) -\int \sec^3(x) \ dx + \ln\abs{\sec(x) +\tan(x) }</mrow>
+            <intertext>In previous applications of Integration by Parts, we have seen where the original integral has reappeared in our work. We resolve this by adding <m>\int \sec^3(x) \ dx</m> to both sides, giving:</intertext>
+            <mrow>2\int \sec^3(x) \ dx \amp = \sec(x) \tan(x) + \ln\abs{\sec(x) +\tan(x) }</mrow>
+            <mrow>\int \sec^3(x) \ dx \amp = \frac12\Big(\sec(x) \tan(x) + \ln\abs{\sec(x) +\tan(x) }\Big)+C</mrow>
+          </md>
+        </p>
+      </solution>
+    </example>
+
+    <p>We give one more example.</p>
+
+    <example xml:id="ex_trigint7">
+      <title>Integrating powers of tangent and secant</title>
+      <statement>
+        <p>Evaluate <m>\ds\int\tan^6(x) \ dx</m>.</p>
+      </statement>
+      <solution>
+        <p>We employ <xref ref="idea_trig_int_2c" > Rule</xref>of <xref ref="idea_trig_int_2">Key Idea</xref>.
+          <md>
+            <mrow>\int \tan^6(x) \ dx \amp = \int \tan^4(x) \tan^2(x) \ dx</mrow>
+            <mrow>\amp = \int\tan^4(x) \big(\sec^2(x) -1\big)\ dx</mrow>
+            <mrow>\amp = \int\tan^4(x) \sec^2(x) \ dx - \int\tan^4(x) \ dx</mrow>
+            <intertext>Integrate the first integral with substitution, <m>u=\tan(x)</m>; integrate the second by employing rule <xref ref="idea_trig_int_2d" > Rule</xref> again.</intertext>
+            <mrow>\amp =	\frac15\tan^5(x) -\int\tan^2(x) \tan^2(x) \ dx</mrow>
+            <mrow>\amp =	\frac15\tan^5(x) -\int\tan^2(x) \big(\sec^2(x) -1\big)\ dx</mrow>
+            <mrow>\amp = \frac15\tan^5(x) -\underbrace{\int\tan^2(x) \sec^2(x) \ dx}_{a} + \underbrace{\int\tan^2(x) \ dx}_b</mrow>
+            <intertext>Again, use substitution (<m>u=\tan(x)</m>) for the first integral (a) and <xref ref="idea_trig_int_2d" > Rule</xref> for the second (b).</intertext>
+            <mrow>\amp = \frac15\tan^5(x) -\frac13\tan^3(x) +\int\big(\sec^2(x) -1\big)\ dx</mrow>
+            <mrow>\int \tan^6(x)\ dx\amp =	 \frac15\tan^5(x) -\frac13\tan^3(x) +\tan(x) - x+C</mrow>
+          </md>.
+        </p>
+      </solution>
+    </example>
+
+    <p>These latter examples were admittedly long, with repeated applications of the same rule. Try to not be overwhelmed by the length of the problem, but rather admire how robust this solution method is. A trigonometric function of a high power can be systematically reduced to trigonometric functions of lower powers until all antiderivatives can be computed.</p>
+
+    <p><xref ref="sec_trig_sub">Section</xref> introduces an integration technique known as Trigonometric Substitution, a clever combination of Substitution and the Pythagorean Theorem.</p>
+  </subsection>
+
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>T/F: <m>\ds \int \sin^2(x) \cos^2(x) \ dx</m> cannot be evaluated using the techniques described in this section since both powers of <m>\sin(x)</m> and <m>\cos(x)</m> are even.</p>
+          </statement>
+          <solution>
+            <p>F</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>T/F: <m>\ds \int \sin^3(x) \cos^3(x) \ dx</m> cannot be evaluated using the techniques described in this section since both powers of <m>\sin(x)</m> and <m>\cos(x)</m> are odd.</p>
+          </statement>
+          <solution>
+            <p>F</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>T/F: This section addresses how to evaluate indefinite integrals such as <m>\ds \int \sin^5(x) \tan^3(x) \ dx</m>.</p>
+          </statement>
+          <solution>
+            <p>F</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, evaluate the indefinite integral.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \sin(x) \cos^4(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>-\frac{1}{5} \cos^5(x)+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \sin^3(x) \cos(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{1}{4} \sin^4(x)+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \sin^3(x) \cos^2(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{1}{5}\cos^5(x) -\frac13\cos^3(x) +C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \sin^3(x) \cos^3(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{1}{6}\cos^6(x) -\frac14\cos^4(x) +C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \sin^6(x) \cos^5(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{1}{11}\sin^{11}(x) -\frac29\sin^9(x) +\frac17\sin^7(x) +C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \sin^2(x) \cos^7(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>-\frac{1}{9} \sin^{9}(x)+\frac{3 \sin^7(x)}{7}-\frac{3\sin^5(x)}{5}+\frac{\sin^3(x)}{3}+ C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \sin^2(x) \cos^2(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{x}{8}-\frac{1}{32} \sin(4 x)+ C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \sin(5x)\cos(3x)\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac12\left(-\frac18\cos(8x)-\frac12\cos(2x)\right)+ C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \sin(x)\cos(2x)\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac12\left(-\frac13\cos(3x)+\cos(-x)\right)+ C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \sin(3x)\sin(7x)\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac12\left(\frac14\sin(4x)-\frac{1}{10}\sin(10x)\right)+ C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \sin(\pi x)\sin(2\pi x)\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac12\left(\frac1{\pi}\sin(\pi x)-\frac{1}{3\pi}\sin(3\pi x)\right)+ C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \cos(x)\cos(2x)\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac12\left(\sin(x)+\frac{1}{3}\sin(3x)\right)+ C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \cos\left(\frac{\pi}{2} x\right)\cos(\pi x)\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{1}{\pi}\sin(\frac{\pi}{2} x)+\frac{1}{3\pi}\sin(\pi x)+ C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \tan^4(x) \sec^2(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{\tan^5(x)}{5}+ C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \tan^2(x) \sec^4(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac15\tan^5(x) + \frac13\tan^3(x) + C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \tan^3(x) \sec^4(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{\tan^6(x)}{6}+\frac{\tan^4(x)}{4}+ C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \tan^3(x) \sec^2(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{\tan^4(x)}{4}+ C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \tan^3(x) \sec^3(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{\sec^5(x)}{5}-\frac{\sec^3(x)}{3}+ C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \tan^5(x) \sec^5(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{\sec^9(x)}{9}-\frac{2 \sec^7(x)}{7}+\frac{\sec^5(x)}{5}+ C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \tan^4(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac13\tan^3(x) - \tan(x) +x+ C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \sec^5(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac14\tan(x) \sec^3(x) + \frac38\left(\sec(x) \tan(x) +\ln\abs{\sec(x) +\tan(x) }\right)  +C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \tan^2(x) \sec(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac12\left(\sec(x) \tan(x) -\ln\abs{\sec(x) +\tan(x) }\right)  +C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \tan^2(x) \sec^3(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac14\tan(x) \sec^3(x) -\frac18\left(\sec(x) \tan(x) +\ln\abs{\sec(x) +\tan(x) }\right)  +C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, evaluate the definite integral. Note: the corresponding indefinite integrals appear in the previous set.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_0^{\pi} \sin(x) \cos^4(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac25</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{-\pi}^{\pi} \sin^3(x) \cos(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>0</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{-\pi/2}^{\pi/2} \sin^2(x) \cos^7(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>32/315</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{0}^{\pi/2} \sin(5 x)\cos(3x)\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>1/2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{-\pi/2}^{\pi/2} \cos(x)\cos(2x)\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>2/3</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{0}^{\pi/4} \tan^4(x) \sec^2(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>1/5</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{-\pi/4}^{\pi/4} \tan^2(x) \sec^4(x) \ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>16/15</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

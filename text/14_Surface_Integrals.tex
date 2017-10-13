@@ -1,0 +1,199 @@
+\section{Surface Integrals}\label{sec:surface_integral}
+
+Consider a smooth surface \surfaceS\ that represents a thin sheet of metal. How could we find the mass of this metallic object?
+
+If the density of this object is constant, then we can find mass via ``mass$=$ density $\times$ surface area,'' and we could compute the surface area using the techniques of the previous section. 
+
+What if the density were not constant, but variable, described by a function $\delta(x,y,z)$? We can describe the mass using our general integration techniques as
+$$\text{mass} = \iint_\surfaceS \ dm,$$
+where $dm$ represents ``a little bit of mass.'' That is, to find the total mass of the object, sum up lots of little masses over the surface.
+
+How do we find the ``little bit of mass'' $dm$? On a small portion of the surface with surface area $\Delta S$, the density is approximately constant, hence $dm \approx \delta(x,y,z)\Delta S$. As we use limits to shrink the size of $\Delta S$ to 0, we get $dm = \delta(x,y,z)dS$; that is, a little bit of mass is equal to a density times a small amount of surface area. Thus the total mass of the thin sheet is
+\begin{equation}
+\text{mass} =\iint_\surfaceS \delta(x,y,z)\ dS.\label{eq:surface_int}
+\end{equation}
+
+To evaluate the above integral, we would seek $\vec r(u,v)$, a smooth parametrization of \surfaceS\ over a region $R$ of the $u$-$v$ plane. The density would become a function of $u$ and $v$, and we would integrate $\iint_R \delta(u,v)\snorm{\vec r_u\times \vec r_v}\ dA.$
+
+The integral in Equation \eqref{eq:surface_int} is a specific example of a more general construction defined below.
+
+\definition{def:surface_integral}{Surface Integral}
+{Let $G(x,y,z)$ be a continuous function defined on a surface \surfaceS. The \sword{surface integral of $G$ on \surfaceS} is
+$$\iint_\surfaceS G(x,y,z)\ dS.$$
+}\\
+
+Surface integrals can be used to measure a variety of quantities beyond mass. If $G(x,y,z)$ measures the static charge density at a point, then the surface integral will compute the total static charge of the sheet. If $G$ measures the amount of fluid passing through a screen (represented by \surfaceS) at a point, then the surface integral gives the total amount of fluid going through the screen.
+
+\example{ex_surfint1}{Finding the mass of a thin sheet}
+{Find the mass of a thin sheet modeled by the plane $2x+y+z=3$ over the triangular region of the $x$-$y$ plane bounded by the coordinate axes and the line $y=2-2x$, as shown in Figure \ref{fig:surfint1}, with density function $\delta(x,y,z) = x^2+5y+z$, where all distances are measured in cm and the density is given as gm/cm$^2$. 
+}
+{We begin by parameterizing the planar surface \surfaceS. Using the techniques of the previous section, we can let $x=u$ and $y=v(2-2u)$, where $0\leq u\leq 1$ and $0\leq v\leq 1$. Solving for $z$ in the equation of the plane, we have $z=3-2x-y$, hence $z = 3-2u-v(2-2u)$, giving the parametrization
+$\vec r(u,v) = \langle u, v(2-2u), 3-2u-v(2-2u)\rangle$.
+
+\mfigurethree{width=145pt,3Dmenu,activate=onclick,deactivate=onclick,
+3Droll=0,
+3Dortho=0.004853160586208105,
+3Dc2c=0.7228285670280457 0.5212869644165039 0.45362839102745056,
+3Dcoo=-2.5405526161193848 7.828289031982422 42.677555084228516,
+3Droo=399.9999621232421,
+3Dlights=Headlamp,add3Djscript=asylabels.js}{scale=1}{.7}{The surface whose mass is computed in Example \ref{ex_surfint1}.}{fig:surfint1}{figures/figsurfint1} 
+
+We need $dS=\snorm{\vec r_u\times \vec r_v}dA$, so we need to compute $\vec r_u$, $\vec r_v$ and the norm of their cross product. We leave it to the reader to confirm the following:
+$$\vec r_u = \langle 1,-2v,2v-2\rangle,\quad \vec r_v = \langle 0,2-2u, 2u-2\rangle,$$
+$$\vec r_u\times \vec r_v = \langle 4-4u,2-2u,2-2u\rangle\quad \text{and}\quad \snorm{\vec r_u\times \vec r_v} = 2\sqrt{6}\sqrt{(u-1)^2}.$$
+We need to be careful to not ``simplify'' $\snorm{\vec r_u\times \vec r_v} = 2\sqrt{6}\sqrt{(u-1)^2}$ as $2\sqrt{6}(u-1)$; rather, it is $2\sqrt{6}|u-1|$. In this example, $u$ is bounded by $0\leq u\leq 1$, and on this interval $|u-1| = 1-u$. Thus $dS = 2\sqrt{6}(1-u)dA$. 
+
+The density is given as a function of $x$, $y$ and $z$, for which we'll substitute the corresponding components of $\vec r$ (with the slight abuse of notation that we used in previous sections): 
+\begin{align*}
+\delta(x,y,z) &= \delta\big(\vec r(u,v)\big) \\
+			&= u^2 + 5v(2-2u)+3-2u-v(2-2u)\\
+			&= u^2-8uv-2u+8v+3.
+\end{align*}
+Thus the mass of the sheet is:
+\begin{align*}
+M &= \iint_\surfaceS\ dm\\
+	&= \iint_R \delta\big(\vec r(u,v)\big)\snorm{\vec r_u\times \vec r_v}\ dA\\
+	&= \int_0^1\int_0^1 \big(u^2-8uv-2u+8v+3\big)\big(2\sqrt{6}(1-u)\big)\ du\ dv\\
+	&= \frac{31}{\sqrt{6}} \approx 12.66 \text{ gm.}
+\end{align*}
+}\\
+
+\vskip \baselineskip
+\noindent\textbf{\large Flux}\\
+
+Let a surface \surfaceS\ lie within a vector field $\vec F$. One is often interested in measuring the \emph{flux} of $\vec F$ across \surfaceS; that is, measuring ``how much of the vector field passes across \surfaceS.'' For instance, if $\vec F$ represents the velocity field of moving air and \surfaceS\ represents the shape of an air filter, the flux will measure how much air is passing through the filter per unit time.
+
+As flux measures the amount of $\vec F$ passing across \surfaceS, we need to find the ``amount of $\vec F$ orthogonal to \surfaceS.'' Similar to our measure of flux in the plane, this is equal to $\vec F\cdot \vec n$, where $\vec n$ is a unit vector normal to \surfaceS\ at a point. We now consider how to find $\vec n$.
+
+Given a smooth parametrization $\vec r(u,v)$ of \surfaceS, the work in the previous section showing the development of our method of computing surface area also shows that $\vec r_u(u,v)$ and $\vec r_v(u,v)$ are tangent to \surfaceS\ at $\vec r(u,v)$. Thus $\vec r_u\times \vec r_v$ is orthogonal to \surfaceS, and we let
+$$\vec n = \frac{\vec r_u\times \vec r_v}{\snorm{\vec r_u\times \vec r_v}},$$
+which is a unit vector normal to \surfaceS\ at $\vec r(u,v)$.
+
+The measurement of flux across a surface is a surface integral; that is, to measure total flux we sum the product of $\vec F\cdot\vec n$ times a small amount of surface area: $\vec F\cdot \vec n\ dS$. 
+
+A nice thing happens with the actual computation of flux: the $\snorm{\vec r_u\times \vec r_v}$ terms go away. Consider:
+\begin{align*}
+\text{Flux} &= \iint_\surfaceS \vec F\cdot \vec n\ dS \\
+				&= \iint_R \vec F\cdot \frac{\vec r_u\times \vec r_v}{\snorm{\vec r_u\times \vec r_v}}\snorm{\vec r_u\times \vec r_v}\ dA \\
+				&= \iint_R \vec F\cdot (\vec r_u\times \vec r_v)\ dA.
+\end{align*}
+
+The above only makes sense if \surfaceS\ is orientable; the normal vectors $\vec n$ must vary continuously across \surfaceS. We assume that $\vec n$ does vary continuously. (If the parametrization $\vec r$ of \surfaceS\ is smooth, then our above definition of $\vec n$ will vary continuously.)
+
+\definition{def:surfflux}{Flux over a surface}
+{Let $\vec F$ be a vector field with continuous components defined on an orientable surface \surfaceS\ with normal vector $\vec n$. The \sword{flux} of $\vec F$ across \surfaceS\ is
+$$\text{Flux} = \iint_\surfaceS \vec F\cdot \vec n\ dS.$$
+If \surfaceS\ is parametrized by $\vec r(u,v)$, which is smooth on its domain $R$, then
+$$\text{Flux} = \iint_R \vec F\big(\vec r(u,v)\big)\cdot (\vec r_u\times \vec r_v)\ dA.$$
+}\\
+
+Since \surfaceS\ is orientable, we adopt the convention of saying one passes from the ``back'' side of \surfaceS\ to the ``front'' side when moving across the surface parallel to the direction of $\vec n$. Also, when \surfaceS\ is closed, it is natural to speak of the regions of space ``inside'' and ``outside'' \surfaceS. We also adopt the convention that when \surfaceS\ is a closed surface, $\vec n$ should point to the outside of \surfaceS. If $\vec n = \vec r_u\times\vec r_v$ points inside \surfaceS, use $\vec n = \vec r_v\times \vec r_u$ instead.
+
+When the computation of flux is positive, it means that the field is moving from the back side of \surfaceS\ to the front side; when flux is negative, it means the field is moving opposite the direction of $\vec n$, and is moving from the front of \surfaceS\ to the back. When \surfaceS\ is not closed, there is not a ``right'' and ``wrong'' direction in which $\vec n$ should point, but one should be mindful of its direction to make full sense of the flux computation.
+
+We demonstrate the computation of flux, and its interpretation, in the following examples.\\
+
+\example{ex_surfflux1}{Finding flux across a surface}
+{Let \surfaceS\ be the surface given in Example \ref{ex_surfint1}; that is, let \surfaceS\ be the surface paramtetrized by $\vec r(u,v) = \langle u, v(2-2u),3-2u-v(2-2u)\rangle$ on $0\leq u\leq 1$, $0\leq v\leq 1$, and let $\vec F = \langle 1, x,-y\rangle$, as shown in Figure \ref{fig:surfflux1}. Find the flux of $\vec F$ across \surfaceS.
+\mfigurethree{width=145pt,3Dmenu,activate=onclick,deactivate=onclick,
+3Droll=0,
+3Dortho=0.004853160586208105,
+3Dc2c=0.7228285670280457 0.5212869644165039 0.45362839102745056,
+3Dcoo=-2.5405526161193848 7.828289031982422 42.677555084228516,
+3Droo=399.9999621232421,
+3Dlights=Headlamp,add3Djscript=asylabels.js}{scale=1}{.35}{The surface and vector field used in  Example \ref{ex_surfflux1}.}{fig:surfflux1}{figures/figsurfflux1} 
+}
+{Using our work from the previous example, we have $\vec n = \vec r_u\times\vec r_v = \langle 4-4u,2-2u,2-2u\rangle$. We also need $\vec F\big(\vec r(u,v)\big) = \langle 1, u, -v(2-2u)\rangle$. 
+
+Thus the flux of $\vec F$ across \surfaceS\ is:
+\begin{align*}
+\text{Flux} &= \iint_\surfaceS \vec F\cdot \vec n\ dS\\
+			&= \iint_R \langle 1,u,-v(2-2u)\rangle\cdot\langle 4-4u,2-2u,2-2u\rangle\ dA \\
+			&= \int_0^1\int_0^1 \big(-4u^2v-2u^2+8uv-2u-4v+4\big)\ du\ dv\\
+			&= 5/3.
+\end{align*}
+To make full use of this numeric answer, we need to know the direction in which the field is passing across \surfaceS. The graph in Figure \ref{fig:surfflux1} helps, but we need a method that is not dependent on a graph.
+
+Pick a point $(u,v)$ in the interior of $R$ and consider $\vec n(u,v)$. For instance, choose $(1/2,1/2)$ and look at $\vec n(1/2,1/2) = \langle 2,1,1\rangle/\sqrt{6}$. This vector has positive $x$, $y$ and $z$ components. Generally speaking, one has \emph{some} idea of what the surface \surfaceS\ looks like, as that surface is for some reason important. In our case, we know \surfaceS\ is a plane with $z$-intercept of $z=3$. Knowing $\vec n$ and the flux measurement of positive $5/3$, we know that the field must be passing from ``behind'' \surfaceS, i.e., the side the origin is on, to the ``front'' of \surfaceS.
+}\\
+
+\example{ex_surfflux2}{Flux across surfaces with shared boundaries}
+{Let $\surfaceS_1$ be the unit disk in the $x$-$y$ plane, and let $\surfaceS_2$ be the paraboloid $z=1-x^2-y^2$, for $z\geq 0$, as graphed in Figure \ref{fig:surfflux2}. Note how these two surfaces each have the unit circle as a boundary.
+\mfigurethree{width=145pt,3Dmenu,activate=onclick,deactivate=onclick,
+3Droll=0,
+3Dortho=0.004853160120546818,
+3Dc2c=0.7607786655426025 0.5903141498565674 0.2697128355503082,
+3Dcoo=-4.848384857177734 2.0102698802948 61.921504974365234,
+3Droo=399.9999594035934,
+3Dlights=Headlamp,add3Djscript=asylabels.js}{scale=1}{.45}{The surfaces used in  Example \ref{ex_surfflux2}.}{fig:surfflux2}{figures/figsurfflux2} 
+ 
+
+Let $\vec F_1 = \langle 0,0,1\rangle$ and $\vec F_2 = \langle 0,0,z\rangle$. Using normal vectors for each surface that point ``upward,'' i.e., with a postive $z$-component, find the flux of each field across each surface. 
+}
+{We begin by parameterizing each surface.
+
+The boundary of the unit disk in the $x$-$y$ plane is the unit circle, which can be described with $\langle \cos u,\sin u,0\rangle$, $0\leq u\leq 2\pi$. To obtain the interior of the circle as well, we can scale by $v$, giving
+$$\vec r_1(u,v) = \langle v\cos u,v\sin u, 0\rangle, \quad 0\leq u\leq 2\pi\quad 0\leq v\leq 1.$$
+
+As the boundary of $\surfaceS_2$ is also the unit circle, the $x$ and $y$ components of $\vec r_2$ will be the same as those of $\vec r_1$; we just need a different $z$ component. With $z = 1-x^2-y^2$, we have
+$$\vec r_2(u,v) = \langle v\cos u,v\sin u, 1-v^2\cos^2u-v^2\sin^2u\rangle = \langle v\cos u,v\sin u, 1-v^2\rangle,$$
+where $0\leq u\leq 2\pi$ and $0\leq v\leq 1$.
+
+We now compute the normal vectors $\vec n_1$ and $\vec n_2$.
+
+For $\vec n_1$: $\vec r_{1u}= \langle -v\sin u, v\cos u,0\rangle$, $\vec r_{1v} = \langle \cos u,\sin u,0\rangle$, so
+$$\vec n_1 = \vec r_{1u}\times \vec r_{1v} = \langle 0,0,-v\rangle.$$
+As this vector has a negative $z$-component, we instead use
+$$\vec n_1 = \vec r_{1v}\times \vec r_{1u} = \langle 0,0,v\rangle.$$
+
+Similarly, $\vec n_2$: $\vec r_{2u}= \langle -v\sin u, v\cos u,0\rangle$, $\vec r_{2v} = \langle \cos u,\sin u,-2v\rangle$, so 
+$$\vec n_2 = \vec r_{2u}\times \vec r_{2v} = \langle -2v^2\cos u,-2v^2\sin u,-v\rangle.$$ 
+Again, this normal vector has a negative $z$-component so we use
+$$\vec n_2 = \vec r_{2v}\times \vec r_{2u} = \langle 2v^2\cos u,2v^2\sin u,v\rangle.$$ 
+
+We are now set to compute flux. Over field $\vec F_1=\langle 0,0,1\rangle$:
+
+\begin{align*}
+\text{Flux across $\surfaceS_1$} &= \iint_{\surfaceS_1} \vec F_1\cdot \vec n_1\ dS \\
+						&= \iint_R\langle 0,0,1\rangle\cdot\langle 0,0,v\rangle\ dA\\
+						&= \int_0^1\int_0^{2\pi} (v)\ du\ dv\\
+						&= \pi.
+\end{align*}
+\drawexampleline%
+\begin{align*}
+\text{Flux across $\surfaceS_2$} &= \iint_{\surfaceS_2} \vec F_1\cdot \vec n_2\ dS \\
+						&= \iint_R\langle 0,0,1\rangle\cdot\langle 2v^2\cos u,2v^2\sin u,v\rangle\ dA\\
+						&= \int_0^1\int_0^{2\pi} (v)\ du\ dv\\
+						&= \pi.
+\end{align*}
+
+These two results are equal and positive. Each are positive because both normal vectors are pointing in the positive $z$-directions, as does $\vec F_1$. As the field passes through each surface in the direction of their normal vectors, the flux is measured as positive.
+
+We can also intuitively understand why the results are equal. Consider $\vec F_1$ to represent the flow of air, and let each surface represent a filter. Since $\vec F_1$ is constant, and moving ``straight up,'' it makes sense that all air passing through $\surfaceS_1$ also passes through $\surfaceS_2$, and vice--versa. 
+
+If we treated the surfaces as creating one piecewise--smooth surface \surfaceS, we would find the total flux across \surfaceS\ by finding the flux across each piece, being sure that each normal vector pointed to the outside of the closed surface. Above, $\vec n_1$ does not point outside the surface, though $\vec n_2$ does. We would instead want to use $-\vec n_1$ in our computation. We would then find that the flux across $\surfaceS_1$ is $-\pi$, and hence the total flux across \surfaceS\ is $-\pi + \pi = 0$. (As $0$ is a special number, we should wonder if this answer has special significance. It does, which is briefly discussed following this example and will be more fully developed in the next section.)
+
+We now compute the flux across each surface with $\vec F_2=\langle 0,0,z\rangle$:
+
+\begin{align*}
+\text{Flux across $\surfaceS_1$} &= \iint_{\surfaceS_1} \vec F_2\cdot \vec n_1\ dS .
+						\intertext{Over $\surfaceS_1$, $\vec F_2 = \vec F_2\big(\vec r_2(u,v)\big) = \langle 0,0,0\rangle.$ Therefore,}
+						&= \iint_R\langle 0,0,0\rangle\cdot\langle 0,0,v\rangle\ dA\\
+						&= \int_0^1\int_0^{2\pi} (0)\ du\ dv\\
+						&= 0.
+\end{align*}
+
+\begin{align*}
+\text{Flux across $\surfaceS_2$} &= \iint_{\surfaceS_2} \vec F_2\cdot \vec n_2\ dS .
+						\intertext{Over $\surfaceS_2$, $\vec F_2 = \vec F_2\big(\vec r_2(u,v)\big) = \langle 0,0,1-v^2\rangle.$ Therefore,}
+						&= \iint_R\langle 0,0,1-v^2\rangle\cdot\langle 2v^2\cos u,2v^2\sin u,v\rangle\ dA\\
+						&= \int_0^1\int_0^{2\pi} (v^3-v)\ du\ dv\\
+						&= \pi/2.
+\end{align*}
+
+This time the measurements of flux differ. Over $\surfaceS_1$, the field $\vec F_2$ is just $\vec 0$, hence there is no flux. Over $\surfaceS_2$, the flux is again positive as $\vec F_2$ points in the positive $z$ direction over $\surfaceS_2$, as does $\vec n_2$.
+}\\
+
+In the previous example, the surfaces $\surfaceS_1$ and $\surfaceS_2$ form a closed surface that is piecewise smooth. That the measurement of flux across each surface was the same for some fields (and not for others) is reminiscent of a result from Section \ref{sec:greensthm}, where we measured flux across curves. The quick answer to why the flux was the same when considering $\vec F_1$ is that $\divv \vec F_1 = 0$. In the next section, we'll see the second part of the Divergence Theorem which will more fully explain this occurrence. 
+
+\printexercises{exercises/14_06_exercises}

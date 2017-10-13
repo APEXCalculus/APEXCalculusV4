@@ -1,0 +1,137 @@
+%\RequirePackage{ifthen}
+%\newboolean{longpage}
+%\setboolean{longpage}{true}
+%\ifthenelse{\boolean{longpage}}%
+%{\documentclass[10pt]{article}}%
+%{\documentclass[10pt]{book}}
+
+\documentclass{book}
+
+%\sffamily
+\usepackage{fontspec}
+%\usepackage{mathspec}
+%\setallmainfonts[Mapping=tex-text]{Calibri}
+%\setmainfont[Mapping=tex-text]{Calibri}
+%\setsansfont[Mapping=tex-text]{Calibri}
+%\setmathsfont(Greek){[cmmi10]}
+
+%%
+% slight detour to create the proper text/paper size.
+% Depends on the ifthen package, needed before loading
+% the geometry package
+%%
+
+\usepackage{ifthen}
+\newboolean{tabletsize}
+\setboolean{tabletsize}{false}
+
+
+%
+%	Note how the tablet version differs from the booksize only in 
+% the size of the margins.
+%
+% Changing the following isn't hard but should be done with 
+% practice and care, making sure to get the margins right for a 
+% particular page size and printing format
+%
+%% Layout for printed book through Amazon CreateSpace, perfect bound,
+%% 8.5 x 11 paper size, 1in inner margin, 1/2in (roughly) outer margin
+
+%\usepackage{everyshi}
+%\pagestyle{empty}
+%\textheight500cm
+%\EveryShipout{%
+%\pdfpagewidth=8.5in
+%\pdfpageheight=\pagetotal
+%\advance\pdfpageheight by 2in
+%\advance\pdfpageheight by 2\topmargin
+%\advance\pdfpageheight by \textheight
+%\advance\pdfpageheight by -\pagegoal}
+
+\ifthenelse{\boolean{tabletsize}}%
+						{\usepackage[paperheight=11in,paperwidth=8.5in,%
+						inner=1in,includeheadfoot,textheight=9in,textwidth=345pt,%
+						marginparwidth=150pt]{geometry}}%
+						{\usepackage[paperheight=11in,paperwidth=8.5in,%
+						inner=1in,textheight=7in,textwidth=320pt,marginparwidth=150pt,%
+						marginparsep=32pt,bottom=3in,footskip=1.5in]{geometry}}
+%
+%\usepackage[paperheight=11in,paperwidth=8.5in, inner=1in,textheight=7in,textwidth=320pt,marginparwidth=150pt,marginparsep=32pt]{geometry}
+
+%\setlength{\marginparwidth}{150pt}
+
+%\textheight500cm
+%\EveryShipout{%
+%\pdfpagewidth=8.5in
+%\pdfpageheight=\pagetotal
+%\advance\pdfpageheight by 2in
+%\advance\pdfpageheight by 2\topmargin
+%\advance\pdfpageheight by \textheight
+%\advance\pdfpageheight by -\pagegoal}
+
+
+
+%% end detour
+%%
+%\newcounter{chapter}
+%\newcommand{\chapter}{\refstepcounter{chapter}\Huge Chapter \thechapter \vskip 2\baselineskip\normalsize}
+
+
+\usepackage{APEX_format}
+\input{headers/Header_Calculus}
+
+%\pgfrealjobname{Calculus}
+
+
+
+\begin{document}
+
+%%%%%%%%%%
+%%%
+%%%  Set criteria for the format of the book.
+%%%  This supercedes anything set in the Text_Header.
+%%%
+%%%%%%%%%%
+
+
+\printincolor
+%\printinblackandwhite
+
+%\printexercisenames
+
+%\nodrawexamplelines
+
+%\printallanswers
+
+
+\normalem
+
+
+\chapter{Limits}\label{chapter:limits}
+%\thispagestyle{empty}
+
+\input{text/01_Limit_Introduction}
+\pagebreak
+\input{text/01_Limit_Definition}
+\pagebreak
+\input{text/01_Analytic_Limits}
+\pagebreak
+\input{text/01_Continuity}
+
+%%\appendix
+%%%%
+%%\makeexercisesection{Solutions To Selected Problems}
+%%%
+%%%%%%%%
+%%%%%%		 The following makes the index and includes
+%%%%%%		it in the file
+%%%%%%%%
+%%
+%%\clearpage{\pagestyle{empty}\cleardoublepage}
+%%\phantomsection
+%%\addcontentsline{toc}{chapter}{\indexname}
+%%\printindex
+%
+
+\end{document}
+

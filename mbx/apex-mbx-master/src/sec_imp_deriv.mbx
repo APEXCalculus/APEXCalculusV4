@@ -1,0 +1,1807 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_imp_deriv">
+  <title>Implicit Differentiation</title>
+  <introduction>
+    <p>In the previous sections we learned to find the derivative, <m>\lz{y}{x}</m>, or <m>y'</m>, when <m>y</m> is given <em>explicitly</em> as a function of <m>x</m>. That is, if we know <m>y=f(x)</m> for some function <m>f</m>, we can find <m>y'</m>. For example, given <m>y=3x^2-7</m>, we can easily find <m>y'=6x</m>. (Here we explicitly state how <m>y</m> depends on <m>x</m>. Knowing <m>x</m>, we can directly find <m>y</m>.)</p>
+
+    <p>Sometimes the relationship between <m>y</m> and <m>x</m> is not explicit; rather, it is <em>implicit</em>. For instance, we might know that <m>x^2-y=4</m>. This equality defines a relationship between <m>x</m> and <m>y</m>; if we know <m>x</m>, we could figure out <m>y</m>. Can we still find <m>y'</m>? In this case, sure; we solve for <m>y</m> to get <m>y=x^2-4</m> (hence we now know <m>y</m> explicitly) and then differentiate to get <m>y'=2x</m>.</p>
+
+    <p>Sometimes the <em>implicit</em> relationship between <m>x</m> and <m>y</m> is complicated. Suppose we are given <m>\sin(y)+y^3=6-x^3</m>. A graph of this implicit relationship is given in <xref ref="fig_implicit1">Figure</xref>. In this case there is absolutely no way to solve for <m>y</m> in terms of elementary functions. The surprising thing is, however, that we can still find <m>y'</m> via a process known as <term>implicit differentiation</term>.<index><main>implicit differentiation</main></index><index><main>derivative</main><sub>implicit</sub></index></p>
+
+    <figure xml:id="fig_implicit1" >
+      <caption>A graph of the implicit relationship <m>\sin(y)+y^3=6-x^3</m>.</caption>
+      <!-- START figures/fig_implicit1.tex -->
+      <image xml:id="img_implicit1" width="47%">
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}[declare function = {cbrt(\x) = (\x < 0) * -(-\x)^(1/3) + (\x >= 0) * (\x)^(1/3);}]
+            \begin{axis}[,xmin=-3.2,xmax=3.2,
+                        ymin=-3.2,ymax=3.2]
+              \addplot[firstcurvestyle,variable=\t,domain=-2.7:1.5,leftarrow] ({cbrt(6-sin(deg(t))-t^3)},{t});
+              \addplot[firstcurvestyle,variable=\t,domain=1.5:1.8,-] ({cbrt(6-sin(deg(t))-t^3)},{t});
+              \addplot[firstcurvestyle,variable=\t,domain=1.8:3,rightarrow] ({cbrt(6-sin(deg(t))-t^3)},{t});
+            \end{axis}
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_implicit1.tex END -->
+    </figure>
+
+    <p>Implicit differentiation is a technique based on the <xref ref="thm_chain_rule" autoname="title"/> that is used to find a derivative when the relationship between the variables is given implicitly rather than explicitly (solved for one variable in terms of the other).</p>
+
+    <p>We begin by reviewing the Chain Rule. Let <m>f</m> and <m>g</m> be functions of <m>x</m>. Then
+      <me>
+        \lzoo{x}{f(g(x))} = \fp(g(x))\cdot g'(x).
+      </me>
+    </p>
+
+    <p>Suppose now that <m>y=g(x)</m>. We can rewrite the above as
+      <mdn>
+        <mrow xml:id="eq_implicit1">\lzoo{x}{f(y)}\amp=\fp(y)\cdot y',\amp\amp\text{ or }\amp\lzoo{x}{f(y)}\amp=\fp(y)\cdot\lz{y}{x}.</mrow>
+      </mdn>
+    </p>
+
+    <p>These equations look strange; the key concept to learn here is that we can find <m>y'</m> even if we don't exactly know how <m>y</m> and <m>x</m> relate.</p>
+
+    <p>We demonstrate this process in the following example.</p>
+
+    <example xml:id="ex_implicit1">
+      <title>Using Implicit Differentiation</title>
+      <statement>
+        <p>Find <m>y'</m> given that <m>\sin(y) + y^3=6-x^3</m>.</p>
+      </statement>
+      <solution>
+        <p>We start by taking the derivative of both sides (thus maintaining the equality.) We have:
+          <me>
+            \lzoo{x}{\sin(y) + y^3}=\lzoo{x}{6-x^3}.
+          </me>
+        </p>
+
+        <p>The right hand side is easy; it returns <m>-3x^2</m>.</p>
+
+        <p>The left hand side requires more consideration. We take the derivative term-by-term. Using the technique derived from <xref ref="eq_implicit1">Equation</xref> above, we can see that
+          <me>
+            \lzoo{x}{\sin(y)} = \cos(y) \cdot y'.
+          </me>
+        </p>
+
+        <p>We apply the same process to the <m>y^3</m> term.
+          <me>
+            \lzoo{x}{y^3} = \lzoo{(y)^3} = 3(y)^2\cdot y'.
+          </me>
+        </p>
+
+        <p>Putting this together with the right hand side, we have
+          <me>
+            \cos(y)y'+3y^2y' = -3x^2.
+          </me>
+        </p>
+
+        <p>Now solve for <m>y'</m>. It's important to treat <m>y'</m> as an algebraically independent variable from <m>y</m> and <m>x</m>.
+          <md>
+            <mrow>\cos(y)y'+3y^2y'\amp = -3x^2</mrow>
+            <mrow>\left(\cos(y) +3y^2\right)y' \amp =-3x^2</mrow>
+            <mrow>y'\amp =\frac{-3x^2}{\cos(y) +3y^2}</mrow>
+          </md>
+        </p>
+
+        <p>This equation for <m>y'</m> probably seems unusual for it contains both <m>x</m> and <m>y</m> terms. How is it to be used? We'll address that next.</p>
+      </solution>
+    </example>
+
+    <p>Implicit functions are generally harder to deal with than explicit functions. With an explicit function, given an <m>x</m> value, we have an explicit formula for computing the corresponding <m>y</m> value. With an implicit function, one often has to find <m>x</m> and <m>y</m> values <em>at the same time</em> that satisfy the equation. It is much easier to demonstrate that a given point satisfies the equation than to actually find such a point.</p>
+
+    <p>For instance, we can affirm easily that the point <m>\left(\sqrt[3]{6},0\right)</m> lies on the graph of the implicit function <m>\sin(y) + y^3=6-x^3</m>. Plugging in <m>0</m> for <m>y</m>, we see the left hand side is <m>0</m>. Setting <m>x=\sqrt[3]6</m>, we see the right hand side is also <m>0</m>; the equation is satisfied. The following example finds the equation of the tangent line to this function at this point.</p>
+
+    <example xml:id="ex_implicit2">
+      <title>Using Implicit Differentiation to find a Tangent Line</title>
+      <statement>
+        <p>Find the equation of the line tangent to the curve of the implicitly defined function <m>\sin(y) + y^3=6-x^3</m> at the point <m>\left(\sqrt[3]6,0\right)</m>.</p>
+      </statement>
+      <solution>
+        <p>In <xref ref="ex_implicit1">Example</xref> we found that
+          <me>
+            y' = \frac{-3x^2}{\cos(y) +3y^2}.
+          </me>
+        </p>
+
+        <p>We find the slope of the tangent line at the point <m>\left(\sqrt[3]6,0\right)</m> by substituting <m>\sqrt[3]6</m> for <m>x</m> and <m>0</m> for <m>y</m>. Thus at the point <m>\left(\sqrt[3]6,0\right)</m>, we have the slope as
+          <me>
+            y' = \frac{-3\left(\sqrt[3]{6}\right)^2}{\cos(0) + 3\cdot0^2} = \frac{-3\sqrt[3]{36}}{1} \approx -9.91.
+          </me>
+        </p>
+
+        <p>Therefore the equation of the tangent line to the implicitly defined function <m>\sin(y) + y^3=6-x^3</m> at the point <m>\left(\sqrt[3]{6},0\right)</m> is
+          <me>
+            y = -3\sqrt[3]{36}\left(x-\sqrt[3]{6}\right)+0 \approx -9.91x+18.
+          </me>
+        </p>
+
+        <p>The curve and this tangent line are shown in <xref ref="fig_implicit2">Figure</xref>.</p>
+
+        <figure xml:id="fig_implicit2" >
+          <caption>The function <m>\sin(y) +y^3 = 6-x^3</m> and its tangent line at the point <m>(\sqrt[3]{6},0)</m>.</caption>
+          <!-- START figures/fig_implicit2.tex -->
+          <image xml:id="img_implicit2" width="47%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}[declare function = {cbrt(\x) = (\x < 0) * -(-\x)^(1/3) + (\x >= 0) * (\x)^(1/3);}]
+                \begin{axis}[,xmin=-3.2,xmax=3.2,
+                            ymin=-3.2,ymax=3.2]
+                  \addplot[firstcurvestyle,variable=\t,domain=-2.7:1.5,leftarrow] ({cbrt(6-sin(deg(t))-t^3)},{t});
+                  \addplot[firstcurvestyle,variable=\t,domain=1.5:1.8,-] ({cbrt(6-sin(deg(t))-t^3)},{t});
+                  \addplot[firstcurvestyle,variable=\t,domain=1.8:3,rightarrow] ({cbrt(6-sin(deg(t))-t^3)},{t});
+                  \addplot [tangentline,domain=1.617:2.017] {-9.9057*x+18};
+                \end{axis}
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_implicit2.tex END -->
+        </figure>
+      </solution>
+    </example>
+
+    <p>This suggests a general method for implicit differentiation. For the steps below assume <m>y</m> is a function of <m>x</m>.</p>
+
+    <p><ol>
+      <li><p>Take the derivative of each term in the equation.  Treat the <m>x</m> terms like normal.  When taking the derivatives of <m>y</m> terms, the usual rules apply except that, because of the <xref ref="thm_chain_rule">Chain Rule</xref>, we need to multiply each term by <m>y'</m>.</p></li>
+
+      <li><p>Get all the <m>y'</m> terms on one side of the equal sign and put the remaining terms on the other side.</p></li>
+
+      <li><p>Factor out <m>y'</m>;  solve for <m>y'</m> by dividing.</p></li>
+    </ol></p>
+
+    <p>(Practical Note: when working by hand, it may be beneficial to use the symbol <m>\frac{dy}{dx}</m> instead of <m>y'</m>, as the latter can be easily confused for <m>y</m> or <m>y^1</m>.)</p>
+
+    <example xml:id="ex_implicit3">
+      <title>Using Implicit Differentiation</title>
+      <statement>
+        <p>Given the implicitly defined function <m>y^3+x^2y^4=1+2x</m>, find <m>y'</m>.</p>
+      </statement>
+      <solution>
+        <p>We will take the implicit derivatives term-by-term. The derivative of <m>y^3</m> is <m>3y^2y'</m>.</p>
+
+        <p>The second term, <m>x^2y^4</m>, is a little tricky. It requires the <xref ref="thm_ProductRule" autoname="title" /> as it is the product of two functions of <m>x</m>: <m>x^2</m> and <m>y^4</m>. Its derivative is <m>x^2(4y^3y') + 2xy^4</m>. The first part of this expression requires a <m>y'</m> because we are taking the derivative of a <m>y</m> term. The second part does not require it because we are taking the derivative of <m>x^2</m>.</p>
+
+        <p>The derivative of the right hand side is easily found to be <m>2</m>. In all, we get:
+          <me>
+            3y^2y' + 4x^2y^3y' + 2xy^4 = 2.
+          </me>
+        </p>
+
+        <p>Move terms around so that the left side consists only of the <m>y'</m> terms and the right side consists of all the other terms:
+          <me>
+            3y^2y' + 4x^2y^3y' = 2-2xy^4.
+          </me>
+        </p>
+
+        <p>Factor out <m>y'</m> from the left side and solve to get
+          <me>
+            y' = \frac{2-2xy^4}{3y^2+4x^2y^3}.
+          </me>
+        </p>
+
+        <p>To confirm the validity of our work, let's find the equation of a tangent line to this function at a point. It is easy to confirm that the point <m>(0,1)</m> lies on the graph of this function. At this point, <m>y' = 2/3</m>. So the equation of the tangent line is <m>y = 2/3(x-0)+1</m>. The function and its tangent line are graphed in <xref ref="fig_implicit4">Figure</xref>.</p>
+
+        <figure xml:id="fig_implicit4" >
+          <caption>A graph of the implicitly defined function <m>y^3+x^2y^4=1+2x</m> along with its tangent line at the point <m>(0,1)</m>.</caption>
+          <!-- START figures/fig_implicit4.tex -->
+          <image xml:id="img_implicit4" width="47%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+                \begin{axis}[xmin=-1.5,xmax=10.5,
+                            ymin=-10.5,ymax=2.49,]
+
+                  \addplot[firstcurvestyle,smooth] coordinates {(-0.324,-9.34) (-0.336,-8.66) (-0.351,-7.95) (-0.371,-7.13) (-0.396,-6.3) (-0.414,-5.68) (-0.451,-4.91) (-0.472,-4.48)(-0.497,-4.02) (-0.525,-3.57) (-0.56,-3.15) (-0.61,-2.63)(-0.664,-2.18) (-0.727,-1.71) (-0.762,-1.29) (-0.668,-0.805)(-0.513,-0.29) (-0.453,0.439) (-0.308,0.71) (0.0816,1.05)(0.452,1.15) (0.893,1.13) (1.33,1.08) (1.79,1.02) (2.24,0.975)(2.82,0.925) (3.4,0.881) (4.11,0.844) (4.91,0.781) (5.77,0.766)(6.76,0.74) (7.59,0.722) (8.26,0.706) (8.93,0.689) (9.69,0.671)};
+
+                  \addplot[firstcurvestyle,smooth] coordinates {(9.6,-0.677) (9.13,-0.696) (8.66,-0.697) (8.21,-0.707) (7.72,-0.722)(7.3,-0.738) (6.79,-0.754) (5.98,-0.778) (5.1,-0.81) (4.34,-0.858)(3.84,-0.893) (3.4,-0.927) (2.77,-0.99) (2.27,-1.07) (1.82,-1.17)(1.38,-1.34) (0.97,-1.7) (0.779,-2.1) (0.678,-2.5) (0.593,-3.)(0.534,-3.66) (0.483,-4.38) (0.444,-5.04) (0.415,-5.71) (0.393,-6.38)(0.375,-7.05) (0.362,-7.59) (0.343,-8.38) (0.334,-8.9) (0.322,-9.33)(0.317,-9.83) };
+
+                  \addplot [tangentline,domain=-1:2] {2/3*(x)+1};
+                \end{axis}
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_implicit4.tex END -->
+        </figure>
+
+        <p>Notice how our curve looks much different than for functions we have seen. For one, it fails the vertical line test, and so the complete curve is not truly representing <m>y</m> as a function of <m>x</m>. But when we indicate we are interested in the derivative at <m>(0,1)</m>, we are indicating that we want the function defined by the small portion of the curve that passes through <m>(0,1)</m>, and that small portion does pass the vertical line test. Such functions are important in many areas of mathematics, so developing tools to deal with them is also important.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_implicit5">
+      <title>Using Implicit Differentiation</title>
+      <statement>
+        <p>Given the implicitly defined function <m>\sin\mathopen{}\left(x^2y^2\right)\mathclose{}+y^3=x+y</m>, find <m>y'</m>.</p>
+      </statement>
+      <solution>
+        <p>Differentiating term-by-term, we find the most difficulty in the first term. It requires both the <xref ref="thm_chain_rule" autoname="title" /> and <xref ref="thm_ProductRule" autoname="title" />.
+          <md>
+            <mrow>\lzoo{x}{\sin\mathopen{}\left(x^2y^2\right)\mathclose{}} \amp = \cos\mathopen{}\left(x^2y^2\right)\mathclose{}\cdot\lzoo{x}{x^2y^2}</mrow>
+            <mrow>\amp = \cos\mathopen{}\left(x^2y^2\right)\mathclose{}\cdot\left(x^2(2yy')+2xy^2\right)</mrow>
+            <mrow>\amp = 2\left(x^2yy'+xy^2\right)\cos\mathopen{}\left(x^2y^2\right)\mathclose{}.</mrow>
+          </md>
+        </p>
+
+        <p>We leave the derivatives of the other terms to the reader. After taking the derivatives of both sides, we have
+          <me>
+            2\left(x^2yy'+xy^2\right)\cos\mathopen{}\left(x^2y^2\right)\mathclose{} + 3y^2y' = 1 + y'.
+          </me>
+        </p>
+
+        <p>We now have to be careful to properly solve for <m>y'</m>, particularly because of the product on the left. It is best to multiply out the product. Doing this, we get
+          <me>
+            2x^2y\cos\mathopen{}\left(x^2y^2\right)\mathclose{}y' + 2xy^2\cos\mathopen{}\left(x^2y^2\right)\mathclose{} + 3y^2y' = 1 + y'.
+          </me>
+        </p>
+
+        <p>From here we can safely move around terms to get the following:
+          <me>
+            2x^2y\cos\mathopen{}\left(x^2y^2\right)\mathclose{}y' + 3y^2y' - y' = 1 - 2xy^2\cos\mathopen{}\left(x^2y^2\right)\mathclose{}.
+          </me>
+        </p>
+
+        <p>Then we can solve for <m>y'</m> to get
+          <me>
+            y' = \frac{1 - 2xy^2\cos\mathopen{}\left(x^2y^2\right)\mathclose{}}{2x^2y\cos\mathopen{}\left(x^2y^2\right)\mathclose{}+3y^2-1}.
+          </me>
+        </p>
+
+        <p>A graph of this implicit function is given in <xref ref="fig_implicit5">Figure</xref>.</p>
+
+        <figure xml:id="fig_implicit5" >
+          <caption>A graph of the implicitly defined curve <m>\sin\mathopen{}\left(x^2y^2\right)\mathclose{}+y^3=x+y</m>.</caption>
+          <!-- START figures/fig_implicit5.tex -->
+          <image xml:id="img_implicit5" width="47%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+                \begin{axis}[xmin=-1.95,xmax=1.99,
+                            ymin=-1.95,ymax=1.95,]
+                  \addplot+[smooth] coordinates {(-1.91,-1.57) (-1.82,-1.61) (-1.68,-1.61) (-1.7,-1.49) (-1.74,-1.38)(-1.76,-1.28) (-1.64,-1.26) (-1.54,-1.29) (-1.36,-1.35) (-1.2,-1.42)(-1.09,-1.46) (-0.989,-1.49) (-0.86,-1.5) (-0.714,-1.45)(-0.566,-1.35) (-0.327,-1.18) (-0.15,-1.08)(0.107,-0.947) (0.216,-0.895) (0.332,-0.832) (0.429,-0.755) (0.464,-0.623) (0.429,-0.52) (0.308,-0.335)(0.142,-0.144) (-0.071,0.0714) (-0.239,0.261) (-0.336,0.45) (-0.336,0.622) (-0.278,0.757) (-0.17,0.884) (-0.046,0.975)(0.0714,1.03) (0.216,1.07) (0.48,1.09) (0.714,1.07) (0.929,1.05)(1.15,1.07) (1.24,1.13) (1.27,1.25) (1.28,1.37) (1.29,1.49)(1.36,1.58) (1.47,1.57) (1.59,1.52) (1.68,1.48) (1.79,1.43)(1.89,1.39) (1.98,1.36) (1.98,1.6)};
+                \end{axis}
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_implicit5.tex END -->
+        </figure>
+
+        <p>It is easy to verify that the points <m>(0,0)</m>, <m>(0,1)</m> and <m>(0,-1)</m> all lie on the graph. We can find the slopes of the tangent lines at each of these points using our formula for <m>y'</m>.<ul>
+          <li>At <m>(0,0)</m>, the slope is <m>-1</m>.</li>
+          <li>At <m>(0,1)</m>, the slope is <m>1/2</m>.</li>
+          <li>At <m>(0,-1)</m>, the slope is also <m>1/2</m>.</li>
+        </ul>The tangent lines have been added to the graph of the function in <xref ref="fig_implicit6">Figure</xref>.</p>
+
+        <figure xml:id="fig_implicit6" >
+          <caption>A graph of the implicitly defined curve <m>\sin\mathopen{}\left(x^2y^2\right)\mathclose{}+y^3=x+y</m> and certain tangent lines.</caption>
+          <!-- START figures/fig_implicit6.tex -->
+          <image xml:id="img_implicit6" width="47%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+                \begin{axis}[xmin=-1.95,xmax=1.99,
+                            ymin=-1.95,ymax=1.95,]
+                  \addplot+[smooth] coordinates {(-1.91,-1.57) (-1.82,-1.61) (-1.68,-1.61) (-1.7,-1.49) (-1.74,-1.38)(-1.76,-1.28) (-1.64,-1.26) (-1.54,-1.29) (-1.36,-1.35) (-1.2,-1.42)(-1.09,-1.46) (-0.989,-1.49) (-0.86,-1.5) (-0.714,-1.45)(-0.566,-1.35) (-0.327,-1.18) (-0.15,-1.08)(0.107,-0.947) (0.216,-0.895) (0.332,-0.832) (0.429,-0.755) (0.464,-0.623) (0.429,-0.52) (0.308,-0.335)(0.142,-0.144) (-0.071,0.0714) (-0.239,0.261) (-0.336,0.45) (-0.336,0.622) (-0.278,0.757) (-0.17,0.884) (-0.046,0.975)(0.0714,1.03) (0.216,1.07) (0.48,1.09) (0.714,1.07) (0.929,1.05)(1.15,1.07) (1.24,1.13) (1.27,1.25) (1.28,1.37) (1.29,1.49)(1.36,1.58) (1.47,1.57) (1.59,1.52) (1.68,1.48) (1.79,1.43)(1.89,1.39) (1.98,1.36) (1.98,1.6)};
+
+                  \addplot [tangentline,domain=-.5:.5] {-x};
+                  \addplot [tangentline,domain=-.5:.5] {0.5*x+1};
+                  \addplot [tangentline,domain=-.5:.5] {0.5*(x-0)-1};
+                \end{axis}
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_implicit6.tex END -->
+        </figure>
+      </solution>
+    </example>
+
+    <p>Quite a few <q>famous</q> curves have equations that are given implicitly. We can use implicit differentiation to find the slope at various points on those curves. We investigate two such curves in the next examples.</p>
+
+    <example xml:id="ex_implicit7">
+      <title>Finding slopes of tangent lines to a circle</title>
+      <statement>
+        <p>Find the slope of the tangent line to the circle <m>x^2+y^2=1</m> at the point <m>\left(1/2, \sqrt{3}/2\right)</m>.</p>
+      </statement>
+      <solution>
+        <p>Taking derivatives, we get <m>2x+2yy'=0</m>. Solving for <m>y'</m> gives:
+          <me>
+            y' = \frac{-x}{y}.
+          </me>
+        </p>
+
+        <p>This is a clever formula. Recall that the slope of the line through the origin and the point <m>(x,y)</m> on the circle will be <m>y/x</m>. We have found that the slope of the tangent line to the circle at that point is the opposite reciprocal of <m>y/x</m>, namely, <m>-x/y</m>. Hence these two lines are always perpendicular.</p>
+
+        <p>At the point <m>\left(1/2, \sqrt{3}/2\right)</m>, we have the tangent line's slope as
+          <me>
+            y' = \frac{-1/2}{\sqrt{3}/2} = \frac{-1}{\sqrt{3}} \approx -0.577.
+          </me>
+        </p>
+
+        <p>A graph of the circle and its tangent line at <m>\left(1/2,\sqrt{3}/2\right)</m> is given in <xref ref="fig_implicit7">Figure</xref>, along with a thin dashed line from the origin that is perpendicular to the tangent line. (It turns out that all normal lines to a circle pass through the center of the circle.)</p>
+
+        <figure xml:id="fig_implicit7" >
+          <caption>The unit circle with its tangent line at <m>(1/2,\sqrt{3}/2)</m>.</caption>
+          <!-- START figures/fig_implicit7.tex -->
+          <image xml:id="img_implicit7" width="47%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+                \begin{axis}[xmin=-1.2,xmax=1.2,
+                            ymin=-1.2,ymax=1.2,
+                            axis equal]
+                  \addplot+[domain=0:pi,samples=200,-] ({cos(deg(2*x))},{sin(deg(2*x))});
+                  \addplot [tangentline,domain=.1:.9] {-.577*(x-.5)+.866};
+                  \addplot [soliddot] coordinates {(0.5,.866)} node[above right] {$\left(1/2,\sqrt{3}/2\right)$};
+                  \addplot [normallineseg,domain=0:0.5]{1/0.577*x};
+                \end{axis}
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_implicit7.tex END -->
+        </figure>
+      </solution>
+    </example>
+
+    <p>This section has shown how to find the derivatives of implicitly defined functions, whose graphs include a wide variety of interesting and unusual shapes. Implicit differentiation can also be used to further our understanding of <q>regular</q> differentiation.</p>
+
+    <p>One hole in our current understanding of derivatives is this: what is the derivative of the square root function? That is,
+      <me>
+        \lzoo{x}{\sqrt{x}} = \lzoo{x^{1/2}} = \text{?}
+      </me>
+    </p>
+
+    <p>We allude to a possible solution, as we can write the square root function as a power function with a rational (or, fractional) power. We are then tempted to apply the <xref ref="thm_PowerRule" autoname="title" /> and obtain
+      <me>
+        \lzoo{x^{1/2}} = \frac{1}{2}x^{-1/2} = \frac{1}{2\sqrt{x}}.
+      </me>
+    </p>
+
+    <p>The trouble with this is that the <xref ref="thm_PowerRule" autoname="title" /> was initially defined only for positive integer powers, <m>n>0</m>. While we did not justify this at the time, generally the <xref ref="thm_PowerRule" autoname="title" /> is proved using something called the Binomial Theorem, which deals only with positive integers. The <xref ref="thm_QuotientRule" autoname="title" /> allowed us to extend the <xref ref="thm_PowerRule" autoname="title" /> to negative integer powers. Implicit Differentiation allows us to extend the <xref ref="thm_PowerRule" autoname="title" /> to rational powers, as shown below.</p>
+
+    <p>Let <m>y = x^{m/n}</m>, where <m>m</m> and <m>n</m> are integers with no common factors (so <m>m=2</m> and <m>n=5</m> is fine, but <m>m=2</m> and <m>n=4</m> is not). We can rewrite this explicit function implicitly as <m>y^n = x^m</m>. Now apply implicit differentiation.
+      <md>
+        <mrow>y \amp = x^{m/n}</mrow>
+        <mrow>y^n \amp = x^m</mrow>
+        <mrow>\lzoo{x}{y^n} \amp = \lzoo{x}{x^m}</mrow>
+        <mrow>n\cdot y^{n-1}\cdot y' \amp = m\cdot x^{m-1}</mrow>
+        <mrow>y'\amp = \frac{m}{n} \frac{x^{m-1}}{y^{n-1}}\amp\amp\text{(now substitute }x^{m/n}\text{ for }y\text{)}</mrow>
+        <mrow>\amp = \frac{m}{n} \frac{x^{m-1}}{(x^{m/n})^{n-1}}\amp\amp\text{(apply lots of algebra)}</mrow>
+        <mrow>\amp = \frac{m}n x^{(m-n)/n}</mrow>
+        <mrow>\amp = \frac{m}n x^{m/n -1}.</mrow>
+      </md>
+    </p>
+
+    <p>The above derivation is the key to the proof extending the <xref ref="thm_PowerRule" autoname="title" /> to rational powers. Using limits, we can extend this once more to include <em>all</em> powers, including irrational (even transcendental!) powers, giving the following theorem.</p>
+
+    <theorem xml:id="thm_finalpower">
+      <title>Power Rule for Differentiation</title>
+      <statement>
+        <p>Let <m>f(x) = x^n</m>, where <m>n\neq 0</m> is a real number. Then <m>f</m> is a differentiable function, and <m>\fp(x) = n\cdot x^{n-1}</m>.<index><main>derivative</main><sub>Power Rule</sub></index><index><main>Power Rule</main><sub>differentiation</sub></index></p>
+      </statement>
+    </theorem>
+
+    <p>This theorem allows us to say the derivative of <m>x^\pi</m> is <m>\pi x^{\pi -1}</m>.</p>
+
+    <p>We now apply this final version of the <xref ref="thm_finalpower" autoname="title" /> in the next example, the second investigation of a <q>famous</q> curve.</p>
+
+    <todo>I have a geogebra applet I already made for this next example: https://ggbm.at/AP9r592M. It may need to be refined to hide some of the underlying mechanics. </todo>
+
+    <example xml:id="ex_implicit8">
+      <title>Using the Power Rule</title>
+      <statement>
+        <p>Find the slope of <m>x^{2/3}+y^{2/3}=8</m> at the point <m>(8,8)</m>.</p>
+      </statement>
+      <solution>
+        <p>This is a particularly interesting curve called an <term>astroid</term>. It is the shape traced out by a point on the edge of a circle that is rolling around inside of a larger circle, as shown in <xref ref="fig_implicit9">Figure</xref>.</p>
+        <figure xml:id="fig_implicit9" >
+          <caption>An astroid, traced out by a point on the smaller circle as it rolls inside the larger circle.</caption>
+          <!-- START figures/fig_implicit9.tex -->
+          <image xml:id="img_implicit9" width="47%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+                \begin{axis}[xmin=-24,xmax=24,
+                            ymin=-24,ymax=24,
+                            axis equal]
+                  \addplot+[domain=0:pi,samples=200,-] ({22.63*cos(deg(2*x))^3},{22.63*sin(deg(2*x))^3});
+                  \addplot+[domain=0:pi,samples=200,-] ({22.63*cos(deg(2*x))},{22.63*sin(deg(2*x))});
+                  \addplot+[domain=0:pi,samples=100,-] ({5.66*cos(deg(2*x))-12},{5.66*sin(deg(2*x))-12});
+                  \addplot [soliddot] coordinates {(-8,-8)};
+                \end{axis}
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_implicit9.tex END -->
+        </figure>
+
+        <p>To find the slope of the astroid at the point <m>(8,8)</m>, we take the derivative implicitly.
+          <md>
+            <mrow>\frac{2}{3}x^{-1/3}+\frac{2}{3}y^{-1/3}y'\amp =0</mrow>
+            <mrow>\frac{2}{3}y^{-1/3}y' \amp = -\frac{2}{3}x^{-1/3}</mrow>
+            <mrow>y'\amp =-\frac{x^{-1/3}}{y^{-1/3}}</mrow>
+            <mrow>y'\amp =-\frac{y^{1/3}}{x^{1/3}} = -\sqrt[3]{\frac{y}{x}}.</mrow>
+          </md>
+        </p>
+
+        <p>Plugging in <m>x=8</m> and <m>y=8</m>, we get a slope of <m>-1</m>. The astroid, with its tangent line at <m>(8,8)</m>, is shown in <xref ref="fig_implicit8">Figure</xref>.</p>
+
+        <figure xml:id="fig_implicit8" >
+          <caption>An astroid with a tangent line.</caption>
+          <!-- START figures/fig_implicit8.tex -->
+          <image xml:id="img_implicit8" width="47%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+                \begin{axis}[xmin=-24,xmax=24,
+                            ymin=-24,ymax=24,
+                            axis equal]
+                  \addplot+[domain=0:pi,samples=200,-] ({22.63*cos(deg(2*x))^3},{22.63*sin(deg(2*x))^3});
+                  \addplot [tangentline,domain=1:15] {-1*(x-8)+8};
+                  \addplot [soliddot] coordinates {(8,8)} node[above right] {$(8,8)$};
+                \end{axis}
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_implicit8.tex END -->
+        </figure>
+      </solution>
+    </example>
+  </introduction>
+
+  <subsection>
+    <title>Implicit Differentiation and the Second Derivative</title>
+    <p>We can use implicit differentiation to find higher order derivatives. In theory, this is simple: first find <m>\lz{y}{x}</m>, then take its derivative with respect to <m>x</m>. In practice, it is not hard, but it often requires a bit of algebra. We demonstrate this in an example.</p>
+
+    <example xml:id="ex_implicit9">
+      <title>Finding the second derivative</title>
+      <statement>
+        <p>Given <m>x^2+y^2=1</m>, find <m>\lzn{y}{x}{2} = y''</m>.</p>
+      </statement>
+      <solution>
+        <p>We found that <m>y' = \lz{y}{x} = -x/y</m> in <xref ref="ex_implicit7">Example</xref>. To find <m>y''</m>, we apply implicit differentiation to <m>y'</m>.
+          <md>
+            <mrow>y'' \amp = \lzoo{x}{y'}</mrow>
+            <mrow>\amp = \lzoo{x}{-\frac{x}{y}}\amp\amp\text{(Now use the Quotient Rule.)}</mrow>
+            <mrow>\amp = -\frac{y\cdot1 - x(y')}{y^2}\amp\amp\text{replace }y'\text{ with }-x/y\text{:}</mrow>
+            <mrow>\amp = -\frac{y-x(-x/y)}{y^2}</mrow>
+            <mrow>\amp = -\frac{y+x^2/y}{y^2}.</mrow>
+          </md>
+        </p>
+
+        <p>While this is not a particularly simple expression, it is usable. We can see that <m>y''>0</m> when <m>y\lt 0</m> and <m>y''\lt 0</m> when <m>y>0</m>. In <xref ref="sec_concavity">Section</xref>, we will see how this relates to the shape of the graph.</p>
+
+        <p>Also, if we remember that we are only considering points on the curve <m>x^2+y^2=1</m>, then we know that <m>x^2=1-y^2</m>. So we can replace the <m>x^2</m> in the expression for <m>y''</m> to get
+          <me>y''=-\frac{y+\left(1-y^2\right)/y}{y^2}=-\frac{1}{y^3}</me>
+        which is a simpler expression. Recognizing when simplifications like this are possible is not always easy.</p>
+      </solution>
+    </example>
+  </subsection>
+
+  <subsection>
+    <title>Logarithmic Differentiation</title>
+    <p>Consider the function <m>y=x^x</m>; it is graphed in <xref ref="fig_logdiffa">Figure</xref>. It is well-defined for <m>x>0</m> and we might be interested in finding equations of lines tangent and normal to its graph.<fn>In calculus the expression <m>0^0</m> is also considered well-defined and equal to <m>1</m>. This is easily confused with a limit of the <em>form</em> <m>0^0</m>, which is indeterminate. We skirt the issue here.</fn> How do we take its derivative?<index><main>logarithmic differentiation</main></index></p>
+
+    <figure xml:id="fig_logdiffa" >
+      <caption>A plot of <m>y=x^x</m>.</caption>
+      <!-- START figures/fig_logdiffa.tex -->
+      <image xml:id="img_logdiffa" width="47%">
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+            \begin{axis}[xmin=-0.1,xmax=2.2,
+                        ymin=-.1,ymax=4.2]
+              \addplot+[domain=0.001:2,rightarrow,samples=50] {x^x};
+              \addplot[hollowdot] coordinates{(0,1)};
+            \end{axis}
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_logdiffa.tex END -->
+    </figure>
+
+    <p>The function is not a power function: it has a <q>power</q> of <m>x</m>, not a constant. It is not an exponential function either: it has a <q>base</q> of <m>x</m>, not a constant.</p>
+
+    <p>A differentiation technique known as <term>logarithmic differentiation</term> becomes useful here. The basic principle is this: take the natural log of both sides of an equation <m>y=f(x)</m>, then use implicit differentiation to find <m>y'</m>. We demonstrate this in the following example.</p>
+
+    <example xml:id="ex_implicit10">
+      <title>Using Logarithmic Differentiation</title>
+      <statement>
+        <p>Given <m>y=x^x</m>, use logarithmic differentiation to find <m>y'</m>.</p>
+      </statement>
+      <solution>
+        <p>As suggested above, we start by taking the natural log of both sides then applying implicit differentiation.
+          <md>
+            <mrow>y \amp = x^x\amp</mrow>
+            <mrow>\ln(y) \amp = \ln(x^x)\amp\amp\text{(apply logarithm rule)}</mrow>
+            <mrow>\ln(y) \amp = x\ln(x) \amp\amp\text{(now use implicit differentiation)}</mrow>
+            <mrow>\lzoo{x}{\ln(y)} \amp = \lzoo{x}{x\ln(x)}</mrow>
+            <mrow>\frac{y'}{y} \amp = \ln(x) + x\cdot\frac{1}{x}\amp</mrow>
+            <mrow>\frac{y'}{y} \amp = \ln(x) + 1\amp </mrow>
+            <mrow>y' \amp = y\left(\ln(x) +1\right) \amp\amp\text{(substitute }y=x^x\text{)}</mrow>
+            <mrow>y' \amp = x^x\left(\ln(x) +1\right)\amp</mrow>
+          </md>.
+        </p>
+
+        <p>To <q>test</q> our answer, let's use it to find the equation of the tangent line at <m>x=1.5</m>. The point on the graph our tangent line must pass through is <m>\left(1.5, 1.5^{1.5}\right) \approx (1.5, 1.837)</m>. Using the equation for <m>y'</m>, we find the slope as
+          <me>
+            y' = 1.5^{1.5}\left(\ln(1.5) +1\right) \approx 1.837(1.405) \approx 2.582.
+          </me>
+        </p>
+
+        <p>Thus the equation of the tangent line is <m>y \approx 2.582(x-1.5)+1.837</m>. <xref ref="fig_implicit9">Figure</xref> graphs <m>y=x^x</m> along with this tangent line.</p>
+
+        <figure xml:id="fig_implicit10" >
+          <caption>A graph of <m>y=x^x</m> and its tangent line at <m>x=1.5</m>.</caption>
+          <!-- START figures/fig_implicit10.tex -->
+          <image xml:id="img_implicit10" width="47%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+                \begin{axis}[xmin=-0.1,xmax=2.2,
+                            ymin=-.1,ymax=4.2]
+                  \addplot+[domain=0.001:2,rightarrow,samples=50] {x^x};
+                  \addplot[hollowdot] coordinates{(0,1)};
+                  \addplot[tangentline,domain=1:2] {2.582 * (x - 1.5) + 1.837};
+                  \addplot[soliddot] coordinates{(1.5,1.837)} node[below right] {$\left(1.5,1.5^{1.5}\right)$};
+                \end{axis}
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_implicit10.tex END -->
+        </figure>
+      </solution>
+    </example>
+
+    <p>Implicit differentiation proves to be useful as it allows us to find the instantaneous rates of change of a variety of functions. In particular, it extended the <xref ref="thm_finalpower" autoname="title"/> to rational exponents, which we then extended to all real numbers. In <xref ref="sec_deriv_inverse_function">Section</xref>, implicit differentiation will be used to find the derivatives of <term>inverse</term> functions, such as <m>y=\sin^{-1}(x)</m>.</p>
+  </subsection>
+
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <statement>
+            <p>In your own words, explain the difference between implicit functions and explicit functions.</p>
+            <p><var form="essay" /></p>
+          </statement>
+          <solution>
+            <p>Answers will vary.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$derivativerules">
+              <set>
+                <member>Constant Rule</member>
+                <member>Power Rule</member>
+                <member>Sum/Difference Rule</member>
+                <member>Constant Multiple Rule</member>
+                <member>Product Rule</member>
+                <member>Quotient Rule</member>
+                <member correct="yes">Chain Rule</member>
+              </set>
+            </var>
+            <pg-code>
+              $derivativerules=RadioButtons(["Constant Rule", "Power Rule", "Sum/Difference Rule", "Constant Multiple Rule", "Product Rule", "Quotient Rule", "Chain Rule"],6);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Implicit differentiation is based on what other differentiation rule?</p>
+            <p><var name="$derivativerules" form="buttons" /></p>
+          </statement>
+          <solution>
+            <p>The Chain Rule.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$tf">
+              <set>
+                <member correct="yes">True</member>
+                <member>False</member>
+              </set>
+            </var>
+            <pg-code>
+              $tf=PopUp(['?','True','False'],1);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>True or False? Implicit differentiation can be used to find the derivative of <m>y=\sqrt{x}</m>. <var name="$tf" form="popup"/></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+     <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$tf">
+              <set>
+                <member correct="yes">True</member>
+                <member>False</member>
+              </set>
+            </var>
+            <pg-code>
+              $tf=PopUp(['?','True','False'],1);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>True or False? Implicit differentiation can be used to find the derivative of <m>y=x^{3/4}</m>. <var name="$tf" form="popup"/></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, compute the derivative of the given function.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$fp">
+              <static>\frac{1}{2}x^{-1/2}-\frac{1}{2}x^{-3/2}=\frac{1}{2\sqrt{x}}-\frac{1}{2\sqrt{x^3}}</static>
+            </var>
+            <pg-code>
+              Context()->variables->set(x=>{limits=>[0,4]});
+              $fp=Formula("1/(2sqrt(x))-1/(2sqrt(x^3))");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x)=\sqrt{x}+\dfrac{1}{\sqrt{x}}</m></p>
+            <p><m>f'(x)=</m><var name="$fp" width="40" /></p>
+          </statement>
+          <solution>
+            <p><m>\fp(x) = \frac{1}{2}x^{-1/2}-\frac{1}{2}x^{-3/2}=\frac{1}{2\sqrt{x}}-\frac{1}{2\sqrt{x^3}}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$fp">
+              <static>\frac{1}{3}x^{-2/3}+\frac{2}{3}x^{-1/3}=\frac{1}{3\sqrt[3]{x^2}}+\frac{2}{3\sqrt[3]{x}}</static>
+            </var>
+            <pg-code>
+              Context()->variables->set(x=>{limits=>[0,4]});
+              Context()->flags->set(reduceConstants=>0);
+              $fp=Formula("1/3 x^(-2/3)+2/3 x^(-1/3)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x)=\sqrt[3]{x}+x^{2/3}</m></p>
+            <p><m>f'(x)=</m><var name="$fp" width="40" /></p>
+          </statement>
+          <solution>
+            <p><m>\fp(x) = \frac{1}{3}x^{-2/3}+\frac{2}{3}x^{-1/3}=\frac{1}{3\sqrt[3]{x^2}}+\frac{2}{3\sqrt[3]{x}}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$fp">
+              <static>\frac{-t}{\sqrt{1-t^2}}</static>
+            </var>
+            <pg-code>
+              Context()->variables->are(t=>'Real');
+              Context()->variables->set(t=>{limits=>[-1,1]});
+              $fp=Formula("-t/sqrt(1-t^2)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(t)=\sqrt{1-t^2}</m></p>
+            <p><m>f'(t)=</m><var name="$fp" width="40" /></p>
+          </statement>
+          <solution>
+            <p><m>\fp(t) = \frac{-t}{\sqrt{1-t^2}}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$fp">
+              <static>\sqrt{t}\cos(t)+\frac{\sin(t)}{2\sqrt{t}}</static>
+            </var>
+            <pg-code>
+              Context()->variables->are(t=>'Real');
+              Context()->variables->set(t=>{limits=>[0,4]});
+              $fp=Formula("sqrt(t)cos(t)+sin(t)/(2sqrt(t))");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>g(t)=\sqrt{t}\sin(t)</m></p>
+            <p><m>g'(t)=</m><var name="$fp" width="40" /></p>
+          </statement>
+          <solution>
+            <p><m>g'(t) = \sqrt{t}\cos(t)+\frac{\sin(t)}{2\sqrt{t}}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$fp">
+              <static>1.5x^{0.5}=1.5\sqrt{x}</static>
+            </var>
+            <pg-code>
+              Context()->variables->set(x=>{limits=>[0,4]});
+              $fp=Formula("1.5sqrt(x)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>h(x)=x^{1.5}</m></p>
+            <p><m>h'(x)=</m><var name="$fp" width="40" /></p>
+          </statement>
+          <solution>
+            <p><m>h'(x) = 1.5x^{0.5}=1.5\sqrt{x}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$fp">
+              <static>\pi x^{\pi-1}+1.9x^{0.9}</static>
+            </var>
+            <pg-code>
+              Context()->variables->set(x=>{limits=>[0,4]});
+              Context()->flags->set(reduceConstants=>0);
+              $fp=Formula("pi x^(pi-1)+1.9x^(0.9)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x)=x^{\pi}+x^{1.9}+\pi^{1.9}</m></p>
+            <p><m>f'(x)=</m><var name="$fp" width="40" /></p>
+          </statement>
+          <solution>
+            <p><m>\fp(x) = \pi x^{\pi-1}+1.9x^{0.9}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$fp">
+              <static>\frac{\sqrt{x}\cdot1-(x+7)(1/2x^{-1/2})}{x}=\frac{1}{2\sqrt{x}}-\frac{7}{2\sqrt{x^3}}</static>
+            </var>
+            <pg-code>
+              Context()->variables->set(x=>{limits=>[0,4]});
+              $fp=Formula("1/(2sqrt(x))-7/(2sqrt(x^3))");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>g(x)=\dfrac{x+7}{\sqrt{x}}</m></p>
+            <p><m>g'(x)=</m><var name="$fp" width="40" /></p>
+          </statement>
+          <solution>
+            <p><m>g'(x) = \frac{\sqrt{x}\cdot1-(x+7)(1/2x^{-1/2})}{x}=\frac{1}{2\sqrt{x}}-\frac{7}{2\sqrt{x^3}}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$fp">
+              <static>\frac{1}{5}t^{-4/5}\left(\sec(t)+e^t\right)+\sqrt[5]{t}\left(\sec(t)\tan(t)+e^t\right)</static>
+            </var>
+            <pg-code>
+              Context()->variables->are(t=>'Real');
+              Context()->variables->set(t=>{limits=>[0,4]});
+              $fp=Formula("1/5t^(-4/5)(sec(t)+e^t)+t^(1/5)(sec(t)tan(t)+e^t)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(t)=\sqrt[5]{t}\left(\sec(t) + e^t\right)</m></p>
+            <p><m>f'(t)=</m><var name="$fp" width="40" /></p>
+          </statement>
+          <solution>
+            <p><m>\fp(t) = \frac{1}{5}t^{-4/5}\left(\sec(t)+e^t\right)+\sqrt[5]{t}\left(\sec(t)\tan(t)+e^t\right)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, find <m>\lz{y}{x}</m> using implicit differentiation.</p>
+      </introduction>
+      <exercise xml:id="exer_02_06_ex_09">
+        <webwork seed="1">
+          <setup>
+            <var name="$dydx">
+              <static>-\frac{4x^3}{2y+1}</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real');
+              $dydx=Formula("-4x^3/(2y+1)");
+              @y=(random(-2,2,0.1),random(-2,2,0.1),random(-2,2,0.1),random(-2,2,0.1),random(-2,2,0.1));
+              @x=map{(7-($_)-($_)**2)**(1/4)*(-1)**(random(-1,1,2))}(@y);
+              @xy=map{[$x[$_],$y[$_]]}(0..4);
+              $dydx->{test_points}=~~@xy;
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>x^4+y^2+y=7</m></p>
+            <p><m>\lz{y}{x}=</m><var name="$dydx" width="40" /></p>
+          </statement>
+          <solution>
+            <p><m>\frac{dy}{dx} = -\frac{4x^3}{2y+1}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$dydx">
+              <static>-\frac{y^{3/5}}{x^{3/5}}</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real');
+              $dydx=Formula("-y^(3/5)/x^(3/5)");
+              @y=(random(0.01,0.99,0.01),random(0.01,0.99,0.01),random(0.01,0.99,0.01),random(0.01,0.99,0.01),random(0.01,0.99,0.01));
+              @x=map{(1-($_)**(2/5))**(5/2)}(@y);
+              @xy=map{[$x[$_],$y[$_]]}(0..4);
+              $dydx->{test_points}=~~@xy;
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>x^{2/5}+y^{2/5}=1</m></p>
+            <p><m>\lz{y}{x}=</m><var name="$dydx" width="40" /></p>
+          </statement>
+          <solution>
+            <p><m>\frac{dy}{dx}=-\frac{y^{3/5}}{x^{3/5}}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$dydx">
+              <static>\sin(x)\sec(y)</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real');
+              $dydx=Formula("sin(x)sec(y)");
+              @y=(random(0,3.14,0.01),random(0,3.14,0.01),random(0,3.14,0.01),random(0,3.14,0.01),random(0,3.14,0.01));
+              @x=map{acos(1-sin($_))}(@y);
+              @xy=map{[$x[$_],$y[$_]]}(0..4);
+              $dydx->{test_points}=~~@xy;
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\cos(x)+\sin(y)=1</m></p>
+            <p><m>\lz{y}{x}=</m><var name="$dydx" width="40" /></p>
+          </statement>
+          <solution>
+            <p><m>\frac{dy}{dx}=\sin(x)\sec(y)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise xml:id="exer_02_06_ex_12">
+        <webwork seed="1">
+          <setup>
+            <var name="$dydx">
+              <static>\frac{y}{x}</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real');
+              $dydx=Formula("y/x");
+              @x=(random(-4,4,0.1),random(-4,4,0.1),random(-4,4,0.1),random(-4,4,0.1),random(-4,4,0.1));
+              @y=map{$_/10}(@x);
+              @xy=map{[$x[$_],$y[$_]]}(0..4);
+              $dydx->{test_points}=~~@xy;
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\dfrac{x}{y}=10</m></p>
+            <p><m>\lz{y}{x}=</m><var name="$dydx" width="40" /></p>
+          </statement>
+          <solution>
+            <p><m>\frac{dy}{dx}=\frac{y}{x}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$dydx">
+              <static>\frac{y}{x}</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real');
+              $dydx=Formula("y/x");
+              @y=(random(-4,4,0.1),random(-4,4,0.1),random(-4,4,0.1),random(-4,4,0.1),random(-4,4,0.1));
+              @x=map{$_/10}(@y);
+              @xy=map{[$x[$_],$y[$_]]}(0..4);
+              $dydx->{test_points}=~~@xy;
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\dfrac{y}{x}=10</m></p>
+            <p><m>\lz{y}{x}=</m><var name="$dydx" width="40" /></p>
+          </statement>
+          <solution>
+            <p><m>\frac{dy}{dx}=\frac{y}{x}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$dydx">
+              <static>-\frac{e^x x (x+2) 2^{-y}}{\ln(2)}</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real');
+              Context()->flags->set(reduceConstantFunctions=>0);
+              $dydx=Formula("-(e^x x(x+2) 2^(-y))/(ln(2))");
+              @x=(random(-4,1,0.1),random(-4,1,0.1),random(-4,1,0.1),random(-4,1,0.1),random(-4,1,0.1));
+              @y=map{ln(5-($_)**2*exp($_))/ln(2)}(@x);
+              @xy=map{[$x[$_],$y[$_]]}(0..4);
+              $dydx->{test_points}=~~@xy;
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>x^2e^x+2^y=5</m></p>
+            <p><m>\lz{y}{x}=</m><var name="$dydx" width="40" /></p>
+          </statement>
+          <solution>
+            <p><m>-\frac{e^x x (x+2) 2^{-y}}{\ln(2)}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$dydx">
+              <static>-\frac{2 \sin(y) \cos(y)}{x}</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real');
+              $dydx=Formula("-2sin(y)cos(y)/x");
+              @x=(random(-4,4,0.1),random(-4,4,0.1),random(-4,4,0.1),random(-4,4,0.1),random(-4,4,0.1));
+              @y=map{atan(50/($_)**2)}(@x);
+              @xy=map{[$x[$_],$y[$_]]}(0..4);
+              $dydx->{test_points}=~~@xy;
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>x^2\tan(y) =50</m></p>
+            <p><m>\lz{y}{x}=</m><var name="$dydx" width="40" /></p>
+          </statement>
+          <solution>
+            <p><m>-\frac{2 \sin(y) \cos(y)}{x}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$dydx">
+              <static>-\frac{x}{y^2}</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real');
+              $dydx=Formula("-x/y^2");
+              @x=(random(-0.6,0.6,0.01),random(-0.6,0.6,0.01),random(-0.6,0.6,0.01),random(-0.6,0.6,0.01),random(-0.6,0.6,0.01));
+              @y=map{((2**0.25-3*($_)**2)/2&lt;0)?-(abs(-(2**0.25-3*($_)**2)/2))**(1/3):((2**0.25-3*($_)**2)/2)**(1/3)}(@x);
+              @xy=map{[$x[$_],$y[$_]]}(0..4);
+              $dydx->{test_points}=~~@xy;
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>(3 x^2+2 y^3)^4=2</m></p>
+            <p><m>\lz{y}{x}=</m><var name="$dydx" width="40" /></p>
+          </statement>
+          <solution>
+            <p><m>-\frac{x}{y^2}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$dydx">
+              <static>\frac{1}{2y+2}</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real');
+              $dydx=Formula("1/(2y+2)");
+              @y=(random(-4,2,0.1),random(-4,2,0.1),random(-4,2,0.1),random(-4,2,0.1),random(-4,2,0.1));
+              @x=map{sqrt(200)*(-1)**(random(-1,1,2))+2*($_)+($_)**2}(@y);
+              @xy=map{[$x[$_],$y[$_]]}(0..4);
+              $dydx->{test_points}=~~@xy;
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>(y^2+2y-x)^2=200</m></p>
+            <p><m>\lz{y}{x}=</m><var name="$dydx" width="40" /></p>
+          </statement>
+          <solution>
+            <p><m>\frac{1}{2y+2}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$dydx">
+              <static>\frac{x^2+2 x y^2-y}{2 x^2 y-x+y^2}</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real');
+              $dydx=Formula("(x^2+2xy^2-y)/(2x^2y-x+y^2)");
+              @y=(random(-4,2,0.1),random(-4,2,0.1),random(-4,2,0.1),random(-4,2,0.1),random(-4,2,0.1));
+              @x=map{(17+(-1)**(random(-1,1,2))*sqrt(289 - 4*($_)*(1 - 17*($_))))/2}(@y);
+              @xy=map{[$x[$_],$y[$_]]}(0..4);
+              $dydx->{test_points}=~~@xy;
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\dfrac{x^2+y}{x+y^2}=17</m></p>
+            <p><m>\lz{y}{x}=</m><var name="$dydx" width="40" /></p>
+          </statement>
+          <solution>
+            <p><m>\frac{x^2+2 x y^2-y}{2 x^2 y-x+y^2}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$dydx">
+              <static>\frac{-\cos(x) (x+\cos(y))+\sin(x)+y}{\sin(y) (\sin(x)+y)+x+\cos(y)}</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real');
+              $dydx=Formula("(-cos(x)(x+cos(y))+sin(x)+y)/(sin(y)(sin(x)+y)+x+cos(y))");
+              $dydx->{test_points}=[[-3.1,-3.83041],[-0.41,0.732269],[0.59,0.759097],[2.6,1.82908],[5.3,6.93017]];
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\dfrac{\sin(x)+y}{\cos(y)+x}=1</m></p>
+            <p><m>\lz{y}{x}=</m><var name="$dydx" width="40" /></p>
+          </statement>
+          <solution>
+            <p><m>\frac{-\cos(x) (x+\cos(y))+\sin(x)+y}{\sin(y) (\sin(x)+y)+x+\cos(y)}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$dydx">
+              <static>-\frac{x}{y}</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real');
+              $dydx=Formula("-x/y");
+              @t=(random(0,6.28,0.01),random(0,6.28,0.01),random(0,6.28,0.01),random(0,6.28,0.01),random(0,6.28,0.01));
+              @x=map{exp(exp(1)/2)*cos($_)}(@t);
+              @y=map{exp(exp(1)/2)*sin($_)}(@t);
+              @xy=map{[$x[$_],$y[$_]]}(0..4);
+              $dydx->{test_points}=~~@xy;
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ln\mathopen{}\left(x^2+y^2\right)\mathclose{}=e</m></p>
+            <p><m>\lz{y}{x}=</m><var name="$dydx" width="40" /></p>
+          </statement>
+          <solution>
+            <p><m>-\frac{x}{y}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$dydx">
+              <static>-\frac{2x+y}{2y+x}</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real');
+              $dydx=Formula("-(2x+y)/(2y+x)");
+              @t=(random(0,6.28,0.01),random(0,6.28,0.01),random(0,6.28,0.01),random(0,6.28,0.01),random(0,6.28,0.01));
+              @u=map{sqrt(2/3*exp(1))*cos($_)}(@t);
+              @v=map{sqrt(2*exp(1))*sin($_)}(@t);
+              @x=map{($u[$_]-$v[$_])/sqrt(2)}(0..4);
+              @y=map{($u[$_]+$v[$_])/sqrt(2)}(0..4);
+              @xy=map{[$x[$_],$y[$_]]}(0..4);
+              $dydx->{test_points}=~~@xy;
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ln\mathopen{}\left(x^2+xy+y^2\right)\mathclose{} = 1</m></p>
+            <p><m>\lz{y}{x}=</m><var name="$dydx" width="40" /></p>
+          </statement>
+          <solution>
+            <p><m>-\frac{2x+y}{2y+x}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercise>
+      <webwork seed="1">
+        <statement>
+          <p>Show that <m>\lz{y}{x}</m> is the same for each of the following implicitly defined functions.</p>
+          <p><ol>
+              <li>
+                <p><m>xy=1</m></p>
+                <p><var form="essay" /></p>
+              </li>
+              <li>
+                <p><m>x^2y^2=1</m></p>
+                <p><var form="essay" /></p>
+              </li>
+              <li>
+                <p><m>\sin(xy) = 1</m></p>
+                <p><var form="essay" /></p>
+              </li>
+              <li>
+                <p><m>\ln(xy) =1</m></p>
+                <p><var form="essay" /></p>
+              </li>
+          </ol></p>
+        </statement>
+        <solution>
+          <p>In each, <m>\lz{y}{x} = -\frac{y}{x}</m>.</p>
+        </solution>
+      </webwork>
+    </exercise>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, find the equation of the tangent line to the graph of the implicitly defined function at the indicated points. As a visual aid, each function is graphed.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$eq[0]">
+              <static>y=0</static>
+            </var>
+            <var name="$eq[1]">
+              <static>y=-1.859(x-0.1)+0.2811</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              Context()->variables->add(y=>'Real');
+              parser::Assignment->Allow;
+              @eq=(Formula("y=0"),Formula("y=-1.859(x-0.1)+0.2811"));
+              $gr=init_graph(-1.2,-1.2,1.2,1.2,axes=>[0,0],size=>[400,400]);
+              $gr->lb('reset');
+              for my$i(-1,-0.5,0.5,1){$gr->moveTo($i,-0.04);$gr->lineTo($i,0.04,'black',2);$gr->lb(new Label($i,-0.05,$i,'black','center','top'));};
+              for my$i(-1,-0.5,0.5,1){$gr->moveTo(-0.04,$i);$gr->lineTo(0.04,$i,'black',2);$gr->lb(new Label(-0.05,$i,$i,'black','right','middle'));};
+              Context("Numeric");
+              Context()->variables->are(t=>'Real');
+              $x=Formula("cos^5(t)");
+              $y=Formula("sin^5(t)");
+              $f=new Fun($x->perlFunction,$y->perlFunction,$gr);
+              $f->domain(0,6.2831852);
+              $f->steps(100);
+              $f->weight(2);
+              $f->color('blue');
+              $gr->stamps(closed_circle(0.1,0.2811,'black'));
+              $gr->lb(new Label(0.1,0.2811,'(0.1,0.2811)','black','left','bottom'));
+            </pg-code>
+          </setup>
+          <statement>
+            <p>On the curve <m>x^{2/5}+y^{2/5} = 1</m>, find the equation of the tangent line at:</p>
+
+            <p><ol>
+              <li>
+                <p><m>(1,0)</m></p>
+                <p><var name="$eq[0]" width="30" /></p>
+              </li>
+
+              <li>
+                <p><m>(0.1,0.2811)</m> (which does not <em>exactly</em> lie on the curve, but is very close)</p>
+                <p><var name="$eq[1]" width="30" /></p>
+              </li>
+            </ol></p>
+
+            <figure>
+              <image pg-name="$gr" />
+            </figure>
+
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$eq[0]">
+              <static>x=1</static>
+            </var>
+            <var name="$eq[1]">
+              <static>y=-\frac{3\sqrt{3}}{8}\left(x-\sqrt{0.6}\right)+\sqrt{0.8} \approx -0.65(x-0.775)+0.894</static>
+            </var>
+            <var name="$eq[2]">
+              <static>y=1</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              Context()->variables->add(y=>'Real');
+              parser::Assignment->Allow;
+              @eq=(Formula("x=1"),Formula("y=-3sqrt(3)/8(x-sqrt(0.6))+sqrt(0.8)"),Formula("y=1"));
+              $gr=init_graph(-1.2,-1.2,1.2,1.2,axes=>[0,0],size=>[400,400]);
+              $gr->lb('reset');
+              for my$i(-1,-0.5,0.5,1){$gr->moveTo($i,-0.04);$gr->lineTo($i,0.04,'black',2);$gr->lb(new Label($i,-0.05,$i,'black','center','top'));};
+              for my$i(-1,-0.5,0.5,1){$gr->moveTo(-0.04,$i);$gr->lineTo(0.04,$i,'black',2);$gr->lb(new Label(-0.05,$i,$i,'black','right','middle'));};
+              Context("Numeric");
+              Context()->variables->are(t=>'Real');
+              $x=Formula("(abs(cos(t)))^(1/2)*sgn(cos(t))");
+              $y=Formula("(abs(sin(t)))^(1/2)*sgn(sin(t))");
+              $f=new Fun($x->perlFunction,$y->perlFunction,$gr);
+              $f->domain(0,6.2831852);
+              $f->steps(100);
+              $f->weight(2);
+              $f->color('blue');
+              $gr->stamps(closed_circle(0.7746,0.8944,'black'));
+              $gr->lb(new Label(0.7746,0.8944,'(sqrt(0.6),sqrt(0.8))','black','right','top'));
+            </pg-code>
+          </setup>
+          <statement>
+            <p>On the curve <m>x^{4}+y^{4} = 1</m>, find the equation of the tangent line at:</p>
+
+            <p><ol>
+              <li>
+                <p><m>(1,0)</m></p>
+                <p><var name="$eq[0]" width="30" /></p>
+              </li>
+
+              <li>
+                <p><m>\left(\sqrt{0.6},\sqrt{0.8}\right)</m></p>
+                <p><var name="$eq[1]" width="30" /></p>
+              </li>
+
+              <li>
+                <p>At <m>(0,1)</m></p>
+                <p><var name="$eq[2]" width="30" /></p>
+              </li>
+            </ol></p>
+
+            <figure>
+              <image pg-name="$gr" />
+            </figure>
+
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$eq[0]">
+              <static>y=4</static>
+            </var>
+            <var name="$eq[1]">
+              <static>y=\frac{3}{\sqrt[4]{108}}(x-2)+\sqrt[4]{108}</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              Context()->variables->add(y=>'Real');
+              parser::Assignment->Allow;
+              @eq=(Formula("y=4"),Formula("y=3/108^(1/4)(x-2)+108^(1/4)"));
+              $gr=init_graph(-4.2,-4.2,4.2,4.2,axes=>[0,0],size=>[400,400]);
+              $gr->lb('reset');
+              for my$i(-4,-3,-2,-1,1,2,3,4){$gr->moveTo($i,-0.04);$gr->lineTo($i,0.04,'black',2);$gr->lb(new Label($i,-0.05,$i,'black','center','top'));};
+              for my$i(-4,-3,-2,-1,1,2,3,4){$gr->moveTo(-0.04,$i);$gr->lineTo(0.04,$i,'black',2);$gr->lb(new Label(-0.05,$i,$i,'black','right','middle'));};
+              Context("Numeric");
+              Context()->variables->are(t=>'Real');
+              $x=Formula("sqrt((216 sin^2(t) + sqrt((216 sin^2(t))^2 - (36 sin^2(t))^3))^(1/3) + (216 sin^2(t) - sqrt((216 sin^2(t))^2 - (36sin^2(t))^3))^(1/3) + 4) cos(t)");
+              $y=Formula("sqrt((216 sin^2(t) + sqrt((216 sin^2(t))^2 - (36 sin^2(t))^3))^(1/3) + (216 sin^2(t) - sqrt((216 sin^2(t))^2 - (36sin^2(t))^3))^(1/3) + 4) sin(t)");
+              $f=new Fun($x->perlFunction,$y->perlFunction,$gr);
+              $f->domain(0,6.2831852);
+              $f->steps(100);
+              $f->weight(2);
+              $f->color('blue');
+              $gr->stamps(closed_circle(2,-3.224,'black'));
+              $gr->lb(new Label(2,-3.224,'(2,-108^(1/4))','black','left','bottom'));
+            </pg-code>
+          </setup>
+          <statement>
+            <p>On the curve <m>(x^2+y^2-4)^3 = 108y^2</m>, find the equation of the tangent line at:</p>
+
+            <p><ol>
+              <li>
+                <p><m>(0,4)</m></p>
+                <p><var name="$eq[0]" width="30" /></p>
+              </li>
+
+              <li>
+                <p><m>\left(2,-\sqrt[4]{108}\right)</m></p>
+                <p><var name="$eq[1]" width="30" /></p>
+              </li>
+            </ol></p>
+
+            <figure>
+              <image pg-name="$gr" />
+            </figure>
+
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$eq[0]">
+              <static>y=-\frac{1}{3}x+1</static>
+            </var>
+            <var name="$eq[1]">
+              <static>y=3\sqrt{3}/4</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              Context()->variables->add(y=>'Real');
+              parser::Assignment->Allow;
+              @eq=(Formula("y=-1/3x+1"),Formula("y=3sqrt(3)/4"));
+              $gr=init_graph(-2.5,-1.5,0.5,1.5,axes=>[0,0],size=>[400,400]);
+              $gr->lb('reset');
+              for my$i(-2,-1){$gr->moveTo($i,-0.04);$gr->lineTo($i,0.04,'black',2);$gr->lb(new Label($i,-0.05,$i,'black','center','top'));};
+              for my$i(-1,1){$gr->moveTo(-0.04,$i);$gr->lineTo(0.04,$i,'black',2);$gr->lb(new Label(-0.05,$i,$i,'black','right','middle'));};
+              Context("Numeric");
+              Context()->variables->are(t=>'Real');
+              $x=Formula("(1 - cos(t))*cos(t)");
+              $y=Formula("(1 - cos(t))*sin(t)");
+              $f=new Fun($x->perlFunction,$y->perlFunction,$gr);
+              $f->domain(0,6.2831852);
+              $f->steps(100);
+              $f->weight(2);
+              $f->color('blue');
+              $gr->stamps(closed_circle(-0.75,1.299,'black'));
+              $gr->lb(new Label(-0.75,1.299,'(-3/4,3sqrt(3)/4)','black','center','bottom'));
+            </pg-code>
+          </setup>
+          <statement>
+            <p>On the curve <m>(x^2+y^2+x)^2 = x^2+y^2</m>, find the equation of the tangent line at:</p>
+
+            <p><ol>
+              <li>
+                <p><m>(0,1)</m></p>
+                <p><var name="$eq[0]" width="30" /></p>
+              </li>
+
+              <li>
+                <p><m>\left(-\frac{3}{4}, \frac{3\sqrt{3}}{4}\right)</m></p>
+                <p><var name="$eq[1]" width="30" /></p>
+              </li>
+            </ol></p>
+
+            <figure>
+              <image pg-name="$gr" />
+            </figure>
+
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$eq[0]">
+              <static>y=-\frac{1}{\sqrt{3}}\left(x-\frac72\right)+\frac{6+3\sqrt{3}}{2}</static>
+            </var>
+            <var name="$eq[1]">
+              <static>y=\sqrt{3}\left(x-\frac{4+3\sqrt{3}}{2}\right)+\frac{3}{2}</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              Context()->variables->add(y=>'Real');
+              parser::Assignment->Allow;
+              @eq=(Formula("y=-1/sqrt(3)(x-7/2)+(6+3sqrt(3))/2"),Formula("y=sqrt(3)(x-(4+3sqrt(3)))/2+3/2"));
+              $gr=init_graph(-2,-2,6.5,6.5,axes=>[0,0],size=>[400,400]);
+              $gr->lb('reset');
+              for my$i(2,4,6){$gr->moveTo($i,-0.04);$gr->lineTo($i,0.04,'black',2);$gr->lb(new Label($i,-0.05,$i,'black','center','top'));};
+              for my$i(2,4,6){$gr->moveTo(-0.04,$i);$gr->lineTo(0.04,$i,'black',2);$gr->lb(new Label(-0.05,$i,$i,'black','right','middle'));};
+              Context("Numeric");
+              Context()->variables->are(t=>'Real');
+              $x=Formula("3*cos(t)+2");
+              $y=Formula("3*sin(t)+3");
+              $f=new Fun($x->perlFunction,$y->perlFunction,$gr);
+              $f->domain(0,6.2831852);
+              $f->steps(100);
+              $f->weight(2);
+              $f->color('blue');
+              $gr->stamps(closed_circle(3.5,5.598,'black'));
+              $gr->lb(new Label(3.5,5.598,'(7/2,(6+3sqrt(3))/2)','black','right','top'));
+              $gr->stamps(closed_circle(4.598,1.5,'black'));
+              $gr->lb(new Label(4.598,1.5,'((4+3sqrt(3))/2,3/2)','black','right','bottom'));
+            </pg-code>
+          </setup>
+          <statement>
+            <p>On the curve <m>(x-2)^2+(y-3)^2=9</m>, find the equation of the tangent line at:</p>
+
+            <p><ol>
+              <li>
+                <p><m>\left(\frac{7}{2},\frac{6+3\sqrt{3}}{2}\right)</m></p>
+                <p><var name="$eq[0]" width="30" /></p>
+              </li>
+
+              <li>
+                <p><m>\left(\frac{4+3\sqrt{3}}{2},\frac{3}{2}\right)</m></p>
+                <p><var name="$eq[1]" width="30" /></p>
+              </li>
+            </ol></p>
+
+            <figure>
+              <image pg-name="$gr" />
+            </figure>
+
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, an implicitly defined function is given. Find <m>\lzn{y}{x}{2}</m>. Note: these are the same problems used in Exercises <xref ref="exer_02_06_ex_09" autoname="no" /> through <xref ref="exer_02_06_ex_12" autoname="no" />.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$ddyddx">
+              <static>-\frac{(2y+1)(12x^2)-4x^3\left(2\cdot-\frac{4x^3}{2y+1}\right)}{(2y+1)^2}</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real');
+              $ddyddx=Formula("-((2y+1)(12x^2)-4x^3(2*-(4x^3)/(2y+1)))/(2y+1)^2");
+              @y=(random(-2,2,0.1),random(-2,2,0.1),random(-2,2,0.1),random(-2,2,0.1),random(-2,2,0.1));
+              @x=map{(7-($_)-($_)**2)**(1/4)*(-1)**(random(-1,1,2))}(@y);
+              @xy=map{[$x[$_],$y[$_]]}(0..4);
+              $ddyddx->{test_points}=~~@xy;
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>x^4+y^2+y=7</m></p>
+            <p><m>\lz{y}{x}=</m><var name="$ddyddx" width="50" /></p>
+          </statement>
+          <solution>
+            <p><m>-\frac{(2y+1)(12x^2)-4x^3\left(2\cdot-\frac{4x^3}{2y+1}\right)}{(2y+1)^2}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$ddyddx">
+              <static>-\frac{x^{3/5}\cdot\frac{3}{5}y^{-2/5}\left(-\frac{y^{3/5}}{x^{3/5}}\right)-y^{3/5}\cdot\frac{3}{5}x^{-2/5}}{x^{6/5}}</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real');
+              $ddyddx=Formula("-(x^(3/5)*3/5y^(-2/5)(-y^(3/5)/x^(3/5))-y^(3/5)*3/5x^(-2/5))/x^(6/5)");
+              @y=(random(0.01,0.99,0.01),random(0.01,0.99,0.01),random(0.01,0.99,0.01),random(0.01,0.99,0.01),random(0.01,0.99,0.01));
+              @x=map{(1-($_)**(2/5))**(5/2)}(@y);
+              @xy=map{[$x[$_],$y[$_]]}(0..4);
+              $ddyddx->{test_points}=~~@xy;
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>x^{2/5}+y^{2/5}=1</m></p>
+            <p><m>\lz{y}{x}=</m><var name="$ddyddx" width="50" /></p>
+          </statement>
+          <solution>
+            <p><m>-\frac{x^{3/5}\cdot\frac{3}{5}y^{-2/5}\left(-\frac{y^{3/5}}{x^{3/5}}\right)-y^{3/5}\cdot\frac{3}{5}x^{-2/5}}{x^{6/5}}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$ddyddx">
+              <static>\sin^2(x)\sec^2(y)\tan(y)+\cos(x)\sec(y)</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real');
+              $ddyddx=Formula("sin^2(x)sec^2(y)tan(y)+cos(x)sec(y)");
+              @y=(random(0,3.14,0.01),random(0,3.14,0.01),random(0,3.14,0.01),random(0,3.14,0.01),random(0,3.14,0.01));
+              @x=map{acos(1-sin($_))}(@y);
+              @xy=map{[$x[$_],$y[$_]]}(0..4);
+              $ddyddx->{test_points}=~~@xy;
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\cos(x)+\sin(y)=1</m></p>
+            <p><m>\lz{y}{x}=</m><var name="$ddyddx" width="50" /></p>
+          </statement>
+          <solution>
+            <p><m>\sin^2(x)\sec^2(y)\tan(y)+\cos(x)\sec(y)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$ddyddx">
+              <static>0</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real');
+              $ddyddx=Formula("0");
+              @x=(random(-4,4,0.1),random(-4,4,0.1),random(-4,4,0.1),random(-4,4,0.1),random(-4,4,0.1));
+              @y=map{$_/10}(@x);
+              @xy=map{[$x[$_],$y[$_]]}(0..4);
+              $ddyddx->{test_points}=~~@xy;
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\dfrac{x}{y}=10</m></p>
+            <p><m>\lz{y}{x}=</m><var name="$ddyddx" width="50" /></p>
+          </statement>
+          <solution>
+            <p><m>0</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, use logarithmic differentiation to find <m>\lz{y}{x}</m>, then find the equation of the tangent line at the indicated <m>x</m>-value.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$dydx">
+              <static>(1+x)^{1/x}\left(\frac{1}{x(x+1)}-\frac{\ln(1+x)}{x^2}\right)</static>
+            </var>
+            <var name="$t">
+              <static>y=\left(1-2\ln(2)\right)(x-1)+2</static>
+            </var>
+            <pg-code>
+              Context()->variables->set(x=>{limits=>[-0.9,4]});
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $dydx=Formula("(1+x)^(1/x)(1/(x(x+1))-ln(1+x)/x^2)");
+
+              Context("Numeric");
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              Context()->variables->add(y=>'Real');
+              parser::Assignment->Allow;
+              $t=Formula("y=(1-2ln(2))(x-1)+2");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>y=(1+x)^{1/x}</m></p>
+            <p><m>\lz{y}{x}=</m><var name="$dydx" width="50" /></p>
+            <p>The tangent line at <m>x=1</m> has equation:</p>
+            <p><var name="$t" width="50" /></p>
+          </statement>
+          <solution>
+            <p><m>y'= (1+x)^{1/x}\big(\frac{1}{x(x+1)}-\frac{\ln(1+x)}{x^2}\big)</m></p>
+
+            <p>Tangent line: <m>y = (1-2\ln(2) )(x-1)+ 2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$dydx">
+              <static>(2x)^{x^2}(2x\ln(2x)+x)</static>
+            </var>
+            <var name="$t">
+              <static>y=(2+4\ln(2))(x-1)+2</static>
+            </var>
+            <pg-code>
+              Context()->variables->set(x=>{limits=>[0.01,4]});
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $dydx=Formula("(2x)^(x^2)(2x ln(2x)+x)");
+
+              Context("Numeric");
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              Context()->variables->add(y=>'Real');
+              parser::Assignment->Allow;
+              $t=Formula("y=(2+4ln(2))(x-1)+2");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>y=(2x)^{x^2}</m></p>
+            <p><m>\lz{y}{x}=</m><var name="$dydx" width="50" /></p>
+            <p>The tangent line at <m>x=1</m> has equation:</p>
+            <p><var name="$t" width="50" /></p>
+          </statement>
+          <solution>
+            <p><m>y'=(2x)^{x^2}(2x\ln(2x)+x)</m></p>
+
+            <p>Tangent line: <m>y=(2+4\ln(2))(x-1)+2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$dydx">
+              <static>\frac{x^x}{x+1}\left(\ln(x)+1-\frac{1}{x+1}\right)</static>
+            </var>
+            <var name="$t">
+              <static>y=\frac{1}{4}(x-1)+ \frac{1}{2}</static>
+            </var>
+            <pg-code>
+              Context()->variables->set(x=>{limits=>[0.01,4]});
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $dydx=Formula("x^x/(x+1)(ln(x)+1-1/(x+1))");
+
+              Context("Numeric");
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              Context()->variables->add(y=>'Real');
+              parser::Assignment->Allow;
+              $t=Formula("y=1/4*(x-1)+1/2");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>y=\dfrac{x^{x}}{x+1}</m></p>
+            <p><m>\lz{y}{x}=</m><var name="$dydx" width="50" /></p>
+            <p>The tangent line at <m>x=1</m> has equation:</p>
+            <p><var name="$t" width="50" /></p>
+          </statement>
+          <solution>
+            <p><m>y'=\frac{x^x}{x+1}\left(\ln(x)+1-\frac{1}{x+1}\right)</m></p>
+
+            <p>Tangent line: <m>y=\frac{1}{4}(x-1)+ \frac{1}{2}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$dydx">
+              <static>x^{\sin(x)+2}\left(\cos(x) \ln(x) +\frac{\sin(x) +2}{x}\right)</static>
+            </var>
+            <var name="$t">
+              <static>y=\frac{3\pi^2}{4}\left(x-\frac{\pi}{2}\right)+\left(\frac{\pi}{2}\right)^3</static>
+            </var>
+            <pg-code>
+              Context()->variables->set(x=>{limits=>[0.01,4]});
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $dydx=Formula("x^(sin(x)+2)(cos(x)*ln(x)+(sin(x)+2)/x)");
+
+              Context("Numeric");
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              Context()->variables->add(y=>'Real');
+              parser::Assignment->Allow;
+              $t=Formula("y=(3pi^2)/4*(x-pi/2)+(pi/2)^3");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>y=x^{\sin(x)+2}</m></p>
+            <p><m>\lz{y}{x}=</m><var name="$dydx" width="50" /></p>
+            <p>The tangent line at <m>x=\pi/2</m> has equation:</p>
+            <p><var name="$t" width="50" /></p>
+          </statement>
+          <solution>
+            <p><m>y'=x^{\sin(x)+2}\left(\cos(x) \ln(x) +\frac{\sin(x) +2}{x}\right)</m></p>
+
+            <p>Tangent line: <m>y=\frac{3\pi^2}{4}\left(x-\frac{\pi}{2}\right)+\left(\frac{\pi}{2}\right)^3</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$dydx">
+              <static>\frac{x+1}{x+2}\left(\frac{1}{x+1}-\frac{1}{x+2}\right)</static>
+            </var>
+            <var name="$t">
+              <static>y=\frac{1}{9}(x-1)+\frac{2}{3}</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $dydx=Formula("(x+1)/(x+2)(1/(x+1)-1/(x+2))");
+
+              Context("Numeric");
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              Context()->variables->add(y=>'Real');
+              parser::Assignment->Allow;
+              $t=Formula("y=1/9(x-1)+2/3");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>y=\dfrac{x+1}{x+2}</m></p>
+            <p><m>\lz{y}{x}=</m><var name="$dydx" width="50" /></p>
+            <p>The tangent line at <m>x=1</m> has equation:</p>
+            <p><var name="$t" width="50" /></p>
+          </statement>
+          <solution>
+            <p><m>y'=\frac{x+1}{x+2}\left(\frac{1}{x+1}-\frac{1}{x+2}\right)</m></p>
+
+            <p>Tangent line: <m>y=\frac{1}{9}(x-1)+\frac{2}{3}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$dydx">
+              <static>\frac{(x+1)(x+2)}{(x+3)(x+4)}\left(\frac{1}{x+1}+\frac{1}{x+2}-\frac{1}{x+3}-\frac{1}{x+4}\right)</static>
+            </var>
+            <var name="$t">
+              <static>y=\frac{11}{72}x+\frac{1}{6}</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $dydx=Formula("((x+1)(x+2))/((x+3)(x+4))(1/(x+1)+1/(x+2)-1/(x+3)-1/(x+4))");
+
+              Context("Numeric");
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              Context()->variables->add(y=>'Real');
+              parser::Assignment->Allow;
+              $t=Formula("y=11/72x+1/6");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>y=\dfrac{(x+1)(x+2)}{(x+3)(x+4)}</m></p>
+            <p><m>\lz{y}{x}=</m><var name="$dydx" width="50" /></p>
+            <p>The tangent line at <m>x=0</m> has equation:</p>
+            <p><var name="$t" width="50" /></p>
+          </statement>
+          <solution>
+            <p><m>y'=\frac{(x+1)(x+2)}{(x+3)(x+4)}\left(\frac{1}{x+1}+\frac{1}{x+2}-\frac{1}{x+3}-\frac{1}{x+4}\right)</m></p>
+
+            <p>Tangent line: <m>y=\frac{11}{72}x+\frac{1}{6}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

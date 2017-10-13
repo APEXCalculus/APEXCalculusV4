@@ -1,0 +1,1643 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_ABC">
+  <title>Area Between Curves</title>
+  <introduction>
+    <p>We are often interested in knowing the area of a region. Forget momentarily that we addressed this already in <xref ref="chapter_integration">Section</xref>. <xref ref="sec_FTC"></xref> and approach it instead using the technique described in <xref ref="idea_app_of_defint">Key Idea</xref>.</p>
+
+    <p>Let <m>Q</m> be the area of a region bounded by continuous functions <m>f</m> and <m>g</m>. If we break the region into many subregions, we have an obvious equation:</p>
+
+    <p>Total Area = sum of the areas of the subregions.</p>
+
+    <p>The issue to address next is how to systematically break a region into subregions. A graph will help. Consider <xref ref="fig_abcintro">Figure</xref> (a) where a region between two curves is shaded. While there are many ways to break this into subregions, one particularly efficient way is to <q>slice</q> it vertically, as shown in <xref ref="fig_abcintro">Figure</xref> (b), into <m>n</m> equally spaced slices.</p>
+
+    <p>We now approximate the area of a slice. Again, we have many options, but using a rectangle seems simplest. Picking any <m>x</m>-value <m>c_i</m> in the <m>i^\text{ th }</m> slice, we set the height of the rectangle to be <m>f(c_i)-g(c_i)</m>, the difference of the corresponding <m>y</m>-values. The width of the rectangle is a small difference in <m>x</m>-values, which we represent with <m>\dx</m>. <xref ref="fig_abcintro">Figure</xref> (c) shows sample points <m>c_i</m> chosen in each subinterval and appropriate rectangles drawn. (Each of these rectangles represents a differential element.) Each slice has an area approximately equal to <m>\big(f(c_i)-g(c_i)\big)\dx</m>; hence, the total area is approximately the Riemann Sum
+      <me>
+        Q = \sum_{i=1}^n \big(f(c_i)-g(c_i)\big)\dx.
+      </me>
+    </p>
+
+    <p>Taking the limit as <m>n\to \infty</m> gives the exact area as <m>\int_a^b \big(f(x)-g(x)\big)\ dx</m>.</p>
+
+    <figure xml:id="fig_abcintro" >
+    <caption>Subdividing a region into vertical slices and approximating the areas with rectangles.</caption>
+    \small
+
+    <sidebyside>
+      <figure>
+        <caption>(a)</caption>
+        <!-- START figures/fig_abcintroa.tex -->
+        <image xml:id="img_abcintroa" >
+          <description></description>
+          <latex-image-code>
+            <![CDATA[
+            \begin{tikzpicture}
+            \begin{axis}[%
+            axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick=\empty,%
+			extra x ticks={.5,3},
+			extra x tick labels={$a$,$b$},
+			ytick=\empty,
+			%%extra y ticks={-5,-3,...,7},%
+            %			minor x tick num=4,
+			ymin=-.2,ymax=2,%
+			xmin=-.5,xmax=3.5%
+            ]
+
+            \addplot [{\coloronefill},domain=.5:3,stack plots=y] {.25*(x-2)^2+.2};
+            \addplot [{\coloronefill},thick,fill={\coloronefill},area style,domain=.5:3,stack plots=y] {.25*sin(deg(2*x))+1.25-(.25*(x-2)^2+.2)} \closedcycle;
+            \addplot [smooth,thick, {\colorone},domain=-.25:3.25] {.25*sin(deg(2*x))+1.25} node [shift={(5pt,7pt)} ,black] {\scriptsize $f(x)$};
+            \addplot [smooth,thick, {\colorone},domain=-.25:3.25] {.25*(x-2)^2+.2}node [shift={(5pt,7pt)} ,black] {\scriptsize $g(x)$};
+
+
+            \end{axis}
+
+
+
+            \end{tikzpicture}
+            ]]>
+          </latex-image-code>
+        </image>
+        <!-- figures/fig_abcintroa.tex END -->
+      </figure>
+
+      <figure>
+        <caption>(b)</caption>
+        <!-- START figures/fig_abcintrob.tex -->
+        <image xml:id="img_abcintrob" >
+          <description></description>
+          <latex-image-code>
+            <![CDATA[
+            \begin{tikzpicture}
+            \begin{axis}[%
+            axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick=\empty,%
+			extra x ticks={.5,3},
+			extra x tick labels={$a$,$b$},
+			ytick=\empty,
+			%%extra y ticks={-5,-3,...,7},%
+            %			minor x tick num=4,
+			ymin=-.2,ymax=2,%
+			xmin=-.5,xmax=3.5%
+            ]
+
+            \addplot [{\coloronefill},domain=.5:3,stack plots=y] {.25*(x-2)^2+.2};
+            \addplot [{\coloronefill},thick,fill={\coloronefill},area style,domain=.5:3,stack plots=y] {.25*sin(deg(2*x))+1.25-(.25*(x-2)^2+.2)} \closedcycle;
+            \addplot [smooth,thick, {\colorone},domain=-.25:3.25] {.25*sin(deg(2*x))+1.25} node [shift={(5pt,7pt)} ,black] {\scriptsize $f(x)$};
+            \addplot [smooth,thick, {\colorone},domain=-.25:3.25] {.25*(x-2)^2+.2}node [shift={(5pt,7pt)} ,black] {\scriptsize $g(x)$};
+
+            \draw [thick] (axis cs:0.5,0.7625)--(axis cs:0.5,1.46) (axis cs:1.,0.45)--(axis cs:1.,1.477) (axis cs:1.5,0.2625)--(axis cs:1.5,1.285) (axis cs:2.,0.2)--(axis cs:2.,1.061) (axis cs:2.5,0.2625)--(axis cs:2.5,1.01) (axis cs:3.,1.18)--(axis cs:3.,0.45) (axis cs:0.75,1.499)--(axis cs:0.75,0.5906) (axis cs:1.25,0.3406)--(axis cs:1.25,1.4) (axis cs:1.75,1.162)--(axis cs:1.75,0.2156) (axis cs:2.25,0.2156)--(axis cs:2.25,1.006) (axis cs:2.75,1.074)--(axis cs:2.75,0.3406);
+
+            %(0.5,0.7625)(1.,0.45)(1.5,0.2625)(2.,0.2)(2.5,0.2625)(3.,0.45)
+            %(0.5,1.46)(1.,1.477)(1.5,1.285)(2.,1.061)(2.5,1.01)(3.,1.18)
+
+            %(0.75,0.5906)(1.25,0.3406)(1.75,0.2156)(2.25,0.2156)(2.75,0.3406)
+            %(0.75,1.499)(1.25,1.4)(1.75,1.162)(2.25,1.006)(2.75,1.074)
+            \end{axis}
+
+
+
+            \end{tikzpicture}
+            ]]>
+          </latex-image-code>
+        </image>
+        <!-- figures/fig_abcintrob.tex END -->
+      </figure>
+
+      <figure>
+        <caption>(c)</caption>
+        <!-- START figures/fig_abcintroc.tex -->
+        <image xml:id="img_abcintroc" >
+          <description></description>
+          <latex-image-code>
+            <![CDATA[
+            \begin{tikzpicture}
+            \begin{axis}[%
+            axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick=\empty,%
+			extra x ticks={.5,3},
+			extra x tick labels={$a$,$b$},
+			ytick=\empty,
+			%%extra y ticks={-5,-3,...,7},%
+            %			minor x tick num=4,
+			ymin=-.2,ymax=2,%
+			xmin=-.5,xmax=3.5%
+            ]
+
+            \addplot [{\coloronefill},domain=.5:3,stack plots=y] {.25*(x-2)^2+.2};
+            \addplot [{\coloronefill},thick,fill={\coloronefill},area style,domain=.5:3,stack plots=y] {.25*sin(deg(2*x))+1.25-(.25*(x-2)^2+.2)} \closedcycle;
+            \addplot [smooth,thick, {\colorone},domain=-.25:3.25] {.25*sin(deg(2*x))+1.25} node [shift={(5pt,7pt)} ,black] {\scriptsize $f(x)$};
+            \addplot [smooth,thick, {\colorone},domain=-.25:3.25] {.25*(x-2)^2+.2}node [shift={(5pt,7pt)} ,black] {\scriptsize $g(x)$};
+
+            %\draw [thick] (axis cs:0.5,0.7625)--(axis cs:0.5,1.46) (axis cs:1.,0.45)--(axis cs:1.,1.477) (axis cs:1.5,0.2625)--(axis cs:1.5,1.285) (axis cs:2.,0.2)--(axis cs:2.,1.061) (axis cs:2.5,0.2625)--(axis cs:2.5,1.01) (axis cs:3.,1.18)--(axis cs:3.,0.45) (axis cs:0.75,1.499)--(axis cs:0.75,0.5906) (axis cs:1.25,0.3406)--(axis cs:1.25,1.4) (axis cs:1.75,1.162)--(axis cs:1.75,0.2156) (axis cs:2.25,0.2156)--(axis cs:2.25,1.006) (axis cs:2.75,1.074)--(axis cs:2.75,0.3406);
+
+            \draw [thick] (axis cs:0.5,0.6225)rectangle(axis cs:0.75,1.5) (axis cs:1.,1.487)rectangle(axis cs:0.75,0.4756) (axis cs:1.,0.4025)rectangle(axis cs:1.25,1.452) (axis cs:1.5,1.334)rectangle(axis cs:1.25,0.29) (axis cs:1.5,0.24)rectangle(axis cs:1.75,1.235) (axis cs:2.,1.097)rectangle(axis cs:1.75,0.2025) (axis cs:2.,0.21)rectangle(axis cs:2.25,1.012) (axis cs:2.5,1.002)rectangle(axis cs:2.25,0.2225) (axis cs:2.5,0.29)rectangle(axis cs:2.75,1.029)(axis cs:3.,1.134)rectangle(axis cs:2.75,0.4025);
+
+            \filldraw (axis cs:.7,.6225) circle (1.3pt)
+            (axis cs:0.95,0.4756) circle (1.3pt)
+            (axis cs:1.1,0.4025) circle (1.3pt)
+            (axis cs:1.4,0.29) circle (1.3pt)
+            (axis cs:1.6,0.24) circle (1.3pt)
+            (axis cs:1.9,0.2025) circle (1.3pt)
+            (axis cs:2.2,0.21) circle (1.3pt)
+            (axis cs:2.3,0.2225) circle (1.3pt)
+            (axis cs:2.6,0.29) circle (1.3pt)
+            (axis cs:2.9,0.4025) circle (1.3pt)
+            (axis cs:0.7,1.496) circle (1.3pt)
+            (axis cs:0.95,1.487) circle (1.3pt)
+            (axis cs:1.1,1.452) circle (1.3pt)
+            (axis cs:1.4,1.334) circle (1.3pt)
+            (axis cs:1.6,1.235) circle (1.3pt)
+            (axis cs:1.9,1.097) circle (1.3pt)
+            (axis cs:2.2,1.012) circle (1.3pt)
+            (axis cs:2.3,1.002) circle (1.3pt)
+            (axis cs:2.6,1.029) circle (1.3pt)
+            (axis cs:2.9,1.134) circle (1.3pt);
+
+
+            \end{axis}
+
+
+
+            \end{tikzpicture}
+            ]]>
+          </latex-image-code>
+        </image>
+        <!-- figures/fig_abcintroc.tex END -->
+      </figure>
+    </sidebyside>
+
+    </figure>
+
+    <theorem xml:id="thm_areabetweencurves">
+      <title>Area Between Curves<nbsp /><nbsp /> (restatement of <xref ref="thm_areabtwncurves">Theorem</xref>)</title>
+      <statement>
+        <p>Let <m>f(x)</m> and <m>g(x)</m> be continuous functions defined on <m>[a,b]</m> where <m>f(x)\geq g(x)</m> for all <m>x</m> in <m>[a,b]</m>. The area of the region bounded by the curves <m>y=f(x)</m>, <m>y=g(x)</m> and the lines <m>x=a</m> and <m>x=b</m> is <index><main>integration</main><sub>area between curves</sub></index>
+          <me>
+            \int_a^b \big(f(x)-g(x)\big)\ dx.
+          </me>
+        </p>
+      </statement>
+    </theorem>
+
+    <example xml:id="ex_abc1">
+      <title>Finding area enclosed by curves</title>
+      <statement>
+        <p>Find the area of the region bounded by <m>f(x) = \sin(x) +2</m>, <m>g(x) = \frac12\cos(2x)-1</m>, <m>x=0</m> and <m>x=4\pi</m>, as shown in <xref ref="fig_abc1">Figure</xref>.</p>
+      </statement>
+      <solution>
+        <p>The graph verifies that the upper boundary of the region is given by <m>f</m> and the lower bound is given by <m>g</m>. Therefore the area of the region is the value of the integral
+          <md>
+            <mrow>\int_0^{4\pi} \big(f(x)- g(x)\big)\ dx \amp  = \int_0^{4\pi} \Big(\sin(x) +2 - \big(\frac12\cos(2x)-1\big)\Big)\ dx</mrow>
+            <mrow>\amp = -\cos(x) -\frac14\sin(2x)+3x\Big|_0^{4\pi}</mrow>
+            <mrow>\amp =	12\pi \approx 37.7\ \text{ units } ^2.</mrow>
+          </md>
+        </p>
+
+        <figure xml:id="fig_abc1" >
+          <caption>Graphing an enclosed region in <xref ref="ex_abc1">Example</xref>.</caption>
+          <!-- START figures/fig_abc1.tex -->
+          <image xml:id="img_abc1" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[%
+              axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+              %			xtick=\empty,%
+			extra x ticks={12.57},
+			extra x tick labels={$4\pi$},
+              %			ytick=\empty,
+			%%extra y ticks={-5,-3,...,7},%
+              %			minor x tick num=4,
+			ymin=-2,ymax=3.5,%
+			xmin=-.5,xmax=13.5%
+              ]
+
+              \addplot [{\coloronefill},domain=0:12.57,stack plots=y,samples=40] {.5*cos(deg(2*x))-1.2};
+              \addplot [{\coloronefill},thick,fill={\coloronefill},area style,domain=0:12.57,stack plots=y,samples=40] {sin(deg(x))+2-(.5*cos(deg(2*x))-1.2)} \closedcycle;
+              \addplot [smooth,thick, {\colorone},domain=0:12.57,samples=40] {sin(deg(x))+2} node [shift={(-15pt,7pt)} ,black] {\scriptsize $f(x)$};
+              \addplot [smooth,thick, {\colorone},domain=0:12.57,samples=40] {.5*cos(deg(2*x))-1.2}node [shift={(-25pt,-16pt)} ,black] {\scriptsize $g(x)$};
+
+
+              \end{axis}
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_abc1.tex END -->
+        </figure>
+      </solution>
+    </example>
+
+    <example xml:id="ex_abc2">
+      <title>Finding total area enclosed by curves</title>
+      <statement>
+        <p>Find the total area of the region enclosed by the functions <m>f(x) = -2x+5</m> and <m>g(x) = x^3-7x^2+12x-3</m> as shown in <xref ref="fig_abc2">Figure</xref>.</p>
+      </statement>
+      <solution>
+        <figure xml:id="fig_abc2" >
+          <caption>Graphing a region enclosed by two functions in <xref ref="ex_abc2">Example</xref>.</caption>
+          <!-- START figures/fig_abc2.tex -->
+          <image xml:id="img_abc2" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[%
+              axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={1,2,3,4},%
+              %			extra x ticks={12.57},
+              %			extra x tick labels={$4\pi$},
+              %			ytick=\empty,
+			%%extra y ticks={-5,-3,...,7},%
+              %			minor x tick num=4,
+			ymin=-5,ymax=3.5,%
+			xmin=-.5,xmax=4.7%
+              ]
+
+              \addplot [{\coloronefill},stack plots=y,domain=1:4] {5-2*x};
+              \addplot [{\coloronefill},thick,fill={\coloronefill},area style,domain=1:4,stack plots=y] {x^3-7*x^2+12*x-3-(5-2*x)} \closedcycle;
+              \addplot [smooth,thick, {\colorone},domain=-.2:4.5,samples=30] {x^3-7*x^2+12*x-3};
+              \addplot [smooth,thick, {\colorone},domain=0:4.5] {5-2*x};
+
+
+              \end{axis}
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_abc2.tex END -->
+        </figure>
+
+        <p>A quick calculation shows that <m>f=g</m> at <m>x=1, 2</m> and 4. One can proceed thoughtlessly by computing <m>\ds \int_1^4\big(f(x)-g(x)\big)\ dx</m>, but this ignores the fact that on <m>[1,2]</m>, <m>g(x)>f(x)</m>. (In fact, the thoughtless integration returns <m>-9/4</m>, hardly the expected value of an <em>area</em>.) Thus we compute the total area by breaking the interval <m>[1,4]</m> into two subintervals, <m>[1,2]</m> and <m>[2,4]</m> and using the proper integrand in each.
+          <md>
+            <mrow>\text{ Total Area }  \amp = \int_1^2 \big(g(x)-f(x)\big)\ dx + \int_2^4\big(f(x)-g(x)\big)\ dx</mrow>
+            <mrow>\amp = \int_1^2 \big(x^3-7x^2+14x-8\big) \ dx + \int_2^4\big(-x^3+7x^2-14x+8\big)\ dx</mrow>
+            <mrow>\amp = 5/12 + 8/3</mrow>
+            <mrow>\amp = 37/12 = 3.083\ \text{ units } ^2.</mrow>
+          </md>
+        </p>
+      </solution>
+    </example>
+
+    <p>The previous example makes note that we are expecting area to be <em>positive</em>. When first learning about the definite integral, we interpreted it as <q>signed area under the curve,</q> allowing for <q>negative area.</q> That doesn't apply here; area is to be positive.</p>
+
+    <p>The previous example also demonstrates that we often have to break a given region into subregions before applying <xref ref="thm_areabetweencurves">Theorem</xref>. The following example shows another situation where this is applicable, along with an alternate view of applying the Theorem.</p>
+
+    <example xml:id="ex_abc3">
+      <title>Finding area: integrating with respect to <m>y</m></title>
+      <statement>
+        <p>Find the area of the region enclosed by the functions <m>y=\sqrt{x}+2</m>, <m>y=-(x-1)^2+3</m> and <m>y=2</m>, as shown in <xref ref="fig_abc3">Figure</xref>.</p>
+      </statement>
+      <solution>
+        <p>We give two approaches to this problem. In the first approach, we notice that the region's <q>top</q> is defined by two different curves. On <m>[0,1]</m>, the top function is <m>y=\sqrt{x}+2</m>; on <m>[1,2]</m>, the top function is <m>y=-(x-1)^2+3</m>.</p>
+
+        <figure xml:id="fig_abc3" >
+          <caption>Graphing a region for <xref ref="ex_abc3">Example</xref>.</caption>
+          <!-- START figures/fig_abc3.tex -->
+          <image xml:id="img_abc3" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[%
+              axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={1,2},%
+              %			extra x ticks={12.57},
+              %			extra x tick labels={$4\pi$},
+              %			ytick=\empty,
+			%%extra y ticks={-5,-3,...,7},%
+              %			minor x tick num=4,
+			ymin=-.1,ymax=3.5,%
+			xmin=-.1,xmax=2.5%
+              ]
+
+              \addplot [{\colorone},thick,fill={\coloronefill}] coordinates {(0,2.)(0.02,2.141)(0.04,2.2)(0.06,2.245)(0.08,2.283)(0.1,2.316)(0.12,2.346)(0.14,2.374)(0.16,2.4)(0.18,2.424)(0.2,2.447)(0.22,2.469)(0.24,2.49)(0.26,2.51)(0.28,2.529)(0.3,2.548)(0.32,2.566)(0.34,2.583)(0.36,2.6)(0.38,2.616)(0.4,2.632)(0.42,2.648)(0.44,2.663)(0.46,2.678)(0.48,2.693)(0.5,2.707)(0.52,2.721)(0.54,2.735)(0.56,2.748)(0.58,2.762)(0.6,2.775)(0.62,2.787)(0.64,2.8)(0.66,2.812)(0.68,2.825)(0.7,2.837)(0.72,2.849)(0.74,2.86)(0.76,2.872)(0.78,2.883)(0.8,2.894)(0.82,2.906)(0.84,2.917)(0.86,2.927)(0.88,2.938)(0.9,2.949)(0.92,2.959)(0.94,2.97)(0.96,2.98)(0.98,2.99)(1.,3.)(1.04,2.998)(1.08,2.994)(1.12,2.986)(1.16,2.974)(1.2,2.96)(1.24,2.942)(1.28,2.922)(1.32,2.898)(1.36,2.87)(1.4,2.84)(1.44,2.806)(1.48,2.77)(1.52,2.73)(1.56,2.686)(1.6,2.64)(1.64,2.59)(1.68,2.538)(1.72,2.482)(1.76,2.422)(1.8,2.36)(1.84,2.294)(1.88,2.226)(1.92,2.154)(1.96,2.078)(2.,2.)(0,2)};
+
+              \draw (axis cs:.5,3.1) node {\scriptsize $y=\sqrt{x}+2$} (axis cs:1.8,3.2) node {\scriptsize $y=-(x-1)^2+3$};
+
+              \end{axis}
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_abc3.tex END -->
+        </figure>
+
+        <p>Thus we compute the area as the sum of two integrals:
+          <md>
+            <mrow>\text{ Total Area }  \amp = \int_0^1 \Big(\big(\sqrt{x}+2\big)-2\Big)\ dx + \int_1^2 \Big(\big(-(x-1)^2+3\big)-2\Big)\ dx</mrow>
+            <mrow>\amp = 2/3 + 2/3</mrow>
+            <mrow>\amp =4/3.</mrow>
+          </md>
+        </p>
+
+        <p>The second approach is clever and very useful in certain situations. We are used to viewing curves as functions of <m>x</m>; we input an <m>x</m>-value and a <m>y</m>-value is returned. Some curves can also be described as functions of <m>y</m>: input a <m>y</m>-value and an <m>x</m>-value is returned. We can rewrite the equations describing the boundary by solving for <m>x</m>:
+          <me>
+            y=\sqrt{x}+2  \Rightarrow x=(y-2)^2
+          </me>
+          <me>
+            y=-(x-1)^2+3  \Rightarrow  x=\sqrt{3-y}+1.
+          </me>
+        </p>
+
+        <figure xml:id="fig_abc3b" >
+          <caption>The region used in <xref ref="ex_abc3">Example</xref> with boundaries relabeled as functions of <m>y</m>.</caption>
+          <!-- START figures/fig_abc3b.tex -->
+          <image xml:id="img_abc3b" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[%
+              axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={1,2},%
+              %			extra x ticks={12.57},
+              %			extra x tick labels={$4\pi$},
+              %			ytick=\empty,
+			%%extra y ticks={-5,-3,...,7},%
+              %			minor x tick num=4,
+			ymin=-.1,ymax=3.5,%
+			xmin=-.1,xmax=2.5%
+              ]
+
+              \addplot [{\colorone},thick,fill={\coloronefill}] coordinates {(0,2.)(0.02,2.141)(0.04,2.2)(0.06,2.245)(0.08,2.283)(0.1,2.316)(0.12,2.346)(0.14,2.374)(0.16,2.4)(0.18,2.424)(0.2,2.447)(0.22,2.469)(0.24,2.49)(0.26,2.51)(0.28,2.529)(0.3,2.548)(0.32,2.566)(0.34,2.583)(0.36,2.6)(0.38,2.616)(0.4,2.632)(0.42,2.648)(0.44,2.663)(0.46,2.678)(0.48,2.693)(0.5,2.707)(0.52,2.721)(0.54,2.735)(0.56,2.748)(0.58,2.762)(0.6,2.775)(0.62,2.787)(0.64,2.8)(0.66,2.812)(0.68,2.825)(0.7,2.837)(0.72,2.849)(0.74,2.86)(0.76,2.872)(0.78,2.883)(0.8,2.894)(0.82,2.906)(0.84,2.917)(0.86,2.927)(0.88,2.938)(0.9,2.949)(0.92,2.959)(0.94,2.97)(0.96,2.98)(0.98,2.99)(1.,3.)(1.04,2.998)(1.08,2.994)(1.12,2.986)(1.16,2.974)(1.2,2.96)(1.24,2.942)(1.28,2.922)(1.32,2.898)(1.36,2.87)(1.4,2.84)(1.44,2.806)(1.48,2.77)(1.52,2.73)(1.56,2.686)(1.6,2.64)(1.64,2.59)(1.68,2.538)(1.72,2.482)(1.76,2.422)(1.8,2.36)(1.84,2.294)(1.88,2.226)(1.92,2.154)(1.96,2.078)(2.,2.)(0,2)};
+
+              \draw (axis cs:.5,3.1) node {\scriptsize $x=(y-2)^2$} (axis cs:1.8,3.2) node {\scriptsize $x=\sqrt{3-y}+1$};
+
+              \filldraw [{\colortwo},fill={\colortwofill},thick] (axis cs: 0.0625,2.2) rectangle (axis cs:1.867,2.3);
+
+              \end{axis}
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_abc3b.tex END -->
+        </figure>
+
+        <p><xref ref="fig_abc3b">Figure</xref> shows the region with the boundaries relabeled. A differential element, a horizontal rectangle, is also pictured.	The width of the rectangle is a small change in <m>y</m>: <m>\Delta y</m>. The height of the rectangle is a difference in <m>x</m>-values. The <q>top</q> <m>x</m>-value is the largest value, i.e., the rightmost. The <q>bottom</q> <m>x</m>-value is the smaller, i.e., the leftmost. Therefore the height of the rectangle is
+          <me>
+            \big(\sqrt{3-y}+1\big) - (y-2)^2.
+          </me>
+        </p>
+
+        <p>The area is found by integrating the above function with respect to <m>y</m> with the appropriate bounds. We determine these by considering the <m>y</m>-values the region occupies. It is bounded below by <m>y=2</m>, and bounded above by <m>y=3</m>. That is, both the <q>top</q> and <q>bottom</q> functions exist on the <m>y</m> interval <m>[2,3]</m>. Thus
+          <md>
+            <mrow>\text{ Total Area }  \amp = \int_2^3 \big(\sqrt{3-y}+1 - (y-2)^2\big)\ dy</mrow>
+            <mrow>\amp = \Big(-\frac23(3-y)^{3/2}+y-\frac13(y-2)^3\Big)\Big|_2^3</mrow>
+            <mrow>\amp = 4/3.</mrow>
+          </md>
+        </p>
+      </solution>
+    </example>
+
+    <p>This calculus<ndash />based technique of finding area can be useful even with shapes that we normally think of as <q>easy.</q> <xref ref="ex_abc4">Example</xref> computes the area of a triangle. While the formula <q><m>\frac12\times\text{ base } \times\text{ height }</m></q> is well known, in arbitrary triangles it can be nontrivial to compute the height. Calculus makes the problem simple.</p>
+
+    <example xml:id="ex_abc4">
+      <title>Finding the area of a triangle</title>
+      <statement>
+        <p>Compute the area of the regions bounded by the lines</p>
+
+        <p><m>y=x+1</m>, <m>y=-2x+7</m> and <m>y=-\frac12x+\frac52</m>, as shown in <xref ref="fig_abc4">Figure</xref>.</p>
+      </statement>
+      <solution>
+        <p>Recognize that there are two <q>top</q> functions to this region, causing us to use two definite integrals.
+          <md>
+            <mrow>\text{ Total Area }  \amp = \int_1^2\big((x+1)-(-\frac12x+\frac52)\big)\ dx + \int_2^3\big((-2x+7)-(-\frac12x+\frac52)\big)\ dx</mrow>
+            <mrow>\amp = 3/4+3/4</mrow>
+            <mrow>\amp =3/2.</mrow>
+          </md>
+        </p>
+
+        <figure xml:id="fig_abc4" >
+          <caption>Graphing a triangular region in <xref ref="ex_abc4">Example</xref>.</caption>
+          <!-- START figures/fig_abc4.tex -->
+          <image xml:id="img_abc4" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+              \begin{axis}[%
+              axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={1,2,3},%
+              %			extra x ticks={12.57},
+              %			extra x tick labels={$4\pi$},
+              %			ytick=\empty,
+			%%extra y ticks={-5,-3,...,7},%
+              %			minor x tick num=4,
+			ymin=-.1,ymax=3.5,%
+			xmin=-.1,xmax=3.9%
+              ]
+
+              \addplot [{\colorone},thick,fill={\coloronefill}] coordinates {(1,2) (2,3) (3,1) (1,2)};
+
+              \draw (axis cs:.9,2.5) node {\scriptsize $y=x+1$} (axis cs:3,2.5) node {\scriptsize $y=-2x+7$} (axis cs:1.5,1.1) node {\scriptsize $y=-\frac12x+\frac52$};
+              %
+              %\filldraw [{\colortwo},fill={\colortwofill},thick] (axis cs: 0.0625,2.2) rectangle (axis cs:1.867,2.3);
+
+              \end{axis}
+
+
+
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_abc4.tex END -->
+        </figure>
+
+        <p>We can also approach this by converting each function into a function of <m>y</m>. This also requires 2 integrals, so there isn't really any advantage to doing so. We do it here for demonstration purposes.</p>
+
+        <p>The <q>top</q> function is always <m>x=\frac{7-y}2</m> while there are two <q>bottom</q> functions. Being mindful of the proper integration bounds, we have
+          <md>
+            <mrow>\text{ Total Area }  \amp = \int_1^2\big(\frac{7-y}2 - (5-2y)\big)\ dy + \int_2^3\big(\frac{7-y}2-(y-1)\big)\ dy</mrow>
+            <mrow>\amp = 3/4 + 3/4</mrow>
+            <mrow>\amp = 3/2.</mrow>
+          </md>
+        </p>
+
+        <p>Of course, the final answer is the same. (It is interesting to note that the area of all 4 subregions used is 3/4. This is coincidental.)</p>
+      </solution>
+    </example>
+
+    <p>While we have focused on producing exact answers, we are also able to make approximations using the principle of <xref ref="thm_areabetweencurves">Theorem</xref>. The integrand in the theorem is a distance (<q>top minus bottom</q>); integrating this distance function gives an area. By taking discrete measurements of distance, we can approximate an area using numerical integration techniques developed in <xref ref="sec_numerical_integration">Section</xref>. The following example demonstrates this.</p>
+
+    <example xml:id="ex_abc5">
+      <title>Numerically approximating area</title>
+      <statement>
+        <p>To approximate the area of a lake, shown in <xref ref="fig_abc5">Figure</xref> (a), the <q>length</q> of the lake is measured at 200-foot increments as shown in <xref ref="fig_abc5">Figure</xref> (b), where the lengths are given in hundreds of feet. Approximate the area of the lake.</p>
+      </statement>
+      <solution>
+        <p>The measurements of length can be viewed as measuring <q>top minus bottom</q> of two functions. The exact answer is found by integrating <m>\ds \int_0^{12} \big(f(x)-g(x)\big)\ dx</m>, but of course we don't know the functions <m>f</m> and <m>g</m>. Our discrete measurements instead allow us to approximate.</p>
+
+        <figure xml:id="fig_abc5" >
+        <caption>(a) A sketch of a lake, and (b) the lake with length measurements.</caption>
+        <sidebyside>
+          <figure>
+            <caption>(a)</caption>
+            <!-- START figures/fig_abc5b.tex -->
+            <image xml:id="img_abc5b" >
+              <description></description>
+              <latex-image-code>
+                <![CDATA[
+                \begin{tikzpicture}[scale=.4]%[width=\marginparwidth+25pt]
+                %\begin{axis}[%
+                %axis on top,%
+                %			%x=.37\marginparwidth,
+                %			%y=.37\marginparwidth,
+                %			xtick={1,2,3,4,5,6,7,8,9,10,11,12},%
+                %%			extra x ticks={12.57},
+                %%			extra x tick labels={$4\pi$},
+                %%			ytick=\empty,
+                %			%%extra y ticks={-5,-3,...,7},%
+                %%			minor x tick num=4,
+                %			ymin=-.1,ymax=8.5,%
+                %			xmin=-.1,xmax=12.5%
+                %]
+
+                \draw [{\colorone},thick,fill={\coloronefill},smooth] plot coordinates {(0,3.2)(0.5,3.417)(1.,3.637)(1.5,4.041)(2.,4.505)(2.5,5.)(3.,5.495)(3.5,5.959)(4.,6.363)(4.5,6.683)(5.,6.898)(5.5,6.995)(6.,6.968)(6.5,6.819)(7.,6.556)(7.5,6.197)(8.,5.763)(8.5,5.282)(9.,4.784)(9.5,4.298)(10.,3.857)(10.5,3.486)(11.,3.21)(11.5,2.8)(11.5,2)(11.,1.545)(10.5,1.314)(10.,1.102)(9.5,0.9154)(9.,0.7585)(8.5,0.6361)(8.,0.5514)(7.5,0.5069)(7.,0.5038)(6.5,0.5421)(6.,0.6208)(5.5,0.7378)(5.,0.8897)(4.5,1.072)(4.,1.281)(3.5,1.509)(3.,1.751)(2.5,2.)(2.,2.249)(1.5,2.491)(1.,2.719)(0.5,2.9102)(0,3.15)(0,3.2)};
+
+                %\end{axis}
+                %
+                %
+                %
+                \end{tikzpicture}
+                ]]>
+              </latex-image-code>
+            </image>
+            <!-- figures/fig_abc5b.tex END -->
+          </figure>
+
+          <figure>
+            <caption>(b)</caption>
+            <!-- START figures/fig_abc5.tex -->
+            <image xml:id="img_abc5" >
+              <description></description>
+              <latex-image-code>
+                <![CDATA[
+                \begin{tikzpicture}
+                \begin{axis}[%
+                axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={1,2,3,4,5,6,7,8,9,10,11,12},%
+                %			extra x ticks={12.57},
+                %			extra x tick labels={$4\pi$},
+			ytick={1,2,3,4,5,6,7,8},
+			%%extra y ticks={-5,-3,...,7},%
+                %			minor x tick num=4,
+			ymin=-.1,ymax=8.5,%
+			xmin=-.1,xmax=12.5%
+                ]
+
+                \addplot [{\colorone},thick,fill={\coloronefill},smooth] coordinates {(0,3.2)(0.5,3.417)(1.,3.637)(1.5,4.041)(2.,4.505)(2.5,5.)(3.,5.495)(3.5,5.959)(4.,6.363)(4.5,6.683)(5.,6.898)(5.5,6.995)(6.,6.968)(6.5,6.819)(7.,6.556)(7.5,6.197)(8.,5.763)(8.5,5.282)(9.,4.784)(9.5,4.298)(10.,3.857)(10.5,3.486)(11.,3.21)(11.5,2.8)(11.5,2)(11.,1.545)(10.5,1.314)(10.,1.102)(9.5,0.9154)(9.,0.7585)(8.5,0.6361)(8.,0.5514)(7.5,0.5069)(7.,0.5038)(6.5,0.5421)(6.,0.6208)(5.5,0.7378)(5.,0.8897)(4.5,1.072)(4.,1.281)(3.5,1.509)(3.,1.751)(2.5,2.)(2.,2.249)(1.5,2.491)(1.,2.719)(0.5,2.9102)(0,3.15)(0,3.2)};
+                %(0.5,3.317)
+                \draw (axis cs:2,4.5) -- (axis cs:2,2.249) node [shift={(-3pt,0pt)},rotate=90,pos=.5] {\scriptsize 2.25}
+                (axis cs:4,6.36) -- (axis cs:4,1.28) node [shift={(-3pt,0pt)},rotate=90,pos=.5] {\scriptsize 5.08}
+                (axis cs:6,6.97) -- (axis cs:6,0.62) node [shift={(-3pt,0pt)},rotate=90,pos=.5] {\scriptsize 6.35}
+                (axis cs:8,5.76) -- (axis cs:8,.55) node  [shift={(-3pt,0pt)},rotate=90,pos=.5] {\scriptsize 5.21}
+                (axis cs:10,3.86) -- (axis cs:10,1.1) node [shift={(-3pt,0pt)},rotate=90,pos=.5] {\scriptsize 2.76};
+
+
+                \end{axis}
+
+
+
+                \end{tikzpicture}
+                ]]>
+              </latex-image-code>
+            </image>
+            <!-- figures/fig_abc5.tex END -->
+          </figure>
+        </sidebyside>
+
+        </figure>
+
+        <p>We have the following data points:
+          <me>
+            (0,0),\ (2,2.25),\ (4,5.08),\ (6,6.35),\ (8,5.21),\ (10,2.76),\ (12,0).
+          </me>
+        </p>
+
+        <p>We also have that <m>\dx=\frac{b-a}{n} = 2</m>, so Simpson's Rule gives
+          <md>
+            <mrow>\text{ Area } \amp \approx \frac{2}{3}\Big(1\cdot0+4\cdot2.25+2\cdot5.08+4\cdot6.35+2\cdot5.21+4\cdot2.76+1\cdot0\Big)</mrow>
+            <mrow>\amp = 44.01\overline{3} \ \text{ units } ^2.</mrow>
+          </md>
+        </p>
+
+        <p>Since the measurements are in hundreds of feet, units<m>^2 = (100\ \text{ ft } )^2 = 10,000\ \text{ ft } ^2</m>, giving a total area of <m>440,133\ \text{ ft } ^2</m>. (Since we are approximating, we'd likely say the area was about <m>440,000\ \text{ ft } ^2</m>, which is a little more than 10 acres.)</p>
+      </solution>
+    </example>
+
+    <p>In the next section we apply our applications<ndash />of<ndash />integration techniques to finding the volumes of certain solids.</p>
+  </introduction>
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>T/F: The area between curves is always positive.</p>
+          </statement>
+          <solution>
+            <p>T</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>T/F: Calculus can be used to find the area of basic geometric shapes.</p>
+          </statement>
+          <solution>
+            <p>T</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>In your own words, describe how to find the total area enclosed by <m>y=f(x)</m> and <m>y=g(x)</m>.</p>
+          </statement>
+          <solution>
+            <p>Answers will vary.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, find the area of the shaded region in the given graph.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <!-- START figures/fig_07_01_ex_04.tex -->
+              <image xml:id="img_07_01_ex_04" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}
+                  \begin{axis}[%
+                  axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick=\empty,%
+			extra x ticks={3.14,6.28},
+			extra x tick labels={$\pi$,$2\pi$},
+                  %			ytick=\empty,
+			%%extra y ticks={-5,-3,...,7},%
+                  %			minor x tick num=4,
+			ymin=-.2,ymax=6.5,%
+			xmin=-1,xmax=7%
+                  ]
+
+                  \addplot [{\coloronefill},domain=0:6.28,stack plots=y,samples=40] {.5*cos(deg(x))+1};
+                  \addplot [{\coloronefill},thick,fill={\coloronefill},area style,domain=0:6.28,stack plots=y,samples=40] {.5*x+3-(.5*cos(deg(x))+1)} \closedcycle;
+                  \addplot [smooth,thick, {\colorone},domain=-.9:6.5,samples=40] {.5*cos(deg(x))+1} node [shift={(-25pt,7pt)} ,black] {\scriptsize $y=\frac12\cos(x) +1$};
+                  \addplot [smooth,thick, {\colorone},domain=-.9:6.5,samples=40] {.5*x+3}node [shift={(-30pt,0pt)} ,black] {\scriptsize $y=\frac12x+3$};
+
+
+                  \end{axis}
+
+
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_07_01_ex_04.tex END -->
+            </figure>
+          </statement>
+          <solution>
+            <p><m>4\pi+\pi^2\approx 22.436</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <!-- START figures/fig_07_01_ex_05.tex -->
+              <image xml:id="img_07_01_ex_05" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}
+                  \begin{axis}[%
+                  axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={-1,1},%
+                  %			extra x ticks={3.14,6.28},
+                  %			extra x tick labels={$\pi$,$2\pi$},
+			ytick={-1,1,2,3},
+			%%extra y ticks={-5,-3,...,7},%
+                  %			minor x tick num=4,
+			ymin=-1.5,ymax=3.5,%
+			xmin=-1.1,xmax=1.1%
+                  ]
+
+                  \addplot [{\coloronefill},domain=-1:1,stack plots=y,samples=40] {x^2+x-1};
+                  \addplot [{\coloronefill},thick,fill={\coloronefill},area style,domain=-1:1,stack plots=y,samples=40] {-3*x^3+3*x+2-(x^2+x-1)} \closedcycle;
+
+                  \addplot [smooth,thick, {\colorone},domain=-1.05:1.05,samples=40] {x^2+x-1} node [shift={(-23pt,-40pt)} ,black] {\scriptsize $y=x^2+x-1$};
+
+                  \addplot [smooth,thick, {\colorone},domain=-1.05:1.05,samples=40] {-3*x^3+3*x+2}node [shift={(-95pt,13pt)} ,black] {\scriptsize $y=-3x^3+3x+2$};
+
+
+                  \end{axis}
+
+
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_07_01_ex_05.tex END -->
+            </figure>
+          </statement>
+          <solution>
+            <p><m>16/3</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <!-- START figures/fig_07_01_ex_10.tex -->
+              <image xml:id="img_07_01_ex_10" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}
+                  \begin{axis}[%
+                  axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick=\empty,%
+			extra x ticks={3.14,1.57},
+			extra x tick labels={$\pi$,$\pi/2$},
+			ytick={-1,1,2,3},
+			%%extra y ticks={-5,-3,...,7},%
+                  %			minor x tick num=4,
+			ymin=-.5,ymax=2.2,%
+			xmin=-.1,xmax=3.5%
+                  ]
+
+                  \addplot [{\coloronefill},stack plots=y,samples=40,domain=0:3.14] {1};
+                  \addplot [{\coloronefill},thick,fill={\coloronefill},area style,stack plots=y,samples=40,domain=0:3.14] {1} \closedcycle;
+
+                  \addplot [smooth,thick, {\colorone},samples=40] {1} node [shift={(-70pt,-5pt)} ,black] {\scriptsize $y=1$};
+
+                  \addplot [smooth,thick, {\colorone},samples=40] {2} node [shift={(-70pt,5pt)} ,black] {\scriptsize $y=2$};
+
+
+                  \end{axis}
+
+
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_07_01_ex_10.tex END -->
+            </figure>
+          </statement>
+          <solution>
+            <p><m>\pi</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <!-- START figures/fig_07_01_ex_06.tex -->
+              <image xml:id="img_07_01_ex_06" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}
+                  \begin{axis}[%
+                  axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick=\empty,%
+			extra x ticks={3.14,1.57},
+			extra x tick labels={$\pi$,$\pi/2$},
+			ytick={-1,1,2,3},
+			%%extra y ticks={-5,-3,...,7},%
+                  %			minor x tick num=4,
+			ymin=-.5,ymax=2.2,%
+			xmin=-.1,xmax=3.5%
+                  ]
+
+                  \addplot [{\coloronefill},stack plots=y,samples=40,domain=0:3.14] {sin(deg(x))};
+                  \addplot [{\coloronefill},thick,fill={\coloronefill},area style,stack plots=y,samples=40,domain=0:3.14] {sin(deg(x))+1-(sin(deg(x)))} \closedcycle;
+
+                  \addplot [smooth,thick, {\colorone},samples=40] {sin(deg(x))} node [shift={(-100pt,60pt)} ,black] {\scriptsize $y=\sin(x) $};
+
+                  \addplot [smooth,thick, {\colorone},samples=40] {sin(deg(x))+1} node [shift={(-75pt,80pt)} ,black] {\scriptsize $y=\sin(x) +1$};
+
+
+                  \end{axis}
+
+
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_07_01_ex_06.tex END -->
+            </figure>
+          </statement>
+          <solution>
+            <p><m>\pi</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <!-- START figures/fig_07_01_ex_07.tex -->
+              <image xml:id="img_07_01_ex_07" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}
+                  \begin{axis}[%
+                  axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick=\empty,%
+			extra x ticks={.785,.392},
+			extra x tick labels={$\pi/4$,$\pi/8$},
+			ytick={-1,1,2,3},
+			%%extra y ticks={-5,-3,...,7},%
+                  %			minor x tick num=4,
+			ymin=-.2,ymax=2.2,%
+			xmin=-.1,xmax=1%
+                  ]
+
+                  \addplot [{\coloronefill},stack plots=y,samples=40,domain=0:.785] {sin(deg(4*x))};
+                  \addplot [{\coloronefill},thick,fill={\coloronefill},area style,stack plots=y,samples=40,domain=0:.785] {sec(deg(x))^2-(sin(deg(4*x)))} \closedcycle;
+
+                  \addplot [smooth,thick, {\colorone},domain=-.1:.9,samples=60] {sin(deg(4*x))} node [shift={(-65pt,40pt)} ,black] {\scriptsize $y=\sin(4x)$};
+
+                  \addplot [smooth,thick, {\colorone},domain=-.1:.9,samples=60] {sec(deg(x))^2} node [shift={(-35pt,-20pt)} ,black] {\scriptsize $y=\sec^2(x) $};
+
+
+                  \end{axis}
+
+
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_07_01_ex_07.tex END -->
+            </figure>
+          </statement>
+          <solution>
+            <p><m>1/2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <!-- START figures/fig_07_01_ex_08.tex -->
+              <image xml:id="img_07_01_ex_08" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}
+                  \begin{axis}[%
+                  axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick=\empty,%
+			extra x ticks={.785,1.57,2.36,3.14,3.92},
+			extra x tick labels={$\pi/4$,$\pi/2$,$3\pi/4$,$\pi$,$5\pi/4$},
+                  %			ytick={-1,1,2,3},
+			%%extra y ticks={-5,-3,...,7},%
+                  %			minor x tick num=4,
+			ymin=-1.1,ymax=1.1,%
+			xmin=-.1,xmax=4.1%
+                  ]
+
+                  \addplot [{\coloronefill},stack plots=y,samples=40,domain=.785:3.92] {cos(deg(x))};
+                  \addplot [{\coloronefill},thick,fill={\coloronefill},area style,stack plots=y,samples=40,domain=.785:3.92] {sin(deg(x))-(cos(deg(x)))} \closedcycle;
+
+                  \addplot [smooth,thick, {\colorone},domain=-.1:4.1,samples=40] {sin(deg(x))} node [shift={(-25pt,70pt)} ,black] {\scriptsize $y=\sin(x) $};
+
+                  \addplot [smooth,thick, {\colorone},domain=-.1:4.1,samples=40] {cos(deg(x))} node [shift={(-75pt,0pt)} ,black] {\scriptsize $y=\cos(x) $};
+
+
+                  \end{axis}
+
+
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_07_01_ex_08.tex END -->
+            </figure>
+          </statement>
+          <solution>
+            <p><m>2\sqrt{2}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <!-- START figures/fig_07_01_ex_09.tex -->
+              <image xml:id="img_07_01_ex_09" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}
+                  \begin{axis}[%
+                  axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+                  %			xtick=\empty,%
+                  %			extra x ticks={.785,1.57,2.36,3.14,3.92},
+                  %			extra x tick labels={$\pi/4$,$\pi/2$,$3\pi/4$,$\pi$,$5\pi/4$},
+                  %			ytick={-1,1,2,3},
+			%%extra y ticks={-5,-3,...,7},%
+                  %			minor x tick num=4,
+			ymin=-.1,ymax=4.1,%
+			xmin=-.1,xmax=1.1%
+                  ]
+
+                  \addplot [{\coloronefill},stack plots=y,samples=40,domain=0:1] {2^x};
+                  \addplot [{\coloronefill},thick,fill={\coloronefill},area style,stack plots=y,samples=40,domain=0:1] {4^x-(2^x)} \closedcycle;
+
+                  \addplot [smooth,thick, {\colorone},domain=-.1:1.1,samples=40] {2^x} node [shift={(-25pt,-20pt)} ,black] {\scriptsize $y=2^x$};
+
+                  \addplot [smooth,thick, {\colorone},domain=-.1:1.1,samples=40] {4^x} node [shift={(-40pt,-20pt)} ,black] {\scriptsize $y=4^x$};
+
+
+                  \end{axis}
+
+
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_07_01_ex_09.tex END -->
+            </figure>
+          </statement>
+          <solution>
+            <p><m>1/\ln(4)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, find the total area enclosed by the functions <m>f</m> and <m>g</m>.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = 2x^2+5x-3</m>, <m>g(x) = x^2+4x-1</m></p>
+          </statement>
+          <solution>
+            <p><m>4.5</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = x^2-3x+2</m>, <m>g(x) = -3x+3</m></p>
+          </statement>
+          <solution>
+            <p><m>4/3</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = \sin(x)</m>, <m>g(x) = 2x/\pi</m></p>
+          </statement>
+          <solution>
+            <p><m>2-\pi/2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = x^3-4x^2+x-1</m>, <m>g(x) = -x^2+2x-4</m></p>
+          </statement>
+          <solution>
+            <p><m>8</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = x</m>, <m>g(x) = \sqrt{x}</m></p>
+          </statement>
+          <solution>
+            <p><m>1/6</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = -x^3+5x^2+2x+1</m>, <m>g(x) = 3x^2+x+3</m></p>
+          </statement>
+          <solution>
+            <p><m>37/12</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>The functions <m>f(x) = \cos(2x)</m> and <m>g(x) = \sin(x)</m> intersect infinitely many times, forming an infinite number of repeated, enclosed regions. Find the areas of these regions.</p>
+          </statement>
+          <solution>
+            <p>On regions such as <m>[\pi/6,5\pi/6]</m>, the area is <m>3\sqrt{3}/2</m>. On regions such as <m>[-\pi/2,\pi/6]</m>, the area is <m>3\sqrt{3}/4</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, find the area of the enclosed region in two ways:</p>
+
+      <ol>
+        <li><p>by treating the boundaries as functions of <m>x</m>, and</p></li>
+
+        <li><p>by treating the boundaries as functions of <m>y</m>.</p></li>
+      </ol>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <!-- START figures/fig_07_01_ex_18.tex -->
+              <image xml:id="img_07_01_ex_18" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}
+                  \begin{axis}[%
+                  %
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+                  %			xtick=\empty,%
+                  %			extra x ticks={3.14,1.57},
+                  %			extra x tick labels={$\pi$,$\pi/2$},
+                  %			ytick={-1,1,2,3},
+			%%extra y ticks={-5,-3,...,7},%
+                  %			minor x tick num=4,
+			ymin=-.1,ymax=2.2,%
+			xmin=-.5,xmax=3.5%
+                  ]
+
+                  %\addplot [{\coloronefill},stack plots=y,samples=40,domain=0:3.14] {1};
+                  %\addplot [{\coloronefill},thick,fill={\coloronefill},area style,stack plots=y,samples=40,domain=0:3.14] {1} \closedcycle;
+
+                  \addplot [thick, {\coloronefill},fill={\coloronefill}] coordinates { (0,1.)(0.1,1.01)(0.2,1.04)(0.3,1.09)(0.4,1.16)(0.5,1.25)(0.6,1.36)(0.7,1.49)(0.8,1.64)(0.9,1.81)(1.,2.)(1.1,1.903)(1.2,1.81)(1.3,1.723)(1.4,1.64)(1.5,1.563)(1.6,1.49)(1.7,1.423)(1.8,1.36)(1.9,1.303)(2.,1.25)(2.1,1.203)(2.2,1.16)(2.3,1.123)(2.4,1.09)(2.5,1.063)(2.6,1.04)(2.7,1.023)(2.8,1.01)(2.9,1.003)(3.,1.)(0,1)};
+
+                  \addplot [smooth,thick, {\colorone},samples=40,domain=0:1] {x^2+1} node [shift={(-30pt,-15pt)} ,black,fill=white] {\scriptsize $y=x^2+1$};
+
+                  \addplot [smooth,thick, {\colorone},samples=40,domain=1:3] {.25*(x-3)^2+1} node [shift={(-20pt,40pt)} ,black] {\scriptsize $y=\frac14(x-3)^2+1$};
+
+                  \draw [smooth,thick, {\colorone}] (axis cs:0,1) --  node [pos=.5,below,black] {\scriptsize $y=1$} (axis cs:3,1);
+
+                  \end{axis}
+
+
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_07_01_ex_18.tex END -->
+            </figure>
+          </statement>
+          <solution>
+            <p><m>1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <!-- START figures/fig_07_01_ex_19.tex -->
+              <image xml:id="img_07_01_ex_19" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}
+                  \begin{axis}[%
+                  axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+                  %			xtick=\empty,%
+                  %			extra x ticks={3.14,1.57},
+                  %			extra x tick labels={$\pi$,$\pi/2$},
+                  %			ytick={-1,1,2,3},
+			%%extra y ticks={-5,-3,...,7},%
+                  %			minor x tick num=4,
+			ymin=-1.1,ymax=1.1,%
+			xmin=-.5,xmax=2.5%
+                  ]
+
+                  \addplot [thick, {\coloronefill},fill={\coloronefill}] coordinates { (0,0)(0.02,0.1414)(0.04,0.2)(0.06,0.2449)(0.08,0.2828)(0.1,0.3162)(0.2,0.4472)(0.3,0.5477)(0.4,0.6325)(0.5,0.7071)(0.6,0.7746)(0.7,0.8367)(0.8,0.8944)(0.9,0.9487)(1.,1.)(2,-1)(0,0)};
+
+                  \addplot [smooth,thick, {\colorone},samples=40,domain=0:1] {sqrt(x)} node [shift={(-25pt,-3pt)} ,black] {\scriptsize $y=\sqrt{x}$};
+                  %
+                  %\addplot [smooth,thick, {\colorone},samples=40,domain=1:3] {.25*(x-3)^2+1} node [shift={(-25pt,25pt)} ,black] {\scriptsize $y=x^2+1$};
+                  %
+                  \draw [smooth,thick, {\colorone}] (axis cs:1,1) --  node [pos=.5,shift={(20pt,15pt)},black] {\scriptsize $y=-2x+3$} (axis cs:2,-1);
+
+                  \draw [smooth,thick, {\colorone}] (axis cs:2,-1) --  node [pos=.3,shift={(-25pt,0pt)},black] {\scriptsize $y=-\frac12x$} (axis cs:0,0);
+
+                  \end{axis}
+
+
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_07_01_ex_19.tex END -->
+            </figure>
+          </statement>
+          <solution>
+            <p><m>5/3</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <!-- START figures/fig_07_01_ex_20.tex -->
+              <image xml:id="img_07_01_ex_20" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}
+                  \begin{axis}[%
+                  axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+                  %			xtick=\empty,%
+                  %			extra x ticks={3.14,1.57},
+                  %			extra x tick labels={$\pi$,$\pi/2$},
+                  %			ytick={-1,1,2,3},
+			%%extra y ticks={-5,-3,...,7},%
+                  %			minor x tick num=4,
+			ymin=-.1,ymax=4.5,%
+			xmin=-1.5,xmax=2.5%
+                  ]
+
+                  \addplot [thick, {\coloronefill},fill={\coloronefill}] coordinates { (-1.,1.)(-0.9,0.81)(-0.8,0.64)(-0.7,0.49)(-0.6,0.36)(-0.5,0.25)(-0.4,0.16)(-0.3,0.09)(-0.2,0.04)(-0.1,0.01)(0,0)(0.1,0.01)(0.2,0.04)(0.3,0.09)(0.4,0.16)(0.5,0.25)(0.6,0.36)(0.7,0.49)(0.8,0.64)(0.9,0.81)(1.,1.)(1.1,1.21)(1.2,1.44)(1.3,1.69)(1.4,1.96)(1.5,2.25)(1.6,2.56)(1.7,2.89)(1.8,3.24)(1.9,3.61)(2.,4.)(-1,1)};
+
+                  \addplot [smooth,thick, {\colorone},samples=40,domain=-1:2] {x^2} node [shift={(0pt,-30pt)} ,black] {\scriptsize $y=x^2$};
+                  %
+                  %\addplot [smooth,thick, {\colorone},samples=40,domain=1:3] {.25*(x-3)^2+1} node [shift={(-25pt,25pt)} ,black] {\scriptsize $y=x^2+1$};
+                  %
+                  \draw [smooth,thick, {\colorone}] (axis cs:2,4) --  node [pos=.5,shift={(10pt,25pt)},black] {\scriptsize $y=x+2$} (axis cs:-1,1);
+
+                  %\draw [smooth,thick, {\colorone}] (axis cs:2,-1) --  node [pos=.3,shift={(-25pt,0pt)},black] {\scriptsize $y=-1/2x$} (axis cs:0,0);
+
+                  \end{axis}
+
+
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_07_01_ex_20.tex END -->
+            </figure>
+          </statement>
+          <solution>
+            <p><m>9/2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <!-- START figures/fig_07_01_ex_21.tex -->
+              <image xml:id="img_07_01_ex_21" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}
+                  \begin{axis}[%
+                  axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+                  %			xtick=\empty,%
+                  %			extra x ticks={3.14,1.57},
+                  %			extra x tick labels={$\pi$,$\pi/2$},
+                  %			ytick={-1,1,2,3},
+			%%extra y ticks={-5,-3,...,7},%
+                  %			minor x tick num=4,
+			ymin=-2.5,ymax=1.5,%
+			xmin=-.5,xmax=2.5%
+                  ]
+
+                  \addplot [thick, {\coloronefill},fill={\coloronefill}] coordinates { (2.,-2.)(1.805,-1.9)(1.62,-1.8)(1.445,-1.7)(1.28,-1.6)(1.125,-1.5)(0.98,-1.4)(0.845,-1.3)(0.72,-1.2)(0.605,-1.1)(0.5,-1.)(0.405,-0.9)(0.32,-0.8)(0.245,-0.7)(0.18,-0.6)(0.125,-0.5)(0.08,-0.4)(0.045,-0.3)(0.02,-0.2)(0.005,-0.1)(0,0)(0.005,0.1)(0.02,0.2)(0.045,0.3)(0.08,0.4)(0.125,0.5)(0.18,0.6)(0.245,0.7)(0.32,0.8)(0.405,0.9)(0.5,1.)(2,-2)};
+
+                  \addplot [smooth,thick, {\colorone},samples=40,domain=-2:1] ({.5*x^2},x) node [shift={(5pt,-70pt)} ,black] {\scriptsize $x=\frac12y^2$};
+                  %
+                  %\addplot [smooth,thick, {\colorone},samples=40,domain=1:3] {.25*(x-3)^2+1} node [shift={(-25pt,25pt)} ,black] {\scriptsize $y=x^2+1$};
+                  %
+                  \draw [smooth,thick, {\colorone}] (axis cs:2,-2) --  node [pos=.85,shift={(30pt,0pt)},black] {\scriptsize $x=-\frac12y+1$} (axis cs:.5,1);
+
+                  %\draw [smooth,thick, {\colorone}] (axis cs:2,-1) --  node [pos=.3,shift={(-25pt,0pt)},black] {\scriptsize $y=-1/2x$} (axis cs:0,0);
+
+                  \end{axis}
+
+
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_07_01_ex_21.tex END -->
+            </figure>
+          </statement>
+          <solution>
+            <p><m>9/4</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <figure>
+              <!-- START figures/fig_07_01_ex_22.tex -->
+              <image xml:id="img_07_01_ex_22" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}
+                  \begin{axis}[%
+                  axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+                  %			xtick=\empty,%
+                  %			extra x ticks={3.14,1.57},
+                  %			extra x tick labels={$\pi$,$\pi/2$},
+                  %			ytick={-1,1,2,3},
+			%%extra y ticks={-5,-3,...,7},%
+                  %			minor x tick num=4,
+			ymin=-.1,ymax=1.1,%
+			xmin=-.1,xmax=1.1%
+                  ]
+
+                  \addplot [thick, {\coloronefill},fill={\coloronefill}] coordinates { (0,0)(0.01,0.2154)(0.02,0.2714)(0.03,0.3107)(0.04,0.342)(0.05,0.3684)(0.06,0.3915)(0.07,0.4121)(0.08,0.4309)(0.09,0.4481)(0.1,0.4642)(0.12,0.4932)(0.14,0.5192)(0.16,0.5429)(0.18,0.5646)(0.2,0.5848)(0.22,0.6037)(0.24,0.6214)(0.26,0.6383)(0.28,0.6542)(0.3,0.6694)(0.4,0.7368)(0.5,0.7937)(0.6,0.8434)(0.7,0.8879)(0.8,0.9283)(0.9,0.9655)(1.,1.)(1.,0.7071)(0.9,0.6325)(0.8,0.5477)(0.7,0.4472)(0.6,0.3162)(0.59,0.3)(0.58,0.2828)(0.57,0.2646)(0.56,0.2449)(0.55,0.2236)(0.54,0.2)(0.53,0.1732)(0.52,0.1414)(0.51,0.1)(0.5,0)(0,0)};
+
+                  \addplot [smooth,thick, {\colorone},samples=40,domain=0:1] (x^3,x) node [shift={(-25pt,0pt)} ,black] {\scriptsize $y=x^{1/3}$};
+                  %
+                  \addplot [smooth,thick, {\colorone},samples=40,domain=0:.7071] ({(x)^2+.5},x) node [shift={(-20pt,-45pt)} ,black] {\scriptsize $y=\sqrt{x-1/2}$};
+                  %
+                  %\draw [smooth,thick, {\colorone}] (axis cs:2,-2) --  node [pos=.85,shift={(30pt,0pt)},black] {\scriptsize $x=-1/2y+1$} (axis cs:.5,1);
+
+                  %\draw [smooth,thick, {\colorone}] (axis cs:2,-1) --  node [pos=.3,shift={(-25pt,0pt)},black] {\scriptsize $y=-1/2x$} (axis cs:0,0);
+
+                  \end{axis}
+
+
+
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_07_01_ex_22.tex END -->
+            </figure>
+          </statement>
+          <solution>
+            <p><m>1/12(9-2\sqrt{2})\approx 0.514</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, find the area triangle formed by the given three points.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>(1,1)</m>,<m>(2,3)</m>,and <m>(3,3)</m></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>(-1,1)</m>,<m>(1,3)</m>,and <m>(2,-1)</m></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>(1,1)</m>,<m>(3,3)</m>,and <m>(3,3)</m></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>(0,0)</m>,<m>(2,5)</m>,and <m>(5,2)</m></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise xml:id="x07_01_ex_29">
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Use the Trapezoidal Rule to approximate the area of the pictured lake whose lengths, in hundreds of feet, are measured in 100-foot increments.
+              <!-- START figures/fig_07_01_ex_29.tex -->
+              <image xml:id="img_07_01_ex_29" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}[yscale=.6]%[width=\marginparwidth+25pt]
+                  %\begin{axis}[%
+                  %axis on top,%
+                  %			%x=.37\marginparwidth,
+                  %			%y=.37\marginparwidth,
+                  %			xtick={1,2,3,4,5,6,7,8,9,10,11,12},%
+                  %%			extra x ticks={12.57},
+                  %%			extra x tick labels={$4\pi$},
+                  %%			ytick=\empty,
+                  %			%%extra y ticks={-5,-3,...,7},%
+                  %%			minor x tick num=4,
+                  %			ymin=-.1,ymax=8.5,%
+                  %			xmin=-.1,xmax=12.5%
+                  %]
+
+                  \draw [{\colorone},thick,fill={\coloronefill},smooth] plot coordinates {(0,1.)(0.1013,1.899)(0.3567,2.785)(0.6934,3.42)(1.039,3.569)(1.355,3.224)(1.646,2.705)(1.925,2.355)(2.2,2.473)(2.475,2.968)(2.75,3.529)(3.025,3.844)(3.3,3.709)(3.575,3.249)(3.85,2.651)(4.125,2.098)(4.389,1.661)(4.624,1.285)(4.807,0.9071)(4.921,0.4743)(4.958,0)(4.921,-0.4743)(4.807,-0.9071)(4.624,-1.279)(4.389,-1.625)(4.125,-1.986)(3.85,-2.401)(3.575,-2.843)(3.3,-3.233)(3.025,-3.487)(2.75,-3.536)(2.475,-3.397)(2.2,-3.111)(1.925,-2.718)(1.646,-2.263)(1.355,-1.792)(1.039,-1.352)(0.6934,-0.9844)(0.3567,-0.6744)(0.1013,-0.3653)(0,0)(0,1)};
+
+                  \draw (1,3.56) -- (1,-1.35) node [shift={(-3pt,0pt)},rotate=90,pos=.5] {\scriptsize 4.9};
+
+                  \draw (2,2.37) -- (2,-2.8) node [shift={(-3pt,0pt)},rotate=90,pos=.5] {\scriptsize 5.2};
+
+                  \draw (3,3.8) -- (3,-3.5) node [shift={(-3pt,0pt)},rotate=90,pos=.5] {\scriptsize 7.3};
+
+                  \draw (4,2.35) -- (4,-2.15) node [shift={(-3pt,0pt)},rotate=90,pos=.5] {\scriptsize 4.5};
+
+                  %\end{axis}
+                  %
+                  %
+                  %
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_07_01_ex_29.tex END --></p>
+          </statement>
+          <solution>
+            <p>219,000 ft<m>^2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise xml:id="x07_01_ex_30">
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Use Simpson's Rule to approximate the area of the pictured lake whose lengths, in hundreds of feet, are measured in 200-foot increments.
+              <!-- START figures/fig_07_01_ex_30.tex -->
+              <image xml:id="img_07_01_ex_30" >
+                <description></description>
+                <latex-image-code>
+                  <![CDATA[
+                  \begin{tikzpicture}[yscale=.6]%[width=\marginparwidth+25pt]
+                  %\begin{axis}[%
+                  %axis on top,%
+                  %			%x=.37\marginparwidth,
+                  %			%y=.37\marginparwidth,
+                  %			xtick={1,2,3,4,5,6,7,8,9,10,11,12},%
+                  %%			extra x ticks={12.57},
+                  %%			extra x tick labels={$4\pi$},
+                  %%			ytick=\empty,
+                  %			%%extra y ticks={-5,-3,...,7},%
+                  %%			minor x tick num=4,
+                  %			ymin=-.1,ymax=8.5,%
+                  %			xmin=-.1,xmax=12.5%
+                  %]
+
+                  \draw [{\colorone},thick,fill={\coloronefill},smooth] plot coordinates {(0,2.)(0.1013,2.717)(0.3567,3.238)(0.6934,3.594)(1.039,3.818)(1.355,3.948)(1.646,4.035)(1.925,4.132)(2.2,4.28)(2.475,4.428)(2.75,4.471)(3.025,4.307)(3.305,3.88)(3.607,3.287)(3.952,2.652)(4.361,2.098)(4.815,1.661)(5.253,1.285)(5.614,0.9071)(5.843,0.4705)(5.938,-0.04167)(5.919,-0.6295)(5.807,-1.293)(5.624,-2.009)(5.389,-2.703)(5.125,-3.29)(4.849,-3.692)(4.562,-3.892)(4.243,-3.929)(3.871,-3.846)(3.432,-3.674)(2.956,-3.409)(2.484,-3.028)(2.057,-2.511)(1.692,-1.869)(1.363,-1.168)(1.039,-0.4819)(0.6934,0.1248)(0.3567,0.679)(0.1013,1.273)(0,2.)};
+
+                  \draw (1,3.8) -- (1,-.45) node [shift={(-3pt,0pt)},rotate=90,pos=.5] {\scriptsize 4.25};
+                  %
+                  \draw (2,4.15) -- (2,-2.45) node [shift={(-3pt,0pt)},rotate=90,pos=.5] {\scriptsize 6.6};
+
+                  \draw (3,4.3) -- (3,-3.4) node [shift={(-3pt,0pt)},rotate=90,pos=.5] {\scriptsize 7.7};
+
+                  \draw (4,2.6) -- (4,-3.85) node [shift={(-3pt,0pt)},rotate=90,pos=.5] {\scriptsize 6.45};
+
+                  \draw (5,1.45) -- (5,-3.45) node [shift={(-3pt,0pt)},rotate=90,pos=.5] {\scriptsize 4.9};
+
+                  %\end{axis}
+                  %
+                  %
+                  %
+                  \end{tikzpicture}
+                  ]]>
+                </latex-image-code>
+              </image>
+              <!-- figures/fig_07_01_ex_30.tex END --></p>
+          </statement>
+          <solution>
+            <p>623,333 ft<m>^2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

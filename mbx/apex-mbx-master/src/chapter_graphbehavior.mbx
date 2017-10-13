@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<chapter xmlns:xi="http://www.w3.org/2001/XInclude"  xml:id="chapter_graphbehavior">
+  <title>The Graphical Behavior of Functions</title>
+  <introduction>
+    <p>Our study of limits led to continuous functions, which is a certain class of functions that behave in a particularly nice way. Limits then gave us an even nicer class of functions, functions that are differentiable.</p>
+
+    <p>This chapter explores many of the ways we can take advantage of the information that continuous and differentiable functions provide.</p>
+  </introduction>
+  <xi:include  href="sec_extreme_values.mbx" />
+  <xi:include  href="sec_mvt.mbx" />
+  <xi:include  href="sec_incr_decr.mbx" />
+  <xi:include  href="sec_concavity.mbx" />
+  <xi:include  href="sec_sketch.mbx" />
+</chapter>

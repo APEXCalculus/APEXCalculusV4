@@ -1,0 +1,24 @@
+{$D$ is bounded by the planes $x=0$, $x=2$,  $z=-y$ and by\\
+ $z=y^2/2$.\\
+
+Evaluate the triple integral with the order $dy\ dz\ dx$.
+
+\myincludegraphicsthree{width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
+3Droll=0,
+3Dortho=0.004999519791454077,
+3Dc2c=0.6666666865348816 0.6666666865348816 0.3333333134651184,
+3Dcoo=42.38267135620117 -68.19635772705078 51.62697982788086,
+3Droo=149.9999987284343,
+3Dlights=Headlamp,add3Djscript=asylabels.js}{scale=1.25,trim=0mm 0mm 0mm 0mm,clip}{figures/fig13_06_ex_09}
+%\myincludegraphics[scale=1.25,trim=0mm 0mm 0mm 0mm,clip]{figures/fig13_06_ex_09}
+%\ifthenelse{\boolean{printquestions}}{\columnbreak}{}
+}
+{$dz\ dy\ dx$: $\ds\int_0^2\int_{-2}^{0}\int_{y^2/2}^{-y}\ dz\ dy\ dx$\\
+	$dz\ dx\ dy$: $\ds\int_{-2}^0\int_0^{2}\int_{y^2/2}^{-y}\ dz\ dx\ dy$\\
+	$dy\ dz\ dx$: $\ds\int_0^2\int_0^{2}\int_{-\sqrt{2z}}^{-z}\ dy\ dz\ dx$\\
+	$dy\ dx\ dz$: $\ds\int_0^2\int_0^{2}\int_{-\sqrt{2z}}^{-z}\ dy\ dx\ dz$\\
+	$dx\ dz\ dy$: $\ds\int_{-2}^0\int_{y^2/2}^{-y}\int_0^{2}\ dx\ dz\ dy$\\
+	$dx\ dy\ dz$: $\ds\int_0^2\int_{-\sqrt{2z}}^{-z}\int_0^{2}\ dx\ dy\ dz$
+	
+	 $\ds V = \int_0^2\int_0^{2}\int_{-\sqrt{2z}}^{-z}\ dy\ dz\ dx =4/3.$
+}

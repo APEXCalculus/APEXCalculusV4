@@ -1,0 +1,650 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_limit_def">
+    <title>Epsilon-Delta Definition of a Limit</title>
+
+        <p>This section introduces the formal definition of a limit. Many refer to this as <q>the epsilon<ndash />delta,</q> definition, referring to the letters <m>\varepsilon</m> and <m>\delta</m> of the Greek alphabet.</p>
+
+        <p>Before we give the actual definition, let's consider a few informal ways of describing a limit. Given a function <m>y=f(x)</m> and an <m>x</m>-value, <m>c</m>, we say that <q>the limit of the function <m>f</m>, as <m>x</m> approaches <m>c</m>, is a value <m>L</m></q>:<dl width="narrow">
+            <li>
+                <title>1</title>
+                <p>if <q><m>y</m> tends to <m>L</m></q> as <q><m>x</m> tends to <m>c</m>.</q></p>
+            </li>
+            <li>
+                <title>2</title>
+                <p>if <q><m>y</m> approaches <m>L</m></q> as <q><m>x</m> approaches <m>c</m>.</q></p>
+            </li>
+            <li xml:id="lim_def_3">
+                <title>3</title>
+                <p>if <q><m>y</m> is near <m>L</m></q> whenever <q><m>x</m> is near <m>c</m>.</q></p>
+            </li>
+        </dl></p>
+
+        <p>The problem with these definitions is that the words <q>tends,</q> <q>approach,</q> and especially <q>near</q> are not exact. In what way does the variable <m>x</m> tend to, or approach, <m>c</m>? How near do <m>x</m> and <m>y</m> have to be to <m>c</m> and <m>L</m>, respectively?</p>
+
+        <p>The definition we describe in this section comes from formalizing <xref ref="lim_def_3" autoname="title" />. A quick restatement gets us closer to what we want:<dl width="narrow">
+            <li xml:id="lim_def_3p">
+                <title>3′</title>
+                <p>If <m>x</m> is within a certain <em>tolerance level</em> of <m>c</m>, then the corresponding value <m>y=f(x)</m> is within a certain <em>tolerance level</em> of <m>L</m>.</p>
+            </li>
+        </dl></p>
+
+        <p>The traditional notation for the <m>x</m>-tolerance is the lowercase Greek letter delta, or <m>\delta</m>, and the <m>y</m>-tolerance is denoted by lowercase epsilon, or <m>\varepsilon</m>. One more rephrasing of <xref ref="lim_def_3p" autoname="title" /> nearly gets us to the actual definition:<dl width="narrow">
+            <li xml:id="lim_def_3pp">
+                <title>3″</title>
+                <p>If <m>x</m> is within <m>\delta</m> units of <m>c</m>, then the corresponding value of <m>y</m> is within <m>\varepsilon</m> units of <m>L</m>.</p>
+            </li>
+        </dl></p>
+
+        <p>We can write <q><m>x</m> is within <m>\delta</m> units of <m>c</m></q> mathematically as <me>\abs{x-c} \lt  \delta\text{,}</me> which is equivalent to <me>c-\delta \lt  x \lt  c+\delta\text{.}</me></p>
+
+        <p>Letting the symbol <q><m>\implies</m></q> represent the word <q>implies,</q> we can rewrite <xref ref="lim_def_3pp" autoname="title" /> as <me>\abs{x - c} \lt  \delta \implies  \abs{y - L} \lt  \varepsilon</me> or <me>c - \delta \lt  x \lt  c + \delta \implies L - \varepsilon \lt  y \lt  L + \varepsilon.</me></p>
+
+        <p>The point is that <m>\delta</m> and <m>\varepsilon</m>, being tolerances, can be any positive (but typically small) values satisfying this implication. Finally, we have the formal definition of the limit with the notation seen in the previous section.</p>
+
+        <definition xml:id="def_limit">
+            <title>The Limit of a Function <m>f</m></title>
+            <statement>
+                <p>Let <m>I</m> be an open interval containing <m>c</m>, and let <m>f</m> be a function defined on <m>I</m>, except possibly at <m>c</m>. The statement that the <term>limit of <m>f(x)</m>, as <m>x</m> approaches <m>c</m>, is <m>L</m></term> is denoted by <me>\lim_{x\to c} f(x) = L\text{,}</me> and means that given any <m>\varepsilon > 0</m>, there exists <m>\delta > 0</m> such that for all <m>x\in I</m>, <m>x \neq c</m>, if <m>\abs{x - c} \lt  \delta</m>, then <m>\abs{f(x) - L} \lt  \varepsilon</m>.<index><main>limit</main><sub>definition</sub></index></p>
+            </statement>
+        </definition>
+
+        <p>Mathematicians often enjoy writing ideas without using any words. Here is the wordless definition of the limit:<md>
+        <mrow>\lim_{x\to c} f(x) = L</mrow>
+        <mrow>\iff</mrow>
+        <mrow>\forall \, \varepsilon > 0, \exists \, \delta > 0 \text{ s.t. }0\lt \abs{x - c} \lt  \delta \implies \abs{f(x) - L} \lt  \varepsilon\text{.}</mrow>
+        </md></p>
+
+        <p>Note the order in which <m>\varepsilon</m> and <m>\delta</m> are given. In the definition, the <m>y</m>-tolerance <m>\varepsilon</m> is given <em>first</em> and then the limit will exist <em>if</em> we can find an <m>x</m>-tolerance <m>\delta</m> that works.</p>
+
+        <p>An example will help us understand this definition. Note that the explanation is long, but it will take one through all steps necessary to understand the ideas.</p>
+
+        <example xml:id="ex_compute_lim1">
+            <title>Evaluating a limit using the definition</title>
+            <statement>
+                <p>Show that <m>\lim\limits_{x\to 4} \sqrt{x} = 2</m>.</p>
+            </statement>
+            <solution>
+                <p>Before we use the formal definition, let's try some numerical tolerances. What if the <m>y</m> tolerance is <m>0.5</m>, or in other words <m>\varepsilon =0.5</m>? How close to <m>4</m> does <m>x</m> have to be so that <m>y</m> is within <m>0.5</m> units of <m>2</m>? That is, <m>1.5 \lt  y \lt  2.5</m>? In this case, we can proceed as follows:<md>
+                <mrow>1.5 \amp\lt  y \lt  2.5</mrow>
+                <mrow>1.5 \amp\lt  \sqrt{x} \lt  2.5 \amp\amp \text{ (Let } y=\sqrt{x} \text{)}</mrow>
+                <mrow>1.5^2 \amp\lt  x \lt  2.5^2\amp\amp \text{(Square the inequality)}</mrow>
+                <mrow>2.25  \amp\lt  x \lt  6.25</mrow>
+                <mrow>2.25-4 \amp\lt  x-4 \lt  6.25-4\amp\amp \text{(Subtract }4\text{ from both sides)}</mrow>
+                <mrow>-1.75 \amp\lt  x-4 \lt  2.25</mrow>
+                </md></p>
+
+                <p>So, what is the desired <m>x</m> tolerance? Remember, we want to find a <m>\delta</m> so that <m>\abs{x-4}</m> is smaller than <m>\delta</m>. Since <m>1.75\lt2.25</m>, then if we require <m>\abs{x-4}\lt 1.75</m>, then we have <md>
+                <mrow>\amp\abs{x-4}\lt1.75</mrow>
+                <mrow>\implies\amp-1.75\lt x-4\lt1.75\lt2.25</mrow>
+                </md>Therefore we can have <m>\delta \leq 1.75</m>. See <xref ref="fig_choose_e_d">Figure</xref>.</p>
+
+                <sidebyside xml:id="fig_choose_e_d" widths="47% 47%">
+                    <caption>Illustrating the <m>\varepsilon-\delta</m> process. With <m>\varepsilon=0.5</m>, we pick any <m>\delta \lt  1.75</m>.</caption>
+
+                    <figure>
+                        <!-- START figures/fig_limit_proof1a.tex -->
+                        <image xml:id="img_limit_proof1a">
+                            <description></description>
+                            <latex-image-code><![CDATA[
+                                \begin{tikzpicture}
+                                    \begin{axis}[xmin=-.1,xmax=7.1,
+                                                ymin=-.1,ymax=3.1,
+                                                xtick={2,4,6},
+                                                ytick={1,2},]
+                                        \addplot+[->,domain=0:2.64575] ({x^2},{x});
+                                        \addplot[soliddot] coordinates {(4,2)};
+                                        \addplot[guideline] coordinates {(0,1.5) (2.25,1.5)};
+                                        \addplot[guideline] coordinates {(0,2.5) (6.25,2.5)};
+                                        \addplot[guideline,|->] coordinates {(0.2,2) (0.2,2.5)} node [below right]{$\varepsilon=0.5$} ;
+                                        \addplot[guideline,|->] coordinates {(0.2,2) (0.2,1.5)} node [above right]{$\varepsilon=0.5$} ;
+                                        \addplot[soliddot] coordinates {(2.25,1.5)};
+                                        \addplot[soliddot] coordinates {(6.25,2.5)};
+                                        \addplot[mark=none] coordinates {(0,2.5)} node [above right]{Choose $\varepsilon>0$. Then \ldots} ;
+                                    \end{axis}
+                                \end{tikzpicture}
+                            ]]></latex-image-code>
+                        </image>
+                        <!-- figures/fig_limit_proof1a.tex END -->
+                    </figure>
+
+                    <figure>
+                        <!-- START figures/fig_limit_proof1b.tex -->
+                        <image xml:id="img_limit_proof1b">
+                            <description></description>
+                            <latex-image-code><![CDATA[
+                                \begin{tikzpicture}
+                                    \begin{axis}[xmin=-.1,xmax=7.1,
+                                                ymin=-.1,ymax=3.1,
+                                                xtick={2,4,6},
+                                                ytick={1,2},]
+                                        \addplot+[->,domain=0:2.64575] ({x^2},{x});
+                                        \addplot[soliddot] coordinates {(4,2)};
+                                        \addplot[guideline] coordinates {(0,1.5) (2.25,1.5)};
+                                        \addplot[guideline] coordinates {(0,2.5) (6.25,2.5)};
+                                        \addplot[guideline] coordinates {(2.25,0) (2.25,1.5)};
+                                        \addplot[guideline] coordinates {(6.25,0) (6.25,2.5)};
+                                        \addplot[guideline,|->] coordinates {(0.2,2) (0.2,2.5)} node [below right]{$\varepsilon=0.5$} ;
+                                        \addplot[guideline,|->] coordinates {(0.2,2) (0.2,1.5)} node [above right]{$\varepsilon=0.5$} ;
+                                        \addplot[guideline,<-|] coordinates {(2.25,0.2) (4,0.2)} node [above left]{width 1.75} ;
+                                        \addplot[guideline,<-|] coordinates {(6.25,0.2) (4,0.2)} node [above right]{width 2.25} ;
+                                        \addplot[soliddot] coordinates {(2.25,1.5)};
+                                        \addplot[soliddot] coordinates {(6.25,2.5)};
+                                        \addplot[mark=none] coordinates {(4,1)} node{\parbox{9em}{\ldots choose $\delta$ smaller than each of these}};
+                                    \end{axis}
+                                \end{tikzpicture}
+                            ]]></latex-image-code>
+                        </image>
+                        <!-- figures/fig_limit_proof1a.tex END -->
+                    </figure>
+                </sidebyside>
+
+                <p>Given the <m>y</m> tolerance <m>\varepsilon =0.5</m>, we have found an <m>x</m> tolerance, <m>\delta \leq 1.75</m>, such that whenever <m>x</m> is within <m>\delta</m> units of <m>4</m>, then <m>y</m> is within <m>\varepsilon</m> units of <m>2</m>. That's what we were trying to find.</p>
+
+                <p>Let's try another value of <m>\varepsilon</m>.</p>
+
+                <p>What if the <m>y</m> tolerance is <m>0.01</m>, <ie /> <m>\varepsilon =0.01</m>? How close to <m>4</m> does <m>x</m> have to be in order for <m>y</m> to be within <m>0.01</m> units of <m>2</m>? (In other words for <m>1.99 \lt  y \lt  2.01</m>?) Again, we just square these values to get <m>1.99^2 \lt  x \lt  2.01^2</m>, or <md>
+                <mrow>3.9601 \amp\lt  x \lt  4.0401</mrow>
+                <mrow>-0.0399\amp\lt  x-4 \lt  0.0401</mrow>
+                </md></p>
+
+                <p>What is the desired <m>x</m> tolerance? In this case we must have <m>\delta \leq 0.0399</m>, which is the minimum distance from <m>4</m> of the two bounds given above.</p>
+
+                <p>What we have so far: if <m>\varepsilon =0.5</m>, then <m>\delta \leq 1.75</m> leads to <m>f(x)</m> being less than <m>\varepsilon</m> from <m>f(4)</m> and if <m>\varepsilon = 0.01</m>, then <m>\delta \leq 0.0399</m> being less than <m>\varepsilon</m> from <m>f(4)</m>. A pattern is not easy to see, so we switch to general <m>\varepsilon</m> try to determine an adequate <m>\delta</m> symbolically. We start by assuming <m>y=\sqrt{x}</m> is within <m>\varepsilon</m> units of <m>2</m>:<md>
+                <mrow>\amp\abs{y - 2} \lt  \varepsilon</mrow>
+                <mrow>-\varepsilon \amp\lt  y - 2 \lt  \varepsilon</mrow>
+                <mrow>-\varepsilon \amp\lt  \sqrt{x} - 2 \lt  \varepsilon  \amp\amp (y=\sqrt{x})</mrow>
+                <mrow>2 - \varepsilon \amp\lt  \sqrt{x} \lt  2+ \varepsilon \amp\amp \text{(Add 2)}</mrow>
+                <mrow>(2 - \varepsilon)^2 \amp\lt  x \lt  (2+ \varepsilon) ^2 \amp\amp \text{(Square all)}</mrow>
+                <mrow>4 - 4\varepsilon + \varepsilon^2 \amp\lt  x \lt  4 + 4\varepsilon + \varepsilon^2 \amp\amp \text{(Expand)}</mrow>
+                <mrow>-4\varepsilon + \varepsilon^2 \amp\lt  x-4 \lt   4\varepsilon + \varepsilon^2\amp\amp \text{(Subtract 4)}</mrow>
+                </md></p>
+                <p>We choose the smaller of these two distances from the number <m>4</m>:<me>\delta \leq \min\{4\varepsilon - \varepsilon^2, 4\varepsilon + \varepsilon^2\}\text{.}</me></p>
+
+                <p>Since <m>\varepsilon > 0</m>, we have <m>4\varepsilon - \varepsilon^2 \lt 4\varepsilon + \varepsilon^2</m>, the minimum is <m>\delta \leq 4\varepsilon - \varepsilon^2</m>. That's the formula: given an <m>\varepsilon</m>, set <m>\delta \leq 4\varepsilon-\varepsilon^2</m>.</p>
+
+                <p>We can check this for our previous values. If <m>\varepsilon=0.5</m>, the formula gives <m>\delta \leq 4(0.5) - (0.5)^2 = 1.75</m> and when <m>\varepsilon=0.01</m>, the formula gives <m>\delta \leq 4(0.01) - (0.01)^2 = 0.399</m>.</p>
+
+                <p>So given any <m>\varepsilon >0</m>, set <m>\delta \leq 4\varepsilon - \varepsilon^2</m>. Then if <m>\abs{x-4}\lt \delta</m> (and <m>x\neq 4</m>), then <m>\abs{f(x) - 2} \lt  \varepsilon</m>, satisfying the definition of the limit. We have shown formally (and finally!) that <m>\lim\limits_{x\to 4} \sqrt{x} = 2</m>.</p>
+            </solution>
+        </example>
+
+        <p>The previous example was a little long in that we sampled a few specific cases of <m>\varepsilon</m> before handling the general case. Normally this is not done. The previous example is also a bit unsatisfying in that <m>\sqrt{4}=2</m>; why work so hard to prove something so obvious? Many <m>\varepsilon</m><ndash /><m>\delta</m> proofs are long and difficult to do. In this section, we will focus on examples where the answer is, frankly, obvious, because the non-obvious examples are even harder. In the next section we will learn some theorems that allow us to evaluate limits <em>analytically</em>, that is, without using the <m>\varepsilon</m><ndash /><m>\delta</m> definition.</p>
+
+        <example xml:id="ex_compute_lim2">
+            <title>Evaluating a limit using the definition</title>
+            <statement>
+                <p>Show that <m>\lim\limits_{x\to 2} x^2 = 4</m>.</p>
+            </statement>
+            <solution>
+                <p>Let's do this example symbolically from the start. Let <m>\varepsilon > 0</m> be given; we want <m>\abs{y-4} \lt  \varepsilon</m>, i.e., <m>\abs{x^2-4} \lt  \varepsilon</m>. How do we find <m>\delta</m> such that when <m>\abs{x-2} \lt  \delta</m>, we are guaranteed that <m>\abs{x^2-4}\lt \varepsilon</m>?</p>
+
+                <p>This is a bit trickier than the previous example, but let's start by noticing that <m>\abs{x^2-4} = \abs{x-2}\cdot\abs{x+2}</m>. Consider: <me>\abs{x^2-4} \lt  \varepsilon \implies \abs{x-2}\cdot\abs{x+2} \lt  \varepsilon \implies \abs{x-2} \lt  \frac{\varepsilon}{\abs{x+2}}\text{.}</me></p>
+
+                <p>Could we not set <m>\delta = \frac{\varepsilon}{\abs{x+2}}</m>?</p>
+
+                <p>We are close to an answer, but the catch is that <m>\delta</m> must be a <em>constant</em> value (so it can't depend on <m>x</m>). There is a way to work around this, but we do have to make an assumption. Remember that <m>\varepsilon</m> is supposed to be a small number, which implies that <m>\delta</m> will also be a small value. In particular, we can (probably) assume that <m>\delta \lt  1</m>. If this is true, then <m>\abs{x-2} \lt  \delta</m> would imply that <m>\abs{x-2} \lt  1</m>, giving <m>1 \lt  x \lt  3</m>.</p>
+
+                <p>Now, back to the fraction <m>\frac{\varepsilon}{\abs{x+2}}</m>. If <m>1\lt x\lt 3</m>, then <m>3\lt x+2\lt 5</m> (add <m>2</m> to all terms in the inequality). Taking reciprocals, we have<me>\frac15 \lt \frac1{\abs{x+2}} \lt  \frac 13\text{,}</me> which implies <me>\frac15 \lt \frac1{\abs{x+2}}\text{,}</me> which implies <men xml:id="eq_limit1">\frac\varepsilon5\lt \frac{\varepsilon}{\abs{x+2}}\text{.}</men></p>
+
+                <p>This suggests that we set <m>\delta \leq \frac{\varepsilon}{5}</m>. To see why, let consider what follows when we assume <m>\abs{x-2}\lt \delta</m>:<md>
+                <mrow>\abs{x-2}\amp\lt\delta</mrow>
+                <mrow>\abs{x-2}\amp\lt\frac{\varepsilon}{5}\amp\amp\text{(Our choice of }\delta\text{)}</mrow>
+                <mrow>\abs{x-2}\cdot\abs{x+2}\amp\lt\abs{x+2}\cdot\frac{\varepsilon}{5}\amp\amp\text{(Multiply by }\abs{x+2}\text{)}</mrow>
+                <mrow>\abs{x^2-4}\amp\lt\abs{x+2}\cdot\frac{\varepsilon}{5}\amp\amp\text{(Simplify left side)}</mrow>
+                <mrow>\abs{x^2-4}\amp\lt\abs{x+2}\cdot\frac{\varepsilon}{\abs{x+2}}\amp\amp\text{(}<xref ref="eq_limit1">Inequality</xref>, \delta \lt 1\text{)}</mrow>
+                <mrow>\abs{x^2-4}\amp\lt\varepsilon</mrow>
+                </md></p>
+
+                <p>We have arrived at <m>\abs{x^2-4}\lt \varepsilon</m> as desired. Note again, in order to make this happen we needed <m>\delta</m> to first be less than <m>1</m>. That is a safe assumption; we want <m>\varepsilon</m> to be arbitrarily small, forcing <m>\delta</m> to also be small.</p>
+
+                <p>We have also picked <m>\delta</m> to be smaller than <q>necessary.</q> We could get by with a slightly larger <m>\delta</m>, as shown in <xref ref="fig_limit_eover5">Figure</xref>. The outer lines show the boundaries defined by our choice of <m>\varepsilon</m>. The inner lines show the boundaries defined by setting <m>\delta = \varepsilon/5</m>. Note how these dotted lines are within the dashed lines. That is perfectly fine; by choosing <m>x</m> within the dotted lines we are guaranteed that <m>f(x)</m> will be within <m>\varepsilon</m> of <m>4</m>.</p>
+
+                <figure xml:id="fig_limit_eover5" >
+                    <caption>Choosing <m>\delta = \varepsilon/5</m> in <xref ref="ex_compute_lim2">Example</xref>.</caption>
+
+                    <!-- START figures/fig_limit_proof2a.tex -->
+                    <image xml:id="img_limit_eover5" width="47%">
+                        <latex-image-code><![CDATA[
+                            \begin{tikzpicture}
+                                \begin{axis}[xmin=0,xmax=4,
+                                            ymin=2,ymax=6,
+                                            xtick={2},
+                                            ytick={4},
+                                            ydiscontinuity]
+                                    \addplot+[domain=0:2.5] {x^2};
+                                    \addplot[soliddot] coordinates {(2,4)};
+                                    \addplot[soliddot] coordinates {(1.73,3)};
+                                    \addplot[soliddot] coordinates {(2.24,5)};
+                                    \addplot[guideline] coordinates {(0,3) (1.73,3)};
+                                    \addplot[guideline] coordinates {(0,5) (2.24,5)};
+                                    \addplot[guideline,dashed] coordinates {(2.24,0) (2.24,5)};
+                                    \addplot[guideline,dashed] coordinates {(1.73,0) (1.73,3)};
+                                    \addplot[guideline,dotted] coordinates {(2.2,0) (2.2,4.84)};
+                                    \addplot[guideline,dotted] coordinates {(1.8,0) (1.8,3.24)};
+                                    \addplot[guideline,|->] coordinates {(0.2,4) (0.2,5)} node [below right]{$\varepsilon$};
+                                    \addplot[guideline,<-|] coordinates {(2.2,2.2) (2,2.2)} node [above right]{$\delta=\varepsilon/5$};
+                                \end{axis}
+                            \end{tikzpicture}
+                        ]]></latex-image-code>
+                    </image>
+                    <!-- figures/fig_limit_proof2a.tex END -->
+                </figure>
+
+                <p>In summary, given <m>\varepsilon > 0</m>, set <m>\delta=\varepsilon/5</m>. Then <m>\abs{x-2} \lt  \delta</m> implies <m>\abs{x^2 - 4}\lt\varepsilon</m> (<ie /> <m>\abs{y-4}\lt\varepsilon</m>) as desired. This shows that <m>\lim\limits_{x\to 2} x^2 = 4</m>. <xref ref="fig_limit_eover5">Figure</xref> gives a visualization of this; by restricting <m>x</m> to values within <m>\delta = \varepsilon/5</m> of <m>2</m>, we see that <m>f(x)</m> is within <m>\varepsilon</m> of <m>4</m>.</p>
+
+            </solution>
+        </example>
+
+        <p>Make note of the general pattern exhibited in these last two examples. In some sense, each starts out <q>backwards.</q> That is, while we want to<ol>
+        <li><p>start with <m>\abs{x-c}\lt \delta</m> and conclude that</p></li>
+        <li><p><m>\abs{f(x)-L}\lt \varepsilon</m>,</p></li>
+        </ol>we actually start by doing what is essentially some <q>scratch-work</q> first:<ol>
+        <li><p>assume <m>\abs{f(x)-L}\lt \varepsilon</m>, then perform some algebraic manipulations to give an inequality of the form</p></li>
+        <li><p><m>\abs{x-c}\lt</m> <em>something</em>.</p></li>
+        </ol>When we have properly done this, the <em>something</em> on the <q>greater than</q> side of the inequality becomes our <m>\delta</m>. We can refer to this as the <q>scratch-work</q> phase of our proof. Once we have <m>\delta</m>, we can formally start the actual proof with <m>\abs{x-c}\lt \delta</m> and use algebraic manipulations to conclude that <m>\abs{f(x)-L}\lt \varepsilon</m>, usually by using the same steps of our <q>scratch-work</q> in reverse order.</p>
+
+        <p>We highlight this process in the following example.</p>
+
+        <example xml:id="ex_compute_lim4">
+            <title>Evaluating a limit using the definition</title>
+            <statement>
+                <p>Prove that <m>\lim\limits_{x\to 1}x^3-2x = -1</m>.</p>
+            </statement>
+            <solution>
+                <p>We start our scratch-work by considering <m>\abs{f(x) - (-1)} \lt  \varepsilon</m>:<mdn>
+                <mrow number="no">\abs{f(x)-(-1)} \amp \lt  \varepsilon</mrow>
+                <mrow number="no">\abs{x^3-2x + 1}\amp \lt  \varepsilon \amp\amp  \text{(Now factor)}</mrow>
+                <mrow number="no">\abs{(x-1)(x^2+x-1)}\amp \lt  \varepsilon</mrow>
+                <mrow xml:id ="eq_lim4">\abs{x-1}\amp\lt\frac{\varepsilon}{\abs{x^2+x-1}\text{.}}</mrow>
+                </mdn></p>
+
+                <p>We are at the phase of saying that <m>\abs{x-1}\lt</m> <em>something</em>, where <em>something</em><m>=\varepsilon/\abs{x^2+x-1}</m>. We want to turn that <em>something</em> into <m>\delta</m>.</p>
+
+                <p>Since <m>x</m> is approaching <m>1</m>, we are safe to assume that <m>x</m> is between <m>0</m> and <m>2</m>. So <md>
+                <mrow>  0\amp \lt  x\lt 2</mrow>
+                <mrow>  0\amp \lt  x^2\lt 4.\amp\amp \text{(squared each term)}</mrow>
+                <intertext>Since <m>0\lt x\lt 2</m>, we can add <m>0</m>, <m>x</m> and <m>2</m>, respectively, to each part of the inequality and maintain the inequality.</intertext>
+                <mrow>  0\amp \lt  x^2+x\lt 6</mrow>
+                <mrow>  -1\amp \lt  x^2+x-1\lt 5\text{.}\amp\amp \text{(subtracted 1 from each part)}</mrow>
+                </md></p>
+
+                <p>In <xref ref="eq_lim4">Inequality</xref>, we wanted <m>\abs{x-1}\lt \varepsilon/\abs{x^2+x-1}</m>. The above shows that given any <m>x</m> in <m>[0,2]</m>, we know that<mdn>
+                <mrow number="no">  x^2+x-1 \amp \lt  5 \amp\amp \text{which implies that}</mrow>
+                <mrow number="no">  \frac15 \amp \lt  \frac{1}{x^2+x-1} \amp\amp \text{which implies that}</mrow>
+                <mrow xml:id="eq_lim5">  \frac{\varepsilon}5 \amp \lt  \frac{\varepsilon}{x^2+x-1}\text{.}</mrow>
+                </mdn></p>
+
+                <p>So we set <m>\delta \leq \varepsilon/5</m>. This ends our scratch-work, and we begin the formal proof (which also helps us understand why this was a good choice of <m>\delta</m>).</p>
+
+                <p>Given <m>\varepsilon</m>, let <m>\delta \leq \varepsilon/5</m>. We want to show that when <m>\abs{x-1}\lt \delta</m>, then <m>\abs{(x^3-2x)-(-1)}\lt \varepsilon</m>. We start with <m>\abs{x-1}\lt \delta</m>:<md>
+                <mrow>\abs{x-1} \amp \lt  \delta</mrow>
+                <mrow>\abs{x-1} \amp \lt  \frac{\varepsilon}{5}</mrow>
+                <mrow>\abs{x-1} \amp \lt  \frac{\varepsilon}{\abs{x^2+x-1}} \amp\amp  \text{(}<xref ref="eq_lim5">Inequality</xref>, x\text{ near 1)}</mrow>
+                <mrow>\abs{x-1}\cdot \abs{x^2+x-1} \amp \lt  \varepsilon</mrow>
+                <mrow>\abs{x^3-2x+1} \amp \lt  \varepsilon</mrow>
+                <mrow>\abs{(x^3-2x)-(-1)} \amp \lt \varepsilon,</mrow>
+                </md>which is what we wanted to show. Thus <m>\lim\limits_{x\to 1}x^3-2x = -1</m>.</p>
+            </solution>
+        </example>
+
+        <p>We illustrate evaluating limits once more.</p>
+
+        <example xml:id="ex_compute_lim3">
+            <title>Evaluating a limit using the definition</title>
+            <statement>
+                <p>Prove that <m>\lim\limits_{x\to 0} e^x = 1</m>.</p>
+            </statement>
+            <solution>
+                <p>Symbolically, we want to take the inequality <m>\abs{e^x - 1} \lt  \varepsilon</m> and unravel it to the form <m>\abs{x-0} \lt  \delta</m>. Here is our scratch-work:<md>
+                <mrow>\amp\abs{e^x - 1}\lt  \varepsilon</mrow>
+                <mrow> -\varepsilon \amp\lt  e^x - 1 \lt  \varepsilon\amp\amp \text{(Definition of absolute value)}</mrow>
+                <mrow> 1-\varepsilon \amp\lt  e^x \lt  1+\varepsilon \amp\amp \text{(Add 1)}</mrow>
+                <mrow> \ln(1-\varepsilon) \amp\lt  x \lt  \ln(1+\varepsilon) \amp\amp \text{(Take natural logs)}</mrow>
+                </md></p>
+
+                <p>Making the safe assumption that <m>\varepsilon\lt 1</m> ensures the last inequality is valid (i.e., so that <m>\ln(1-\varepsilon)</m> is defined). We can then set <m>\delta</m> to be the minimum of <m>\abs{\ln(1-\varepsilon)}</m> and <m>\ln(1+\varepsilon)</m>; i.e.,<me>\delta = \min\{\abs{\ln(1-\varepsilon)}, \ln(1+\varepsilon)\} = \ln(1+\varepsilon).</me></p>
+
+                <p>Recall <m>\ln(1-\varepsilon)</m> is negative because <m>1-\varepsilon\lt1</m>. So <m>\abs{\ln(1-\varepsilon)}=-\ln(1-\varepsilon)=\ln\left(\frac{1}{1-\varepsilon}\right)</m>. So to determine which is smaller between <m>\abs{\ln(1-\varepsilon)}</m> and <m>\ln(1+\varepsilon)</m> amounts to determining which is smaller between <m>\frac{1}{1-\varepsilon}</m> and <m>1+\varepsilon</m>. But <m>(1+\varepsilon)/\left(\frac{1}{1-\varepsilon}\right)=(1+\varepsilon)(1-\varepsilon)=1-\varepsilon^2\lt1</m>, so <m>(1+\varepsilon)\lt\frac{1}{1-\varepsilon}</m>. And therefore <m>\ln(1+\varepsilon)\lt\abs{\ln(1-\varepsilon)}</m>.</p>
+
+                <p>Now, we work through the actual the proof:<md>
+                <mrow>\amp\abs{x - 0}\lt \delta</mrow>
+                <mrow>  -\delta \amp \lt  x \lt  \delta \amp\amp   \text{(Definition of absolute value)}</mrow>
+                <mrow>  -\ln(1+\varepsilon) \amp \lt  x \lt  \ln(1+\varepsilon)</mrow>
+                <mrow>  \ln(1-\varepsilon) \amp \lt  x \lt  \ln(1+\varepsilon)\text{.}\amp \amp  \text{(since \(\ln(1-\varepsilon) \lt  -\ln(1+\varepsilon)\)) }</mrow>
+                <intertext>The above line is true by our choice of <m>\delta</m> and by the fact that since <m>\abs{\ln(1-\varepsilon)}>\ln(1+\varepsilon)</m> and <m>\ln(1-\varepsilon)\lt 0</m>, we know <m>\ln(1-\varepsilon) \lt  -\ln(1+\varepsilon )</m>.</intertext>
+                <mrow>  1-\varepsilon \amp \lt  e^x \lt  1+\varepsilon \amp \amp  \text{(Exponentiate)}</mrow>
+                <mrow>  -\varepsilon \amp \lt  e^x - 1 \lt  \varepsilon \amp\amp   \text{(Subtract 1)}</mrow>
+                </md></p>
+
+                <p>In summary, given <m>\varepsilon > 0</m>, let <m>\delta = \ln(1+\varepsilon)</m>. Then <m>\abs{x - 0} \lt  \delta</m> implies <m>\abs{e^x - 1}\lt  \varepsilon</m> as desired. We have shown that <m>\lim\limits_{x\to 0} e^x = 1</m>.</p>
+            </solution>
+        </example>
+
+
+        <p>We note that we could actually show that <m>\lim\limits_{x\to c} e^x = e^c</m> for any constant <m>c</m>. We do this by factoring out <m>e^c</m> from both sides, leaving us to show <m>\lim\limits_{x\to c} e^{x-c} = 1</m> instead. By using the substitution <m>u=x-c</m>, this reduces to showing <m>\lim\limits_{u\to 0} e^u = 1</m> which we just did in the last example. As an added benefit, this shows that in fact the function <m>f(x)=e^x</m> is <em>continuous</em> at all values of <m>x</m>, an important concept we will define in <xref ref="sec_continuity">Section</xref>.</p>
+
+        <p>This formal definition of the limit is not an easy concept grasp. Our examples are actually <q>easy</q> examples, using <q>simple</q> functions like polynomials, square<ndash />roots and exponentials. It is very difficult to prove, using the techniques given above, that <m>\lim\limits_{x\to 0}(\sin(x) )/x = 1</m>, as we approximated in <xref ref="sec_limit_intro">Section</xref>.</p>
+
+        <p>There is hope. <xref ref="sec_limit_analytically">Section</xref> shows how one can evaluate complicated limits using certain basic limits as building blocks. While limits are an incredibly important part of calculus (and hence much of higher mathematics), rarely are limits evaluated using the definition. Rather, the techniques of <xref ref="sec_limit_analytically">Section</xref> are employed.</p>
+
+
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <statement>
+            <p>What is wrong with the following <q>definition</q> of a limit?</p>
+
+            <blockquote>
+                <p><q>The limit of <m>f(x)</m>, as <m>x</m> approaches <m>a</m>, is <m>K</m></q> means that given any <m>\delta>0</m> there exists <m>\varepsilon>0</m> such that whenever <m>\abs{f(x)-K}\lt\varepsilon</m>, we have <m>\abs{x-a}\lt \delta</m>.</p>
+            </blockquote>
+
+            <p><var form="essay" /></p>
+          </statement>
+
+          <solution>
+            <p><m>\varepsilon</m> should be given first, and the restriction <m>\abs{x-a}\lt \delta</m> implies <m>\abs{f(x)-K}\lt\varepsilon</m>, not the other way around.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$limitequalsvalue">
+              <set>
+                <member>x\text{-tolerance}</member>
+                <member correct="yes">y\text{-tolerance}</member>
+              </set>
+            </var>
+            <pg-code>
+              $limitequalsvalue=PopUp(['?','x-tolerance','y-tolerance'],2);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Which is given first in establishing a limit, the <m>x</m>-tolerance or the <m>y</m>-tolerance?</p>
+
+            <p><var name="$limitequalsvalue" form="popup"/>is given first.</p>
+          </statement>
+          <solution>
+            <p>The <m>y</m><ndash />tolerance is given first.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$ispositive">
+              <set>
+                <member correct="yes">True</member>
+                <member>False</member>
+              </set>
+            </var>
+            <pg-code>
+              $ispositive=PopUp(['?','True','False'],'True');
+            </pg-code>
+          </setup>
+          <statement>
+            <p>True or False? <m>\varepsilon</m> must always be positive. <var name="$ispositive" form="popup"/></p>
+          </statement>
+          <solution>
+            <p>True</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$ispositive">
+              <set>
+                <member correct="yes">True</member>
+                <member>False</member>
+              </set>
+            </var>
+            <pg-code>
+              $ispositive=PopUp(['?','True','False'],'True');
+            </pg-code>
+          </setup>
+          <statement>
+            <p>True or False? <m>\delta</m> must always be positive. <var name="$ispositive" form="popup"/></p>
+          </statement>
+          <solution>
+            <p>True</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <todo>Resolve this exercisegroup's introduction instructions and their repetition in each exercise.</todo>
+    <exercisegroup>
+
+      <introduction>
+        <p>In the following exercises, prove the given limit using an <m>\varepsilon</m>-<m>\delta</m> proof.</p>
+      </introduction>
+
+      <exercise>
+        <webwork seed="1">
+          <statement>
+            <p>Use an <m>\varepsilon</m>-<m>\delta</m> proof to prove that <me>\lim\limits_{x\to5}(3-x)=-2</me></p>
+            <p><var form="essay" /></p>
+          </statement>
+          <solution>
+            <p>Let <m>\varepsilon>0</m> be given. We wish to find <m>\delta>0</m> such that when <m>\abs{x-5}\lt\delta</m>, <m>\abs{f(x)-(-2)}\lt\varepsilon</m>.</p>
+
+            <p>First, some preliminary investigation to find a suitable <m>\delta</m>. Consider <m>\abs{f(x)-(-2)}\lt\varepsilon</m>:<md>
+                <mrow>\abs{f(x)+2}\amp\lt\varepsilon</mrow>
+                <mrow>\abs{(3-x)+2}\amp\lt\varepsilon</mrow>
+                <mrow>\abs{5-x}\amp\lt\varepsilon</mrow>
+                <mrow>\abs{x-5}\amp\lt\varepsilon</mrow>
+            </md>Since we want to start with <m>\abs{x-5}\lt\delta</m>, this suggests we let <m>\delta=\varepsilon</m>.</p>
+
+            <p>Now we can apply the definition.<md>
+                <mrow>\abs{x-5}\amp\lt\delta</mrow>
+                <mrow>\abs{x-5}\amp\lt\varepsilon</mrow>
+                <mrow>-\varepsilon\lt x-5\amp\lt\varepsilon</mrow>
+                <mrow>-\varepsilon\lt (x-3)-2\amp\lt\varepsilon</mrow>
+                <mrow>\varepsilon\gt(-x+3)-(-2)\gt\amp-\varepsilon</mrow>
+                <mrow>\abs{(3-x)-(-2)}\amp\lt\varepsilon\text{.}</mrow>
+            </md>In other words, <m>\abs{x-5}\lt\delta</m> implies <m>\abs{(3-x)-(-2)}\lt\varepsilon</m>. This is what we needed to prove.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <statement>
+            <p>Use an <m>\varepsilon</m>-<m>\delta</m> proof to prove that <me>\lim\limits_{x\to3}(x^2-3)=6</me></p>
+            <p><var form="essay" /></p>
+          </statement>
+          <solution>
+            <p>Let <m>\varepsilon>0</m> be given. We wish to find <m>\delta>0</m> such that when <m>\abs{x-3}\lt\delta</m>, <m>\abs{f(x)-6}\lt\varepsilon</m>.</p>
+
+            <p>First, some preliminary investigation to find a suitable <m>\delta</m>. Consider <m>\abs{f(x)-6}\lt\varepsilon</m>:<md>
+                <mrow>\abs{\left(x^2-3\right)-6}\amp\lt\varepsilon</mrow>
+                <mrow>\abs{x^2-9}\amp\lt\varepsilon</mrow>
+                <mrow>\abs{x-3}\cdot\abs{x+3}\amp\lt\varepsilon</mrow>
+                <mrow>\abs{x-3}\amp\lt\frac{\varepsilon}{\abs{x+3}}</mrow>
+            </md>Since <m>x</m> is near <m>3</m>, we can safely assume that, for instance, <m>2\lt x\lt 4</m>. Thus<md>
+                <mrow>2+3\lt x+3\lt4+3</mrow>
+                <mrow>5\lt x+3\lt 7</mrow>
+                <mrow>\frac{1}{7}\lt\frac{1}{x+3}\lt\frac{1}{5}</mrow>
+                <mrow>\frac{\varepsilon}{7}\lt\frac{\varepsilon}{x+3}\lt\frac{\varepsilon}{5}</mrow>
+            </md>Since we need to begin the actual proof with <m>\abs{x-3}\lt\delta</m>, this suggests that we take <m>\delta=\frac{\varepsilon}{7}</m>.</p>
+
+            <p>Now we can apply the definition.<md>
+                <mrow>\abs{x-3}\amp\lt\delta</mrow>
+                <mrow>\abs{x-3}\amp\lt\frac{\varepsilon}{7}</mrow>
+                <mrow>\abs{x-3}\amp\lt\frac{\varepsilon}{\abs{x+3}}</mrow>
+                <mrow>\abs{x-3}\cdot\abs{x+3}\amp\lt\varepsilon</mrow>
+                <mrow>\abs{x^2-9}\amp\lt\varepsilon</mrow>
+                <mrow>\abs{\left(x^2-3\right)-6}\amp\lt\varepsilon</mrow>
+            </md>In other words, <m>\abs{x-3}\lt\delta</m> implies <m>\abs{\left(x^2-3\right)-6}\lt\varepsilon</m>. This is what we needed to prove.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <statement>
+            <p>Use an <m>\varepsilon</m>-<m>\delta</m> proof to prove that <me>\lim\limits_{x\to4}(x^2+x-5)=15</me></p>
+            <p><var form="essay" /></p>
+          </statement>
+          <solution>
+            <p>Let <m>\varepsilon>0</m> be given. We wish to find <m>\delta>0</m> such that when <m>\abs{x-4}\lt\delta</m>, <m>\abs{f(x)-15}\lt\varepsilon</m>.</p>
+
+            <p>First, some preliminary investigation to find a suitable <m>\delta</m>. Consider <m>\abs{f(x)-15}\lt\varepsilon</m>:<md>
+                <mrow>\abs{\left(x^2+x-5\right)-15}\amp\lt\varepsilon</mrow>
+                <mrow>\abs{x^2+x-20}\amp\lt\varepsilon</mrow>
+                <mrow>\abs{x-4}\cdot\abs{x+5}\amp\lt\varepsilon</mrow>
+                <mrow>\abs{x-4}\amp\lt\frac{\varepsilon}{\abs{x+5}}</mrow>
+            </md>Since <m>x</m> is near <m>4</m>, we can safely assume that, for instance, <m>3\lt x\lt 5</m>. Thus<md>
+                <mrow>3+5\amp\lt x+5\lt5+5</mrow>
+                <mrow>8\amp\lt x+5\lt 10</mrow>
+                <mrow>\frac{1}{10}\amp\lt\frac{1}{x+5}\lt\frac{1}{8}</mrow>
+                <mrow>\frac{\varepsilon}{10}\amp\lt\frac{\varepsilon}{x+5}\lt\frac{\varepsilon}{8}</mrow>
+            </md>Since we need to begin the actual proof with <m>\abs{x-4}\lt\delta</m>, this suggests that we take <m>\delta=\frac{\varepsilon}{10}</m>.</p>
+
+            <p>Now we can apply the definition.<md>
+                <mrow>\abs{x-4}\amp\lt\delta</mrow>
+                <mrow>\abs{x-4}\amp\lt\frac{\varepsilon}{10}</mrow>
+                <mrow>\abs{x-4}\amp\lt\frac{\varepsilon}{\abs{x+5}}</mrow>
+                <mrow>\abs{x-4}\cdot\abs{x+5}\amp\lt\varepsilon</mrow>
+                <mrow>\abs{x^2+x-20}\amp\lt\varepsilon</mrow>
+                <mrow>\abs{\left(x^2+x-5\right)-15}\amp\lt\varepsilon</mrow>
+            </md>In other words, <m>\abs{x-4}\lt\delta</m> implies <m>\abs{\left(x^2+x-5\right)-15}\lt\varepsilon</m>. This is what we needed to prove.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <statement>
+            <p>Use an <m>\varepsilon</m>-<m>\delta</m> proof to prove that <me>\lim\limits_{x\to2}(x^3-1)=7</me></p>
+            <p><var form="essay" /></p>
+          </statement>
+          <solution>
+            <p>Let <m>\varepsilon>0</m> be given. We wish to find <m>\delta>0</m> such that when <m>\abs{x-2}\lt\delta</m>, <m>\abs{f(x)-7}\lt\varepsilon</m>.</p>
+
+            <p>First, some preliminary investigation to find a suitable <m>\delta</m>. Consider <m>\abs{f(x)-7}\lt\varepsilon</m>:<md>
+                <mrow>\abs{\left(x^3-1\right)-7}\amp\lt\varepsilon</mrow>
+                <mrow>\abs{x^3-8}\amp\lt\varepsilon</mrow>
+                <mrow>\abs{x-2}\cdot\abs{x^2+2x+4}\amp\lt\varepsilon</mrow>
+                <mrow>\abs{x-2}\amp\lt\frac{\varepsilon}{\abs{x^2+2x+4}}</mrow>
+            </md>Since <m>x</m> is near <m>2</m>, we can safely assume that, for instance, <m>1\lt x\lt 3</m>. Thus<md>
+                <mrow>1^2+2(1)+4\amp\lt x^2+2x+4\lt3^2+2(3)+4</mrow>
+                <mrow>7\amp\lt x^2+2x+4\lt 19</mrow>
+                <mrow>\frac{1}{19}\amp\lt\frac{1}{x^2+2x+4}\lt\frac{1}{7}</mrow>
+                <mrow>\frac{\varepsilon}{19}\amp\lt\frac{\varepsilon}{x^2+2x+4}\lt\frac{\varepsilon}{7}</mrow>
+            </md>Since we need to begin the actual proof with <m>\abs{x-2}\lt\delta</m>, this suggests that we take <m>\delta=\frac{\varepsilon}{19}</m>.</p>
+
+            <p>Now we can apply the definition.<md>
+                <mrow>\abs{x-2}\amp\lt\delta</mrow>
+                <mrow>\abs{x-2}\amp\lt\frac{\varepsilon}{19}</mrow>
+                <mrow>\abs{x-2}\amp\lt\frac{\varepsilon}{\abs{x^2+2x+4}}</mrow>
+                <mrow>\abs{x-2}\cdot\abs{x^2+2x+4}\amp\lt\varepsilon</mrow>
+                <mrow>\abs{x^3-8}\amp\lt\varepsilon</mrow>
+                <mrow>\abs{\left(x^3-1\right)-7}\amp\lt\varepsilon</mrow>
+            </md>In other words, <m>\abs{x-2}\lt\delta</m> implies <m>\abs{\left(x^3-1\right)-7}\lt\varepsilon</m>. This is what we needed to prove.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <statement>
+            <p>Use an <m>\varepsilon</m>-<m>\delta</m> proof to prove that <me>\lim\limits_{x\to2}5=5</me></p>
+            <p><var form="essay" /></p>
+          </statement>
+          <solution>
+            <p>Let <m>\varepsilon>0</m> be given. We wish to find <m>\delta>0</m> such that when <m>\abs{x-2}\lt\delta</m>, <m>\abs{f(x)-5}\lt\varepsilon</m>.</p>
+
+            <p>First, some preliminary investigation to find a suitable <m>\delta</m>. Consider <m>\abs{f(x)-5}\lt\varepsilon</m>:<md>
+                <mrow>\abs{5-5}\amp\lt\varepsilon</mrow>
+                <mrow>\abs{0}\amp\lt\varepsilon</mrow>
+            </md>Well, this is just plain true no matter what <m>\varepsilon</m> is (as long as its positive). So it really doesn't matter what <m>\delta</m> is.</p>
+
+            <p>Now we can apply the definition.<md>
+                <mrow>\abs{x-2}\amp\lt\delta</mrow>
+                <mrow>\abs{0}\amp\lt\varepsilon</mrow>
+                <mrow>\abs{5-5}\amp\lt\varepsilon</mrow>
+            </md>In other words, <m>\abs{x-2}\lt\delta</m> (vacuously) implies <m>\abs{5-5}\lt\varepsilon</m>. This is what we needed to prove.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <statement>
+            <p>Use an <m>\varepsilon</m>-<m>\delta</m> proof to prove that <me>\lim\limits_{x\to0}(e^{2x}-1)=0</me></p>
+            <p><var form="essay" /></p>
+          </statement>
+          <solution>
+            <p>Let <m>\varepsilon>0</m> be given. We wish to find <m>\delta>0</m> such that when <m>\abs{x-0}\lt\delta</m>, <m>\abs{f(x)-0}\lt\varepsilon</m>.</p>
+
+            <p>First, some preliminary investigation to find a suitable <m>\delta</m>. Consider <m>\abs{f(x)-0}\lt\varepsilon</m>:<md>
+                <mrow>\abs{\left(e^{2x}-1\right)-0}\amp\lt\varepsilon</mrow>
+                <mrow>\abs{e^{2x}-1}\amp\lt\varepsilon</mrow>
+                <mrow>-\varepsilon\amp\lt e^{2x}-1\lt\varepsilon</mrow>
+                <mrow>1-\varepsilon\amp\lt e^{2x}\lt1+\varepsilon</mrow>
+                <mrow>\ln(1-\varepsilon)\amp\lt 2x\lt\ln(1+\varepsilon)</mrow>
+                <mrow>\frac{1}{2}\ln(1-\varepsilon)\amp\lt x\lt\frac{1}{2}\ln(1+\varepsilon)</mrow>
+                <mrow>\frac{1}{2}\ln(1-\varepsilon)\amp\lt x-0\lt\frac{1}{2}\ln(1+\varepsilon)</mrow>
+            </md>Since we will need to start with <m>\abs{x-0}\lt\delta</m>, this suggests we take <m>\delta=\min\left\{\frac{1}{2}\abs{\ln(1-\varepsilon)},\frac{1}{2}\ln(1+\varepsilon)\right\}=\frac{1}{2}\ln(1+\varepsilon)</m>.</p>
+
+            <p>Now we can apply the definition.<md>
+                <mrow>\abs{x-0}\amp\lt\delta</mrow>
+                <mrow>\abs{x}\amp\lt\frac{1}{2}\ln(1+\varepsilon)\lt\frac{1}{2}\abs{\ln(1-\varepsilon)}</mrow>
+                <mrow>\frac{1}{2}\ln(1-\varepsilon)\amp\lt x\lt\frac{1}{2}\ln(1+\varepsilon)</mrow>
+                <mrow>\ln(1-\varepsilon)\amp\lt 2x\lt\ln(1+\varepsilon)</mrow>
+                <mrow>1-\varepsilon\amp\lt e^{2x}\lt1+\varepsilon</mrow>
+                <mrow>-\varepsilon\amp\lt e^{2x}-1\lt\varepsilon</mrow>
+                <mrow>\abs{e^{2x}-1}\amp\lt\varepsilon</mrow>
+                <mrow>\abs{\left(e^{2x}-1\right)-0}\amp\lt\varepsilon</mrow>
+            </md>In other words, <m>\abs{x-0}\lt\delta</m> implies <m>\abs{\left(e^{2x}-1\right)-0}\lt\varepsilon</m>. This is what we needed to prove.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Use an <m>\varepsilon</m>-<m>\delta</m> proof to prove that <me>\lim\limits_{x\to 0} \sin(x)= 0</me></p>
+            <p><var form="essay" /></p>
+          </statement>
+          <hint>
+            <p>Use the fact that <m>\abs{\sin(x)} \leq \abs{x}</m>, with equality only when <m>x=0</m>.</p>
+          </hint>
+          <solution>
+            <p>Let <m>\varepsilon>0</m> be given. We wish to find <m>\delta>0</m> such that when <m>\abs{x-0}\lt\delta</m>, <m>\abs{f(x)-0}\lt\varepsilon</m>.</p>
+
+            <p>First, some preliminary investigation to find a suitable <m>\delta</m>. Consider <m>\abs{f(x)-0}\lt\varepsilon</m>:<md>
+                <mrow>\abs{\sin(x)-0}\amp\lt\varepsilon</mrow>
+                <mrow>\abs{\sin(x)}\amp\lt\varepsilon</mrow>
+            </md>Using the hint that <m>\abs{\sin(x)} \leq \abs{x}</m>, then if <m>\abs{x}\lt0</m>, it is automatic that <m>\abs{\sin(x)}\lt0</m>. This suggests we take <m>\delta=\varepsilon</m>.</p>
+
+            <p>Now we can apply the definition.<md>
+                <mrow>\abs{x-0}\amp\lt\delta</mrow>
+                <mrow>\abs{x}\amp\lt\varepsilon</mrow>
+                <mrow>\abs{\sin(x)}\amp\lt\varepsilon</mrow>
+                <mrow>\abs{\sin(x)-0}\amp\lt\varepsilon</mrow>
+            </md>In other words, <m>\abs{x-0}\lt\delta</m> implies <m>\abs{\sin(x)-0}\lt\varepsilon</m>. This is what we needed to prove.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+    </exercisegroup>
+  </exercises>
+</section>

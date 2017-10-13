@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<chapter xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="chapter13">
+  <title>Multiple Integration</title>
+  <introduction>
+    <p>The previous chapter introduced multivariable functions and we applied concepts of differential calculus to these functions. We learned how we can view a function of two variables as a surface in space, and learned how partial derivatives convey information about how the surface is changing in any direction.</p>
+
+    <p>In this chapter we apply techniques of integral calculus to multivariable functions. In <xref ref="chapter_integration">Chapter</xref> we learned how the definite integral of a single variable function gave us ``area under the curve." In this chapter we will see that integration applied to a multivariable function gives us ``volume under a surface." And just as we learned applications of integration beyond finding areas, we will find applications of integration in this chapter beyond finding volume.</p>
+  </introduction>
+  <xi:include  href="sec_iterated_integrals.mbx" />
+  <xi:include  href="sec_double_int_volume.mbx" />
+  <xi:include  href="sec_double_int_polar.mbx" />
+  <xi:include  href="sec_center_of_mass.mbx" />
+  <xi:include  href="sec_surface_area.mbx" />
+  <xi:include  href="sec_triple_int.mbx" />
+</chapter>

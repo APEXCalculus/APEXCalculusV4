@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<chapter xmlns:xi="http://www.w3.org/2001/XInclude"  xml:id="chapter_sequences_series">
+  <title>Sequences and Series</title>
+  <introduction>
+    <p>This chapter introduces <em>sequences</em> and <em>series</em>, important mathematical constructions that are useful when solving a large variety of mathematical problems. The content of this chapter is considerably different from the content of the chapters before it. While the material we learn here definitely falls under the scope of <q>calculus,</q> we will make very little use of derivatives or integrals. Limits are extremely important, though, especially limits that involve infinity.</p>
+
+    <p>One of the problems addressed by this chapter is this: suppose we know information about a function and its derivatives at a point, such as <m>f(1) = 3</m>, <m>\fp(1) = 1</m>, <m>\fp'(1) = -2</m>, <m>\fp''(1) = 7</m>, and so on. What can I say about <m>f(x)</m> itself? Is there any reasonable approximation of the value of <m>f(2)</m>? The topic of Taylor Series addresses this problem, and allows us to make excellent approximations of functions when limited knowledge of the function is available.</p>
+  </introduction>
+  <xi:include  href="sec_sequences.mbx" />
+  <xi:include  href="sec_series.mbx" />
+  <xi:include  href="sec_int_comp_tests.mbx" />
+  <xi:include  href="sec_ratio_root_tests.mbx" />
+  <xi:include  href="sec_alt_series.mbx" />
+  <xi:include  href="sec_power_series.mbx" />
+  <xi:include  href="sec_taylor_poly.mbx" />
+  <xi:include  href="sec_taylor_series.mbx" />
+</chapter>

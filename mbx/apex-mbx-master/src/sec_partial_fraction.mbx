@@ -1,0 +1,878 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_partial_fraction">
+  <title>Partial Fraction Decomposition</title>
+  <introduction>
+    <p>In this section we investigate the antiderivatives of rational functions. Recall that rational functions are functions of the form <m>f(x)= \frac{p(x)}{q(x)}</m>, where <m>p(x)</m> and <m>q(x)</m> are polynomials and <m>q(x)\neq 0</m>. Such functions arise in many contexts, one of which is the solving of certain fundamental differential equations.</p>
+
+    <p>We begin with an example that demonstrates the motivation behind this section. Consider the integral <m>\ds\int \frac{1}{x^2-1}\ dx</m>. We do not have a simple formula for this (if the denominator were <m>x^2+1</m>, we would recognize the antiderivative as being the arctangent function). It can be solved using Trigonometric Substitution, but note how the integral is easy to evaluate once we realize:
+      <me>
+        \frac{1}{x^2-1} = \frac{1/2}{x-1} - \frac{1/2}{x+1}.
+      </me>
+    </p>
+
+    <p>Thus
+      <md>
+        <mrow>\int\frac{1}{x^2-1}\ dx \amp = \int\frac{1/2}{x-1}\ dx - \int\frac{1/2}{x+1}\ dx</mrow>
+        <mrow>\amp = \frac12\ln\abs{x-1} - \frac12\ln\abs{x+1} + C.</mrow>
+      </md>
+    </p>
+
+    <p>This section teaches how to <em>decompose</em>
+      <me>
+        \frac{1}{x^2-1}  \text{ into }   \frac{1/2}{x-1}-\frac{1/2}{x+1}.
+      </me>
+    </p>
+
+    <p>We start with a rational function <m>f(x)=\frac{p(x)}{q(x)}</m>, where <m>p</m> and <m>q</m> do not have any common factors and the degree of <m>p</m> is less than the degree of <m>q</m>. It can be shown that any polynomial, and hence <m>q</m>, can be factored into a product of linear and irreducible quadratic terms. The following Key Idea states how to decompose a rational function into a sum of rational functions whose denominators are all of lower degree than <m>q</m>.</p>
+
+    <insight xml:id="idea_partial_fraction">
+      <title>Partial Fraction Decomposition</title>
+      <p>Let <m>\ds \frac{p(x)}{q(x)}</m> be a rational function, where the degree of <m>p</m> is less than the degree of <m>q</m>.<index><main>integration</main><sub>partial fraction decomp.</sub></index></p>
+
+      <ol>
+        <li><p><em>Linear Terms:</em> Let <m>(x-a)</m> divide <m>q(x)</m>, where <m>(x-a)^n</m> is the highest power of <m>(x-a)</m> that divides <m>q(x)</m>. Then the decomposition of <m>\frac{p(x)}{q(x)}</m> will contain the sum
+            <me>
+              \frac{A_1}{(x-a)} + \frac{A_2}{(x-a)^2} + \cdots +\frac{A_n}{(x-a)^n}.
+            </me>
+          </p></li>
+
+        <li><p><em>Quadratic Terms:</em> Let <m>x^2+bx+c</m>  be an irreducible quadratic that divides <m>q(x)</m>, where <m>(x^2+bx+c)^n</m> is the highest power of <m>x^2+bx+c</m> that divides <m>q(x)</m>. Then the decomposition of <m>\frac{p(x)}{q(x)}</m> will contain the sum
+            <me>
+              \frac{B_1x+C_1}{x^2+bx+c}+\frac{B_2x+C_2}{(x^2+bx+c)^2}+\cdots+\frac{B_nx+C_n}{(x^2+bx+c)^n}.
+            </me>
+          </p></li>
+      </ol>
+
+      <p>To find the coefficients <m>A_i</m>, <m>B_i</m> and <m>C_i</m>:</p>
+
+      <ol>
+        <li><p>Multiply all fractions by <m>q(x)</m>, clearing the denominators. Collect like terms.</p></li>
+
+        <li><p>Equate the resulting coefficients of the powers of <m>x</m> and solve the resulting system of linear equations.</p></li>
+      </ol>
+    </insight>
+    <aside>
+      <p>An irreducible quadratic is a quadratic that has no real solutions. Solving <m>ax^2+bx+c=0</m> using the quadratic equation will determine if a quadratic is irreducible. Completing the square (which is a common integration technique) will also tell you if a quadratic is irreducible. </p>
+    </aside>
+
+    <p>The following examples will demonstrate how to put this Key Idea into practice. <xref ref="ex_pf1">Example</xref> stresses the decomposition aspect of the Key Idea.</p>
+
+    <example xml:id="ex_pf1">
+      <title>Decomposing into partial fractions</title>
+      <statement>
+        <p>Decompose <m>\ds f(x)=\frac{1}{(x+5)(x-2)^3(x^2+x+2)(x^2+x+7)^2}</m> without solving for the resulting coefficients.</p>
+      </statement>
+      <solution>
+        <p>The denominator is already factored, as both <m>x^2+x+2</m> and <m>x^2+x+7</m> cannot be factored further. We need to decompose <m>f(x)</m> properly. Since <m>(x+5)</m> is a linear term that divides the denominator, there will be a
+          <me>
+            \frac{A}{x+5}
+          </me>
+          term in the decomposition.</p>
+
+        <p>As <m>(x-2)^3</m> divides the denominator, we will have the following terms in the decomposition:
+          <me>
+            \frac{B}{x-2}, \frac{C}{(x-2)^2} \text{ and }  \frac{D}{(x-2)^3}.
+          </me>
+        </p>
+
+        <p>The <m>x^2+x+2</m> term in the denominator results in a <m>\ds\frac{Ex+F}{x^2+x+2}</m> term.</p>
+
+        <p>Finally, the <m>(x^2+x+7)^2</m> term results in the terms
+          <me>
+            \frac{Gx+H}{x^2+x+7} \text{ and }  \frac{Ix+J}{(x^2+x+7)^2}.
+          </me>
+        </p>
+
+        <p>All together, we have
+          <md>
+            <mrow>\amp\frac{1}{(x+5)(x-2)^3(x^2+x+2)(x^2+x+7)^2}</mrow>
+            <mrow>\amp = \frac{A}{x+5} + \frac{B}{x-2}+ \frac{C}{(x-2)^2}+\frac{D}{(x-2)^3}+</mrow>
+            <mrow>\amp  \frac{Ex+F}{x^2+x+2}+\frac{Gx+H}{x^2+x+7}+\frac{Ix+J}{(x^2+x+7)^2}</mrow>
+          </md>
+        </p>
+
+        <p>Solving for the coefficients <m>A</m>, <m>B \ldots J</m> would be a bit tedious but not <q>hard.</q></p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_pf2">
+      <title>Decomposing into partial fractions</title>
+      <statement>
+        <p>Perform the partial fraction decomposition of <m>\ds \frac{1}{x^2-1}</m>.</p>
+      </statement>
+      <solution>
+        <p>The denominator factors into two linear terms: <m>x^2-1 = (x-1)(x+1)</m>. Thus
+          <me>
+            \frac{1}{x^2-1} = \frac{A}{x-1} + \frac{B}{x+1}.
+          </me>
+        </p>
+
+        <p>To solve for <m>A</m> and <m>B</m>, first multiply through by <m>x^2-1 = (x-1)(x+1)</m>:
+          <md>
+            <mrow>1 \amp = \frac{A(x-1)(x+1)}{x-1}+\frac{B(x-1)(x+1)}{x+1}</mrow>
+            <mrow>\amp = A(x+1) + B(x-1)</mrow>
+            <mrow>\amp = Ax+A + Bx-B</mrow>
+            <intertext>Now collect like terms.</intertext>
+            <mrow>\amp = (A+B)x + (A-B).</mrow>
+          </md>
+        </p>
+
+        <p>The next step is key. Note the equality we have:
+          <me>
+            1 = (A+B)x+(A-B).
+          </me>
+        </p>
+
+        <p>For clarity's sake, rewrite the left hand side as
+          <me>
+            0x+1 = (A+B)x+(A-B).
+          </me>
+        </p>
+
+        <p>On the left, the coefficient of the <m>x</m> term is 0; on the right, it is <m>(A+B)</m>. Since both sides are equal, we must have that <m>0=A+B</m>.</p>
+
+        <p>Likewise, on the left, we have a constant term of 1; on the right, the constant term is <m>(A-B)</m>. Therefore we have <m>1=A-B</m>.</p>
+
+        <p>We have two linear equations with two unknowns. This one is easy to solve by hand, leading to
+          <md>
+          <mrow>A+B \amp = 0</mrow> 
+          <mrow>A-B \amp = 1</mrow>
+          </md>
+          If we add these two equations, we get <m>2A=1 \Rightarrow A=1/2</m>. Substitution into the first equation gives <m>B=-1/2</m>.
+        </p>
+
+        <p>Thus
+          <me>
+            \frac{1}{x^2-1} = \frac{1/2}{x-1}-\frac{1/2}{x+1}.
+          </me>
+        </p>
+      </solution>
+    </example>
+
+    <p>There is another method for finding the partial fraction decomposition called the <q>Heaviside</q> method, named after Oliver Heaviside. We show a variation of this process using the same example as in <xref ref="ex_pf1">Example</xref>.</p>
+
+
+    <example xml:id="ex_pf2b">
+      <title>Decomposing into partial fractions using the Heaviside method</title>
+      <statement>
+        <p>Perform the partial fraction decomposition of <m>\ds \frac{1}{x^2-1}</m>.</p>
+      </statement>
+      <solution>
+        <p>As we saw in <xref ref="ex_pf2">Example</xref>,
+          <me>
+            \frac{1}{x^2-1} = \frac{A}{x-1} + \frac{B}{x+1}.
+          </me>
+        </p>
+
+        <p>To solve for <m>A</m> and <m>B</m> using the Heaviside method, we will build to a common denominator:
+          <md>
+            <mrow>\frac{1}{x^2-1} \amp = \frac{A(x+1)}{(x-1)(x+1)}+\frac{B(x-1)}{(x+1)(x-1)}</mrow>
+            <mrow>\amp = \frac{A(x+1)+B(x-1)}{(x-1)(x+1)}</mrow>
+          </md>
+        </p>
+        <p>
+          Now since the denomiators match, we will only consider the numerator equation (essentially if we multiply both sides of the equation by <m>(x-1)(x+1)</m>, we will clear the denomiators):
+          <me>
+            1=A(x+1)+B(x-1)
+          </me>
+          Now we substitute in <q>convenient</q> values of <m>x</m>. When <m>x=1</m>, we get <m>1=2A \Rightarrow A=1/2</m>. When <m>x=-1</m>, we get <m>1=-2B \Rightarrow B=-1/2</m>. 
+        </p>
+
+        <p>You may note that <m>x=1</m> and <m>x=-1</m> were not in the domain of the original fraction. However, 
+        <me>\frac{1}{x^2-1}=\frac{A(x+1)+B(x-1)}{(x-1)(x+1)}</me> is an identity, meaning it is true for all values of <m>x</m>, even those for which the equation is undefined. We could have chosen any values of <m>x</m> to substitute. Whenever possible, we choose values of <m>x</m> that will make one of the factors zero. In this way, we can avoid solving a system of equations. 
+        </p>
+
+
+        <p>Thus as in <xref ref="ex_pf1">Example </xref>, we get
+          <me>
+            \frac{1}{x^2-1} = \frac{1/2}{x-1}-\frac{1/2}{x+1}
+          </me>.
+        </p>
+      </solution>
+      
+    </example>
+    For the remaining examples, we will use a combination of systems of equations and the Heaviside method to get partial fraction decompositions.
+    <example xml:id="ex_pf3">
+      <title>Integrating using partial fractions</title>
+      <statement>
+        <p>Use partial fraction decomposition to integrate <m>\ds\int\frac{1}{(x-1)(x+2)^2}\ dx</m>.</p>
+      </statement>
+      <solution>
+        <p>We decompose the integrand as follows, as described by <xref ref="idea_partial_fraction">Key Idea</xref>:
+          <me>
+            \frac{1}{(x-1)(x+2)^2} = \frac{A}{x-1} + \frac{B}{x+2} + \frac{C}{(x+2)^2}.
+          </me>
+        </p>
+
+        <p>To solve for <m>A</m>, <m>B</m> and <m>C</m>, we multiply both sides by <m>(x-1)(x+2)^2</m>:
+        <men xml:id="eq_pf3">1 = A(x+2)^2 + B(x-1)(x+2) + C(x-1)</men>
+        Now we collect like terms:
+          <md>
+            <mrow>1 \amp = A(x+2)^2 + B(x-1)(x+2) + C(x-1)</mrow>
+            <mrow>\amp = Ax^2+4Ax+4A + Bx^2 + Bx-2B + Cx-C</mrow>
+            <mrow>\amp = (A+B)x^2 + (4A+B+C)x + (4A-2B-C)</mrow>
+          </md>
+        </p>
+
+       
+          <p><xref ref="eq_pf3">Equation</xref> offers a direct route to finding the values of <m>A</m>, <m>B</m> and <m>C</m>. Since the equation holds for all values of <m>x</m>, it holds in particular when <m>x=1</m>. However, when <m>x=1</m>, the right hand side simplifies to <m>A(1+2)^2 = 9A</m>. Since the left hand side is still 1, we have <m>1 = 9A</m>. Hence <m>A = 1/9</m>.</p>
+
+          <p>Likewise, the equality holds when <m>x=-2</m>; this leads to the equation <m>1=-3C</m>. Thus <m>C = -1/3</m>.</p>
+
+          <p>Knowing <m>A</m> and <m>C</m>, we can find the value of <m>B</m> by choosing yet another value of <m>x</m>, such as <m>x=0</m>, and solving for <m>B</m>.</p>
+        
+
+        <p>We have
+          <me>
+            0x^2+0x+ 1 = (A+B)x^2 + (4A+B+C)x + (4A-2B-C)
+          </me>
+          leading to the equations
+          <me>
+            A+B = 0,  4A+B+C = 0  \text{ and }   4A-2B-C = 1.
+          </me>
+        </p>
+
+        <p>These three equations of three unknowns lead to a unique solution:
+          <me>
+            A = 1/9, B = -1/9  \text{ and }   C = -1/3.
+          </me>
+        </p>
+
+        <p>Thus
+          <me>
+            \int\frac{1}{(x-1)(x+2)^2}\ dx = \int \frac{1/9}{x-1}\ dx + \int \frac{-1/9}{x+2}\ dx + \int \frac{-1/3}{(x+2)^2}\ dx.
+          </me>
+        </p>
+
+        <p>Each can be integrated with a simple substitution with <m>u=x-1</m> or <m>u=x+2</m> (or by directly applying <xref ref="idea_linearsub">Key Idea</xref> as the denominators are linear functions). The end result is
+          <me>
+            \int\frac{1}{(x-1)(x+2)^2}\ dx = \frac19\ln\abs{x-1} -\frac19\ln\abs{x+2} +\frac1{3(x+2)}+C.
+          </me>
+        </p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_pf4">
+      <title>Integrating using partial fractions</title>
+      <statement>
+        <p>Use partial fraction decomposition to integrate <m>\ds \int \frac{x^3}{(x-5)(x+3)}\ dx</m>.</p>
+      </statement>
+      <solution>
+        <p><xref ref="idea_partial_fraction">Key Idea</xref> presumes that the degree of the numerator is less than the degree of the denominator. Since this is not the case here, we begin by using polynomial division to reduce the degree of the numerator. We omit the steps, but encourage the reader to verify that
+          <me>
+            \frac{x^3}{(x-5)(x+3)} = x+2+\frac{19x+30}{(x-5)(x+3)}.
+          </me>
+        </p>
+
+        <p>Using <xref ref="idea_partial_fraction">Key Idea</xref>, we can rewrite the new rational function as:
+          <me>
+            \frac{19x+30}{(x-5)(x+3)} = \frac{A}{x-5} + \frac{B}{x+3}
+          </me>
+          for appropriate values of <m>A</m> and <m>B</m>. Clearing denominators, we have</p>
+
+        <aside>
+          <p>The values of <m>A</m> and <m>B</m> can be quickly found using the technique described in <xref ref="ex_pf3">Example</xref>, or they can be found by equating coefficients (which we show below).</p>
+        </aside>
+
+        <md>
+          <mrow>19x+30 \amp = A(x+3) + B(x-5)</mrow>
+          <mrow>\amp = (A+B)x + (3A-5B).</mrow>
+          <intertext>This implies that:</intertext>
+          <mrow>19\amp = A+B</mrow>
+          <mrow>30\amp = 3A-5B.</mrow>
+          <intertext>Solving this system of linear equations gives</intertext>
+          <mrow>125/8 \amp =A</mrow>
+          <mrow>27/8 \amp =B.</mrow>
+        </md>
+        <p>We can now integrate.
+          <md>
+            <mrow>\int \frac{x^3}{(x-5)(x+3)}\ dx \amp = \int\left(x+2+\frac{125/8}{x-5}+\frac{27/8}{x+3}\right)\ dx</mrow>
+            <mrow>\amp = \frac{x^2}2 + 2x + \frac{125}{8}\ln\abs{x-5} + \frac{27}8\ln\abs{x+3} + C.</mrow>
+          </md>
+        </p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_pf5">
+      <title>Integrating using partial fractions</title>
+      <statement>
+        <p>Use partial fraction decomposition to evaluate <m>\ds \int\frac{7x^2+31x+54}{(x+1)(x^2+6x+11)}\ dx</m>.</p>
+      </statement>
+      <solution>
+        <p>The degree of the numerator is less than the degree of the denominator so we begin by applying <xref ref="idea_partial_fraction">Key Idea</xref>. We have:
+        <!--          <md>
+            <mrow>\frac{7x^2+31x+54}{(x+1)(x^2+6x+11)} \amp = \frac{A}{x+1} + \frac{Bx+C}{x^2+6x+11}.</mrow>
+            <intertext>Now clear the denominators.</intertext>
+            <mrow>7x^2+31x+54 \amp = A(x^2+6x+11) + (Bx+C)(x+1)</mrow>
+            <mrow>\amp = (A+B)x^2 + (6A+B+C)x + (11A+C).</mrow>
+            <intertext>This implies that:</intertext>
+            <mrow>7\amp =A+B</mrow>
+            <mrow>31 \amp = 6A+B+C</mrow>
+            <mrow>54 \amp = 11A+C.</mrow>
+          </md>-->
+          <md>
+            <mrow>\frac{7x^2+31x+54}{(x+1)(x^2+6x+11)} \amp = \frac{A}{x+1} + \frac{Bx+C}{x^2+6x+11}.</mrow>
+            <intertext>Now clear the denominators.</intertext>
+            <mrow>7x^2+31x+54 \amp = A(x^2+6x+11) + (Bx+C)(x+1)</mrow>
+          </md>
+          Now, letting <m>x=-1</m> we have <m>30 = 6A \Rightarrow A=5</m>. When <m>x=0</m>, <m>54 = 11A+C</m>. But we know that <m>A=1</m>, so <m>54 =55+C \Rightarrow C=-1</m> Finally, we choose <m>x=1</m> (with <m>A=5, C=-1</m>) we have <m>92=90+(B-1)(2)\Rightarrow B=2</m>.
+        </p>
+
+        <p><!--Solving this system of linear equations gives the nice result of <m>A=5</m>, <m>B = 2</m> and <m>C=-1</m>.-->
+        Thus
+          <me>
+            \int\frac{7x^2+31x+54}{(x+1)(x^2+6x+11)}\ dx = \int\left(\frac{5}{x+1} + \frac{2x-1}{x^2+6x+11}\right)\ dx.
+          </me>
+        </p>
+
+        <p>The first term of this new integrand is easy to evaluate; it leads to a <m>5\ln\abs{x+1}</m> term. The second term is not hard, but takes several steps and uses substitution techniques.</p>
+
+        <p>The integrand <m>\ds \frac{2x-1}{x^2+6x+11}</m> has a quadratic in the denominator and a linear term in the numerator. This leads us to try substitution. Let <m>u = x^2+6x+11</m>, so <m>du = (2x+6)\ dx</m>. The numerator is <m>2x-1</m>, not <m>2x+6</m>, but we can get a <m>2x+6</m> term in the numerator by adding 0 in the form of <q><m>7-7</m>.</q>
+          <md>
+            <mrow>\frac{2x-1}{x^2+6x+11} \amp = \frac{2x-1+7-7}{x^2+6x+11}</mrow>
+            <mrow>\amp = \frac{2x+6}{x^2+6x+11} - \frac{7}{x^2+6x+11}.</mrow>
+          </md>
+        </p>
+
+        <p>We can now integrate the first term with substitution, leading to a <m>\ln\abs{x^2+6x+11}</m> term. The final term can be integrated using arctangent. (We can tell there is no further factoring for this quadratic since the denominator has no real solutions). First, complete the square in the denominator:
+          <me>
+            \frac{7}{x^2+6x+11} = \frac{7}{(x+3)^2+2}.
+          </me>
+        </p>
+
+        <p>An antiderivative of the latter term can be found using <xref ref="thm_int_inverse_trig">Theorem</xref> and substitution:
+          <me>
+            \int \frac{7}{x^2+6x+11}\ dx = \frac{7}{\sqrt{2}}\tan^{-1}\left(\frac{x+3}{\sqrt{2}}\right)+C.
+          </me>
+        </p>
+
+        <p>Let's start at the beginning and put all of the steps together.
+          <md>
+            <mrow>\amp \int\frac{7x^2+31x+54}{(x+1)(x^2+6x+11)}\ dx </mrow>
+            <mrow>\amp = \int\left(\frac{5}{x+1} + \frac{2x-1}{x^2+6x+11}\right)\ dx</mrow>
+            <mrow>\amp = \int\frac{5}{x+1}\ dx  + \int\frac{2x+6}{x^2+6x+11}\ dx -\int\frac{7}{(x+3)^2+2}\ dx</mrow>
+            <mrow>\amp = 5\ln\abs{x+1}+ \ln\abs{x^2+6x+11} -\frac{7}{\sqrt{2}}\tan^{-1}\left(\frac{x+3}{\sqrt{2}}\right)+C.</mrow>
+          </md>
+        </p>
+
+        <p>As with many other problems in calculus, it is important to remember that one is not expected to <q>see</q> the final answer immediately after seeing the problem. Rather, given the initial problem, we break it down into smaller problems that are easier to solve. The final answer is a combination of the answers of the smaller problems.</p>
+      </solution>
+    </example>
+
+    <p>Partial Fraction Decomposition is an important tool when dealing with rational functions. Note that at its heart, it is a technique of algebra, not calculus, as we are rewriting a fraction in a new form. Regardless, it is very useful in the realm of calculus as it lets us evaluate a certain set of <q>complicated</q> integrals.</p>
+
+    <p><xref ref="sec_hyperbolic">Section</xref>introduces new functions, called the Hyperbolic Functions. They will allow us to make substitutions similar to those found when studying Trigonometric Substitution, allowing us to approach even more integration problems.</p>
+  </introduction>
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Fill in the blank: Partial Fraction Decomposition is a method of rewriting <fillin /> functions.</p>
+          </statement>
+          <solution>
+            <p>rational</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>T/F: It is sometimes necessary to use polynomial division before using Partial Fraction Decomposition.</p>
+          </statement>
+          <solution>
+            <p>T</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Decompose <m>\ds \frac{1}{x^2-3x}</m> without solving for the coefficients, as done in <xref ref="ex_pf1">Example</xref>.</p>
+          </statement>
+          <solution>
+            <p><m>\frac{A}{x} + \frac{B}{x-3}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Decompose <m>\ds \frac{7-x}{x^2-9}</m> without solving for the coefficients, as done in <xref ref="ex_pf1">Example</xref>.</p>
+          </statement>
+          <solution>
+            <p><m>\frac{A}{x-3} + \frac{B}{x+3}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Decompose <m>\ds \frac{x-3}{x^2-7}</m> without solving for the coefficients, as done in <xref ref="ex_pf1">Example</xref>.</p>
+          </statement>
+          <solution>
+            <p><m>\frac{A}{x-\sqrt{7}} + \frac{B}{x+\sqrt{7}}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Decompose <m>\ds \frac{2x+5}{x^3+7x}</m> without solving for the coefficients, as done in <xref ref="ex_pf1">Example</xref>.</p>
+          </statement>
+          <solution>
+            <p><m>\frac{A}{x} + \frac{Bx+C}{x^2+7}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, evaluate the indefinite integral.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{7x+7}{x^2+3x-10}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>3 \ln\abs{x-2}+4 \ln\abs{x+5}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{7x-2}{x^2+x}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>9 \ln\abs{x+1}-2 \ln\abs{x}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{-4}{3x^2-12}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{1}{3} (\ln\abs{x+2}-\ln\abs{x-2})+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{x+7}{(x+5)^2}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\ln\abs{x+5}-\frac{2}{x+5}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{-3x-20}{(x+8)^2}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>-\frac{4}{x+8}-3 \ln\abs{x+8}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{9x^2+11x+7}{x(x+1)^2}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{5}{x+1}+7 \ln\abs{x}+2 \ln\abs{x+1}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{-12x^2-x+33}{(x-1)(x+3)(3-2x)}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>-\ln\abs{2x-3}+5 \ln\abs{x-1}+2 \ln\abs{x+3}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{94x^2-10x}{(7x+3)(5x-1)(3x-1)}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>-\frac{1}{5} \ln\abs{5x-1}+\frac{2}{3} \ln\abs{3 x-1}+\frac{3}{7} \ln\abs{7 \
+              x+3}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{x^2+x+1}{x^2+x-2}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>x+\ln\abs{x-1}-\ln\abs{x+2}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{x^3}{x^2-x-20}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{x^2}{2}+x+\frac{125}{9} \ln\abs{x-5}+\frac{64}{9} \ln\abs{x+4}-\frac{35}{2}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{2x^2-4x+6}{x^2-2x+3}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>2x+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{1}{x^3+2x^2+3x}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{1}{6} \left(-\ln\abs{x^2+2 x+3}+2 \ln\abs{x}-\sqrt{2} \tan^{-1}\left(\frac{x+1}{\sqrt{2}}\right)\right)+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{x^2+x+5}{x^2+4x+10}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>-\frac{3}{2} \ln\abs{x^2+4 x+10}+x+\frac{\tan\
+              ^{-1}\left(\frac{x+2}{\sqrt{6}}\right)}{\sqrt{6}}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{12x^2+21x+3}{(x+1)(3x^2+5x-1)}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\ln\abs{3 x^2+5 x-1}+2 \ln\abs{x+1}+C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{6x^2+8x-4}{(x-3)(x^2+6x+10)}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>2\ln\abs{x-3} +2\ln\abs{x^2+6x+10} -4\tan^{-1}(x+3) +C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{2x^2+x+1}{(x+1)(x^2+9)}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{9}{10} \ln\abs{x^2+9}+\frac{1}{5} \ln\abs{x+1}-\frac{4}{15} \tan^{-1}\left(\frac{x}{3}\right) +C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{x^2-20x-69}{(x-7)(x^2+2x+17)}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{1}{2} \left(3 \ln\abs{x^2+2 x+17}-4 \ln\abs{x-7}+\tan\
+              ^{-1}\left(\frac{x+1}{4}\right)\right) +C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{9x^2-60x+33}{(x-9)(x^2-2x+11)}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>3 \left(\ln\abs{x^2-2 x+11}+\ln\abs{x-9}\right)+3 \
+              \sqrt{\frac{2}{5}} \tan^{-1}\left(\frac{x-1}{\sqrt{10}}\right) +C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int \frac{6x^2+45x+121}{(x+2)(x^2+10x+27)}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{1}{2} \ln\abs{x^2+10 x+27}+5 \ln\abs{x+2}-6 \sqrt{2} \tan\
+              ^{-1}\left(\frac{x+5}{\sqrt{2}}\right) +C</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <p>In the following exercises, evaluate the definite integral.</p>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_1^2 \frac{8x+21}{(x+2)(x+3)}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>\ln(2000/243) \approx 2.108</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_0^5 \frac{14x+6}{(3x+2)(x+4)}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>5\ln(9/4)-\frac13\ln(17/2) \approx 3.3413</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{-1}^1 \frac{x^2+5x-5}{(x-10)(x^2+4x+5)}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>-\pi/4+\tan^{-1}(3) - \ln(11/9) \approx 0.263</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \int_{0}^1 \frac{x}{(x+1)(x^2+2x+1)}\ dx</m></p>
+          </statement>
+          <solution>
+            <p><m>1/8</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

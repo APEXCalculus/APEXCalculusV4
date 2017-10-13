@@ -1,0 +1,3688 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_limit_intro">
+  <title>An Introduction To Limits</title>
+  <introduction>
+    <p>We begin our study of <em>limits</em> by considering examples that demonstrate key concepts that will be explained as we progress.</p>
+
+    <p>Consider the function <m>y = \frac{\sin(x) }{x}</m>. When <m>x</m> is near the value 1, what value (if any) is <m>y</m> near?</p>
+
+    <p>While our question is not precisely formed (what constitutes <q>near the value 1</q>?), the answer does not seem difficult to find. One might think first to look at a graph of this function to approximate the appropriate <m>y</m> values. Consider <xref ref="fig_zoom_sinx_over_x">Figure</xref>, where <m>y = \frac{\sin(x) }{x}</m> is graphed. For values of <m>x</m> near 1, it seems that <m>y</m> takes on values near <m>0.85</m>. In fact, when <m>x=1</m>, then <m>y=\frac{\sin(1) }{1} \approx 0.84</m>, so it makes sense that when <m>x</m> is <q>near</q> 1, <m>y</m> will be <q>near</q> <m>0.84</m>.</p>
+
+    <sidebyside widths="47% 47%">
+      <figure xml:id="fig_sinx_over_x_full" >
+        <caption><m>\sin(x)/x</m>.</caption>
+        <image xml:id="img_sinx_over_x_full">
+          <latex-image-code>
+            <![CDATA[
+              \begin{tikzpicture}[declare function = {func(\x) = (\x != 0) * (sin(x*180/pi)/x) + (\x == 0) * (1);}]
+                  \begin{axis}[]
+                      \addplot+[domain=-7:7,samples=50] {func(x)};
+                      \addplot[hollowdot] coordinates {(0,1)};
+                  \end{axis}
+              \end{tikzpicture}
+              ]]>
+          </latex-image-code>
+        </image>
+      </figure>
+
+      <figure xml:id="fig_zoom_sinx_over_x" >
+        <caption><m>\sin(x)/x</m> near <m>x=1</m>.</caption>
+        <!-- START figures/sinx_over_x_1.tex -->
+        <image xml:id="img_zoom_sinx_over_x">
+          <latex-image-code>
+            <![CDATA[
+              \begin{tikzpicture}
+                  \begin{axis}[xmin=.3, xmax=1.6,
+                              ymin=.4, ymax=1.1,
+                              xtick={0.5,1,1.5},
+                              ytick={0.6,0.8,1},
+                              xdiscontinuity,
+                              ydiscontinuity,
+                              grid=both,
+                              ]
+                      \addplot+[domain=0.5:1.5] {sin(x*180/pi)/x};
+                  \end{axis}
+              \end{tikzpicture}
+              ]]>
+          </latex-image-code>
+        </image>
+        <!-- figures/sinx_over_x_1.tex END -->
+      </figure>
+    </sidebyside>
+
+    <p>Consider this same function again at a different value for <m>x</m>. When <m>x</m> is near <m>0</m>, what value (if any) is <m>y</m> near? By considering <xref ref="fig_sinx_over_x">Figure</xref>, one can see that it seems that <m>y</m> takes on values near <m>1</m>. But what happens when <m>x=0</m>? We have
+      <me>
+        y \rightarrow \frac{\sin(0) }{0} \rightarrow {{\text{“}}\atop{}}\frac{0}{0}{{\text{”}}\atop{}}\text{.}
+      </me>
+      The expression <m>0/0</m> has no value; it is<index><main>limit</main><sub>indeterminate form</sub></index><index><main>indeterminate form</main></index>  <term>indeterminate</term>. Such an expression gives no information about what is going on with the function nearby. We cannot find out how <m>y</m> behaves near <m>x=0</m> for this function simply by letting <m>x=0</m>.</p>
+      <figure xml:id="fig_sinx_over_x" >
+            <caption><m>\sin(x)/x</m> near <m>x=0</m>.</caption>
+            <!-- START figures/sinx_over_x_2.tex -->
+            <image xml:id="img_sinx_over_x_2" width="47%">
+              <latex-image-code>
+                <![CDATA[
+                                \begin{tikzpicture}[declare function = {func(\x) = (\x != 0) * (sin(x*180/pi)/x) + (\x == 0) * (1);}]
+                                    \begin{axis}[xmin=-1.1,xmax=1.2,
+                                                 ymin=.75,ymax=1.05,
+                                                 ytick={.8,.9,1},
+                                                 extra y ticks={.1,.3,...,.9},
+                                                 extra y tick labels={},
+                                                ]
+                                        \addplot+[domain=-1:1] {func(x)};
+                                        \addplot[hollowdot] coordinates {(0,1)};
+                                    \end{axis}
+                                \end{tikzpicture}
+                                ]]>
+              </latex-image-code>
+            </image>
+            <!-- figures/sinx_over_x_2.tex END -->
+          </figure>
+
+
+
+    <p><em>Finding a limit</em> entails understanding how a function behaves near a particular value of <m>x</m>. Before continuing, it will be useful to establish some notation. Let <m>y=f(x)</m>; that is, let <m>y</m> be a function of <m>x</m> for some function <m>f</m>. The expression <q>the limit of <m>y</m> as <m>x</m> approaches <m>1</m></q> describes a number, often referred to as <m>L</m>, that <m>y</m> nears as <m>x</m> nears <m>1</m>. We write all this as
+      <me>
+        \lim_{x\to 1} y = \lim_{x\to 1} f(x) = L\text{.}
+      </me>
+    </p>
+
+    <p>This is not a complete definition (that will come in the next section); this is a pseudo-definition that will allow us to explore the idea of a limit.<index><main>limit</main><sub>pseudo-definition</sub></index></p>
+
+    <p>Above, where <m>f(x) = \sin(x)/x</m>, we approximated
+      <me>
+        \lim_{x\to 1} \frac{\sin(x) }{x} \approx 0.84 \text{ and } \lim_{x\to 0}\frac{\sin(x) }{x} \approx 1\text{.}
+      </me>
+      (We <em>approximated</em> these limits, hence used the <q><m>\approx</m></q> symbol, since we are working with the pseudo-definition of a limit, not the actual definition.)</p>
+
+    <p>Once we have the true definition of a limit, we will find limits <em>analytically</em>; that is, exactly using a variety of mathematical tools. For now, we will <em>approximate</em> limits both graphically and numerically. Graphing a function can provide a good approximation, though often not very precise. Numerical methods can provide a more accurate approximation. We have already approximated limits graphically, so we now turn our attention to numerical approximations.</p>
+
+    <p>Consider again <m>\lim_{x\to 1}\sin(x)/x</m>. To approximate this limit numerically, we can create a table of <m>x</m> and <m>f(x)</m> values where <m>x</m> is <q>near</q> <m>1</m>. This is done in <xref ref="table_sinx_1">Table</xref>.</p>
+
+    <p>Notice that for values of <m>x</m> near <m>1</m>, we have <m>\sin(x)/x</m> near <m>0.841</m>. The <m>x=1</m> row is included, but we stress the fact that when considering limits, we are <em>not</em> concerned with the value of the function at that particular <m>x</m> value; we are only concerned with the values of the function when <m>x</m> is <em>near</em> 1.</p>
+
+    <table xml:id="table_sinx_1" >
+      <caption>Values of <m>\sin(x)/x</m> with <m>x</m> near <m>1</m>.</caption>
+      <tabular>
+        <row bottom="medium">
+          <cell><m>x</m></cell>
+          <cell><m>\sin(x)/x</m></cell>
+        </row>
+        <row>
+          <cell><m>0.9</m></cell>
+          <cell><m>0.870363</m></cell>
+        </row>
+        <row>
+          <cell><m>0.99</m></cell>
+          <cell><m>0.844471</m></cell>
+        </row>
+        <row>
+          <cell><m>0.999</m></cell>
+          <cell><m>0.841772</m></cell>
+        </row>
+        <row>
+          <cell><m>\textit{1}</m></cell>
+          <cell><m>\textit{0.841471}</m></cell>
+        </row>
+        <row>
+          <cell><m>1.001</m></cell>
+          <cell><m>0.841170</m></cell>
+        </row>
+        <row>
+          <cell><m>1.01</m></cell>
+          <cell><m>0.838447</m></cell>
+        </row>
+        <row>
+          <cell><m>1.1</m></cell>
+          <cell><m>0.810189</m></cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>Now approximate <m>\lim_{x\to 0} \sin(x)/x</m> numerically. We already approximated the value of this limit as <m>1</m> graphically in <xref ref="fig_sinx_over_x">Figure</xref>. <xref ref="table_sinx_2">Table</xref> shows the value of <m>\sin(x)/x</m> for values of <m>x</m> near <m>0</m>. Ten places after the decimal point are shown to highlight how close to <m>1</m> the value of <m>\sin(x)/x</m> gets as <m>x</m> takes on values very near <m>0</m>. We include the <m>x=0</m> row but again stress that we are not concerned with the value of our function at <m>x=0</m>, only on the behavior of the function <em>near</em> <m>0</m>.</p>
+
+    <table xml:id="table_sinx_2" >
+      <caption>Values of <m>\sin(x)/x</m> with <m>x</m> near <m>0</m>.</caption>
+      <tabular>
+        <row bottom="medium">
+          <cell><m>x</m></cell>
+          <cell><m>\sin(x)/x</m></cell>
+        </row>
+        <row>
+          <cell><m>-0.1</m></cell>
+          <cell><m>0.9983341665</m></cell>
+        </row>
+        <row>
+          <cell><m>-0.01</m></cell>
+          <cell><m>0.9999833334</m></cell>
+        </row>
+        <row>
+          <cell><m>-0.001</m></cell>
+          <cell><m>0.9999998333</m></cell>
+        </row>
+        <row>
+          <cell><m>\textit{0}</m></cell>
+          <cell><m>\textit{not defined}</m></cell>
+        </row>
+        <row>
+          <cell><m>0.001</m></cell>
+          <cell><m>0.9999998333</m></cell>
+        </row>
+        <row>
+          <cell><m>0.01</m></cell>
+          <cell><m>0.9999833334</m></cell>
+        </row>
+        <row>
+          <cell><m>0.1</m></cell>
+          <cell><m>0.9983341665</m></cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>This numerical method gives confidence to say that <m>1</m> is a good approximation of <m>\lim_{x\to 0} \sin(x)/x</m>; that is,
+      <me>
+        \lim_{x\to 0} \sin(x)/x \approx 1\text{.}
+      </me>
+    </p>
+
+    <p>Later we will be able to prove that the limit is <em>exactly</em> <m>1</m>.</p>
+
+    <p>We now consider several examples that allow us explore different aspects of the limit concept.</p>
+
+    <example xml:id="ex_limit1">
+      <title>Approximating the value of a limit</title>
+      <statement>
+        <p>Use graphical and numerical methods to approximate
+          <me>
+            \lim_{x\to 3} \frac{x^2-x-6}{6x^2-19x+3 \text{.}}
+          </me>
+        </p>
+      </statement>
+      <solution>
+        <p>To graphically approximate the limit, graph
+          <me>
+            y = (x^2-x-6)/(6x^2-19x+3)
+          </me>
+          on a small interval that contains <m>3</m>. To numerically approximate the limit, create a table of values where the <m>x</m> values are near <m>3</m>. This is done in <xref ref="fig_limit1">Figure</xref> and <xref ref="table_limit1">Table</xref>, respectively.</p>
+        <sidebyside widths="47% 47%">
+          <figure xml:id="fig_limit1" >
+            <caption>Graphically approximating a limit in <xref ref="ex_limit1">Example</xref>.</caption>
+            <!-- START figures/fig_limit1.tex -->
+            <image xml:id="img_limit1">
+              <latex-image-code>
+                <![CDATA[
+                                            \begin{tikzpicture}
+                                                \begin{axis}[xmin=2.3,xmax=3.7,
+                                                             ymin=0.2,ymax=.35,
+                                                             xdiscontinuity,
+                                                             ydiscontinuity,
+                                                             extra y tick labels={},
+                                                             grid=both,
+                                                            ]
+                                                    \addplot+[domain=2.5:3.45] {(x^2 - x - 6)/(6*x^2 - 19*x + 3)};
+                                                    \addplot [hollowdot] coordinates{(3,0.294)};
+
+                                                \end{axis}
+                                            \end{tikzpicture}
+                                            ]]>
+              </latex-image-code>
+            </image>
+            <!-- figures/fig_limit1.tex END -->
+          </figure>
+
+          <table xml:id="table_limit1" >
+            <caption>Numerically approximating a limit in <xref ref="ex_limit1">Example</xref>.</caption>
+            <tabular>
+              <row bottom="medium">
+                <cell><m>x</m></cell>
+                <cell><m>\frac{x^2-x-6}{6x^2-19x+3}</m></cell>
+              </row>
+              <row>
+                <cell><m>2.9</m></cell>
+                <cell><m>0.29878</m></cell>
+              </row>
+              <row>
+                <cell><m>2.99</m></cell>
+                <cell><m>0.294569</m></cell>
+              </row>
+              <row>
+                <cell><m>2.999</m></cell>
+                <cell><m>0.294163</m></cell>
+              </row>
+              <row>
+                <cell><em>3</em></cell>
+                <cell><em>not defined</em></cell>
+              </row>
+              <row>
+                <cell><m>3.001</m></cell>
+                <cell><m>0.294073</m></cell>
+              </row>
+              <row>
+                <cell><m>3.01</m></cell>
+                <cell><m>0.293669</m></cell>
+              </row>
+              <row>
+                <cell><m>3.1</m></cell>
+                <cell><m>0.289773</m></cell>
+              </row>
+            </tabular>
+          </table>
+        </sidebyside>
+
+        <p>The graph shows that when <m>x</m> is near <m>3</m>, the value of <m>y</m> is very near <m>0.3</m>. By considering values of <m>x</m> near <m>3</m>, we see that <m>y=0.294</m> is a better approximation. The graph and the table imply that
+          <me>
+            \lim_{x\to 3} \frac{x^2-x-6}{6x^2-19x+3} \approx 0.294\text{.}
+          </me>
+        </p>
+      </solution>
+    </example>
+
+    <p>This example may bring up a few questions about approximating limits (and the nature of limits themselves).<ol>
+        <li><p>If a graph does not produce as good an approximation as a table, why bother with it?</p></li>
+
+        <li><p>How many values of <m>x</m> in a table are <q>enough?</q> In the previous example, could we have just used <m>x=3.001</m> and found a fine approximation?</p></li>
+    </ol></p>
+
+    <p>Graphs are useful since they give a visual understanding concerning the behavior of a function. Sometimes a function may act <q>erratically</q> near certain <m>x</m> values which is hard to discern numerically but very plain graphically (see <xref ref="ex_no_limit3">Example</xref>). Since graphing utilities are very accessible, it makes sense to make proper use of them.</p>
+
+    <p>Since tables and graphs are used only to <em>approximate</em> the value of a limit, there is not a firm answer to how many data points are <q>enough.</q> Include enough so that a trend is clear, and use values (when possible) both less than and greater than the value in question. In <xref ref="ex_limit1">Example</xref>, we used both values less than and greater than <m>3</m>. Had we used just <m>x=3.001</m>, we might have been tempted to conclude that the limit had a value of <m>0.3</m>. While this is not far off, we could do better. Using values <q>on both sides of 3</q> helps us identify trends.</p>
+
+    <example xml:id="ex_limit2">
+      <title>Approximating the value of a limit</title>
+      <statement>
+        <p>Graphically and numerically approximate the limit of <m>f(x)</m> as <m>x</m> approaches <m>0</m>, where
+          <me>
+            f(x) = \begin{cases}x+1 \amp  x\lt  0 \\ -x^2+1 \amp  x > 0\text{.}\end{cases}
+          </me>
+        </p>
+      </statement>
+      <solution>
+        <p>Again we graph <m>f(x)</m> and create a table of its values near <m>x=0</m> to approximate the limit. Note that this is a piecewise defined function, so it behaves differently on either side of <m>0</m>. <xref ref="fig_limit2">Figure</xref> shows a graph of <m>f(x)</m>, and on either side of <m>0</m> it seems the <m>y</m> values approach <m>1</m>. Note that <m>f(0)</m> is not actually defined, as indicated in the graph with the open circle.</p>
+
+        <sidebyside widths="47% 47%">
+          <figure xml:id="fig_limit2" >
+            <caption>Graphically approximating a limit in <xref ref="ex_limit2">Example</xref>.</caption>
+            <!-- START figures/fig_limit2.tex -->
+            <image xml:id="img_limit2">
+              <latex-image-code>
+                <![CDATA[
+                                            \begin{tikzpicture}[declare function = {func(\x) = (\x<0) * (x+1) + (\x>0) * (-x^2+1);}]
+                                                \begin{axis}[xmin=-1.1,xmax=1.1,
+                                                             ymin=-.1,ymax=1.1,
+                                                            ]
+                                                    \addplot+[domain=-1:1] {func(x)};
+                                                    \addplot[hollowdot] coordinates {(0,1)};
+                                                \end{axis}
+                                            \end{tikzpicture}
+                                            ]]>
+              </latex-image-code>
+            </image>
+            <!-- figures/fig_limit2.tex END -->
+          </figure>
+
+          <table xml:id="table_limit2" >
+            <caption>Numerically approximating a limit in <xref ref="ex_limit2">Example</xref>.</caption>
+            <tabular>
+              <row bottom="medium">
+                <cell><m>x</m></cell>
+                <cell><m>f(x)</m></cell>
+              </row>
+              <row>
+                <cell><m>-0.1</m></cell>
+                <cell><m>0.9</m></cell>
+              </row>
+              <row>
+                <cell><m>-0.01</m></cell>
+                <cell><m>0.99</m></cell>
+              </row>
+              <row>
+                <cell><m>-0.001</m></cell>
+                <cell><m>0.999</m></cell>
+              </row>
+              <row>
+                <cell><m>0.001</m></cell>
+                <cell><m>0.999999</m></cell>
+              </row>
+              <row>
+                <cell><m>0.01</m></cell>
+                <cell><m>0.9999</m></cell>
+              </row>
+              <row>
+                <cell><m>0.1</m></cell>
+                <cell><m>0.99</m></cell>
+              </row>
+            </tabular>
+          </table>
+        </sidebyside>
+
+        <p><xref ref="table_limit2">Table</xref> shows values of <m>f(x)</m> for values of <m>x</m> near <m>0</m>. It is clear that as <m>x</m> takes on values very near <m>0</m>, <m>f(x)</m> takes on values very near <m>1</m>. It turns out that if we let <m>x=0</m> for either <q>piece</q> of <m>f(x)</m>, <m>1</m> is returned; this is significant and we'll return to this idea later.</p>
+
+        <p>The graph and table allow us to say that <m>\lim_{x\to 0}f(x) \approx 1</m>; in fact, we are probably very sure it <em>equals</em> 1.</p>
+      </solution>
+    </example>
+  </introduction>
+
+  <subsection xml:id="subsec_nolimit3">
+    <title>Identifying When Limits Do Not Exist</title>
+    <p>A function may not have a limit for all values of <m>x</m>. That is, we cannot say <m>\lim_{x\to c}f(x)=L</m> (where  <m>L</m>  is some real number) for all values of <m>c</m>, for there may not be a number that <m>f(x)</m> is approaching. There are three ways in which a limit may fail to exist. <index><main>limit</main><sub>does not exist</sub></index><ol>
+      <li><p>The function <m>f(x)</m> may approach different values on either side of <m>c</m>.</p></li>
+
+      <li><p>The function may grow without upper or lower bound as <m>x</m> approaches <m>c</m>.</p></li>
+
+      <li><p>The function may oscillate as <m>x</m> approaches <m>c</m>.</p></li>
+    </ol>We'll explore each of these in turn.</p>
+
+    <example xml:id="ex_no_limit1">
+      <title>Different Values Approached From Left and Right</title>
+      <statement>
+        <p>Explore why <m>\lim\limits_{x\to 1} f(x)</m> does not exist, where
+          <me>
+            f(x) = \begin{cases}x^2-2x+3 \amp  x\leq 1 \\ x \amp  x>1\text{.}\end{cases}
+          </me>
+        </p>
+      </statement>
+      <solution>
+        <p>A graph of <m>f(x)</m> around <m>x=1</m> and a table are given <xref ref="fig_nolimit1">Figure</xref> and <xref ref="table_nolimit1">Table</xref>, respectively. It is clear that as <m>x</m> approaches <m>1</m>, <m>f(x)</m> does not seem to approach a single number. Instead, it seems as though <m>f(x)</m> approaches two different numbers. When considering values of <m>x</m> less than <m>1</m> (approaching <m>1</m> from the left), it seems that <m>f(x)</m> is approaching <m>2</m>; when considering values of <m>x</m> greater than <m>1</m> (approaching <m>1</m> from the right), it seems that <m>f(x)</m> is approaching <m>1</m>. Recognizing this behavior is important; we'll study this in greater depth later. Right now, it suffices to say that the limit does not exist since <m>f(x)</m> is approaching two <em>different</em> values as <m>x</m> approaches <m>1</m>.</p>
+
+        <sidebyside widths="47% 47%">
+          <figure xml:id="fig_nolimit1" >
+            <caption>Observing no limit as <m>x\to 1</m> in <xref ref="ex_no_limit1">Example</xref>.</caption>
+            <!-- START figures/fig_nolimit1.tex -->
+            <image xml:id="img_nolimit1">
+              <latex-image-code>
+                <![CDATA[
+                                            \begin{tikzpicture}
+                                                \begin{axis}[xmin=-.1,xmax=2.1,
+                                                             ymin=-.1,ymax=3.2,
+                                                            ]
+                                                    \addplot[firstcurvestyle,leftarrow, domain=0:1] {x^2 - 2*x + 3};
+                                                    \addplot[firstcurvestyle,rightarrow, domain=1:2] {x};
+                                                    \addplot[soliddot] coordinates {(1,2)};
+                                                    \addplot[hollowdot] coordinates {(1,1)};
+                                                \end{axis}
+                                            \end{tikzpicture}
+                                            ]]>
+              </latex-image-code>
+            </image>
+            <!-- figures/fig_nolimit1.tex END -->
+          </figure>
+
+          <table xml:id="table_nolimit1" >
+            <caption>Values of <m>f(x)</m> near <m>x=1</m> in <xref ref="ex_no_limit1">Example</xref>.</caption>
+            <tabular>
+              <row bottom="medium">
+                <cell><m>x</m></cell>
+                <cell><m>f(x)</m></cell>
+              </row>
+              <row>
+                <cell><m>0.9</m></cell>
+                <cell><m>2.01</m></cell>
+              </row>
+              <row>
+                <cell><m>0.99</m></cell>
+                <cell><m>2.0001</m></cell>
+              </row>
+              <row>
+                <cell><m>0.999</m></cell>
+                <cell><m>2.000001</m></cell>
+              </row>
+              <row>
+                <cell><m>1.001</m></cell>
+                <cell><m>1.001</m></cell>
+              </row>
+              <row>
+                <cell><m>1.01</m></cell>
+                <cell><m>1.01</m></cell>
+              </row>
+              <row>
+                <cell><m>1.1</m></cell>
+                <cell><m>1.1</m></cell>
+              </row>
+            </tabular>
+          </table>
+        </sidebyside>
+      </solution>
+    </example>
+
+    <example xml:id="ex_no_limit2">
+      <title>The Function Grows Without Bound</title>
+      <statement>
+        <p>Explore why <m>\lim\limits_{x\to 1} 1/(x-1)^2</m> does not exist.</p>
+      </statement>
+      <solution>
+        <p>A graph and table of <m>f(x) = 1/(x-1)^2</m> are given in <xref ref="fig_nolimit2">Figure</xref> and <xref ref="table_nolimit2">Table</xref>, respectively. Both show that as <m>x</m> approaches <m>1</m>, <m>f(x)</m> grows larger and larger.</p>
+
+        <sidebyside widths="47% 47%">
+          <figure xml:id="fig_nolimit2" >
+            <caption>Observing no limit as <m>x\to 1</m> in <xref ref="ex_no_limit2">Example</xref>.</caption>
+            <!-- START figures/fig_nolimit2.tex -->
+            <image xml:id="img_nolimit2">
+              <latex-image-code>
+                <![CDATA[
+                                                \begin{tikzpicture}
+                                                    \begin{axis}[xmin=-.1,xmax=2.1,
+                                                                 ymin=-1,ymax=110
+                                                                ]
+                                                        \addplot[firstcurvestyle,domain=0:0.9] {1/(x - 1)^2};
+                                                        \addplot[firstcurvestyle,domain=1.1:2] {1/(x - 1)^2};
+                                                        \addplot[asymptote,rightarrow] coordinates {(1,1) (1,100)};
+                                                    \end{axis}
+                                                \end{tikzpicture}
+                                            ]]>
+              </latex-image-code>
+            </image>
+            <!-- figures/fig_nolimit2.tex END -->
+          </figure>
+
+          <table xml:id="table_nolimit2" >
+            <caption>Values of <m>f(x)</m> near <m>x=1</m> in <xref ref="ex_no_limit2">Example</xref>.</caption>
+            <tabular>
+              <row bottom="medium">
+                <cell><m>x</m></cell>
+                <cell><m>f(x)</m></cell>
+              </row>
+              <row>
+                <cell><m>0.9</m></cell>
+                <cell><m>100</m>.</cell>
+              </row>
+              <row>
+                <cell><m>0.99</m></cell>
+                <cell><m>10000</m>.</cell>
+              </row>
+              <row>
+                <cell><m>0.999</m></cell>
+                <cell><m>1.\times 10^6</m></cell>
+              </row>
+              <row>
+                <cell><m>1.001</m></cell>
+                <cell><m>1.\times 10^6</m></cell>
+              </row>
+              <row>
+                <cell><m>1.01</m></cell>
+                <cell><m>10000</m>.</cell>
+              </row>
+              <row>
+                <cell><m>1.1</m></cell>
+                <cell><m>100</m>.</cell>
+              </row>
+            </tabular>
+          </table>
+        </sidebyside>
+
+        <p>We can deduce this on our own, without the aid of the graph and table. If <m>x</m> is near 1, then <m>(x-1)^2</m> is very small, and:
+          <me>
+            \frac{1}{\text{ very small number } } = \text{ very large number }.
+          </me>
+        </p>
+
+        <p>Since <m>f(x)</m> is not approaching a single number, we conclude that
+          <me>
+            \lim_{x\to 1}\frac{1}{(x-1)^2}
+          </me>
+          does not exist.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_no_limit3">
+      <title>The Function Oscillates</title>
+      <statement>
+        <p>Explore why <m>\lim\limits_{x\to 0}\sin(1/x)</m> does not exist.</p>
+      </statement>
+      <solution>
+        <p>Two graphs of <m>f(x) = \sin(1/x)</m> are given in <xref ref="fig_nolimit3">Figure</xref>. <xref ref="fig_nolimit3a">Figure</xref> shows <m>f(x)</m> on the interval <m>[-1,1]</m>; notice how <m>f(x)</m> seems to oscillate near <m>x=0</m>. One might think that despite the oscillation, as <m>x</m> approaches <m>0</m>, <m>f(x)</m> approaches <m>0</m>. However, <xref ref="fig_nolimit3b">Figure</xref> zooms in on <m>\sin(1/x)</m>, on the interval <m>[-0.1,0.1]</m>. Here the oscillation is even more pronounced. Finally, in <xref ref="table_nolimit3c">Figure</xref>, we see <m>\sin(x)/x</m> evaluated for values of <m>x</m> near <m>0</m>. As <m>x</m> approaches <m>0</m>, <m>f(x)</m> does not appear to approach any value.</p>
+
+        <sidebyside xml:id="fig_nolimit3" widths="47% 47%">
+          <caption>Observing that <m>f(x)=\sin(1/x)</m> has no limit as <m>x\to0</m> in <xref ref="ex_no_limit3">Example</xref>.</caption>
+          <figure xml:id="fig_nolimit3a">
+            <caption /><!-- START figures/fig_nolimit3a.tex -->
+            <image xml:id="img_nolimit3a">
+              <latex-image-code>
+                <![CDATA[
+                                            \begin{tikzpicture}
+                                                \begin{axis}[xmin=-1.1,xmax=1.1,
+                                                             ymin=-1.1,ymax=1.1,
+                                                            ]
+                                                    \addplot[firstcurvestyle,leftarrow,
+                                                            domain=-1.018591636:-0.318309886, % 1/(15/48 pi) to 1/(48/48 pi)
+                                                            samples=34, % sample every pi/48 through phase
+                                                            ] {sin(1/x * 180 / pi)};
+                                                    \addplot[firstcurvestyle,-,smooth,
+                                                            domain=-0.318309886:-0.106103295, % 1/pi to 1/(3 pi)
+                                                            samples=25, % sample every pi/12 through phase
+                                                            ] {sin(1/x * 180 / pi)};
+                                                    \addplot[firstcurvestyle,-,smooth,
+                                                            domain=-0.106103295:-0.063661977, % 1/(3 pi) to 1/(5 pi)
+                                                            samples=49, % sample every pi/24 through phase
+                                                            ] {sin(1/x * 180 / pi)};
+                                                    \addplot[firstcurvestyle,-,smooth,
+                                                            domain=-0.063661977:-0.045472841, % 1/(5 pi) to 1/(7 pi)
+                                                            samples=97, % sample every pi/48 through phase
+                                                            ] {sin(1/x * 180 / pi)};
+                                                    \draw [color=blue,fill=blue] (axis cs:-0.045472841,-1) rectangle (axis cs:0.045472841,1);
+                                                    %\addplot[firstcurvestyle,-,smooth,
+                                                    %         domain=-0.045472841:-0.0106103295, % 1/(7 pi) to 1/(30 pi)
+                                                    %         samples=93, % sample every pi/2 through phase
+                                                    %        ] {sin(1/x * 180 / pi)};
+                                                    %\addplot[firstcurvestyle,-,smooth,
+                                                    %         domain=0.0106103295:0.045472841, % 1/(30 pi) to 1/(7 pi)
+                                                    %         samples=93, % sample every pi/2 through phase
+                                                    %        ] {sin(1/x * 180 / pi)};
+                                                    \addplot[firstcurvestyle,-,smooth,
+                                                            domain=0.045472841:0.063661977, % 1/(7 pi) to 1/(5 pi)
+                                                            samples=97, % sample every pi/48 through phase
+                                                            ] {sin(1/x * 180 / pi)};
+                                                    \addplot[firstcurvestyle,-,smooth,
+                                                            domain=0.063661977:0.106103295, % 1/(5 pi) to 1/(3 pi)
+                                                            samples=49, % sample every pi/24 through phase
+                                                            ] {sin(1/x * 180 / pi)};
+                                                    \addplot[firstcurvestyle,-,smooth,
+                                                            domain=0.106103295:0.318309886, % 1/(3 pi) to 1/pi
+                                                            samples=25, % sample every pi/12 through phase
+                                                            ] {sin(1/x * 180 / pi)};
+                                                    \addplot[firstcurvestyle,rightarrow,
+                                                            domain=0.318309886:1.018591636, % 1/(48/48 pi) to 1/(15/48 pi)
+                                                            samples=34, % sample every pi/48 through phase
+                                                            ] {sin(1/x * 180 / pi)};
+                                                \end{axis}
+                                            \end{tikzpicture}
+                                            ]]>
+              </latex-image-code>
+            </image>
+            <!-- figures/fig_nolimit3a.tex END -->
+          </figure>
+
+          <figure xml:id="fig_nolimit3b">
+            <caption /><!-- START figures/fig_nolimit3b.tex -->
+            <image xml:id="img_nolimit3b">
+              <latex-image-code>
+                <![CDATA[
+                                            \begin{tikzpicture}
+                                                \begin{axis}[xmin=-.11,xmax=.11,
+                                                            ymin=-1.1,ymax=1.1
+                                                            ]
+                                                    \addplot[firstcurvestyle,leftarrow,
+                                                            domain=-0.100518911:-0.063661977, % 1/(152/48 pi) to 1/(240/48 pi)
+                                                            samples=89, % sample every pi/48 through phase
+                                                            ] {sin(1/x * 180 / pi)};
+                                                    \addplot[firstcurvestyle,-,smooth,
+                                                            domain=-0.063661977:-0.045472841, % 1/(5 pi) to 1/(7 pi)
+                                                            samples=25, % sample every pi/12 through phase
+                                                            ] {sin(1/x * 180 / pi)};
+                                                    \addplot[firstcurvestyle,-,smooth,
+                                                            domain=-0.045472841:-0.035367765, % 1/(7 pi) to 1/(9 pi)
+                                                            samples=49, % sample every pi/24 through phase
+                                                            ] {sin(1/x * 180 / pi)};
+                                                    \addplot[firstcurvestyle,-,smooth,
+                                                            domain=-0.035367765:-0.024485376, % 1/(9 pi) to 1/(13 pi)
+                                                            samples=145, % sample every pi/36 through phase
+                                                            ] {sin(1/x * 180 / pi)};
+                                                    \addplot[firstcurvestyle,-,smooth,
+                                                            domain=-0.024485376:-0.012732395, % 1/(13 pi) to 1/(25 pi)
+                                                            samples=73, % sample every pi/6 through phase
+                                                            ] {sin(1/x * 180 / pi)};
+                                                    \draw [color=blue,fill=blue] (axis cs:-0.012732395,-1) rectangle (axis cs:0.012732395,1);
+                                                    %\addplot[firstcurvestyle,-,smooth,
+                                                    %         domain=-0.0031830988618379:-0.0010610329539459, % 1/(100 pi) to 1/(300 pi)
+                                                    %         samples=401, % sample every pi/2 through phase
+                                                    %        ] {sin(1/x * 180 / pi)};
+                                                    \addplot[firstcurvestyle,leftarrow,
+                                                            domain=0.100518911:0.063661977, % 1/(152/48 pi) to 1/(240/48 pi)
+                                                            samples=89, % sample every pi/48 through phase
+                                                            ] {sin(1/x * 180 / pi)};
+                                                    \addplot[firstcurvestyle,-,smooth,
+                                                            domain=0.063661977:0.045472841, % 1/(5 pi) to 1/(7 pi)
+                                                            samples=25, % sample every pi/12 through phase
+                                                            ] {sin(1/x * 180 / pi)};
+                                                    \addplot[firstcurvestyle,-,smooth,
+                                                            domain=0.045472841:0.035367765, % 1/(7 pi) to 1/(9 pi)
+                                                            samples=49, % sample every pi/24 through phase
+                                                            ] {sin(1/x * 180 / pi)};
+                                                    \addplot[firstcurvestyle,-,smooth,
+                                                            domain=0.035367765:0.024485376, % 1/(9 pi) to 1/(13 pi)
+                                                            samples=145, % sample every pi/36 through phase
+                                                            ] {sin(1/x * 180 / pi)};
+                                                    \addplot[firstcurvestyle,-,smooth,
+                                                            domain=0.024485376:0.012732395, % 1/(13 pi) to 1/(25 pi)
+                                                            samples=73, % sample every pi/6 through phase
+                                                            ] {sin(1/x * 180 / pi)};
+                                                    %\addplot[firstcurvestyle,-,smooth,
+                                                    %         domain=0.0031830988618379:0.0010610329539459, % 1/(100 pi) to 1/(300 pi)
+                                                    %         samples=401, % sample every pi/2 through phase
+                                                    %        ] {sin(1/x * 180 / pi)};
+                                                \end{axis}
+                                            \end{tikzpicture}
+                                            ]]>
+              </latex-image-code>
+            </image>
+            <!-- figures/fig_nolimit3b.tex END -->
+          </figure>
+        </sidebyside>
+
+        <table xml:id="table_nolimit3c">
+          <caption>Observing that <m>f(x)=\sin(1/x)</m> has no limit as <m>x\to0</m> in <xref ref="ex_no_limit3">Example</xref>.</caption>
+          <tabular>
+            <row bottom="medium">
+              <cell><m>x</m></cell>
+              <cell><m>\sin(1/x)</m></cell>
+            </row>
+            <row>
+              <cell><m>0.1</m></cell>
+              <cell><m>-0.544021</m></cell>
+            </row>
+            <row>
+              <cell><m>0.01</m></cell>
+              <cell><m>-0.506366</m></cell>
+            </row>
+            <row>
+              <cell><m>0.001</m></cell>
+              <cell><m>0.82688</m></cell>
+            </row>
+            <row>
+              <cell><m>0.0001</m></cell>
+              <cell><m>-0.305614</m></cell>
+            </row>
+            <row>
+              <cell><m>1.\times 10^{-5}</m></cell>
+              <cell><m>0.0357488</m></cell>
+            </row>
+            <row>
+              <cell><m>1.\times 10^{-6}</m></cell>
+              <cell><m>-0.349994</m></cell>
+            </row>
+            <row>
+              <cell><m>1.\times 10^{-7}</m></cell>
+              <cell><m>0.420548</m></cell>
+            </row>
+          </tabular>
+        </table>
+
+        <p>It can be shown that in reality, as <m>x</m> approaches 0, <m>\sin(1/x)</m> takes on all values between <m>-1</m> and 1 infinite times! Because of this oscillation, <m>\lim\limits_{x\to 0}\sin(1/x)</m> does not exist.</p>
+      </solution>
+    </example>
+  </subsection>
+
+  <subsection xml:id="fig_diff_quot_small_h">
+    <title>Limits of Difference Quotients</title>
+    <p>We have approximated limits of functions as <m>x</m> approached a particular number. We will consider another important kind of limit after explaining a few key ideas.<index><main>limit</main><sub>difference quotient</sub></index></p>
+
+
+    <p>Let <m>f(x)</m> represent the position function, in feet, of some particle that is moving in a straight line, where <m>x</m> is measured in seconds. Let's say that when <m>x=1</m>, the particle is at position <m>10</m> ft., and when <m>x=5</m>, the particle is at <m>20</m> ft. Another way of expressing this is to say</p>
+
+    <blockquote><p><m>f(1)=10</m> and <m>f(5) = 20</m>.</p></blockquote>
+
+    <p>Since the particle traveled <m>10</m> feet in <m>4</m> seconds, we can say the particle's<index><main>average velocity</main></index><index><main>velocity</main><sub>average velocity</sub></index> <term>average velocity</term> was <m>2.5</m> ft/s. We write this calculation using a <q>quotient of differences,</q> or, a<index><main>difference quotient</main></index> <term>difference quotient</term>:
+      <me>
+        \frac{f(5) - f(1)}{5-1} \frac{\text{ ft}}{\text{s}} = \frac{10 \text{ ft}}{4\text{ s}} = 2.5 \text{ ft/s }\text{.}
+      </me>
+    </p>
+
+    <p>This difference quotient can be thought of as the familiar <q>rise over run</q> used to compute the slopes of lines. In fact, that is essentially what we are doing: given two points on the graph of <m>f</m>, we are finding the slope of the <em>secant line</em> through those two points. See <xref ref="fig_diffquot1">Figure</xref>.</p>
+
+     <figure xml:id="fig_diffquot1" >
+      <caption>Interpreting a difference quotient as the slope of a secant line.</caption>
+      <!-- START figures/fig_diff_quot1.tex -->
+      <image xml:id="img_diffquot1" width="47%">
+        <latex-image-code>
+          <![CDATA[
+                          \begin{tikzpicture}
+                              \begin{axis}[xmin=-1,xmax=6.5,
+                                          ymin=-1,ymax=25,
+                                          ]
+                                  \addplot+[domain=0:6] {-1.5*x^2+11.5*x};
+                                  \addplot+[domain=0:6] {2.5*(x-1)+10};
+                                  \addplot[soliddot] coordinates {(1,10) (5,20)};
+                              \end{axis}
+                          \end{tikzpicture}
+                          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_diff_quot1.tex END -->
+    </figure>
+
+    <p>Now consider finding the average speed on another time interval. We again start at <m>x=1</m>, but consider the position of the particle <m>h</m> seconds later. That is, consider the positions of the particle when <m>x=1</m> and when <m>x=1+h</m>. The difference quotient (excluding units) is now
+      <me>
+        \frac{f(1+h)-f(1)}{(1+h)-1} = \frac{f(1+h)-f(1)}{h}\text{.}
+      </me>
+    </p>
+
+    <p>Let <m>f(x) = -1.5x^2+11.5x</m>; note that <m>f(1)=10</m> and <m>f(5) = 20</m>, as in our discussion. We can compute this difference quotient for all values of <m>h</m> (even negative values!) except <m>h=0</m>, for then we get <q>0/0,</q> the indeterminate form introduced earlier. For all values <m>h\neq 0</m>, the difference quotient computes the average velocity of the particle over an interval of time of length <m>h</m> starting at <m>x=1</m>.</p>
+
+    <p>For small values of <m>h</m>, i.e., values of <m>h</m> close to <m>0</m>, we get average velocities over very short time periods and compute secant lines over small intervals. See <xref ref="fig_diff_quot_smallh">Figure</xref>. This leads us to wonder what the limit of the difference quotient is as <m>h</m> approaches <m>0</m>. That is,
+      <me>
+        \lim_{h\to 0} \frac{f(1+h)-f(1)}{h} = \text{ ? }
+      </me>
+    </p>
+    <todo>Add a geogebra applet (for online version only). I've made one here: https://ggbm.at/mGffD9sE</todo>
+    <sidebyside xml:id="fig_diff_quot_smallh" widths="31% 31% 31%">
+      <caption>Secant lines of <m>f(x)</m> at <m>x=1</m> and <m>x=1+h</m>, for shrinking values of <m>h</m> (i.e., <m>h\rightarrow 0</m>).</caption>
+      <figure xml:id="fig_diff_quot_smallha">
+        <caption><m>h=2</m></caption>
+        <!-- START figures/fig_diff_quot_smallha.tex -->
+        <image xml:id="img_diff_quot_smallha">
+          <latex-image-code>
+            <![CDATA[
+                                \begin{tikzpicture}
+                                    \begin{axis}[xmin=-1,xmax=6.5,
+                                                ymin=-1,ymax=25,
+                                                ]
+                                        \addplot+[domain=0:6] {-1.5*x^2+11.5*x};
+                                        \addplot+[domain=0:3.5454] {5.5*(x-1)+10};
+                                        \addplot[soliddot] coordinates {(1,10) (3,21)};
+                                    \end{axis}
+                                \end{tikzpicture}
+                                ]]>
+          </latex-image-code>
+        </image>
+        <!-- figures/fig_diff_quot_smallha.tex END -->
+      </figure>
+
+      <figure xml:id="fig_diff_quot_smallhb">
+        <caption><m>h=1</m></caption>
+        <!-- START figures/fig_diff_quot_smallhb.tex -->
+        <image xml:id="img_diff_quot_smallhb">
+          <latex-image-code>
+            <![CDATA[
+                                \begin{tikzpicture}
+                                    \begin{axis}[xmin=-1,xmax=6.5,
+                                                ymin=-1,ymax=25,
+                                                ]
+                                        \addplot+[domain=0:6] {-1.5*x^2+11.5*x};
+                                        \addplot+[domain=0:3] {7*(x-1)+10};
+                                        \addplot[soliddot] coordinates {(1,10) (2,17)};
+                                    \end{axis}
+                                \end{tikzpicture}
+                                ]]>
+          </latex-image-code>
+        </image>
+        <!-- figures/fig_diff_quot_smallhb.tex END -->
+      </figure>
+
+      <figure xml:id="fig_diff_quot_smallhc">
+        <caption><m>h=0.5</m></caption>
+        <!-- START figures/fig_diff_quot_smallhc.tex -->
+        <image xml:id="img_diff_quot_smallhc">
+          <latex-image-code>
+            <![CDATA[
+                                \begin{tikzpicture}
+                                    \begin{axis}[xmin=-1,xmax=6.5,
+                                                ymin=-1,ymax=25,
+                                                ]
+                                        \addplot+[domain=0:6] {-1.5*x^2+11.5*x};
+                                        \addplot+[domain=0:2.80645] {7.75*(x-1)+10};
+                                        \addplot[soliddot] coordinates {(1,10) (1.5,13.875)};
+                                    \end{axis}
+                                \end{tikzpicture}
+                                ]]>
+          </latex-image-code>
+        </image>
+        <!-- figures/fig_diff_quot_smallhc.tex END -->
+      </figure>
+    </sidebyside>
+
+    <p>As we do not yet have a true definition of a limit nor an exact method for computing it, we settle for approximating the value. While we could graph the difference quotient (where the <m>x</m>-axis would represent <m>h</m> values and the <m>y</m>-axis would represent values of the difference quotient) we settle for making a table. See <xref ref="table_diff_quot_smallh">Table</xref>. The table gives us reason to assume the value of the limit is about <m>8.5</m>.</p>
+
+    <table xml:id="table_diff_quot_smallh" >
+      <caption>The difference quotient evaluated at values of <m>h</m> near <m>0</m>.</caption>
+      <tabular>
+        <row bottom="medium">
+          <cell><m>h</m></cell>
+          <cell><m>\frac{f(1+h)-f(1)}{h}</m></cell>
+        </row>
+        <row>
+          <cell><m>-0.5</m></cell>
+          <cell><m>9.25</m></cell>
+        </row>
+        <row>
+          <cell><m>-0.1</m></cell>
+          <cell><m>8.65</m></cell>
+        </row>
+        <row>
+          <cell><m>-0.01</m></cell>
+          <cell><m>8.515</m></cell>
+        </row>
+        <row>
+          <cell><m>0.01</m></cell>
+          <cell><m>8.485</m></cell>
+        </row>
+        <row>
+          <cell><m>0.1</m></cell>
+          <cell><m>8.35</m></cell>
+        </row>
+        <row>
+          <cell><m>0.5</m></cell>
+          <cell><m>7.75</m></cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>Proper understanding of limits is key to understanding calculus. With limits, we can accomplish seemingly impossible mathematical things, like adding up an infinite number of numbers (and not get infinity) and finding the slope of a line between two points, where the <q>two points</q> are actually the same point. These are not just mathematical curiosities; they allow us to link position, velocity and acceleration together, connect cross-sectional areas to volume, find the work done by a variable force, and much more.</p>
+
+    <p>In the next section we give the formal definition of the limit and begin our study of finding limits analytically. In the following exercises, we continue our introduction and approximate the value of limits.</p>
+  </subsection>
+
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <statement>
+            <p>In your own words, what does it mean to <q>find the limit of <m>f(x)</m> as <m>x</m> approaches 3</q>?</p>
+
+            <p><var form="essay" /></p>
+          </statement>
+          <solution>
+            <p>Answers will vary.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$answer">
+              <static>an indeterminate form</static>
+            </var>
+            <pg-code>
+              $answer="an indeterminate form";
+              $undefined="an undefined expression";
+              Context()->strings->add($answer=>{},indeterminate=>{alias=>$answer},$undefined=>{},undefined=>{alias=>$undefined});
+              $evaluator=Compute($answer)->cmp()->withPostFilter(AnswerHints([Compute("undefined")]=>"Yes, but there is a more specific answer."));
+            </pg-code>
+          </setup>
+          <statement>
+            <p>An expression of the form <m>\frac{0}{0}</m> is called <var evaluator="$evaluator" width="25" />.</p>
+          </statement>
+          <solution>
+            <p>An expression of the form <m>\frac{0}{0}</m> is called <var name="$answer" />.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$limitequalsvalue">
+              <set>
+                <member>True</member>
+                <member correct="yes">False</member>
+              </set>
+            </var>
+            <pg-code>
+              $limitequalsvalue=PopUp(['?','True','False'],'False');
+            </pg-code>
+          </setup>
+          <statement>
+            <p>True or False? The limit of <m>f(x)</m> as <m>x</m> approaches <m>5</m> is <m>f(5)</m>. <var name="$limitequalsvalue" form="popup"/></p>
+          </statement>
+          <solution>
+            <p>False</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <statement>
+            <p>Describe three situations where <m>\lim\limits_{x\to c}f(x)</m> does not exist.</p>
+
+            <p><var form="essay" /></p>
+          </statement>
+          <solution>
+            <p>The function may approach different values from the left and right, the function may grow without bound, or the function might oscillate.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <statement>
+            <p>In your own words, what is a difference quotient?</p>
+
+            <p><var form="essay" /></p>
+          </statement>
+          <solution>
+            <p>Answers will vary.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+    <todo>Resolve this exercisegroup's introduction instructions and their repetition in each exercise.</todo>
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, approximate the given limits both numerically and graphically.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>x^2+3x-5</static>
+            </var>
+            <var name="$a">
+              <static>1</static>
+            </var>
+            <var name="$l" category="number">
+              <static>-1</static>
+            </var>
+            <var name="$tabin[0]">
+              <static>0.9</static>
+            </var>
+            <var name="$tabin[1]">
+              <static>0.99</static>
+            </var>
+            <var name="$tabin[2]">
+              <static>0.999</static>
+            </var>
+            <var name="$tabin[3]">
+              <static>1.001</static>
+            </var>
+            <var name="$tabin[4]">
+              <static>1.01</static>
+            </var>
+            <var name="$tabin[5]">
+              <static>1.1</static>
+            </var>
+            <var name="$tabout[0]">
+              <static>-1.49</static>
+            </var>
+            <var name="$tabout[1]">
+              <static>-1.0499</static>
+            </var>
+            <var name="$tabout[2]">
+              <static>-1.005</static>
+            </var>
+            <var name="$tabout[3]">
+              <static>-0.994999</static>
+            </var>
+            <var name="$tabout[4]">
+              <static>-0.9499</static>
+            </var>
+            <var name="$tabout[5]">
+              <static>-0.49</static>
+            </var>
+            <pg-code>
+              do{
+              do{$b=non_zero_random(-5,5,1);
+              $c=non_zero_random(-5,5,1);
+              }until(gcd($b,$c)==1);
+              $a=non_zero_random(-1,1,1);
+              if ($envir{problemSeed}==1){$a=1;$b=3;$c=-5;};
+              $f=Formula("x^2+$b x+$c")->reduce;
+              $l=$f->eval(x=>$a);
+              }until($l!=0);
+              @tabin=($a-0.1,$a-0.01,$a-0.001,$a+0.001,$a+0.01,$a+0.1);
+              @tabout=map{$f->eval(x=>$_)} @tabin;
+              $solgr=init_graph(-2,-abs($l)-2,2,abs($l)+2,axes=>[0,0],grid=>[4,2*abs($l)+4],size=>[400,400]);
+              add_functions($solgr,"$f for x in &lt;-2,2&gt; using color:blue and weight:2");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Approximate the limit numerically and graphically.</p>
+            <p><m>\lim\limits_{x\to <var name="$a" />}\left(<var name="$f" />\right)=</m><var name="$l" width="10" /></p>
+          </statement>
+          <solution>
+            <p>For a numerical approximation, make a table:</p>
+
+            <table>
+              <tabular>
+                <row bottom="medium">
+                  <cell><m>x</m></cell>
+                  <cell><m>
+                  <var name="$f" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[0]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[0]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[1]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[1]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[2]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[2]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[3]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[3]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[4]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[4]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[5]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[5]" />
+                  </m></cell>
+                </row>
+              </tabular>
+            </table>
+
+            <p>For a graphical approximation:</p>
+
+            <figure>
+              <image pg-name="$solgr" />
+            </figure>
+
+            <p>It appears that when <m>x</m> is close to <m><var name="$a" /></m>, that <m><var name="$f" /></m> is close to <m><var name="$l" /></m>. So
+              <me>
+                \lim_{x\to <var name="$a" />}\left(<var name="$f" />\right)=<var name="$l" />\text{.}
+              </me>
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>x^3-3x^2+x-5</static>
+            </var>
+            <var name="$a">
+              <static>0</static>
+            </var>
+            <var name="$l" category="number">
+              <static>-5</static>
+            </var>
+            <var name="$tabin[0]">
+              <static>-0.1</static>
+            </var>
+            <var name="$tabin[1]">
+              <static>-0.01</static>
+            </var>
+            <var name="$tabin[2]">
+              <static>-0.001</static>
+            </var>
+            <var name="$tabin[3]">
+              <static>0.001</static>
+            </var>
+            <var name="$tabin[4]">
+              <static>0.01</static>
+            </var>
+            <var name="$tabin[5]">
+              <static>0.1</static>
+            </var>
+            <var name="$tabout[0]">
+              <static>-5.131</static>
+            </var>
+            <var name="$tabout[1]">
+              <static>-5.0103</static>
+            </var>
+            <var name="$tabout[2]">
+              <static>-5.001</static>
+            </var>
+            <var name="$tabout[3]">
+              <static>-4.999</static>
+            </var>
+            <var name="$tabout[4]">
+              <static>-4.9903</static>
+            </var>
+            <var name="$tabout[5]">
+              <static>-4.929</static>
+            </var>
+            <pg-code>
+              do{
+              do{$b=non_zero_random(-5,5,1);
+              $c=non_zero_random(-5,5,1);
+              }until(gcd($b,$c)==1);
+              $d=non_zero_random(-5,5,1);
+              $a=random(-1,1,1);
+              if ($envir{problemSeed}==1){$a=0;$b=-3;$c=1;$d=-5};
+              $f=Formula("x^3+$b x^2+$c x+$d")->reduce;
+              $l=$f->eval(x=>$a);
+              }until($l!=0);
+              @tabin=($a-0.1,$a-0.01,$a-0.001,$a+0.001,$a+0.01,$a+0.1);
+              @tabout=map{$f->eval(x=>$_)} @tabin;
+              $solgr=init_graph(-2,-abs($l)-2,2,abs($l)+2,axes=>[0,0],grid=>[4,2*abs($l)+4],size=>[400,400]);
+              add_functions($solgr,"$f for x in &lt;-2,2&gt; using color:blue and weight:2");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Approximate the limit numerically and graphically.</p>
+            <p><m>\lim\limits_{x\to <var name="$a" />}\left(<var name="$f" />\right)=</m><var name="$l" width="10" /></p>
+          </statement>
+          <solution>
+            <p>For a numerical approximation, make a table:</p>
+
+            <table>
+              <tabular>
+                <row bottom="medium">
+                  <cell><m>x</m></cell>
+                  <cell><m>
+                  <var name="$f" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[0]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[0]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[1]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[1]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[2]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[2]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[3]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[3]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[4]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[4]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[5]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[5]" />
+                  </m></cell>
+                </row>
+              </tabular>
+            </table>
+
+            <p>For a graphical approximation:</p>
+
+            <figure>
+              <image pg-name="$solgr" />
+            </figure>
+
+            <p>It appears that when <m>x</m> is close to <m><var name="$a" /></m>, that <m><var name="$f" /></m> is close to <m><var name="$l" /></m>. So
+              <me>
+                \lim_{x\to <var name="$a" />}\left(<var name="$f" />\right)=<var name="$l" />\text{.}
+              </me>
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>\frac{x+1}{x^2+3x}</static>
+            </var>
+            <var name="$a">
+              <static>0</static>
+            </var>
+            <var name="$l" category="number">
+              <static>\text{DNE}</static>
+            </var>
+            <var name="$tabin[0]">
+              <static>-0.1</static>
+            </var>
+            <var name="$tabin[1]">
+              <static>-0.01</static>
+            </var>
+            <var name="$tabin[2]">
+              <static>-0.001</static>
+            </var>
+            <var name="$tabin[3]">
+              <static>0.001</static>
+            </var>
+            <var name="$tabin[4]">
+              <static>0.01</static>
+            </var>
+            <var name="$tabin[5]">
+              <static>0.1</static>
+            </var>
+            <var name="$tabout[0]">
+              <static>-3.10345</static>
+            </var>
+            <var name="$tabout[1]">
+              <static>-33.1104</static>
+            </var>
+            <var name="$tabout[2]">
+              <static>-333.111</static>
+            </var>
+            <var name="$tabout[3]">
+              <static>333.555</static>
+            </var>
+            <var name="$tabout[4]">
+              <static>33.5548</static>
+            </var>
+            <var name="$tabout[5]">
+              <static>3.54839</static>
+            </var>
+            <pg-code>
+              do{$b=non_zero_random(-5,5,1);
+              $c=non_zero_random(-5,5,1);
+              }until($b!=$c);
+              $a=0;
+              if ($envir{problemSeed}==1){$a=0;$b=1;$c=3};
+              $f=Formula("(x+$b)/(x^2+$c x)")->reduce;
+              $l=Compute("DNE");
+              @tabin=($a-0.1,$a-0.01,$a-0.001,$a+0.001,$a+0.01,$a+0.1);
+              @tabout=map{$f->eval(x=>$_)} @tabin;
+              $solgr=init_graph(-2,-1000,2,1000,axes=>[0,0],grid=>[4,10],size=>[400,400]);
+              if(0&lt;-$c){
+              add_functions($solgr,"$f for x in &lt;-2,-0.0001&gt; using color:blue and weight:2");
+              add_functions($solgr,"$f for x in &lt;0.0001,-$c) using color:blue and weight:2");
+              add_functions($solgr,"$f for x in (-$c,2&gt; using color:blue and weight:2");
+              }else{
+              add_functions($solgr,"$f for x in &lt;-2,$c) using color:blue and weight:2");
+              add_functions($solgr,"$f for x in ($c,-0.0001&gt; using color:blue and weight:2");
+              add_functions($solgr,"$f for x in &lt;0.0001,2&gt; using color:blue and weight:2");
+              };
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Approximate the limit numerically and graphically.</p>
+            <p><m>\lim\limits_{x\to <var name="$a" />}\left(<var name="$f" />\right)=</m><var name="$l" width="10" /></p>
+          </statement>
+          <solution>
+            <p>For a numerical approximation, make a table:</p>
+
+            <table>
+              <tabular>
+                <row bottom="medium">
+                  <cell><m>x</m></cell>
+                  <cell><m>
+                  <var name="$f" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[0]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[0]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[1]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[1]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[2]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[2]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[3]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[3]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[4]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[4]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[5]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[5]" />
+                  </m></cell>
+                </row>
+              </tabular>
+            </table>
+
+            <p>For a graphical approximation:</p>
+
+            <figure>
+              <image pg-name="$solgr" />
+            </figure>
+
+            <p>It appears that when <m>x</m> is close to <m><var name="$a" /></m>, that <m><var name="$f" /></m> grows without bound. So
+              <me>
+                \lim_{x\to <var name="$a" />}\left(<var name="$f" />\right)\text{ does not exist (DNE).}
+              </me>
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>\frac{x^2-2x-3}{x^2-4x+3}</static>
+            </var>
+            <var name="$a">
+              <static>3</static>
+            </var>
+            <var name="$l" category="number">
+              <static>2</static>
+            </var>
+            <var name="$tabin[0]">
+              <static>2.9</static>
+            </var>
+            <var name="$tabin[1]">
+              <static>2.99</static>
+            </var>
+            <var name="$tabin[2]">
+              <static>2.999</static>
+            </var>
+            <var name="$tabin[3]">
+              <static>3.001</static>
+            </var>
+            <var name="$tabin[4]">
+              <static>3.01</static>
+            </var>
+            <var name="$tabin[5]">
+              <static>3.1</static>
+            </var>
+            <var name="$tabout[0]">
+              <static>2.05263</static>
+            </var>
+            <var name="$tabout[1]">
+              <static>2.00503</static>
+            </var>
+            <var name="$tabout[2]">
+              <static>2.0005</static>
+            </var>
+            <var name="$tabout[3]">
+              <static>1.9995</static>
+            </var>
+            <var name="$tabout[4]">
+              <static>1.99502</static>
+            </var>
+            <var name="$tabout[5]">
+              <static>1.95238</static>
+            </var>
+            <pg-code>
+              do{$b=non_zero_random(-5,5,1);
+              $c=non_zero_random(-5,5,1);
+              }until($b!=$c);
+              do{$a=non_zero_random(-5,5,1);}until($a!=$b and $a!=$c);
+              if ($envir{problemSeed}==1){$a=3;$b=-1;$c=1};
+              $f=Formula("(x^2-($a+$b)x+$a*$b)/(x^2-($a+$c)x+$a*$c)")->reduce;
+              Context("Fraction");
+              $l=Fraction(($a-$b)/($a-$c));
+              @tabin=($a-0.1,$a-0.01,$a-0.001,$a+0.001,$a+0.01,$a+0.1);
+              @tabout=map{$f->eval(x=>$_)} @tabin;
+              $xmin=-abs($a)-2;$xmax=abs($a)+2;$xmid1=$c-0.01;$xmid2=$c+0.01;$ymin=-ceil(abs(Real($l)))-2;$ymax=ceil(abs(Real($l)))+2;
+              $solgr=init_graph($xmin,$ymin,$xmax,$ymax,axes=>[0,0],grid=>[$xmax-$xmin,$ymax-$ymin],size=>[400,400]);
+              if($a&lt;$c){
+              add_functions($solgr,"$f for x in &lt;$xmin,$xmid1&gt; using color:blue and weight:2");
+              add_functions($solgr,"$f for x in &lt;$xmid2,$c) using color:blue and weight:2");
+              add_functions($solgr,"$f for x in ($c,$xmax&gt; using color:blue and weight:2");
+              }else{
+              add_functions($solgr,"$f for x in &lt;$xmin,$c) using color:blue and weight:2");
+              add_functions($solgr,"$f for x in ($c,$xmid1&gt; using color:blue and weight:2");
+              add_functions($solgr,"$f for x in &lt;$xmid2,$xmax&gt; using color:blue and weight:2");
+              };
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Approximate the limit numerically and graphically.</p>
+            <p><m>\lim\limits_{x\to <var name="$a" />}\left(<var name="$f" />\right)=</m><var name="$l" width="10" /></p>
+          </statement>
+          <solution>
+            <p>For a numerical approximation, make a table:</p>
+
+            <table>
+              <tabular>
+                <row bottom="medium">
+                  <cell><m>x</m></cell>
+                  <cell><m>
+                  <var name="$f" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[0]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[0]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[1]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[1]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[2]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[2]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[3]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[3]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[4]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[4]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[5]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[5]" />
+                  </m></cell>
+                </row>
+              </tabular>
+            </table>
+
+            <p>For a graphical approximation:</p>
+
+            <figure>
+              <image pg-name="$solgr" />
+            </figure>
+
+            <p>It appears that when <m>x</m> is close to <m><var name="$a" /></m>, that <m><var name="$f" /></m> is close to <m><var name="$l" /></m>. So
+              <me>
+                \lim_{x\to <var name="$a" />}\left(<var name="$f" />\right)=<var name="$l" />\text{.}
+              </me>
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>\frac{x^2+8x+7}{x^2+6x+5}</static>
+            </var>
+            <var name="$a">
+              <static>-1</static>
+            </var>
+            <var name="$l" category="number">
+              <static>\frac{3}{2}</static>
+            </var>
+            <var name="$tabin[0]">
+              <static>-1.1</static>
+            </var>
+            <var name="$tabin[1]">
+              <static>-1.01</static>
+            </var>
+            <var name="$tabin[2]">
+              <static>-1.001</static>
+            </var>
+            <var name="$tabin[3]">
+              <static>-0.999</static>
+            </var>
+            <var name="$tabin[4]">
+              <static>-0.99</static>
+            </var>
+            <var name="$tabin[5]">
+              <static>-0.9</static>
+            </var>
+            <var name="$tabout[0]">
+              <static>1.51282</static>
+            </var>
+            <var name="$tabout[1]">
+              <static>1.50125</static>
+            </var>
+            <var name="$tabout[2]">
+              <static>1.50013</static>
+            </var>
+            <var name="$tabout[3]">
+              <static>1.49988</static>
+            </var>
+            <var name="$tabout[4]">
+              <static>1.49875</static>
+            </var>
+            <var name="$tabout[5]">
+              <static>1.4878</static>
+            </var>
+            <pg-code>
+              do{$b=random(-1,1,2)*random(6,9,1);
+              $c=non_zero_random(-5,5,1);
+              }until($b!=$c);
+              do{$a=non_zero_random(-5,5,1);}until($a!=$c);
+              if ($envir{problemSeed}==1){$a=-1;$b=-7;$c=-5};
+              $f=Formula("(x^2-($a+$b)x+$a*$b)/(x^2-($a+$c)x+$a*$c)")->reduce;
+              Context("Fraction");
+              $l=Fraction(($a-$b)/($a-$c));
+              @tabin=($a-0.1,$a-0.01,$a-0.001,$a+0.001,$a+0.01,$a+0.1);
+              @tabout=map{$f->eval(x=>$_)} @tabin;
+              $xmin=-abs($a)-2;$xmax=abs($a)+2;$xmid1=$c-0.01;$xmid2=$c+0.01;$ymin=-ceil(abs(Real($l)))-2;$ymax=ceil(abs(Real($l)))+2;
+              $solgr=init_graph($xmin,$ymin,$xmax,$ymax,axes=>[0,0],grid=>[$xmax-$xmin,$ymax-$ymin],size=>[400,400]);
+              if($a&lt;$c){
+              add_functions($solgr,"$f for x in &lt;$xmin,$xmid1&gt; using color:blue and weight:2");
+              add_functions($solgr,"$f for x in &lt;$xmid2,$c) using color:blue and weight:2");
+              add_functions($solgr,"$f for x in ($c,$xmax&gt; using color:blue and weight:2");
+              }else{
+              add_functions($solgr,"$f for x in &lt;$xmin,$c) using color:blue and weight:2");
+              add_functions($solgr,"$f for x in ($c,$xmid1&gt; using color:blue and weight:2");
+              add_functions($solgr,"$f for x in &lt;$xmid2,$xmax&gt; using color:blue and weight:2");
+              };
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Approximate the limit numerically and graphically.</p>
+            <p><m>\lim\limits_{x\to <var name="$a" />}\left(<var name="$f" />\right)=</m><var name="$l" width="10" /></p>
+          </statement>
+          <solution>
+            <p>For a numerical approximation, make a table:</p>
+
+            <table>
+              <tabular>
+                <row bottom="medium">
+                  <cell><m>x</m></cell>
+                  <cell><m>
+                  <var name="$f" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[0]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[0]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[1]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[1]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[2]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[2]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[3]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[3]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[4]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[4]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[5]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[5]" />
+                  </m></cell>
+                </row>
+              </tabular>
+            </table>
+
+            <p>For a graphical approximation:</p>
+
+            <figure>
+              <image pg-name="$solgr" />
+            </figure>
+
+            <p>It appears that when <m>x</m> is close to <m><var name="$a" /></m>, that <m><var name="$f" /></m> is close to <m><var name="$l" /></m>. So
+              <me>
+                \lim_{x\to <var name="$a" />}\left(<var name="$f" />\right)=<var name="$l" />\text{.}
+              </me>
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>\frac{x^2+7x+10}{x^2-4x+4}</static>
+            </var>
+            <var name="$a">
+              <static>2</static>
+            </var>
+            <var name="$l" category="number">
+              <static>\text{DNE}</static>
+            </var>
+            <var name="$tabin[0]">
+              <static>1.9</static>
+            </var>
+            <var name="$tabin[1]">
+              <static>1.99</static>
+            </var>
+            <var name="$tabin[2]">
+              <static>1.999</static>
+            </var>
+            <var name="$tabin[3]">
+              <static>2.001</static>
+            </var>
+            <var name="$tabin[4]">
+              <static>2.01</static>
+            </var>
+            <var name="$tabin[5]">
+              <static>2.1</static>
+            </var>
+            <var name="$tabout[0]">
+              <static>2691</static>
+            </var>
+            <var name="$tabout[1]">
+              <static>278901</static>
+            </var>
+            <var name="$tabout[2]">
+              <static>2.7989\times10^7</static>
+            </var>
+            <var name="$tabout[3]">
+              <static>2.8011\times10^7</static>
+            </var>
+            <var name="$tabout[4]">
+              <static>281101</static>
+            </var>
+            <var name="$tabout[5]">
+              <static>2911</static>
+            </var>
+            <pg-code>
+              do{$b=random(-1,1,2)*random(6,9,1);
+              $c=non_zero_random(-5,5,1);
+              }until($b!=$c);
+              $a=non_zero_random(-5,5,1);
+              if ($envir{problemSeed}==1){$a=2;$b=-5;$c=2};
+              $f=Formula("(x^2-(-$a+$b)x-$a*$b)/(x^2-($a+$c)x+$a*$c)")->reduce;
+              $l=Compute("DNE");
+              @tabin=($a-0.1,$a-0.01,$a-0.001,$a+0.001,$a+0.01,$a+0.1);
+              @tabout=map{$f->eval(x=>$_)} @tabin;
+              $xmin=-abs($a)-2;$xmax=abs($a)+2;$xmid1=$c-0.01;$xmid2=$c+0.01;$ymin=-1000;$ymax=1000;
+              $solgr=init_graph($xmin,$ymin,$xmax,$ymax,axes=>[0,0],grid=>[$xmax-$xmin,10],size=>[400,400]);
+              if($a&lt;$c){
+              add_functions($solgr,"$f for x in &lt;$xmin,$xmid1&gt; using color:blue and weight:2");
+              add_functions($solgr,"$f for x in &lt;$xmid2,$c) using color:blue and weight:2");
+              add_functions($solgr,"$f for x in ($c,$xmax&gt; using color:blue and weight:2");
+              }else{
+              add_functions($solgr,"$f for x in &lt;$xmin,$c) using color:blue and weight:2");
+              add_functions($solgr,"$f for x in ($c,$xmid1&gt; using color:blue and weight:2");
+              add_functions($solgr,"$f for x in &lt;$xmid2,$xmax&gt; using color:blue and weight:2");
+              };
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Approximate the limit numerically and graphically.</p>
+            <p><m>\lim\limits_{x\to <var name="$a" />}\left(<var name="$f" />\right)=</m><var name="$l" width="10" /></p>
+          </statement>
+          <solution>
+            <p>For a numerical approximation, make a table:</p>
+
+            <table>
+              <tabular>
+                <row bottom="medium">
+                  <cell><m>x</m></cell>
+                  <cell><m>
+                  <var name="$f" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[0]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[0]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[1]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[1]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[2]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[2]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[3]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[3]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[4]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[4]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[5]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[5]" />
+                  </m></cell>
+                </row>
+              </tabular>
+            </table>
+
+            <p>For a graphical approximation:</p>
+
+            <figure>
+              <image pg-name="$solgr" />
+            </figure>
+
+            <p>It appears that when <m>x</m> is close to <m><var name="$a" /></m>, that <m><var name="$f" /></m> grows without bound. So
+              <me>
+                \lim_{x\to <var name="$a" />}\left(<var name="$f" />\right)\text{ does not exist (DNE).}
+              </me>
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>\begin{cases}x+2\amp x\leq2\\3x-5\amp x\gt2\end{cases}</static>
+            </var>
+            <var name="$a">
+              <static>2</static>
+            </var>
+            <var name="$l" category="number">
+              <static>\text{DNE}</static>
+            </var>
+            <var name="$tabin[0]">
+              <static>1.9</static>
+            </var>
+            <var name="$tabin[1]">
+              <static>1.99</static>
+            </var>
+            <var name="$tabin[2]">
+              <static>1.999</static>
+            </var>
+            <var name="$tabin[3]">
+              <static>2.001</static>
+            </var>
+            <var name="$tabin[4]">
+              <static>2.01</static>
+            </var>
+            <var name="$tabin[5]">
+              <static>2.1</static>
+            </var>
+            <var name="$tabout[0]">
+              <static>3.9</static>
+            </var>
+            <var name="$tabout[1]">
+              <static>3.99</static>
+            </var>
+            <var name="$tabout[2]">
+              <static>3.999</static>
+            </var>
+            <var name="$tabout[3]">
+              <static>1.003</static>
+            </var>
+            <var name="$tabout[4]">
+              <static>1.03</static>
+            </var>
+            <var name="$tabout[5]">
+              <static>1.3</static>
+            </var>
+            <pg-code>
+              $b=non_zero_random(-5,5,1);
+              $c=list_random(-4,-3,-2,-1,2,3,4);
+              $diff=non_zero_random(-3,3,1);
+              $a=non_zero_random(-5,5,1);
+              $d=$a+$b-($c*$a)-$diff;
+              if ($envir{problemSeed}==1){$a=2;$b=2;$c=3;$d=-5;};
+              $f1=Formula("x+$b")->reduce;$f2=Formula("$c*x+$d")->reduce;
+              Context("PiecewiseFunction");
+              Context()->flags->set(tolType=>"absolute",tolerance=>0.00001);
+              $f=PiecewiseFunction("x &lt;= $a" => "$f1", "x > $a" => "$f2");
+              $l=Compute("DNE");
+              @tabin=($a-0.1,$a-0.01,$a-0.001,$a+0.001,$a+0.01,$a+0.1);
+              @tabout=map{$f->eval(x=>$_)} @tabin;
+              $xmin=-abs($a)-2;$xmax=abs($a)+2;$ymin=min($a+$b,$c*$a+$d)-2;$ymax=max($a+$b,$c*$a+$d)+2;
+              $solgr=init_graph($xmin,$ymin,$xmax,$ymax,axes=>[0,0],grid=>[$xmax-$xmin,$ymax-$ymin],size=>[400,400]);
+              add_functions($solgr,"$f1 for x in &lt;$xmin,$a) using color:blue and weight:2");
+              add_functions($solgr,"$f2 for x in [$a,$xmax&gt; using color:blue and weight:2");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Approximate the limit numerically and graphically.</p>
+            <p>For <m>f(x)=<var name="$f" /></m>,</p>
+
+            <p><m>\lim\limits_{x\to <var name="$a" />}f(x)=</m><var name="$l" width="10" /></p>
+          </statement>
+          <solution>
+            <p>For a numerical approximation, make a table:</p>
+
+            <table>
+              <tabular>
+                <row bottom="medium">
+                  <cell><m>x</m></cell>
+                  <cell><m>f(x)</m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[0]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[0]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[1]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[1]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[2]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[2]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[3]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[3]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[4]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[4]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[5]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[5]" />
+                  </m></cell>
+                </row>
+              </tabular>
+            </table>
+
+            <p>For a graphical approximation:</p>
+
+            <figure>
+              <image pg-name="$solgr" />
+            </figure>
+
+            <p>It appears that when <m>x</m> is close to <m><var name="$a" /></m>, that <m>f(x)</m> approaches different values from the left and right. So
+              <me>
+                \lim_{x\to <var name="$a" />}f(x)\text{ does not exist (DNE).}
+              </me>
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>\begin{cases}x^2-x+1\amp x\leq3\\2x+1\amp x\gt3\end{cases}</static>
+            </var>
+            <var name="$a">
+              <static>3</static>
+            </var>
+            <var name="$l" category="number">
+              <static>7</static>
+            </var>
+            <var name="$tabin[0]">
+              <static>2.9</static>
+            </var>
+            <var name="$tabin[1]">
+              <static>2.99</static>
+            </var>
+            <var name="$tabin[2]">
+              <static>2.999</static>
+            </var>
+            <var name="$tabin[3]">
+              <static>3.001</static>
+            </var>
+            <var name="$tabin[4]">
+              <static>3.01</static>
+            </var>
+            <var name="$tabin[5]">
+              <static>3.1</static>
+            </var>
+            <var name="$tabout[0]">
+              <static>6.51</static>
+            </var>
+            <var name="$tabout[1]">
+              <static>6.9501</static>
+            </var>
+            <var name="$tabout[2]">
+              <static>6.995</static>
+            </var>
+            <var name="$tabout[3]">
+              <static>7.002</static>
+            </var>
+            <var name="$tabout[4]">
+              <static>7.02</static>
+            </var>
+            <var name="$tabout[5]">
+              <static>7.2</static>
+            </var>
+            <pg-code>
+              do{
+              $a=non_zero_random(-3,3,1);
+              $b=random(-4,-1,1);
+              $c=non_zero_random(-5,5,1);
+              $d=non_zero_random(-3,3,1);
+              $e=$a**2+$b*$a+$c-$d*$a;
+              if ($envir{problemSeed}==1){$a=3;$b=-1;$c=1;$d=2;$e=1};
+              $f1=Formula("x^2+$b*x+$c")->reduce;$f2=Formula("$d*x+$e")->reduce;
+              Context("PiecewiseFunction");
+              Context()->flags->set(tolType=>"absolute",tolerance=>0.00001);
+              $f=PiecewiseFunction("x &lt;= $a" => "$f1", "x > $a" => "$f2");
+              $l=$f1->eval(x=>$a);
+              }until($l!=0);
+              @tabin=($a-0.1,$a-0.01,$a-0.001,$a+0.001,$a+0.01,$a+0.1);
+              @tabout=map{$f->eval(x=>$_)} @tabin;
+              $xmin=-4;$xmax=4;$ymin=-abs($l)-2;$ymax=abs($l)+2;
+              $solgr=init_graph($xmin,$ymin,$xmax,$ymax,axes=>[0,0],grid=>[$xmax-$xmin,$ymax-$ymin],size=>[400,400]);
+              add_functions($solgr,"$f1 for x in &lt;$xmin,$a) using color:blue and weight:2");
+              add_functions($solgr,"$f2 for x in [$a,$xmax&gt; using color:blue and weight:2");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Approximate the limit numerically and graphically.</p>
+            <p>For <m>f(x)=<var name="$f" /></m>,</p>
+
+            <p><m>\lim\limits_{x\to <var name="$a" />}f(x)=</m><var name="$l" width="10" /></p>
+          </statement>
+          <solution>
+            <p>For a numerical approximation, make a table:</p>
+
+            <table>
+              <tabular>
+                <row bottom="medium">
+                  <cell><m>x</m></cell>
+                  <cell><m>f(x)</m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[0]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[0]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[1]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[1]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[2]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[2]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[3]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[3]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[4]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[4]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[5]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[5]" />
+                  </m></cell>
+                </row>
+              </tabular>
+            </table>
+
+            <p>For a graphical approximation:</p>
+
+            <figure>
+              <image pg-name="$solgr" />
+            </figure>
+
+            <p>It appears that when <m>x</m> is close to <m><var name="$a" /></m>, that <m>f(x)</m> approaches <var name="$l" />. So
+              <me>
+                \lim_{x\to <var name="$a" />}f(x)=<var name="$l" />\text{.}
+              </me>
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>\begin{cases}cos(x)\amp x\leq0\\x^2+3x+1\amp x\gt0\end{cases}</static>
+            </var>
+            <var name="$a">
+              <static>0</static>
+            </var>
+            <var name="$l" category="number">
+              <static>1</static>
+            </var>
+            <var name="$tabin[0]">
+              <static>-0.1</static>
+            </var>
+            <var name="$tabin[1]">
+              <static>-0.01</static>
+            </var>
+            <var name="$tabin[2]">
+              <static>-0.001</static>
+            </var>
+            <var name="$tabin[3]">
+              <static>0.001</static>
+            </var>
+            <var name="$tabin[4]">
+              <static>0.01</static>
+            </var>
+            <var name="$tabin[5]">
+              <static>0.1</static>
+            </var>
+            <var name="$tabout[0]">
+              <static>0.995004</static>
+            </var>
+            <var name="$tabout[1]">
+              <static>0.99995</static>
+            </var>
+            <var name="$tabout[2]">
+              <static>1</static>
+            </var>
+            <var name="$tabout[3]">
+              <static>1.003</static>
+            </var>
+            <var name="$tabout[4]">
+              <static>1.0301</static>
+            </var>
+            <var name="$tabout[5]">
+              <static>1.31</static>
+            </var>
+            <pg-code>
+              $a=0;
+              $b=non_zero_random(-5,5,1);
+              if ($envir{problemSeed}==1){$a=0;$b=3;};
+              $f1=Formula("cos(x)")->reduce;$f2=Formula("x^2+$b*x+1")->reduce;
+              Context("PiecewiseFunction");
+              Context()->flags->set(tolType=>"absolute",tolerance=>0.00001);
+              $f=PiecewiseFunction("x &lt;= $a" => "$f1", "x > $a" => "$f2");
+              $l=$f1->eval(x=>$a);
+              @tabin=($a-0.1,$a-0.01,$a-0.001,$a+0.001,$a+0.01,$a+0.1);
+              @tabout=map{$f->eval(x=>$_)} @tabin;
+              $xmin=-3;$xmax=3;$ymin=-3;$ymax=3;
+              $solgr=init_graph($xmin,$ymin,$xmax,$ymax,axes=>[0,0],grid=>[$xmax-$xmin,$ymax-$ymin],size=>[400,400]);
+              add_functions($solgr,"$f1 for x in &lt;$xmin,$a) using color:blue and weight:2");
+              add_functions($solgr,"$f2 for x in [$a,$xmax&gt; using color:blue and weight:2");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Approximate the limit numerically and graphically.</p>
+            <p>For <m>f(x)=<var name="$f" /></m>,</p>
+
+            <p><m>\lim\limits_{x\to <var name="$a" />}f(x)=</m><var name="$l" width="10" /></p>
+          </statement>
+          <solution>
+            <p>For a numerical approximation, make a table:</p>
+
+            <table>
+              <tabular>
+                <row bottom="medium">
+                  <cell><m>x</m></cell>
+                  <cell><m>f(x)</m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[0]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[0]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[1]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[1]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[2]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[2]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[3]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[3]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[4]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[4]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[5]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[5]" />
+                  </m></cell>
+                </row>
+              </tabular>
+            </table>
+
+            <p>For a graphical approximation:</p>
+
+            <figure>
+              <image pg-name="$solgr" />
+            </figure>
+
+            <p>It appears that when <m>x</m> is close to <m><var name="$a" /></m>, that <m>f(x)</m> approaches <var name="$l" />. So
+              <me>
+                \lim_{x\to <var name="$a" />}f(x)=<var name="$l" />\text{.}
+              </me>
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>\begin{cases}sin(x)\amp x\leq\pi/2\\\cos(x)\amp x\gt\pi/2\end{cases}</static>
+            </var>
+            <var name="$a">
+              <static>\pi/2</static>
+            </var>
+            <var name="$l" category="number">
+              <static>\text{DNE}</static>
+            </var>
+            <var name="$tabin[0]">
+              <static>\pi/2-0.1</static>
+            </var>
+            <var name="$tabin[1]">
+              <static>\pi/2-0.01</static>
+            </var>
+            <var name="$tabin[2]">
+              <static>\pi/2-0.001</static>
+            </var>
+            <var name="$tabin[3]">
+              <static>\pi/2+0.001</static>
+            </var>
+            <var name="$tabin[4]">
+              <static>\pi/2+0.01</static>
+            </var>
+            <var name="$tabin[5]">
+              <static>\pi/2+0.1</static>
+            </var>
+            <var name="$tabout[0]">
+              <static>0.995004</static>
+            </var>
+            <var name="$tabout[1]">
+              <static>0.99995</static>
+            </var>
+            <var name="$tabout[2]">
+              <static>1</static>
+            </var>
+            <var name="$tabout[3]">
+              <static>-0.001</static>
+            </var>
+            <var name="$tabout[4]">
+              <static>-0.00999983</static>
+            </var>
+            <var name="$tabout[5]">
+              <static>-0.0998334</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0);
+              $a=list_random(Formula("pi/2"),Formula("pi/3"),Formula("pi/6"));
+              if ($envir{problemSeed}==1){$a=Formula("pi/2")};
+              $f1=Formula("sin(x)")->reduce;$f2=Formula("cos(x)")->reduce;
+              Context("PiecewiseFunction");
+              Context()->flags->set(tolType=>"absolute",tolerance=>0.00001);
+              $areal=$a->eval(x=>0);
+              $f=PiecewiseFunction("x &lt;= $areal" => "$f1", "x > $areal" => "$f2");
+              $l=Compute("DNE");
+              @tabin=($a-0.1,$a-0.01,$a-0.001,$a+0.001,$a+0.01,$a+0.1);
+              @tabout=map{$f->eval(x=>$_->eval(x=>0))} @tabin;
+              $xmin=-1;$xmax=3;$ymin=-2;$ymax=2;
+              $solgr=init_graph($xmin,$ymin,$xmax,$ymax,axes=>[0,0],grid=>[$xmax-$xmin,$ymax-$ymin],size=>[400,400]);
+              add_functions($solgr,"$f1 for x in &lt;$xmin,$areal) using color:blue and weight:2");
+              add_functions($solgr,"$f2 for x in [$areal,$xmax&gt; using color:blue and weight:2");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Approximate the limit numerically and graphically.</p>
+            <p>For <m>f(x)=\begin{cases}\sin(x)\amp x\leq <var name="$a" />\\\cos(x)\amp x\gt <var name="$a" />\end{cases}</m>,</p>
+
+            <p><m>\lim\limits_{x\to <var name="$a" />}f(x)=</m><var name="$l" width="10" /></p>
+          </statement>
+          <solution>
+            <p>For a numerical approximation, make a table:</p>
+
+            <table>
+              <tabular>
+                <row bottom="medium">
+                  <cell><m>x</m></cell>
+                  <cell><m>f(x)</m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[0]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[0]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[1]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[1]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[2]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[2]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[3]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[3]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[4]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[4]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[5]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[5]" />
+                  </m></cell>
+                </row>
+              </tabular>
+            </table>
+
+            <p>For a graphical approximation:</p>
+
+            <figure>
+              <image pg-name="$solgr" />
+            </figure>
+
+            <p>It appears that when <m>x</m> is close to <m><var name="$a" /></m>, that <m>f(x)</m> approaches different values from the left and right. So
+              <me>
+                \lim_{x\to <var name="$a" />}f(x)\text{ does not exist (DNE).}
+              </me>
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <!--<exercise>
+        <webwork seed="1">
+          <setup>
+            <pg-code>
+              $f=Formula("abs(x)^x");
+              $a=0;
+              $l=1;
+              @tabin=($a-0.1,$a-0.01,$a-0.001,$a+0.001,$a+0.01,$a+0.1);
+              @tabout=map{$f->eval(x=>$_)} @tabin;
+              $solgr=init_graph(-2,-2,2,2,axes=>[0,0],grid=>[4,4],size=>[400,400]);
+              add_functions($solgr,"$f for x in &lt;-2,0) using color:blue and weight:2");
+              add_functions($solgr,"$f for x in (0,2&gt; using color:blue and weight:2");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Approximate the limit numerically and graphically.</p>
+            <p><m>\lim\limits_{x\to 0}\lvert x\rvert^x=</m><var name="$l" width="10" /></p>
+          </statement>
+          <solution>
+            <p>For a numerical approximation, make a table:</p>
+
+            <table>
+              <tabular>
+                <row bottom="medium">
+                  <cell><m>x</m></cell>
+                  <cell><m>
+                  <var name="$f" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[0]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[0]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[1]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[1]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[2]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[2]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[3]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[3]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[4]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[4]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[5]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[5]" />
+                  </m></cell>
+                </row>
+              </tabular>
+            </table>
+
+            <p>For a graphical approximation:</p>
+
+            <figure>
+              <image pg-name="$solgr" />
+            </figure>
+
+            <p>It appears that when <m>x</m> is close to <m>0</m>, that <m>\lvert x \rvert^x</m> is close to <m>1</m>. So
+              <me>
+                \lim_{x\to0}\lvert x\rvert^x=1\text{.}
+              </me>
+            </p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <pg-code>
+              $f=Formula("e^{-e^{1/x}}");
+              $a=0;
+              $l=Compute("DNE");
+              @tabin=($a-0.1,$a-0.01,$a-0.001,$a+0.001,$a+0.01,$a+0.1);
+              @tabout=map{$f->eval(x=>$_)} @tabin;
+              $solgr=init_graph(-2,-2,2,2,axes=>[0,0],grid=>[4,4],size=>[400,400]);
+              add_functions($solgr,"$f for x in &lt;-2,-0.0001) using color:blue and weight:2");
+              add_functions($solgr,"$f for x in (0.0001,2&gt; using color:blue and weight:2");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Approximate the limit numerically and graphically.</p>
+            <p><m>\lim\limits_{x\to0}e^{-e^{1/x}}=</m><var name="$l" width="10" /></p>
+          </statement>
+          <solution>
+            <p>For a numerical approximation, make a table:</p>
+
+            <table>
+              <tabular>
+                <row bottom="medium">
+                  <cell><m>x</m></cell>
+                  <cell><m>
+                  <var name="$f" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[0]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[0]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[1]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[1]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[2]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[2]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[3]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[3]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[4]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[4]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>
+                  <var name="$tabin[5]" />
+                  </m></cell>
+                  <cell><m>
+                  <var name="$tabout[5]" />
+                  </m></cell>
+                </row>
+              </tabular>
+            </table>
+
+            <p>For a graphical approximation:</p>
+
+            <figure>
+              <image pg-name="$solgr" />
+            </figure>
+
+            <p>It appears that when <m>x</m> is close to <m>0</m>, that <m>e^{-e^{1/x}}</m> approaches different values from the left and right. So
+              <me>
+                \lim_{x\to0}e^{-e^{1/x}}\text{ does not exist (DNE).}
+              </me>
+            </p>
+          </solution>
+        </webwork>
+      </exercise>-->
+    </exercisegroup>
+    <todo>Uncomment the above exercises once there is no longer a need to keep version 3.0 numbering consistent with version 4.0 numbering.</todo>
+    <todo>Resolve this exercisegroup's introduction instructions and their repetition in each exercise.</todo>
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, a function <m>f</m> and a value <m>a</m> are given. Approximate the limit of the difference quotient, <m>\lim\limits_{h\to 0}\frac{f(a+h)-f(a)}{h}</m>, using <m>h = \pm 0.1, \pm 0.01</m>.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$m" category="number">
+              <static>-7</static>
+            </var>
+            <var name="$f">
+              <static>-7x+2</static>
+            </var>
+            <var name="$a">
+              <static>3</static>
+            </var>
+            <var name="$tabout[0]">
+              <static>-7</static>
+            </var>
+            <var name="$tabout[1]">
+              <static>-7</static>
+            </var>
+            <var name="$tabout[2]">
+              <static>-7</static>
+            </var>
+            <var name="$tabout[3]">
+              <static>-7</static>
+            </var>
+            <var name="$tableanswers">
+              <static>-0.1,-7,-0.01,-7,0.01,-7,0.1,-7</static>
+            </var>
+            <pg-code>
+              $m=non_zero_random(-9,9,1);
+              do {$b=non_zero_random(-9,9,1);}until(abs($m)!=abs($b));
+              $a=random(1,5,1);
+              if ($envir{problemSeed}==1){$a=3;$m=-7;$b=2};
+              $f=Formula("$m*x+$b")->reduce;
+              Context()->variables->add(h=>'Real');
+              $dq=($f->substitute(x=>Formula("$a+h"))-($f->eval(x=>$a)))/Formula("h");
+              @tabin=(Real(-0.1),Real(-0.01),Real(0.01),Real(0.1));
+              @tabout=map{$dq->eval(h=>$_,x=>1)} @tabin;
+              @table=map{($tabin[$_],$tabout[$_])}(0 .. $#tabin);
+              $tableanswers=MultiAnswer(@table)->with(allowBlankAnswers=>1,checker=>sub{
+                  my ($correct,$student,$self)=@_;
+                  my @cor=@{$correct};my @stu=@{$student};
+                  my @return=(1,1,1,1,1,1,1,1);
+                  for my $i (0,2,4,6) {
+                      do {$return[$i+1]=0;$self->setMessage($i+2,'This is not the difference quotient when h='."$stu[$i]".'.');}
+                      unless($stu[$i] ne "" and $dq->eval(h=>$stu[$i]) == $stu[$i+1]);
+                      do {$return[$i]=0;$self->setMessage($i+1,'You should use h-values '."$cor[0]".', '."$cor[2]".', '."$cor[4]".', and '."$cor[6]".'.');}
+                      unless($stu[$i]==$cor[0] or $stu[$i]==$cor[2] or $stu[$i]==$cor[4] or $stu[$i]==$cor[6]);
+                  };
+                  do {$return[2]=0;$self->setMessage(3,'You already used this h-value.');}
+                  unless($stu[2]!=$stu[0] or $stu[2] eq "");
+                  do {$return[4]=0;$self->setMessage(5,'You already used this h-value.');}
+                  unless($stu[4]!=$stu[0] and $stu[4]!=$stu[2] or $stu[2] eq "");
+                  do {$return[6]=0;$self->setMessage(7,'You already used this h-value.');}
+                  unless($stu[6]!=$stu[0] and $stu[6]!=$stu[2] and $stu[6]!=$stu[4] or $stu[2] eq "");
+                  return [@return];
+              });
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Approximate the limit of the difference quotient, <m>\lim\limits_{h\to 0}\frac{f(a+h)-f(a)}{h}</m>, using <m>h = \pm 0.1, \pm 0.01</m>.</p>
+            <p><m>f(x)=<var name="$f" /></m>, <m>a=<var name="$a" /></m></p>
+
+            <table>
+              <tabular>
+                <col halign="center"/>
+                                               <col halign="center"/>
+                <row bottom="medium">
+                  <cell><m>h</m></cell>
+                  <cell><m>\frac{f(a+h)-f(a)}{h}</m></cell>
+                </row>
+                <row>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                </row>
+                <row>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                </row>
+                <row>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                </row>
+                <row>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                </row>
+              </tabular>
+            </table>
+
+            <p>It appears that <m>\lim\limits_{h\to0}\frac{f(a+h)-f(a)}{h}=</m><var name="$m" width="5"/>.</p>
+          </statement>
+          <solution>
+            <table>
+              <tabular>
+                <col halign="center"/>
+                <col halign="center"/>
+                <row bottom="medium">
+                  <cell><m>h</m></cell>
+                  <cell><m>\frac{f(a+h)-f(a)}{h}</m></cell>
+                </row>
+                <row>
+                  <cell><m>-0.1</m></cell>
+                  <cell><m>
+                  <var name="$tabout[0]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>-0.01</m></cell>
+                  <cell><m>
+                  <var name="$tabout[1]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>0.01</m></cell>
+                  <cell><m>
+                  <var name="$tabout[2]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>0.1</m></cell>
+                  <cell><m>
+                  <var name="$tabout[3]" />
+                  </m></cell>
+                </row>
+              </tabular>
+            </table>
+
+            <p>It appears that <m>\lim\limits_{h\to0}\frac{f(a+h)-f(a)}{h}=<var name="$m" /></m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$m" category="number">
+              <static>9</static>
+            </var>
+            <var name="$f">
+              <static>9x+0.06</static>
+            </var>
+            <var name="$a">
+              <static>-1</static>
+            </var>
+            <var name="$tabout[0]">
+              <static>9</static>
+            </var>
+            <var name="$tabout[1]">
+              <static>9</static>
+            </var>
+            <var name="$tabout[2]">
+              <static>9</static>
+            </var>
+            <var name="$tabout[3]">
+              <static>9</static>
+            </var>
+            <var name="$tableanswers">
+              <static>-0.1,9,-0.01,9,0.01,9,0.1,9</static>
+            </var>
+            <pg-code>
+              $m=non_zero_random(-9,9,1);
+              $b=random(0.01,0.09,0.01)+random(0.1,0.9,0.1)+random(-9,9,1);
+              $a=random(-5,5,1);
+              if ($envir{problemSeed}==1){$a=-1;$m=9;$b=0.06};
+              $f=Formula("$m*x+$b")->reduce;
+              Context()->variables->add(h=>'Real');
+              $dq=($f->substitute(x=>Formula("$a+h"))-($f->eval(x=>$a)))/Formula("h");
+              @tabin=(Real(-0.1),Real(-0.01),Real(0.01),Real(0.1));
+              @tabout=map{$dq->eval(h=>$_,x=>1)} @tabin;
+              @table=map{($tabin[$_],$tabout[$_])}(0 .. $#tabin);
+              $tableanswers=MultiAnswer(@table)->with(allowBlankAnswers=>1,checker=>sub{
+                  my ($correct,$student,$self)=@_;
+                  my @cor=@{$correct};my @stu=@{$student};
+                  my @return=(1,1,1,1,1,1,1,1);
+                  for my $i (0,2,4,6) {
+                      do {$return[$i+1]=0;$self->setMessage($i+2,'This is not the difference quotient when h='."$stu[$i]".'.');}
+                      unless($stu[$i] ne "" and $dq->eval(h=>$stu[$i]) == $stu[$i+1]);
+                      do {$return[$i]=0;$self->setMessage($i+1,'You should use h-values '."$cor[0]".', '."$cor[2]".', '."$cor[4]".', and '."$cor[6]".'.');}
+                      unless($stu[$i]==$cor[0] or $stu[$i]==$cor[2] or $stu[$i]==$cor[4] or $stu[$i]==$cor[6]);
+                  };
+                  do {$return[2]=0;$self->setMessage(3,'You already used this h-value.');}
+                  unless($stu[2]!=$stu[0] or $stu[2] eq "");
+                  do {$return[4]=0;$self->setMessage(5,'You already used this h-value.');}
+                  unless($stu[4]!=$stu[0] and $stu[4]!=$stu[2] or $stu[2] eq "");
+                  do {$return[6]=0;$self->setMessage(7,'You already used this h-value.');}
+                  unless($stu[6]!=$stu[0] and $stu[6]!=$stu[2] and $stu[6]!=$stu[4] or $stu[2] eq "");
+                  return [@return];
+              });
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Approximate the limit of the difference quotient, <m>\lim\limits_{h\to 0}\frac{f(a+h)-f(a)}{h}</m>, using <m>h = \pm 0.1, \pm 0.01</m>.</p>
+            <p><m>f(x)=<var name="$f" /></m>, <m>a=<var name="$a" /></m></p>
+
+            <table>
+              <tabular>
+                <col halign="center"/>
+                <col halign="center"/>
+                <row bottom="medium">
+                  <cell><m>h</m></cell>
+                  <cell><m>\frac{f(a+h)-f(a)}{h}</m></cell>
+                </row>
+                <row>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                </row>
+                <row>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                </row>
+                <row>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                </row>
+                <row>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                </row>
+              </tabular>
+            </table>
+
+            <p>It appears that <m>\lim\limits_{h\to0}\frac{f(a+h)-f(a)}{h}=</m><var name="$m" width="5"/>.</p>
+          </statement>
+          <solution>
+            <table>
+              <tabular>
+                <col halign="center"/>
+                                               <col halign="center"/>
+                <row bottom="medium">
+                  <cell><m>h</m></cell>
+                  <cell><m>\frac{f(a+h)-f(a)}{h}</m></cell>
+                </row>
+                <row>
+                  <cell><m>-0.1</m></cell>
+                  <cell><m>
+                  <var name="$tabout[0]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>-0.01</m></cell>
+                  <cell><m>
+                  <var name="$tabout[1]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>0.01</m></cell>
+                  <cell><m>
+                  <var name="$tabout[2]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>0.1</m></cell>
+                  <cell><m>
+                  <var name="$tabout[3]" />
+                  </m></cell>
+                </row>
+              </tabular>
+            </table>
+
+            <p>It appears that <m>\lim\limits_{h\to0}\frac{f(a+h)-f(a)}{h}=<var name="$m" /></m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$m" category="number">
+              <static>5</static>
+            </var>
+            <var name="$f">
+              <static>x^2+3x-7</static>
+            </var>
+            <var name="$a">
+              <static>1</static>
+            </var>
+            <var name="$tabout[0]">
+              <static>4.9</static>
+            </var>
+            <var name="$tabout[1]">
+              <static>4.99</static>
+            </var>
+            <var name="$tabout[2]">
+              <static>5.01</static>
+            </var>
+            <var name="$tabout[3]">
+              <static>5.1</static>
+            </var>
+            <var name="$tableanswers">
+              <static>-0.1,4.9,-0.01,4.99,0.01,5.01,0.1,5.1</static>
+            </var>
+            <pg-code>
+              do{
+              $b=non_zero_random(-5,5,1);
+              $c=non_zero_random(-9,9,1);
+              $a=random(-5,5,1);
+              if ($envir{problemSeed}==1){$a=1;$b=3;$c=-7};
+              $f=Formula("x^2+$b*x+$c")->reduce;
+              $m=$f->D('x')->eval(x=>$a);
+              }until($m!=0);
+              Context()->variables->add(h=>'Real');
+              $dq=($f->substitute(x=>Formula("$a+h"))-($f->eval(x=>$a)))/Formula("h");
+              @tabin=(Real(-0.1),Real(-0.01),Real(0.01),Real(0.1));
+              @tabout=map{$dq->eval(h=>$_,x=>1)} @tabin;
+              @table=map{($tabin[$_],$tabout[$_])}(0 .. $#tabin);
+              $tableanswers=MultiAnswer(@table)->with(allowBlankAnswers=>1,checker=>sub{
+                  my ($correct,$student,$self)=@_;
+                  my @cor=@{$correct};my @stu=@{$student};
+                  my @return=(1,1,1,1,1,1,1,1);
+                  for my $i (0,2,4,6) {
+                      do {$return[$i+1]=0;$self->setMessage($i+2,'This is not the difference quotient when h='."$stu[$i]".'.');}
+                      unless($stu[$i] ne "" and $dq->eval(h=>$stu[$i]) == $stu[$i+1]);
+                      do {$return[$i]=0;$self->setMessage($i+1,'You should use h-values '."$cor[0]".', '."$cor[2]".', '."$cor[4]".', and '."$cor[6]".'.');}
+                      unless($stu[$i]==$cor[0] or $stu[$i]==$cor[2] or $stu[$i]==$cor[4] or $stu[$i]==$cor[6]);
+                  };
+                  do {$return[2]=0;$self->setMessage(3,'You already used this h-value.');}
+                  unless($stu[2]!=$stu[0] or $stu[2] eq "");
+                  do {$return[4]=0;$self->setMessage(5,'You already used this h-value.');}
+                  unless($stu[4]!=$stu[0] and $stu[4]!=$stu[2] or $stu[2] eq "");
+                  do {$return[6]=0;$self->setMessage(7,'You already used this h-value.');}
+                  unless($stu[6]!=$stu[0] and $stu[6]!=$stu[2] and $stu[6]!=$stu[4] or $stu[2] eq "");
+                  return [@return];
+              });
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Approximate the limit of the difference quotient, <m>\lim\limits_{h\to 0}\frac{f(a+h)-f(a)}{h}</m>, using <m>h = \pm 0.1, \pm 0.01</m>.</p>
+            <p><m>f(x)=<var name="$f" /></m>, <m>a=<var name="$a" /></m></p>
+
+            <table>
+              <tabular>
+                <col halign="center"/>
+                                               <col halign="center"/>
+                <row bottom="medium">
+                  <cell><m>h</m></cell>
+                  <cell><m>\frac{f(a+h)-f(a)}{h}</m></cell>
+                </row>
+                <row>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                </row>
+                <row>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                </row>
+                <row>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                </row>
+                <row>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                </row>
+              </tabular>
+            </table>
+
+            <p>It appears that <m>\lim\limits_{h\to0}\frac{f(a+h)-f(a)}{h}=</m><var name="$m" width="5"/>.</p>
+          </statement>
+          <solution>
+            <table>
+              <tabular>
+                <col halign="center"/>
+                                               <col halign="center"/>
+                <row bottom="medium">
+                  <cell><m>h</m></cell>
+                  <cell><m>\frac{f(a+h)-f(a)}{h}</m></cell>
+                </row>
+                <row>
+                  <cell><m>-0.1</m></cell>
+                  <cell><m>
+                  <var name="$tabout[0]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>-0.01</m></cell>
+                  <cell><m>
+                  <var name="$tabout[1]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>0.01</m></cell>
+                  <cell><m>
+                  <var name="$tabout[2]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>0.1</m></cell>
+                  <cell><m>
+                  <var name="$tabout[3]" />
+                  </m></cell>
+                </row>
+              </tabular>
+            </table>
+
+            <p>It appears that <m>\lim\limits_{h\to0}\frac{f(a+h)-f(a)}{h}=<var name="$m" /></m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$m" category="number">
+              <static>-0.111111</static>
+            </var>
+            <var name="$f">
+              <static>\frac{1}{x+1}</static>
+            </var>
+            <var name="$a">
+              <static>2</static>
+            </var>
+            <var name="$tabout[0]">
+              <static>-0.114943</static>
+            </var>
+            <var name="$tabout[1]">
+              <static>-0.111483</static>
+            </var>
+            <var name="$tabout[2]">
+              <static>-0.110742</static>
+            </var>
+            <var name="$tabout[3]">
+              <static>-0.107527</static>
+            </var>
+            <var name="$tableanswers">
+              <static>-0.1,-0.114943,-0.01,-0.111483,0.01,-0.110742,0.1,-0.107527</static>
+            </var>
+            <pg-code>
+              $b=non_zero_random(-5,5,1);
+              $a=random(-5,5,1);
+              if ($envir{problemSeed}==1){$a=2;$b=1;};
+              $f=Formula("1/(x+$b)")->reduce;
+              $m=$f->D('x')->eval(x=>$a)->with(tolerance => .01);
+              Context()->variables->add(h=>'Real');
+              $dq=($f->substitute(x=>Formula("$a+h"))-($f->eval(x=>$a)))/Formula("h");
+              @tabin=(Real(-0.1),Real(-0.01),Real(0.01),Real(0.1));
+              @tabout=map{$dq->eval(h=>$_,x=>1)} @tabin;
+              @table=map{($tabin[$_],$tabout[$_])}(0 .. $#tabin);
+              $tableanswers=MultiAnswer(@table)->with(allowBlankAnswers=>1,checker=>sub{
+                  my ($correct,$student,$self)=@_;
+                  my @cor=@{$correct};my @stu=@{$student};
+                  my @return=(1,1,1,1,1,1,1,1);
+                  for my $i (0,2,4,6) {
+                      do {$return[$i+1]=0;$self->setMessage($i+2,'This is not the difference quotient when h='."$stu[$i]".'.');}
+                      unless($stu[$i] ne "" and $dq->eval(h=>$stu[$i]) == $stu[$i+1]);
+                      do {$return[$i]=0;$self->setMessage($i+1,'You should use h-values '."$cor[0]".', '."$cor[2]".', '."$cor[4]".', and '."$cor[6]".'.');}
+                      unless($stu[$i]==$cor[0] or $stu[$i]==$cor[2] or $stu[$i]==$cor[4] or $stu[$i]==$cor[6]);
+                  };
+                  do {$return[2]=0;$self->setMessage(3,'You already used this h-value.');}
+                  unless($stu[2]!=$stu[0] or $stu[2] eq "");
+                  do {$return[4]=0;$self->setMessage(5,'You already used this h-value.');}
+                  unless($stu[4]!=$stu[0] and $stu[4]!=$stu[2] or $stu[2] eq "");
+                  do {$return[6]=0;$self->setMessage(7,'You already used this h-value.');}
+                  unless($stu[6]!=$stu[0] and $stu[6]!=$stu[2] and $stu[6]!=$stu[4] or $stu[2] eq "");
+                  return [@return];
+              });
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Approximate the limit of the difference quotient, <m>\lim\limits_{h\to 0}\frac{f(a+h)-f(a)}{h}</m>, using <m>h = \pm 0.1, \pm 0.01</m>.</p>
+            <p><m>f(x)=<var name="$f" /></m>, <m>a=<var name="$a" /></m></p>
+
+            <table>
+              <tabular>
+                <col halign="center"/>
+                                               <col halign="center"/>
+                <row bottom="medium">
+                  <cell><m>h</m></cell>
+                  <cell><m>\frac{f(a+h)-f(a)}{h}</m></cell>
+                </row>
+                <row>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                </row>
+                <row>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                </row>
+                <row>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                </row>
+                <row>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                </row>
+              </tabular>
+            </table>
+
+            <p>It appears that <m>\lim\limits_{h\to0}\frac{f(a+h)-f(a)}{h}=</m><var name="$m" width="5"/>.</p>
+          </statement>
+          <solution>
+            <table>
+              <tabular>
+                <col halign="center"/>
+                                               <col halign="center"/>
+                <row bottom="medium">
+                  <cell><m>h</m></cell>
+                  <cell><m>\frac{f(a+h)-f(a)}{h}</m></cell>
+                </row>
+                <row>
+                  <cell><m>-0.1</m></cell>
+                  <cell><m>
+                  <var name="$tabout[0]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>-0.01</m></cell>
+                  <cell><m>
+                  <var name="$tabout[1]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>0.01</m></cell>
+                  <cell><m>
+                  <var name="$tabout[2]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>0.1</m></cell>
+                  <cell><m>
+                  <var name="$tabout[3]" />
+                  </m></cell>
+                </row>
+              </tabular>
+            </table>
+
+            <p>It appears that <m>\lim\limits_{h\to0}\frac{f(a+h)-f(a)}{h}=<var name="$m" /></m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$m" category="number">
+              <static>29</static>
+            </var>
+            <var name="$f">
+              <static>-4x^2+5x-1</static>
+            </var>
+            <var name="$a">
+              <static>-3</static>
+            </var>
+            <var name="$tabout[0]">
+              <static>29.4</static>
+            </var>
+            <var name="$tabout[1]">
+              <static>29.04</static>
+            </var>
+            <var name="$tabout[2]">
+              <static>28.96</static>
+            </var>
+            <var name="$tabout[3]">
+              <static>28.6</static>
+            </var>
+            <var name="$tableanswers">
+              <static>-0.1,29.4,-0.01,29.04,0.01,28.96,0.1,28.6</static>
+            </var>
+            <pg-code>
+              do{
+              do{
+              $d=non_zero_random(-5,5,1);
+              $b=non_zero_random(-5,5,1);
+              $c=non_zero_random(-5,5,1);
+              }until(gcd($d,gcd($b,$c))==1);
+              $a=random(-5,5,1);
+              if ($envir{problemSeed}==1){$a=-3;$d=-4;$b=5;$c=-1};
+              $f=Formula("$d*x^2+$b*x+$c")->reduce;
+              $m=$f->D('x')->eval(x=>$a);
+              }until($m!=0);
+              Context()->variables->add(h=>'Real');
+              $dq=($f->substitute(x=>Formula("$a+h"))-($f->eval(x=>$a)))/Formula("h");
+              @tabin=(Real(-0.1),Real(-0.01),Real(0.01),Real(0.1));
+              @tabout=map{$dq->eval(h=>$_,x=>1)} @tabin;
+              @table=map{($tabin[$_],$tabout[$_])}(0 .. $#tabin);
+              $tableanswers=MultiAnswer(@table)->with(allowBlankAnswers=>1,checker=>sub{
+                  my ($correct,$student,$self)=@_;
+                  my @cor=@{$correct};my @stu=@{$student};
+                  my @return=(1,1,1,1,1,1,1,1);
+                  for my $i (0,2,4,6) {
+                      do {$return[$i+1]=0;$self->setMessage($i+2,'This is not the difference quotient when h='."$stu[$i]".'.');}
+                      unless($stu[$i] ne "" and $dq->eval(h=>$stu[$i]) == $stu[$i+1]);
+                      do {$return[$i]=0;$self->setMessage($i+1,'You should use h-values '."$cor[0]".', '."$cor[2]".', '."$cor[4]".', and '."$cor[6]".'.');}
+                      unless($stu[$i]==$cor[0] or $stu[$i]==$cor[2] or $stu[$i]==$cor[4] or $stu[$i]==$cor[6]);
+                  };
+                  do {$return[2]=0;$self->setMessage(3,'You already used this h-value.');}
+                  unless($stu[2]!=$stu[0] or $stu[2] eq "");
+                  do {$return[4]=0;$self->setMessage(5,'You already used this h-value.');}
+                  unless($stu[4]!=$stu[0] and $stu[4]!=$stu[2] or $stu[2] eq "");
+                  do {$return[6]=0;$self->setMessage(7,'You already used this h-value.');}
+                  unless($stu[6]!=$stu[0] and $stu[6]!=$stu[2] and $stu[6]!=$stu[4] or $stu[2] eq "");
+                  return [@return];
+              });
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Approximate the limit of the difference quotient, <m>\lim\limits_{h\to 0}\frac{f(a+h)-f(a)}{h}</m>, using <m>h = \pm 0.1, \pm 0.01</m>.</p>
+            <p><m>f(x)=<var name="$f" /></m>, <m>a=<var name="$a" /></m></p>
+
+            <table>
+              <tabular>
+                <col halign="center"/>
+                                               <col halign="center"/>
+                <row bottom="medium">
+                  <cell><m>h</m></cell>
+                  <cell><m>\frac{f(a+h)-f(a)}{h}</m></cell>
+                </row>
+                <row>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                </row>
+                <row>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                </row>
+                <row>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                </row>
+                <row>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                </row>
+              </tabular>
+            </table>
+
+            <p>It appears that <m>\lim\limits_{h\to0}\frac{f(a+h)-f(a)}{h}=</m><var name="$m" width="5"/>.</p>
+          </statement>
+          <solution>
+            <table>
+              <tabular>
+                <col halign="center"/>
+                                               <col halign="center"/>
+                <row bottom="medium">
+                  <cell><m>h</m></cell>
+                  <cell><m>\frac{f(a+h)-f(a)}{h}</m></cell>
+                </row>
+                <row>
+                  <cell><m>-0.1</m></cell>
+                  <cell><m>
+                  <var name="$tabout[0]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>-0.01</m></cell>
+                  <cell><m>
+                  <var name="$tabout[1]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>0.01</m></cell>
+                  <cell><m>
+                  <var name="$tabout[2]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>0.1</m></cell>
+                  <cell><m>
+                  <var name="$tabout[3]" />
+                  </m></cell>
+                </row>
+              </tabular>
+            </table>
+
+            <p>It appears that <m>\lim\limits_{h\to0}\frac{f(a+h)-f(a)}{h}=<var name="$m" /></m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$m" category="number">
+              <static>0.2</static>
+            </var>
+            <var name="$f">
+              <static>\ln(x)</static>
+            </var>
+            <var name="$a">
+              <static>5</static>
+            </var>
+            <var name="$tabout[0]">
+              <static>0.202027</static>
+            </var>
+            <var name="$tabout[1]">
+              <static>0.2002</static>
+            </var>
+            <var name="$tabout[2]">
+              <static>0.1998</static>
+            </var>
+            <var name="$tabout[3]">
+              <static>0.198026</static>
+            </var>
+            <var name="$tableanswers">
+              <static>-0.1,0.202027,-0.01,0.2002,0.01,0.1998,0.1,0.198026</static>
+            </var>
+            <pg-code>
+              $a=random(2,9,1);
+              if ($envir{problemSeed}==1){$a=5;};
+              $f=Formula("ln(x)");
+              $m=$f->D('x')->eval(x=>$a)->with(tolerance => .01);
+              Context()->variables->add(h=>'Real');
+              $dq=($f->substitute(x=>Formula("$a+h"))-($f->eval(x=>$a)))/Formula("h");
+              @tabin=(Real(-0.1),Real(-0.01),Real(0.01),Real(0.1));
+              @tabout=map{$dq->eval(h=>$_,x=>1)} @tabin;
+              @table=map{($tabin[$_],$tabout[$_])}(0 .. $#tabin);
+              $tableanswers=MultiAnswer(@table)->with(allowBlankAnswers=>1,checker=>sub{
+                  my ($correct,$student,$self)=@_;
+                  my @cor=@{$correct};my @stu=@{$student};
+                  my @return=(1,1,1,1,1,1,1,1);
+                  for my $i (0,2,4,6) {
+                      do {$return[$i+1]=0;$self->setMessage($i+2,'This is not the difference quotient when h='."$stu[$i]".'.');}
+                      unless($stu[$i] ne "" and $dq->eval(h=>$stu[$i]) == $stu[$i+1]);
+                      do {$return[$i]=0;$self->setMessage($i+1,'You should use h-values '."$cor[0]".', '."$cor[2]".', '."$cor[4]".', and '."$cor[6]".'.');}
+                      unless($stu[$i]==$cor[0] or $stu[$i]==$cor[2] or $stu[$i]==$cor[4] or $stu[$i]==$cor[6]);
+                  };
+                  do {$return[2]=0;$self->setMessage(3,'You already used this h-value.');}
+                  unless($stu[2]!=$stu[0] or $stu[2] eq "");
+                  do {$return[4]=0;$self->setMessage(5,'You already used this h-value.');}
+                  unless($stu[4]!=$stu[0] and $stu[4]!=$stu[2] or $stu[2] eq "");
+                  do {$return[6]=0;$self->setMessage(7,'You already used this h-value.');}
+                  unless($stu[6]!=$stu[0] and $stu[6]!=$stu[2] and $stu[6]!=$stu[4] or $stu[2] eq "");
+                  return [@return];
+              });
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Approximate the limit of the difference quotient, <m>\lim\limits_{h\to 0}\frac{f(a+h)-f(a)}{h}</m>, using <m>h = \pm 0.1, \pm 0.01</m>.</p>
+            <p><m>f(x)=<var name="$f" /></m>, <m>a=<var name="$a" /></m></p>
+
+            <table>
+              <tabular>
+                <col halign="center"/>
+                                               <col halign="center"/>
+                <row bottom="medium">
+                  <cell><m>h</m></cell>
+                  <cell><m>\frac{f(a+h)-f(a)}{h}</m></cell>
+                </row>
+                <row>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                </row>
+                <row>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                </row>
+                <row>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                </row>
+                <row>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                </row>
+              </tabular>
+            </table>
+
+            <p>It appears that <m>\lim\limits_{h\to0}\frac{f(a+h)-f(a)}{h}=</m><var name="$m" width="5"/>.</p>
+          </statement>
+          <solution>
+            <table>
+              <tabular>
+                <col halign="center"/>
+                                               <col halign="center"/>
+                <row bottom="medium">
+                  <cell><m>h</m></cell>
+                  <cell><m>\frac{f(a+h)-f(a)}{h}</m></cell>
+                </row>
+                <row>
+                  <cell><m>-0.1</m></cell>
+                  <cell><m>
+                  <var name="$tabout[0]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>-0.01</m></cell>
+                  <cell><m>
+                  <var name="$tabout[1]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>0.01</m></cell>
+                  <cell><m>
+                  <var name="$tabout[2]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>0.1</m></cell>
+                  <cell><m>
+                  <var name="$tabout[3]" />
+                  </m></cell>
+                </row>
+              </tabular>
+            </table>
+
+            <p>It appears that <m>\lim\limits_{h\to0}\frac{f(a+h)-f(a)}{h}=<var name="$m" /></m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$m" category="number">
+              <static>-1</static>
+            </var>
+            <var name="$f">
+              <static>\sin(x)</static>
+            </var>
+            <var name="$a">
+              <static>\pi</static>
+            </var>
+            <var name="$tabout[0]">
+              <static>-0.998334</static>
+            </var>
+            <var name="$tabout[1]">
+              <static>-0.999983</static>
+            </var>
+            <var name="$tabout[2]">
+              <static>-0.999983</static>
+            </var>
+            <var name="$tabout[3]">
+              <static>-0.998334</static>
+            </var>
+            <var name="$tableanswers">
+              <static>-0.1,-0.998334,-0.01,-0.999983,0.01,-0.999983,0.1,-0.998334</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0);
+              $a=list_random(Formula("pi/3"),Formula("2pi/3"),Formula("pi"),Formula("4pi/3"),Formula("5pi/3"),);
+              if ($envir{problemSeed}==1){$a=Formula("pi");};
+              $f=Formula("sin(x)");
+              $m=$f->D('x')->eval(x=>$a->eval(x=>0))->with(tolerance => .01);
+              Context()->variables->add(h=>'Real');
+              $dq=($f->substitute(x=>Formula("$a+h"))-($f->eval(x=>$a->eval(x=>0))))/Formula("h");
+              @tabin=(Real(-0.1),Real(-0.01),Real(0.01),Real(0.1));
+              @tabout=map{$dq->eval(h=>$_,x=>1)} @tabin;
+              @table=map{($tabin[$_],$tabout[$_])}(0 .. $#tabin);
+              $tableanswers=MultiAnswer(@table)->with(allowBlankAnswers=>1,checker=>sub{
+                  my ($correct,$student,$self)=@_;
+                  my @cor=@{$correct};my @stu=@{$student};
+                  my @return=(1,1,1,1,1,1,1,1);
+                  for my $i (0,2,4,6) {
+                      do {$return[$i+1]=0;$self->setMessage($i+2,'This is not the difference quotient when h='."$stu[$i]".'.');}
+                      unless($stu[$i] ne "" and $dq->eval(h=>$stu[$i]) == $stu[$i+1]);
+                      do {$return[$i]=0;$self->setMessage($i+1,'You should use h-values '."$cor[0]".', '."$cor[2]".', '."$cor[4]".', and '."$cor[6]".'.');}
+                      unless($stu[$i]==$cor[0] or $stu[$i]==$cor[2] or $stu[$i]==$cor[4] or $stu[$i]==$cor[6]);
+                  };
+                  do {$return[2]=0;$self->setMessage(3,'You already used this h-value.');}
+                  unless($stu[2]!=$stu[0] or $stu[2] eq "");
+                  do {$return[4]=0;$self->setMessage(5,'You already used this h-value.');}
+                  unless($stu[4]!=$stu[0] and $stu[4]!=$stu[2] or $stu[2] eq "");
+                  do {$return[6]=0;$self->setMessage(7,'You already used this h-value.');}
+                  unless($stu[6]!=$stu[0] and $stu[6]!=$stu[2] and $stu[6]!=$stu[4] or $stu[2] eq "");
+                  return [@return];
+              });
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Approximate the limit of the difference quotient, <m>\lim\limits_{h\to 0}\frac{f(a+h)-f(a)}{h}</m>, using <m>h = \pm 0.1, \pm 0.01</m>.</p>
+            <p><m>f(x)=<var name="$f" /></m>, <m>a=<var name="$a" /></m></p>
+
+            <table>
+              <tabular>
+                <col halign="center"/>
+                                               <col halign="center"/>
+                <row bottom="medium">
+                  <cell><m>h</m></cell>
+                  <cell><m>\frac{f(a+h)-f(a)}{h}</m></cell>
+                </row>
+                <row>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                </row>
+                <row>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                </row>
+                <row>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                </row>
+                <row>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                </row>
+              </tabular>
+            </table>
+
+            <p>It appears that <m>\lim\limits_{h\to0}\frac{f(a+h)-f(a)}{h}=</m><var name="$m" width="5"/>.</p>
+          </statement>
+          <solution>
+            <table>
+              <tabular>
+                <col halign="center"/>
+                                               <col halign="center"/>
+                <row bottom="medium">
+                  <cell><m>h</m></cell>
+                  <cell><m>\frac{f(a+h)-f(a)}{h}</m></cell>
+                </row>
+                <row>
+                  <cell><m>-0.1</m></cell>
+                  <cell><m>
+                  <var name="$tabout[0]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>-0.01</m></cell>
+                  <cell><m>
+                  <var name="$tabout[1]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>0.01</m></cell>
+                  <cell><m>
+                  <var name="$tabout[2]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>0.1</m></cell>
+                  <cell><m>
+                  <var name="$tabout[3]" />
+                  </m></cell>
+                </row>
+              </tabular>
+            </table>
+
+            <p>It appears that <m>\lim\limits_{h\to0}\frac{f(a+h)-f(a)}{h}=<var name="$m" /></m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$m" category="number">
+              <static>0</static>
+            </var>
+            <var name="$f">
+              <static>\cos(x)</static>
+            </var>
+            <var name="$a">
+              <static>\pi</static>
+            </var>
+            <var name="$tabout[0]">
+              <static>−0.0499583</static>
+            </var>
+            <var name="$tabout[1]">
+              <static>−0.00499996</static>
+            </var>
+            <var name="$tabout[2]">
+              <static>0.00499996</static>
+            </var>
+            <var name="$tabout[3]">
+              <static>0.0499583</static>
+            </var>
+            <var name="$tableanswers">
+              <static>-0.1,−0.0499583,-0.01,−0.00499996,0.01,0.00499996,0.1,0.0499583</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0);
+              $a=list_random(Formula("pi/3"),Formula("2pi/3"),Formula("pi"),Formula("4pi/3"),Formula("5pi/3"),);
+              if ($envir{problemSeed}==1){$a=Formula("pi");};
+              $f=Formula("cos(x)");
+              $m=$f->D('x')->eval(x=>$a->eval(x=>0))->with(tolerance => .01);
+              Context()->variables->add(h=>'Real');
+              $dq=($f->substitute(x=>Formula("$a+h"))-($f->eval(x=>$a->eval(x=>0))))/Formula("h");
+              @tabin=(Real(-0.1),Real(-0.01),Real(0.01),Real(0.1));
+              @tabout=map{$dq->eval(h=>$_,x=>1)} @tabin;
+              @table=map{($tabin[$_],$tabout[$_])}(0 .. $#tabin);
+              $tableanswers=MultiAnswer(@table)->with(allowBlankAnswers=>1,checker=>sub{
+                  my ($correct,$student,$self)=@_;
+                  my @cor=@{$correct};my @stu=@{$student};
+                  my @return=(1,1,1,1,1,1,1,1);
+                  for my $i (0,2,4,6) {
+                      do {$return[$i+1]=0;$self->setMessage($i+2,'This is not the difference quotient when h='."$stu[$i]".'.');}
+                      unless($stu[$i] ne "" and $dq->eval(h=>$stu[$i]) == $stu[$i+1]);
+                      do {$return[$i]=0;$self->setMessage($i+1,'You should use h-values '."$cor[0]".', '."$cor[2]".', '."$cor[4]".', and '."$cor[6]".'.');}
+                      unless($stu[$i]==$cor[0] or $stu[$i]==$cor[2] or $stu[$i]==$cor[4] or $stu[$i]==$cor[6]);
+                  };
+                  do {$return[2]=0;$self->setMessage(3,'You already used this h-value.');}
+                  unless($stu[2]!=$stu[0] or $stu[2] eq "");
+                  do {$return[4]=0;$self->setMessage(5,'You already used this h-value.');}
+                  unless($stu[4]!=$stu[0] and $stu[4]!=$stu[2] or $stu[2] eq "");
+                  do {$return[6]=0;$self->setMessage(7,'You already used this h-value.');}
+                  unless($stu[6]!=$stu[0] and $stu[6]!=$stu[2] and $stu[6]!=$stu[4] or $stu[2] eq "");
+                  return [@return];
+              });
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Approximate the limit of the difference quotient, <m>\lim\limits_{h\to 0}\frac{f(a+h)-f(a)}{h}</m>, using <m>h = \pm 0.1, \pm 0.01</m>.</p>
+            <p><m>f(x)=<var name="$f" /></m>, <m>a=<var name="$a" /></m></p>
+
+            <table>
+              <tabular>
+                <col halign="center"/>
+                                               <col halign="center"/>
+                <row bottom="medium">
+                  <cell><m>h</m></cell>
+                  <cell><m>\frac{f(a+h)-f(a)}{h}</m></cell>
+                </row>
+                <row>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                </row>
+                <row>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                </row>
+                <row>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                </row>
+                <row>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                  <cell><var name="$tableanswers" width="5" /></cell>
+                </row>
+              </tabular>
+            </table>
+
+            <p>It appears that <m>\lim\limits_{h\to0}\frac{f(a+h)-f(a)}{h}=</m><var name="$m" width="5"/>.</p>
+          </statement>
+          <solution>
+            <table>
+              <tabular>
+                <col halign="center"/>
+                                               <col halign="center"/>
+                <row bottom="medium">
+                  <cell><m>h</m></cell>
+                  <cell><m>\frac{f(a+h)-f(a)}{h}</m></cell>
+                </row>
+                <row>
+                  <cell><m>-0.1</m></cell>
+                  <cell><m>
+                  <var name="$tabout[0]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>-0.01</m></cell>
+                  <cell><m>
+                  <var name="$tabout[1]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>0.01</m></cell>
+                  <cell><m>
+                  <var name="$tabout[2]" />
+                  </m></cell>
+                </row>
+                <row>
+                  <cell><m>0.1</m></cell>
+                  <cell><m>
+                  <var name="$tabout[3]" />
+                  </m></cell>
+                </row>
+              </tabular>
+            </table>
+
+            <p>It appears that <m>\lim\limits_{h\to0}\frac{f(a+h)-f(a)}{h}=<var name="$m" /></m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

@@ -1,0 +1,1121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_deriv_inverse_function">
+  <title>Derivatives of Inverse Functions</title>
+  <!--<introduction>-->
+    <p>Recall that a function <m>y=f(x)</m> is said to be <term>one-to-one</term> if it passes the horizontal line test; that is, for two different <m>x</m>-values <m>x_1</m> and <m>x_2</m>, we do <em>not</em> have <m>f\mathopen{}\left(x_1\right)\mathclose{}=f\mathopen{}\left(x_2\right)\mathclose{}</m>. In some cases the domain of <m>f</m> must be restricted so that it is one-to-one. For instance, consider <m>f(x)=x^2</m>. Clearly, <m>f(-1)= f(1)</m>, so <m>f</m> is not one-to-one on its regular domain, but by restricting <m>f</m> to <m>(0,\infty)</m>, <m>f</m> is one-to-one.<index><main>derivative</main><sub>inverse function</sub></index></p>
+
+    <p>Now recall that one-to-one functions have <term>inverses</term>. That is, if <m>f</m> is one-to-one, it has an inverse function, denoted by <m>f^{-1}</m>, such that if <m>f(a)=b</m>, then <m>f^{-1}(b) = a</m>. The domain of <m>f^{-1}</m> is the range of <m>f</m>, and vice-versa. For ease of notation, we set <m>g=f^{-1}</m> and treat <m>g</m> as a function of <m>x</m>.</p>
+
+    <p>Since <m>f(a)=b</m> implies <m>g(b)=a</m>, when we compose <m>f</m> and <m>g</m> we get a nice result:
+      <me>
+        f\big(g(b)\big) = f(a) = b.
+      </me>
+    </p>
+
+    <p>In general, <m>f\big(g(x)\big) = x</m> and <m>g\big(f(x)\big) = x</m>. This gives us a convenient way to check if two functions are inverses of each other: compose them and if the result is <m>x</m> (on the appropriate domains), then they are inverses.</p>
+
+    <p>When the point <m>(a,b)</m> lies on the graph of <m>f</m>, the point <m>(b,a)</m> lies on the graph of <m>g</m>. This leads us to discover that the graph of <m>g</m> is the reflection of <m>f</m> across the line <m>y=x</m>. In <xref ref="fig_inverse1">Figure</xref> we see a function graphed along with its inverse. See how the point <m>(1,1.5)</m> lies on one graph, whereas <m>(1.5,1)</m> lies on the other. Because of this relationship, whatever we know about <m>f</m> can quickly be transferred into knowledge about <m>g</m>.</p>
+
+    <figure xml:id="fig_inverse1" >
+      <caption>A function <m>f</m> along with its inverse <m>f^{-1}</m>. (Note how it does not matter which function we refer to as <m>f</m>; the other is <m>f^{-1}</m>.)</caption>
+      <!-- START figures/fig_inverse1.tex -->
+      <image xml:id="img_inverse1" width="47%">
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+            \begin{axis}[axis equal image,
+                         ymin=-1.3,ymax=2,
+                         xmin=-1.3,xmax=2,
+                         clip=false]
+              \addplot+[domain=-1:1.14] ({x},{x^3+.5});
+              \addplot+[domain=-1:1.14] ({x^3+.5},{x});
+              \addplot [symmetryline] coordinates {(-1.3,-1.3) (1.7,1.7)};
+              \addplot [soliddot] coordinates{(-.5,.375)} node[above left] {$(-0.5,0.375)$};
+              \addplot [soliddot] coordinates{(.375,-.5)} node[below right] {$(0.375,-0.5)$};
+              \addplot [soliddot] coordinates{(1,1.5)} node[above left] {$(1,1.5)$};
+              \addplot [soliddot] coordinates{(1.5,1)} node[below right] {$(1.5,1)$};
+            \end{axis}
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_inverse1.tex END -->
+    </figure>
+
+    <p>For example, consider <xref ref="fig_inverse2">Figure</xref> where the tangent line to <m>f</m> at the point <m>(1,1.5)</m> is drawn. That line has slope <m>3</m>. Through reflection across <m>y=x</m>, we can see that the tangent line to <m>g</m> at the point <m>(1.5,1)</m> has slope <m>1/3</m>. Their slopes are reciprocals. This should make sense since reflecting a line (such as a tangent line) across the line <m>y=x</m> switches the <m>x</m> and <m>y</m> values. Also consider the point <m>(0,0.5)</m> on the graph of <m>f</m>, where the tangent line is horizontal. At the point <m>(0.5,0)</m> on <m>g</m>, the tangent line is vertical.</p>
+
+    <p>More generally, consider the tangent line to <m>f</m> at the point <m>(a,b)</m>. That line has slope <m>\fp(a)</m>. Through reflection across <m>y=x</m>, we can extend our above observation to say that the tangent line to <m>g</m> at the point <m>(b,a)</m> should have slope <m>1/\fp(a)</m>. This then tells us that <m>g'(b)=1/\fp(a)</m>.</p>
+
+    <figure xml:id="fig_inverse2" >
+      <caption>Corresponding tangent lines drawn to <m>f</m> and <m>f^{-1}</m>.</caption>
+      <!-- START figures/fig_inverse2.tex -->
+      <image xml:id="img_inverse2" width="47%">
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+            \begin{axis}[axis equal image,
+                         ymin=-1.3,ymax=2,
+                         xmin=-1.3,xmax=2,
+                         clip=false,
+                         grid=both,
+                         xtick={-1,1},
+                         ytick={-1,1},
+                         minor xtick={-1.25,-1,...,2},
+                         minor ytick={-1.25,-1,...,2},]
+              \addplot+[domain=-1:1.14] ({x},{x^3+.5});
+              \addplot+[domain=-1:1.14] ({x^3+.5},{x});
+              \addplot [symmetryline] coordinates {(-1.3,-1.3) (1.7,1.7)};
+              \addplot [tangentlineseg,domain=0.75:1.25]{3*(x-1)+1.5};
+              \addplot [tangentlineseg,domain=0.75:2]{1/3*(x-1.5)+1};
+              \addplot [soliddot] coordinates{(-.5,.375)} node[above left] {$(-0.5,0.375)$};
+              \addplot [soliddot] coordinates{(.375,-.5)} node[below right] {$(0.375,-0.5)$};
+              \addplot [soliddot] coordinates{(1,1.5)} node[above left] {$(1,1.5)$};
+              \addplot [soliddot] coordinates{(1.5,1)} node[below right] {$(1.5,1)$};
+            \end{axis}
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_inverse2.tex END -->
+    </figure>
+
+    <p>The information from these two graphs is summarized in <xref ref="table_fandfinv" > Table </xref> below:</p>
+    <table xml:id="table_fandfinv">
+      <caption></caption>
+      <tabular>
+        <col width="30%" halign="center"/>
+        <col width="30%" halign="center"/>
+        <row bottom="medium">
+          <cell>Information about <m>f</m></cell>
+          <cell>Information about <m>g=f^{-1}</m></cell>
+        </row>
+        <row>
+          <cell><m>(1,1.5)</m> lies on <m>f</m></cell>
+          <cell><m>(1.5,1)</m> lies on <m>g</m></cell>
+        </row>
+        <row>
+          <cell><p>Slope of tangent line to <m>f</m> at <m>x=1</m> is <m>3</m></p></cell>
+          <cell><p>Slope of tangent line to <m>g</m> at <m>x=1.5</m> is <m>1/3</m></p></cell>
+        </row>
+        <row>
+          <cell><m>\fp(1) = 3</m></cell>
+          <cell><m>g'(1.5) = 1/3</m></cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>We have discovered a relationship between <m>\fp</m> and <m>g'</m> in a mostly graphical way. We can realize this relationship analytically as well. Let <m>y = g(x)</m>, where again <m>g = f^{-1}</m>. We want to find <m>y'</m>. Since <m>y = g(x)</m>, we know that <m>f(y) = x</m>. Using the <xref ref="thm_Chain_Rule" autoname="title" /> and Implicit Differentiation, take the derivative of both sides of this last equality.
+      <md>
+        <mrow>\lzoo{x}{f(y)} \amp = \lzoo{x}{x}</mrow>
+        <mrow>\fp(y)\cdot y' \amp = 1</mrow>
+        <mrow>y' \amp = \frac{1}{\fp(y)}</mrow>
+        <mrow>y' \amp = \frac{1}{\fp(g(x))}</mrow>
+      </md>
+    </p>
+
+    <p>This leads us to the following theorem.</p>
+
+    <theorem xml:id="thm_deriv_inverse_functions">
+      <title>Derivatives of Inverse Functions</title>
+      <statement>
+        <p>Let <m>f</m> be differentiable and one-to-one on an open interval <m>I</m>, where <m>\fp(x) \neq 0</m> for all <m>x</m> in <m>I</m>, let <m>J</m> be the range of <m>f</m> on <m>I</m>, let <m>g</m> be the inverse function of <m>f</m>, and let <m>f(a) = b</m> for some <m>a</m> in <m>I</m>. Then <m>g</m> is a differentiable function on <m>J</m>, and in particular,<ol cols="2">
+          <li><m>\left(f^{-1}\right)'(b)=g'(b) = \dfrac{1}{\fp(a)}</m></li>
+          <li><m>\left(f^{-1}\right)'(x)=g'(x) = \dfrac{1}{\fp(g(x))}</m></li>
+        </ol></p>
+      </statement>
+    </theorem>
+
+    <p>The results of <xref ref="thm_deriv_inverse_functions">Theorem</xref> are not trivial; the notation may seem confusing at first. Careful consideration, along with examples, should earn understanding.</p>
+
+    <p>In the next example we apply <xref ref="thm_deriv_inverse_functions">Theorem</xref> to the arcsine function.</p>
+
+    <example xml:id="ex_deriv_arcsin">
+      <title>Finding the derivative of an inverse trigonometric function</title>
+      <statement>
+        <p>Let <m>y = \arcsin(x) = \sin^{-1}(x)</m>. Find <m>y'</m> using <xref ref="thm_deriv_inverse_functions">Theorem</xref>.</p>
+      </statement>
+      <solution>
+        <p>Adopting our previously defined notation, let <m>g(x) = \arcsin(x) </m> and <m>f(x) = \sin(x)</m>. Thus <m>\fp(x) = \cos(x)</m>. Applying the theorem, we have
+          <md>
+            <mrow>g'(x) \amp = \frac{1}{\fp(g(x))}</mrow>
+            <mrow>\amp = \frac{1}{\cos(\arcsin(x))}.</mrow>
+          </md>
+        </p>
+
+        <p>This last expression is not immediately illuminating. Drawing a figure will help, as shown in <xref ref="fig_inverse3">Figure</xref>. Recall that the sine function can be viewed as taking in an angle and returning a ratio of sides of a right triangle, specifically, the ratio <q>opposite over hypotenuse.</q> This means that the arcsine function takes as input a ratio of sides and returns an angle. The equation <m>y=\arcsin(x)</m> can be rewritten as <m>y=\arcsin(x/1)</m>; that is, consider a right triangle where the hypotenuse has length <m>1</m> and the side opposite of the angle with measure <m>y</m> has length <m>x</m>. This means the final side has length <m>\sqrt{1-x^2}</m>, using the Pythagorean Theorem.</p>
+
+        <figure xml:id="fig_inverse3" >
+          <caption>A right triangle defined by <m>y=\sin^{-1}(x/1)</m> with the length of the third leg found using the Pythagorean Theorem.</caption>
+          <!-- START figures/fig_inverse3.tex -->
+          <image xml:id="img_inverse3" width="47%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+                \coordinate (O) at (0,0);
+                \coordinate (A) at (5,0);
+                \coordinate (B) at (5,3.75);
+                \draw (O)--(A)--(B)--cycle;
+
+                \tkzLabelSegment[below=0pt](O,A){$\sqrt{1-x^2}$}
+                \tkzLabelSegment[above left=0pt](O,B){$1$}
+                \tkzLabelSegment[right=0pt](A,B){$x$}
+
+                \tkzMarkAngle[fill= orange,
+                              size=1,
+                              opacity=.4](A,O,B)
+                \tkzLabelAngle[pos = 0.75](A,O,B){$y$}
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_inverse3.tex END -->
+        </figure>
+
+        <p>Therefore
+          <md>
+            <mrow>\cos\mathopen{}\left(\sin^{-1}(x)\right)\mathclose{} \amp= \cos(y)</mrow>
+            <mrow>\amp = \frac{\sqrt{1-x^2}}{1}</mrow>
+            <mrow>\amp = \sqrt{1-x^2},</mrow>
+          </md>resulting in
+          <me>
+            \lzoo{x}{\arcsin(x)} = \frac{1}{\sqrt{1-x^2}}.
+          </me>
+        </p>
+      </solution>
+    </example>
+
+    <p>Remember that the input <m>x</m> of the arcsine function is a ratio of a side of a right triangle to its hypotenuse; the absolute value of this ratio will never be greater than <m>1</m>. Therefore the inside of the square root will never be negative.</p>
+
+    <p>In order to make <m>y=\sin(x)</m> one-to-one, we restrict its domain to <m>[-\pi/2,\pi/2]</m>; on this domain, the range is <m>[-1,1]</m>. Therefore the domain of <m>y=\arcsin(x)</m> is <m>[-1,1]</m> and the range is <m>[-\pi/2,\pi/2]</m>. When <m>x=\pm 1</m>, note how the derivative of the arcsine function is undefined; this corresponds to the fact that as <m>x\to \pm1</m>, the tangent lines to arcsine approach vertical lines with undefined slopes.</p>
+
+    <sidebyside xml:id="fig_inversesine" widths="47% 47%">
+      <caption>Graphs of <m>\sin(x)</m> and <m>\sin^{-1}(x)</m> along with corresponding tangent lines.</caption>
+      <!-- START figures/fig_inverse4.tex -->
+      <figure>
+        <image xml:id="img_inverse4">
+          <description></description>
+          <latex-image-code>
+            <![CDATA[
+            \begin{tikzpicture}
+              \begin{axis}[ymin=-1.7,ymax=1.7,
+                           xmin=-1.7,xmax=1.7,
+                           xtick={-1.57,-.79,.79,1.57},
+                           xticklabels={$-\frac{\pi}{2}$,$-\frac{\pi}{4}$,$\frac{\pi}{4}$,$\frac{\pi}{2}$},
+                           axis equal]
+
+                \addplot+[domain=-1.57:1.57,-] (x,{sin(deg(x))}) node [pos=0.5,above,sloped]{$y=\sin(x)$};
+                \addplot [tangentline,domain=.42:1.7] {.5*(x-pi/3)+sqrt(3)/2};
+                \addplot [soliddot] coordinates {(1.06,.866)} node [above left] {$\left(\frac{\pi}{3},\frac{\sqrt{3}}{2}\right)$};
+            \end{axis}
+            \end{tikzpicture}
+
+            ]]>
+          </latex-image-code>
+        </image>
+      </figure>
+      <figure>
+        <image xml:id="img_inverse5">
+          <description></description>
+          <latex-image-code>
+            <![CDATA[
+            \begin{tikzpicture}
+              \begin{axis}[ymin=-1.7,ymax=1.7,
+                           xmin=-1.7,xmax=1.7,
+                           ytick={-1.57,-.79,.79,1.57},
+                           yticklabels={$-\frac{\pi}{2}$,$-\frac{\pi}{4}$,$\frac{\pi}{4}$,$\frac{\pi}{2}$},
+                           axis equal]
+              \addplot+[domain=-1.57:1.57,-] ({sin(deg(x))},x) node [pos=0.5,above,sloped]{$y=\sin^{-1}(x)$};
+              \addplot [tangentline,domain=.42:1.7] ({.5*(x-pi/3)+sqrt(3)/2},{x});
+              \addplot [soliddot] coordinates {(0.866,1.06)} node [below right] {$\left(\frac{\sqrt{3}}{2},\frac{\pi}{3}\right)$};
+            \end{axis}
+          \end{tikzpicture}
+          ]]>
+          </latex-image-code>
+        </image>
+      </figure>
+    </sidebyside>
+
+    <p>In <xref ref="fig_inversesine">Figure</xref> we see <m>f(x) = \sin(x)</m> and <m>f^{-1} = \sin^{-1}(x)</m> graphed on their respective domains. The line tangent to <m>\sin(x)</m> at the point <m>\left(\pi/3, \sqrt{3}/2\right)</m> has slope <m>\cos(\pi)/3 = 1/2</m>. The slope of the corresponding point on <m>\sin^{-1}(x)</m>, the point <m>\left(\sqrt{3}/2,\pi/3\right)</m>, is
+      <md>
+        <mrow>\frac{1}{\sqrt{1-\left(\sqrt{3}/2\right)^2}} \amp  = \frac{1}{\sqrt{1-3/4}}</mrow>
+        <mrow> \amp = \frac{1}{\sqrt{1/4}}</mrow>
+        <mrow> \amp = \frac{1}{1/2}=2</mrow>
+      </md>,
+      verifying yet again that at corresponding points, a function and its inverse have reciprocal slopes.</p>
+
+    <p>Using similar techniques, we can find the derivatives of all the inverse trigonometric functions. In <xref ref="tab_domain_trig">Table</xref> we show the restrictions of the domains of the standard trigonometric functions that allow them to be invertible.</p>
+
+    <table xml:id="tab_domain_trig">
+      <caption>Domains and ranges of the trigonometric and inverse trigonometric functions.</caption>
+      <tabular>
+        <row bottom="medium">
+          <cell>Function</cell>
+          <cell>Domain</cell>
+          <cell>Range</cell>
+        </row>
+        <row>
+          <cell><m>\sin(x)</m></cell>
+          <cell><m>[-\pi/2, \pi/2]</m></cell>
+          <cell><m>[-1,1]</m></cell>
+        </row>
+        <row>
+          <cell><m>\sin^{-1}(x)</m></cell>
+          <cell><m>[-1,1]</m></cell>
+          <cell><m>[-\pi/2, \pi/2]</m></cell>
+        </row>
+        <row>
+          <cell><m>\cos(x)</m></cell>
+          <cell><m>[0,\pi]</m></cell>
+          <cell><m>[-1,1]</m></cell>
+        </row>
+        <row>
+          <cell><m>\cos^{-1}(x)</m></cell>
+          <cell><m>[-1,1]</m></cell>
+          <cell><m>[0,\pi]</m></cell>
+        </row>
+        <row>
+          <cell><m>\tan(x)</m></cell>
+          <cell><m>(-\pi/2,\pi/2)</m></cell>
+          <cell><m>(-\infty,\infty)</m></cell>
+        </row>
+        <row>
+          <cell><m>\tan^{-1}(x)</m></cell>
+          <cell><m>(-\infty,\infty)</m></cell>
+          <cell><m>(-\pi/2,\pi/2)</m></cell>
+        </row>
+        <row>
+          <cell><m>\csc(x)</m></cell>
+          <cell><m>[-\pi/2,0)\cup (0, \pi/2]</m></cell>
+          <cell><m>(-\infty,-1]\cup [1,\infty)</m></cell>
+        </row>
+        <row>
+          <cell><m>\csc^{-1}(x)</m></cell>
+          <cell><m>(-\infty,-1]\cup [1,\infty)</m></cell>
+          <cell><m>[-\pi/2,0)\cup (0, \pi/2]</m></cell>
+        </row>
+        <row>
+          <cell><m>\sec(x)</m></cell>
+          <cell><m>[0,\pi/2)\cup (\pi/2,\pi]</m></cell>
+          <cell><m>(-\infty,-1]\cup [1,\infty)</m></cell>
+        </row>
+        <row>
+          <cell><m>\sec^{-1}(x)</m></cell>
+          <cell><m>(-\infty,-1]\cup [1,\infty)</m></cell>
+          <cell><m>[0,\pi/2)\cup (\pi/2,\pi]</m></cell>
+        </row>
+        <row>
+          <cell><m>\cot(x)</m></cell>
+          <cell><m>(0,\pi)</m></cell>
+          <cell><m>(-\infty,\infty)</m></cell>
+        </row>
+        <row>
+          <cell><m>\cot^{-1}(x)</m></cell>
+          <cell><m>(-\infty,\infty)</m></cell>
+          <cell><m>(0,\pi)</m></cell>
+        </row>
+      </tabular>
+    </table>
+
+    <theorem xml:id="thm_deriv_inverse_trig">
+      <title>Derivatives of Inverse Trigonometric Functions</title>
+      <statement>
+        <p>The inverse trigonometric functions are differentiable on all open sets contained in their domains (as listed in <xref ref="tab_domain_trig">Table</xref>) and their derivatives are as follows:<ol>
+          <li>
+            <p><m>\lzoo{x}{\sin^{-1}(x)} = \frac{1}{\sqrt{1-x^2}}</m></p>
+          </li>
+          <li>
+            <p><m>\lzoo{x}{\cos^{-1}(x)} = -\frac{1}{\sqrt{1-x^2}}</m></p>
+          </li>
+          <li>
+            <p><m>\lzoo{x}{\tan^{-1}(x)} = \frac{1}{1+x^2}</m></p>
+          </li>
+          <li>
+            <p><m>\lzoo{x}{\csc^{-1}(x)} = -\frac{1}{\abs{x}\sqrt{x^2-1}}</m></p>
+          </li>
+          <li>
+            <p><m>\lzoo{x}{\sec^{-1}(x)} = \frac{1}{\abs{x}\sqrt{x^2-1}}</m></p>
+          </li>
+          <li>
+            <p><m>\lzoo{x}{\cot^{-1}(x)} = -\frac{1}{1+x^2}</m></p>
+          </li>
+        </ol><index><main>derivative</main><sub>inverse trig.</sub></index></p>
+
+      </statement>
+    </theorem>
+
+    <p>Note how each derivative is the negative of the derivative of its <q>co</q> function. Because of this, derivatives of <m>\sin^{-1}(x)</m>, <m>\tan^{-1}(x)</m>, and <m>\sec^{-1}(x)</m> are used almost exclusively throughout this text.</p>
+
+    <p>In <xref ref="sec_basic_diff_rules">Section</xref>, we stated without proof or explanation that <m>\lzoo{\ln(x)}=\frac{1}{x}</m>. We can justify that now using <xref ref="thm_deriv_inverse_functions">Theorem</xref>, as shown in the example.</p>
+
+    <example xml:id="ex_deriv_lnx">
+      <title>Finding the derivative of <m>y=\ln(x)</m></title>
+      <statement>
+        <p>Use <xref ref="thm_deriv_inverse_functions">Theorem</xref> to compute <m>\lzoo{x}{\ln(x)}</m>.</p>
+      </statement>
+      <solution>
+        <p>View <m>y= \ln(x)</m> as the inverse of <m>y = e^x</m>. Therefore, using our standard notation, let <m>f(x) = e^x</m> and <m>g(x) = \ln(x)</m>. We wish to find <m>g'(x)</m>. <xref ref="thm_deriv_inverse_functions">Theorem</xref> gives:
+          <md>
+            <mrow>g'(x) \amp = \frac{1}{\fp(g(x))}</mrow>
+            <mrow>\amp = \frac{1}{e^{\ln(x) }}</mrow>
+            <mrow>\amp = \frac{1}{x}.</mrow>
+          </md>
+        </p>
+      </solution>
+    </example>
+
+    <p>In this chapter we have defined the derivative, given rules to facilitate its computation, and given the derivatives of a number of standard functions. We restate the most important of these in the following theorem, intended to be a reference for further work.</p>
+
+    <theorem xml:id="thm_deriv_glossary">
+      <title>Glossary of Derivatives of Elementary Functions</title>
+      <statement>
+        <p>Let <m>f</m> and <m>g</m> be differentiable functions, and let <m>a</m>, <m>c</m> and <m>n</m> be real numbers, <m>a>0</m>, <m>n\neq 0</m>.</p>
+
+        <p><ol cols="2" >
+          <li>
+            <p><m>\lzoo{x}{c\cdot f(x)} = c\cdot f'(x)</m></p>
+          </li>
+          <li>
+            <p><m>\lzoo{x}{f(x)\pm g(x)} = f'(x) \pm g'(x)</m></p>
+          </li>
+          <li>
+            <p><m>\lzoo{x}{f(x)\cdot g(x)} = f'(x)\cdot g(x)+f(x)\cdot g'(x)</m></p>
+          </li>
+          <li>
+            <p><m>\lzoo{x}{\frac{f(x)}{g(x)}} = \frac{f'(x)\cdot g(x)-f(x) \cdot g'(x)}{(g(x))^2}</m></p>
+          </li>
+          <li>
+            <p><m>\lzoo{x}{f(g(x))} = f'(g(x)) \cdot g'(x)</m></p>
+          </li>
+          <li>
+            <p><m>\lzoo{x}{c} = 0</m></p>
+          </li>
+          <li>
+            <p><m>\lzoo{x}{x} = 1</m></p>
+          </li>
+          <li>
+            <p><m>\lzoo{x}{x^n} = nx^{n-1}</m></p>
+          </li>
+          <li>
+            <p><m>\lzoo{x}{e^x} = e^x</m></p>
+          </li>
+          <li>
+            <p><m>\lzoo{x}{\ln(x)} = \frac{1}{x}</m></p>
+          </li>
+          <li>
+            <p><m>\lzoo{x}{a^x} = \ln(a)\cdot a^x</m></p>
+          </li>
+          <li>
+            <p><m>\lzoo{x}{\log_a x} = \frac{1}{\ln(a)}\cdot\frac{1}{x}</m></p>
+          </li>
+          <li>
+            <p><m>\lzoo{x}{\sin(x)} = \cos(x)</m></p>
+          </li>
+          <li>
+            <p><m>\lzoo{x}{\cos(x)} = -\sin(x)</m></p>
+          </li>
+          <li>
+            <p><m>\lzoo{x}{\tan(x)} = \sec^2(x)</m></p>
+          </li>
+          <li>
+            <p><m>\lzoo{x}{\csc(x)} = -\csc(x)\cot(x)</m></p>
+          </li>
+          <li>
+            <p><m>\lzoo{x}{\sec(x)} = \sec(x)\tan(x)</m></p>
+          </li>
+          <li>
+            <p><m>\lzoo{x}{\cot(x)} = -\csc^2(x)</m></p>
+          </li>
+          <li>
+            <p><m>\lzoo{x}{\sin^{-1}(x)} = \frac{1}{\sqrt{1-x^2}}</m></p>
+          </li>
+          <li>
+            <p><m>\lzoo{x}{\cos^{-1}(x)} = -\frac{1}{\sqrt{1-x^2}}</m></p>
+          </li>
+          <li>
+            <p><m>\lzoo{x}{\tan^{-1}(x)} = \frac{1}{1+x^2}</m></p>
+          </li>
+          <li>
+            <p><m>\lzoo{x}{\csc^{-1}(x)} = -\frac{1}{\abs{x}\sqrt{x^2-1}}</m></p>
+          </li>
+          <li>
+            <p><m>\lzoo{x}{\sec^{-1}(x)} = \frac{1}{\abs{x}\sqrt{x^2-1}}</m></p>
+          </li>
+          <li>
+            <p><m>\lzoo{x}{\cot^{-1}(x)} = -\frac{1}{1+x^2}</m></p>
+          </li>
+        </ol></p>
+      </statement>
+    </theorem>
+  <!--</introduction>-->
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$tf">
+              <set>
+                <member>True</member>
+                <member correct="yes">False</member>
+              </set>
+            </var>
+            <pg-code>
+              $tf=PopUp(['?','True','False'],2);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>True or False? Every function has an inverse. <var name="$tf" form="popup"/></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <statement>
+            <p>In your own words explain what it means for a function to be <q>one-to-one.</q></p>
+            <p><var form="essay" /></p>
+          </statement>
+          <solution>
+            <p>Answers will vary.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <statement>
+            <p>If <m>(1,10)</m> lies on the graph of <m>y=f(x)</m>, what can be said about the graph of <m>y=f^{-1}(x)</m>?</p>
+            <p><var form="essay" /></p>
+          </statement>
+          <solution>
+            <p>The point <m>(10,1)</m> lies on the graph of <m>y=f^{-1}(x)</m> (assuming <m>f</m> is invertible).</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <statement>
+            <p>If <m>(1,10)</m> lies on the graph of <m>y=f(x)</m> and <m>\fp(1) = 5</m>, what can be said about <m>y=f^{-1}(x)</m>?</p>
+            <p><var form="essay" /></p>
+          </statement>
+          <solution>
+            <p>The point <m>(10,1)</m> lies on the graph of <m>y=f^{-1}(x)</m> (assuming <m>f</m> is invertible) and <m>(f^{-1})'(10) = 1/5</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, verify that the given functions are inverses.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <statement>
+            <p>Verify that <m>f(x) = 2x+6</m> and <m>g(x) = \frac{1}{2}x-3</m> are inverse functions.</p>
+            <p><var form="essay" /></p>
+          </statement>
+          <solution>
+            <p>Compose <m>f(g(x))</m> and <m>g(f(x))</m> to confirm that each equals <m>x</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <statement>
+            <p>Verify that <m>f(x) = x^2+6x+11</m>, <m>x\geq 3</m> and <m>g(x) = \sqrt{x-2}-3</m>, <m>x\geq 2</m> are inverse functions.</p>
+            <p><var form="essay" /></p>
+          </statement>
+          <solution>
+            <p>Compose <m>f(g(x))</m> and <m>g(f(x))</m> to confirm that each equals <m>x</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <statement>
+            <p>Verify that <m>f(x) = \frac{3}{x-5}</m>, <m>x\neq 5</m> and <m>g(x) = \frac{3+5x}{x}</m>, <m>x\neq 0</m> are inverse functions.</p>
+            <p><var form="essay" /></p>
+          </statement>
+          <solution>
+            <p>Compose <m>f(g(x))</m> and <m>g(f(x))</m> to confirm that each equals <m>x</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <statement>
+            <p>Verify that <m>f(x) = \frac{x+1}{x-1}</m>, <m>x\neq 1</m> and <m>g(x) = f(x)</m> are inverse functions.</p>
+            <p><var form="essay" /></p>
+          </statement>
+          <solution>
+            <p>Compose <m>f(g(x))</m> and <m>g(f(x))</m> to confirm that each equals <m>x</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, an invertible function <m>f(x)</m> is given along with a point that lies on its graph. Using <xref ref="thm_deriv_inverse_functions">Theorem</xref>, evaluate <m>\left(f^{-1}\right)'(x)</m> at the indicated value.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$fip">
+              <static>1/5</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $fip=Formula("1/5");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>The point <m>(2,20)</m> is on the graph of <m>f(x) = 5x+10</m>.</p>
+            <p><m>\left(f^{-1}\right)'(20)=</m><var name="$fip" width="10" /></p>
+          </statement>
+          <solution>
+            <p><m>\left(f^{-1}\right)'(20) = \frac{1}{\fp(2)} = 1/5</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$fip">
+              <static>1/4</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $fip=Formula("1/4");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>The point <m>(3,7)</m> is on the graph of <m>f(x) = x^2-2x+4</m>, <m>x\geq 1</m>.</p>
+            <p><m>\left(f^{-1}\right)'(7)=</m><var name="$fip" width="10" /></p>
+          </statement>
+          <solution>
+            <p><m>\left(f^{-1}\right)'(7) = \frac{1}{\fp(3)} = 1/4</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$fip">
+              <static>1</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $fip=Formula("1");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>The point <m>\left(\pi/6,\sqrt{3}/2\right)</m> is on the graph of <m>f(x) = \sin(2x)</m>, <m>-\pi/4\leq x\leq \pi/4</m>.</p>
+            <p><m>\left(f^{-1}\right)'\left(\sqrt{3}/2\right)=</m><var name="$fip" width="10" /></p>
+          </statement>
+          <solution>
+            <p><m>\left(f^{-1}\right)'\left(\sqrt{3}/2\right) = \frac{1}{\fp(\pi/6)} = 1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$fip">
+              <static>1/6</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $fip=Formula("1/6");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>The point <m>(1,8)</m> is on the graph of <m>f(x) = x^3-6x^2+15x-2</m>.</p>
+            <p><m>\left(f^{-1}\right)'(8)=</m><var name="$fip" width="10" /></p>
+          </statement>
+          <solution>
+            <p><m>\left(f^{-1}\right)'(8) = \frac{1}{\fp(1)} = 1/6</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$fip">
+              <static>-2</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $fip=Formula("-2");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>The point <m>(1,1/2)</m> is on the graph of <m>\ds f(x) = \frac{1}{1+x^2}</m>, <m>x\geq 0</m>.</p>
+            <p><m>\left(f^{-1}\right)'(1/2)=</m><var name="$fip" width="10" /></p>
+          </statement>
+          <solution>
+            <p><m>\left(f^{-1}\right)'(1/2) = \frac{1}{\fp(1)} = -2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$fip">
+              <static>1/18</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $fip=Formula("1/18");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>The point <m>(0,6)</m> is on the graph of <m>f(x) = 6e^{3x}</m>.</p>
+            <p><m>\left(f^{-1}\right)'(6)=</m><var name="$fip" width="10" /></p>
+          </statement>
+          <solution>
+            <p><m>\left(f^{-1}\right)'(6) = \frac{1}{\fp(0)} = 1/18</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, compute the derivative of the given function.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$fp">
+              <static>\frac{2}{\sqrt{1-4t^2}}</static>
+            </var>
+            <pg-code>
+              Context()->variables->are(t=>'Real');
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              Context()->variables->set(t=>{limits=>[-0.25,0.25]});
+              $fp=Formula("2/sqrt(1-4t^2)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>h(t) = \sin^{-1}(2t)</m></p>
+            <p><m>h'(t)=</m><var name="$fp" width="40" /></p>
+          </statement>
+          <solution>
+            <p><m>h'(t) = \frac{2}{\sqrt{1-4t^2}}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$fp">
+              <static>\frac{1}{\abs{t}\sqrt{4t^2+1}}</static>
+            </var>
+            <pg-code>
+              Context()->variables->are(t=>'Real');
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $fp=Formula("1/(|t|sqrt(4t^2+1))");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(t) = \sec^{-1}(2t)</m></p>
+            <p><m>f'(t)=</m><var name="$fp" width="40" /></p>
+          </statement>
+          <solution>
+            <p><m>\fp(t) = \frac{1}{\abs{t}\sqrt{4t^2+1}}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$fp">
+              <static>\frac{2}{1+4x^2}</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $fp=Formula("2/(1+4x^2)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>g(x)=\tan^{-1}(2x)</m></p>
+            <p><m>g'(x)=</m><var name="$fp" width="40" /></p>
+          </statement>
+          <solution>
+            <p><m>g'(x) = \frac{2}{1+4x^2}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$fp">
+              <static>\frac{x}{\sqrt{1-x^2}}+\sin^{-1}(x)</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              Context()->variables->set(x=>{limits=>[-1,1]});
+              $fp=Formula("x/sqrt(1-x^2)+sin^(-1)(x)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) =x\sin^{-1}(x)</m></p>
+            <p><m>f'(x)=</m><var name="$fp" width="40" /></p>
+          </statement>
+          <solution>
+            <p><m>\fp(x) = \frac{x}{\sqrt{1-x^2}}+\sin^{-1}(x)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$fp">
+              <static>\cos^{-1}(t) \cos(t)-\frac{\sin(t)}{\sqrt{1-t^2}}</static>
+            </var>
+            <pg-code>
+              Context()->variables->are(t=>'Real');
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              Context()->variables->set(t=>{limits=>[-1,1]});
+              $fp=Formula("cos^(-1)(t)cos(t)-sin(t)/sqrt(1-t^2)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>g(t) = \sin(t) \cos^{-1}(t)</m></p>
+            <p><m>g'(t)=</m><var name="$fp" width="40" /></p>
+          </statement>
+          <solution>
+            <p><m>g'(t) = \cos^{-1}(t) \cos(t)-\frac{\sin(t)}{\sqrt{1-t^2}}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$fp">
+              <static>\frac{e^t}{t} + \ln(t) e^t</static>
+            </var>
+            <pg-code>
+              Context()->variables->are(t=>'Real');
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              Context()->variables->set(t=>{limits=>[1,5]});
+              $fp=Formula("e^t/t+ln(t)e^t");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(t) = \ln(t) e^t</m></p>
+            <p><m>f'(t)=</m><var name="$fp" width="40" /></p>
+          </statement>
+          <solution>
+            <p><m>\fp(t) = \frac{e^t}{t} + \ln(t) e^t</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$fp">
+              <static>\frac{\pi}{2\sqrt{1-x^2} \left(\cos^{-1}(x)\right)^2}</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              Context()->variables->set(x=>{limits=>[-1,1]});
+              $fp=Formula("(sin^-1(x)+cos^-1(x))/(sqrt(1-x^2)(cos^-1(x))^2)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>h(x) = \frac{\sin^{-1}(x) }{\cos^{-1}(x) }</m></p>
+            <p><m>h'(x)=</m><var name="$fp" width="40" /></p>
+          </statement>
+          <solution>
+            <p><m>h'(x)=\frac{\pi}{2\sqrt{1-x^2} \left(\cos^{-1}(x)\right)^2}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$fp">
+              <static>\frac{1}{\sqrt{x} (2 x+2)}</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              Context()->variables->set(x=>{limits=>[1,5]});
+              $fp=Formula("1/(2sqrt(x)(1+x))");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>g(x) = \tan^{-1}\mathopen{}\left(\sqrt{x}\right)\mathclose{}</m></p>
+            <p><m>g'(x)=</m><var name="$fp" width="40" /></p>
+          </statement>
+          <solution>
+            <p><m>g'(x) = \frac{1}{\sqrt{x} (2 x+2)}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$fp">
+              <static>-\frac{1}{\sqrt{1-x^2}}</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              Context()->variables->set(x=>{limits=>[-1,1]});
+              $fp=Formula("-1/sqrt(1-x^2)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x)=\sec^{-1}(1/x)</m></p>
+            <p><m>f'(x)=</m><var name="$fp" width="40" /></p>
+          </statement>
+          <solution>
+            <p><m>\fp(x) = -\frac{1}{\sqrt{1-x^2}}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$fp">
+              <static>1</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              Context()->variables->set(x=>{limits=>[-1,1]});
+              $fp=Formula("1");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) =\sin(\sin^{-1}(x) )</m></p>
+            <p><m>f'(x)=</m><var name="$fp" width="40" /></p>
+          </statement>
+          <solution>
+            <p><ol>
+              <li><p><m>f(x) = x</m>, so <m>\fp(x) = 1</m></p></li>
+
+              <li><p><m>\fp(x) = \cos(\sin^{-1}(x) )\frac{1}{\sqrt{1-x^2}} = 1</m>.</p></li>
+            </ol></p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, compute the derivative of the given function in two ways:</p>
+        <p><ol>
+          <li>
+            <title>(a)</title>
+            <p>By simplifying first, then taking the derivative, and</p></li>
+
+          <li>
+            <title>(b)</title>
+            <p>by using the Chain Rule first then simplifying.</p></li>
+        </ol></p>
+
+        <p>Verify that the two answers are the same.</p>
+      </introduction>
+
+      <exercise>
+        <webwork seed="1">
+          <statement>
+            <p>Compute the derivative of <m>f(x)=\sin(\sin^{-1}(x))</m> in two ways: by simplifying first and then taking the derivative; and by using the Chain Rule first and then simplying. Verify the two answers are the same.</p>
+            <p><var form="essay" /></p>
+          </statement>
+          <solution>
+            <p><ol>
+              <li><p><m>f(x) = x</m>, so <m>\fp(x) = 1</m></p></li>
+
+              <li><p><m>\fp(x) = \cos(\sin^{-1}(x) )\frac{1}{\sqrt{1-x^2}} = 1</m>.</p></li>
+            </ol></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <statement>
+            <p>Compute the derivative of <m>f(x)=\tan^{-1}(\tan(x))</m> in two ways: by simplifying first and then taking the derivative; and by using the Chain Rule first and then simplying. Verify the two answers are the same.</p>
+            <p><var form="essay" /></p>
+          </statement>
+          <solution>
+            <p><ol>
+              <li><p><m>f(x) = x</m>, so <m>\fp(x) = 1</m></p></li>
+
+              <li><p><m>\fp(x) = \frac{1}{1+\tan^2(x) }\sec^2(x) = 1</m></p></li>
+            </ol></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <statement>
+            <p>Compute the derivative of <m>f(x) \sin(\cos^{-1}(x))</m> in two ways: by simplifying first and then taking the derivative; and by using the Chain Rule first and then simplying. Verify the two answers are the same.</p>
+            <p><var form="essay" /></p>
+          </statement>
+          <solution>
+            <p><ol>
+              <li><p><m>f(x) = \sqrt{1-x^2}</m>, so <m>\fp(x) = \frac{-x}{\sqrt{1-x^2}}</m></p></li>
+
+              <li><p><m>\fp(x) = \cos(\cos^{-1}(x) ) \frac{1}{\sqrt{1-x^2}} =\frac{-x}{\sqrt{1-x^2}}</m></p></li>
+            </ol></p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, find the equation of the line tangent to the graph of <m>f</m> at the indicated <m>x</m> value.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$t">
+              <static>y=\sqrt{2}\left(x-\sqrt{2}/2\right)+\pi/4</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real');
+              parser::Assignment->Allow;
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $t=Formula("y=sqrt(2)(x-sqrt(2)/2)+pi/4");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find the equation of the tangent line to <m>f(x)=\sin^{-1}(x)</m> at <m>x=\frac{\sqrt{2}}{2}</m>.</p>
+            <p><var name="$t" width="30" /></p>
+          </statement>
+          <solution>
+            <p><m>y=\sqrt{2}(x-\sqrt{2}/2)+\pi/4</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$t">
+              <static>y=-4\left(x-\sqrt{3}/4\right)+\pi/6</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real');
+              parser::Assignment->Allow;
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $t=Formula("y=-4(x-sqrt(3)/4)+pi/6");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find the equation of the tangent line to <m>f(x)=\cos^{-1}(2x)</m> at <m>x=\frac{\sqrt{3}}{4}</m>.</p>
+            <p><var name="$t" width="30" /></p>
+          </statement>
+          <solution>
+            <p><m>y=-4(x-\sqrt{3}/4)+\pi/6</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>Review</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$dydx">
+              <static>\frac{y(y-2x)}{x(x-2y)}</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real');
+              $dydx=Formula("(y(y-2x))/(x(x-2y))");
+              @y=(random(0,5,0.1),random(0,5,0.1),random(0,5,0.1),random(0,5,0.1),random(0,5,0.1));
+              @x=map{$_/2 +(-1)**(random(-1,1,2))*sqrt(($_)**2/4+1/$_)}(@y);
+              @xy=map{[$x[$_],$y[$_]]}(0..4);
+              $dydx->{test_points}=~~@xy;
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find <m>\lz{y}{x}</m>, where <m>x^2y-y^2x = 1</m>.</p>
+            <p><m>\lz{y}{x}=</m><var name="$dydx" width="40" /></p>
+          </statement>
+          <solution>
+            <p><m>\lz{y}{x} = \frac{y(y-2x)}{x(x-2y)}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$t">
+              <static>y=-\frac{4}{5}(x-1)+2</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real');
+              parser::Assignment->Allow;
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $t=Formula("y=-4/5(x-1)+2");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find the equation of the line tangent to the graph of <m>x^2+y^2+xy=7</m> at the point <m>(1,2)</m>.</p>
+            <p><var name="$t" width="30" /></p>
+          </statement>
+          <solution>
+            <p><m>y=-\frac{4}{5}(x-1)+2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$l">
+              <static>3x^2+1</static>
+            </var>
+            <pg-code>
+              $l=Formula("3x^2+1");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Let <m>f(x) = x^3+x</m>.</p>
+
+            <p><m>\lim\limits_{s\to 0} \frac{f(x+s)-f(x)}{s}=</m><var name="$l" width="20" /></p>
+          </statement>
+          <solution>
+            <p><m>3x^2+1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

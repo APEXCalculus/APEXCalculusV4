@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<chapter xmlns:xi="http://www.w3.org/2001/XInclude"  xml:id="chapter_anti_tech">
+  <title>Techniques of Antidifferentiation</title>
+  <introduction>
+    <p>The previous chapter introduced the antiderivative and connected it to signed areas under a curve through the Fundamental Theorem of Calculus. The next chapter explores more applications of definite integrals than just area. As evaluating definite integrals will become important, we will want to find antiderivatives of a variety of functions.</p>
+
+    <p>This chapter is devoted to exploring techniques of antidifferentiation. While not every function has an antiderivative in terms of elementary functions (a concept introduced in the section on Numerical Integration), we can still find antiderivatives of a wide variety of functions.</p>
+  </introduction>
+  <xi:include  href="sec_substitution.mbx" />
+  <xi:include  href="sec_IBP.mbx" />
+  <xi:include  href="sec_trigint.mbx" />
+  <xi:include  href="sec_trig_sub.mbx" />
+  <xi:include  href="sec_partial_fraction.mbx" />
+  <xi:include  href="sec_hyperbolic.mbx" />
+  <xi:include  href="sec_lhopitals_rule.mbx" />
+  <xi:include  href="sec_improper_integration.mbx" />
+</chapter>

@@ -1,0 +1,2213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_multi_tangent">
+  <title>Tangent Lines, Normal Lines, and Tangent Planes</title>
+  <introduction>
+    <p>Derivatives and tangent lines go hand<ndash />in<ndash />hand. Given <m>y=f(x)</m>, the line tangent to the graph of <m>f</m> at <m>x=x_0</m> is the line through <m>\big(x_0,f(x_0)\big)</m> with slope <m>\fp(x_0)</m>; that is, the slope of the tangent line is the instantaneous rate of change of <m>f</m> at <m>x_0</m>.</p>
+
+    <p>When dealing with functions of two variables, the graph is no longer a curve but a surface. At a given point on the surface, it seems there are many lines that fit our intuition of being <q>tangent</q> to the surface.</p>
+
+    <figure xml:id="fig_space_tangent_intro" >
+      <caption>Showing various lines tangent to a surface.</caption>
+      <!--
+       \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
+      3Droll=-2.257428960551401,
+      3Dortho=0.004649740643799305,
+      3Dc2c=0.6559564471244812 0.554935097694397 0.5116328597068787,
+      3Dcoo=-23.771865844726562 -11.790743827819824 45.958377838134766,
+      3Droo=200.99999868169073,
+      3Dlights=Headlamp,add3Djscript=asylabels.js]
+       -->
+
+
+      <!-- START figures/figspace_tangent_intro_3D.asy -->
+      <image xml:id="img_space_tangent_intro" >
+        <asymptote>
+          <![CDATA[
+          import graph3;
+
+          //ASY file for figspace_tangent_intro3D.asy in Chapter 12
+
+          size(200,200,IgnoreAspect);
+          //size(200,200,Aspect);
+          //currentprojection=perspective(7,2,1);
+          currentprojection=orthographic(8,8,13);
+          defaultrender.merge=true;
+
+          usepackage("mathspec");
+          texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+          texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+          texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+          texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+
+          // setup and draw the axes
+          real[] myxchoice={2};
+          real[] myychoice={2};
+          real[] myzchoice={10};
+          defaultpen(0.5mm);
+          pair xbounds=(-0.5,3);
+          pair ybounds=(-0.5,3);
+          pair zbounds=(-0.5,11);
+
+          xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+          yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+          zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+          label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+          label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+          label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+          //Draw surface z=-x^2-.5*(y^2)+x*y+10 //(x,y,{-x^2-.5*(y^2)+x*y+10});
+          triple f(pair t) {
+            return (t.x,t.y,-t.x^2-.5*(t.y^2)+t.x*t.y+10);
+          }
+          surface s=surface(f,(0,0),(3,3),16,16,Spline);
+          pen p=rgb(0,0,.7);
+          draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+          //plot point on surface
+          dotfactor=3;dot((2,1,7.5));
+
+          //Draw traces on the surface
+          triple g(real t) {return (2,t,-4-0.5*t^2+2*t+10);}//-x^2-.5*(y^2)+x*y+10
+          path3 mypath=graph(g,0,3,operator ..); draw(mypath,blue);
+          triple g(real t) {return (t,1,-t^2-0.5+t+10);}//-x^2-.5*(y^2)+x*y+10
+          path3 mypath=graph(g,0,3,operator ..); draw(mypath,blue);
+          triple g(real t) {return (t,3-t,-t^2-0.5*(3-t)^2+(3-t)*t+10);}
+          path3 mypath=graph(g,0,3,operator ..); draw(mypath,blue);
+
+
+          //Draw tangent lines on the surface with gradient (-3,1)
+          //L1 = (2,1,7.5)+t(1,0,-3) for t=-1,1
+          draw((1,1,10.5)--(3,1,4.5),red);
+          //L2 = (2,1,7.5)+t(0,1,1) for t=-1,1
+          draw((2,0,6.5)--(2,2,8.5),red);
+          //L3 = (2,1,7.5)+t(0.707,-0.707,-2.828) for t=-1,1
+          draw((1.293,1.707,10.328)--(2.707,0.293,4.672),red);
+
+
+          // ////////////////////////////////////
+          //    SAMPLE CODE
+
+          // defaultpen(fontsize(10pt));
+
+          //Draw the parabola z=y^2 for t from -2 to 2
+          //triple g(real t) {return (0,t,t^2);}
+          //path3 mypath=graph(g,-2,2,operator ..); draw(mypath,blue);
+
+
+          //Draw the surface z=1/(1+x^2+y^2)
+          //triple f(pair t) {
+          //  return (t.x,t.y,1/(1+(t.x)^2+(t.y)^2));
+          //}
+          //surface s=surface(f,(-2,-2),(2,2),8,8,Spline);
+          //pen p=rgb(0,0,.7);
+          //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+
+          //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+          //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+
+          //triple f(pair t) {
+          //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+          //}
+          //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+
+          //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+          //path3 mypath=graph(g,-2,2,operator ..);
+
+          //pen p=rgb(0,0,1);
+          //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+
+          //draw(s,paleblue);
+          //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+          //draw(mypath,2bp+blue);
+          ]]>
+        </asymptote>
+      </image>
+      <!-- figures/figspace_tangent_intro_3D.asy END -->
+    </figure>
+
+    <p>In <xref ref="fig_space_tangent_intro">Figures</xref> we see lines that are tangent to curves in space. Since each curve lies on a surface, it makes sense to say that the lines are also tangent to the surface. The next definition formally defines what it means to be <q>tangent to a surface.</q></p>
+
+    <definition xml:id="def_directional_tangent_line">
+      <title>Directional Tangent Line</title>
+      <statement>
+        <p>Let <m>z=f(x,y)</m> be differentiable on an open set <m>S</m> containing <m>(x_0,y_0)</m> and let <m>\vec u = \la u_1, u_2\ra</m> be a unit vector.
+          <index><main>tangent line</main><sub>directional</sub></index></p>
+
+        <ol>
+          <li><p>The line <m>\ell_x</m> through <m>\big(x_0,y_0,f(x_0,y_0)\big)</m> parallel to <m>\la 1,0,f_x(x_0,y_0)\ra</m>	is the <term>tangent line to <m>f</m> in the direction of <m>x</m> at <m>(x_0,y_0)</m></term>.</p></li>
+
+          <li><p>The line <m>\ell_y</m>  through <m>\big(x_0,y_0,f(x_0,y_0)\big)</m> parallel to <m>\la 0,1,f_y(x_0,y_0)\ra</m>	is the <term>tangent line to <m>f</m> in the direction of <m>y</m> at <m>(x_0,y_0)</m></term>.</p></li>
+
+          <li><p>The line <m>\ell_{\vec u}</m> through <m>\big(x_0,y_0,f(x_0,y_0)\big)</m> parallel to <m>\la u_1,u_2,D_{\vec u\,}f(x_0,y_0)\ra</m>	is the <term>tangent line to <m>f</m> in the direction of <m>\vec u</m> at <m>(x_0,y_0)</m></term>.</p></li>
+        </ol>
+      </statement>
+    </definition>
+
+    <p>It is instructive to consider each of three directions given in the definition in terms of <q>slope.</q> The direction of <m>\ell_x</m> is <m>\la 1,0,f_x(x_0,y_0)\ra</m>; that is, the <q>run</q> is one unit in the <m>x</m>-direction and the <q>rise</q> is <m>f_x(x_0,y_0)</m> units in the <m>z</m>-direction. Note how the slope is just the partial derivative with respect to <m>x</m>. A similar statement can be made for <m>\ell_y</m>. The direction of <m>\ell_{\vec u}</m> is <m>\la u_1,u_2,D_{\vec u\,}f(x_0,y_0)\ra</m>; the <q>run</q> is one unit in the <m>\vec u</m> direction (where <m>\vec u</m> is a unit vector) and the <q>rise</q> is the directional derivative of <m>z</m> in that direction.</p>
+
+    <p><xref ref="def_directional_tangent_line">Definition</xref> leads to the following parametric equations of directional tangent lines:</p>
+
+    <sidebyside>
+      <me>
+        \ell_x(t) = \left\{\begin{array}{l} x=x_0+t \\ y=y_0\\z=z_0+f_x(x_0,y_0)t
+        \end{array} \right. \ \text{,}  \ell_y(t)=\left\{\begin{array}{l} x=x_0 \\ y=y_0+t\\z=z_0+f_y(x_0,y_0)t
+        \end{array} \right.\  \text{ and }  \ell_{\vec u}(t)=\left\{\begin{array}{l} x=x_0+u_1t \\ y=y_0+u_2t\\z=z_0+D_{\vec u\,}f(x_0,y_0)t
+        \end{array} \right..
+      </me>
+    </sidebyside>
+
+    <example xml:id="ex_tpl1">
+      <title>Finding directional tangent lines</title>
+      <statement>
+        <p>Find the lines tangent to the surface <m>z=\sin(x) \cos(y)</m> at <m>(\pi/2,\pi/2)</m> in the <m>x</m> and <m>y</m> directions and also in the direction of <m>\vec v = \la -1,1\ra</m>.</p>
+      </statement>
+      <solution>
+        <p>The partial derivatives with respect to <m>x</m> and <m>y</m> are:
+          <md>
+            <mrow>f_x(x,y) = \cos(x) \cos(y) \amp \Rightarrow  f_x(\pi/2,\pi/2) = 0</mrow>
+            <mrow>f_y(x,y) = -\sin(x) \sin(y) \amp \Rightarrow  f_y(\pi/2,\pi/2)=-1.</mrow>
+          </md>
+        </p>
+
+        <p>At <m>(\pi/2,\pi/2)</m>, the <m>z</m>-value is 0.</p>
+
+        <p>Thus the parametric equations of the line tangent to <m>f</m> at <m>(\pi/2,\pi/2)</m> in the directions of <m>x</m> and <m>y</m> are:
+          <me>
+            \ell_x(t) = \left\{\begin{array}{l} x=\pi/2 + t\\ y=\pi/2 \\z=0
+            \end{array} \right.  \text{ and }
+            \ell_y(t) = \left\{\begin{array}{l} x=\pi/2 \\ y=\pi/2+t \\z=-t
+            \end{array} \right..
+          </me>
+        </p>
+
+        <p>The two lines are shown with the surface in <xref ref="fig_partial4">Figure</xref>(a).</p>
+
+        <figure xml:id="fig_partial4" >
+        <caption>A surface and directional tangent lines in <xref ref="ex_tpl1">Example</xref>.</caption>
+        <sidebyside>
+          <figure>
+            <caption>(a)</caption>
+            <!--
+             \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
+            3Droll=0,
+            3Dortho=0.005110511556267738,
+            3Dc2c=0.5852379202842712 0.4928830564022064 0.6438655853271484,
+            3Dcoo=1.7508834600448608 15.36020565032959 -12.730416297912598,
+            3Droo=201.00000286631447,
+            3Dlights=Headlamp,add3Djscript=asylabels.js]
+             -->
+
+
+            <!-- START figures/figpartial4a_3D.asy -->
+            <image xml:id="img_partial4a_3D" >
+              <asymptote>
+                <![CDATA[
+                import graph3;
+
+                //ASY file for figpartial4a3D.asy in Chapter 12
+
+                size(200,200,IgnoreAspect);
+                //size(200,200,Aspect);
+                //currentprojection=perspective(7,2,1);
+                currentprojection=orthographic(4,4,2);
+                defaultrender.merge=true;
+
+                usepackage("mathspec");
+                texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+                texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+                texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+                texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+                // setup and draw the axes
+                real[] myxchoice={2,4};
+                real[] myychoice={2,4};
+                real[] myzchoice={-1,1};
+                defaultpen(0.5mm);
+                pair xbounds=(-0.5,5);
+                pair ybounds=(-0.5,4.5);
+                pair zbounds=(-1.5,1.5);
+
+                xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+                yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+                zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+                label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+                label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+                label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+                //Draw surface z=sin(x)cos(y)
+                triple f(pair t) {
+                  return (t.x,t.y,sin(t.x)*cos(t.y));
+                }
+                surface s=surface(f,(-1,-1),(4,4),16,16,Spline);
+                pen p=rgb(0,0,.7);
+                draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+                //plot point on surface
+                dotfactor=3;dot((pi/2,pi/2,0));
+
+                //Draw lines on the surface
+                //L1 = (pi/2,pi/2,0)+t(1,0,0) for t=-1,1
+                draw((0.57,1.57,0)--(2.57,1.57,0),red);
+                //L2 = (pi/2,pi/2,0)+t(0,1,-1) for t=-1,1
+                draw((1.57,.57,1)--(1.57,2.57,-1),red);
+
+                // ////////////////////////////////////
+                //    SAMPLE CODE
+
+                // defaultpen(fontsize(10pt));
+
+                //Draw the parabola z=y^2 for t from -2 to 2
+                //triple g(real t) {return (0,t,t^2);}
+                //path3 mypath=graph(g,-2,2,operator ..); draw(mypath,blue);
+
+
+                //Draw the surface z=1/(1+x^2+y^2)
+                //triple f(pair t) {
+                //  return (t.x,t.y,1/(1+(t.x)^2+(t.y)^2));
+                //}
+                //surface s=surface(f,(-2,-2),(2,2),8,8,Spline);
+                //pen p=rgb(0,0,.7);
+                //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+
+                //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+                //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+
+                //triple f(pair t) {
+                //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+                //}
+                //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+
+                //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+                //path3 mypath=graph(g,-2,2,operator ..);
+
+                //pen p=rgb(0,0,1);
+                //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+
+                //draw(s,paleblue);
+                //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+                //draw(mypath,2bp+blue);
+                ]]>
+              </asymptote>
+            </image>
+            <!-- figures/figpartial4a_3D.asy END -->
+          </figure>
+
+          <figure>
+            <caption>(b)</caption>
+            <!--
+             \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
+            3Droll=0,
+            3Dortho=0.005110511556267738,
+            3Dc2c=0.5852379202842712 0.4928830564022064 0.6438655853271484,
+            3Dcoo=1.7508834600448608 15.36020565032959 -12.730416297912598,
+            3Droo=201.00000286631447,
+            3Dlights=Headlamp,add3Djscript=asylabels.js]
+             -->
+
+
+            <!-- START figures/figpartial4b_3D.asy -->
+            <image xml:id="img_partial4b_3D" >
+              <asymptote>
+                <![CDATA[
+                import graph3;
+
+                //ASY file for figpartial4b3D.asy in Chapter 12
+
+                size(200,200,IgnoreAspect);
+                //size(200,200,Aspect);
+                //currentprojection=perspective(7,2,1);
+                currentprojection=orthographic(4,4,2);
+                defaultrender.merge=true;
+
+                usepackage("mathspec");
+                texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+                texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+                texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+                texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+                // setup and draw the axes
+                real[] myxchoice={2,4};
+                real[] myychoice={2,4};
+                real[] myzchoice={-1,1};
+                defaultpen(0.5mm);
+                pair xbounds=(-0.5,5);
+                pair ybounds=(-0.5,4.5);
+                pair zbounds=(-1.5,1.5);
+
+                xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+                yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+                zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+                label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+                label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+                label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+                //Draw surface z=sin(x)cos(y)
+                triple f(pair t) {
+                  return (t.x,t.y,sin(t.x)*cos(t.y));
+                }
+                surface s=surface(f,(-1,-1),(4,4),16,16,Spline);
+                pen p=rgb(0,0,.7);
+                draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+                //plot point on surface
+                dotfactor=3;dot((pi/2,pi/2,0));
+
+                //Draw traces on the surface
+                triple g(real t) {return (t,pi-t,sin(t)*cos(pi-t));}
+                path3 mypath=graph(g,0,3.75,operator ..); draw(mypath,blue);
+
+
+
+                //Draw lines on the surface
+                //L1 = (pi/2,pi/2,0)+t(-0.707,0.707,-0.707) for t=-1,1
+                draw((2.28,.864,0.707)--(.864,2.28,-0.707),red);
+
+
+                // ////////////////////////////////////
+                //    SAMPLE CODE
+
+                // defaultpen(fontsize(10pt));
+
+                //Draw the parabola z=y^2 for t from -2 to 2
+                //triple g(real t) {return (0,t,t^2);}
+                //path3 mypath=graph(g,-2,2,operator ..); draw(mypath,blue);
+
+
+                //Draw the surface z=1/(1+x^2+y^2)
+                //triple f(pair t) {
+                //  return (t.x,t.y,1/(1+(t.x)^2+(t.y)^2));
+                //}
+                //surface s=surface(f,(-2,-2),(2,2),8,8,Spline);
+                //pen p=rgb(0,0,.7);
+                //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+
+                //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+                //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+
+                //triple f(pair t) {
+                //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+                //}
+                //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+
+                //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+                //path3 mypath=graph(g,-2,2,operator ..);
+
+                //pen p=rgb(0,0,1);
+                //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+
+                //draw(s,paleblue);
+                //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+                //draw(mypath,2bp+blue);
+                ]]>
+              </asymptote>
+            </image>
+            <!-- figures/figpartial4b_3D.asy END -->
+          </figure>
+        </sidebyside>
+
+        </figure>
+
+        <p>To find the equation of the tangent line in the direction of <m>\vec v</m>, we first find the unit vector in the direction of <m>\vec v</m>: <m>\vec u = \la -1/\sqrt{2},1/\sqrt{2}\ra</m>. The directional derivative at <m>(\pi/2,\pi,2)</m> in the direction of <m>\vec u</m> is
+          <me>
+            D_{\vec u\,}f(\pi/2,\pi,2) = \la 0,-1\ra \cdot \la -1/\sqrt{2},1/\sqrt 2\ra = -1/\sqrt 2.
+          </me>
+        </p>
+
+        <p>Thus the directional tangent line is
+          <me>
+            \ell_{\vec u}(t) = \left\{\begin{array}{l} x= \pi/2 -t/\sqrt{2}\\ y = \pi/2 + t/\sqrt{2} \\ z= -t/\sqrt{2}
+            \end{array} \right. .
+          </me>
+        </p>
+
+        <p>The curve through <m>(\pi/2,\pi/2,0)</m> in the direction of <m>\vec v</m> is shown in <xref ref="fig_partial4">Figure</xref>(b) along with <m>\ell_{\vec u}(t)</m>.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_tpl2">
+      <title>Finding directional tangent lines</title>
+      <statement>
+        <p>Let <m>f(x,y) = 4xy-x^4-y^4</m>. Find the equations of <em>all</em> directional tangent lines to <m>f</m> at <m>(1,1)</m>.</p>
+      </statement>
+      <solution>
+        <p>First note that <m>f(1,1) = 2</m>. We need to compute directional derivatives, so we need <m>\nabla f</m>. We begin by computing partial derivatives.
+          <me>
+            f_x = 4y-4x^3 \Rightarrow f_x(1,1) = 0; f_y = 4x-4y^3\Rightarrow f_y(1,1) = 0.
+          </me>
+        </p>
+
+        <p>Thus <m>\nabla f(1,1) = \la 0,0\ra</m>. Let <m>\vec u = \la u_1,u_2\ra</m> be any unit vector. The directional derivative of <m>f</m> at <m>(1,1)</m> will be <m>D_{\vec u\,}f(1,1) = \la 0,0\ra\cdot \la u_1,u_2\ra = 0</m>. It does not matter what direction we choose; the directional derivative is always 0. Therefore
+          <me>
+            \ell_{\vec u}(t) = \left\{\begin{array}{l} x= 1 +u_1t\\ y = 1+ u_2 t\\ z= 2
+            \end{array} \right..
+          </me>
+        </p>
+
+        <p><xref ref="fig_tpl2">Figure</xref> shows a graph of <m>f</m> and the point <m>(1,1,2)</m>. Note that this point comes at the top of a <q>hill,</q> and therefore every tangent line through this point will have a <q>slope</q> of 0.</p>
+
+        <figure xml:id="fig_tpl2" >
+          <caption>Graphing <m>f</m> in <xref ref="ex_tpl2">Example</xref>.</caption>
+          <!--
+           \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
+          3Droll=0,
+          3Dortho=0.004649740178138018,
+          3Dc2c=0.9278050065040588 0.2142607718706131 0.30540165305137634,
+          3Dcoo=-8.829919815063477 56.8592643737793 -4.442079067230225,
+          3Droo=201.0000074006932,
+          3Dlights=Headlamp,add3Djscript=asylabels.js]
+           -->
+
+
+          <!-- START figures/figtpl2_3D.asy -->
+          <image xml:id="img_tpl2" >
+            <asymptote>
+              <![CDATA[
+              import graph3;
+
+              //ASY file for figpartial4b3D.asy in Chapter 12
+
+              size(200,200,IgnoreAspect);
+              //size(200,200,Aspect);
+              //currentprojection=perspective(7,2,1);
+              currentprojection=orthographic(8,2.6,4.7);
+              defaultrender.merge=true;
+
+              usepackage("mathspec");
+              texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+
+              // setup and draw the axes
+              real[] myxchoice={1,2};
+              real[] myychoice={1,2};
+              real[] myzchoice={2};
+              defaultpen(0.5mm);
+              pair xbounds=(-0.5,2.5);
+              pair ybounds=(-0.5,2.5);
+              pair zbounds=(-3.5,3.5);
+
+              xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+              yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+              zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+              label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+              label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+              label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+              //Draw surface z=\addplot3[domain=-.1:2,y domain=-.1:2,surf,colormap={mp2}{\colormapplaneone}//,shader=faceted,faceted color=black!40,samples y=20,very thin,z buffer=sort,%opacity=.6,
+              //samples=20,] (x,y,{4*x*y-x^4-y^4});
+
+              bool cond(pair t) {return 4*t.x*t.y-(t.x)^4-(t.y)^4 >-3;}
+
+              //triple f(pair t) {
+              //  return (t.x,t.y,4*t.x*t.y-(t.x)^4-(t.y)^4);
+              //}
+              //surface s=surface(f,(-.1,-.1),(1.5,1.5),32,32,Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              triple f(pair t) {
+                return (cos(t.x)*t.y+1,sin(t.x)*t.y+1,4*(cos(t.x)*t.y+1)*(sin(t.x)*t.y+1)-(cos(t.x)*t.y+1)^4-(sin(t.x)*t.y+1)^4);
+              }
+              surface s=surface(f,(0,0),(2*pi,.75),32,32,Spline);
+              pen p=rgb(0,0,.7);
+              draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //plot point on surface
+              dotfactor=3;
+              dot((1,1,2));
+
+              //Draw traces on the surface
+              //triple g(real t) {return (t,pi-t,sin(t)*cos(pi-t));}
+              //path3 mypath=graph(g,0,3.75,operator ..); draw(mypath,blue);
+
+
+
+
+
+              // ////////////////////////////////////
+              //    SAMPLE CODE
+
+              // defaultpen(fontsize(10pt));
+
+              //Draw the parabola z=y^2 for t from -2 to 2
+              //triple g(real t) {return (0,t,t^2);}
+              //path3 mypath=graph(g,-2,2,operator ..); draw(mypath,blue);
+
+
+              //Draw the surface z=1/(1+x^2+y^2)
+              //triple f(pair t) {
+              //  return (t.x,t.y,1/(1+(t.x)^2+(t.y)^2));
+              //}
+              //surface s=surface(f,(-2,-2),(2,2),8,8,Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+
+              //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+              //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+
+              //triple f(pair t) {
+              //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+              //}
+              //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+
+              //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+              //path3 mypath=graph(g,-2,2,operator ..);
+
+              //pen p=rgb(0,0,1);
+              //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+
+              //draw(s,paleblue);
+              //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+              //draw(mypath,2bp+blue);
+              ]]>
+            </asymptote>
+          </image>
+          <!-- figures/figtpl2_3D.asy END -->
+        </figure>
+
+        <p>That is, consider any curve on the surface that goes through this point. Each curve will have a relative maximum at this point, hence its tangent line will have a slope of 0. The following section investigates the points on surfaces where all tangent lines have a slope of 0.</p>
+      </solution>
+    </example>
+  </introduction>
+
+  <subsection>
+    <title>Normal Lines</title>
+    <p>When dealing with a function <m>y=f(x)</m> of one variable, we stated that a line through <m>(c,f(c))</m> was <em>tangent</em> to <m>f</m> if the line had a slope of <m>\fp(c)</m> and was <em>normal</em> (or, <em>perpendicular, orthogonal</em>) to <m>f</m> if it had a slope of <m>-1/\fp(c)</m>. We extend the concept of normal, or orthogonal, to functions of two variables.</p>
+
+    <p>Let <m>z=f(x,y)</m> be a differentiable function of two variables. By <xref ref="def_directional_tangent_line">Definition</xref>, at <m>(x_0,y_0)</m>, <m>\ell_x(t)</m> is a line parallel to the vector <m>\vec d_x=\la 1,0,f_x(x_0,y_0)\ra</m> and <m>\ell_y(t)</m> is a line parallel to <m>\vec d_y=\la 0,1,f_y(x_0,y_0)\ra</m>. Since lines in these directions through <m>\big(x_0,y_0,f(x_0,y_0)\big)</m> are <em>tangent</em> to the surface, a line through this point and orthogonal to these directions would be <em>orthogonal</em>, or <em>normal</em>, to the surface. We can use this direction to create a normal line.</p>
+
+    <p>The direction of the normal line is orthogonal to <m>\vec d_x</m> and <m>\vec d_y</m>, hence the direction is parallel to <m>\vec d_n = \vec d_x\times \vec d_y</m>. It turns out this cross product has a very simple form:
+      <me>
+        \vec d_x\times \vec d_y = \la 1,0,f_x\ra \times \la 0,1,f_y\ra = \la -f_x,-f_y,1\ra.
+      </me>
+    </p>
+
+    <p>It is often more convenient to refer to the opposite of this direction, namely <m>\la f_x,f_y,-1\ra</m>. This leads to a definition.</p>
+
+    <definition xml:id="def_normal_line_space">
+      <title>Normal Line</title>
+      <statement>
+        <p>Let <m>z=f(x,y)</m> be differentiable on an open set <m>S</m> containing <m>(x_0,y_0)</m> where
+          <me>
+            a = f_x(x_0,y_0)  \text{ and }  b=f_y(x_0,y_0)
+          </me>
+          are defined.<index><main>normal line</main></index><index><main>orthogonal</main></index></p>
+
+        <ol>
+          <li><p>A nonzero vector parallel to <m>\vec n=\la a,b,-1\ra</m> is <term>orthogonal to <m>f</m> at <m>P=\big(x_0,y_0,f(x_0,y_0)\big)</m></term>.</p></li>
+
+          <li><p>The line <m>\ell_n</m> through <m>P</m> with direction parallel to <m>\vec n</m> is the <term>normal line to <m>f</m> at <m>P</m></term>.</p></li>
+        </ol>
+      </statement>
+    </definition>
+
+    <p>Thus the parametric equations of the normal line to a surface <m>f</m> at <m>\big(x_0,y_0,f(x_0,y_0)\big)</m> is:
+      <me>
+        \ell_{n}(t) = \left\{\begin{array}{l} x= x_0+at\\ y = y_0 + bt \\ z = f(x_0,y_0) - t
+        \end{array} \right..
+      </me>
+    </p>
+
+    <example xml:id="ex_tpl3">
+      <title>Finding a normal line</title>
+      <statement>
+        <p>Find the equation of the normal line to <m>z=-x^2-y^2+2</m> at <m>(0,1)</m>.</p>
+      </statement>
+      <solution>
+        <p>We find <m>z_x(x,y) = -2x</m> and <m>z_y(x,y) = -2y</m>; at <m>(0,1)</m>, we have <m>z_x = 0</m> and <m>z_y = -2</m>. We take the direction of the normal line, following <xref ref="def_normal_line_space">Definition</xref>, to be <m>\vec n=\la 0,-2,-1\ra</m>. The line with this direction going through the point <m>(0,1,1)</m> is
+          <me>
+            \ell_n(t) = \left\{\begin{array}{l} x=0\\y=-2t+1\\z=-t+1
+            \end{array} \right. \text{ or }  \ell_n(t)=\la 0,-2,-1\ra t+\la 0,1,1\ra.
+          </me>
+        </p>
+
+        <figure xml:id="fig_tpl3" >
+          <caption>Graphing a surface with a normal line  from <xref ref="ex_tpl3">Example</xref>.</caption>
+          <!--
+           \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
+          3Droll=0,
+          3Dortho=0.004649740178138018,
+          3Dc2c=0.8504996299743652 0.4327772855758667 0.2989218533039093,
+          3Dcoo=2.022836208343506 -0.9065411686897278 3.1147446632385254,
+          3Droo=200.99998967155275,
+          3Dlights=Headlamp,add3Djscript=asylabels.js]
+           -->
+
+
+          <!-- START figures/figtpl3_3D.asy -->
+          <image xml:id="img_tpl3" >
+            <asymptote>
+              <![CDATA[
+              import graph3;
+
+              //ASY file for figpartial4b3D.asy in Chapter 12
+
+              size(200,200,IgnoreAspect);
+              //size(200,200,Aspect);
+              //currentprojection=perspective(7,2,1);
+              currentprojection=orthographic(8,4.8,2.8);
+              defaultrender.merge=true;
+
+              usepackage("mathspec");
+              texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+              // setup and draw the axes
+              real[] myxchoice={2};
+              real[] myychoice={2};
+              real[] myzchoice={-2,2};
+              defaultpen(0.5mm);
+              pair xbounds=(-2.5,2.5);
+              pair ybounds=(-2.5,2.5);
+              pair zbounds=(-2.5,2.5);
+
+              xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+              yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+              zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+              label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+              label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+              label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+              //Draw surface z=\addplot3[domain=-.1:2,y domain=-.1:2,surf,colormap={mp2}{\colormapplaneone}//,shader=faceted,faceted color=black!40,samples y=20,very thin,z buffer=sort,%opacity=.6,
+              //samples=20,] (x,y,{4*x*y-x^4-y^4});
+
+              bool cond(pair t) {return 2-(t.x)^2-(t.y)^2 >-2;}
+
+              //triple f(pair t) {
+              // return (t.x,t.y,2-t.x^2-t.y^2);
+              //}
+
+              triple f(pair t) {
+                return (cos(t.x)*t.y,sin(t.x)*t.y,2-t.y^2);
+	}
+              surface s=surface(f,(0,0),(2*pi,2),16,16,Spline);
+              pen p=rgb(0,0,.7);
+              draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              draw ((0,2.5,1.75)--(0,-1,0),red+2bp);
+
+              //triple f(pair t) {
+              //  return (cos(t.x)*t.y,sin(t.x)*t.y,4*cos(t.x)*t.y*sin(t.x)*t.y-(cos(t.x)*t.y)^4-(sin(t.x)//*t.y)^4);
+              //}
+              //surface s=surface(f,(-.1,0),(pi/2+.1,1.6),32,32,cond);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //plot point on surface
+              dotfactor=3;
+              dot((0,1,1));
+
+              //Draw traces on the surface
+              //triple g(real t) {return (t,pi-t,sin(t)*cos(pi-t));}
+              //path3 mypath=graph(g,0,3.75,operator ..); draw(mypath,blue);
+
+
+
+
+
+              // ////////////////////////////////////
+              //    SAMPLE CODE
+
+              // defaultpen(fontsize(10pt));
+
+              //Draw the parabola z=y^2 for t from -2 to 2
+              //triple g(real t) {return (0,t,t^2);}
+              //path3 mypath=graph(g,-2,2,operator ..); draw(mypath,blue);
+
+
+              //Draw the surface z=1/(1+x^2+y^2)
+              //triple f(pair t) {
+              //  return (t.x,t.y,1/(1+(t.x)^2+(t.y)^2));
+              //}
+              //surface s=surface(f,(-2,-2),(2,2),8,8,Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+
+              //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+              //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+
+              //triple f(pair t) {
+              //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+              //}
+              //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+
+              //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+              //path3 mypath=graph(g,-2,2,operator ..);
+
+              //pen p=rgb(0,0,1);
+              //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+
+              //draw(s,paleblue);
+              //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+              //draw(mypath,2bp+blue);
+              ]]>
+            </asymptote>
+          </image>
+          <!-- figures/figtpl3_3D.asy END -->
+        </figure>
+
+        <p>The surface <m>z=-x^2+y^2</m>, along with the found normal line, is graphed in <xref ref="fig_tpl3">Figure</xref>.</p>
+      </solution>
+    </example>
+
+    <p>The direction of the normal line has many uses, one of which is the definition of the <term>tangent plane</term> which we define shortly. Another use is in measuring distances from the surface to a point. Given a point <m>Q</m> in space, it is general geometric concept to define the distance from <m>Q</m> to the surface as being the length of the shortest line segment <m>\overline{PQ}</m> over all points <m>P</m> on the surface. This, in turn, implies that <m>\vv{PQ}</m> will be orthogonal to the surface at <m>P</m>. Therefore we can measure the distance from <m>Q</m> to the surface <m>f</m> by finding a point <m>P</m> on the surface such that <m>\vv{PQ}</m> is parallel to the normal line to <m>f</m> at <m>P</m>.</p>
+
+    <example xml:id="ex_tpl4">
+      <title>Finding the distance from a point to a surface</title>
+      <statement>
+        <p>Let <m>f(x,y) = 2-x^2-y^2</m> and let <m>Q = (2,2,2)</m>. Find the distance from <m>Q</m> to the surface defined by <m>f</m>.</p>
+      </statement>
+      <solution>
+        <p>This surface is used in <xref ref="ex_tpl2">Example</xref>, so we know that at <m>(x,y)</m>, the direction of the normal line will be <m>\vec d_n = \la -2x,-2y,-1\ra</m>. A point <m>P</m> on the surface will have coordinates <m>(x,y,2-x^2-y^2)</m>, so <m>\vv{PQ} = \la 2-x,2-y,x^2+y^2\ra</m>. To find where <m>\vv{PQ}</m> is parallel to <m>\vec d_n</m>, we need to find <m>x</m>, <m>y</m> and <m>c</m> such that <m>c\vv{PQ} = \vec d_n</m>.
+          <md>
+            <mrow>c\vv{PQ} \amp = \vec d_n</mrow>
+            <mrow>c\la 2-x,2-y,x^2+y^2\ra \amp = \la -2x,-2y,-1\ra.</mrow>
+            <intertext>This implies</intertext>
+            <mrow>c(2-x) \amp = -2x</mrow>
+            <mrow>c(2-y) \amp = -2y</mrow>
+            <mrow>c(x^2+y^2) \amp = -1</mrow>
+          </md>
+        </p>
+
+        <p>In each equation, we can solve for <m>c</m>:
+          <me>
+            c = \frac{-2x}{2-x} = \frac{-2y}{2-y} = \frac{-1}{x^2+y^2}.
+          </me>
+        </p>
+
+        <p>The first two fractions imply <m>x=y</m>, and so the last fraction can be rewritten as <m>c=-1/(2x^2)</m>. Then
+          <md>
+            <mrow>\frac{-2x}{2-x} \amp = \frac{-1}{2x^2}</mrow>
+            <mrow>-2x(2x^2) \amp = -1(2-x)</mrow>
+            <mrow>4x^3 \amp = 2-x</mrow>
+            <mrow>4x^3+x-2 \amp =0.</mrow>
+          </md>
+        </p>
+
+        <p>This last equation is a cubic, which is not difficult to solve with a numeric solver. We find that <m>x= 0.689</m>, hence <m>P = (0.689,0.689, 1.051)</m>. We find the distance from <m>Q</m> to the surface of <m>f</m> is
+          <me>
+            \norm{\vv{PQ}} = \sqrt{(2-0.689)^2 +(2-0.689)^2+(2-1.051)^2} = 2.083.
+          </me>
+        </p>
+      </solution>
+    </example>
+
+    <p>We can take the concept of measuring the distance from a point to a surface to find a point <m>Q</m> a particular distance from a surface at a given point <m>P</m> on the surface.</p>
+
+    <example xml:id="ex_tpl5">
+      <title>Finding a point a set distance from a surface</title>
+      <statement>
+        <p>Let <m>f(x,y) = x-y^2+3</m>. Let <m>P = \big(2,1,f(2,1)\big) = (2,1,4)</m>. Find points <m>Q</m> in space that are 4 units from the surface of <m>f</m> at <m>P</m>. That is, find <m>Q</m> such that <m>\norm{\vv{PQ}}=4</m> and <m>\vv{PQ}</m> is orthogonal to <m>f</m> at <m>P</m>.</p>
+      </statement>
+      <solution>
+        <p>We begin by finding partial derivatives:
+          <md>
+            <mrow>f_x(x,y)  =1  \qquad \amp \Rightarrow \qquad f_x(2,1) = 1</mrow>
+            <mrow>f_y(x,y) = -2y \qquad \amp \Rightarrow \qquad  f_y(2,1) = -2</mrow>
+          </md>
+        </p>
+
+        <p>The vector <m>\vec n=\la 1,-2,-1\ra</m> is orthogonal to <m>f</m> at <m>P</m>. For reasons that will become more clear in a moment, we find the unit vector in the direction of <m>\vec n</m>:
+          <me>
+            \vec u = \frac{\vec n}{\vnorm n} = \la 1/\sqrt{6},-2/\sqrt{6},-1/\sqrt{6}\ra \approx \la 0.408,-0.816,-0.408\ra.
+          </me>
+        </p>
+
+        <p>Thus a the normal line to <m>f</m> at <m>P</m> can be written as
+          <me>
+            \ell_n(t) = \la 2,1,4\ra + t\la  0.408,-0.816,-0.408 \ra.
+          </me>
+        </p>
+
+        <p>An advantage of this parametrization of the line is that letting <m>t=t_0</m> gives a point on the line that is <m>\abs{t_0}</m> units from <m>P</m>. (This is because the direction of the line is given in terms of a unit vector.) There are thus two points in space 4 units from <m>P</m>:
+          <md>
+            <mrow>Q_1 \amp = \ell_n(4) \amp  Q_2 \amp = \ell_n(-4)</mrow>
+            <mrow>\amp \approx \la 3.63, -2.27, 2.37\ra \amp  \amp  \approx\la 0.37, 4.27, 5.63\ra</mrow>
+          </md>
+        </p>
+
+        <figure xml:id="fig_tpl5" >
+          <caption>Graphing the surface in <xref ref="ex_tpl5">Example</xref> along with points 4 units from the surface.</caption>
+          <!--
+           \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
+          3Droll=0,
+          3Dortho=0.005098657216876745,
+          3Dc2c=0.8504995703697205 0.4327772855758667 0.2989218533039093,
+          3Dcoo=-13.70578670501709 -0.4136597216129303 47.15321731567383,
+          3Droo=200.99997225183392,
+          3Dlights=Headlamp,add3Djscript=asylabels.js]
+           -->
+
+
+          <!-- START figures/figtpl5_3D.asy -->
+          <image xml:id="img_tpl5" >
+            <asymptote>
+              <![CDATA[
+              import graph3;
+
+              //ASY file for figpartial4b3D.asy in Chapter 12
+
+              size(200,200,IgnoreAspect);
+              //size(200,200,Aspect);
+              //currentprojection=perspective(7,2,1);
+              currentprojection=orthographic(15,10,9);
+              defaultrender.merge=true;
+
+              usepackage("mathspec");
+              texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+              // setup and draw the axes
+              real[] myxchoice={2,4};
+              real[] myychoice={2,4};
+              real[] myzchoice={2,4};
+              defaultpen(0.5mm);
+              pair xbounds=(-1,5.5);
+              pair ybounds=(-2,4.5);
+              pair zbounds=(-1,5.5);
+
+              xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+              yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+              zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+              label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+              label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+              label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+              //   -y^2+x+3
+
+              bool cond(pair t) {return 4*t.x*t.y-(t.x)^4-(t.y)^4 >-3;}
+
+              triple f(pair t) {
+                return (t.x,t.y,3+t.x-t.y^2);
+              }
+              surface s=surface(f,(-.5,-2.1),(4,2),8,16,vsplinetype=new splinetype[] {notaknot,notaknot,monotonic},usplinetype=Spline);
+              pen p=rgb(0,0,.7);
+              draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+
+              //plot point on surface
+              dotfactor=3;
+              dot((2,1,4));
+              dot((3.63,-2.27,2.37));
+              dot((.37,4.27,5.63));
+
+              draw ((.37,4.27,5.63)--(3.63,-2.27,2.37),red+2bp);
+
+              //Draw traces on the surface
+              //triple g(real t) {return (t,pi-t,sin(t)*cos(pi-t));}
+              //path3 mypath=graph(g,0,3.75,operator ..); draw(mypath,blue);
+
+
+
+
+
+              // ////////////////////////////////////
+              //    SAMPLE CODE
+
+              // defaultpen(fontsize(10pt));
+
+              //Draw the parabola z=y^2 for t from -2 to 2
+              //triple g(real t) {return (0,t,t^2);}
+              //path3 mypath=graph(g,-2,2,operator ..); draw(mypath,blue);
+
+
+              //Draw the surface z=1/(1+x^2+y^2)
+              //triple f(pair t) {
+              //  return (t.x,t.y,1/(1+(t.x)^2+(t.y)^2));
+              //}
+              //surface s=surface(f,(-2,-2),(2,2),8,8,Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+
+              //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+              //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+
+              //triple f(pair t) {
+              //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+              //}
+              //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+
+              //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+              //path3 mypath=graph(g,-2,2,operator ..);
+
+              //pen p=rgb(0,0,1);
+              //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+
+              //draw(s,paleblue);
+              //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+              //draw(mypath,2bp+blue);
+              ]]>
+            </asymptote>
+          </image>
+          <!-- figures/figtpl5_3D.asy END -->
+        </figure>
+
+        <p>The surface is graphed along with points <m>P</m>, <m>Q_1</m>, <m>Q_2</m> and a portion of the normal line to <m>f</m> at <m>P</m>.</p>
+      </solution>
+    </example>
+  </subsection>
+
+  <subsection>
+    <title>Tangent Planes</title>
+    <p>We can use the direction of the normal line to define a plane. With <m>a=f_x(x_0,y_0)</m>, <m>b=f_y(x_0,y_0)</m> and <m>P = \big(x_0,y_0,f(x_0,y_0)\big)</m>, the vector <m>\vec n=\la a,b,-1\ra</m> is orthogonal to <m>f</m> at <m>P</m>. The plane through <m>P</m> with normal vector <m>\vec n</m> is therefore <em>tangent</em> to <m>f</m> at <m>P</m>.</p>
+
+    <definition xml:id="def_tangent_plane">
+      <title>Tangent Plane</title>
+      <statement>
+        <p>Let <m>z=f(x,y)</m> be differentiable on an open set <m>S</m> containing <m>(x_0,y_0)</m>, where
+          <m>a = f_x(x_0,y_0)</m>, <m>b=f_y(x_0,y_0)</m>, <m>\vec n= \la a,b,-1\ra</m> and <m>P=\big(x_0,y_0,f(x_0,y_0)\big)</m>.</p>
+
+        <p>The plane through <m>P</m> with normal vector <m>\vec n</m> is the <term>tangent plane to <m>f</m> at <m>P</m></term>. The standard form of this plane is
+          <index><main>tangent plane</main></index><index><main>planes</main><sub>tangent</sub></index>
+          <me>
+            a(x-x_0) + b(y-y_0) - \big(z-f(x_0,y_0)\big) = 0.
+          </me>
+        </p>
+      </statement>
+    </definition>
+
+    <example xml:id="ex_tpl6">
+      <title>Finding tangent planes</title>
+      <statement>
+        <p>Find the equation of the tangent plane to <m>z=-x^2-y^2+2</m> at <m>(0,1)</m>.</p>
+      </statement>
+      <solution>
+        <p>Note that this is the same surface and point used in <xref ref="ex_tpl3">Example</xref>. There we found <m>\vec n = \la 0,-2,-1\ra</m> and <m>P = (0,1,1)</m>. Therefore the equation of the tangent plane is
+          <me>
+            -2(y-1)-(z-1)=0.
+          </me>
+        </p>
+
+        <figure xml:id="fig_tpl6" >
+          <caption>Graphing a surface with  tangent plane from <xref ref="ex_tpl6">Example</xref>.</caption>
+          <!--
+           \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
+          3Droll=0,
+          3Dortho=0.005098660010844469,
+          3Dc2c=0.6500301957130432 0.6791614890098572 0.3408818244934082,
+          3Dcoo=-2.8726136684417725 0.033301327377557755 9.961321830749512,
+          3Droo=200.99997428361934,
+          3Dlights=Headlamp,add3Djscript=asylabels.js]
+           -->
+
+
+          <!-- START figures/figtpl6_3D.asy -->
+          <image xml:id="img_tpl6" >
+            <asymptote>
+              <![CDATA[
+              import graph3;
+
+              //ASY file for figpartial4b3D.asy in Chapter 12
+
+              size(200,200,IgnoreAspect);
+              //size(200,200,Aspect);
+              //currentprojection=perspective(7,2,1);
+              currentprojection=orthographic(13,10,9);
+              defaultrender.merge=true;
+
+              usepackage("mathspec");
+              texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+              // setup and draw the axes
+              real[] myxchoice={-2,2};
+              real[] myychoice={-2,2};
+              real[] myzchoice={-2,2};
+              defaultpen(0.5mm);
+              pair xbounds=(-3,3);
+              pair ybounds=(-3,3);
+              pair zbounds=(-3,3);
+
+              xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+              yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+              zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+              label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+              label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+              label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+              //   -x^2-y^2+2
+
+              triple f(pair t) {
+                return (cos(t.x)*t.y,sin(t.x)*t.y,2-t.y^2);
+              }
+              surface s=surface(f,(0,0),(2*pi,2),8,8,Spline);
+              pen p=rgb(0,0,.7);
+              draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+
+              //plot point on surface
+              dotfactor=3;
+              dot((0,1,1));
+
+              // -2*y+3
+              triple g(pair t) {
+	return (t.x,t.y,-2*t.y+3);}
+              surface ss=surface(g,(-1,.5),(1,1.5),1,1);
+              pen q=rgb(.9,0,0)+.1mm;
+              draw(ss,rgb(1,.6,.6)+opacity(.8),meshpen=q,nolight,render(merge=true));
+
+
+              //Draw traces on the surface
+              //triple g(real t) {return (t,pi-t,sin(t)*cos(pi-t));}
+              //path3 mypath=graph(g,0,3.75,operator ..); draw(mypath,blue);
+
+
+
+
+
+              // ////////////////////////////////////
+              //    SAMPLE CODE
+
+              // defaultpen(fontsize(10pt));
+
+              //Draw the parabola z=y^2 for t from -2 to 2
+              //triple g(real t) {return (0,t,t^2);}
+              //path3 mypath=graph(g,-2,2,operator ..); draw(mypath,blue);
+
+
+              //Draw the surface z=1/(1+x^2+y^2)
+              //triple f(pair t) {
+              //  return (t.x,t.y,1/(1+(t.x)^2+(t.y)^2));
+              //}
+              //surface s=surface(f,(-2,-2),(2,2),8,8,Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+
+              //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+              //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+
+              //triple f(pair t) {
+              //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+              //}
+              //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+
+              //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+              //path3 mypath=graph(g,-2,2,operator ..);
+
+              //pen p=rgb(0,0,1);
+              //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+
+              //draw(s,paleblue);
+              //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+              //draw(mypath,2bp+blue);
+              ]]>
+            </asymptote>
+          </image>
+          <!-- figures/figtpl6_3D.asy END -->
+        </figure>
+
+        <p>The surface <m>z=-x^2+y^2</m> and tangent plane are graphed in <xref ref="fig_tpl6">Figure</xref>.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_tpl7">
+      <title>Using the tangent plane to approximate function values</title>
+      <statement>
+        <p>The point <m>(3,-1,4)</m> lies on the surface of an unknown differentiable function <m>f</m> where <m>f_x(3,-1) = 2</m> and <m>f_y(3,-1) = -1/2</m>. Find the equation of the tangent plane to <m>f</m> at <m>P</m>, and use this to approximate the value of <m>f(2.9,-0.8)</m>.</p>
+      </statement>
+      <solution>
+        <p>Knowing the partial derivatives at <m>(3,-1)</m> allows us to form the normal vector to the tangent plane, <m>\vec n = \la 2,-1/2,-1\ra</m>. Thus the equation of the tangent line to <m>f</m> at <m>P</m> is:
+          <men xml:id="eq_tpl7" >
+            2(x-3)-1/2(y+1) - (z-4) = 0  \Rightarrow  z = 2(x-3)-1/2(y+1)+4.
+          </men>
+        </p>
+
+        <p>Just as tangent lines provide excellent approximations of curves near their point of intersection, tangent planes provide excellent approximations of surfaces near their point of intersection. So <m>f(2.9,-0.8) \approx z(2.9,-0.8) = 3.7</m>.</p>
+
+        <p>This is not a new method of approximation. Compare the right hand expression for <m>z</m> in Equation <xref ref="eq_tpl7" /> to the total differential:
+          <me>
+            dz = f_xdx + f_ydy  \text{ and }   z = \underbrace{\underbrace{2}_{f_x}\underbrace{(x-3)}_{dx}+\underbrace{-1/2}_{f_y}\underbrace{(y+1)}_{dy}}_{dz}+4.
+          </me>
+        </p>
+
+        <p>Thus the <q>new <m>z</m>-value</q> is the sum of the change in <m>z</m> (i.e., <m>dz</m>) and the old <m>z</m>-value (4). As mentioned when studying the total differential, it is not uncommon to know partial derivative information about a unknown function, and tangent planes are used to give accurate approximations of the function.</p>
+      </solution>
+    </example>
+  </subsection>
+
+  <subsection>
+    <title>The Gradient and Normal Lines, Tangent Planes</title>
+    <p>The methods developed in this section so far give a straightforward method of finding equations of normal lines and tangent planes for surfaces with explicit equations of the form <m>z=f(x,y)</m>. However, they do not handle implicit equations well, such as <m>x^2+y^2+z^2=1</m>. There is a technique that allows us to find vectors orthogonal to these surfaces based on the <em>gradient</em>.</p>
+
+    <definition xml:id="def_gradient3">
+      <title>Gradient</title>
+      <statement>
+        <p>Let <m>w=F(x,y,z)</m> be differentiable on an open ball <m>B</m> that contains the point <m>(x_0,y_0,z_0)</m>.
+          <index><main>gradient</main></index></p>
+
+        <ol>
+          <li><p>The <term>gradient of <m>F</m></term> is <m>\nabla F(x,y,z) = \la f_x(x,y,z),f_y(x,y,z),f_z(x,y,z)\ra</m>.</p></li>
+
+          <li><p>The <term>gradient</term> of <m>F</m> at <m>(x_0,y_0,z_0)</m> is
+              <me>
+                \nabla F(x_0,y_0,z_0) = \la f_x(x_0,y_0,z_0),f_y(x_0,y_0,z_0),f_z(x_0,y_0,z_0)\ra.
+              </me>
+            </p></li>
+        </ol>
+      </statement>
+    </definition>
+
+    <p>Recall that when <m>z=f(x,y)</m>, the gradient <m>\nabla f = \la f_x,f_y\ra</m> is orthogonal to level curves of <m>f</m>. An analogous statement can be made about the gradient <m>\nabla F</m>, where <m>w= F(x,y,z)</m>. Given a point <m>(x_0,y_0,z_0)</m>, let <m>c = F(x_0,y_0,z_0)</m>. Then <m>F(x,y,z) = c</m> is a <term>level surface</term> that contains the point <m>(x_0,y_0,z_0)</m>. The following theorem states that <m>\nabla F(x_0,y_0,z_0)</m> is orthogonal to this level surface.</p>
+
+    <theorem xml:id="thm_gradient4">
+      <title>The Gradient and Level Surfaces</title>
+      <statement>
+        <p>Let <m>w=F(x,y,z)</m> be differentiable on an open ball <m>B</m> containing <m>(x_0,y_0,z_0)</m> with gradient <m>\nabla F</m>, where <m>F(x_0,y_0,z_0) = c</m>.</p>
+
+        <p>The vector <m>\nabla F(x_0,y_0,z_0)</m> is orthogonal to the level surface <m>F(x,y,z)=c</m> at <m>(x_0,y_0,z_0)</m>.
+          <index><main>gradient</main><sub>and level surfaces</sub></index><index><main>level surface</main></index></p>
+      </statement>
+    </theorem>
+
+    <p>The gradient at a point gives a vector orthogonal to the surface at that point. This direction can be used to find tangent planes and normal lines.</p>
+
+    <example xml:id="ex_tpl8">
+      <title>Using the gradient to find a tangent plane</title>
+      <statement>
+        <p>Find the equation of the plane tangent to the ellipsoid <m>\ds \frac{x^2}{12} +\frac{y^2}{6}+\frac{z^2}{4}=1</m> at <m>P = (1,2,1)</m>.</p>
+      </statement>
+      <solution>
+        <p>We consider the equation of the ellipsoid as a level surface of a function <m>F</m> of three variables, where <m>F(x,y,z) = \frac{x^2}{12} +\frac{y^2}{6}+\frac{z^2}{4}</m>. The gradient is:
+          <md>
+            <mrow>\nabla F(x,y,z) \amp = \la F_x, F_y,F_z\ra</mrow>
+            <mrow>\amp = \la \frac x6, \frac y3, \frac z2\ra.</mrow>
+          </md>
+        </p>
+
+        <p>At <m>P</m>, the gradient is <m>\nabla F(1,2,1) = \la 1/6, 2/3, 1/2\ra</m>. Thus the equation of the plane tangent to the ellipsoid at <m>P</m> is
+          <me>
+            \frac 16(x-1) + \frac23(y-2) + \frac 12(z-1) = 0.
+          </me>
+        </p>
+
+        <figure xml:id="fig_tpl8" >
+          <caption>An ellipsoid and its tangent plane at a point.</caption>
+          <!--
+           \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
+          3Droll=0,
+          3Dortho=0.005098660010844469,
+          3Dc2c=0.721064031124115 0.6547372937202454 0.22668422758579254,
+          3Dcoo=-2.872609853744507 0.03330020606517792 9.961324691772461,
+          3Droo=200.99997078585088,
+          3Dlights=Headlamp,add3Djscript=asylabels.js]
+           -->
+
+
+          <!-- START figures/figtpl8_3D.asy -->
+          <image xml:id="img_tpl8" >
+            <asymptote>
+              <![CDATA[
+              import graph3;
+
+              //ASY file for figpartial4b3D.asy in Chapter 12
+
+              size(200,200,IgnoreAspect);
+              //size(200,200,Aspect);
+              //currentprojection=perspective(7,2,1);
+              currentprojection=orthographic(14,11,4.7);
+              defaultrender.merge=true;
+
+              usepackage("mathspec");
+              texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+              // setup and draw the axes
+              real[] myxchoice={-2,2};
+              real[] myychoice={-2,2};
+              real[] myzchoice={-2,2};
+              defaultpen(0.5mm);
+              pair xbounds=(-3.5,3.5);
+              pair ybounds=(-3.5,3.5);
+              pair zbounds=(-3.5,3.5);
+
+              xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+              yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+              zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+              label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+              label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+              label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+              //   ({cos(y)*(3.46*cos(x))},{cos(y)*(2.45*sin(x))},{2*sin(y)})
+
+              triple f(pair t) {
+                return (cos(t.y)*(3.46*cos(t.x)),cos(t.y)*(2.45*sin(t.x)),2*sin(t.y));
+              }
+              surface s=surface(f,(-pi,-pi/2),(pi,pi/2),16,16,Spline);
+              pen p=rgb(0,0,.7);
+              draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+
+              //plot point on surface
+              dotfactor=3;
+              dot((1,2,1));
+
+              // 1-(x-1)/3-4*(y-2)/3   1. - 0.980581 x, 2. + 0.156893 x + 0.6 y, 1. + 0.11767 x - 0.8 y
+              //triple g(pair t) {
+              //	return (t.x,t.y,1-(t.x-1)/3-4*(t.y-2)/3);}
+              //surface ss=surface(g,(.5,1.5),(1.5,2.5),1,1);
+              triple g(pair t) {
+	return (1.-0.980581*t.x, 2.+0.156893*t.x+0.6*t.y,1.+0.11767*t.x-0.8*t.y);}
+              surface ss=surface(g,(-.75,-.75),(.75,.75),1,1);
+              pen q=rgb(.9,0,0)+.1mm;
+              draw(ss,rgb(1,.6,.6)+opacity(.8),meshpen=q,nolight,render(merge=true));
+
+
+              //Draw traces on the surface
+              //triple g(real t) {return (t,pi-t,sin(t)*cos(pi-t));}
+              //path3 mypath=graph(g,0,3.75,operator ..); draw(mypath,blue);
+
+
+
+
+
+              // ////////////////////////////////////
+              //    SAMPLE CODE
+
+              // defaultpen(fontsize(10pt));
+
+              //Draw the parabola z=y^2 for t from -2 to 2
+              //triple g(real t) {return (0,t,t^2);}
+              //path3 mypath=graph(g,-2,2,operator ..); draw(mypath,blue);
+
+
+              //Draw the surface z=1/(1+x^2+y^2)
+              //triple f(pair t) {
+              //  return (t.x,t.y,1/(1+(t.x)^2+(t.y)^2));
+              //}
+              //surface s=surface(f,(-2,-2),(2,2),8,8,Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+
+              //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+              //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+
+              //triple f(pair t) {
+              //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+              //}
+              //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+
+              //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+              //path3 mypath=graph(g,-2,2,operator ..);
+
+              //pen p=rgb(0,0,1);
+              //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+
+              //draw(s,paleblue);
+              //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+              //draw(mypath,2bp+blue);
+              ]]>
+            </asymptote>
+          </image>
+          <!-- figures/figtpl8_3D.asy END -->
+        </figure>
+
+        <p>The ellipsoid and tangent plane are graphed in <xref ref="fig_tpl8">Figure</xref>.</p>
+      </solution>
+    </example>
+
+    <p>Tangent lines and planes to surfaces have many uses, including the study of instantaneous rates of changes and making approximations. Normal lines also have many uses. In this section we focused on using them to measure distances from a surface. Another interesting application is in computer graphics, where the effects of light on a surface are determined using normal vectors.</p>
+
+    <p>The next section investigates another use of partial derivatives: determining relative extrema. When dealing with functions of the form <m>y=f(x)</m>, we found relative extrema by finding <m>x</m> where <m>\fp(x) = 0</m>. We can <em>start</em> finding relative extrema of <m>z=f(x,y)</m> by setting <m>f_x</m> and <m>f_y</m> to 0, but it turns out that there is more to consider.</p>
+  </subsection>
+
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Explain how the vector <m>\vec v=\la 1,0,3\ra</m> can be thought of as having a <q>slope</q> of 3.</p>
+          </statement>
+          <solution>
+            <p>Answers will vary. The displacement of the vector is one unit in the <m>x</m>-direction and 3 units in the <m>z</m>-direction, with no change in <m>y</m>. Thus along a line parallel to <m>\vec v</m>, the change in <m>z</m> is 3 times the change in <m>x</m> <mdash /> i.e., a <q>slope</q> of 3. Specifically, the line in the <m>x</m>-<m>z</m> plane parallel to <m>z</m> has a slope of 3.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Explain how the vector <m>\vec v=\la 0.6,0.8, -2\ra</m> can be thought of as having a <q>slope</q> of <m>-2</m>.</p>
+          </statement>
+          <solution>
+            <p>Answers will vary. Let <m>\vec u = \la 0.6,0.8\ra</m>; this is a unit vector. The displacement of the vector is one unit in the <m>\vec u</m>-direction and <m>-2</m> units in the <m>z</m>-direction. In the plane containing the <m>z</m>-axis and the vector <m>\vec u</m>, the line parallel to <m>\vec v</m> has slope <m>-2</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$true">
+              <set>
+                <member correct="yes">True</member>
+                <member>False</member>
+              </set>
+            </var>
+            <var name="$false">
+              <set>
+                <member>True</member>
+                <member correct="yes">False</member>
+              </set>
+            </var>
+            <pg-code>
+              $true=PopUp(['?','True','False'],1);
+              $false=PopUp(['?','True','False'],2);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>True or False? Let <m>z=f(x,y)</m> be differentiable at <m>P</m>. If <m>\vec n</m> is a normal vector to the tangent plane of <m>f</m> at <m>P</m>, then <m>\vec n</m> is orthogonal to <m>f_x</m> and <m>f_y</m> at <m>P</m>. <var name="$true" form="popup"/></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Explain in your own words why we do not refer to <em>the</em> tangent line to a surface at a point, but rather to <em>directional</em> tangent line<em>s</em> to a surface at a point.</p>
+          </statement>
+          <solution>
+            <p>On a surface through a point, there are many different smooth curves, each with a tangent line at the point. Each of these tangent lines is also <q>tangent</q> to the surface. There is not just one tangent line, but many, each in a different direction. Therefore we refer to directional tangent lines, not just <em>the</em> tangent line.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, a function <m>z=f(x,y)</m>, a vector <m>\vec v</m> and a point <m>P</m> are given. Give the parametric equations of the following directional tangent lines to <m>f</m> at <m>P</m>:</p>
+
+        <p><ol>
+          <li>
+            <p><m>\ell_x(t)</m></p>
+          </li>
+
+          <li>
+            <p><m>\ell_y(t)</m></p>
+          </li>
+
+          <li>
+            <p><m>\ell_{\vec u\,}(t)</m>, where <m>\vec u</m> is the unit vector in the direction of <m>\vec v</m>.</p>
+          </li>
+        </ol></p>
+      </introduction>
+
+      <exercise xml:id="x12_06_ex_05">
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x,y) = 2x^2y-4xy^2</m>, <m>\vec v = \la 1,3\ra</m>, <m>P=(2,3)</m>.</p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>\ell_x(t) = \left\{\begin{array}{l} x=2+t\\ y=3 \\ z = -48-12t
+                  \end{array} \right.</m></p></li>
+
+              <li><p><m>\ell_y(t) = \left\{\begin{array}{l} x=2\\ y=3+t \\ z = -48-40t
+                  \end{array} \right.</m></p></li>
+
+              <li><p><m>\ell_{\vec u\,}(t) = \left\{\begin{array}{l} x=2+t/\sqrt{10}\\ y=3+3t/\sqrt{10} \\ z = -48-66\sqrt{2/5}t
+                  \end{array} \right.</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <pg-macros>
+            <macro-file>parserParametricLine.pl</macro-file>
+          </pg-macros>
+          <setup>
+            <var name="$p[0]">
+              <static>x=\pi/3+t, y=\pi/6, z=3/4 -\frac{3\sqrt{3}}{4}t</static>
+            </var>
+            <var name="$p[1]">
+              <static>x=\pi/3, y=\pi/6+t, z=3/4 +\frac{3\sqrt{3}}{4}t</static>
+            </var>
+            <var name="$p[2]">
+              <static>x=\pi/3+t/\sqrt{5}, y=\pi/6+2t/\sqrt{5}, z=3/4 +\frac{3\sqrt{3/5}}{4}t</static>
+            </var>
+            <pg-code>
+              Context("Vector");
+              Context()->variables->add(t=>"Real");
+              $v[0]=Compute("(pi/3,pi/6,3/4)+t&lt;1,0,-3sqrt(3)/4>");
+              $v[1]=Compute("(pi/3,pi/6,3/4)+t&lt;0,1,3sqrt(3)/4>");
+              $v[2]=Compute("(pi/3,pi/6,3/4)+t&lt;1/sqrt(5),2/sqrt(5),3sqrt(3/5)/4>");
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              parser::Assignment->Allow;
+              $p[0]=List(Formula("x=pi/3+t"),Formula("y=pi/6"),Formula("z=3/4-3sqrt(3)/4t"));
+              $p[1]=List(Formula("x=pi/3"),Formula("y=pi/6+t"),Formula("z=3/4+3sqrt(3)/4t"));
+              $p[2]=List(Formula("x=pi/3+t/sqrt(5)"),Formula("y=pi/6+2t/sqrt(5)"),Formula("z=3/4+3sqrt(3/5)/4t"));
+              for my $k (0..2) {
+                $pev[$k]=$p[$k]->cmp(list_checker=>sub{my($c,$st,$aH,$value)=@_;
+                 my$n=scalar(@$st);
+                 my@err=();my$i,$j;
+                 my$sV=Formula("(0,0,0)+t*&lt;0,0,0>");
+                 for($i=0;$i&lt;$n;$i++){
+                  my$ith=Value::List->NameForNumber($i+1);
+                  my$entry=$st->[$i];
+                  my$var;my$for;
+                  if($entry->type ne "Assignment"){push(@err,"Your $ith entry is not a parametrization");next;}
+                  else{($var,$for)=split('=',"$entry");
+                   $var=Formula("$var");$for=Formula("$for");
+                   if(!($var!=Formula("x") or $var!=Formula("y") or $var!=Formula("z")) or $for->usesOneOf("x","y","z"))
+                    {push(@err,"Your $ith entry is not a parametrization")unless $aH->{isPreview};next;}
+                  };
+                  for($j=0,$used=0;$j&lt;$i;$j++){
+                   if($st->[$j]->type eq "Assignment"){
+                    my($vj,$fj)=split('=',$st->[$j]->string);
+                    $vj=Formula("$vj");
+                    if($vj==$var) {push(@err,"Your $ith entry parametrizes the same variable as a previous one") unless $aH->{isPreview};$used = 1;last;}
+                  }}
+                  if(!$used){
+                   if($var eq 'x'){$sV=$sV+Formula("&lt;$for,0,0>")}
+                   elsif($var eq 'y'){$sV=$sV+Formula("&lt;0,$for,0>")}
+                   else{$sV=$sV+Formula("&lt;0,0,$for>")};
+                 }}
+                 if(!$aH->{isPreview}){
+                  push(@err,"You need to provide more parametrizations")if $i&lt;3;
+                  push(@err,"You have given too many parametrizations")if $i>3;
+                 }
+                 $sV=Formula($sV);
+                 $ds=$sV->D('t')->reduce;
+                 if($ds->isConstant){$ds=Vector("$ds");} else{return 0;};
+                 $dc=$v[$k]->D('t')->reduce;$dc=Vector("$dc");$par=$ds->isParallel($dc);
+                 $sp=$sV->eval(t=>0);$cp=$v[$k]->eval(t=>0);
+                 $tch=(($sp==$cp) or $dc->isParallel($sp-$cp));
+                 return (3*($par and $tch),@err);
+                });
+              };  
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Let <m>f(x,y) = 3\cos(x) \sin(y)</m> and <m>P=(\pi/3, \pi/6)</m>.</p>
+            <p><ol label="a">
+              <li>
+                <p>Find parametric equations for the directional tangent line <m>\ell_{x}</m> at <m>P</m>.</p>
+                <p><var name="$p[0]" evaluator="$pev[0]" width="50" /></p>
+              </li>
+              <li>
+                <p>Find parametric equations for the directional tangent line <m>\ell_{y}</m> at <m>P</m>.</p>
+                <p><var name="$p[1]" evaluator="$pev[1]" width="50" /></p>
+              </li>
+              <li>
+                <p>Find parametric equations for the directional tangent line <m>\ell_{\vec{v}}</m> at <m>P</m>, where <m>\vec v = \la 1,2\ra</m>.</p>
+                <p><var name="$p[2]" evaluator="$pev[2]" width="50" /></p>
+              </li>
+            </ol></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x,y) = 3x-5y</m>, <m>\vec v = \la 1,1\ra</m>, <m>P=(4,2)</m>.</p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>\ell_x(t) = \left\{\begin{array}{l} x = 4+t\\ y = 2 \\ z = 2 + 3t
+                  \end{array}  \right.</m></p></li>
+
+              <li><p><m>\ell_y(t) = \left\{\begin{array}{l} x = 4\\ y = 2+t\\ z = 2-5t
+                  \end{array}  \right.</m></p></li>
+
+              <li><p><m>\ell_{\vec u\,}(t) = \left\{\begin{array}{l} x = 4+t/\sqrt{2}\\ y = 2+t/\sqrt{2} \\ z = 2 -\sqrt{2}t
+                  \end{array}  \right.</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise xml:id="x12_06_ex_08">
+        <webwork seed="1">
+          <pg-macros>
+            <macro-file>parserParametricLine.pl</macro-file>
+          </pg-macros>
+          <setup>
+            <var name="$p[0]">
+              <static>x=1+t, y=2, z=3</static>
+            </var>
+            <var name="$p[1]">
+              <static>x=1, y=2+t, z=3</static>
+            </var>
+            <var name="$p[2]">
+              <static>x=1+t/\sqrt{2}, y=2+t/\sqrt{2}, z=3</static>
+            </var>
+            <pg-code>
+              Context("Vector");
+              Context()->variables->add(t=>"Real");
+              $v[0]=Compute("(1,2,3)+t&lt;1,0,0>");
+              $v[1]=Compute("(1,2,3)+t&lt;0,1,0>");
+              $v[2]=Compute("(1,2,3)+t&lt;1/sqrt(2),1/sqrt(2),0>");
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              parser::Assignment->Allow;
+              $p[0]=List(Formula("x=1+t"),Formula("y=2"),Formula("z=3"));
+              $p[1]=List(Formula("x=1"),Formula("y=2+t"),Formula("z=3"));
+              $p[2]=List(Formula("x=1+t/sqrt(2)"),Formula("y=2+t/sqrt(2)"),Formula("z=3"));
+              for my $k (0..2) {
+                $pev[$k]=$p[$k]->cmp(list_checker=>sub{my($c,$st,$aH,$value)=@_;
+                 my$n=scalar(@$st);
+                 my@err=();my$i,$j;
+                 my$sV=Formula("(0,0,0)+t*&lt;0,0,0>");
+                 for($i=0;$i&lt;$n;$i++){
+                  my$ith=Value::List->NameForNumber($i+1);
+                  my$entry=$st->[$i];
+                  my$var;my$for;
+                  if($entry->type ne "Assignment"){push(@err,"Your $ith entry is not a parametrization");next;}
+                  else{($var,$for)=split('=',"$entry");
+                   $var=Formula("$var");$for=Formula("$for");
+                   if(!($var!=Formula("x") or $var!=Formula("y") or $var!=Formula("z")) or $for->usesOneOf("x","y","z"))
+                    {push(@err,"Your $ith entry is not a parametrization")unless $aH->{isPreview};next;}
+                  };
+                  for($j=0,$used=0;$j&lt;$i;$j++){
+                   if($st->[$j]->type eq "Assignment"){
+                    my($vj,$fj)=split('=',$st->[$j]->string);
+                    $vj=Formula("$vj");
+                    if($vj==$var) {push(@err,"Your $ith entry parametrizes the same variable as a previous one") unless $aH->{isPreview};$used = 1;last;}
+                  }}
+                  if(!$used){
+                   if($var eq 'x'){$sV=$sV+Formula("&lt;$for,0,0>")}
+                   elsif($var eq 'y'){$sV=$sV+Formula("&lt;0,$for,0>")}
+                   else{$sV=$sV+Formula("&lt;0,0,$for>")};
+                 }}
+                 if(!$aH->{isPreview}){
+                  push(@err,"You need to provide more parametrizations")if $i&lt;3;
+                  push(@err,"You have given too many parametrizations")if $i>3;
+                 }
+                 $sV=Formula($sV);
+                 $ds=$sV->D('t')->reduce;
+                 if($ds->isConstant){$ds=Vector("$ds");} else{return 0;};
+                 $dc=$v[$k]->D('t')->reduce;$dc=Vector("$dc");$par=$ds->isParallel($dc);
+                 $sp=$sV->eval(t=>0);$cp=$v[$k]->eval(t=>0);
+                 $tch=(($sp==$cp) or $dc->isParallel($sp-$cp));
+                 return (3*($par and $tch),@err);
+                });
+              };  
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Let <m>f(x,y) = x^2-2x-y^2+4y</m> and <m>P=(1, 2)</m>.</p>
+            <p><ol label="a">
+              <li>
+                <p>Find parametric equations for the directional tangent line <m>\ell_{x}</m> at <m>P</m>.</p>
+                <p><var name="$p[0]" evaluator="$pev[0]" width="50" /></p>
+              </li>
+              <li>
+                <p>Find parametric equations for the directional tangent line <m>\ell_{y}</m> at <m>P</m>.</p>
+                <p><var name="$p[1]" evaluator="$pev[1]" width="50" /></p>
+              </li>
+              <li>
+                <p>Find parametric equations for the directional tangent line <m>\ell_{\vec{v}}</m> at <m>P</m>, where <m>\vec v = \la 1,1\ra</m>.</p>
+                <p><var name="$p[2]" evaluator="$pev[2]" width="50" /></p>
+              </li>
+            </ol></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, a function <m>z=f(x,y)</m> and a point <m>P</m> are given. Find the equation of the normal line to <m>f</m> at <m>P</m>. Note: these are the same functions as in <xref ref="x12_06_ex_05">Exercises</xref> <mdash /> <xref ref="x12_06_ex_08"></xref>.</p>
+      </introduction>
+      <exercise xml:id="x12_06_ex_09">
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x,y) = 2x^2y-4xy^2</m>, <m>P=(2,3)</m>.</p>
+          </statement>
+          <solution>
+            <p><m>\ell_{\vec n}(t) = \left\{\begin{array}{l} x=2-12t\\ y=3-40t \\ z = -48-t
+              \end{array} \right.</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <pg-macros>
+            <macro-file>parserParametricLine.pl</macro-file>
+          </pg-macros>
+          <setup>
+            <var name="$n">
+              <static>x = \pi/3-\frac{3\sqrt{3}}{4}t, y = \pi/6+\frac{3\sqrt{3}}{4}t, z = 3/4 -t</static>
+            </var>
+            <pg-code>
+              Context("Vector");
+              Context()->variables->are(t=>"Real");
+              $v=Compute("(pi/3,pi/6,3/4)+t&lt;-3sqrt(3)/4,3sqrt(3)/4,-1>");
+              Context("Numeric");
+              Context()->variables->add(y=>"Real",z=>"Real",t=>"Real");
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              parser::Assignment->Allow;
+              $n=List(Formula("x=pi/3-3sqrt(3)/4t"),Formula("y=pi/6+3sqrt(3)/4t"),Formula("z=3/4-t"));
+                $nev=$n->cmp(list_checker=>sub{my($c,$st,$aH,$value)=@_;
+                 my$n=scalar(@$st);
+                 my@err=();my$i,$j;
+                 Context("Vector");
+                 Context()->variables->add(t=>"Real");
+                 my$sV=Formula("(0,0,0)+t*&lt;0,0,0>");
+                 for($i=0;$i&lt;$n;$i++){
+                  my$ith=Value::List->NameForNumber($i+1);
+                  my$entry=$st->[$i];
+                  my$var;my$for;
+                  if($entry->type ne "Assignment"){push(@err,"Your $ith entry is not a parametrization");next;}
+                  else{($var,$for)=split('=',"$entry");
+                   $var=Formula("$var");$for=Formula("$for");
+                   if(!($var!=Formula("x") or $var!=Formula("y") or $var!=Formula("z")) or $for->usesOneOf("x","y","z"))
+                    {push(@err,"Your $ith entry is not a parametrization")unless $aH->{isPreview};next;}
+                  };
+                  for($j=0,$used=0;$j&lt;$i;$j++){
+                   if($st->[$j]->type eq "Assignment"){
+                    my($vj,$fj)=split('=',$st->[$j]->string);
+                    $vj=Formula("$vj");
+                    if($vj==$var) {push(@err,"Your $ith entry parametrizes the same variable as a previous one") unless $aH->{isPreview};$used = 1;last;}
+                  }}
+                  if(!$used){
+                   if($var eq 'x'){$sV=$sV+Formula("&lt;$for,0,0>")}
+                   elsif($var eq 'y'){$sV=$sV+Formula("&lt;0,$for,0>")}
+                   else{$sV=$sV+Formula("&lt;0,0,$for>")};
+                 }}
+                 if(!$aH->{isPreview}){
+                  push(@err,"You need to provide more parametrizations")if $i&lt;3;
+                  push(@err,"You have given too many parametrizations")if $i>3;
+                 }
+                 $sV=Formula($sV);
+                 $ds=$sV->D('t')->reduce;
+                 if($ds->isConstant){$ds=Vector("$ds");} else{return 0;};
+                 $dc=$v->D('t')->reduce;$dc=Vector("$dc");$par=$ds->isParallel($dc);
+                 $sp=$sV->eval(t=>0);$cp=$v->eval(t=>0);
+                 $tch=(($sp==$cp) or $dc->isParallel($sp-$cp));
+                 return (3*($par and $tch),@err);
+                });
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Let <m>f(x,y) = 3\cos(x) \sin(y)</m> and <m>P=(\pi/3, \pi/6)</m>. Find parametric equations for the normal line at <m>P</m>.</p>
+            <p><var name="$n" evaluator="$nev" width="50" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x,y) = 3x-5y</m>, <m>P=(4,2)</m>.</p>
+          </statement>
+          <solution>
+            <p><m>\ell_{\vec n}(t) = \left\{\begin{array}{l} x = 4+3t\\ y = 2-5t \\ z = 2 -t
+              \end{array}  \right.</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <pg-macros>
+            <macro-file>parserParametricLine.pl</macro-file>
+          </pg-macros>
+          <setup>
+            <var name="$n">
+              <static>x = 1, y = 2, z = 3-t</static>
+            </var>
+            <pg-code>
+              Context("Vector");
+              Context()->variables->are(t=>"Real");
+              $v=Compute("(1,2,3)+t&lt;0,0,-1>");
+              Context("Numeric");
+              Context()->variables->add(y=>"Real",z=>"Real",t=>"Real");
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              parser::Assignment->Allow;
+              $n=List(Formula("x=1"),Formula("y=2"),Formula("z=3-t"));
+                $nev=$n->cmp(list_checker=>sub{my($c,$st,$aH,$value)=@_;
+                 my$n=scalar(@$st);
+                 my@err=();my$i,$j;
+                 Context("Vector");
+                 Context()->variables->add(t=>"Real");
+                 my$sV=Formula("(0,0,0)+t*&lt;0,0,0>");
+                 for($i=0;$i&lt;$n;$i++){
+                  my$ith=Value::List->NameForNumber($i+1);
+                  my$entry=$st->[$i];
+                  my$var;my$for;
+                  if($entry->type ne "Assignment"){push(@err,"Your $ith entry is not a parametrization");next;}
+                  else{($var,$for)=split('=',"$entry");
+                   $var=Formula("$var");$for=Formula("$for");
+                   if(!($var!=Formula("x") or $var!=Formula("y") or $var!=Formula("z")) or $for->usesOneOf("x","y","z"))
+                    {push(@err,"Your $ith entry is not a parametrization")unless $aH->{isPreview};next;}
+                  };
+                  for($j=0,$used=0;$j&lt;$i;$j++){
+                   if($st->[$j]->type eq "Assignment"){
+                    my($vj,$fj)=split('=',$st->[$j]->string);
+                    $vj=Formula("$vj");
+                    if($vj==$var) {push(@err,"Your $ith entry parametrizes the same variable as a previous one") unless $aH->{isPreview};$used = 1;last;}
+                  }}
+                  if(!$used){
+                   if($var eq 'x'){$sV=$sV+Formula("&lt;$for,0,0>")}
+                   elsif($var eq 'y'){$sV=$sV+Formula("&lt;0,$for,0>")}
+                   else{$sV=$sV+Formula("&lt;0,0,$for>")};
+                 }}
+                 if(!$aH->{isPreview}){
+                  push(@err,"You need to provide more parametrizations")if $i&lt;3;
+                  push(@err,"You have given too many parametrizations")if $i>3;
+                 }
+                 $sV=Formula($sV);
+                 $ds=$sV->D('t')->reduce;
+                 if($ds->isConstant){$ds=Vector("$ds");} else{return 0;};
+                 $dc=$v->D('t')->reduce;$dc=Vector("$dc");$par=$ds->isParallel($dc);
+                 $sp=$sV->eval(t=>0);$cp=$v->eval(t=>0);
+                 $tch=(($sp==$cp) or $dc->isParallel($sp-$cp));
+                 return (3*($par and $tch),@err);
+                });
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Let <m>f(x,y) = x^2-2x-y^2+4y</m> and <m>P=(1,2)</m>. Find parametric equations for the normal line at <m>P</m>.</p>
+            <p><var name="$n" evaluator="$nev" width="50" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, a function <m>z=f(x,y)</m> and a point <m>P</m> are given. Find the two points that are <m>2</m> units from the surface <m>f</m> at <m>P</m>. Note: these are the same functions as in <xref first="x12_06_ex_05" last="x12_06_ex_08">Exercises</xref>.</p>
+      </introduction>
+      <exercise xml:id="x12_06_ex_13">
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x,y) = 2x^2y-4xy^2</m>, <m>P=(2,3)</m>.</p>
+          </statement>
+          <solution>
+            <p><m>(1.425, 1.085, -48.078)</m>, <m>(2.575, 4.915, -47.952)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x,y) = 3\cos(x) \sin(y)</m>, <m>P=(\pi/3, \pi/6)</m>.</p>
+          </statement>
+          <solution>
+            <p><m>(-0.195,1.766,-0.206)</m> and <m>(2.289,-0.719, 1.706)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x,y) = 3x-5y</m>, <m>P=(4,2)</m>.</p>
+          </statement>
+          <solution>
+            <p><m>(5.014, 0.31, 1.662)</m> and <m>(2.986, 3.690, 2.338)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x,y) = x^2-2x-y^2+4y</m>, <m>P=(1,2)</m>.</p>
+          </statement>
+          <solution>
+            <p><m>(1,2,1)</m> and <m>(1,2,5)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, a function <m>z=f(x,y)</m> and a point <m>P</m> are given. Find an equation of the tangent plane to <m>f</m> at <m>P</m>. Note: these are the same functions as in <xref first="x12_06_ex_05" last="x12_06_ex_08">Exercises</xref>.</p>
+      </introduction>
+      <exercise xml:id="x12_06_ex_17">
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x,y) = 2x^2y-4xy^2</m>, <m>P=(2,3)</m>.</p>
+          </statement>
+          <solution>
+            <p><m>-12(x-2)-40(y-3) -(z+48) = 0</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$t">
+              <static>-\frac{3\sqrt{3}}4(x-\pi/3)+\frac{3\sqrt{3}}4(y-\pi/6) - (z-3/4) = 0</static>
+            </var>
+            <pg-code>
+              Context("ImplicitPlane");
+              $t=Compute("-3sqrt(3)/4(x-pi/3)+3sqrt(3)/4(y-pi/6)-(z-3/4)=0");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find an equation of the tangent plane to <m>f(x,y) = 3\cos(x) \sin(y)</m> at <m>P=(\pi/3, \pi/6)</m>.</p>
+            <p><var name="$t" width="40" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x,y) = 3x-5y</m>, <m>P=(4,2)</m>.</p>
+          </statement>
+          <solution>
+            <p><m>3(x-4)-5(y-2) - (z-2) = 0</m> (Note that this tangent plane is the same as the original function, a plane.)</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$t">
+              <static>z=3</static>
+            </var>
+            <pg-code>
+              Context("ImplicitPlane");
+              $t=Compute("z=3");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Find an equation of the tangent plane to <m>f(x,y) = x^2-2x-y^2+4y</m> at <m>P=(1,2)</m>.</p>
+            <p><var name="$t" width="40" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, an implicitly defined function of <m>x</m>, <m>y</m> and <m>z</m> is given along with a point <m>P</m> that lies on the surface. Use the gradient <m>\nabla F</m> to:<ol label="a">
+          <li>
+            <p>find the equation of the normal line to the surface at <m>P</m>, and</p>
+          </li>
+          <li>
+            <p>find the equation of the plane tangent  to the surface at <m>P</m>.</p>
+          </li>
+        </ol></p>
+      </introduction>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \frac{x^2}{8}+\frac{y^2}4+\frac{z^2}{16}=1</m>, at <m>P = (1,\sqrt{2},\sqrt{6})</m></p>
+          </statement>
+          <solution>
+            <p><m>\nabla F = \la x/4, y/2, z/8\ra</m>; at <m>P</m>, <m>\nabla F = \la 1/4, \sqrt{2}/2, \sqrt{6}/8\ra</m></p>
+
+            <ol>
+              <li><p><m>\ell_{\vec n}(t) = \left\{\begin{array}{l} x= 1+ t/4 \\ y = \sqrt{2}+ \sqrt{2}t/2\\ z = \sqrt{6} + \sqrt{6}t/8
+                  \end{array} \right.</m></p></li>
+
+              <li><p><m>\frac14(x-1) + \frac{\sqrt{2}}{2}(y-\sqrt{2}) + \frac{\sqrt{6}}8(z-\sqrt{6}) = 0</m>.</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$n">
+              <static>x= 4-2t, y = -3+ 2t/3, z = \sqrt{5} + 2\sqrt{5}t</static>
+            </var>
+            <var name="$t">
+              <static>-2(x-4) + \frac23(y+3) + 2\sqrt{5}(z-\sqrt{5})=0</static>
+            </var>
+            <pg-code>
+              Context("Vector");
+              Context()->variables->are(t=>"Real");
+              $v=Compute("(4,-3,sqrt(5))+t&lt;-2,2/3,2sqrt(5)>");
+              Context("Numeric");
+              Context()->variables->add(y=>"Real",z=>"Real",t=>"Real");
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              parser::Assignment->Allow;
+              $n=List(Formula("x=4-2t"),Formula("y=-3+2/3t"),Formula("z=sqrt(5)+2sqrt(5)t"));
+                $nev=$n->cmp(list_checker=>sub{my($c,$st,$aH,$value)=@_;
+                 my$n=scalar(@$st);
+                 my@err=();my$i,$j;
+                 Context("Vector");
+                 Context()->variables->add(t=>"Real");
+                 my$sV=Formula("(0,0,0)+t*&lt;0,0,0>");
+                 for($i=0;$i&lt;$n;$i++){
+                  my$ith=Value::List->NameForNumber($i+1);
+                  my$entry=$st->[$i];
+                  my$var;my$for;
+                  if($entry->type ne "Assignment"){push(@err,"Your $ith entry is not a parametrization");next;}
+                  else{($var,$for)=split('=',"$entry");
+                   $var=Formula("$var");$for=Formula("$for");
+                   if(!($var!=Formula("x") or $var!=Formula("y") or $var!=Formula("z")) or $for->usesOneOf("x","y","z"))
+                    {push(@err,"Your $ith entry is not a parametrization")unless $aH->{isPreview};next;}
+                  };
+                  for($j=0,$used=0;$j&lt;$i;$j++){
+                   if($st->[$j]->type eq "Assignment"){
+                    my($vj,$fj)=split('=',$st->[$j]->string);
+                    $vj=Formula("$vj");
+                    if($vj==$var) {push(@err,"Your $ith entry parametrizes the same variable as a previous one") unless $aH->{isPreview};$used = 1;last;}
+                  }}
+                  if(!$used){
+                   if($var eq 'x'){$sV=$sV+Formula("&lt;$for,0,0>")}
+                   elsif($var eq 'y'){$sV=$sV+Formula("&lt;0,$for,0>")}
+                   else{$sV=$sV+Formula("&lt;0,0,$for>")};
+                 }}
+                 if(!$aH->{isPreview}){
+                  push(@err,"You need to provide more parametrizations")if $i&lt;3;
+                  push(@err,"You have given too many parametrizations")if $i>3;
+                 }
+                 $sV=Formula($sV);
+                 $ds=$sV->D('t')->reduce;
+                 if($ds->isConstant){$ds=Vector("$ds");} else{return 0;};
+                 $dc=$v->D('t')->reduce;$dc=Vector("$dc");$par=$ds->isParallel($dc);
+                 $sp=$sV->eval(t=>0);$cp=$v->eval(t=>0);
+                 $tch=(($sp==$cp) or $dc->isParallel($sp-$cp));
+                 return (3*($par and $tch),@err);
+                });
+              Context("ImplicitPlane");
+              $t=Compute("-2(x-4) + 2/3(y+3) + 2sqrt(5)(z-sqrt(5)) = 0");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Given <m>z^2-\frac{x^2}{4} - \frac{y^2}9=0</m>, at <m>P = (4,-3,\sqrt{5})</m>:<ol label="a">
+              <li>
+                <p>Find parametric equations for the normal line.</p>
+                <p><var name="$n" evaluator="$nev" width="50" /></p>
+              </li>
+              <li>
+                <p>Find an equation of the tangent plane.</p>
+                <p><var name="$t" width="50" /></p>
+              </li>
+            </ol></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds xy^2-xz^2=0</m>, at <m>P = (2,1,-1)</m></p>
+          </statement>
+          <solution>
+            <p><m>\nabla F = \la y^2-z^2, 2xy, -2xz\ra</m>; at <m>P</m>, <m>\nabla F = \la 0, 4, 4\ra</m></p>
+
+            <ol>
+              <li><p><m>\ell_{\vec n}(t) = \left\{\begin{array}{l} x= 2 \\ y = 1+4t\\ z = -1+4t
+                  \end{array} \right.</m></p></li>
+
+              <li><p><m>4(y-1) + 4(z+1) = 0</m>.</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$n">
+              <static>x= 2 +\frac{\pi}{8\sqrt{3}}t, y = \frac{\pi}{12}-\sqrt{3}t, z = 4-\frac{\pi}{8\sqrt{3}}t</static>
+            </var>
+            <var name="$t">
+              <static>\frac{\pi}{8\sqrt{3}}(x-2) -\sqrt{3}(y-\frac{\pi}{12}) -\frac{\pi}{8\sqrt{3}}(z-4) = 0</static>
+            </var>
+            <pg-code>
+              Context("Vector");
+              Context()->variables->are(t=>"Real");
+              $v=Compute("(2,pi/12,4)+t&lt;pi/(8sqrt(3)),-sqrt(3),-pi/(8sqrt(3))>");
+              Context("Numeric");
+              Context()->variables->add(y=>"Real",z=>"Real",t=>"Real");
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              parser::Assignment->Allow;
+              $n=List(Formula("x=2+pi/(8sqrt(3))t"),Formula("y=pi/12-sqrt(3)t"),Formula("z=4-pi/(8sqrt(3))t"));
+                $nev=$n->cmp(list_checker=>sub{my($c,$st,$aH,$value)=@_;
+                 my$n=scalar(@$st);
+                 my@err=();my$i,$j;
+                 Context("Vector");
+                 Context()->variables->add(t=>"Real");
+                 my$sV=Formula("(0,0,0)+t*&lt;0,0,0>");
+                 for($i=0;$i&lt;$n;$i++){
+                  my$ith=Value::List->NameForNumber($i+1);
+                  my$entry=$st->[$i];
+                  my$var;my$for;
+                  if($entry->type ne "Assignment"){push(@err,"Your $ith entry is not a parametrization");next;}
+                  else{($var,$for)=split('=',"$entry");
+                   $var=Formula("$var");$for=Formula("$for");
+                   if(!($var!=Formula("x") or $var!=Formula("y") or $var!=Formula("z")) or $for->usesOneOf("x","y","z"))
+                    {push(@err,"Your $ith entry is not a parametrization")unless $aH->{isPreview};next;}
+                  };
+                  for($j=0,$used=0;$j&lt;$i;$j++){
+                   if($st->[$j]->type eq "Assignment"){
+                    my($vj,$fj)=split('=',$st->[$j]->string);
+                    $vj=Formula("$vj");
+                    if($vj==$var) {push(@err,"Your $ith entry parametrizes the same variable as a previous one") unless $aH->{isPreview};$used = 1;last;}
+                  }}
+                  if(!$used){
+                   if($var eq 'x'){$sV=$sV+Formula("&lt;$for,0,0>")}
+                   elsif($var eq 'y'){$sV=$sV+Formula("&lt;0,$for,0>")}
+                   else{$sV=$sV+Formula("&lt;0,0,$for>")};
+                 }}
+                 if(!$aH->{isPreview}){
+                  push(@err,"You need to provide more parametrizations")if $i&lt;3;
+                  push(@err,"You have given too many parametrizations")if $i>3;
+                 }
+                 $sV=Formula($sV);
+                 $ds=$sV->D('t')->reduce;
+                 if($ds->isConstant){$ds=Vector("$ds");} else{return 0;};
+                 $dc=$v->D('t')->reduce;$dc=Vector("$dc");$par=$ds->isParallel($dc);
+                 $sp=$sV->eval(t=>0);$cp=$v->eval(t=>0);
+                 $tch=(($sp==$cp) or $dc->isParallel($sp-$cp));
+                 return (3*($par and $tch),@err);
+                });
+              Context("ImplicitPlane");
+              $t=Compute("pi/(8sqrt(3))(x-2) -sqrt(3)(y-pi/12) -pi/(8sqrt(3))(z-4) = 0");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Given <m>\sin(xy)+\cos(yz)=0</m>, at <m>P = (2, \pi/12, 4)</m>:<ol label="a">
+              <li>
+                <p>Find parametric equations for the normal line.</p>
+                <p><var name="$n" evaluator="$nev" width="50" /></p>
+              </li>
+              <li>
+                <p>Find an equation of the tangent plane.</p>
+                <p><var name="$t" width="50" /></p>
+              </li>
+            </ol></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

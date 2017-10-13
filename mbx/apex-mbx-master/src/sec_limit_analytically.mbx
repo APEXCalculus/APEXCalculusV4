@@ -1,0 +1,1820 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_limit_analytically">
+  <title>Finding Limits Analytically</title>
+  <!--<introduction>-->
+    <p>In <xref ref="sec_limit_intro">Section</xref> we explored the concept of the limit without a strict definition, meaning we could only make approximations. In the previous section we gave the definition of the limit and demonstrated how to use it to verify our approximations were correct. Thus far, our method of finding a limit is <ol>
+      <li>make a really good approximation either graphically or numerically, and</li>
+      <li>verify our approximation is correct using a <m>\varepsilon</m><ndash /><m>\delta</m> proof.</li>
+    </ol></p>
+
+    <p>Recognizing that <m>\varepsilon</m><ndash /><m>\delta</m> proofs are cumbersome, this section gives a series of theorems which allow us to find limits much more quickly and intuitively.</p>
+
+    <p>Suppose that <m>\lim_{x\to 2} f(x)=2</m> and <m>\lim_{x\to 2} g(x) = 3</m>. What is <m>\lim_{x\to 2}(f(x)+g(x))</m>? Intuition tells us that the limit should be <m>5</m>, as we expect limits to behave in a nice way. The following theorem states that already established limits do behave nicely.</p>
+
+    <theorem xml:id="thm_limit_algebra">
+      <title>Basic Limit Properties</title>
+      <statement>
+        <p>Let <m>b</m>, <m>c</m>, <m>L</m> and <m>K</m> be real numbers, let <m>n</m> be a positive integer, and let <m>f</m> and <m>g</m> be functions with the following limits: <index><main>limit</main><sub>properties</sub></index>
+          <md>
+            <mrow>\lim_{x\to c}f(x)\amp=L\amp\lim_{x\to c} g(x)\amp = K\text{.}</mrow>
+          </md>
+        </p>
+
+        <p>The following limits hold.<dl>
+          <li xml:id="constant-limit-rule">
+            <title>Constant</title>
+            <p><m>\lim\limits_{x\to c} b = b</m></p>
+          </li>
+
+          <li xml:id="identity-limit-rule">
+            <title>Identity</title>
+            <p><m>\lim\limits_{x\to c} x = c</m></p>
+          </li>
+
+          <li xml:id="sum-difference-limit-rule">
+            <title>Sum/Difference</title>
+            <p><m>\lim\limits_{x\to c}(f(x)\pm g(x)) = L\pm K</m></p>
+          </li>
+
+          <li xml:id="scalar-multiple-limit-rule">
+            <title>Scalar Multiple</title>
+            <p><m>\lim\limits_{x\to c}(b\cdot f(x)) = bL</m></p>
+          </li>
+
+          <li xml:id="product-limit-rule">
+            <title>Product</title>
+            <p><m>\lim\limits_{x\to c} (f(x)\cdot g(x)) = LK</m></p>
+          </li>
+
+          <li xml:id="quotient-limit-rule">
+            <title>Quotient</title>
+            <p><m>\lim\limits_{x\to c} (f(x)/g(x)) = L/K</m>, when <m>K\neq 0</m></p>
+          </li>
+
+          <li xml:id="power-limit-rule">
+            <title>Power</title>
+            <p><m>\lim\limits_{x\to c} f(x)^n = L^n</m></p>
+          </li>
+
+          <li xml:id="root-limit-rule">
+            <title>Root</title>
+            <p><m>\lim\limits_{x\to c} \sqrt[n]{f(x)} = \sqrt[n]{L}</m></p>
+            <p>(If <m>n</m> is even, <m>L</m> must be non-negative.)</p>
+          </li>
+
+          <li xml:id="composition-limit-rule">
+            <title>Composition</title>
+            <p>If either of the following holds:<ol>
+                <li><p><m>\lim\limits_{x\to c}f(x)=L</m>, <m>\lim\limits_{x\to L}g(x)=K</m>, and <m>g(L)=K</m></p></li>
+                <li><p><m>\lim\limits_{x\to c}f(x)=L</m>, <m>\lim\limits_{x\to L}g(x)=K</m>, and <m>f(x)\neq L</m> for all <m>x</m> close to but not equal to <m>c</m></p></li>
+            </ol> then <m>\lim\limits_{x\to c}g(f(x)) = K</m>.</p>
+          </li>
+
+        </dl></p>
+      </statement>
+    </theorem>
+
+    <p>We apply the theorem to an example.</p>
+
+    <example xml:id="ex_basic_limit_1">
+      <title>Using basic limit properties</title>
+      <statement>
+        <p>Let<md>
+          <mrow>\lim_{x\to 2} f(x)\amp=2\amp\lim_{x\to 2} g(x)\amp= 3\amp p(x)\amp = 3x^2-5x+7\text{.}</mrow>
+        </md>Find the following limits:<ol cols="2" >
+          <li>
+            <p><m>\lim\limits_{x\to 2}(f(x) + g(x))</m></p>
+          </li>
+
+          <li>
+            <p><m>\lim\limits_{x\to 2}(5f(x) + g(x)^2)</m></p>
+          </li>
+
+          <li xml:id="polynomial-limit-example">
+            <p><m>\lim\limits_{x\to 2}p(x)</m></p>
+          </li>
+        </ol></p>
+      </statement>
+      <solution>
+        <p><ol>
+          <li>
+            <p>Using the <xref ref="sum-difference-limit-rule" autoname="title" /> rule, we know that <m>\lim_{x\to 2}(f(x) + g(x)) = 2+3 =5</m>.</p>
+          </li>
+
+          <li>
+            <p>Using the <xref ref="scalar-multiple-limit-rule" autoname="title" />, <xref ref="sum-difference-limit-rule" autoname="title" />, and <xref ref="power-limit-rule" autoname="title" /> rules, we find that <m>\lim\limits_{x\to 2}(5f(x) + g(x)^2) = 5\cdot 2 + 3^2 = 19</m>.</p>
+          </li>
+
+          <li>
+            <p>Here we combine the <xref ref="power-limit-rule" autoname="title" />, <xref ref="scalar-multiple-limit-rule" autoname="title" />, <xref ref="sum-difference-limit-rule" autoname="title" /> and <xref ref="constant-limit-rule" autoname="title" /> Rules. We show quite a few steps, but in general these can be omitted:
+              <md>
+                <mrow>\lim_{x\to 2} p(x) \amp = \lim_{x\to 2}\left(3x^2-5x+7\right)</mrow>
+                <mrow>\amp = \lim_{x\to 2}\left(3x^2\right)-\lim_{x\to 2}(5x)+\lim_{x\to 2}7</mrow>
+                <mrow>\amp = 3\cdot 2^2 - 5\cdot 2+7</mrow>
+                <mrow>\amp = 9</mrow>
+              </md>
+            </p>
+          </li>
+        </ol></p>
+      </solution>
+    </example>
+
+    <p>Part <xref ref="polynomial-limit-example" /> of the previous example demonstrates how the limit of a quadratic polynomial can be determined using the properties of <xref ref="thm_limit_algebra">Theorem</xref>. Not only that, recognize that
+      <me>
+        \lim_{x\to 2} p(x) = 9 = p(2);
+      </me>
+      i.e., the limit at <m>2</m> could have been found just by plugging <m>2</m> into the function. This holds true for all polynomials, and also for rational functions (which are quotients of polynomials), as stated in the following theorem.</p>
+
+    <theorem xml:id="thm_poly_rat">
+      <title>Limits of Polynomial and Rational Functions</title>
+      <statement>
+        <p>Let <m>p(x)</m> and <m>q(x)</m> be polynomials and <m>c</m> a real number. Then:<ol>
+          <li><p><m>\lim\limits_{x\to c} p(x) = p(c)</m></p></li>
+
+          <li><p><m>\lim\limits_{x\to c} \frac{p(x)}{q(x)} = \frac{p(c)}{q(c)}</m>, when <m>q(c) \neq 0</m>.</p></li>
+        </ol></p>
+      </statement>
+    </theorem>
+
+    <example xml:id="ex_limit_rat">
+      <title>Finding a limit of a rational function</title>
+      <statement>
+        <p>Using <xref ref="thm_poly_rat">Theorem</xref>, find
+          <me>
+            \lim_{x\to -1} \frac{3x^2-5x+1}{x^4-x^2+3}.
+          </me>
+        </p>
+      </statement>
+      <solution>
+        <p>Using <xref ref="thm_poly_rat">Theorem</xref>, we can quickly state that
+          <md>
+            <mrow>\lim_{x\to -1}\frac{3x^2-5x+1}{x^4-x^2+3} \amp = \frac{3(-1)^2-5(-1)+1}{(-1)^4-(-1)^2+3}</mrow>
+            <mrow>\amp =3.</mrow>
+          </md>
+        </p>
+      </solution>
+    </example>
+
+    <p>It was likely frustrating in <xref ref="sec_limit_def">Section</xref> to do a lot of work with <m>\varepsilon</m> and <m>\delta</m> to prove that
+      <me>
+        \lim_{x\to 2} x^2 = 4
+      </me>
+      as it seemed fairly obvious. The previous theorems state that many functions behave in such an <q>obvious</q> fashion, as demonstrated by the rational function in <xref ref="ex_limit_rat">Example</xref>.</p>
+
+    <p>Polynomial and rational functions are not the only functions to behave in such a predictable way. The following theorem gives a list of functions whose behavior is particularly <q>nice</q> in terms of limits. In the next section, we will give a formal name to these functions that behave <q>nicely.</q></p>
+
+    <theorem xml:id="thm_lim_continuous">
+      <title>Special Limits</title>
+      <statement>
+        <p>Let <m>c</m> be a real number in the domain of the given function and let <m>n</m> be a positive integer. The following limits hold:<ol cols="2" >
+          <li>
+            <p><m>\lim\limits_{x\to c}\sin(x) = \sin(c)</m></p>
+          </li>
+
+          <li>
+            <p><m>\lim\limits_{x\to c}\cos(x) = \cos(c)</m></p>
+          </li>
+
+          <li>
+            <p><m>\lim\limits_{x\to c}\tan(x)= \tan(c)</m></p>
+          </li>
+
+          <li>
+            <p><m>\lim\limits_{x\to c}\csc(x) = \csc(c)</m></p>
+          </li>
+
+          <li>
+            <p><m>\lim\limits_{x\to c}\sec(x) = \sec(c)</m></p>
+          </li>
+
+          <li>
+            <p><m>\lim\limits_{x\to c}\cot(x) = \cot(c)</m></p>
+          </li>
+
+          <li>
+            <p><m>\lim\limits_{x\to c}a^x = a^c</m></p>
+            <p>if <m>a \gt 0</m></p>
+          </li>
+
+          <li>
+            <p><m>\lim\limits_{x\to c}\ln(x) = \ln(c)</m></p>
+          </li>
+
+          <li>
+            <p><m>\lim\limits_{x\to c}\sqrt[n]{x} = \sqrt[n]{c}</m></p>
+            <p>(follows from <xref ref="identity-limit-rule" autoname="title"/> and <xref ref="root-limit-rule" autoname="title"/> rules)</p>
+          </li>
+        </ol></p>
+      </statement>
+    </theorem>
+
+    <example xml:id="ex_limit_1">
+      <title>Evaluating limits analytically</title>
+      <statement>
+        <p>Evaluate the following limits.<ol cols="2" >
+          <li>
+            <p><m>\lim\limits_{x\to \pi} \cos(x)</m></p>
+          </li>
+
+          <li>
+            <p><m>\lim\limits_{x\to 3} \left(\sec^2(x) - \tan^2(x)\right)</m></p>
+          </li>
+
+          <li>
+            <p><m>\lim\limits_{x\to \pi/2}(\cos(x)\sin(x))</m></p>
+          </li>
+
+          <li>
+            <p><m>\lim\limits_{x\to 1} e^{\ln(x)}</m></p>
+          </li>
+
+          <li>
+            <p><m>\lim\limits_{x\to 0} \dfrac{\sin(x)}{x}</m></p>
+          </li>
+        </ol></p>
+      </statement>
+      <solution>
+        <p><ol>
+          <li>
+            <p>This is a straightforward application of <xref ref="thm_lim_continuous">Theorem</xref>. <m>\lim\limits_{x\to \pi} \cos(x) = \cos(\pi) = -1</m>.</p>
+          </li>
+
+          <li>
+            <p>We can approach this in at least two ways. First, by directly applying <xref ref="thm_lim_continuous">Theorem</xref>, we have:
+              <me>
+                \lim_{x\to 3} \left(\sec^2(x) - \tan^2(x)\right) = \sec^2(3)-\tan^2(3).
+              </me>
+              Using the Pythagorean Theorem, this last expression is <m>1</m>; therefore
+              <me>
+                \lim_{x\to 3} \left(\sec^2(x) - \tan^2(x)\right) = 1.
+              </me>
+            </p>
+            <p>We can also use the Pythagorean Theorem from the start.
+              <me>
+                \lim_{x\to 3} \left(\sec^2(x) - \tan^2(x)\right) = \lim_{x\to 3} 1 = 1,
+              </me>
+              using the <xref ref="constant-limit-rule" autoname="title" /> rule. Either way, we find the limit is <m>1</m>.</p>
+          </li>
+
+          <li>
+            <p>Applying the <xref ref="product-limit-rule" autoname="title" /> rule and <xref ref="thm_lim_continuous">Theorem</xref> gives
+              <me>
+                \lim\limits_{x\to \pi/2} \cos(x)\sin(x) = \cos(\pi/2)\sin(\pi/2) = 0\cdot 1 = 0.
+              </me>
+            </p>
+          </li>
+
+          <li>
+            <p>Again, we can approach this in two ways. First, we can use the exponential/logarithmic identity that <m>e^{\ln(x)} = x</m> and evaluate <m>\lim\limits_{x\to 1} e^{\ln(x)} = \lim\limits_{x\to 1} x = 1</m>.</p>
+            <p>We can also use the <xref ref="composition-limit-rule" autoname="title" /> rule. Using <xref ref="thm_lim_continuous">Theorem</xref>, we have <m>\lim\limits_{x\to 1}\ln(x) = \ln(1) = 0</m> and <m>\lim_{x\to 0} e^x= e^0=1</m>, satisfying the conditions of the <xref ref="composition-limit-rule" autoname="title" /> rule. Applying this rule,
+              <me>
+                \lim_{x\to 1} e^{\ln(x)} = e^{\lim_{x\to 1} \ln(x)}=e^{\ln(1)}  = e^0 = 1.
+              </me>
+              Both approaches are valid, giving the same result.</p>
+          </li>
+
+          <li>
+            <p>We encountered this limit in <xref ref="sec_limit_intro">Section</xref>. Applying our theorems, we attempt to find the limit as
+              <me>
+                 \lim_{x\to 0}\frac{\sin(x)}{x}\rightarrow \frac{\sin(0) }{0}
+              </me>
+            which is of the form <m>\frac{0}{0}</m>. This, of course, violates a condition of the <xref ref="quotient-limit-rule" autoname="title"/>, as the limit of the denominator is not allowed to be <m>0</m>. Therefore, we are still unable to evaluate this limit with tools we currently have at hand.</p>
+          </li>
+        </ol></p>
+      </solution>
+    </example>
+
+    <p>The section could have been titled <q>Using Known Limits to Find Unknown Limits.</q> By knowing certain limits of functions, we can find limits involving sums, products, powers, etc., of these functions. We further the development of such comparative tools with the Squeeze Theorem, a clever and intuitive way to find the value of some limits.</p>
+
+    <p>Before stating this theorem formally, suppose we have functions <m>f</m>, <m>g</m> and <m>h</m> where <m>g</m> always takes on values between <m>f</m> and <m>h</m>; that is, for all <m>x</m> in an interval,
+      <me>
+        f(x) \leq g(x) \leq h(x).
+      </me>
+    </p>
+
+    <p>If <m>f</m> and <m>h</m> have the same limit at <m>c</m>, and <m>g</m> is always <q>squeezed</q> between them, then <m>g</m> must have the same limit as well. That is what the Squeeze Theorem states. This is illustrated in <xref ref="fig-squeeze-theorem">Figure</xref>.</p>
+
+    <figure xml:id="fig-squeeze-theorem">
+      <caption>An illustration of the Squeeze Theorem</caption>
+      <image xml:id="img-squeeze-theorem" width="47%">
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+            \begin{axis}[xtick={5},ytick={4},xticklabel={$c$}, yticklabel={$L$}]
+              \addplot+[-,smooth] coordinates {(1,3) (2,5) (3,5) (4,4.3) (5,4) (6,3.7) (7,4.5) (8,5) (9,6)} node[below left] {$g$};
+              \addplot+[-,smooth] coordinates {(1,1) (2,1.5) (3,2.5) (4,3.9) (5,4) (6,3.5) (7,4) (8,4.1) (9,5.3)} node[below left] {$f$};
+              \addplot+[-,smooth] coordinates {(1,6.5) (2,6.9) (3,6.5) (4,5) (5,4) (6,4.2) (7,5) (8,5.3) (9,7)} node[below left] {$h$};
+            \end{axis}
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+    </figure>
+
+    <theorem xml:id="thm_sqz">
+      <title>Squeeze Theorem</title>
+      <statement>
+        <p>Let <m>f</m>, <m>g</m> and <m>h</m> be functions on an open interval <m>I</m> containing <m>c</m> such that for all <m>x</m> in <m>I</m>,
+          <me>
+            f(x)\leq g(x) \leq h(x).
+          </me>
+        </p>
+
+        <p>If
+          <me>
+            \lim_{x\to c} f(x) = L = \lim_{x\to c} h(x),
+          </me>
+          then
+          <me>
+            \lim_{x\to c} g(x) = L.
+          </me>
+        </p>
+
+        <p><index><main>limit</main><sub>Squeeze Theorem</sub></index><index><main>Squeeze Theorem</main></index></p>
+      </statement>
+    </theorem>
+
+    <p>It can take some work to figure out appropriate functions by which to <q>squeeze</q> the given function of which you are trying to evaluate a limit. However, that is generally the only place work is necessary; the theorem makes the <q>evaluating the limit part</q> very simple.</p>
+
+    <p>We use the <xref ref="thm_sqz" autoname="title" /> in the following example to finally prove that <m>\lim\limits_{x\to 0} \frac{\sin(x)}{x} = 1</m>.</p>
+
+    <example xml:id="ex_limit_sinx_prove">
+      <title>Using the Squeeze Theorem</title>
+      <statement>
+        <p>Use the <xref ref="thm_sqz" autoname="title" /> to show that
+          <me>
+            \lim_{x\to 0} \frac{\sin(x)}{x} = 1.
+          </me>
+        </p>
+      </statement>
+      <solution>
+        <p>We begin by considering the unit circle. Each point on the unit circle has coordinates <m>(\cos(\theta),\sin(\theta))</m> for some angle <m>\theta</m> as shown in <xref ref="fig_squeeze_sinx">Figure</xref>. Using similar triangles, we can extend the line from the origin through the point to the point <m>(1,\tan(\theta))</m>, as shown. (Here we are assuming that <m>0\leq \theta \leq \pi/2</m>. Later we will show that we can also consider <m>\theta \leq 0</m>.)</p>
+
+        <figure xml:id="fig_squeeze_sinx" >
+          <caption>The unit circle and related triangles.</caption>
+          <!-- START figures/fig_squeeze1.tex -->
+          <image xml:id="img_squeeze_sinx" width="47%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+                \begin{axis}[compat=1.5.1,
+                            clip=false,
+                            ticks=none,
+                            xmin=-1.1, xmax=1.1,
+                            ymin=-1.1, ymax=1.1,
+                            xlabel={},
+                            ylabel={},
+                            axis equal image
+                            ]
+                  \draw (axis cs:0,0) circle [radius=1];
+                  \draw (axis cs:0,0) node[shift={(22.5:25)}]{$\theta$} -- (axis cs:1,0.839) node[above]{$(1,\tan(\theta) )$} -- (axis cs:1,0) node[below right]{$(1,0)$} -- (axis cs:0.766,0.643) node [left]{$(\sin(\theta) ,\cos(\theta) )$};
+                  \addplot[soliddot] coordinates {(1,0.839) (1,0) (0.766,0.643)};
+                \end{axis}
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_squeeze1.tex END -->
+        </figure>
+
+
+        <p><xref ref="fig_squeeze_sinx">Figure</xref> shows three regions have been constructed in the first quadrant, two triangles and a sector of a circle, which are also drawn below. The area of the large triangle is <m>\frac{1}{2}\tan(\theta)</m>; the area of the sector is <m>\theta/2</m>; the area of the triangle contained inside the sector is <m>\frac{1}{2}\sin(\theta)</m>. It is then clear from <xref ref="fig_squeeze1">Figure</xref> that <me>\frac{\tan(\theta)}{2}\geq\frac{\theta}{2}\geq\frac{\sin(\theta)}{2}\text{.}</me>(You may need to recall that the area of a sector of a circle is <m>\frac{1}{2}r^2 \theta</m> with <m>\theta</m> measured in radians.)</p>
+
+        <sidebyside xml:id="fig_squeeze1" widths="32% 32% 32%">
+          <caption>Bounding the sector between two triangles</caption>
+          <!-- START figures/fig_squeeze1a.tex -->
+          <image xml:id="img_squeeze1a" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}[x=100pt,y=100pt]
+              \fill [draw=black,thick,fill=blue!20] (0,0) node [shift={(22.5:0.2)}] {$\theta$} -- (1,.839) -- node [pos=.5,below,rotate=90] {$\tan(\theta)$} (1,0) -- cycle;
+              \draw (.5,0) node [below] {$1$};
+              \draw [black,dashed,thick] (1,0) arc (0:40:1);
+              \draw [black,dashed,thick] (1,0) -- (.766,.643);
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_squeeze1a.tex END -->
+          <!-- START figures/fig_squeeze1b.tex -->
+          <image xml:id="img_squeeze1b" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}[x=100pt,y=100pt]
+              \fill [draw=black,thick,fill=blue!20] (0,0) node [shift={(22.5:0.2)}] {$\theta$} -- (1,0) arc(0:40:1) -- cycle;
+              \draw (.5,0) node [below] {$1$};
+              \draw [black,dashed,thick] (1,0) arc (0:40:1);
+              \draw [black,dashed,thick] (1,0) -- (.766,.643) -- (1,.839) -- node [pos=.5,below,rotate=90,opacity=0] {$\tan(\theta)$} cycle;
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_squeeze1b.tex END -->
+          <!-- START figures/fig_squeeze1c.tex -->
+          <image xml:id="img_squeeze1c" >
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}[x=100pt,y=100pt]
+              \fill [draw=black,thick,fill=blue!20] (0,0) node [shift={(22.5:0.2)}] {$\theta$} -- (1,0) --(.766,.643) -- cycle;
+              \draw [dashed,thick] (.766,0)  -- node [pos=.4,above,rotate=90] {$\sin(\theta) $}(.766,.643);
+              \draw (.766,5pt) -- ++(5pt,0) -- ++(0,-5pt);
+              \draw (.5,0) node [below] {$1$};
+              \draw [black,dashed,thick] (1,0) arc(0:40:1) --  (1,.839) -- node [pos=.5,below,rotate=90,opacity=0] {$\tan(\theta)$} cycle;
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_squeeze1c.tex END -->
+        </sidebyside>
+
+        <p>Multiply all terms by <m>\frac{2}{\sin(\theta)}</m>, giving
+          <me>
+            \frac{1}{\cos(\theta)} \geq \frac{\theta}{\sin(\theta)} \geq 1.
+          </me>
+        </p>
+
+        <p>Taking reciprocals reverses the inequalities, giving
+          <me>
+            \cos(\theta) \leq \frac{\sin(\theta)}{\theta} \leq 1.
+          </me>
+        </p>
+
+        <p>(These inequalities hold for all values of <m>\theta</m> near <m>0</m>, even negative values, since <m>\cos(-\theta) = \cos(\theta)</m> and <m>\sin(-\theta) = -\sin(\theta)</m>.)</p>
+
+        <p>Now take limits.
+          <md>
+            <mrow>\lim_{\theta\to 0} \cos(\theta)\amp \leq \lim_{\theta\to 0} \frac{\sin(\theta)}{\theta} \leq \lim_{\theta\to 0}  1</mrow>
+            <mrow>\cos(0) \amp\leq \lim_{\theta\to 0} \frac{\sin(\theta)}{\theta} \leq  1</mrow>
+            <mrow> 1\amp \leq \lim_{\theta\to 0} \frac{\sin(\theta)}{\theta} \leq  1</mrow>
+          </md>
+        </p>
+
+        <p>Clearly this means that <m>\lim\limits_{\theta\to 0} \frac{\sin(\theta)}{\theta}=1</m>.</p>
+      </solution>
+    </example>
+
+    <p>Two notes about the <xref ref="ex_limit_sinx_prove">Example</xref> are worth mentioning. First, one might be discouraged by this application, thinking <q>I would <em>never</em> have come up with that on my own. This is too hard!</q> Don't be discouraged; within this text we will guide you in your use of the <xref ref="thm_sqz" autoname="title" />. As one gains mathematical maturity, clever proofs like this are easier and easier to create.</p>
+
+    <p>Second, this limit tells us more than just that as <m>x</m> approaches <m>0</m>, <m>\sin(x)/x</m> approaches <m>1</m>. Both <m>x</m> and <m>\sin(x)</m> are approaching <m>0</m>, but the <em>ratio</em> of <m>x</m> and <m>\sin(x)</m> approaches <m>1</m>, meaning that they are approaching <m>0</m> in essentially the same way. Another way of viewing this is: for small <m>x</m>, the functions <m>y=x</m> and <m>y=\sin(x)</m> are essentially indistinguishable.</p>
+
+    <todo>Put GeoGebra applet here with ability to zoom in on x and sin(x) near 0.</todo>
+
+    <p>We include this special limit, along with three others, in the following theorem.</p>
+
+    <theorem xml:id="thm_special_limits">
+      <title>Special Limits</title>
+      <statement>
+        <p><ol cols="2" >
+          <li>
+            <p><m>\lim\limits_{x\to 0} \dfrac{\sin(x)}{x} = 1</m></p>
+          </li>
+
+          <li>
+            <p><m>\lim\limits_{x\to 0} \dfrac{\cos(x)-1}{x} = 0</m></p>
+          </li>
+
+          <li>
+            <p><m>\lim\limits_{x\to 0} (1+x)^{1/x} = e</m></p>
+          </li>
+
+          <li>
+            <p><m>\lim\limits_{x\to 0} \dfrac{e^x-1}{x} = 1</m></p>
+          </li>
+        </ol></p>
+      </statement>
+    </theorem>
+
+    <p>A short word on how to interpret the latter three limits. We know that as <m>x</m> goes to <m>0</m>, <m>\cos(x)</m> goes to <m>1</m>. So, in the second limit, both the numerator and denominator are approaching <m>0</m>. However, since the limit is <m>0</m>, we can interpret this as saying that <q><m>\cos(x)</m> is approaching <m>1</m> faster than <m>x</m> is approaching <m>0</m>.</q></p>
+
+    <p>In the third limit, inside the parentheses we have an expression that is approaching <m>1</m> (though never equaling <m>1</m>), and we know that <m>1</m> raised to any power is still <m>1</m>. At the same time, the power is growing toward infinity. What happens to a number near <m>1</m> raised to a very large power? In this particular case, the result approaches Euler's number, <m>e</m>, approximately <m>2.718</m>.</p>
+
+    <p>In the fourth limit, we see that as <m>x\to 0</m>, <m>e^x</m> approaches <m>1</m> <q>just as fast</q> as <m>x\to 0</m>, resulting in a limit of <m>1</m>.</p>
+
+    <p>The special limits stated in <xref ref="thm_special_limits" >Theorem </xref> are called <em>indeterminate forms</em> <index><main>limit</main><sub>indeterminate form</sub></index>, in this case they are of the form <m>0/0</m>, except the third limit which is of a different form. You'll learn techniques to find these limits exactly using calculus in <xref ref="sec_lhopitals_rule">Section</xref>.</p>
+    <p>Our final theorem for this section will be motivated by the following example.</p>
+
+    <example xml:id="ex_limit_onept">
+      <title>Using algebra to evaluate a limit</title>
+      <statement>
+        <p>Evaluate the following limit:
+          <me>
+            \lim_{x\to 1}\frac{x^2-1}{x-1}.
+          </me>
+        </p>
+      </statement>
+      <solution>
+        <p>We begin by attempting to apply <xref ref="thm_lim_continuous">Theorem</xref> and substituting <m>1</m> for <m>x</m> in the quotient. This gives:
+          <me>
+            \lim_{x\to 1}\frac{x^2-1}{x-1} = \frac{1^2-1}{1-1}
+          </me>
+        which is of the form <m>\frac{0}{0}</m>, an indeterminate form. We cannot apply the theorem.</p>
+
+        <p>By graphing the function, as in <xref ref="fig_limitxplus1">Figure</xref>, we see that the function seems to be linear, implying that the limit should be easy to evaluate. Recognize that the numerator of our quotient can be factored:
+          <me>
+            \frac{x^2-1}{x-1} = \frac{(x-1)(x+1)}{x-1}.
+          </me>The function is not defined when <m>x=1</m>, but for all other <m>x</m>,
+          <md>
+            <mrow>\frac{x^2-1}{x-1}\amp = \frac{(x-1)(x+1)}{x-1}</mrow>
+            <mrow>\amp = \frac{\cancel{(x-1)}(x+1)}{\cancel{(x-1)} }</mrow>
+            <mrow>\amp = x+1, \quad \text{if } x \neq 1</mrow>
+          </md>
+        </p>
+
+        <figure xml:id="fig_limitxplus1" >
+          <caption>Graphing <m>f</m> in <xref ref="ex_limit_onept">Example</xref> to understand a limit.</caption>
+          <!-- START figures/figLimitXplus1.tex -->
+          <image xml:id="img_limitxplus1" width="47%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+                \begin{axis}[xmin=-.1,xmax=2.2,
+                            ymin=-.1,ymax=3.2,
+                            ]
+                  \addplot+[] coordinates {(0,1) (2,3)};
+                  \addplot[hollowdot] coordinates {(1,2)};
+                \end{axis}
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/figLimitXplus1.tex END -->
+        </figure>
+
+        <p>Clearly <m>\lim\limits_{x\to 1}(x+1) = 2</m>. Recall that when considering limits, we are not concerned with the value of the function at <m>1</m>, only the value the function approaches as <m>x</m> approaches <m>1</m>. Since <m>(x^2-1)/(x-1)</m> and <m>x+1</m> are the same at all points except at <m>x=1</m>, they both approach the same value as <m>x</m> approaches <m>1</m>. Therefore we can conclude that
+          <md>
+            <mrow>\lim_{x \to 1} \frac{x^2-1}{x-1} \amp =\lim_{x \to 1} (x+1) </mrow>
+            <mrow>\amp =2</mrow>
+          </md>
+        </p>
+
+      </solution>
+    </example>
+
+    <p>The key to <xref ref="ex_limit_onept">Example</xref> is that the functions <m>y=(x^2-1)/(x-1)</m> and <m>y=x+1</m> are identical except at <m>x=1</m>. Since limits describe a value the function is approaching, not the value the function actually attains, the limits of the two functions are always equal.</p>
+
+    <theorem xml:id="thm_limit_allbut1">
+      <title>Limits of Functions Equal At All But One Point</title>
+      <statement>
+        <p>Let <m>g(x) = f(x)</m> for all <m>x</m> in an open interval, except possibly at <m>c</m>, and let <m>\lim\limits_{x\to c} g(x) = L</m> for some real number <m>L</m>. Then
+          <me>
+            \lim_{x\to c}f(x) = L.
+          </me>
+        </p>
+      </statement>
+    </theorem>
+    <todo>Add the Fundamental Theorem of Algebra somewhere? Is it in the reference pages? If so, link to it.</todo>
+    <p>The Fundamental Theorem of Algebra tells us that when dealing with a rational function of the form <m>g(x)/f(x)</m> and directly evaluating the limit <m>\lim\limits_{x\to c} \frac{g(x)}{f(x)}</m> returns <q>0/0</q>, then <m>(x-c)</m> is a factor of both <m>g(x)</m> and <m>f(x)</m>. One can then use algebra to factor this binomial out, cancel, then apply <xref ref="thm_limit_allbut1">Theorem</xref>. We demonstrate this once more.</p>
+
+    <example xml:id="ex_limit_allbut1">
+      <title>Evaluating a Limit with a Hole</title>
+      <statement>
+        <p>Evaluate <me>\lim\limits_{x\to 3} \frac{x^3-2 x^2-5 x+6}{2 x^3+3 x^2-32 x+15}\text{.}</me></p>
+      </statement>
+      <solution>
+        <p>We begin by applying <xref ref="thm_lim_continuous">Theorem</xref> and substituting <m>3</m> for <m>x</m>. This returns the familiar indeterminate form of <q>0/0</q>. Since the numerator and denominator are each polynomials, we know that <m>(x-3)</m> is factor of each. Using whatever method is most comfortable to you, factor out <m>(x-3)</m> from each (using polynomial division, synthetic division, a computer algebra system, etc.). We find that
+          <me>
+            \frac{x^3-2 x^2-5 x+6}{2 x^3+3 x^2-32 x+15} = \frac{(x-3)\left(x^2+x-2\right)}{(x-3)\left(2 x^2+9 x-5\right)}.
+          </me>We can cancel the <m>(x-3)</m> factors as long as <m>x\neq 3</m>. Using <xref ref="thm_limit_allbut1">Theorem</xref> we conclude:
+          <md>
+            <mrow>\lim_{x\to 3} \frac{x^3-2 x^2-5 x+6}{2 x^3+3 x^2-32 x+15} \amp = \lim_{x\to 3}\frac{(x-3)\left(x^2+x-2\right)}{(x-3)\left(2 x^2+9 x-5\right)}</mrow>
+            <mrow>\amp =\lim_{x\to 3} \frac{x^2+x-2}{2 x^2+9 x-5}</mrow>
+            <mrow>\amp = \frac{10}{40}</mrow>
+            <mrow>\amp = \frac{1}{4}\text{.}</mrow>
+          </md>
+        </p>
+      </solution>
+    </example>
+
+
+    <example xml:id="ex_limit_allbut2">
+      <title>Evaluating a Limit with a Hole</title>
+      <statement>
+        <p>Evaluate <me>\lim\limits_{x\to 9} \frac{\sqrt{x}-3}{x-9}\text{.}</me></p>
+      </statement>
+      <solution>
+        <p>We begin by trying to apply the <xref ref="quotient-limit-rule" autoname="title" /> limit rule,  but the denominator evaluates to zero. In fact, this limit is of the indeterminate form <m>0/0</m>. We will do some algebra to resolve the indeterminate form. In this case, we multiply the numerator and denominator by the conjugate of the numerator.<md>
+           <mrow>\frac{\sqrt{x}-3}{x-9} \amp = \frac{\sqrt{x}-3}{x-9} \cdot \frac{\left(\sqrt{x}+3\right)}{\left(\sqrt{x}+3\right)}</mrow>
+           <mrow>\amp= \frac{x-9}{(x-9)(\sqrt{x}+3)}</mrow>
+          </md>We can cancel the <m>(x-9)</m> factors as long as <m>x\neq 9</m>. Using <xref ref="thm_limit_allbut1">Theorem</xref> we conclude:
+          <md>
+            <mrow>\lim_{x\to 9} \frac{\sqrt{x}-3}{x-9} \amp =\lim_{x\to 9} \frac{x-9}{(x-9)\left(\sqrt{x}+3\right)} </mrow>
+            <mrow>\amp = \lim_{x\to 9 }\frac{1}{\sqrt{x}+3}</mrow>
+            <mrow>\amp = \frac{1}{\lim_{x\to 9}\sqrt{x}+\lim_{x \to 9}3}</mrow>
+            <mrow>\amp = \frac{1}{\sqrt{\lim_{x\to 9}x}+3}</mrow>
+            <mrow>\amp = \frac{1}{\sqrt{3+3}}</mrow>
+            <mrow>\amp = \frac{1}{6}\text{.}</mrow>
+          </md>
+        </p>
+      </solution>
+    </example>
+
+    <p>We end this section by revisiting a limit first seen in <xref ref="sec_limit_intro">Section</xref>, a limit of a difference quotient. Let <m>f(x) = -1.5x^2+11.5x</m>; we approximated the limit <m>\lim\limits_{h\to 0}\frac{f(1+h)-f(1)}{h}\approx 8.5</m>. We formally evaluate this limit in the following example.</p>
+
+    <example xml:id="ex_limit_diffquot">
+      <title>Evaluating the limit of a difference quotient</title>
+      <statement>
+        <p>Let <m>f(x) = -1.5x^2+11.5x</m>; find <m>\lim\limits_{h\to 0}\frac{f(1+h)-f(1)}{h}</m>.</p>
+      </statement>
+      <solution>
+        <p>Since <m>f</m> is a polynomial, our first attempt should be to employ <xref ref="thm_lim_continuous">Theorem</xref> and substitute <m>0</m> for <m>h</m>. However, we see that this gives us <q><m>0/0</m>.</q> Knowing that we have a rational function hints that some algebra will help. Consider the following steps:
+          <md>
+            <mrow>\lim_{h\to 0}\frac{f(1+h)-f(1)}{h}\amp = \lim_{h\to 0}\frac{-1.5(1+h)^2 + 11.5(1+h) - \left(-1.5(1)^2+11.5(1)\right)}{h}</mrow>
+            <mrow>\amp =\lim_{h\to 0}\frac{-1.5(1+2h+h^2) + 11.5+11.5h - 10}{h}</mrow>
+            <mrow>\amp =\lim_{h\to 0}\frac{-1.5h^2 +8.5h}{h}</mrow>
+            <mrow>\amp =\lim_{h\to 0}\frac{h(-1.5h+8.5)}h</mrow>
+            <mrow>\amp =\lim_{h\to 0}(-1.5h+8.5)  \quad (\text{using } <xref ref="thm_limit_allbut1">Theorem</xref>, \text{ as } h\neq 0  )</mrow>
+            <mrow>\amp =8.5  \quad (\text{using } <xref ref="thm_poly_rat">Theorem</xref>  )</mrow>
+          </md>This matches our previous approximation.</p>
+      </solution>
+    </example>
+
+    <p>This section contains several valuable tools for evaluating limits. One of the main results of this section is <xref ref="thm_lim_continuous">Theorem</xref>; it states that many functions that we use regularly behave in a very nice, predictable way. In the next section we give a name to this nice behavior; we label such functions as <term>continuous.</term> Defining that term will require us to look again at what a limit is and what causes limits to not exist.</p>
+  <!--</introduction>-->
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <title>Limit of a constant</title>
+        <webwork seed="1">
+          <statement>
+            <p>Explain in your own words, without using <m>\varepsilon</m><ndash /><m>\delta</m> formality, why <m>\lim\limits_{x\to c}b=b</m>.</p>
+            <p><var form="essay" /></p>
+          </statement>
+          <solution>
+            <p>Answers will vary.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <title>Limit of <m>x</m></title>
+        <webwork seed="1">
+          <statement>
+            <p>Explain in your own words, without using <m>\varepsilon</m><ndash /><m>\delta</m> formality, why <m>\lim\limits_{x\to c}x=c</m>.</p>
+            <p><var form="essay" /></p>
+          </statement>
+          <solution>
+            <p>Answers will vary.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <title>Explain <q>nice</q></title>
+        <webwork seed="1">
+          <statement>
+            <p>What does the text mean when it says that certain functions' <q>behavior is <sq>nice</sq> in terms of limits</q>? What, in particular, is <q>nice</q>?</p>
+            <p><var form="essay" /></p>
+          </statement>
+          <solution>
+            <p>Answers will vary.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <statement>
+          <p>Sketch a graph that visually demonstrates the Squeeze Theorem.</p>
+        </statement>
+      </exercise>
+
+      <exercise>
+        <title>Limit of <m>0/0</m></title>
+        <webwork seed="1">
+          <statement>
+            <p>You are given the following information:<ol>
+              <li><p><m>\lim\limits_{x\to 1}f(x)=0</m></p></li>
+              <li><p><m>\lim\limits_{x\to 1}g(x)=0</m></p></li>
+              <li><p><m>\lim\limits_{x\to 1}\frac{f(x)}{g(x)}=2</m></p></li>
+            </ol></p>
+            <p>What can be said about the relative sizes of <m>f(x)</m> and <m>g(x)</m> as <m>x</m> approaches 1?</p>
+            <p><var form="essay" /></p>
+          </statement>
+          <solution>
+            <p>As <m>x</m> is near <m>1</m>, both <m>f</m> and <m>g</m> are near <m>0</m>, but <m>f</m> is approximately twice the size of <m>g</m>. (That is, <m>f(x)\approx2g(x)</m>.)</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <todo>Resolve the repeated instructions in the exercises in this exercisegroup.</todo>
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, use the following information to evaluate the given limit, when possible. If it is not possible to determine the limit, state why not.<md>
+          <mrow>\lim\limits_{x\to9}f(x)\amp=6\amp\lim\limits_{x\to6}f(x)\amp=9\amp f(9)\amp=6</mrow>
+          <mrow>\lim\limits_{x\to9}g(x)\amp=3\amp\lim\limits_{x\to6}g(x)\amp=3\amp g(6)\amp=9</mrow>
+        </md></p>
+      </introduction>
+
+      <exercise>
+        <title>A sum</title>
+        <webwork seed="1">
+          <setup>
+            <var name="$a">
+              <static>9</static>
+            </var>
+            <var name="$L">
+              <static>9</static>
+            </var>
+            <pg-code>
+              Context()->strings->add('not possible to know'=>{});
+              Context()->strings->add('NPK'=>{alias=>'not possible to know'});
+              $a=list_random(6,9);
+              if($envir{problemSeed}==1){$a=9;};
+              $L=($a==6)?12:9;
+            </pg-code>
+          </setup>
+          <statement>
+            <p>If possible, use the following information to evaluate the limit below.<md>
+              <mrow>\lim\limits_{x\to9}f(x)\amp=6\amp\lim\limits_{x\to6}f(x)\amp=9\amp f(9)\amp=6</mrow>
+              <mrow>\lim\limits_{x\to9}g(x)\amp=3\amp\lim\limits_{x\to6}g(x)\amp=3\amp g(6)\amp=9</mrow>
+            </md>If the limit doesn't exist, you may enter <c>DNE</c>. If it is not possible to know whether or not it exists, you may enter <c>NPK</c>.</p>
+            <p><m>\lim\limits_{x\to <var name="$a" />}(f(x)+g(x))=</m><var name="$L" width="10"/></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <title>A quotient</title>
+        <webwork seed="1">
+          <setup>
+            <var name="$a">
+              <static>9</static>
+            </var>
+            <var name="$L">
+              <static>6</static>
+            </var>
+            <pg-code>
+              Context()->strings->add('not possible to know'=>{});
+              Context()->strings->add('NPK'=>{alias=>'not possible to know'});
+              $a=list_random(6,9);
+              if($envir{problemSeed}==1){$a=9;};
+              $L=($a==6)?9:6;
+            </pg-code>
+          </setup>
+          <statement>
+            <p>If possible, use the following information to evaluate the limit below.<md>
+              <mrow>\lim\limits_{x\to9}f(x)\amp=6\amp\lim\limits_{x\to6}f(x)\amp=9\amp f(9)\amp=6</mrow>
+              <mrow>\lim\limits_{x\to9}g(x)\amp=3\amp\lim\limits_{x\to6}g(x)\amp=3\amp g(6)\amp=9</mrow>
+            </md>If the limit doesn't exist, you may enter <c>DNE</c>. If it is not possible to know whether or not it exists, you may enter <c>NPK</c>.</p>
+            <p><m>\lim\limits_{x\to <var name="$a" />}\left(\frac{3f(x)}{g(x)}\right)=</m><var name="$L" width="10"/></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <title>A difference in the numerator</title>
+        <webwork seed="1">
+          <setup>
+            <var name="$a">
+              <static>9</static>
+            </var>
+            <var name="$L">
+              <static>0</static>
+            </var>
+            <pg-code>
+              Context()->strings->add('not possible to know'=>{});
+              Context()->strings->add('NPK'=>{alias=>'not possible to know'});
+              $a=list_random(6,9);
+              if($envir{problemSeed}==1){$a=9;};
+              $L=($a==6)?1:0;
+            </pg-code>
+          </setup>
+          <statement>
+            <p>If possible, use the following information to evaluate the limit below.<md>
+              <mrow>\lim\limits_{x\to9}f(x)\amp=6\amp\lim\limits_{x\to6}f(x)\amp=9\amp f(9)\amp=6</mrow>
+              <mrow>\lim\limits_{x\to9}g(x)\amp=3\amp\lim\limits_{x\to6}g(x)\amp=3\amp g(6)\amp=9</mrow>
+            </md>If the limit doesn't exist, you may enter <c>DNE</c>. If it is not possible to know whether or not it exists, you may enter <c>NPK</c>.</p>
+            <p><m>\lim\limits_{x\to <var name="$a" />}\left(\frac{f(x)-2g(x)}{g(x)}\right)=</m><var name="$L" width="10"/></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <title>A difference in the denominator</title>
+        <webwork seed="1">
+          <setup>
+            <var name="$a">
+              <static>6</static>
+            </var>
+            <var name="$L">
+              <static>\text{DNE}</static>
+            </var>
+            <pg-code>
+              Context()->strings->add('not possible to know'=>{});
+              Context()->strings->add('NPK'=>{alias=>'not possible to know'});
+              $a=list_random(6,9);
+              if($envir{problemSeed}==1){$a=6;};
+              $L=Compute("DNE");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>If possible, use the following information to evaluate the limit below.<md>
+              <mrow>\lim\limits_{x\to9}f(x)\amp=6\amp\lim\limits_{x\to6}f(x)\amp=9\amp f(9)\amp=6</mrow>
+              <mrow>\lim\limits_{x\to9}g(x)\amp=3\amp\lim\limits_{x\to6}g(x)\amp=3\amp g(6)\amp=9</mrow>
+            </md>If the limit doesn't exist, you may enter <c>DNE</c>. If it is not possible to know whether or not it exists, you may enter <c>NPK</c>.</p>
+            <p><m>\lim\limits_{x\to <var name="$a" />}\left(\frac{f(x)}{3-g(x)}\right)=</m><var name="$L" width="10"/></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <title>A composition</title>
+        <webwork seed="1">
+          <setup>
+            <var name="$a">
+              <static>6</static>
+            </var>
+            <var name="$L">
+              <static>\text{NPK}</static>
+            </var>
+            <pg-code>
+              Context()->strings->add('not possible to know'=>{});
+              Context()->strings->add('NPK'=>{alias=>'not possible to know'});
+              $a=list_random(6,9);
+              if($envir{problemSeed}==1){$a=6;};
+              $L=Compute("NPK");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>If possible, use the following information to evaluate the limit below.<md>
+              <mrow>\lim\limits_{x\to9}f(x)\amp=6\amp\lim\limits_{x\to6}f(x)\amp=9\amp f(9)\amp=6</mrow>
+              <mrow>\lim\limits_{x\to9}g(x)\amp=3\amp\lim\limits_{x\to6}g(x)\amp=3\amp g(6)\amp=9</mrow>
+            </md>If the limit doesn't exist, you may enter <c>DNE</c>. If it is not possible to know whether or not it exists, you may enter <c>NPK</c>.</p>
+            <p><m>\lim\limits_{x\to <var name="$a" />}g(f(x))=</m><var name="$L" width="10"/></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <title>A composition</title>
+        <webwork seed="1">
+          <setup>
+            <var name="$a">
+              <static>6</static>
+            </var>
+            <var name="$L">
+              <static>\text{NPK}</static>
+            </var>
+            <pg-code>
+              Context()->strings->add('not possible to know'=>{});
+              Context()->strings->add('NPK'=>{alias=>'not possible to know'});
+              $a=list_random(6,9);
+              if($envir{problemSeed}==1){$a=6;};
+              $L=Compute("NPK");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>If possible, use the following information to evaluate the limit below.<md>
+              <mrow>\lim\limits_{x\to9}f(x)\amp=6\amp\lim\limits_{x\to6}f(x)\amp=9\amp f(9)\amp=6</mrow>
+              <mrow>\lim\limits_{x\to9}g(x)\amp=3\amp\lim\limits_{x\to6}g(x)\amp=3\amp g(6)\amp=9</mrow>
+            </md>If the limit doesn't exist, you may enter <c>DNE</c>. If it is not possible to know whether or not it exists, you may enter <c>NPK</c>.</p>
+            <p><m>\lim\limits_{x\to <var name="$a" />}f(g(x))=</m><var name="$L" width="10"/></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <title>A triple composition</title>
+        <webwork seed="1">
+          <setup>
+            <var name="$a">
+              <static>6</static>
+            </var>
+            <var name="$L">
+              <static>\text{NPK}</static>
+            </var>
+            <pg-code>
+              Context()->strings->add('not possible to know'=>{});
+              Context()->strings->add('NPK'=>{alias=>'not possible to know'});
+              $a=list_random(6,9);
+              if($envir{problemSeed}==1){$a=6;};
+              $L=Compute("NPK");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>If possible, use the following information to evaluate the limit below.<md>
+              <mrow>\lim\limits_{x\to9}f(x)\amp=6\amp\lim\limits_{x\to6}f(x)\amp=9\amp f(9)\amp=6</mrow>
+              <mrow>\lim\limits_{x\to9}g(x)\amp=3\amp\lim\limits_{x\to6}g(x)\amp=3\amp g(6)\amp=9</mrow>
+            </md>If the limit doesn't exist, you may enter <c>DNE</c>. If it is not possible to know whether or not it exists, you may enter <c>NPK</c>.</p>
+            <p><m>\lim\limits_{x\to <var name="$a" />}g(f(f(x)))=</m><var name="$L" width="10"/></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <title>Products and squares</title>
+        <webwork seed="1">
+          <setup>
+            <var name="$a">
+              <static>6</static>
+            </var>
+            <var name="$L">
+              <static>-45</static>
+            </var>
+            <pg-code>
+              Context()->strings->add('not possible to know'=>{});
+              Context()->strings->add('NPK'=>{alias=>'not possible to know'});
+              $a=list_random(6,9);
+              if($envir{problemSeed}==1){$a=6;};
+              $L=($a==6)?-45:-9;
+            </pg-code>
+          </setup>
+          <statement>
+            <p>If possible, use the following information to evaluate the limit below.<md>
+              <mrow>\lim\limits_{x\to9}f(x)\amp=6\amp\lim\limits_{x\to6}f(x)\amp=9\amp f(9)\amp=6</mrow>
+              <mrow>\lim\limits_{x\to9}g(x)\amp=3\amp\lim\limits_{x\to6}g(x)\amp=3\amp g(6)\amp=9</mrow>
+            </md>If the limit doesn't exist, you may enter <c>DNE</c>. If it is not possible to know whether or not it exists, you may enter <c>NPK</c>.</p>
+            <p><m>\lim\limits_{x\to <var name="$a" />}\left(f(x)g(x)-f(x)^2+g(x)^2\right)=</m><var name="$L" width="10"/></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, use the following information to evaluate the given limit, when possible. If it is not possible to determine the limit, state why not.<md>
+          <mrow>\lim_{x\to1}f(x)\amp=2\amp\lim_{x\to10}f(x)\amp=1\amp f(1)\amp=1/5</mrow>
+          <mrow>\lim_{x\to1}g(x)\amp=0\amp\lim_{x\to10}g(x)\amp=\pi\amp g(10)\amp=\pi</mrow>
+        </md></p>
+      </introduction>
+
+      <exercise>
+        <title><m>f</m> to the <m>g</m></title>
+        <webwork seed="1">
+          <setup>
+            <var name="$a">
+              <static>1</static>
+            </var>
+            <var name="$L">
+              <static>1</static>
+            </var>
+            <pg-code>
+              Context()->strings->add('not possible to know'=>{});
+              Context()->strings->add('NPK'=>{alias=>'not possible to know'});
+              $a=list_random(1,10);
+              if($envir{problemSeed}==1){$a=1;};
+              $L=1;
+            </pg-code>
+          </setup>
+          <statement>
+            <p>If possible, use the following information to evaluate the limit below.<md>
+              <mrow>\lim_{x\to1}f(x)\amp=2\amp\lim_{x\to10}f(x)\amp=1\amp f(1)\amp=1/5</mrow>
+              <mrow>\lim_{x\to1}g(x)\amp=0\amp\lim_{x\to10}g(x)\amp=\pi\amp g(10)\amp=\pi</mrow>
+            </md>If the limit doesn't exist, you may enter <c>DNE</c>. If it is not possible to know whether or not it exists, you may enter <c>NPK</c>.</p>
+            <p><m>\lim\limits_{x\to <var name="$a" />}f(x)^{g(x)}=</m><var name="$L" width="10"/></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <title>cosine of <m>g</m></title>
+        <webwork seed="1">
+          <setup>
+            <var name="$a">
+              <static>10</static>
+            </var>
+            <var name="$L">
+              <static>-1</static>
+            </var>
+            <pg-code>
+              Context()->strings->add('not possible to know'=>{});
+              Context()->strings->add('NPK'=>{alias=>'not possible to know'});
+              $a=list_random(1,10);
+              if($envir{problemSeed}==1){$a=10;};
+              $L=($a==10)?-1:Compute("NPK");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>If possible, use the following information to evaluate the limit below.<md>
+              <mrow>\lim_{x\to1}f(x)\amp=2\amp\lim_{x\to10}f(x)\amp=1\amp f(1)\amp=1/5</mrow>
+              <mrow>\lim_{x\to1}g(x)\amp=0\amp\lim_{x\to10}g(x)\amp=\pi\amp g(10)\amp=\pi</mrow>
+            </md>If the limit doesn't exist, you may enter <c>DNE</c>. If it is not possible to know whether or not it exists, you may enter <c>NPK</c>.</p>
+            <p><m>\lim\limits_{x\to <var name="$a" />}\cos(g(x))=</m><var name="$L" width="10"/></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <title><m>f</m> times <m>g</m></title>
+        <webwork seed="1">
+          <setup>
+            <var name="$a">
+              <static>1</static>
+            </var>
+            <var name="$L">
+              <static>0</static>
+            </var>
+            <pg-code>
+              Context()->strings->add('not possible to know'=>{});
+              Context()->strings->add('NPK'=>{alias=>'not possible to know'});
+              $a=list_random(1,10);
+              if($envir{problemSeed}==1){$a=1;};
+              $L=($a==1)?0:Compute("pi");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>If possible, use the following information to evaluate the limit below.<md>
+              <mrow>\lim_{x\to1}f(x)\amp=2\amp\lim_{x\to10}f(x)\amp=1\amp f(1)\amp=1/5</mrow>
+              <mrow>\lim_{x\to1}g(x)\amp=0\amp\lim_{x\to10}g(x)\amp=\pi\amp g(10)\amp=\pi</mrow>
+            </md>If the limit doesn't exist, you may enter <c>DNE</c>. If it is not possible to know whether or not it exists, you may enter <c>NPK</c>.</p>
+            <p><m>\lim\limits_{x\to <var name="$a" />}\left(f(x)g(x)\right)=</m><var name="$L" width="10"/></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <title>A composition</title>
+        <webwork seed="1">
+          <setup>
+            <var name="$a">
+              <static>1</static>
+            </var>
+            <var name="$L">
+              <static>\pi</static>
+            </var>
+            <pg-code>
+              Context()->strings->add('not possible to know'=>{});
+              Context()->strings->add('NPK'=>{alias=>'not possible to know'});
+              $a=list_random(1,10);
+              if($envir{problemSeed}==1){$a=1;};
+              $L=($a=1)?Compute("pi"):Compute("NPK");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>If possible, use the following information to evaluate the limit below.<md>
+              <mrow>\lim_{x\to1}f(x)\amp=2\amp\lim_{x\to10}f(x)\amp=1\amp f(1)\amp=1/5</mrow>
+              <mrow>\lim_{x\to1}g(x)\amp=0\amp\lim_{x\to10}g(x)\amp=\pi\amp g(10)\amp=\pi</mrow>
+            </md>If the limit doesn't exist, you may enter <c>DNE</c>. If it is not possible to know whether or not it exists, you may enter <c>NPK</c>.</p>
+            <p><m>\lim\limits_{x\to <var name="$a" />}g(5f(x))=</m><var name="$L" width="10"/></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <todo>Resolve duplicate instructions in these exercisegroup exercises</todo>
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, use limit theorems to evaluate the given limit.</p>
+      </introduction>
+      <exercise>
+        <title>Polynomial</title>
+        <webwork seed="1">
+          <setup>
+            <var name="$a">
+              <static>3</static>
+            </var>
+            <var name="$b">
+              <static>-3</static>
+            </var>
+            <var name="$c">
+              <static>7</static>
+            </var>
+            <var name="$f">
+              <static>x^2-3x+7</static>
+            </var>
+            <var name="$L" category="number">
+              <static>7</static>
+            </var>
+            <pg-code>
+              $a=random(2,8,1);
+              $b=non_zero_random(-5,5,1);
+              $c=non_zero_random(-9,9,1);
+              if($envir{problemSeed}==1){$a=3;$b=-3;$c=7};
+              $f=Formula("x^2+$b x+$c")->reduce;
+              $L=$f->eval(x=>$a);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Use limit theorems to evaluate the limit.</p>
+            <p><m>\lim\limits_{x\to <var name="$a" />}\left(<var name="$f" />\right)=</m><var name="$L" width="10" /></p>
+          </statement>
+          <solution>
+            <p><md>
+              <mrow>\lim\limits_{x\to <var name="$a" />}\left(<var name="$f" />\right)\amp=\lim\limits_{x\to <var name="$a" />}x^2+\lim\limits_{x\to <var name="$a" />}<var name="$b" />x+\lim\limits_{x\to <var name="$a" />}<var name="$c" /></mrow>
+              <mrow>\amp=\left(\lim\limits_{x\to <var name="$a" />}x\right)^2+\lim\limits_{x\to <var name="$a" />}<var name="$b" />x+\lim\limits_{x\to <var name="$a" />}<var name="$a" /></mrow>
+              <mrow>\amp=\left(<var name="$a" />\right)^2+ <var name="$b" />\left(<var name="$a" />\right)+ <var name="$c" /></mrow>
+              <mrow>\amp=<var name="$L" /></mrow>
+            </md></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <title>Rational and power</title>
+        <webwork seed="1">
+          <setup>
+            <var name="$b">
+              <static>3</static>
+            </var>
+            <var name="$c">
+              <static>5</static>
+            </var>
+            <var name="$n">
+              <static>7</static>
+            </var>
+            <var name="$f">
+              <static>\left(\frac{x-3}{x-5}\right)^7</static>
+            </var>
+            <var name="$L" category="number">
+              <static>\left(\frac{\pi-3}{\pi-5}\right)^7</static>
+            </var>
+            <pg-code>
+              $b=non_zero_random(-5,5,1);
+              do{$c=non_zero_random(-9,9,1);}until($b!=$c);
+              $n=random(3,9,1);
+              if($envir{problemSeed}==1){$b=3;$c=5;$n=7};
+              $f=Formula("((x-$b)/(x-$c))^($n)")->reduce;
+              $L=$f->substitute(x=>Formula("pi"));
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Use limit theorems to evaluate the limit.</p>
+            <p><m>\lim\limits_{x\to\pi}<var name="$f" /></m></p>
+            <p><var name="$L" width="20" /></p>
+          </statement>
+          <solution>
+            <p><md>
+              <mrow>\lim\limits_{x\to\pi}<var name="$f" />\amp=\left(\lim\limits_{x\to\pi}\frac{x- <var name="$b" />}{x- <var name="$c" />}\right)^{<var name="$n" />}</mrow>
+              <mrow>\amp=\left(\frac{\lim\limits_{x\to\pi}(x- <var name="$b" />)}{\lim\limits_{x\to\pi}(x- <var name="$c" />)}\right)^{<var name="$n" />}</mrow>
+              <mrow>\amp=\left(\frac{\lim\limits_{x\to\pi}x-\lim\limits_{x\to\pi}<var name="$b" />}{\lim\limits_{x\to\pi}x-\lim\limits_{x\to\pi}<var name="$c" />}\right)^{<var name="$n" />}</mrow>
+              <mrow>\amp=<var name="$L" /></mrow>
+            </md></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <title>Trig</title>
+        <webwork seed="1">
+          <setup>
+            <var name="$a">
+              <static>\pi/4</static>
+            </var>
+            <var name="$L" category="number">
+              <static>\sqrt{3}/4</static>
+            </var>
+            <var name="$l" category="number">
+              <static>\sqrt{2}/2</static>
+            </var>
+            <var name="$r" category="number">
+              <static>\sqrt{2}/2</static>
+            </var>
+            <pg-code>
+              $d=list_random(3,4,6);
+              if($envir{problemSeed}==1){$d=4;};
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $a=Formula("pi/$d");
+              %f=(3=>Formula("sqrt(3)/4"),4=>Formula("1/2"),6=>Formula("sqrt(3)/4"));
+              $L=$f{$d};
+              %p=(3=>Formula("1/2"),4=>Formula("sqrt(2)/2"),6=>Formula("sqrt(3)/2"));
+              $l=$p{$d};
+              $r=$p{$d**2/2-5.5*$d+18};
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Use limit theorems to evaluate the limit.</p>
+            <p><m>\lim\limits_{x\to <var name="$a" />}\cos(x)\sin(x)</m></p>
+            <p><var name="$L" width="20" /></p>
+          </statement>
+          <solution>
+            <p><md>
+              <mrow>\lim_{x\to <var name="$a" />}\cos(x)\sin(x)\amp=\lim_{x\to <var name="$a" />}\cos(x)\cdot\lim_{x\to <var name="$a" />}\sin(x)</mrow>
+              <mrow>\amp=\cos\mathopen{}\left(<var name="$a" />\right)\mathclose{}\cdot\sin\mathopen{}\left(<var name="$a" />\right)\mathclose{}</mrow>
+              <mrow>\amp=<var name="$l" />\cdot <var name="$r" /></mrow>
+              <mrow>\amp=<var name="$L" /></mrow>
+            </md></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <title><m>\log</m></title>
+        <webwork seed="1">
+          <setup>
+            <var name="$L" category="number">
+              <static>\text{DNE}</static>
+            </var>
+            <pg-code>
+              $L=Compute("DNE");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Use limit theorems to evaluate the limit.</p>
+            <p><m>\lim\limits_{x\to0}\ln(x)</m></p>
+            <p><var name="$L" width="20" /></p>
+          </statement>
+          <solution>
+            <p>This limit does not exist for at least two reasons. For one reason, <m>\ln(x)</m> can be arbitrarily large negative if you allow <m>x</m> to be positive and close enough to <m>0</m>. Also, since <m>\ln(x)</m> is undefined for negative <m>x</m> and <m>\lim\limits_{x\to0}\ln(x)</m> is an expression that depends on outputs of <m>\ln</m> using inputs <em>both</em> slightly smaller <em>and</em> slightly larger than <m>0</m>, we cannot hope to give meaning to <m>\lim\limits_{x\to0}\ln(x)</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <title>Exponential</title>
+        <webwork seed="1">
+          <setup>
+            <var name="$a">
+              <static>3</static>
+            </var>
+            <var name="$b">
+              <static>4</static>
+            </var>
+            <var name="$c">
+              <static>8</static>
+            </var>
+            <var name="$f">
+              <static>4^{x^3-8x}</static>
+            </var>
+            <var name="$L">
+              <static>64</static>
+            </var>
+            <pg-code>
+              $a=random(2,4,1);
+              do{$b=random(2,4,1);}until($a!=$b);
+              $c=$a**2-random(1,2,1);
+              if($envir{problemSeed}==1){$a=3;$b=4;$c=8;};
+              $f=Formula("($b)^(x^3-$c x)");
+              $L=$f->eval(x=>$a);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Use limit theorems to evaluate the limit.</p>
+            <p><m>\lim\limits_{x\to <var name="$a" />}<var name="$f" /></m></p>
+            <p><var name="$L" width="20" /></p>
+          </statement>
+          <solution>
+            <p><md>
+              <mrow>\lim\limits_{x\to <var name="$a" />}<var name="$f" />\amp=<var name="$b" />^{\lim\limits_{x\to <var name="$a" />}\left(x^3- <var name="$c" />x\right)}</mrow>
+              <mrow>\amp=<var name="$b" />^{\lim\limits_{x\to <var name="$a" />}x^3-\lim\limits_{x\to <var name="$a" />}<var name="$c" />x}</mrow>
+              <mrow>\amp=<var name="$b" />^{\left(\lim\limits_{x\to <var name="$a" />}x\right)^3- <var name="$c" />\lim\limits_{x\to <var name="$a" />}x}</mrow>
+              <mrow>\amp=<var name="$b" />^{<var name="$a" />^3- <var name="$c" />\cdot <var name="$a" />}</mrow>
+              <mrow>\amp=<var name="$L" /></mrow>
+            </md></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <title><m>\csc</m></title>
+        <webwork seed="1">
+          <setup>
+            <var name="$a">
+              <static>\pi/6</static>
+            </var>
+            <var name="$L" category="number">
+              <static>2</static>
+            </var>
+            <pg-code>
+              $d=list_random(3,4,6);
+              if($envir{problemSeed}==1){$d=6;};
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $a=Formula("pi/$d");
+              %f=(3=>Formula("2sqrt(3)/3"),4=>Formula("sqrt(2)"),6=>Formula("2"));
+              $L=$f{$d};
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Use limit theorems to evaluate the limit.</p>
+            <p><m>\lim\limits_{x\to <var name="$a" />}\csc(x)</m></p>
+            <p><var name="$L" width="20" /></p>
+          </statement>
+          <solution>
+            <p><md>
+              <mrow>\lim_{x\to <var name="$a" />}\csc(x)\amp=\csc\mathopen{}\left(<var name="$a" />\right)\mathclose{}</mrow>
+              <mrow>\amp=<var name="$L" /></mrow>
+            </md></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <title><m>\log</m></title>
+        <webwork seed="1">
+          <setup>
+            <var name="$f">
+              <static>\ln(1+x)</static>
+            </var>
+            <var name="$L" category="number">
+              <static>0</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstantFunctions=>0);
+              $a=random(1,9,1);
+              if($envir{problemSeed}==1){$a=1;};
+              $f=Formula("ln($a+x)");
+              $L=($a==1)?0:Formula("ln($a)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Use limit theorems to evaluate the limit.</p>
+            <p><m>\lim\limits_{x\to0}<var name="$f" /></m></p>
+            <p><var name="$L" width="20" /></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <title>Rational function</title>
+        <webwork seed="1">
+          <setup>
+            <var name="$a">
+              <static>3</static>
+            </var>
+            <var name="$b">
+              <static>5</static>
+            </var>
+            <var name="$c">
+              <static>5</static>
+            </var>
+            <var name="$d">
+              <static>2</static>
+            </var>
+            <var name="$e">
+              <static>2</static>
+            </var>
+            <var name="$f">
+              <static>x^2+3x+5</static>
+            </var>
+            <var name="$g">
+              <static>5x^2-2x-2</static>
+            </var>
+            <var name="$r">
+              <static>\frac{x^2+3x+5}{5x^2-2x-2}</static>
+            </var>
+            <var name="$L" category="number">
+              <static>\frac{\pi^2+3\pi+5}{5\pi^2-2\pi-3}</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              #ensure rational function doesn't reduce
+              do{$a=non_zero_random(-5,5,1);
+              $b=non_zero_random(-5,5,1);
+              $c=random(2,5,1);
+              do{$d=non_zero_random(-5,5,1);}until($d!=-$a*$c);
+              $e=non_zero_random(-5,5,1);
+              }until((($b*$c+$e)/(-$a*$c-$d))**2+$a*(($b*$c+$e)/(-$a*$c-$d))+$b);
+              if($envir{problemSeed}==1){$a=3;$b=5;$c=5;$d=2;$e=2};
+              $f=Formula("x^2+$a x+$b")->reduce;
+              $g=Formula("$c x^2-$d x-$e")->reduce;
+              $r=$f/$g;
+              $L=$r->substitute(x=>Formula("pi"));
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Use limit theorems to evaluate the limit.</p>
+            <p><m>\lim\limits_{x\to\pi}<var name="$r" /></m></p>
+            <p><var name="$L" width="20" /></p>
+          </statement>
+          <solution>
+            <p><md>
+              <mrow>\lim\limits_{x\to\pi}<var name="$r" />\amp=\frac{\lim\limits_{x\to\pi}\left(<var name="$f" />\right)}{\lim\limits_{x\to\pi}\left(<var name="$g" />\right)}</mrow>
+              <mrow>\amp=\frac{\lim\limits_{x\to\pi}x^2+\lim\limits_{x\to\pi}(<var name="$a" />x)+\lim\limits_{x\to\pi}(<var name="$b" />)}{\lim\limits_{x\to\pi}(<var name="$c" />x^2)+\lim\limits_{x\to\pi}(- <var name="$d" />x)+\lim\limits_{x\to\pi}- <var name="$e" />}</mrow>
+              <mrow>\amp=\frac{\lim\limits_{x\to\pi}x^2+ <var name="$a" />\lim\limits_{x\to\pi}x+\lim\limits_{x\to\pi}(<var name="$b" />)}{<var name="$c" />\lim\limits_{x\to\pi}x^2- <var name="$d" />\lim\limits_{x\to\pi}x-\lim\limits_{x\to\pi}<var name="$e" />}</mrow>
+              <mrow>\amp=<var name="$L" /></mrow>
+            </md></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <title>Rational function</title>
+        <webwork seed="1">
+          <setup>
+            <var name="$r">
+              <static>\frac{3x+1}{1-x}</static>
+            </var>
+            <var name="$L" category="number">
+              <static>\frac{3\pi+1}{1-\pi}</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $a=non_zero_random(-5,5,1);
+              $b=non_zero_random(-5,5,1);
+              $c=non_zero_random(-5,5,1);
+              do{$d=non_zero_random(-5,5,1);}until($a*$c!=-$b*$d);
+              if($envir{problemSeed}==1){$a=3;$b=1;$c=1;$d=-1;};
+              $f=Formula("$a x+$b")->reduce;
+              $g=Formula("$c-$d x")->reduce;
+              $r=$f/$g;
+              $L=$r->substitute(x=>Formula("pi"));
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Use limit theorems to evaluate the limit.</p>
+            <p><m>\lim\limits_{x\to\pi}<var name="$r" /></m></p>
+            <p><var name="$L" width="20" /></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <title>Rational function</title>
+        <webwork seed="1">
+          <setup>
+            <var name="$r">
+              <static>\frac{x^2-4x-12}{x^2-13x+42}</static>
+            </var>
+            <var name="$a">
+              <static>6</static>
+            </var>
+            <var name="$L" category="number">
+              <static>-8</static>
+            </var>
+            <pg-code>
+              ($a,$b,$c)=map{($_+1)*random(-1,1,2)}NchooseK(9,3);
+              if($envir{problemSeed}==1){$a=6;$b=-2;$c=7;};
+              $f=Formula("x^2-($a+$b)x+$a*$b")->reduce;
+              $g=Formula("x^2-($a+$c)x+$a*$c")->reduce;
+              $r=$f/$g;
+              Context("Fraction");
+              $L=Fraction($a-$b,$a-$c);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Use limit theorems to evaluate the limit.</p>
+            <p><m>\lim\limits_{x\to <var name="$a" />}<var name="$r" /></m></p>
+            <p><var name="$L" width="20" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <title>Rational function</title>
+        <webwork seed="1">
+          <setup>
+            <var name="$r">
+              <static>\frac{x^2+2x}{x^2-2x}</static>
+            </var>
+            <var name="$L" category="number">
+              <static>-1</static>
+            </var>
+            <pg-code>
+              ($b,$c)=map{($_+1)*random(-1,1,2)}NchooseK(9,2);
+              if($envir{problemSeed}==1){$b=-2;$c=2;};
+              $f=Formula("x^2-($b)x")->reduce;
+              $g=Formula("x^2-($c)x")->reduce;
+              $r=$f/$g;
+              Context("Fraction");
+              $L=Fraction($b,$c);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Use limit theorems to evaluate the limit.</p>
+            <p><m>\lim\limits_{x\to0}<var name="$r" /></m></p>
+            <p><var name="$L" width="20" /></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <title>Rational function</title>
+        <webwork seed="1">
+          <setup>
+            <var name="$r">
+              <static>\frac{x^2+6x-16}{x^2-3x+2}</static>
+            </var>
+            <var name="$a">
+              <static>2</static>
+            </var>
+            <var name="$L" category="number">
+              <static>10</static>
+            </var>
+            <pg-code>
+              ($a,$b,$c)=map{($_+1)*random(-1,1,2)}NchooseK(9,3);
+              if($envir{problemSeed}==1){$a=2;$b=-8;$c=1;};
+              $f=Formula("x^2-($a+$b)x+$a*$b")->reduce;
+              $g=Formula("x^2-($a+$c)x+$a*$c")->reduce;
+              $r=$f/$g;
+              Context("Fraction");
+              $L=Fraction($a-$b,$a-$c);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Use limit theorems to evaluate the limit.</p>
+            <p><m>\lim\limits_{x\to <var name="$a" />}<var name="$r" /></m></p>
+            <p><var name="$L" width="20" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <title>Rational function</title>
+        <webwork seed="1">
+          <setup>
+            <var name="$r">
+              <static>\frac{x^2-10x+16}{x^2-x-2}</static>
+            </var>
+            <var name="$a">
+              <static>2</static>
+            </var>
+            <var name="$L" category="number">
+              <static>-2</static>
+            </var>
+            <pg-code>
+              ($a,$b,$c)=map{($_+1)*random(-1,1,2)}NchooseK(9,3);
+              if($envir{problemSeed}==1){$a=2;$b=8;$c=-1;};
+              $f=Formula("x^2-($a+$b)x+$a*$b")->reduce;
+              $g=Formula("x^2-($a+$c)x+$a*$c")->reduce;
+              $r=$f/$g;
+              Context("Fraction");
+              $L=Fraction($a-$b,$a-$c);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Use limit theorems to evaluate the limit.</p>
+            <p><m>\lim\limits_{x\to <var name="$a" />}<var name="$r" /></m></p>
+            <p><var name="$L" width="20" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <title>Rational function</title>
+        <webwork seed="1">
+          <setup>
+            <var name="$r">
+              <static>\frac{x^2-5x-14}{x^2+10x+16}</static>
+            </var>
+            <var name="$a">
+              <static>-2</static>
+            </var>
+            <var name="$L" category="number">
+              <static>-\frac{3}{2}</static>
+            </var>
+            <pg-code>
+              ($a,$b,$c)=map{($_+1)*random(-1,1,2)}NchooseK(9,3);
+              if($envir{problemSeed}==1){$a=-2;$b=7;$c=-8;};
+              $f=Formula("x^2-($a+$b)x+$a*$b")->reduce;
+              $g=Formula("x^2-($a+$c)x+$a*$c")->reduce;
+              $r=$f/$g;
+              Context("Fraction");
+              $L=Fraction($a-$b,$a-$c);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Use limit theorems to evaluate the limit.</p>
+            <p><m>\lim\limits_{x\to <var name="$a" />}<var name="$r" /></m></p>
+            <p><var name="$L" width="20" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <title>Rational function</title>
+        <webwork seed="1">
+          <setup>
+            <var name="$r">
+              <static>\frac{x^2+9x+8}{x^2-6x-7}</static>
+            </var>
+            <var name="$a">
+              <static>-1</static>
+            </var>
+            <var name="$L" category="number">
+              <static>-\frac{7}{8}</static>
+            </var>
+            <pg-code>
+              ($a,$b,$c)=map{($_+1)*random(-1,1,2)}NchooseK(9,3);
+              if($envir{problemSeed}==1){$a=-1;$b=-8;$c=7;};
+              $f=Formula("x^2-($a+$b)x+$a*$b")->reduce;
+              $g=Formula("x^2-($a+$c)x+$a*$c")->reduce;
+              $r=$f/$g;
+              Context("Fraction");
+              $L=Fraction($a-$b,$a-$c);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Use limit theorems to evaluate the limit.</p>
+            <p><m>\lim\limits_{x\to <var name="$a" />}<var name="$r" /></m></p>
+            <p><var name="$L" width="20" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>Use the Squeeze Theorem in the following exercises, where appropriate, to evaluate the given limit.</p>
+      </introduction>
+      <exercise>
+        <title><m>\sin</m></title>
+        <webwork seed="1">
+          <statement>
+            <p>Use the Squeeze Theorem to evaluate the limit.</p>
+            <p><m>\lim\limits_{x\to0}\left(x\sin\mathopen{}\left(\frac{1}{x}\right)\mathclose{}\right)</m></p>
+            <p><var form="essay" /></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <title><m>\sin</m> and <m>\cos</m></title>
+        <webwork seed="1">
+          <statement>
+            <p>Use the Squeeze Theorem to evaluate the limit.</p>
+            <p><m>\lim\limits_{x\to0}\left(\sin(x)\cos\mathopen{}\left(\frac{1}{x^2}\right)\mathclose{}\right)</m></p>
+            <p><var form="essay" /></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <title>Inequalities</title>
+        <webwork seed="1">
+          <statement>
+            <p>Use the Squeeze Theorem to evaluate the limit.</p>
+            <p><m>\lim\limits_{x\to1} f(x)</m>, where <m>3x-2\leq f(x) \leq x^3</m></p>
+            <p><var form="essay" /></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <title>Inequalities</title>
+        <webwork seed="1">
+          <statement>
+            <p>Use the Squeeze Theorem to evaluate the limit.</p>
+            <p><m>\lim\limits_{x\to3} f(x)</m>, where <m>6x-9\leq f(x) \leq x^2</m></p>
+            <p><var form="essay" /></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>The following exercises challenge your understanding of limits but can be evaluated using the knowledge gained in <xref ref="sec_limit_analytically">Section</xref>.</p>
+      </introduction>
+
+      <exercise>
+        <title><m>\sin</m></title>
+        <webwork seed="1">
+          <setup>
+            <var name="$L" category="number">
+              <static>3</static>
+            </var>
+            <var name="$f">
+              <static>\frac{\sin(3x)}{x}</static>
+            </var>
+            <pg-code>
+              $L=random(2,9,1);
+              if($envir{problemSeed}==1){$L=3;};
+              $f=Formula("sin($L x)/x");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to0}<var name="$f" />=</m><var name="$L" width="20"/></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <title><m>\sin</m></title>
+        <webwork seed="1">
+          <setup>
+            <var name="$L" category="number">
+              <static>\frac{5}{8}</static>
+            </var>
+            <var name="$f">
+              <static>\frac{\sin(5x)}{8x}</static>
+            </var>
+            <pg-code>
+              $a=random(2,9,1);
+              do{$b=random(2,9,1);}until($a!=$b);
+              if($envir{problemSeed}==1){$a=5;$b=8};
+              $f=Formula("sin($a x)/($b x)");
+              Context("Fraction");
+              $L=Fraction($a,$b);
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to0}<var name="$f" />=</m><var name="$L" width="20"/></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <title><m>\log</m></title>
+        <webwork seed="1">
+          <setup>
+            <var name="$L">
+              <static>1</static>
+            </var>
+            <pg-code>
+              $L=1;
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to0}\frac{\ln(1+x)}{x}=</m><var name="$L" width="20"/></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <title><m>\sin</m></title>
+        <webwork seed="1">
+          <setup>
+            <var name="$L">
+              <static>\frac{\pi}{180}</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0);
+              $L=Formula("pi/180");
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\lim\limits_{x\to0}\frac{\sin(x)}{x}</m>, where <m>x</m> is measured in degrees, not radians.</p>
+            <p><var name="$L" width="20" /></p>
+          </statement>
+          <solution>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercise>
+      <title>Composition</title>
+      <webwork seed="1">
+        <statement>
+          <p>Let <m>f(x)=0</m> and <m>g(x)=\frac{x}{x}</m>.<ol>
+            <li><p>Explain why <m>\lim\limits_{x\to2}f(x)=0</m>.</p>
+                <p><var form="essay" /></p></li>
+
+            <li><p>Explain why <m>\lim\limits_{x\to0}g(x)=1</m>.</p>
+                <p><var form="essay" /></p></li>
+
+            <li><p>Explain why <m>\lim_{x\to2} g(f(x))</m> does not exist.</p>
+                <p><var form="essay" /></p></li>
+
+            <li><p>Explain why the previous statement does not violate the Composition Rule of <xref ref="thm_limit_algebra">Theorem</xref>.</p>
+                <p><var form="essay" /></p></li>
+          </ol></p>
+        </statement>
+        <solution>
+          <p><ol>
+            <li><p>Apply Part 1 of <xref ref="thm_limit_algebra">Theorem</xref>.</p></li>
+
+            <li><p>Apply <xref ref="thm_limit_allbut1">Theorem</xref>; <m>g(x)=\frac{x}{x}</m> is the same as <m>g(x)=1</m> everywhere except at <m>x=0</m>. Thus <m>\lim\limits_{x\to0}g(x)=\lim_{x\to0}1=1</m>.</p></li>
+
+            <li><p>The function <m>f</m> always gives output <m>0</m>, so <m>g(f(x))</m> is never defined as <m>g</m> is not defined for an input of <m>0</m>. Therefore the limit does not exist.</p></li>
+
+            <li><p>The Composition Rule requires that <m>\lim\limits_{x\to0}g(x)</m> be equal to <m>g(0)</m>. They are not equal, so the conditions of the Composition Rule are not satisfied, and hence the rule is not violated.</p></li>
+          </ol></p>
+        </solution>
+      </webwork>
+    </exercise>
+  </exercises>
+</section>

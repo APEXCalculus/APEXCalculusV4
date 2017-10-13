@@ -1,0 +1,1351 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_multi_chain">
+  <title>The Multivariable Chain Rule</title>
+  <introduction>
+    <p>The Chain Rule, as learned in <xref ref="sec_chainrule">Section</xref>, states that <m>\ds \frac{d}{dx}\Big(f\big(g(x)\big)\Big) = \fp\big(g(x)\big)g'(x)</m>. If <m>t=g(x)</m>, we can express the Chain Rule as
+      <me>
+        \frac{df}{dx} = \frac{df}{dt}\frac{dt}{dx}.
+      </me>
+    </p>
+
+    <p>In this section we extend the Chain Rule to functions of more than one variable.</p>
+
+    <theorem xml:id="thm_multi_chain">
+      <title>Multivariable Chain Rule, Part I</title>
+      <statement>
+        <p>Let <m>z=f(x,y)</m>, <m>x=g(t)</m> and <m>y=h(t)</m>, where <m>f</m>, <m>g</m> and <m>h</m> are differentiable functions. Then <m>z = f(x,y) = f\big(g(t),h(t)\big)</m> is a function of <m>t</m>, and
+          <index><main>derivative</main><sub>Chain Rule</sub></index><index><main>Chain Rule</main><sub>multivariable</sub></index>
+          <md>
+            <mrow>\frac{dz}{dt} = \frac{df}{dt} \amp = f_x(x,y)\frac{dx}{dt}+f_y(x,y)\frac{dy}{dt}</mrow>
+            <mrow>\amp = \frac{\partial f}{\partial x}\frac{dx}{dt}+\frac{\partial f}{\partial y}\frac{dy}{dt}.</mrow>
+          </md>
+        </p>
+      </statement>
+    </theorem>
+
+    <p>It is good to understand what the situation of <m>z=f(x,y)</m>, <m>x=g(t)</m> and <m>y=h(t)</m> describes. We know that <m>z=f(x,y)</m> describes a surface; we also recognize that <m>x=g(t)</m> and <m>y=h(t)</m> are parametric equations for a curve in the <m>x</m>-<m>y</m> plane. Combining these together, we are describing a curve that lies on the surface described by <m>f</m>. The parametric equations for this curve are <m>x=g(t)</m>, <m>y=h(t)</m> and <m>z=f\big(g(t),h(t)\big)</m>.</p>
+
+    <p>Consider <xref ref="fig_mchain_intro">Figure</xref> in which a surface is drawn, along with a dashed curve in the <m>x</m>-<m>y</m> plane. Restricting <m>f</m> to just the points on this circle gives the curve shown on the surface. The derivative <m>\frac{df}{dt}</m> gives the instantaneous rate of change of <m>f</m> with respect to <m>t</m>. If we consider an object traveling along this path, <m>\frac{df}{dt}</m> gives the rate at which the object rises/falls.</p>
+
+    <figure xml:id="fig_mchain_intro" >
+      <caption>Understanding the application of the Multivariable Chain Rule.</caption>
+      <!--
+       \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
+      3Droll=0.8635092805006537,
+      3Dortho=0.004782109055668116,
+      3Dc2c=0.5845005512237549 0.6486009955406189 0.48752015829086304,
+      3Dcoo=-1.2457355260849 0.0923926830291748 4.189182281494141,
+      3Droo=130.00000264534413,
+      3Dlights=Headlamp,add3Djscript=asylabels.js]
+       -->
+
+
+      <!-- START figures/figmchain_intro_3D.asy -->
+      <image xml:id="img_mchain_intro" >
+        <asymptote>
+          <![CDATA[
+          import graph3;
+
+          //ASY file for figmchain_intro3D.asy in Chapter 12
+
+          size(200,200,IgnoreAspect);
+          //size(200,200,Aspect);
+          //currentprojection=perspective(7,2,1);
+          currentprojection=orthographic(4,4,2);
+          defaultrender.merge=true;
+
+          usepackage("mathspec");
+          texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+          texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+          texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+          texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+          // setup and draw the axes
+          real[] myxchoice={2,4};
+          real[] myychoice={2,4};
+          real[] myzchoice={2};
+          defaultpen(0.5mm);
+          pair xbounds=(-1,5);
+          pair ybounds=(-1,5);
+          pair zbounds=(0,3);
+
+          xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+          yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+          zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+          label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+          label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+          label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+          //Draw surface z=-0.2*(x-1)^2-0.05*y^2+2 //{-.2*(x-1)^2-.05*y^2+2};
+          triple f(pair t) {
+            return (t.x,t.y,-0.2*(t.x-1)^2-0.05*t.y^2+2);
+          }
+          surface s=surface(f,(0,0),(4,4),16,16,Spline);
+          pen p=rgb(0,0,.7);
+          draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+          //Draw the circle in xy-plane
+          triple g(real t) {return (cos(t)+2,sin(t)+2,0);}
+          path3 mypath=graph(g,0,2*pi,operator ..); draw(mypath,dashed+blue+linewidth(.75));
+
+          //Draw the circle on surface
+          triple g(real t) {
+          return (cos(t)+2,sin(t)+2,-0.2*(cos(t)+2-1)^2-0.05*(sin(t)+2)^2+2);
+          }
+          path3 mypath=graph(g,0,2*pi,operator ..); draw(mypath,blue);
+
+
+
+
+          // ////////////////////////////////////
+          //    SAMPLE CODE
+
+          // defaultpen(fontsize(10pt));
+
+          //Draw the parabola z=y^2 for t from -2 to 2
+          //triple g(real t) {return (0,t,t^2);}
+          //path3 mypath=graph(g,-2,2,operator ..); draw(mypath,blue);
+
+
+          //Draw the surface z=1/(1+x^2+y^2)
+          //triple f(pair t) {
+          //  return (t.x,t.y,1/(1+(t.x)^2+(t.y)^2));
+          //}
+          //surface s=surface(f,(-2,-2),(2,2),8,8,Spline);
+          //pen p=rgb(0,0,.7);
+          //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+
+          //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+          //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+
+          //triple f(pair t) {
+          //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+          //}
+          //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+
+          //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+          //path3 mypath=graph(g,-2,2,operator ..);
+
+          //pen p=rgb(0,0,1);
+          //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+
+          //draw(s,paleblue);
+          //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+          //draw(mypath,2bp+blue);
+          ]]>
+        </asymptote>
+      </image>
+      <!-- figures/figmchain_intro_3D.asy END -->
+    </figure>
+
+    <p>We now practice applying the Multivariable Chain Rule.</p>
+
+    <example xml:id="ex_mchain1">
+      <title>Using the Multivariable Chain Rule</title>
+      <statement>
+        <p>Let <m>z=x^2y+x</m>, where <m>x=\sin(t)</m> and <m>y=e^{5t}</m>. Find <m>\ds \frac{dz}{dt}</m> using the Chain Rule.</p>
+      </statement>
+      <solution>
+        <p>Following <xref ref="thm_multi_chain">Theorem</xref>, we find
+          <me>
+            f_x(x,y) = 2xy+1,\qquad f_y(x,y) = x^2,\qquad \frac{dx}{dt} = \cos(t) ,\qquad \frac{dy}{dt}= 5e^{5t}.
+          </me>
+        </p>
+
+        <p>Applying the theorem, we have
+          <me>
+            \frac{dz}{dt} = (2xy+1)\cos(t) + 5x^2e^{5t}.
+          </me>
+        </p>
+
+        <p>This may look odd, as it seems that <m>\frac{dz}{dt}</m> is a function of <m>x</m>, <m>y</m> and <m>t</m>. Since <m>x</m> and <m>y</m> are functions of <m>t</m>, <m>\frac{dz}{dt}</m> is really just a function of <m>t</m>, and we can replace <m>x</m> with <m>\sin(t)</m> and <m>y</m> with <m>e^{5t}</m>:
+          <me>
+            \frac{dz}{dt} = (2xy+1)\cos(t) + 5x^2e^{5t} = (2\sin(t)e^{5t}+1)\cos(t) +5e^{5t}\sin^2(t) .
+          </me>
+        </p>
+      </solution>
+    </example>
+
+    <p>The previous example can make us wonder: if we substituted for <m>x</m> and <m>y</m> at the end to show that <m>\frac{dz}{dt}</m> is really just a function of <m>t</m>, why not substitute before differentiating, showing clearly that <m>z</m> is a function of <m>t</m>?</p>
+
+    <p>That is, <m>z = x^2y+x = (\sin(t) )^2e^{5t}+\sin(t) .</m> Applying the Chain and Product Rules, we have
+      <me>
+        \frac{dz}{dt} = 2\sin(t) \cos(t) \, e^{5t}+ 5\sin^2(t) \,e^{5t}+\cos(t) ,
+      </me>
+      which matches the result from the example.</p>
+
+    <p>This may now make one wonder <q>What's the point? If we could already find the derivative, why learn another way of finding it?</q> In some cases, applying this rule makes deriving simpler, but this is hardly the power of the Chain Rule. Rather, in the case where <m>z=f(x,y)</m>, <m>x=g(t)</m> and <m>y=h(t)</m>, the Chain Rule is extremely powerful when <em>we do not know what <m>f</m>, <m>g</m> and/or <m>h</m> are</em>. It may be hard to believe, but often in <q>the real world</q> we know rate<ndash />of<ndash />change information (i.e., information about derivatives) without explicitly knowing the underlying functions. The Chain Rule allows us to combine several rates of change to find another rate of change. The Chain Rule also has theoretic use, giving us insight into the behavior of certain constructions (as we'll see in the next section).</p>
+
+    <p>We demonstrate this in the next example.</p>
+
+    <example xml:id="ex_mchain100">
+      <title>Applying the Multivarible Chain Rule</title>
+      <statement>
+        <p>An object travels along a path on a surface. The exact path and surface are not known, but at time <m>t=t_0</m> it is known that :
+          <me>
+            \frac{\partial z}{\partial x} = 5,\qquad \frac{\partial z}{\partial y}=-2,\qquad \frac{dx}{dt}=3\qquad \text{ and } \qquad \frac{dy}{dt}=7.
+          </me>
+        </p>
+
+        <p>Find <m>\frac{dz}{dt}</m> at time <m>t_0</m>.</p>
+      </statement>
+      <solution>
+        <p>The Multivariable Chain Rule states that
+          <md>
+            <mrow>\frac{dz}{dt} \amp = \frac{\partial z}{\partial x}\frac{dx}{dt} + \frac{\partial z}{\partial y}\frac{dy}{dt}</mrow>
+            <mrow>\amp = 5(3)+(-2)(7)</mrow>
+            <mrow>\amp =1.</mrow>
+          </md>
+        </p>
+
+        <p>By knowing certain rates<ndash />of<ndash />change information about the surface and about the path of the particle in the <m>x</m>-<m>y</m> plane, we can determine how quickly the object is rising/falling.</p>
+      </solution>
+    </example>
+
+    <p>We next apply the Chain Rule to solve a max/min problem.</p>
+
+    <example xml:id="ex_mchain2">
+      <title>Applying the Multivariable Chain Rule</title>
+      <statement>
+        <p>Consider the surface <m>z=x^2+y^2-xy</m>, a paraboloid, on which a particle moves with <m>x</m> and <m>y</m> coordinates given by <m>x=\cos(t)</m> and <m>y=\sin(t)</m>. Find <m>\frac{dz}{dt}</m> when <m>t=0</m>, and find where the particle reaches its maximum/minimum <m>z</m>-values.</p>
+      </statement>
+      <solution>
+        <p>It is straightforward to compute
+          <me>
+            f_x(x,y) = 2x-y,\qquad f_y(x,y) = 2y-x,\qquad \frac{dx}{dt} = -\sin(t) ,\qquad \frac{dy}{dt} = \cos(t) .
+          </me>
+        </p>
+
+        <p>Combining these according to the Chain Rule gives:
+          <me>
+            \frac{dz}{dt} = -(2x-y)\sin(t) + (2y-x)\cos(t) .
+          </me>
+        </p>
+
+        <figure xml:id="fig_mchain2" >
+          <caption>Plotting the path of a particle on a surface in <xref ref="ex_mchain2">Example</xref>.</caption>
+          <!--
+           \includemedia[width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
+          3Droll=-0.3451358620630912,
+          3Dortho=0.00478210998699069,
+          3Dc2c=0.8537693023681641 0.47485026717185974 0.2135305553674698,
+          3Dcoo=-7.264009952545166 -8.125178337097168 66.59317779541016,
+          3Droo=130.0000024373742,
+          3Dlights=Headlamp,add3Djscript=asylabels.js]
+           -->
+
+
+          <!-- START figures/figmchain2_3D.asy -->
+          <image xml:id="img_mchain2" >
+            <asymptote>
+              <![CDATA[
+              import graph3;
+
+              //ASY file for figmchain23D.asy in Chapter 12
+
+              size(200,200,IgnoreAspect);
+              //size(200,200,Aspect);
+              //currentprojection=perspective(7,2,1);
+              currentprojection=orthographic(6.5,3.4,1.9);
+              defaultrender.merge=true;
+
+              usepackage("mathspec");
+              texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");
+              texpreamble("\setmathsfont(Greek){[cmmi10]}");
+
+
+              // setup and draw the axes
+              real[] myxchoice={-1,1};
+              real[] myychoice={-1,1};
+              real[] myzchoice={1,2,3};
+              defaultpen(0.5mm);
+              pair xbounds=(-1.5,1.5);
+              pair ybounds=(-1.5,1.5);
+              pair zbounds=(0,4);
+
+              xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
+              yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
+              zaxis3("",zbounds.x,zbounds.y,black,OutTicks(myzchoice),Arrow3(size=3mm));
+
+              label("$x$",(xbounds.y+0.05*(xbounds.y-xbounds.x),0,0));
+              label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
+              label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
+
+              //Draw surface z=x^2+y^2-xy
+              triple f(pair t) {
+                return (t.x,t.y,t.x^2+t.y^2-t.x*t.y);
+              }
+              surface s=surface(f,(-1.1,-1.1),(1.1,1.1),16,16,Spline);
+              pen p=rgb(0,0,.7);
+              draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+              //Draw the circle on surface
+              triple g(real t) {
+              return (cos(t),sin(t),(cos(t))^2+(sin(t))^2-cos(t)*sin(t));
+              }
+              path3 mypath=graph(g,0,2*pi,operator ..); draw(mypath,blue);
+
+              //plot points for min and max along the curve
+              dotfactor=3;
+              dot((cos(pi/4),sin(pi/4),1-cos(pi/4)*sin(pi/4)));
+              dot((cos(5*pi/4),sin(5*pi/4),1-cos(5*pi/4)*sin(5*pi/4)));
+              dot((cos(3*pi/4),sin(3*pi/4),1-cos(3*pi/4)*sin(3*pi/4)));
+              dot((cos(7*pi/4),sin(7*pi/4),1-cos(7*pi/4)*sin(7*pi/4)));
+
+
+              // ////////////////////////////////////
+              //    SAMPLE CODE
+
+              // defaultpen(fontsize(10pt));
+
+              //Draw the parabola z=y^2 for t from -2 to 2
+              //triple g(real t) {return (0,t,t^2);}
+              //path3 mypath=graph(g,-2,2,operator ..); draw(mypath,blue);
+
+
+              //Draw the surface z=1/(1+x^2+y^2)
+              //triple f(pair t) {
+              //  return (t.x,t.y,1/(1+(t.x)^2+(t.y)^2));
+              //}
+              //surface s=surface(f,(-2,-2),(2,2),8,8,Spline);
+              //pen p=rgb(0,0,.7);
+              //draw(s,rgb(.6,.6,1)+opacity(.7),meshpen=p);
+
+
+              //real f(pair z) {return -z.x^4+2*z.x^2-z.y^4+2*z.y^2;}
+              //surface s=surface(f,(-1.5,-1.5),(1.5,1.5),Spline);
+
+              //triple f(pair t) {
+              //  return (cos(t.x)*1.5*cos(t.y),sin(t.x)*cos(t.y),sin(t.y));
+              //}
+              //surface s=surface(f,(0,0),(pi,2*pi),8,8,Spline);
+
+              //triple g(real t) {return (t,t,-2*t^4+4*t^2);}
+              //path3 mypath=graph(g,-2,2,operator ..);
+
+              //pen p=rgb(0,0,1);
+              //draw(s,paleblue+opacity(.5),meshpen=p,render(merge=true));
+
+              //draw(s,paleblue);
+              //draw(s,lightblue,meshpen=black+thick(),nolight,render(merge=true));
+              //draw(mypath,2bp+blue);
+              ]]>
+            </asymptote>
+          </image>
+          <!-- figures/figmchain2_3D.asy END -->
+        </figure>
+
+        <p>When <m>t=0</m>, <m>x=1</m> and <m>y=0</m>. Thus <m>\ds\frac{dz}{dt} = -(2)(0)+ (-1)(1) = -1</m>. When <m>t=0</m>, the particle is moving down, as shown in <xref ref="fig_mchain2">Figure</xref>.</p>
+
+        <p>To find where <m>z</m>-value is maximized/minimized on the particle's path, we set <m>\frac{dz}{dt}=0</m> and solve for <m>t</m>:
+          <md>
+            <mrow>\frac{dz}{dt} =0 \amp = -(2x-y)\sin(t) + (2y-x)\cos(t) </mrow>
+            <mrow>0\amp = -(2\cos(t) -\sin(t) )\sin(t) +(2\sin(t) -\cos(t) )\cos(t) </mrow>
+            <mrow>0\amp = \sin^2(t) -\cos^2(t) </mrow>
+            <mrow>\cos^2(t) \amp =\sin^2(t) </mrow>
+            <mrow>t\amp = n\frac{\pi}4 \text{ (for odd \(n\)) }</mrow>
+          </md>
+        </p>
+
+        <p>We can use the First Derivative Test to find that on <m>[0,2\pi]</m>, <m>z</m> has reaches its absolute minimum at <m>t=\pi/4</m> and <m>5\pi/4</m>; it reaches its absolute maximum at <m>t=3\pi/4</m> and <m>7\pi/4</m>, as shown in <xref ref="fig_mchain2">Figure</xref>.</p>
+      </solution>
+    </example>
+
+    <p>We can extend the Chain Rule to include the situation where <m>z</m> is a function of more than one variable, and each of these variables is also a function of more than one variable. The basic case of this is where <m>z=f(x,y)</m>, and <m>x</m> and <m>y</m> are functions of two variables, say <m>s</m> and <m>t</m>.</p>
+
+    <theorem xml:id="thm_multi_chain2">
+      <title>Multivariable Chain Rule, Part II</title>
+      <statement>
+        <ol>
+          <li><p>Let <m>z=f(x,y)</m>, <m>x=g(s,t)</m> and <m>y=h(s,t)</m>, where <m>f</m>, <m>g</m> and <m>h</m> are differentiable functions. Then <m>z</m> is a function of <m>s</m> and <m>t</m>, and</p>
+
+          <ul>
+            <li><p><m>\ds \frac{\partial z}{\partial s} = \frac{\partial f}{\partial x}\frac{\partial x}{\partial s} + \frac{\partial f}{\partial y}\frac{\partial y}{\partial s}</m><nbsp />,   and</p></li>
+
+            <li><p><m>\ds \frac{\partial z}{\partial t} = \frac{\partial f}{\partial x}\frac{\partial x}{\partial t} + \frac{\partial f}{\partial y}\frac{\partial y}{\partial t}</m>.
+			<index><main>derivative</main><sub>Chain Rule</sub></index><index><main>Chain Rule</main><sub>multivariable</sub></index></p></li>
+          </ul>
+
+          </li>
+
+          <li><p>Let <m>z = f(x_1,x_2,\ldots,x_m)</m> be a differentiable function of <m>m</m> variables, where each of the <m>x_i</m> is a differentiable function of the variables <m>t_1,t_2,\ldots,t_n</m>. Then <m>z</m> is a function of the <m>t_i</m>, and
+              <me>
+                \frac{\partial z}{\partial t_i} = \frac{\partial f}{\partial x_1}\frac{\partial x_1}{\partial t_i} + \frac{\partial f}{\partial x_2}\frac{\partial x_2}{\partial t_i} + \cdots +  \frac{\partial f}{\partial x_m}\frac{\partial x_m}{\partial t_i}.
+              </me>
+            </p></li>
+        </ol>
+      </statement>
+    </theorem>
+
+    <example xml:id="ex_mchain3">
+      <title>Using the Multivarible Chain Rule, Part II</title>
+      <statement>
+        <p>Let <m>z=x^2y+x</m>, <m>x=s^2+3t</m> and <m>y=2s-t</m>. Find <m>\frac{\partial z}{\partial s}</m> and <m>\frac{\partial z}{\partial t}</m>, and evaluate each when <m>s=1</m> and <m>t=2</m>.</p>
+      </statement>
+      <solution>
+        <p>Following <xref ref="thm_multi_chain2">Theorem</xref>, we compute the following partial derivatives:
+          <me>
+            \frac{\partial f}{\partial x} = 2xy+1\qquad\qquad \frac{\partial f}{\partial y} = x^2,
+          </me>
+          <me>
+            \frac{\partial x}{\partial s} = 2s \qquad\qquad \frac{\partial x}{\partial t} = 3\qquad\qquad \frac{\partial y}{\partial s} = 2 \qquad\qquad \frac{\partial y}{\partial t} = -1.
+          </me>
+        </p>
+
+        <p>Thus
+          <me>
+            \ds \frac{\partial z}{\partial s} = (2xy+1)(2s) + (x^2)(2) = 4xys+2s + 2x^2, \text{ and }
+          </me>
+          <me>
+            \ds \frac{\partial z}{\partial t} = (2xy+1)(3) + (x^2)(-1) = 6xy-x^2+3.
+          </me>
+        </p>
+
+        <p>When <m>s=1</m> and <m>t=2</m>, <m>x= 7</m> and <m>y= 0</m>, so
+          <me>
+            \frac{\partial z}{\partial s} = 100\qquad \text{ and } \qquad \frac{\partial z}{\partial t} = -46.
+          </me>
+        </p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_mchain4">
+      <title>Using the Multivarible Chain Rule, Part II</title>
+      <statement>
+        <p>Let <m>w = xy+z^2</m>, where <m>x= t^2e^s</m>, <m>y= t\cos(s)</m>, and <m>z=s\sin(t)</m>. Find <m>\frac{\partial w}{\partial t}</m> when <m>s=0</m> and <m>t=\pi</m>.</p>
+      </statement>
+      <solution>
+        <p>Following <xref ref="thm_multi_chain2">Theorem</xref>, we compute the following partial derivatives:
+          <me>
+            \frac{\partial f}{\partial x} = y\qquad\qquad \frac{\partial f}{\partial y} = x\qquad\qquad \frac{\partial f}{\partial z} = 2z,
+          </me>
+          <me>
+            \frac{\partial x}{\partial t} = 2te^s\qquad\qquad \frac{\partial y}{\partial t} = \cos(s) \qquad\qquad \frac{\partial z}{\partial t} = s\cos(t) .
+          </me>
+        </p>
+
+        <p>Thus
+          <me>
+            \ds \frac{\partial w}{\partial t} = y(2te^s) + x(\cos(s) ) + 2z(s\cos(t) ).
+          </me>
+        </p>
+
+        <p>When <m>s=0</m> and <m>t=\pi</m>, we have <m>x=\pi^2</m>, <m>y=\pi</m> and <m>z=0</m>. Thus
+          <me>
+            \frac{\partial w}{\partial t} = \pi(2\pi) + \pi^2 = 3\pi^2.
+          </me>
+        </p>
+      </solution>
+    </example>
+  </introduction>
+
+  <subsection>
+    <title>Implicit Differentiation</title>
+    <p>We studied finding <m>\frac{dy}{dx}</m> when <m>y</m> is given as an implicit function of <m>x</m> in detail in <xref ref="sec_imp_deriv">Section</xref>. We find here that the Multivariable Chain Rule gives a simpler method of finding <m>\frac{dy}{dx}</m>.</p>
+
+    <p>For instance, consider the implicit function <m>x^2y-xy^3=3</m>. We learned to use the following steps to find <m>\frac{dy}{dx}</m>:
+      <md>
+        <mrow>\frac{d}{dx}\Big(x^2y-xy^3\big) \amp = \frac{d}{dx}\Big(3\Big)</mrow>
+        <mrow>2xy + x^2\frac{dy}{dx}-y^3-3xy^2\frac{dy}{dx} \amp = 0</mrow>
+        <mrow>\frac{dy}{dx} = -\frac{2xy-y^3}{x^2-3xy^2}.</mrow>
+      </md>
+    </p>
+
+    <p>Instead of using this method, consider <m>z=x^2y-xy^3</m>. The implicit function above describes the level curve <m>z=3</m>. Considering <m>x</m> and <m>y</m> as functions of <m>x</m>, the Multivariable Chain Rule states that
+      <men xml:id="eq_mchain1" >
+        \frac{dz}{dx} = \frac{\partial z}{\partial x}\frac{dx}{dx}+\frac{\partial z}{\partial y}\frac{dy}{dx}.
+      </men>
+    </p>
+
+    <p>Since <m>z</m> is constant (in our example, <m>z=3</m>), <m>\frac{dz}{dx} = 0</m>. We also know <m>\frac{dx}{dx} = 1</m>. Equation <xref ref="eq_mchain1" /> becomes
+      <md>
+        <mrow>0 \amp = \frac{\partial z}{\partial x}(1) + \frac{\partial z}{\partial y}\frac{dy}{dx}  \Rightarrow</mrow>
+        <mrow>\frac{dy}{dx} \amp = -\frac{\partial z}{\partial x}\Big/\frac{\partial z}{\partial y}</mrow>
+        <mrow>\amp = -\frac{\,f_x\,}{f_y}.</mrow>
+      </md>
+    </p>
+
+    <p>Note how our solution for <m>\frac{dy}{dx}</m> in Equation <xref ref="eq_mchain2" /> is just the partial derivative of <m>z</m> with respect to <m>x</m>, divided by the partial derivative of <m>z</m> with respect to <m>y</m>.</p>
+
+    <p>We state the above as a theorem.</p>
+
+    <theorem xml:id="thm_implicit_deriv_chain">
+      <title>Implicit Differentiation</title>
+      <statement>
+        <p>Let <m>f</m> be a differentiable function of <m>x</m> and <m>y</m>, where <m>f(x,y)=c</m> defines <m>y</m> as an implicit function of <m>x</m>, for some constant <m>c</m>. Then
+          <index><main>derivative</main><sub>implicit</sub></index><index><main>implicit differentiation</main></index>
+          <me>
+            \frac{dy}{dx} = - \frac{f_x(x,y)}{f_y(x,y)}.
+          </me>
+        </p>
+      </statement>
+    </theorem>
+
+    <p>We practice using <xref ref="thm_implicit_deriv_chain">Theorem</xref> by applying it to a problem from <xref ref="sec_imp_deriv">Section</xref>.</p>
+
+    <example xml:id="ex_mchain5">
+      <title>Implicit Differentiation</title>
+      <statement>
+        <p>Given the implicitly defined function <m>\sin(x^2y^2)+y^3=x+y</m>, find <m>y'</m>. Note: this is the same problem as given in <xref ref="ex_implicit5">Example</xref> of <xref ref="sec_imp_deriv">Section</xref>, where the solution took about a full page to find.</p>
+      </statement>
+      <solution>
+        <p>Let <m>f(x,y) = \sin(x^2y^2)+y^3-x-y</m>; the implicitly defined function above is equivalent to <m>f(x,y)=0</m>. We find <m>\frac{dy}{dx}</m> by applying <xref ref="thm_implicit_deriv_chain">Theorem</xref>. We find
+          <me>
+            f_x(x,y) = 2xy^2\cos(x^2y^2)-1\qquad \text{ and } \qquad f_y(x,y) = 2x^2y\cos(x^2y^2)+3y^2-1,
+          </me>
+          so
+          <me>
+            \frac{dy}{dx} = -\frac{2xy^2\cos(x^2y^2)-1}{2x^2y\cos(x^2y^2)+3y^2-1},
+          </me>
+          which matches our solution from <xref ref="ex_implicit5">Example</xref>.</p>
+      </solution>
+    </example>
+  </subsection>
+
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Let a level curve of <m>z=f(x,y)</m> be described by <m>x=g(t)</m>, <m>y = h(t)</m>. Explain why <m>\frac{dz}{dt}=0</m>.</p>
+          </statement>
+          <solution>
+            <p>Because the parametric equations describe a level curve, <m>z</m> is constant for all <m>t</m>. Therefore <m>\frac{dz}{dt}=0</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Fill in the blank: The single variable Chain Rule states <m>\ds\frac{d}{dx}\Big(f\big(g(x)\big)\Big) = \fp\big(g(x)\big)\cdot</m><fillin />.</p>
+          </statement>
+          <solution>
+            <p><m>g'(x)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Fill in the blank: The Multivariable Chain Rule states</p>
+
+            <p><m>\ds\frac{df}{dt}=\frac{\partial f}{\partial x}\cdot\text{\underline{}} +\text{\underline{}} \cdot\frac{dy}{dt}</m>.</p>
+          </statement>
+          <solution>
+            <p><m>\frac{dx}{dt}</m>, and <m>\frac{\partial f}{\partial y}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>If <m>z=f(x,y)</m>, where <m>x=g(t)</m> and <m>y=h(t)</m>, we can substitute and write <m>z</m> as an explicit function of <m>t</m>.</p>
+
+            <p>T/F: Using the Multivariable Chain Rule to find <m>\frac{dz}{dt}</m> is sometimes easier than first substituting and then taking the derivative.</p>
+          </statement>
+          <solution>
+            <p>T</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>T/F: The Multivariable Chain Rule is only useful when all the related functions are known explicitly.</p>
+          </statement>
+          <solution>
+            <p>F</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$partial">
+              <static>\text{partial}</static>
+            </var>
+            <pg-code>
+              $partial="partial";
+              Context()->strings->add($partial=>{},);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>The Multivariable Chain Rule allows us to compute implicit derivatives easily by just computing two <var name="$partial" width="10" /> derivatives.</p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, functions <m>z=f(x,y)</m>, <m>x=g(t)</m> and <m>y=h(t)</m> are given.</p>
+
+        <p><ol label="a">
+          <li>
+            <p>Use the Multivariable Chain Rule to compute <m>\lz{z}{t}</m>.</p>
+          </li>
+          <li>
+            <p>Evaluate <m>\lz{z}{t}</m> at the indicated <m>t</m>-value.</p>
+          </li>
+        </ol></p>
+      </introduction>
+
+      <exercise xml:id="x12_08_ex_07">
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>z=3x+4y</m>, <m>x=t^2</m>, <m>y=2t</m>; <m>t=1</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>\frac{dz}{dt} = 3(2t)+4(2) = 6t+8</m>.</p></li>
+
+              <li><p>At <m>t=1</m>, <m>\frac{dz}{dt} = 14</m>.</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$dzdt">
+              <static>2x-4yt</static>
+            </var>
+            <var name="$dzdt1">
+              <static>2</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real',t=>'Real');
+              $x=Compute("t");
+              $y=Compute("t^2-1");
+              $dzdt=Compute("2x-4yt");
+              $reduced=$dzdt->substitute(x=>$x,y=>$y);
+              $dzdt1=$reduced->eval(t=>1,x=>0,y=>0);
+              $ev=$dzdt->cmp(checker => sub {
+                my ($correct,$student,$ansHash) = @_;
+                return 1 if ($correct == $student);
+                my $sreduced=$student->substitute(x=>$x,y=>$y);
+                Value::Error("Mathematically correct, but give the expression that the Multivariable Chair Rule would give if you did not substitute expressions for x and y") if ($reduced == $sreduced);
+                return 0;
+              });
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Given <m>z=x^2-y^2</m>, <m>x=t</m>, and <m>y=t^2-1</m>, use the Multivariable Chain Rule to compute:</p>
+            <p><m>\lz{z}{t}=</m><var name="$dzdt" evaluator="$ev" width="30" /></p>
+            <p><m>\lzoa{z}{t}{t=1}=</m><var name="$dzdt1" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds z=5x+2y</m>, <m>x=2\cos(t) +1</m>, <m>y=\sin(t) -3</m>; <m>t=\pi/4</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>\frac{dz}{dt} = 5(-2\sin(t) )+2(\cos(t) ) = -10\sin(t) +2\cos(t)</m></p></li>
+
+              <li><p>At <m>t=\pi/4</m>, <m>\frac{dz}{dt} = -4\sqrt{2}</m>.</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$dzdt">
+              <static>\frac{1}{1+y^2}(-\sin(t) )-\frac{2xy}{(y^2+1)^2}\cos(t)</static>
+            </var>
+            <var name="$dzdt1">
+              <static>-\frac{1}{2}</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real',t=>'Real');
+              $x=Compute("cos(t)");
+              $y=Compute("sin(t)");
+              $dzdt=Compute("-sin(t)/(1+y^2)-2xycos(t)/(y^2+1)^2");
+              $reduced=$dzdt->substitute(x=>$x,y=>$y);
+              $ev=$dzdt->cmp(checker => sub {
+                my ($correct,$student,$ansHash) = @_;
+                return 1 if ($correct == $student);
+                my $sreduced=$student->substitute(x=>$x,y=>$y);
+                Value::Error("Mathematically correct, but give the expression that the Multivariable Chair Rule would give if you did not substitute expressions for x and y") if ($reduced == $sreduced);
+                return 0;
+              });
+              Context("Fraction");
+              $dzdt1=Fraction($reduced->eval(t=>pi/2,x=>0,y=>0));
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Given <m>z=\frac{x}{y^2+1}</m>, <m>x=\cos(t)</m>, and <m>y=\sin(t)</m>, use the Multivariable Chain Rule to compute:</p>
+            <p><m>\lz{z}{t}=</m><var name="$dzdt" evaluator="$ev" width="30" /></p>
+            <p><m>\lzoa{z}{t}{t=\pi/2}=</m><var name="$dzdt1" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise xml:id="x12_08_ex_10">
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds z=x^2+2y^2</m>, <m>x=\sin(t)</m>, <m>y=3\sin(t)</m>; <m>t=\pi/4</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>\ds\frac{dz}{dt} = 2x(\cos(t) ) + 4y(3\cos(t) )</m>.</p></li>
+
+              <li><p>At <m>t=\pi/4</m>, <m>x=\sqrt{2}/2</m>, <m>y=3\sqrt{2}/2</m>, and <m>\frac{dz}{dt} = 19</m>.</p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise xml:id="x12_08_ex_08">
+        <webwork seed="1">
+          <setup>
+            <var name="$dzdt">
+              <static>-\sin(x) \sin(y) (\pi) + \cos(x) \cos(y) (2\pi)</static>
+            </var>
+            <var name="$dzdt1">
+              <static>0</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real',t=>'Real');
+              $x=Compute("pi t");
+              $y=Compute("2pi t + pi/2");
+              $dzdt=Compute("-sin(x) sin(y) (pi) + cos(x) cos(y) (2pi)");
+              $reduced=$dzdt->substitute(x=>$x,y=>$y);
+              $ev=$dzdt->cmp(checker => sub {
+                my ($correct,$student,$ansHash) = @_;
+                return 1 if ($correct == $student);
+                my $sreduced=$student->substitute(x=>$x,y=>$y);
+                Value::Error("Mathematically correct, but give the expression that the Multivariable Chair Rule would give if you did not substitute expressions for x and y") if ($reduced == $sreduced);
+                return 0;
+              });
+              Context("Fraction");
+              $dzdt1=Fraction($reduced->eval(t=>3,x=>0,y=>0));
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Given <m>z=\cos(x) \sin(y)</m>, <m>x=\pi t</m>, and <m>y=2\pi t+\pi/2</m>, use the Multivariable Chain Rule to compute:</p>
+            <p><m>\lz{z}{t}=</m><var name="$dzdt" evaluator="$ev" width="30" /></p>
+            <p><m>\lzoa{z}{t}{t=3}=</m><var name="$dzdt1" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, functions <m>z=f(x,y)</m>, <m>x=g(t)</m> and <m>y=h(t)</m> are given. Find the values of <m>t</m> where <m>\frac{dz}{dt}=0</m>. Note: these are the same surfaces/curves as found in <xref first="x12_08_ex_07" last="x12_08_ex_08">Exercises</xref>.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds z=3x+4y</m>, <m>x=t^2</m>, <m>y=2t</m></p>
+          </statement>
+          <solution>
+            <p><m>t=-4/3</m>; this corresponds to a minimum</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$zeros">
+              <static>-\sqrt{3/2}, 0, \sqrt{3/2}</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $zeros=Compute("-sqrt(3/2), 0, sqrt(3/2)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Given <m>z=x^2-y^2</m>, <m>x=t</m>, and <m>y=t^2-1</m>, at what values of <m>t</m> does <m>\lz{z}{t}=0</m>?</p>
+            <p><var name="$zeros" width="30" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds z=5x+2y</m>, <m>x=2\cos(t) +1</m>, <m>y=\sin(t) -3</m></p>
+          </statement>
+          <solution>
+            <p><m>t=\tan^{-1}(1/5) +n\pi</m>, where <m>n</m> is an integer</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$zeros">
+              <static>0, \pi</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $zeros=Compute("0, pi");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Given <m>z=\frac{x}{y^2+1}</m>, <m>x=\cos(t)</m>, and <m>y=\sin(t)</m>, at what values of <m>t</m> in <m>[0,2\pi)</m> does <m>\lz{z}{t}=0</m>?</p>
+            <p><var name="$zeros" width="30" /></p>
+          </statement>
+          <solution>
+            <p>We find that
+              <me>
+                \frac{dz}{dt} = -\frac{2\cos^2(t) \sin(t) }{(1+\sin^2(t) )^2}-\frac{\sin(t) }{1+\sin^2(t) }
+              </me>.
+            </p>
+
+            <p>Setting this equal to <m>0</m>, finding a common denominator and factoring out <m>\sin(t)</m>, we get
+              <me>
+                \sin(t) \left(\frac{2\cos^2(t) +\sin^2(t) +1}{(1+\sin^2(t) )^2}\right)=0
+              </me>.
+            </p>
+
+            <p>We have <m>\sin(t) = 0</m> when <m>t = \pi n</m>, where <m>n</m> is an integer. The expression in the parenthesis above is always positive, and hence never equal <m>0</m>. So all solutions are <m>t=\pi n</m>, n is an integer. In <m>[0,2\pi)</m>, the only solutions are <m>0</m> and <m>\pi</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds z=x^2+2y^2</m>, <m>x=\sin(t)</m>, <m>y=3\sin(t)</m></p>
+          </statement>
+          <solution>
+            <p>We find that
+              <me>
+                \frac{dz}{dt} = 38\cos(t) \sin(t) .
+              </me>
+            </p>
+
+            <p>Thus <m>\frac{dz}{dt} = 0</m> when <m>t=\pi n</m> or <m>\pi n+\pi/2</m>, where <m>n</m> is any integer.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$zeros">
+              <static>0,\frac{1}{pi}\arctan(sqrt{5}), 1-\frac{1}{pi}\arctan(sqrt{5}), 1, 1+\frac{1}{pi}\arctan(sqrt{5}), 2-\frac{1}{pi}\arctan(sqrt{5})</static>
+            </var>
+            <pg-code>
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $zeros=Compute("0, 1/pi*arctan(sqrt(5)), 1- 1/pi*arctan(sqrt(5)), 1, 1+1/pi*arctan(sqrt(5)), 2-1/pi*arctan(sqrt(5))");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Given <m>z=\cos(x) \sin(y)</m>, <m>x=\pi t</m>, and <m>y=2\pi t+\pi/2</m>, at what values of <m>t</m> in <m>[0,2)</m> does <m>\lz{z}{t}=0</m>?</p>
+            <p><var name="$zeros" width="50" /></p>
+          </statement>
+          <solution>
+            <p>We find that
+              <me>
+                \frac{dz}{dt} = -\pi\sin(\pi t)\sin(2\pi t+\pi/2)+2\pi\cos(\pi t)\cos(2\pi t+\pi/2)
+              </me>.
+            </p>
+
+            <p>One can <q>easily</q> see that when <m>t</m> is an integer, <m>\sin(\pi t) =0</m> and <m>\cos(2\pi t+\pi/2)=0</m>, hence <m>\frac{dz}{dt}=0</m> when <m>t</m> is an integer. There are other places where <m>z</m> has a relative max/min that require more work. First, verify that <m>\sin(2\pi t+\pi/2) = \cos(2\pi t)</m>, and <m>\cos(2\pi t+\pi/2) = -\sin(2\pi t)</m>. This lets us rewrite <m>\frac{dz}{dt} = 0</m> as
+              <me>
+                -\sin(\pi t)\cos(2\pi t)-2\cos(\pi t)\sin(2\pi t)=0.
+              </me>
+            </p>
+
+            <p>By bringing one term to the other side of the equality then dividing, we can get
+              <me>
+                2\tan(2\pi t) = -\tan(\pi t).
+              </me>
+            </p>
+
+            <p>Using the angle sum/difference formula for tangent, we know
+              <me>
+                \tan(2\pi t) = \tan(\pi t + \pi t) = \frac{\tan(\pi t)+\tan(\pi t)}{1-\tan^2(\pi t)}.
+              </me>
+            </p>
+
+            <p>Thus we write
+              <me>
+                2\frac{\tan(\pi t)+\tan(\pi t)}{1-\tan^2(\pi t)} = -\tan(\pi t).
+              </me>
+            </p>
+
+            <p>Solving for <m>\tan^2(\pi t)</m>, we find
+              <me>
+                \tan^2(\pi t) = 5  \implies  \tan(\pi t) = \pm\sqrt{5},
+              </me>
+              and so
+              <me>
+                \pi t = \tan^{-1}(\pm\sqrt{5}) = \pm\tan^{-1}(\sqrt{5}).
+              </me>
+            </p>
+
+            <p>Since the period of tangent is <m>\pi</m>, we can adjust our answer to be
+              <me>
+                \pi t = \pm\tan^{-1}(\sqrt{5})+ n\pi,\text{ where \(n\) is an integer. }
+              </me>
+            </p>
+
+            <p>Dividing by <m>\pi</m>, we find
+              <me>
+                t = \pm\frac1\pi\tan^{-1}(\sqrt{5})+ n,\text{ where \(n\) is an integer. }
+              </me>
+            </p>
+
+            <p>So the solutions in <m>[0,2)</m> are <m>0</m>, <m>\frac{1}{pi}\arctan(sqrt{5})</m>, <m>1-\frac{1}{pi}\arctan(sqrt{5})</m>, <m>1</m>, <m>1+\frac{1}{pi}\arctan(sqrt{5})</m>, and <m>2-\frac{1}{pi}\arctan(sqrt{5})</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, functions <m>z=f(x,y)</m>, <m>x=g(s,t)</m> and <m>y=h(s,t)</m> are given.</p>
+        <p><ol label="a">
+          <li>
+            <p>Use the Multivariable Chain Rule to compute <m>\frac{\partial z}{\partial s}</m> and <m>\frac{\partial z}{\partial t}</m>.</p>
+          </li>
+          <li>
+            <p>Evaluate <m>\frac{\partial z}{\partial s}</m> and <m>\frac{\partial z}{\partial t}</m> at the indicated <m>s</m> and <m>t</m> values.</p>
+          </li>
+        </ol></p>
+      </introduction>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds z=x^2y</m>, <m>x=s-t</m>, <m>y=2s+4t</m>; <m>s=1</m>, <m>t=0</m></p>
+          </statement>
+          <solution>
+            <ol>
+              <li><p><m>\frac{\partial z}{\partial s} = 2xy(1) + x^2(2) = 2xy+2x^2</m>;
+
+	<m>\frac{\partial z}{\partial t} = 2xy(-1) + x^2(4) = -2xy+4x^2</m></p></li>
+
+              <li><p>With <m>s=1</m>, <m>t=0</m>, <m>x=1</m> and <m>y=2</m>. Thus <m>\frac{\partial z}{\partial s} = 6</m> and <m>\frac{\partial z}{\partial t} = 0</m></p></li>
+            </ol>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$dzds">
+              <static>-\pi\sin(\pi x + \pi y/2)\cdot t^2-\frac{1}{2}\pi\sin(\pi x + \pi y/2)\cdot 2st</static>
+            </var>
+            <var name="$dzdt">
+              <static>-\pi\sin(\pi x + \pi y/2)\cdot 2st-\frac{1}{2}\pi\sin(\pi x + \pi y/2)\cdot 2t^2</static>
+            </var>
+            <var name="$dzds1">
+              <static>2\pi</static>
+            </var>
+            <var name="$dzdt1">
+              <static>5\pi/2</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real',s=>'Real', t=>'Real');
+              $x=Compute("st^2");
+              $y=Compute("s^2t");
+              $dzds=Compute("-pi sin(pi x + pi y/2)(t^2)-1/2pi sin(pi x + pi y/2)(2st)");
+              $dzdt=Compute("-pi sin(pi x + pi y/2)(2st)-1/2pi sin(pi x + pi y/2)(s^2)");
+              $dzdsreduced=$dzds->substitute(x=>$x,y=>$y);
+              $dzdtreduced=$dzdt->substitute(x=>$x,y=>$y);
+              $dzds1=Compute("2pi");
+              $dzdt1=Compute("5pi/2");
+              $dzdsev=$dzds->cmp(checker => sub {
+                my ($correct,$student,$ansHash) = @_;
+                return 1 if ($correct == $student);
+                my $sreduced=$student->substitute(x=>$x,y=>$y);
+                Value::Error("Mathematically correct, but give the expression that the Multivariable Chair Rule would give if you did not substitute expressions for x and y") if ($dzdsreduced == $sreduced);
+                return 0;
+              });
+              $dzdtev=$dzdt->cmp(checker => sub {
+                my ($correct,$student,$ansHash) = @_;
+                return 1 if ($correct == $student);
+                my $sreduced=$student->substitute(x=>$x,y=>$y);
+                Value::Error("Mathematically correct, but give the expression that the Multivariable Chair Rule would give if you did not substitute expressions for x and y") if ($dzdtreduced == $sreduced);
+                return 0;
+              });
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Given <m>z=\cos\mathopen{}\left(\pi x+\frac{\pi}2y\right)\mathclose{}</m>, <m>x=st^2</m>, and <m>y=s^2t</m>, use the Multivariable Chain Rule to compute:</p>
+            <p><m>\plz{z}{s}=</m><var name="$dzds" evaluator="$dzdsev" width="50" /></p>
+            <p><m>\plz{z}{t}=</m><var name="$dzdt" evaluator="$dzdtev" width="50" /></p>
+            <p><m>\plzoa{z}{s}{s=1,t=1}=</m><var name="$dzds1" width="15" /></p>
+            <p><m>\plzoa{z}{t}{s=1,t=1}=</m><var name="$dzdt1" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$dzds">
+              <static>2x\cos(t) +2y\sin(t)</static>
+            </var>
+            <var name="$dzdt">
+              <static>-2xs\sin(t) + 2ys\cos(t)</static>
+            </var>
+            <var name="$dzds1">
+              <static>4</static>
+            </var>
+            <var name="$dzdt1">
+              <static>0</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real',s=>'Real', t=>'Real');
+              $x=Compute("st^2");
+              $y=Compute("s^2t");
+              $dzds=Compute("2x cos(t) + 2y sin(t)");
+              $dzdt=Compute("-2xs sin(t) + 2ys cos(t)");
+              $dzdsreduced=$dzds->substitute(x=>$x,y=>$y);
+              $dzdtreduced=$dzdt->substitute(x=>$x,y=>$y);
+              $dzds1=Compute("4");
+              $dzdt1=Compute("0");
+              $dzdsev=$dzds->cmp(checker => sub {
+                my ($correct,$student,$ansHash) = @_;
+                return 1 if ($correct == $student);
+                my $sreduced=$student->substitute(x=>$x,y=>$y);
+                Value::Error("Mathematically correct, but give the expression that the Multivariable Chair Rule would give if you did not substitute expressions for x and y") if ($dzdsreduced == $sreduced);
+                return 0;
+              });
+              $dzdtev=$dzdt->cmp(checker => sub {
+                my ($correct,$student,$ansHash) = @_;
+                return 1 if ($correct == $student);
+                my $sreduced=$student->substitute(x=>$x,y=>$y);
+                Value::Error("Mathematically correct, but give the expression that the Multivariable Chair Rule would give if you did not substitute expressions for x and y") if ($dzdtreduced == $sreduced);
+                return 0;
+              });
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Given <m>z=x^2+y^2</m>, <m>x=s\cos(t)</m>, and <m>y=s\sin(t)</m>, use the Multivariable Chain Rule to compute:</p>
+            <p><m>\plz{z}{s}=</m><var name="$dzds" evaluator="$dzdsev" width="50" /></p>
+            <p><m>\plz{z}{t}=</m><var name="$dzdt" evaluator="$dzdtev" width="50" /></p>
+            <p><m>\plzoa{z}{s}{s=2,t=\pi/4}=</m><var name="$dzds1" width="15" /></p>
+            <p><m>\plzoa{z}{t}{s=2,t=\pi/4}=</m><var name="$dzdt1" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$dzds">
+              <static>-2yt^2e^{-(x^2+y^2)}</static>
+            </var>
+            <var name="$dzdt">
+              <static>-2xe^{-(x^2+y^2)}-4stye^{-(x^2+y^2)}</static>
+            </var>
+            <var name="$dzds1">
+              <static>-2/e^2</static>
+            </var>
+            <var name="$dzdt1">
+              <static>-6/e^2</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real',s=>'Real', t=>'Real');
+              $x=Compute("st^2");
+              $y=Compute("s^2t");
+              $dzds=Compute("-2 y t^2 e^(-(x^2+y^2))");
+              $dzdt=Compute("-2 x e^(-(x^2+y^2)) - 4 s t y e^(-(x^2+y^2))");
+              $dzdsreduced=$dzds->substitute(x=>$x,y=>$y);
+              $dzdtreduced=$dzdt->substitute(x=>$x,y=>$y);
+              Context()->flags->set(reduceConstants=>0,reduceConstantFunctions=>0);
+              $dzds1=Compute("-2/e^2");
+              $dzdt1=Compute("-6/e^2");
+              $dzdsev=$dzds->cmp(checker => sub {
+                my ($correct,$student,$ansHash) = @_;
+                return 1 if ($correct == $student);
+                my $sreduced=$student->substitute(x=>$x,y=>$y);
+                Value::Error("Mathematically correct, but give the expression that the Multivariable Chair Rule would give if you did not substitute expressions for x and y") if ($dzdsreduced == $sreduced);
+                return 0;
+              });
+              $dzdtev=$dzdt->cmp(checker => sub {
+                my ($correct,$student,$ansHash) = @_;
+                return 1 if ($correct == $student);
+                my $sreduced=$student->substitute(x=>$x,y=>$y);
+                Value::Error("Mathematically correct, but give the expression that the Multivariable Chair Rule would give if you did not substitute expressions for x and y") if ($dzdtreduced == $sreduced);
+                return 0;
+              });
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Given <m>z=e^{-(x^2+y^2)}</m>, <m>x=t</m>, and <m>y=st^2</m>, use the Multivariable Chain Rule to compute:</p>
+            <p><m>\plz{z}{s}=</m><var name="$dzds" evaluator="$dzdsev" width="50" /></p>
+            <p><m>\plz{z}{t}=</m><var name="$dzdt" evaluator="$dzdtev" width="50" /></p>
+            <p><m>\plzoa{z}{s}{s=1,t=1}=</m><var name="$dzds1" width="15" /></p>
+            <p><m>\plzoa{z}{t}{s=1,t=1}=</m><var name="$dzdt1" width="15" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, find <m>\lz{y}{x}</m> using Implicit Differentiation and <xref ref="thm_implicit_deriv_chain">Theorem</xref>.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>x^2\tan(y) = 50</m></p>
+          </statement>
+          <solution>
+            <p><m>f_x = 2x\tan(y)</m>, <m>f_y = x^2\sec^2(y)</m>;</p>
+
+            <p><m>\ds\frac{dy}{dx} = -\frac{2\tan(y) }{x\sec^2(y) }</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$dydx">
+              <static>-\frac{x}{y^2}</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real');
+              $dydx=Compute("-x/y^2");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Given the implictly defined curve  <m>\left(3x^2+2y^3\right)^4=2</m>, use Implicit Differentiation and <xref ref="thm_implicit_deriv_chain">Theorem</xref> to find <m>\lz{y}{x}</m>.</p>
+            <p><var name="$dydx" width="40" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds \frac{x^2+y}{x+y^2}=17</m></p>
+          </statement>
+          <solution>
+            <p><m>\ds f_x = \frac{(x+y^2)(2x)-(x^2+y)(1)}{(x+y^2)^2}</m>, <m>\ds f_y = \frac{(x+y^2)(1)-(x^2+y)(2y)}{(x+y^2)^2}</m>;</p>
+
+            <p><m>\ds\frac{dy}{dx} = -\frac{2x(x+y^2)-(x^2+y)}{x+y^2-2y(x^2+y)}</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$dydx">
+              <static>-\frac{2x+y}{2y+x}</static>
+            </var>
+            <pg-code>
+              Context()->variables->add(y=>'Real');
+              $dydx=Compute("-(2x+y)/(2y+x)");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Given the implictly defined curve <m>\ln\mathopen{}\left(x^2+xy+y^2\right)\mathclose{}=1</m>, use Implicit Differentiation and <xref ref="thm_implicit_deriv_chain">Theorem</xref> to find <m>\lz{y}{x}</m>.</p>
+            <p><var name="$dydx" width="40" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, find <m>\lz{z}{t}</m>, or <m>\plz{z}{s}</m> and <m>\plz{z}{t}</m>, using the supplied information.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\frac{\partial z}{\partial x} = 2</m>,<m>\ds\frac{\partial z}{\partial y} = 1</m>,<m>\ds\frac{dx}{dt} = 4</m>,<m>\ds\frac{dy}{dt} = -5</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{dz}{dt} = 2(4)+1(-5) = 3</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$dzdt">
+              <static>0</static>
+            </var>
+            <pg-code>
+              $dzdt=Compute("0");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Given <m>\plz{z}{x} = 1</m>, <m>\plz{z}{y} = -3</m>, <m>\lz{x}{t} = 6</m>, and <m>\lz{y}{t} = 2</m>,</p>
+            <p><m>\lz{z}{t}=</m><var name="$dzdt" width="20" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds\frac{\partial z}{\partial x} = -4</m>,<m>\ds\frac{\partial z}{\partial y} = 9</m>,</p>
+
+            <p><m>\ds\frac{\partial x}{\partial s} = 5</m>,<m>\ds\frac{\partial x}{\partial t} = 7</m>,<m>\ds \frac{\partial y}{\partial s} = -2</m>,<m>\ds \frac{\partial y}{\partial t} = 6</m></p>
+          </statement>
+          <solution>
+            <p><m>\frac{\partial z}{\partial s} = -4(5)+9(-2) = -38</m>,</p>
+
+            <p><m>\frac{\partial z}{\partial t} = -4(7)+9(6) = 26</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$dzds">
+              <static>-2</static>
+            </var>
+            <var name="$dzdt">
+              <static>5</static>
+            </var>
+            <pg-code>
+              $dzds=Compute("-2");
+              $dzdt=Compute("5");
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Given <m>\plz{z}{x} = 2</m>, <m>\plz{z}{y} = 1</m>, <m>\plz{x}{s} = -2</m>, <m>\plz{x}{t} = 3</m>, <m>\plz{y}{s} = 2</m> and <m>\plz{y}{t} = -1</m>,</p>
+            <p><m>\plz{z}{s}=</m><var name="$dzds" width="20" /></p>
+            <p><m>\plz{z}{t}=</m><var name="$dzdt" width="20" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<chapter xmlns:xi="http://www.w3.org/2001/XInclude"  xml:id="chapter_limits">
+  <title>Limits</title>
+  <introduction>
+    <p><em>Calculus</em> means <q>a method of calculation or reasoning.</q> When one computes the sales tax on a purchase, one employs a simple calculus. When one finds the area of a polygonal shape by breaking it up into a set of triangles, one is using another calculus. Proving a theorem in geometry employs yet another calculus.</p>
+
+    <p>Despite the wonderful advances in mathematics that had taken place into the first half of the 17th century, mathematicians and scientists were keenly aware of what they <em>could not do.</em> (This is true even today.) In particular, two important concepts eluded mastery by the great thinkers of that time: area and rates of change.</p>
+
+    <p>Area seems innocuous enough; areas of circles, rectangles, parallelograms, etc., are standard topics of study for students today just as they were then. However, the areas of <em>arbitrary</em> shapes could not be computed, even if the boundary of the shape could be described exactly.</p>
+
+    <p>Rates of change were also important. When an object moves at a constant rate of change, then <q><m>\text{distance} = \text{rate}\times\text{time}</m>.</q> But what if the rate is not constant <mdash /> can distance still be computed? Or, if distance is known, can we discover the rate of change?</p>
+
+    <p>It turns out that these two concepts were related. Two mathematicians, Sir Isaac Newton and Gottfried Leibniz, are credited with independently formulating a system of computing that solved the above problems and showed how they were connected. Their system of reasoning was <q>a</q> calculus. However, as the power and importance of their discovery took hold, it became known to many as <q>the</q> calculus. Today, we generally shorten this to discuss <q>calculus.</q></p>
+
+    <p>The foundation of <q>the calculus</q> is the <term>limit.</term> It is a tool to describe a particular behavior of a function. This chapter begins our study of the limit by approximating its value graphically and numerically. After a formal definition of the limit, properties are established that make <q>finding limits</q> tractable. Once the limit is understood, then the problems of area and rates of change can be approached.</p>
+  </introduction>
+
+  <xi:include  href="sec_limit_intro.mbx" />
+  <xi:include  href="sec_limit_def.mbx" />
+  <xi:include  href="sec_limit_analytically.mbx" />
+  <xi:include  href="sec_limits_one_sided.mbx" />
+  <xi:include  href="sec_continuity.mbx" />
+  <xi:include  href="sec_limits_infty.mbx" />
+
+  <conclusion>
+    <title>Chapter Summary</title>
+    <p>In this chapter we:<ul>
+      <li>
+        <p>defined the limit,</p>
+      </li>
+      <li>
+        <p>found accessible ways to approximate their values numerically and graphically,</p>
+      </li>
+      <li>
+        <p>developed a not-so-easy method of proving the value of a limit (<m>\varepsilon</m><ndash /><m>\delta</m> proofs),</p>
+      </li>
+      <li>
+        <p>explored when limits do not exist,</p>
+      </li>
+      <li>
+        <p>defined continuity and explored properties of continuous functions, and</p>
+      </li>
+      <li>
+        <p>considered limits that involved infinity.</p>
+      </li>
+    </ul></p>
+
+    <p>Why? Mathematics is famous for building on itself and calculus proves to be no exception. In the next chapter we will be interested in <q>dividing by <m>0</m>.</q> That is, we will want to divide a quantity by a smaller and smaller number and see what value the quotient approaches. In other words, we will want to find a limit. These limits will enable us to, among other things, determine <em>exactly</em> how fast something is moving when we are only given position information.</p>
+
+    <p>Later, we will want to add up an infinite list of numbers. We will do so by first adding up a finite list of numbers, then take a limit as the number of things we are adding approaches infinity. Surprisingly, this sum often is finite; that is, we can add up an infinite list of numbers and get, for instance, <m>42</m>.</p>
+
+    <p>These are just two quick examples of why we are interested in limits. Many students dislike this topic when they are first introduced to it, but over time an appreciation is often formed based on the scope of its applicability.</p>
+  </conclusion>
+
+</chapter>

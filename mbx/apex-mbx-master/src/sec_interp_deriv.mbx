@@ -1,0 +1,824 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_interp_deriv">
+  <title>Interpretations of the Derivative</title>
+  <introduction>
+    <p><xref ref="sec_derivative">Section</xref> defined the derivative of a function and gave examples of how to compute it using its definition (i.e., using limits). The section also started with a brief motivation for this definition, that is, finding the instantaneous velocity of a falling object given its position function. <xref ref="sec_basic_diff_rules">Section</xref> will give us more accessible tools for computing the derivative; tools that are easier to use than repeated use of limits.</p>
+
+    <p>This section falls in between the <q>What is the definition of the derivative?</q> and <q>How do I compute the derivative?</q> sections. Here we are concerned with <q>What does the derivative mean?</q>, or perhaps, when read with the right emphasis, <q>What <em>is</em> the derivative?</q> We offer two interconnected interpretations of the derivative, hopefully explaining why we care about it and why it is worthy of study.<index><main>derivative</main><sub>interpretation</sub></index></p>
+  </introduction>
+
+  <subsection>
+    <title>Interpretation of the Derivative as Instantaneous Rate of Change</title>
+    <p><xref ref="sec_derivative">Section</xref> started with an example of using the position of an object (in this case, a falling amusement-park rider) to find the object's velocity. This type of example is often used when introducing the derivative because we tend to readily recognize that velocity is the <em>instantaneous rate of change in position.</em> In general, if <m>f</m> is a function of <m>x</m>, then <m>\fp(x)</m> measures the instantaneous rate of change of <m>f</m> with respect to <m>x</m>. Put another way, the derivative answers <q>When <m>x</m> changes, at what rate does <m>f</m> change?</q> Thinking back to the amusement-park ride, we asked <q>When time changed, at what rate did the height change?</q> and found the answer to be <q>By <m>-64</m> feet per second.</q></p>
+
+    <p>Now imagine driving a car and looking at the speedometer, which reads <q><quantity><mag>60</mag><unit base="mileperhour" /></quantity>.</q> Five minutes later, you wonder how far you have traveled. Certainly, lots of things could have happened in those <m>5</m> minutes; you could have intentionally sped up significantly, you might have come to a complete stop, you might have slowed to <quantity><mag>20</mag><unit base="mileperhour" /></quantity> as you passed through construction. But suppose that you know, as the driver, none of these things happened. You know you maintained a fairly consistent speed over those <m>5</m> minutes. What is a good approximation of the distance traveled?</p>
+
+    <p>One could argue the <em>only</em> good approximation, given the information provided, would be based on <q><m>\text{distance} = \text{rate}\times\text{time.}</m></q> In this case, we assume a constant rate of <quantity><mag>60</mag><unit base="mileperhour" /></quantity> with a time of <m>5</m> minutes or <m>5/60</m> of an hour. Hence we would approximate the distance traveled as <m>5</m> miles.</p>
+
+    <p>Referring back to the falling amusement-park ride, knowing that at <m>t=2</m> the velocity was <m>-64</m> ft/s, we could reasonably approximate that <m>1</m> second later the riders' height would have dropped by about <m>64</m> feet. Knowing that the riders were <em>accelerating</em> as they fell would inform us that this is an <em>under-approximation</em>. If all we knew was that <m>f(2) = 86</m> and <m>\fp(2) = -64</m>, we'd know that we'd have to stop the riders quickly otherwise they would hit the ground!</p>
+    <p>In both of these cases, we are using the instantaneous rate of change to predict future values of the output.</p>
+  </subsection>
+
+  <subsection>
+    <title>Units of the Derivative</title>
+    <p>It is useful to recognize the <em>units</em> of the derivative function. If <m>y</m> is a function of <m>x</m>, i.e., <m>y=f(x)</m> for some function <m>f</m>, and <m>y</m> is measured in feet and <m>x</m> in seconds, then the units of <m>y' = \fp</m> are <q>feet per second,</q> commonly written as <q>ft/s.</q> In general, if <m>y</m> is measured in units <m>P</m> and <m>x</m> is measured in units <m>Q</m>, then <m>y'</m> will be measured in units <q><m>P</m> per <m>Q</m></q>, or <q><m>P/Q</m>.</q> Here we see the fraction-like behavior of the derivative in the notation: the units of <m>\frac{dy}{dx}</m>are <m>\frac{\text{units of }y}{\text{units of }x}</m>.</p>
+
+    <example xml:id="ex_der_meaning1">
+      <title>The meaning of the derivative: World Population</title>
+      <statement>
+        <p>Let <m>P(t)</m> represent the world population <m>t</m> minutes after 12:00 a.m., January 1, 2012. It is fairly accurate to say that <m>P(0) = 7{,}028{,}734{,}178</m> (<url href="www.prb.org" />). It is also fairly accurate to state that <m>P'(0) = 156</m>; that is, at midnight on January 1, 2012, the population of the world was growing by about 156 <em>people per minute</em> (note the units). Twenty days later (or <m>28{,}800</m> minutes later) we could reasonably assume the population grew by about <m>28{,}800\cdot156 = 4{,}492{,}800</m> people.</p>
+      </statement>
+    </example>
+
+    <example xml:id="ex_der_meaning2">
+      <title>The meaning of the derivative: Manufacturing</title>
+      <statement>
+        <p>The term <em>widget</em> is an economic term for a generic unit of manufacturing output. Suppose a company produces widgets and knows that the market supports a price of <m>\$10</m> per widget. Let <m>P(n)</m> give the profit, in dollars, earned by manufacturing and selling <m>n</m> widgets. The company likely cannot make a (positive) profit making just one widget; the start-up costs will likely exceed <m>\$10</m>. Mathematically, we would write this as <m>P(1) \lt  0</m>.</p>
+
+        <p>What do <m>P(1000) = 500</m> and <m>P'(1000)=0.25</m> mean? Approximate <m>P(1100)</m>.</p>
+      </statement>
+      <solution>
+        <p>The equation <m>P(1000)=500</m> means that selling <m>1000</m> widgets returns a profit of <m>\$500</m>. We interpret <m>P'(1000) = 0.25</m> as meaning that when we are selling <m>1000</m> widgets, the profit is increasing at rate of <m>\$0.25</m> per widget (the units are <q>dollars per widget.</q>) Since we have no other information to use, our best approximation for <m>P(1100)</m> is:
+          <md>
+            <mrow> P(1100) \amp \approx P(1000) + P'(1000)\times100 </mrow>
+            <mrow>\amp= \$500 + (100\text{ widgets })\cdot \$0.25/\text{widget}</mrow>
+            <mrow>\amp= \$525\text{.}</mrow>
+          </md>
+        </p>
+
+        <p>We approximate that selling <m>1100</m> widgets returns a profit of <m>\$525</m>.</p>
+      </solution>
+    </example>
+
+    <p>The previous examples made use of an important approximation tool that we first used in our previous <q>driving a car at <quantity><mag>60</mag><unit base="mileperhour" /></quantity></q> example at the beginning of this section. Five minutes after looking at the speedometer, our best approximation for distance traveled assumed the rate of change was constant. In <xref ref="ex_der_meaning1">Examples</xref> and <xref ref="ex_der_meaning2"></xref> we made similar approximations. We were given rate of change information which we used to approximate total change. Notationally, we would say that
+      <me>
+        f(c+h) \approx f(c) + \fp(c)\cdot h.
+      </me>
+    </p>
+
+    <p>This approximation is best when <m>h</m> is <q>small.</q> Small is a relative term; when dealing with the world population, <m>h=22\text{ days} = 28{,}800\text{ minutes}</m> is small in comparison to years. When manufacturing widgets, <m>100</m> widgets is small when one plans to manufacture thousands.</p>
+  </subsection>
+
+  <subsection>
+    <title>The Derivative and Motion</title>
+    <p>One of the most fundamental applications of the derivative is the study of motion. Let <m>s(t)</m> be a position function, where <m>t</m> is time and <m>s(t)</m> is distance. For instance, <m>s</m> could measure the height of a projectile or the distance an object has traveled.</p>
+    <aside>
+        <title>Convention with <m>s</m></title>
+        <p>Using <m>s(t)</m> to represent position is a fairly common mathematical convention. It is also common to use <m>s</m> to represent arc length.</p>
+    </aside>
+
+    <p>Let's let <m>s(t)</m> measure the distance traveled, in feet, of an object after <m>t</m> seconds of travel. Then <m>s'(t)</m> has units <q>feet per second,</q> and <m>s'(t)</m> measures the <em>instantaneous rate of distance change with repsect to time</em> <mdash /> it measures <em>velocity</em>.<index><main>velocity</main></index></p>
+
+    <p>Now consider <m>v(t)</m>, a velocity function. That is, at time <m>t</m>, <m>v(t)</m> gives the velocity of an object. The derivative of <m>v</m>, <m>v'(t)</m>, gives the <em>instantaneous rate of velocity change with respect to time</em> <mdash /> <em>acceleration</em>. (We often think of acceleration in terms of cars: a car may <q>go from <m>0</m> to <m>60</m> in <m>4.8</m> seconds.</q> This is an <em>average</em> acceleration, a measurement of how quickly the velocity changed.) If velocity is measured in feet per second, and time is measured in seconds, then the units of acceleration (i.e., the units of <m>v'(t)</m>) are <q>feet per second per second,</q> or <m>(</m>ft/s<m>)</m>/s. We often shorten this to <q>feet per second squared,</q> or <quantity><unit base="foot"/><per base="second" exp="2"/></quantity>, but this tends to obscure the meaning of the units.<index><main>acceleration</main></index></p>
+
+    <p>Perhaps the most well known acceleration is that of gravity. In this text, we use <m>g=32\,\text{ft}/\text{s}^2</m> or <m>g=9.8\,\text{m}/\text{s}^2</m>. What do these numbers mean?</p>
+
+    <p>A constant acceleration of <m>32\,\frac{\text{ft}/\text{s}}{\text{s}}</m> means that the velocity changes by <m>32\,\text{ft}/\text{s}</m> each second. For instance, let <m>v(t)</m> measure the velocity of a ball thrown straight up into the air, where <m>v</m> has units ft/s and <m>t</m> is measured in seconds. The ball will have a positive velocity while traveling upwards and a negative velocity while falling down. The acceleration is thus <m>-32\,\text{ft}/\text{s}^2</m>. If <m>v(1) = 20\,\text{ft}/\text{s}</m>, then <m>1</m> second later, the velocity will have decreased by <m>32\,\text{ft}/\text{s}</m>; that is, <m>v(2) = -12\,\text{ft/s}</m>. We can continue: <m>v(3) = -44\,\text{ft/s}</m>. Working backward, we can also figure that <m>v(0) = 52\,\text{ft}/\text{s}</m>.</p>
+
+    <p>These ideas are so important we write them out as a Key Idea.</p>
+
+    <insight xml:id="idea_motion">
+      <title>The Derivative and Motion</title>
+      <p>
+        <ol>
+          <li><p>Let <m>s(t)</m> be the position function of an object. Then <m>s'(t)=v(t)</m> is the velocity function of the object.</p></li>
+
+          <li><p>Let <m>v(t)</m> be the velocity function of an object. Then <m>v'(t)=a(t)</m> is the acceleration function of the object.</p></li>
+        </ol>
+      <index><main>derivative</main><sub>motion</sub></index><index><main>derivative</main><sub>velocity</sub></index><index><main>derivative</main><sub>acceleration</sub></index></p>
+    </insight>
+  </subsection>
+
+  <subsection>
+    <title>Interpretation of the Derivative as the Slope of the Tangent Line</title>
+    <p>We now consider the second interpretation of the derivative given in this section. This interpretation is not independent from the first by any means; many of the same concepts will be stressed, just from a slightly different perspective.</p>
+
+    <p>Given a function <m>y=f(x)</m>, the difference quotient <m>\frac{f(c+h)-f(c)}{h}</m> gives a change in <m>y</m> values divided by a change in <m>x</m> values; i.e., it is a measure of the <q>rise over run,</q> or <q>slope,</q> of the secant line that goes through two points on the graph of <m>f</m>: <m>(c, f(c))</m> and <m>(c+h,f(c+h))</m>. As <m>h</m> shrinks to <m>0</m>, these two points come close together; in the limit we find <m>\fp(c)</m>, the slope of a special line called the tangent line that intersects <m>f</m> only once near <m>x=c</m>.</p>
+
+    <p>Lines have a constant rate of change, their slope. Nonlinear functions do not have a constant rate of change, but we can measure their <em>instantaneous rate of change</em> at a given <m>x</m> value <m>c</m> by computing <m>\fp(c)</m>. We can get an idea of how <m>f</m> is behaving by looking at the slopes of its tangent lines. We explore this idea in the following example.</p>
+
+    <example xml:id="ex_der_meaning3">
+      <title>Understanding the derivative: the rate of change</title>
+      <statement>
+        <p>Consider <m>f(x) = x^2</m> as shown in <xref ref="fig_xsquared">Figure</xref>. It is clear that at <m>x=3</m> the function is growing faster than at <m>x=1</m>, as it is steeper at <m>x=3</m>. How much faster is it growing at <m>3</m> compared to <m>1</m>?</p>
+
+        <figure xml:id="fig_xsquared" >
+          <caption>A graph of <m>f(x)=x^2</m>.</caption>
+          <!-- START figures/fig_xsquared.tex -->
+          <image xml:id="img_xsquared" width="47%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+                \begin{axis}[xmin=-1,xmax=4.1,
+                            ymin=-.4,ymax=17,
+                            xtick={-1,0,...,4},
+                            minor xtick={-1,0,...,4},
+                            ytick={0,5,...,15},
+                            minor ytick={0,1,...,17},
+                            ]
+                  \addplot+[domain=-.8:4] {x^2};
+                \end{axis}
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_xsquared.tex END -->
+        </figure>
+      </statement>
+      <solution>
+        <p>We can answer this exactly (and quickly) after <xref ref="sec_basic_diff_rules">Section</xref>, where we learn to quickly compute derivatives. For now, we will answer graphically, by considering the slopes of the respective tangent lines.</p>
+
+
+        <figure xml:id="fig_xsquaredwithgrid" >
+          <caption>A graph of <m>f(x)=x^2</m> and tangent lines at <m>x=1</m> and <m>x=3</m>.</caption>
+          <!-- START figures/fig_xsquaredwithgrid.tex -->
+          <image xml:id="img_xsquaredwithgrid" width="47%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+                \begin{axis}[xmin=-1,xmax=4.1,
+                            ymin=-.4,ymax=17,
+                            xtick={-1,0,...,4},
+                            minor xtick={-1,0,...,4},
+                            ytick={0,5,...,15},
+                            minor ytick={0,1,...,17},
+                            grid=minor,
+                            ]
+                  \addplot+[domain=-.8:4] {x^2};
+                  \addplot[tangentline,domain=0.4:3.5]{2*(x-1)+1};
+                  \addplot[tangentline,domain=1.6:4]{6*(x-3)+9};
+                  \addplot[soliddot] coordinates{(1,1) (3,9)};
+                \end{axis}
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_xsquaredwithgrid.tex END -->
+        </figure>
+
+        <p>With practice, one can fairly effectively sketch tangent lines to a curve at a particular point. In <xref ref="fig_xsquaredwithgrid">Figure</xref>, we have sketched the tangent lines to <m>f</m> at <m>x=1</m> and <m>x=3</m>, along with a grid to help us measure the slopes of these lines. At <m>x=1</m>, the slope is <m>2</m>; at <m>x=3</m>, the slope is <m>6</m>. Thus we can say not only is <m>f</m> growing faster at <m>x=3</m> than at <m>x=1</m>, it is growing <em>three times as fast</em>.</p>
+      </solution>
+    </example>
+
+    <example xml:id="ex_der_meaning4">
+      <title>Understanding the graph of the derivative</title>
+      <statement>
+        <p>Consider the graph of <m>f(x)</m> and its derivative, <m>\fp(x)</m>, in <xref ref="fig_fwithderiv">Figure</xref>. Use these graphs to find the slopes of the tangent lines to the graph of <m>f</m> at <m>x=1</m>, <m>x=2</m>, and <m>x=3</m>.</p>
+
+        <figure xml:id="fig_fwithderiv">
+          <caption>Graphs of <m>f</m> and <m>\fp</m> in <xref ref="ex_der_meaning4">Example</xref>.</caption>
+            <!-- START figures/fig_fwithderiv.tex -->
+            <image xml:id="img_fwithderiv" width="47%">
+              <description></description>
+              <latex-image-code>
+                <![CDATA[
+                \begin{tikzpicture}
+                  \begin{axis}[minor y tick num=4,
+                               minor x tick num=0,
+                               xtick={1,2,3},
+                               ymin=-8.9,ymax=5.9,
+                               xmin=-.1,xmax=3.49,
+                               grid=both,
+                               clip=false]
+                  \addplot+[domain=0:3.5] {-x^3+7*x^2-12*x+4} node[above left] {$f(x)$};
+                  \addplot+[domain=0.5:3.3] {-12+14*x-3*x^2} node[pos=0.5, above left] {$f'(x)$};
+                  \end{axis}
+                \end{tikzpicture}
+                ]]>
+              </latex-image-code>
+            </image>
+            <!-- figures/fig_fwithderiv.tex END -->
+        </figure>
+
+      </statement>
+      <solution>
+        <p>To find the appropriate slopes of tangent lines to the graph of <m>f</m>, we need to look at the corresponding values of <m>\fp</m>.<ul>
+          <li>
+            <p>The slope of the tangent line to <m>f</m> at <m>x=1</m> is <m>\fp(1)</m>; this looks to be about <m>-1</m>.</p>
+          </li>
+          <li>
+            <p>The slope of the tangent line to <m>f</m> at <m>x=2</m> is <m>\fp(2)</m>; this looks to be about <m>4</m>.</p>
+          </li>
+          <li>
+            <p>The slope of the tangent line to <m>f</m> at <m>x=3</m> is <m>\fp(3)</m>; this looks to be about <m>3</m>.</p>
+          </li>
+        </ul></p>
+        <p>Using these slopes, tangent line segments to <m>f</m> are sketched in <xref ref="fig_fwithderivdots">Figure</xref>. Included on the graph of <m>\fp</m> in this figure are points where <m>x=1</m>, <m>x=2</m> and <m>x=3</m> to help better visualize the <m>y</m> value of <m>\fp</m> at those points.</p>
+
+        <figure xml:id="fig_fwithderivdots" >
+          <caption>Graphs of <m>f</m> and <m>\fp</m> in <xref ref="ex_der_meaning4">Example</xref>.</caption>
+          <!-- START figures/fig_fwithderivdots.tex -->
+          <image xml:id="img_fwithderivdots" width="47%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+                  \begin{tikzpicture}
+                    \begin{axis}[minor y tick num=4,
+                                 minor x tick num=0,
+                                 xtick={1,2,3},
+                                 ymin=-8.9,ymax=5.9,
+                                 xmin=-.1,xmax=3.49,
+                                 grid=both,
+                                 clip=false]
+                    \addplot+[domain=0:3.5] {-x^3+7*x^2-12*x+4} node[above left] {$f(x)$};
+                    \addplot+[domain=0.5:3.3] {-12+14*x-3*x^2} node[pos=0.5, above left] {$f'(x)$};
+                    \addplot [tangentlineseg,domain=0.5:1.5] {-1*(x-1)-2};
+                    \addplot [tangentlineseg,domain=1.5:2.5] {4*(x-2)};
+                    \addplot [tangentlineseg,domain=2.5:3.5] {3*(x-3)+4};
+                    \addplot[soliddot] coordinates{(1,-2) (2,0) (3,4)};
+                    \addplot[soliddot] coordinates{(1,-1) (2,4) (3,3)};
+                    \end{axis}
+                  \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_fwithderivdots.tex END -->
+        </figure>
+      </solution>
+    </example>
+
+    <example xml:id="ex_der_meaning5">
+      <title>Approximation with the derivative</title>
+      <statement>
+        <p>Consider again the graph of <m>f(x)</m> and its derivative <m>\fp(x)</m> in <xref ref="ex_der_meaning4">Example</xref>. Use the tangent line to <m>f</m> at <m>x=3</m> to approximate the value of <m>f(3.1)</m>.</p>
+      </statement>
+      <solution>
+        <p><xref ref="fig_fwithderivzoom3">Figure</xref> shows the graph of <m>f</m> along with its tangent line, zoomed in at <m>x=3</m>. Notice that near <m>x=3</m>, the tangent line makes an excellent approximation of <m>f</m>. Since lines are easy to deal with, often it works well to approximate a function with its tangent line. (This is especially true when you don't actually know much about the function at hand, as we don't in this example.)</p>
+
+        <figure xml:id="fig_fwithderivzoom3" >
+          <caption>Zooming in on <m>f</m> at <m>x=3</m> for the function given in <xref ref="ex_der_meaning4">Examples</xref> and <xref ref="ex_der_meaning5"></xref>.</caption>
+          <!-- START figures/fig_fwithderivzoom3.tex -->
+          <image xml:id="img_fwithderivzoom3" width="47%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+                \begin{axis}[minor y tick num=4,
+                            ymin=1.9,ymax=4.9,
+                            xmin=2.7,xmax=3.3,
+                            xdiscontinuity,
+                            ydiscontinuity,
+                            grid=major]
+                    \addplot+[domain=2.7:3.3] {-x^3+7*x^2-12*x+4} node[pos=0.85,below] {$f(x)$};
+                    \addplot[tangentlineseg,domain=2.7:3.3,thick] {3*(x-3)+4};
+                    \addplot[soliddot] coordinates{(3,4)};
+                \end{axis}
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_fwithderivzoom3.tex END -->
+        </figure>
+
+        <p>While the tangent line to <m>f</m> was drawn in <xref ref="ex_der_meaning4">Example</xref>, it was not explicitly computed. Recall that the tangent line to <m>f</m> at <m>x=c</m> is <m>y = \fp(c)(x-c)+f(c)</m>. While <m>f</m> is not explicitly given, by the graph it looks like <m>f(3) = 4</m>. Recalling that <m>\fp(3) = 3</m>, we can compute the tangent line to be approximately <m>y = 3(x-3)+4</m>. It is often useful to leave the tangent line in point-slope form.</p>
+
+        <p>To use the tangent line to approximate <m>f(3.1)</m>, we simply evaluate <m>y</m> at <m>3.1</m> instead of <m>f</m>.
+          <md>
+            <mrow>f(3.1) \amp \approx y(3.1) </mrow>
+            <mrow>\amp= 3(3.1-3)+4 </mrow>
+            <mrow>\amp= 0.1\cdot3+4 </mrow>
+            <mrow>\amp = 4.3\text{.}</mrow>
+          </md>
+        </p>
+
+        <p>We approximate <m>f(3.1) \approx 4.3</m>.</p>
+      </solution>
+    </example>
+
+    <p>To demonstrate the accuracy of the tangent line approximation, we now state that in <xref ref="ex_der_meaning5">Example</xref>, <m>f(x) = -x^3+7x^2-12x+4</m>. We can evaluate <m>f(3.1) = 4.279</m>. Had we known <m>f</m> all along, certainly we could have just made this computation. In reality, we often only know two things:<ol>
+      <li><p>What <m>f(c)</m> is, for some value of <m>c</m>, and</p></li>
+      <li><p>what <m>\fp(c)</m> is.</p></li>
+    </ol></p>
+
+    <p>For instance, we can easily observe the location of an object and its instantaneous velocity at a particular point in time. We do not have a <q>function <m>f</m></q> for the location, just an observation. This is enough to create an approximating function for <m>f</m>.</p>
+
+    <p>This last example has a direct connection to our approximation method explained above after <xref ref="ex_der_meaning2">Example</xref>. We stated there that
+      <me>
+        f(c+h) \approx f(c)+\fp(c)\cdot h.
+      </me>
+    </p>
+
+    <p>If we know <m>f(c)</m> and <m>\fp(c)</m> for some value <m>x=c</m>, then computing the tangent line at <m>(c,f(c))</m> is easy: <m>y(x) = \fp(c)(x-c)+f(c)</m>. In <xref ref="ex_der_meaning5">Example</xref>, we used the tangent line to approximate a value of <m>f</m>. Let's use the tangent line at <m>x=c</m> to approximate a value of <m>f</m> near <m>x=c</m>; i.e., compute <m>y(c+h)</m> to approximate <m>f(c+h)</m>, assuming again that <m>h</m> is <q>small.</q> Note:
+      <md>
+        <mrow> y(c+h) \amp = \fp(c)\left((c+h)-c\right)+f(c)</mrow>
+        <mrow>\amp = \fp(c)\cdot h + f(c).</mrow>
+      </md>
+    </p>
+
+    <p>This is the exact same approximation method used above! Not only does it make intuitive sense, as explained above, it makes analytical sense, as this approximation method is simply using a tangent line to approximate a function's value.</p>
+
+    <p>The importance of understanding the derivative cannot be understated. When <m>f</m> is a function of <m>x</m>, <m>\fp(x)</m> measures the instantaneous rate of change of <m>f</m> with respect to <m>x</m> and gives the slope of the tangent line to <m>f</m> at <m>x</m>.</p>
+  </subsection>
+
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <pg-macros>
+            <macro-file>contextArbitraryString.pl</macro-file>
+          </pg-macros>
+          <setup>
+            <var name="$ans">
+              <static>\text{Velocity}</static>
+            </var>
+            <pg-code>
+                Context("ArbitraryString");
+                $ans=Compute("Velocity");
+                $ev=$ans->cmp(checker => sub {
+                my ($correct,$student,$ans) = @_;
+                $correct = $correct->value;
+                $student = $student->value;
+                $student =~ s/^~~W+|~~W+$//g;
+                return uc($correct) eq uc($student);
+                });
+            </pg-code>
+          </setup>
+          <statement>
+            <p>What is the instantaneous rate of change of position called?</p>
+            <p><var name="$ans" width="20" evaluator="$ev" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <statement>
+            <p>Given a function <m>y=f(x)</m>, in your own words describe how to find the units of <m>\fp(x)</m>.</p>
+
+            <p><var form="essay" /></p>
+          </statement>
+          <solution>
+            <p>Answers will vary.</p>
+          </solution>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <pg-macros>
+            <macro-file>contextArbitraryString.pl</macro-file>
+          </pg-macros>
+          <setup>
+            <var name="$ans">
+              <static>\text{Linear functions}</static>
+            </var>
+            <pg-code>
+                Context("ArbitraryString");
+                $ans=Compute("Linear functions");
+                $ev=$ans->cmp(checker => sub {
+                my ($correct,$student,$ans) = @_;
+                $correct = $correct->value;
+                $student = $student->value;
+                $student =~ s/^~~W+|~~W+$//g;
+                return (uc($correct) eq uc($student) or uc('Linear') eq uc($student) or uc('Linears') eq uc($student) or uc('Linear function') eq uc($student));
+                });
+            </pg-code>
+          </setup>
+          <statement>
+            <p>What functions have a constant rate of change?</p>
+            <p><var name="$ans" width="20" evaluator="$ev" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercise>
+      <webwork seed="1">
+        <setup>
+          <var name="$ans">
+            <static>12</static>
+          </var>
+          <pg-code>
+            $ans=10+2*(6-5);
+          </pg-code>
+        </setup>
+        <statement>
+          <p>Given <m>f(5)=10</m> and <m>\fp(5) = 2</m>, approximate <m>f(6)</m>.</p>
+          <p><m>f(6)\approx</m><var name="$ans" width="10" /></p>
+        </statement>
+      </webwork>
+    </exercise>
+
+    <exercise>
+      <webwork seed="1">
+        <setup>
+          <var name="$ans">
+            <static>-17</static>
+          </var>
+          <pg-code>
+            $ans=-67+5*(110-100);
+          </pg-code>
+        </setup>
+        <statement>
+          <p>Given <m>P(100)=-67</m> and <m>P'(100) = 5</m>, approximate <m>P(110)</m>.</p>
+          <p><m>P(110)\approx</m><var name="$ans" width="10" /></p>
+        </statement>
+      </webwork>
+    </exercise>
+
+    <exercise>
+      <webwork seed="1">
+        <setup>
+          <var name="$ans">
+            <static>102</static>
+          </var>
+          <pg-code>
+            $ans=187+17*(20-25);
+          </pg-code>
+        </setup>
+        <statement>
+          <p>Given <m>z(25)=187</m> and <m>z'(25) = 17</m>, approximate <m>z(20)</m>.</p>
+          <p><m>z(20)\approx</m><var name="$ans" width="10" /></p>
+        </statement>
+      </webwork>
+    </exercise>
+
+    <exercise>
+      <webwork seed="1">
+        <statement>
+          <p>Knowing <m>f(10)=25</m> and <m>\fp(10) = 5</m> and the methods described in this section, which approximation is likely to be most accurate: <m>f(10.1)</m>, <m>f(11)</m>, or <m>f(20)</m>? Explain your reasoning.</p>
+
+          <p><var form="essay" /></p>
+        </statement>
+        <solution>
+          <p><m>f(10.1)</m> is likely most accurate, as accuracy is lost the farther from <m>x=10</m> we go.</p>
+        </solution>
+      </webwork>
+    </exercise>
+
+    <exercise>
+      <webwork seed="1">
+        <setup>
+          <var name="$ans">
+            <static>-4</static>
+          </var>
+          <pg-code>
+            $ans=(26-22)/(7-8);
+          </pg-code>
+        </setup>
+        <statement>
+          <p>Given <m>f(7)=26</m> and <m>f(8) = 22</m>, approximate <m>\fp(7)</m>.</p>
+          <p><m>\fp(7)\approx</m><var name="$ans" width="10" /></p>
+        </statement>
+      </webwork>
+    </exercise>
+
+    <exercise>
+      <webwork seed="1">
+        <setup>
+          <var name="$ans">
+            <static>6</static>
+          </var>
+          <pg-code>
+            $ans=(17-29)/(0-2);
+          </pg-code>
+        </setup>
+        <statement>
+          <p>Given <m>H(0)=17</m> and <m>H(2) = 29</m>, approximate <m>H'(2)</m>.</p>
+          <p><m>H'(2)\approx</m><var name="$ans" width="10" /></p>
+        </statement>
+      </webwork>
+    </exercise>
+
+    <exercise>
+      <webwork seed="1">
+        <pg-macros>
+          <macro-file>contextArbitraryString.pl</macro-file>
+        </pg-macros>
+        <setup>
+          <var name="$ans">
+            <static>\text{decibels per customer}</static>
+          </var>
+          <pg-code>
+              Context("ArbitraryString");
+              $ans=Compute("decibels per customer");
+              $ev=$ans->cmp(checker => sub {
+              my ($correct,$student,$ans) = @_;
+              $correct = $correct->value;
+              $student = $student->value;
+              $student =~ s/^~~W+|~~W+$//g;
+              my @words = split (/per[^s]|~~//, $student);
+              $words[0] =~ s/^~~W+|~~W+$//g;
+              $words[1] =~ s/^~~W+|~~W+$//g;
+              return ($#words == 1 and (uc($words[0]) eq 'DECIBEL' or uc($words[0]) eq 'DECIBELS' or uc($words[0]) eq 'DB') and (uc($words[1]) eq 'CUSTOMER' or uc($words[1]) eq 'CUSTOMERS' or uc($words[1]) eq 'PERSON' or uc($words[1]) eq 'PEOPLE' or uc($words[1]) eq 'PERSONS' or uc($words[1]) eq 'INDIVIDUAL'));
+              });
+          </pg-code>
+        </setup>
+        <statement>
+          <p>Let <m>V(x)</m> measure the volume, in decibels, measured inside a restaurant with <m>x</m> customers. What are the units of <m>V'(x)</m>?</p>
+          <p><var name="$ans" width="20" evaluator="$ev" /></p>
+        </statement>
+      </webwork>
+    </exercise>
+
+    <exercise>
+      <webwork seed="1">
+        <pg-macros>
+          <macro-file>contextArbitraryString.pl</macro-file>
+        </pg-macros>
+        <setup>
+          <var name="$ans" category="quantity">
+            <static>\text{ft}/\text{s}^2</static>
+          </var>
+          <pg-code>
+            Context("ArbitraryString");
+            $ans=Compute("ft/s^2");
+            $ev=$ans->cmp(checker => sub {
+            my ($correct,$student,$ans) = @_;
+            $correct = $correct->value; # get perl string from String object
+            $student = $student->value; # ditto
+            my $context = Context(); Context("Numeric");
+            my $check = NumberWithUnits("1 $correct")->cmp->evaluate("1 $student");
+            Context($context);
+            $ans->{correct_ans_latex_string} = substr($check->{correct_ans_latex_string},3);
+            if ($check->{score}) {
+              $ans->{preview_latex_string} = substr($check->{preview_latex_string},3);
+              $ans->{preview_text_string} = substr($check->{preview_text_string},3);
+            }
+            return $check->{score};
+            });
+          </pg-code>
+        </setup>
+        <statement>
+          <p>Let <m>v(t)</m> measure the velocity, in ft/s, of a car moving in a straight line <m>t</m> seconds after starting. What are the units of <m>v'(t)</m>?</p>
+          <p><var name="$ans" width="10" evaluator="$ev"/></p>
+        </statement>
+      </webwork>
+    </exercise>
+
+    <exercise>
+      <webwork seed="1">
+        <pg-macros>
+          <macro-file>contextArbitraryString.pl</macro-file>
+        </pg-macros>
+        <setup>
+          <var name="$ans" category="quantity">
+            <static>\text{ft}/\text{hr}</static>
+          </var>
+          <pg-code>
+            Context("ArbitraryString");
+            $ans=Compute("ft/hr");
+            $ev=$ans->cmp(checker => sub {
+            my ($correct,$student,$ans) = @_;
+            $correct = $correct->value; # get perl string from String object
+            $student = $student->value; # ditto
+            my $context = Context(); Context("Numeric");
+            my $check = NumberWithUnits("1 $correct")->cmp->evaluate("1 $student");
+            Context($context);
+            $ans->{correct_ans_latex_string} = substr($check->{correct_ans_latex_string},3);
+            if ($check->{score}) {
+              $ans->{preview_latex_string} = substr($check->{preview_latex_string},3);
+              $ans->{preview_text_string} = substr($check->{preview_text_string},3);
+            }
+            return $check->{score};
+            });
+          </pg-code>
+        </setup>
+        <statement>
+          <p>The height <m>H</m>, in feet, of a river is recorded <m>t</m> hours after midnight, April 1. What are the units of <m>H'(t)</m>?</p>
+          <p><var name="$ans" width="10" evaluator="$ev"/></p>
+        </statement>
+      </webwork>
+    </exercise>
+
+    <exercise>
+      <webwork seed="1">
+        <statement>
+          <p><m>P</m> is the profit, in thousands of dollars, of producing and selling <m>c</m> cars.</p>
+
+          <p><ol>
+            <li><p>What are the units of <m>P'(c)</m>?</p></li>
+
+            <li><p>What is likely true of <m>P(0)</m>?</p></li>
+          </ol></p>
+
+          <p><var form="essay" /></p>
+        </statement>
+        <solution>
+          <p><ol>
+            <li><p>thousands of dollars per car</p></li>
+
+            <li><p>It is likely that <m>P(0)\lt 0</m>. That is, negative profit for not producing any cars.</p></li>
+          </ol></p>
+        </solution>
+      </webwork>
+    </exercise>
+
+    <exercise>
+      <webwork seed="1">
+        <statement>
+          <p><m>T</m> is the temperature in degrees Fahrenheit, <m>h</m> hours after midnight on July 4 in Sidney, NE.</p>
+
+          <p><ol>
+            <li><p>What are the units of <m>T'(h)</m>?</p></li>
+
+            <li><p>Is <m>T'(8)</m> likely greater than or less than 0? Why?</p></li>
+
+            <li><p>Is <m>T(8)</m> likely greater than or less than 0? Why?</p></li>
+          </ol></p>
+
+          <p><var form="essay" /></p>
+        </statement>
+        <solution>
+          <p><ol>
+            <li><p>degrees Fahrenheit per hour</p></li>
+
+            <li><p>It is likely that <m>T'(8)>0</m> since at 8 in the morning, the temperature is likely rising.</p></li>
+
+            <li><p>It is very likely that <m>T(8)>0</m>, as at 8 in the morning on July 4, we would expect the temperature to be well above 0.</p></li>
+          </ol></p>
+        </solution>
+      </webwork>
+    </exercise>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, graphs of functions <m>f</m> and <m>g</m> are given. Identify which function is the derivative of the other.</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$popup">
+              <set>
+                <member correct="yes">f\text{ is the derivative of }g</member>
+                <member>g\text{ is the derivative of }f</member>
+              </set>
+            </var>
+            <pg-code>
+              $gr=init_graph(-4,-5,4,5,axes=>[0,0],size=>[400,400]);
+              $gr->lb('reset');
+              for my$i(-3,-2,-1,1,2,3){$gr->moveTo($i,-0.05);$gr->lineTo($i,0.05,black,1);$gr->lb(new Label($i,-0.1,$i,'black','center','top'));};
+              for my$i(-4..-1,1..4){$gr->moveTo(-0.05,$i);$gr->lineTo(0.05,$i,black,1);$gr->lb(new Label(-0.1,$i,$i,'black','right','middle'));};
+              add_functions($gr, "0.5*(x-1) for x in &lt;-4,4> using color:blue and weight:2");
+              $gr->lb(new Label(3,1.2,'f','blue','center','bottom'));
+              add_functions($gr, "0.25*(x-1)^2+2 for x in &lt;-2.46,4> using color:red and weight:2");
+              $gr->lb(new Label(3,3.2,'g','red','center','bottom'));
+              $popup=PopUp(['?','f is the derivative of g','g is the derivative of f'],1);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>In the figure below, <var name="$popup" form="popup" />.</p>
+            <figure>
+              <image pg-name="$gr" />
+            </figure>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$popup">
+              <set>
+                <member>f\text{ is the derivative of }g</member>
+                <member correct="yes">g\text{ is the derivative of }f</member>
+              </set>
+            </var>
+            <pg-code>
+              $gr=init_graph(-1,-5,4,5,axes=>[0,0],size=>[400,400]);
+              $gr->lb('reset');
+              for my$i(-1,1,2,3){$gr->moveTo($i,-0.05);$gr->lineTo($i,0.05,black,1);$gr->lb(new Label($i,-0.1,$i,'black','center','top'));};
+              for my$i(-4..-1,1..4){$gr->moveTo(-0.05,$i);$gr->lineTo(0.05,$i,black,1);$gr->lb(new Label(-0.1,$i,$i,'black','right','middle'));};
+              add_functions($gr, "x*(x-1)*(x-2) for x in &lt;-1,4> using color:blue and weight:2");
+              $gr->lb(new Label(2.5,2,'f','blue','right','bottom'));
+              add_functions($gr, "3*x^2-6*x+2 for x in &lt;-1,4> using color:red and weight:2");
+              $gr->lb(new Label(2,2.2,'g','red','right','bottom'));
+              $popup=PopUp(['?','f is the derivative of g','g is the derivative of f'],2);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>In the figure below, <var name="$popup" form="popup" />.</p>
+            <figure>
+              <image pg-name="$gr" />
+            </figure>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$popup">
+              <set>
+                <member>f\text{ is the derivative of }g</member>
+                <member correct="yes">g\text{ is the derivative of }f</member>
+              </set>
+            </var>
+            <pg-code>
+              $gr=init_graph(-5,-5,5,5,axes=>[0,0],size=>[400,400]);
+              $gr->lb('reset');
+              for my$i(-4..-1,1..4){$gr->moveTo($i,-0.05);$gr->lineTo($i,0.05,black,1);$gr->lb(new Label($i,-0.1,$i,'black','center','top'));};
+              for my$i(-4..-1,1..4){$gr->moveTo(-0.05,$i);$gr->lineTo(0.05,$i,black,1);$gr->lb(new Label(-0.1,$i,$i,'black','right','middle'));};
+              add_functions($gr, "1/x for x in &lt;-5,-0.2> using color:blue and weight:2");
+              add_functions($gr, "1/x for x in &lt;0.2,5> using color:blue and weight:2");
+              $gr->lb(new Label(1,1.2,'f','blue','left','bottom'));
+              add_functions($gr, "-1/x^2 for x in &lt;-5,-0.45> using color:red and weight:2");
+              add_functions($gr, "-1/x^2 for x in &lt;0.45,5> using color:red and weight:2");
+              $gr->lb(new Label(1,-1.2,'g','red','left','top'));
+              $popup=PopUp(['?','f is the derivative of g','g is the derivative of f'],2);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>In the figure below, <var name="$popup" form="popup" />.</p>
+            <figure>
+              <image pg-name="$gr" />
+            </figure>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$popup">
+              <set>
+                <member>f\text{ is the derivative of }g</member>
+                <member correct="yes">g\text{ is the derivative of }f</member>
+              </set>
+            </var>
+            <pg-code>
+              $gr=init_graph(-4,-2,4,2,axes=>[0,0],size=>[400,400]);
+              $gr->lb('reset');
+              for my$i(-3..-1,1..3){$gr->moveTo($i,-0.05);$gr->lineTo($i,0.05,black,1);$gr->lb(new Label($i,-0.1,$i,'black','center','top'));};
+              for my$i(-1,1){$gr->moveTo(-0.05,$i);$gr->lineTo(0.05,$i,black,1);$gr->lb(new Label(-0.1,$i,$i,'black','right','middle'));};
+              add_functions($gr, "sin(3.14*x/2) for x in &lt;-4,4> using color:blue and weight:2");
+              $gr->lb(new Label(1,1.1,'f','blue','left','bottom'));
+              add_functions($gr, "3.14/2*cos(3.14*x/2) for x in &lt;-4,4> using color:red and weight:2");
+              $gr->lb(new Label(2,-1.67,'g','red','left','top'));
+              $popup=PopUp(['?','f is the derivative of g','g is the derivative of f'],2);
+            </pg-code>
+          </setup>
+          <statement>
+            <p>In the figure below, <var name="$popup" form="popup" />.</p>
+            <figure>
+              <image pg-name="$gr" />
+            </figure>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>Review</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <statement>
+            <p>Use the definition of the derivative to compute the derivative of <m>f</m>, where <m>f(x)=5x^2</m>.</p>
+            <p><var form="essay" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <statement>
+            <p>Use the definition of the derivative to compute the derivative of <m>f</m>, where <m>f(x)=(x-2)^3</m>.</p>
+            <p><var form="essay" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$ans">
+              <static>0</static>
+            </var>
+            <pg-code>
+              $ans=0;
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Numerically approximate the value of <m>f'(\pi)</m> where <m>f(x) = \cos(x)</m>.</p>
+            <p><var name="$ans" width="10" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="$ans">
+              <static>0</static>
+            </var>
+            <pg-code>
+              $ans=1/6;
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Numerically approximate the value of <m>f'(9)</m> where <m>f(x) = \sqrt(x)</m>.</p>
+            <p><var name="$ans" width="10" /></p>
+          </statement>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

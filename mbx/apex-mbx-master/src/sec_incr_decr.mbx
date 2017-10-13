@@ -1,0 +1,1107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<section xml:id="sec_incr_decr">
+  <title>Increasing and Decreasing Functions</title>
+    <p>Our study of <q>nice</q> functions <m>f</m> in this chapter has so far focused on individual points: points where <m>f</m> is maximal/minimal, points where <m>\fp(x) = 0</m> or <m>\fp</m> does not exist, and points <m>c</m> where <m>\fp(c)</m> is the average rate of change of <m>f</m> on some interval.</p>
+
+    <p>In this section we begin to study how functions behave <em>between</em> special points; we begin studying in more detail the shape of their graphs.</p>
+
+    <p>We start with an intuitive concept. Given the graph in <xref ref="fig_incr0">Figure</xref>, where would you say the function is <em>increasing</em>? <em>Decreasing</em>? Even though we have not defined these terms mathematically, one likely answered that <m>f</m> is increasing when <m>x>1</m> and decreasing when <m>x\lt 1</m>. We formally define these terms here.</p>
+
+    <figure xml:id="fig_incr0" >
+      <caption>A graph of a function <m>f</m> used to illustrate the concepts of <em>increasing</em> and <em>decreasing</em>.</caption>
+      <!-- START figures/fig_incr0.tex -->
+      <image xml:id="img_incr0"  width="47%">
+        <description></description>
+        <latex-image-code>
+          <![CDATA[
+          \begin{tikzpicture}
+            \begin{axis}[xmin=-.9,xmax=3.2,
+                        ymin=-.5,ymax=5.1,
+                      ]
+              \addplot+[domain=-.5:2.5] {(x-1)^2+2};
+            \end{axis}
+          \end{tikzpicture}
+          ]]>
+        </latex-image-code>
+      </image>
+      <!-- figures/fig_incr0.tex END -->
+    </figure>
+
+    <definition xml:id="def_incr_decr">
+      <title>Increasing and Decreasing Functions</title>
+      <statement>
+        <p>Let <m>f</m> be a function defined on an interval <m>I</m>.<index><main>increasing function</main></index><index><main>decreasing function</main></index><index><main>increasing function</main><sub>strictly</sub></index><index><main>decreasing function</main><sub>strictly</sub></index></p>
+
+        <p><ol>
+          <li>
+            <p><m>f</m> is <em>strictly increasing</em> on <m>I</m> if for every <m>a\lt b</m> in <m>I</m>, <m>f(a) \lt f(b)</m>.</p>
+          </li>
+
+          <li>
+            <p><m>f</m> is <em>strictly decreasing</em> on <m>I</m> if for every <m>a\lt b</m> in <m>I</m>, <m>f(a) \gt f(b)</m>.</p>
+          </li>
+        </ol></p>
+
+        <!--<p>A function is <term>strictly increasing</term> when <m>a\lt b</m> in <m>I</m> implies <m>f(a) \lt  f(b)</m>, with a similar definition holding for <term>strictly decreasing</term>.</p>-->
+      </statement>
+    </definition>
+
+    <aside>
+      <title><q>Increasing</q></title>
+      <p>We will often say <q>increasing</q> when we really mean <q>strictly increasing</q>.</p>
+    </aside>
+
+    <p>Informally, a function is increasing if as <m>x</m> gets larger (i.e., looking left to right) <m>f(x)</m> gets larger <!--or stays constant-->.</p>
+
+    <p>Our interest lies in finding intervals in the domain of <m>f</m> on which <m>f</m> is either increasing or decreasing. Such information should seem useful. For instance, if <m>f</m> describes the speed of an object, we might want to know when the speed was increasing or decreasing (i.e., when the object was accelerating <abbr>vs.</abbr> decelerating). If <m>f</m> describes the population of a city, we should be interested in when the population is growing or declining.</p>
+
+    <p>To find such intervals, we again consider secant lines. Let <m>f</m> be an increasing, differentiable function on an open interval <m>I</m>, such as the one shown in <xref ref="fig_incr00">Figure</xref>, and let <m>a\lt b</m> be given in <m>I</m>. The secant line on the graph of <m>f</m> from <m>x=a</m> to <m>x=b</m> is drawn; it has a slope of <m>(f(b)-f(a))/(b-a)</m>.</p>
+
+    <p>But note, since <m>b \gt a</m> and  <m>f</m> is increasing, <m>f(b) \gt f(a)</m>. And these facts imply <m>b-a \gt 0</m> and <m>f(b)-f(a) \gt 0</m>.  Therefore:</p>
+
+    <sidebyside widths="47% 47%">
+      <p>
+        <md>
+         <mrow>\amp\frac{f(b)-f(a)}{b-a} \gt 0 </mrow>
+         <mrow>\implies\amp \text{slope of the secant line} >0</mrow>
+         <mrow>\implies\amp \text{Average rate of change of }f</mrow>
+         <mrow>\amp\text{ on }[a,b]\text{ is }>0</mrow>
+        </md>.
+      </p>
+
+      <figure xml:id="fig_incr00" >
+        <caption>Examining the secant line of an increasing function.</caption>
+        <!-- START figures/fig_incr00.tex -->
+        <image xml:id="img_incr00">
+          <description></description>
+          <latex-image-code>
+            <![CDATA[
+            \begin{tikzpicture}
+              \begin{axis}[xmin=-.2,xmax=2.2,
+                          ymin=-.5,ymax=2.2,
+                          extra x ticks={.218,1.67},
+                          extra x tick labels={$a$,$b$}]
+                \addplot+[domain=-80:-5] ({2*cos(x)-.3},{2*sin(x)+2.3});
+                \addplot [secantlineseg] coordinates { ({2*cos(-75)-.3},{2*sin(-75)+2.3}) ({2*cos(-10)-.3},{2*sin(-10)+2.3})};
+                \addplot [soliddot] coordinates {(.218,.368)} node [below]{$(a,f(a))$};
+                \addplot [soliddot] coordinates {(1.67,1.95)} node [above left]{$(b,f(b))$};
+              \end{axis}
+            \end{tikzpicture}
+            ]]>
+          </latex-image-code>
+        </image>
+        <!-- figures/fig_incr00.tex END -->
+      </figure>
+    </sidebyside>
+
+    <p>We have shown mathematically what may have already been obvious: when <m>f</m> is strictly increasing, its secant lines will have a positive slope. Now recall the <xref ref="thm_mvt">Mean Value Theorem</xref> guarantees that there is a number <m>c</m>, where <m>a\lt c\lt b</m>, such that
+      <me>
+        \fp(c) = \frac{f(b)-f(a)}{b-a}>0
+      </me>.
+    </p>
+
+    <p>By considering all such secant lines in <m>I</m>, we strongly imply that <m>\fp(x) \geq 0</m> on <m>I</m>. A similar statement can be made for a strictly decreasing functions.</p>
+
+    <p>Our above logic can be summarized as <q>If <m>f</m> is strictly increasing, then <m>\fp</m> is probably positive.</q> <xref ref="thm_incr_decr">Theorem</xref> below turns this around by stating <q>If <m>\fp</m> is postive, then <m>f</m> is increasing.</q> This leads us to a method for finding when functions are increasing and decreasing.</p>
+
+    <theorem xml:id="thm_incr_decr">
+      <title>Test For Increasing/Decreasing Functions</title>
+      <statement>
+        <p>Let <m>f</m> be a continuous function on <m>[a,b]</m> and differentiable on <m>(a,b)</m>.</p>
+
+        <p><ol>
+          <li xml:id="thm_incr">
+            <p>If <m>\fp(c) > 0</m> for all <m>c</m> in <m>(a,b)</m>, then <m>f</m> is strictly increasing on <m>[a,b]</m>.</p>
+          </li>
+
+          <li xml:id="thm_decr">
+            <p>If <m>\fp(c) \lt 0</m> for all <m>c</m> in <m>(a,b)</m>, then <m>f</m> is strictly decreasing on <m>[a,b]</m>.</p>
+          </li>
+
+          <li>
+            <p>If <m>\fp(c) =0</m> for all <m>c</m> in <m>(a,b)</m>, then <m>f</m> is constant on <m>[a,b]</m>.</p>
+          </li>
+        </ol></p>
+
+        <p> The conclusions of <xref ref="thm_incr" /> and <xref ref="thm_decr" /> also hold if if <m>\fp(c) = 0</m> for a finite number of nonadjacent values of <m>c</m> in <m>I</m>.</p>
+      </statement>
+    </theorem>
+
+    <p>Let <m>a</m> and <m>b</m> be in <m>I</m> where <m>\fp(a)>0</m> and <m>\fp(b)\lt 0</m>. It follows from the <xref ref="thm_IVT">Intermediate Value Theorem</xref> (since all differentiable functions are also continuous) that there must be some value <m>c</m> between <m>a</m> and <m>b</m> where <m>\fp(c) = 0</m>. The sign of <m>\fp</m> can change either by passing through zero or at a discontinuity. This leads us to the following method for finding intervals on which a function is increasing or decreasing.</p>
+
+    <insight xml:id="idea_incr_decr">
+      <title>Finding Intervals on Which <m>f</m> is Increasing or Decreasing</title>
+
+
+      <p>Let <m>f</m> be a function on a domain <m>D</m>. To find intervals on which <m>f</m> is increasing and decreasing:<index><main>increasing function</main><sub>finding intervals</sub></index><index><main>decreasing function</main><sub>finding intervals</sub></index></p>
+
+      <p><ol>
+        <li xml:id="stp_inc_dec1">If not stated, find the domain of <m>f</m>, <m>D</m>. Begin a number line that only includes <m>D</m>. </li>
+        <li xml:id="stp_inc_dec2">
+          <p>Find the critical values of <m>f</m>. That is, find all <m>c</m> in the domain of <m>f</m> where <m>\fp(c) = 0</m> or <m>\fp</m> is not defined. (Note: Any values of <m>c</m> <em>not</em> in the domain of <m>f</m> where <m>\fp(c)</m> is undefined should already be marked on your number line from <xref ref="stp_inc_dec1">Step</xref>).</p>
+        </li>
+
+        <li>
+          <p>Use the critical values to divide <m>D</m> into subintervals.</p>
+        </li>
+
+        <li>
+          <p>Pick any point <m>p</m> in each subinterval, and find the sign of <m>\fp(p)</m>.</p>
+
+          <p><ol>
+            <li><p>If <m>\fp(p)>0</m>, then <m>f</m> is increasing on that subinterval.</p></li>
+
+            <li><p>If <m>\fp(p)\lt 0</m>, then <m>f</m> is decreasing on that subinterval.</p></li>
+          </ol></p>
+        </li>
+      </ol></p>
+    </insight>
+
+    <p>We demonstrate using this process in the following example.</p>
+
+    <example xml:id="ex_incr1">
+      <title>Finding intervals of increasing/decreasing</title>
+      <statement>
+        <p>Let <m>f(x) = x^3+x^2-x+1</m>. Find intervals on which <m>f</m> is increasing or decreasing.</p>
+      </statement>
+      <solution>
+        <p>Using <xref ref="idea_incr_decr">Key Idea</xref>, the domain of <m>f</m> is <m>\mathbb{R}</m> or <m>(-\infty,\infty)</m>. Next, we find the critical values of <m>f</m>. We have <m>\fp(x) = 3x^2+2x-1 = (3x-1)(x+1)</m>, so <m>\fp(x) = 0</m> when <m>x=-1</m> and when <m>x=1/3</m>. <m>\fp</m> is never undefined.</p>
+
+        <p>We thus break the domain (in this case the real line) into three subintervals based on the two critical values we just found: <m>(-\infty,-1)</m>, <m>(-1,1/3)</m> and <m>(1/3,\infty)</m>. This is shown in <xref ref="fig_incrline1">Figure</xref>.</p>
+
+        <!--
+        <caption>Number line for <m>f</m> in Example \ref{ex_incr1}.</caption>
+        -->
+
+        <figure xml:id="fig_incrline1">
+          <caption></caption>
+          <image xml:id="img_incrline1"  width="67%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+                \begin{axis}[numberline,
+                            xmin=-2,xmax=1,
+                            extra x ticks={-1, 0.3333},
+                            extra x tick labels={$-1$,$1/3$},]]
+                    \addplot[guideline] coordinates {(-1,0) (-1,2)};
+                    \addplot[guideline] coordinates {(0.3333,0) (0.3333,2)};
+                \end{axis}
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+        </figure>
+
+        <p>We now pick a value <m>p</m> in each subinterval and find the sign of <m>\fp(p)</m>. All we care about is the sign, so we do not actually have to fully compute <m>\fp(p)</m>; pick <q>nice</q> values that make this simple.</p>
+
+        <p><dl>
+          <li>
+            <title>Subinterval 1: <m>(-\infty,-1)</m></title>
+            <p>We (arbitrarily) pick <m>p=-2</m>. We can compute <m>\fp(-2)</m> directly: <m>\fp(-2) = 3(-2)^2+2(-2)-1=7>0</m>. We conclude that <m>f</m> is increasing on <m>(-\infty,-1)</m>.</p>
+
+            <p>Note we can arrive at the same conclusion without computation. For instance, we could choose <m>p=-100</m>. The first term in <m>\fp(-100)</m>, i.e., <m>3(-100)^2</m> is clearly positive and very large. The other terms are small in comparison, so we know <m>\fp(-100)>0</m>. All we need is the sign.</p>
+          </li>
+          <li>
+            <title>Subinterval 2: <m>(-1,1/3)</m></title>
+            <p>We pick <m>p=0</m> since that value seems easy to deal with. <m>\fp(0) = -1\lt 0</m>. We conclude <m>f</m> is decreasing on <m>(-1,1/3)</m>.</p>
+          </li>
+          <li>
+            <title>Subinterval 3: <m>(1/3,\infty)</m></title>
+            <p>Pick an arbitrarily large value for <m>p>1/3</m> and note that <m>\fp(p) =3p^2+2p-1 >0</m>. We conclude that <m>f</m> is increasing on <m>(1/3,\infty)</m>.</p>
+          </li>
+        </dl></p>
+
+        <p><xref ref="fig_incrline1a">Figure</xref> summarizes our work.</p>
+
+        <figure xml:id="fig_incrline1a">
+          <caption></caption>
+          <!-- START figures/fig_incrline1.tex -->
+          <image xml:id="img_incrline1a"  width="67%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+                \begin{axis}[numberline,
+                            xmin=-2,xmax=1,
+                            extra x ticks={-1, 0.3333},
+                            extra x tick labels={$-1$,$1/3$},]
+                    \addplot[guideline] coordinates {(-1,0) (-1,2)};
+                    \addplot[guideline] coordinates {(0.3333,0) (0.3333,2)};
+                    \addplot[mark=none] coordinates {(-1.6666,1)} node {\parbox{3em}{\centering \small $\fp>0$\\$f$ incr }};
+                    \addplot[mark=none] coordinates {(-0.3333,1)} node {\parbox{3em}{\centering \small $\fp\lt0$\\$f$ decr }};
+                    \addplot[mark=none] coordinates {(1,1)} node {\parbox{3em}{\centering \small $\fp>0$\\$f$ incr }};
+                \end{axis}
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_incrline1.tex END -->
+        </figure>
+
+        <p>We can verify our calculations by considering <xref ref="fig_incr1">Figure</xref>, where <m>f</m> is graphed. The graph also presents <m>\fp</m>; note how <m>\fp>0</m> when <m>f</m> is increasing and <m>\fp\lt 0</m> when <m>f</m> is decreasing.</p>
+
+        <figure xml:id="fig_incr1" >
+          <caption>A graph of <m>f(x)</m> in <xref ref="ex_incr1">Example</xref>, showing where <m>f</m> is increasing and decreasing.</caption>
+          <!-- START figures/fig_incr1.tex -->
+          <image xml:id="img_incr1"  width="47%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+                \begin{axis}[xmin=-2.2,xmax=2.2,
+                            ymin=-3,ymax=11,
+                            extra x ticks={.33},
+                            extra x tick labels={$1/3$},]
+                  \addplot+[domain=-2:2] {x^3+x^2-x+1} node[pos=0.6, right]{$f(x)$};
+                  \addplot+[domain=-1.8:1.5] {3*x^2+2*x-1} node[pos=0.1, above right] {$\fp(x)$};
+                \end{axis}
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_incr1.tex END -->
+        </figure>
+      </solution>
+    </example>
+
+    <p>One is justified in wondering why so much work is done when the graph seems to make the intervals very clear. We give three reasons why the above work is worthwhile.</p>
+
+    <p>First, the points at which <m>f</m> switches from increasing to decreasing are not precisely known given a graph. The graph shows us something significant happens near <m>x=-1</m> and <m>x=0.3</m>, but we cannot determine exactly where from the graph.</p>
+
+    <p>One could argue that just finding critical values is important; once we know the significant points are <m>x=-1</m> and <m>x=1/3</m>, the graph shows the increasing/decreasing traits just fine. That is true. However, the technique prescribed here helps reinforce the relationship between increasing/decreasing and the sign of <m>\fp</m>. Once mastery of this concept (and several others) is obtained, one finds that either (a) just the critical points are computed and the graph shows all else that is desired, or (b) a graph is never produced, because determining increasing/decreasing using <m>\fp</m> is straightforward and the graph is unnecessary. So our second reason why the above work is worthwhile is this: once mastery of a subject is gained, one has <em>options</em> for finding needed information. We are working to develop mastery.</p>
+
+    <p>Finally, our third reason: many problems we face <q>in the real world</q> are very complex. Solutions are tractable only through the use of computers to do many calculations for us. Computers do not solve problems <q>on their own,</q> however; they need to be taught (i.e., <em>programmed</em>) to do the right things. It would be beneficial to give a function to a computer and have it return maximum and minimum values, intervals on which the function is increasing and decreasing, the locations of relative maxima, etc. The work that we are doing here is easily programmable. It is hard to teach a computer to <q>look at the graph and see if it is going up or down.</q> It is easy to teach a computer to <q>determine if a number is greater than or less than <m>0</m>.</q></p>
+
+    <p>In <xref ref="sec_extreme_values">Section</xref> we learned the definition of relative maxima and minima and found that they occur at critical points. We are now learning that functions can switch from increasing to decreasing (and vice versa) at critical points. This new understanding of increasing and decreasing creates a great method of determining whether a critical point corresponds to a maximum, minimum, or neither. Imagine a function increasing until a critical point at <m>x=c</m>, after which it decreases. A quick sketch helps confirm that <m>f(c)</m> must be a relative maximum. A similar statement can be made for relative minimums. We formalize this concept in a theorem.</p>
+
+    <theorem xml:id="thm_first_der">
+      <title>First Derivative Test</title>
+      <statement>
+        <p>Let <m>f</m> be <em>continuous</em> on an interval <m>I</m>, and differentiable on <m>I</m>, except possibly at <m>c</m>, where <m>c</m> is a critical number in <m>I</m>.<index><main>First Derivative Test</main></index><index><main>derivative</main><sub>First Deriv. Test</sub></index><index><main>extrema</main><sub>and First Deriv. Test</sub></index><index><main>maximum</main><sub>and First Deriv. Test</sub></index><index><main>minimum</main><sub>and First Deriv. Test</sub></index></p>
+
+        <p><ol>
+          <li>
+            <p>If the sign of <m>\fp</m> switches from positive to negative at <m>c</m>, then <m>f(c)</m> is a relative maximum of <m>f</m>.</p>
+          </li>
+
+          <li>
+            <p>If the sign of <m>\fp</m> switches from negative to positive at <m>c</m>, then <m>f(c)</m> is a relative minimum of <m>f</m>.</p>
+          </li>
+
+          <li>
+            <p>If the sign of <m>\fp</m> does not change at <m>c</m>, then <m>f(c)</m> is not a relative extrema of <m>f</m>.</p>
+          </li>
+        </ol></p>
+      </statement>
+    </theorem>
+    <aside>
+      <title>Importance of Continuity</title>
+      <p>The continuity of <m>f</m> when using the first derivative test is very important. Without continuity, almost anything can happen at a critical number. For example, we can construct a piecewise function where the sign of <m>\fp</m> switches to positive to negative at <m>c</m> and <m>f(c)</m> is <em>not</em> a local maximum. This is shown in <xref ref="fig_inc_counter">Figure</xref>.</p>
+
+      <figure xml:id="fig_inc_counter" >
+        <caption>A discontinuous function where <m>\fp</m> changes sign at 1, but <m>f(1)</m> is not a local maximum.</caption>
+        <image xml:id="img_incr_counter"  width="47%">
+          <description></description>
+          <latex-image-code>
+            <![CDATA[
+            \begin{tikzpicture}
+              \begin{axis}[xmin=-1,xmax=3,
+                          ymin=-3,ymax=4,]
+                \addplot+[leftarrow,domain=-.9:1] {x+1};
+                \addplot+[firstcurvestyle,rightarrow,domain=1:2.5] {-1*(x-1)+1};
+                \addplot[soliddot] coordinates{(1,1)};
+                 \addplot[hollowdot] coordinates{(1,2)};
+              \end{axis}
+            \end{tikzpicture}
+            ]]>
+          </latex-image-code>
+        </image>
+        <!-- figures/fig_incr1.tex END -->
+      </figure>
+    </aside>
+
+    <example xml:id="ex_incr2">
+      <title>Using the First Derivative Test</title>
+      <statement>
+        <p>Find the intervals on which <m>f</m> is increasing and decreasing, and use the <xref ref="thm_first_der">First Derivative Test</xref> to determine the relative extrema of <m>f</m>, where
+          <me>
+            f(x) = \frac{x^2+3}{x-1}
+          </me>.
+        </p>
+      </statement>
+      <solution>
+        <p>We start by noting the domain of <m>f</m>: <m>(-\infty,1)\cup(1,\infty)</m>. </p>
+
+        <p>Since <m>f</m> is not defined at <m>x=1</m> (it has a vertical asymptote), the increasing/decreasing nature of <m>f</m> could switch at this value. We know that <m>\fp(1)</m> will be undefined since <m>f</m> is discontinuous at <m>1</m>. We do not formally consider <m>x=1</m> to be a critical value of <m>f</m>, but we will use <m>1</m> to subdivide the real number line.</p>
+
+        <p>Using the <xref ref="thm_QuotientRule">Quotient Rule</xref>, we find
+          <me>
+            \fp(x) = \frac{x^2-2x-3}{(x-1)^2}
+          </me>.
+        </p>
+
+        <p>We need to find the critical values of <m>f</m>; we want to know when <m>\fp(x)=0</m> and when <m>\fp</m> is not defined. That latter is straightforward: when the denominator of <m>\fp(x)</m> is <m>0</m>, <m>\fp</m> is undefined. That occurs when <m>x=1</m>, which we've already recognized as an important value, but not a critical number.</p>
+
+        <p><m>\fp(x)=0</m> when the numerator of <m>\fp(x)</m> is <m>0</m>. That occurs when <m>x^2-2x-3 = (x-3)(x+1) = 0</m>; i.e., when <m>x=-1,3</m>.</p>
+
+        <p>We have found that <m>f</m> has two critical numbers, <m>x=-1,3</m>, and at <m>x=1</m> something important might also happen. These three numbers divide the real number line into four subintervals:
+          <me>
+            (-\infty,-1),  (-1, 1),  (1,3),  \text{ and }   (3,\infty).
+          </me>
+        </p>
+
+        <p>Pick a number <m>p</m> from each subinterval and test the sign of <m>\fp</m> at <m>p</m> to determine whether <m>f</m> is increasing or decreasing on that interval. Again, we do well to avoid complicated computations; notice that the denominator of <m>\fp</m> is <em>always</em> positive so we can ignore it during our work.</p>
+
+        <p><dl>
+          <li>
+            <title>Interval 1: <m>(-\infty,-1)</m></title>
+            <p>Choosing a very small number (i.e., a negative number with a large magnitude) <m>p</m> returns <m>p^2-2p-3</m> in the numerator of <m>\fp</m>; that will be positive. Hence <m>f</m> is increasing on <m>(-\infty,-1)</m>.</p>
+          </li>
+          <li>
+            <title>Interval 2: <m>(-1,1)</m></title>
+            <p>Choosing <m>0</m> seems simple: <m>\fp(0)=-3\lt 0</m>. We conclude <m>f</m> is decreasing on <m>(-1,1)</m>.</p>
+          </li>
+          <li>
+            <title>Interval 3: <m>(1,3)</m></title>
+            <p>Choosing <m>2</m> seems simple: <m>\fp(2) = -3\lt 0</m>. Again, <m>f</m> is decreasing.</p>
+          </li>
+          <li>
+            <title>Interval 4: <m>(3,\infty)</m></title>
+            <p>Choosing an very large number <m>p</m> from this subinterval will give a positive numerator and (of course) a positive denominator. So <m>f</m> is increasing on <m>(3,\infty)</m>.</p>
+          </li>
+        </dl></p>
+
+        <p>In summary, <m>f</m> is increasing on the intervals <m>(-\infty,-1)</m> and <m>(3,\infty)</m> and is decreasing on the intervals <m>(-1,1)</m> and <m>(1,3)</m>. Since at <m>x=-1</m>, the sign of <m>\fp</m> switched from positive to negative, <xref ref="thm_first_der">Theorem</xref> states that <m>f(-1)</m> is a relative maximum of <m>f</m>. At <m>x=3</m>, the sign of <m>\fp</m> switched from negative to positive, meaning <m>f(3)</m> is a relative minimum. At <m>x=1</m>, <m>f</m> is not defined, so there is no relative extremum at <m>x=1</m>. As previously stated, <m>x=1</m> is a vertical asymptote of <m>f</m>.</p>
+
+        <figure xml:id="fig_incrline2">
+          <caption></caption>
+          <!-- START figures/fig_incrline2.tex -->
+          <image xml:id="img_incrline2"  width="67%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+                \begin{axis}[numberline,
+                            xmin=-3,xmax=5,
+                            extra x ticks={-1, 1, 3},
+                            extra x tick labels={$-1$,$1$, $3$},]
+                    \addplot[guideline] coordinates {(-1,0) (-1,2)};
+                    \addplot[guideline] coordinates {(1,0) (1,2)};
+                    \addplot[guideline] coordinates {(3,0) (3,2)};
+                    \addplot[mark=none] coordinates {(-2,1)} node {\parbox{3em}{\centering \small  $\fp>0$\\$f$ incr }};
+                    \addplot[mark=none] coordinates {(0,1)} node {\parbox{3em}{\centering \small  $\fp\lt0$\\$f$ decr }};
+                    \addplot[mark=none] coordinates {(2,1)} node {\parbox{3em}{\centering \small  $\fp\lt0$\\$f$ decr }};
+                    \addplot[mark=none] coordinates {(4,1)} node {\parbox{3em}{\centering \small  $\fp>0$\\$f$ incr }};
+                    \addplot[mark=none] coordinates {(-1,2)} node[above] {\parbox{3em}{\centering \small  rel\\max}};
+                    \addplot[mark=none] coordinates {(1,2)} node[above] {\parbox{3em}{\centering \small  VA}};
+                    \addplot[mark=none] coordinates {(3,2)} node[above] {\parbox{3em}{\centering \small  rel\\min}};
+                \end{axis}
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_incrline2.tex END -->
+        </figure>
+
+        <p>This is summarized in the number line shown in <xref ref="fig_incrline2">Figure</xref>. Also, <xref ref="fig_incr2">Figure</xref> shows a graph of <m>f</m>, confirming our calculations. This figure also shows <m>\fp</m>, again demonstrating that <m>f</m> is increasing when <m>\fp>0</m> and decreasing when <m>\fp\lt 0</m>.</p>
+
+        <figure xml:id="fig_incr2" >
+          <caption>A graph of <m>f(x)</m> in <xref ref="ex_incr2">Example</xref>, showing where <m>f</m> is increasing and decreasing.</caption>
+          <!-- START figures/fig_incr2.tex -->
+          <image xml:id="img_incr2"  width="47%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+                \begin{axis}[xmin=-4.2,xmax=4.2,
+                            ymin=-21,ymax=21,]
+                  \addplot[firstcurvestyle,domain=-4:.8,samples=40] {(x^2+3)/(x-1)};
+                  \addplot[firstcurvestyle,domain=1.25:4] {(x^2+3)/(x-1)} node[pos=0.2,right]{$f(x)$};
+                  \addplot[secondcurvestyle,domain=-4:.5,samples=40] {(x^2-2*x-3)/((x-1)^2)} node[pos=0.05,above]{$\fp(x)$};
+                  \addplot[secondcurvestyle,domain=1.5:4] {(x^2-2*x-3)/((x-1)^2)} ;
+                \end{axis}
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_incr2.tex END -->
+        </figure>
+      </solution>
+    </example>
+
+    <p>One is often tempted to think that functions always alternate <q>increasing, decreasing, increasing, decreasing,<ellipsis /></q> around critical values. Our previous example demonstrated that this is not always the case. While <m>x=1</m> was not technically a critical value, it was an important value we needed to consider. We found that <m>f</m> was decreasing on <q>both sides of <m>x=1</m>.</q></p>
+
+    <p>We examine one more example.</p>
+
+    <example xml:id="ex_incr3">
+      <title>Using the First Derivative Test</title>
+      <statement>
+        <p>Find the intervals on which <m>f(x) = x^{8/3}-4x^{2/3}</m> is increasing and decreasing and identify the relative extrema.</p>
+      </statement>
+      <solution>
+        <p>The domain of <m>f</m> is <m>\mathbb{R}</m> (you can take the odd root of both positive and negative nubmers). Next, we take the first derivative. Since we know we want to solve <m>\fp(x) = 0</m>, we will do some algebra after taking derivatives.
+          <md>
+            <mrow>f(x) \amp = x^{\frac{8}{3}}-4x^{\frac{2}{3}}</mrow>
+            <mrow>\fp(x) \amp = \frac{8}{3} x^{\frac{5}{3}} - \frac{8}{3}x^{-\frac{1}{3}}</mrow>
+            <mrow>\amp = \frac{8}{3}x^{-\frac{1}{3}}\left(x^{\frac{6}{3}}-1\right)</mrow>
+            <mrow>\amp =\frac{8}{3}x^{-\frac{1}{3}}\left(x^2-1\right)</mrow>
+            <mrow>\amp =\frac{8}{3}x^{-\frac{1}{3}}(x-1)(x+1)</mrow>
+          </md>.
+        </p>
+
+        <p>This derivation of <m>\fp</m> shows that <m>\fp(x) = 0</m> when <m>x=\pm 1</m> and <m>\fp</m>is not defined when <m>x=0</m>. Thus we have three critical values, breaking the number line into four subintervals as shown in <xref ref="fig_incrline3">Figure</xref>.</p>
+
+        <p><dl>
+          <li>
+            <title>Interval 1: <m>(\infty,-1)</m></title>
+            <p>We choose <m>p=-2</m>; we can easily verify that <m>\fp(-2)\lt 0</m>. So <m>f</m> is decreasing on <m>(-\infty,-1)</m>.</p>
+          </li>
+
+          <li>
+            <title>Interval 2: <m>(-1,0)</m></title>
+            <p>Choose <m>p=-1/2</m>. Once more we practice finding the sign of <m>\fp(p)</m> without computing an actual value. We have <m>\fp(p) = (8/3)p^{-1/3}(p-1)(p+1)</m>; find the sign of each of the three terms at the chosen value of <m>p</m>.
+              <me>
+                \fp(p) = \frac{8}{3} \cdot \underbrace{p^{-\frac{1}{3}}}_{\lt 0}\cdot \underbrace{(p-1)}_{\lt 0}\underbrace{(p+1)}_{>0}.
+              </me>
+            </p>
+
+            <p>We have a <q>negative <times /> negative <times /> positive</q> giving a positive number; <m>f</m> is increasing on <m>(-1,0)</m>.</p>
+          </li>
+
+          <li>
+            <title>Interval 3: <m>(0,1)</m></title>
+            <p>We do a similar sign analysis as before, using <m>p</m> in <m>(0,1)</m>.
+              <me>
+                \fp(p) = \frac{8}{3} \cdot \underbrace{p^{-\frac{1}{3}}}_{>0}\cdot \underbrace{(p-1)}_{\lt 0}\underbrace{(p+1)}_{>0}.
+              </me>
+            </p>
+
+            <p>We have two positive factors and one negative factor; <m>\fp(p)\lt 0</m> and so <m>f</m> is decreasing on <m>(0,1)</m>.</p>
+          </li>
+
+          <li>
+            <title>Interval 4: <m>(1,\infty)</m></title>
+            <p>Similar work to that done for the other three intervals shows that <m>\fp(x)>0</m> on <m>(1,\infty)</m>, so <m>f</m> is increasing on this interval.</p>
+          </li>
+        </dl></p>
+
+        <figure xml:id="fig_incrline3">
+          <!-- START figures/fig_incrline3.tex -->
+          <image xml:id="img_incrline3"  width="67%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+                \begin{axis}[numberline,
+                            xmin=-2,xmax=2,
+                            extra x ticks={-1, 0, 1},
+                            extra x tick labels={$-1$,$0$, $1$},]
+                    \addplot[guideline] coordinates {(-1,0) (-1,2)};
+                    \addplot[guideline] coordinates {(0,0) (0,2)};
+                    \addplot[guideline] coordinates {(1,0) (1,2)};
+                    \addplot[mark=none] coordinates {(-1.5,1)} node {\parbox{3em}{\centering \small $\fp\lt0$\\$f$ decr }};
+                    \addplot[mark=none] coordinates {(-0.5,1)} node {\parbox{3em}{\centering \small $\fp>0$\\$f$ incr }};
+                    \addplot[mark=none] coordinates {(0.5,1)}  node {\parbox{3em}{\centering \small $\fp\lt0$\\$f$ decr }};
+                    \addplot[mark=none] coordinates {(1.5,1)}  node {\parbox{3em}{\centering \small $\fp>0$\\$f$ incr }};
+                    \addplot[mark=none] coordinates {(-1,2)} node[above] {\parbox{3em}{\centering \small rel\\min}};
+                    \addplot[mark=none] coordinates {(0,2)} node[above] {\parbox{3em}{\centering \small rel\\max}};
+                    \addplot[mark=none] coordinates {(1,2)} node[above] {\parbox{3em}{\centering \small rel\\min}};
+                \end{axis}
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_incrline3.tex END -->
+        </figure>
+
+        <p>We conclude by stating that <m>f</m> is increasing on <m>(-1,0)</m> and <m>(1,\infty)</m> and decreasing on <m>(-\infty,-1)</m> and <m>(0,1)</m>. The sign of \fp<nbsp />changes from negative to positive around <m>x=-1</m> and <m>x=1</m>, meaning by <xref ref="thm_first_der">Theorem</xref> that <m>f(-1)</m> and <m>f(1)</m> are relative minima of <m>f</m>. As the sign of <m>\fp</m> changes from positive to negative at <m>x=0</m>, we have a relative maximum at <m>f(0)</m>. <xref ref="fig_incr3">Figure</xref> shows a graph of <m>f</m>, confirming our result. We also graph <m>\fp</m>, highlighting once more that <m>f</m> is increasing when <m>\fp>0</m> and is decreasing when <m>\fp\lt 0</m>.</p>
+
+        <figure xml:id="fig_incr3" >
+          <caption>A graph of <m>f(x)</m> in <xref ref="ex_incr3">Example</xref>, showing where <m>f</m> is increasing and decreasing.</caption>
+          <!-- START figures/fig_incr3.tex -->
+          <image xml:id="img_incr3"  width="47%">
+            <description></description>
+            <latex-image-code>
+              <![CDATA[
+              \begin{tikzpicture}
+                \begin{axis}[xmin=-3.2,xmax=3.2,
+                            ymin=-5,ymax=11,]
+                  \addplot+[rightarrow,domain=0.0001:3,samples=50] {x^(8/3)-4*x^(2/3)};
+                  \addplot[firstcurvestyle,leftarrow,domain=-3:-0.001,samples=50] {(-x)^(8/3)-4*(-x)^(2/3)} node[pos=0.1, above right]{$f(x)$};
+                  \addplot[secondcurvestyle,domain=0.2:2,samples=50] {(8*(x^2 - 1))/(3 *x^(1/3))} node[pos=0.7,left] {$\fp(x)$};
+                  \addplot[secondcurvestyle,domain=-2:-0.2,samples=50] {(8*((-x)^2 - 1))/(3 *(-x)^(1/3))};
+                \end{axis}
+              \end{tikzpicture}
+              ]]>
+            </latex-image-code>
+          </image>
+          <!-- figures/fig_incr3.tex END -->
+        </figure>
+      </solution>
+    </example>
+
+    <p>We have seen how the first derivative of a function helps determine when the function is going <q>up</q> or <q>down.</q> In the next section, we will see how the second derivative helps determine how the graph of a function curves.</p>
+
+  
+<todo>Update exercises/solutions to reflect new terminology (inc/dec) as well as reworked theorems)</todo>
+  <exercises>
+    <exercisegroup>
+      <introduction>
+        <p>Terms and Concepts</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>In your own words describe what it means for a function to be increasing.</p>
+          </statement>
+          <solution>
+            <p>Answers will vary.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>What does a decreasing function <q>look like</q>?</p>
+          </statement>
+          <solution>
+            <p>Answers will vary.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Sketch a graph of a function on <m>[0,2]</m> that is increasing but not strictly increasing.</p>
+          </statement>
+          <solution>
+            <p>Answers will vary.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Give an example of a function describing a situation where it is <q>bad</q> to be increasing and <q>good</q> to be decreasing.</p>
+          </statement>
+          <solution>
+            <p>Answers will vary.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>A function <m>f</m> has derivative <m>\fp(x) = (\sin(x) +2)e^{x^2+1}</m>, where <m>\fp(x) >1</m> for all <m>x</m>. Is <m>f</m> increasing, decreasing, or can we not tell from the given information?</p>
+          </statement>
+          <solution>
+            <p>Increasing</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, a function <m>f(x)</m> is given.</p>
+
+        <p><ol label="a">
+          <li>
+            <p>Compute <m>\fp(x)</m>.</p>
+          </li>
+          <li>
+            <p>Graph <m>f</m> and <m>\fp</m> on the same axes (using technology is permitted) and verify <xref ref="thm_incr_decr">Theorem</xref>.</p>
+          </li>
+        </ol></p>
+      </introduction>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = 2x+3</m></p>
+          </statement>
+          <solution>
+            <p>Graph and verify.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = x^2-3x+5</m></p>
+          </statement>
+          <solution>
+            <p>Graph and verify.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = \cos(x)</m></p>
+          </statement>
+          <solution>
+            <p>Graph and verify.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = \tan(x)</m></p>
+          </statement>
+          <solution>
+            <p>Graph and verify.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = x^3-5x^2+7x-1</m></p>
+          </statement>
+          <solution>
+            <p>Graph and verify.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) = 2x^3-x^2+x-1</m></p>
+          </statement>
+          <solution>
+            <p>Graph and verify.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>f(x) =x^4-5x^2+4</m></p>
+          </statement>
+          <solution>
+            <p>Graph and verify.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) =\frac{1}{x^2+1}</m></p>
+          </statement>
+          <solution>
+            <p>Graph and verify.</p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+
+    <exercisegroup>
+      <introduction>
+        <p>In the following exercises, a function <m>f(x)</m> is given.</p>
+
+        <p><ol label="a">
+          <li>
+            <p>Give the domain of <m>f</m>.</p>
+          </li>
+
+          <li>
+            <p>Find the critical numbers of <m>f</m>.</p>
+          </li>
+
+          <li>
+            <p>Create a number line to determine the intervals on which <m>f</m> is increasing and decreasing.</p>
+          </li>
+
+          <li>
+            <p>Use the First Derivative Test to determine whether each critical point is a relative maximum, minimum, or neither.</p>
+          </li>
+        </ol></p>
+      </introduction>
+
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) =x^2+2x-3</m></p>
+          </statement>
+          <solution>
+            <p>domain: <m>(-\infty,\infty)</m></p>
+
+            <p>c.p. at <m>c=-1</m>;</p>
+
+            <p>decreasing on <m>(-\infty,-1)</m>;</p>
+
+            <p>increasing on <m>(-1,\infty)</m>;</p>
+
+            <p>rel. min at <m>x=-1</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) =x^3+3x^2+3</m></p>
+          </statement>
+          <solution>
+            <p>domain=<m>(-\infty,\infty)</m></p>
+
+            <p>c.p. at <m>c=-2,0</m>;</p>
+
+            <p>increasing on <m>(-\infty,-2)\cup (0,\infty)</m>;</p>
+
+            <p>decreasing on <m>(-2,0)</m>;</p>
+
+            <p>rel. min at <m>x=0</m>;</p>
+
+            <p>rel. max at <m>x=-2</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) =2 x^3+x^2-x+3</m></p>
+          </statement>
+          <solution>
+            <p>domain=<m>(-\infty,\infty)</m></p>
+
+            <p>c.p. at <m>c=\frac16(-1\pm\sqrt{7})</m>;</p>
+
+            <p>decreasing on <m>(\frac16(-1-\sqrt{7}),\frac16(-1+\sqrt{7})))</m>;</p>
+
+            <p>increasing on <m>(-\infty,\frac16(-1-\sqrt{7})) \cup (\frac16(-1+\sqrt{7}),\infty)</m>;</p>
+
+            <p>rel. min at <m>x=\frac16(-1+\sqrt{7})</m>;</p>
+
+            <p>rel. max at <m>x=\frac16(-1-\sqrt{7})</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) =x^3-3x^2+3x-1</m></p>
+          </statement>
+          <solution>
+            <p>domain=<m>(-\infty,\infty)</m></p>
+
+            <p>c.p. at <m>c=1</m>;</p>
+
+            <p>increasing on <m>(-\infty,\infty)</m>;</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) =\frac{1}{x^2-2x+2}</m></p>
+          </statement>
+          <solution>
+            <p>domain=<m>(-\infty,\infty)</m></p>
+
+            <p>c.p. at <m>c=1</m>;</p>
+
+            <p>decreasing on <m>(1,\infty)</m></p>
+
+            <p>increasing on <m>(-\infty,1)</m>;</p>
+
+            <p>rel. max at <m>x=1</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) =\frac{x^2-4}{x^2-1}</m></p>
+          </statement>
+          <solution>
+            <p>domain=<m>(-\infty,-1)\cup(-1,1)\cup(1,\infty)</m></p>
+
+            <p>c.p. at <m>c=0</m>;</p>
+
+            <p>decreasing on <m>(-\infty,-1)\cup (-1,0)</m>;</p>
+
+            <p>increasing on <m>(0,1)\cup (1,\infty)</m>;</p>
+
+            <p>rel. min at <m>x=0</m>;</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) =\frac{x}{x^2-2x-8}</m></p>
+          </statement>
+          <solution>
+            <p>domain=<m>(-\infty,-2)\cup(-2,4)\cup(4,\infty)</m></p>
+
+            <p>no c.p.;</p>
+
+            <p>decreasing on entire domain, <m>(-\infty,-2)\cup(-2,4)\cup(4,\infty)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) =\frac{(x-2)^{2/3}}{x}</m></p>
+          </statement>
+          <solution>
+            <p>domain=<m>(-\infty,0)\cup(0,\infty)</m>;</p>
+
+            <p>c.p. at <m>c=2,6</m>;</p>
+
+            <p>decreasing on <m>(-\infty,0)\cup (0,2)\cup(6,\infty)</m>;</p>
+
+            <p>increasing on <m>(2,6)</m>;</p>
+
+            <p>rel. min at <m>x=2</m>;
+              rel. max at <m>x=6</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) =\sin(x) \cos(x)</m> on <m>(-\pi,\pi)</m>.</p>
+          </statement>
+          <solution>
+            <p>domain=<m>(-\infty,\infty)</m></p>
+
+            <p>c.p. at <m>c=-3\pi/4,-\pi/4,\pi/4,3\pi/4</m>;</p>
+
+            <p>decreasing on <m>(-3\pi/4,-\pi/4) \cup (\pi/4,3\pi/4)</m>;</p>
+
+            <p>increasing on <m>(-\pi,-3\pi/4)\cup (-\pi/4,\pi/4) \cup (3\pi/4,\pi)</m>;</p>
+
+            <p>rel. min at <m>x=-\pi/4,3\pi/4</m>;</p>
+
+            <p>rel. max at <m>x=-3\pi/4,\pi/4</m>.</p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p><m>\ds f(x) =x^5-5x</m></p>
+          </statement>
+          <solution>
+            <p>domain = <m>(-\infty,\infty)</m>;</p>
+
+            <p>c.p. at <m>c=-1,1</m>;</p>
+
+            <p>decreasing on <m>(-1,1)</m>;</p>
+
+            <p>increasing on <m>(-\infty,-1) \cup (1,\infty)</m>;</p>
+
+            <p>rel. min at <m>x=1</m>;</p>
+
+            <p>rel. max at <m>x=-1</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+    <exercisegroup>
+      <introduction>
+        <p>Review</p>
+      </introduction>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Consider <m>f(x) = x^2-3x+5</m> on <m>[-1,2]</m>; find <m>c</m> guaranteed by the Mean Value Theorem.</p>
+          </statement>
+          <solution>
+            <p><m>c=1/2</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+      <exercise>
+        <webwork seed="1">
+          <setup>
+            <var name="">
+              <static></static>
+            </var>
+            <pg-code>
+            </pg-code>
+          </setup>
+          <statement>
+            <p>Consider <m>f(x) = \sin(x)</m> on <m>[-\pi/2,\pi/2]</m>; find <m>c</m> guaranteed by the Mean Value Theorem.</p>
+          </statement>
+          <solution>
+            <p><m>c=\pm \cos^{-1}(2/\pi)</m></p>
+          </solution>
+        </webwork>
+      </exercise>
+    </exercisegroup>
+  </exercises>
+</section>

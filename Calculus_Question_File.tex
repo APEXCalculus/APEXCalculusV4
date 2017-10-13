@@ -1,0 +1,133 @@
+% Calc 1 C 10737424946
+% Calc 1 BW 10737424947
+% Calc 2 C 10737424948
+% Calc 2 BW 10737424949
+% Calc C 10737424952
+% Calc BW 10737424951
+
+\RequirePackage{ifthen}
+\newboolean{longpage}
+\setboolean{longpage}{false}
+\ifthenelse{\boolean{longpage}}%
+{\documentclass[10pt]{article}}%
+{\documentclass[10pt]{book}}
+
+\newboolean{printlabelname}
+\setboolean{printlabelname}{false}
+\ifthenelse{\boolean{printlabelname}}{\usepackage[notref,notcite]{showkeys}}{}
+
+\usepackage{xr}
+\externaldocument{Calculus}
+
+%% end detour
+%\usepackage{amsmath}
+
+\input{headers/Page_Size_Calculus}
+\usepackage{APEX_format}
+\input{headers/Header_Calculus}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.8}
+
+\printexercisenames
+
+\ifthenelse{\boolean{xetex}}%
+	{\sffamily
+	%%\usepackage{fontspec}
+	\usepackage{mathspec}
+	\setallmainfonts[Mapping=tex-text]{Calibri}
+	\setmainfont[Mapping=tex-text]{Calibri}
+	\setsansfont[Mapping=tex-text]{Calibri}
+	\setmathsfont(Greek){[cmmi10]}}
+	{}
+	
+	\ifthenelse{\boolean{luatex}}%
+	{\sffamily
+	\usepackage{fontspec}
+	\usepackage{unicode-math}
+	%\usepackage{mathspec}
+	%\setallmainfonts[Mapping=tex-text]{Calibri}
+	\setmainfont{Calibri}
+	%\setsansfont[Mapping=tex-text]{Calibri}
+	\setmathfont[range=\mathup]{Calibri}
+	\setmathfont[range=\mathit]{Calibri Italic}
+	}
+	{}
+
+\makeindex
+
+%\renewcommand{\contentsname}{Contents of Calculus I \& II}
+
+%%%\tracingonline=1
+\begin{document}
+
+%\printincolor
+\printinblackandwhite
+\printallanswers
+
+\usethreeDgraphics
+%\usetwoDgraphics
+
+\input{exercises/All_Questions}
+%\setcounter{chapter}{1}
+%\setcounter{section}{1}
+%\printexercises{exercises/01_01_exercises}
+%\addtocounter{section}{2}
+%01_01_exercises.tex 
+%01_02_exercises.tex 
+%01_03_exercises.tex 
+%01_04_exercises.tex 
+%01_05_exercises.tex 
+%01_06_exercises.tex 
+%02_01_exercises.tex 
+%02_02_exercises.tex 
+%02_03_exercises.tex 
+%02_04_exercises.tex 
+%02_05_exercises.tex 
+%02_06_exercises.tex 
+%02_07_exercises.tex 
+%03_01_exercises.tex 
+%03_02_exercises.tex 
+%03_03_exercises.tex 
+%03_04_exercises.tex 
+%03_05_exercises.tex 
+%04_01_exercises.tex 
+%04_02_exercises.tex 
+%04_03_exercises.tex 
+%04_04_exercises.tex 
+%05_01_exercises.tex 
+%05_02_exercises.tex 
+%05_03_exercises.tex 
+%05_04_exercises.tex 05_05_exercises.tex 
+%06_01_exercises.tex 06_02_exercises.tex 06_03_exercises.tex 
+%06_04_exercises.tex 06_05_exercises.tex 06_06_exercises.tex 
+%06_07_exercises.tex 06_08_exercises.tex 07_01_exercises.tex 
+%07_02_exercises.tex 07_03_exercises.tex 07_04_exercises.tex 
+%07_05_exercises.tex 07_06_exercises.tex 08_01_exercises.tex 
+%08_02_exercises.tex 08_03_exercises.tex 08_04_exercises.tex 
+%08_05_exercises.tex 08_06_exercises.tex 08_07_exercises.tex 
+%08_08_exercises.tex 09_01_exercises.tex 09_02_exercises.tex 
+%09_03_exercises.tex 09_04_exercises.tex 09_05_exercises.tex 
+%10_01_exercises.tex 10_02_exercises.tex 10_03_exercises.tex 
+%10_04_exercises.tex 10_05_exercises.tex 10_06_exercises.tex 
+%11_01_exercises.tex 11_02_exercises.tex 11_03_exercises.tex 
+%11_04_exercises.tex 11_05_exercises.tex 12_01_exercises.tex 
+%12_02_exercises.tex 12_03_exercises.tex 12_04_exercises.tex 
+%12_05_exercises.tex 12_06_exercises.tex 12_07_exercises.tex 
+%12_08_exercises.tex 13_01_exercises.tex 13_02_exercises.tex 
+%13_03_exercises.tex 13_04_exercises.tex 13_05_exercises.tex 
+%13_06_exercises.tex
+
+
+
+%
+\appendix
+\clearpage{\pagestyle{empty}\cleardoublepage}
+\pagenumbering{arabic}\renewcommand{\thepage}{A.\arabic{page}}
+\makeexercisesection{Solutions To Selected Problems}
+
+
+
+
+
+\end{document}
+

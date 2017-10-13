@@ -1,0 +1,12 @@
+[FormatInfo]
+Type=TeXnicCenterProjectInformation
+Version=4
+
+[ProjectInfo]
+MainFile=asymptote_figures.tex
+UseBibTeX=0
+UseMakeIndex=0
+ActiveProfile=Asy pdf
+ProjectLanguage=en
+ProjectDialect=US
+
