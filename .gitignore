@@ -19,3 +19,8 @@
 #*.log
 *.tmp
 *.tps
+#
+## Don't skip these files
+!CalculusI.aux
+!CalculusII.aux
+!CalculusIII.aux
