@@ -56,7 +56,7 @@ We  let $x=u$ and $y=v$, and let $\vec r(u,v) = \langle u,v, f(u,v)\rangle$. In 
 
 }\\
 
-\example{ex_parsurf2}{Parameterizing a surface over a circle}
+\example{ex_parsurf2}{Parameterizing a surface over a circular disk}
 {Parametrize the surface $z=x^2+2y^2$ over the circular region $R$ enclosed by the circle of radius 2 that is centered at the origin.
 }
 {We can parametrize the circular boundary of $R$ with the vector--valued function $\la 2\cos u,2\sin u\ra$, where $0\leq u\leq 2\pi$. We can obtain the interior of $R$ by scaling this function by a variable amount, i.e., by multiplying by $v$: $\la 2v\cos u,2v\sin u\ra$, where $0\leq v\leq 1$. 
@@ -316,7 +316,7 @@ $$S = \iint_\surfaceS\ dS = \iint_R \snorm{\vec r_u\times \vec r_v}\ dA.$$
 %\mnote{.4}{\textbf{Note:} In Definition \ref{def:surfacearea}, the surface area differential of a surface given in the form $z=f(x,y)$ is defined to be $dS = \sqrt{1+f_x^2+f_y^2}\ dA$. We can use this differential in this and subsequent sections, though 
 
 \example{ex_parsurfarea1}{Finding the surface area of a parametrized surface}
-{Using the parametrization found in Example \ref{ex_parsurf2}, find the surface area of $z=x^2+2y^2$ over the circle of radius 2, centered at the origin.
+{Using the parametrization found in Example \ref{ex_parsurf2}, find the surface area of $z=x^2+2y^2$ over the circular disk of radius 2, centered at the origin.
 }
 {In Example \ref{ex_parsurf2}, we parametrized the surface as $\vec r(u,v) = \la 2v\cos u, 2v\sin u, 4v^2\cos^2u+8v^2\sin^2u\ra$, for $0\leq u\leq 2\pi$, $0\leq v\leq 1$. To find the surface area using Theorem \ref{thm:par_surface_area}, we need $\snorm{\vec r_u\times\vec r_v}$. We find:
 \begin{align*}
