@@ -1,10 +1,35 @@
+%%
+%%  Look for REVISIT to find places where changes may/not have been made
+%$  and revisiting is needed.
+%%
+
 Math errors:
 1.2 Example7 para-1 line1: $\delta=\leq\frac\epsilon5$.
+% Fixed before 10/16/17; changed to \delta = \frac\epsilon/5
+% Check mbx
+
 2.4 Exercise33: g(0)=1, so the tangent line is $y = -9x+1$ and the normal line is $y = x/9+1$
+% Fixed before 10/16/17  Problem statment has point (0,1).
+% Check mbx   Reference .tex
+
 2.6 eq 2.1 three extra )
+% Fixed on 10/16/17
+% check mbx    Need to delete 3(?) instances of extra ')'
+
 3.1 p127 example81: the continuity of $f$ should be noted somewhere, somehow
+% Fixed on 10/16/17 by adding note to check continuity at break
+% check mbx   reference .tex
+
 3.1 p128 example82 para4 L-1: “The only values to fall in the given interval … are $0$ and $\pm\pi$,”
+% Fixed on 10/16/17   Changed a \ldots to ``etc.'' (see .tex)
+%                     Changed wording at end of that paragraph
+% check mbx    reference .tex
+
 3.3 p139 Th30.3: Assumes that $\fp\neq0$ around $c$.  We’ve changed it to “is positive before and after”, and added a #4 with “negative”.
+% REVISIT  Not sure this is right. If \fp=0 near c, then we have another
+% critical number ... think on it.
+% no change to mbx yet
+
 5.3 p219 example122 para-1 L-4: “partition size” isn’t defined until p223 (and not with the words “partition size”)
 7.4 p373 second displayed equation should have $f’(c_i)^2$
 
