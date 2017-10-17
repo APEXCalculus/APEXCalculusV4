@@ -159,7 +159,7 @@ We practice again.\\
 \example{ex_extval5}{Finding extreme values}{
 Find the maximum and minimum values of $f$ on $[-4,2]$, where $$f(x) = \left\{\begin{array}{cc} (x-1)^2 & x\leq 0 \\ x+1 & x>0 \end{array}\right. .$$
 }
-{Here $f$ is piecewise--defined, but we can still apply Key Idea \ref{idea:extrema}. Evaluating $f$ at the endpoints gives: 
+{Here $f$ is piecewise--defined, but we can still apply Key Idea \ref{idea:extrema} as it is continuous on $[-4,2]$ (one should check to verify that $\ds\lim_{x\to0}f(x) =f(0)$). Evaluating $f$ at the endpoints gives: 
 $$ f(-4) = 25 \quad \text{and} \quad f(2) = 3.$$
 
 We now find the critical numbers of $f$. We have to define $\fp$ in a piecewise manner; it is $$\fp(x) =\left\{\begin{array}{cc} 2(x-1) & x < 0 \\ 1 & x>0 \end{array}\right. .$$ Note that while $f$ is defined for all of $[-4,2]$, $\fp$ is not, as the derivative of $f$ does not exist when $x=0$. (From the left, the derivative approaches $-2$; from the right the derivative is 1.) Thus one critical number of $f$ is $x=0$.
@@ -177,7 +177,7 @@ Find the extrema of  $f(x) = \cos (x^2)$ on $[-2,2]$.}
 
 Applying the Chain Rule, we find $\fp(x) = -2x\sin (x^2)$. Set $\fp(x) = 0$ and solve for $x$ to find the critical values of $f$. 
 
-We have $\fp(x) = 0$ when $x = 0$ and when $\sin (x^2) = 0$. In general, $\sin t = 0$ when $t = \ldots -2\pi, -\pi, 0, \pi, \ldots$ Thus $\sin (x^2) = 0$ when $x^2 = 0, \pi, 2\pi, \ldots$ ($x^2$ is always positive so we ignore $-\pi$, etc.) So $\sin (x^2)=0$ when $x= 0, \pm \sqrt{\pi}, \pm\sqrt{2\pi}, \ldots$. The only values to fall in the given interval of $[-2,2]$ are $-\sqrt{\pi}$ and $\sqrt{\pi}$, approximately $\pm 1.77$.
+We have $\fp(x) = 0$ when $x = 0$ and when $\sin (x^2) = 0$. In general, $\sin t = 0$ when $t = \ldots -2\pi, -\pi, 0, \pi, \ldots$ Thus $\sin (x^2) = 0$ when $x^2 = 0, \pi, 2\pi, \ldots$ ($x^2$ is always positive so we ignore $-\pi$, etc.) So $\sin (x^2)=0$ when $x= 0, \pm \sqrt{\pi}, \pm\sqrt{2\pi},$ etc. The only values to fall in the given interval of $[-2,2]$ are $0$ and $\pm\sqrt{\pi}$, where $\sqrt{\pi} \approx 1.77$.
 
 We again construct a table of important values in Figure \ref{table:ext6}. In this example we have 5 values to consider: $x= 0, \pm 2, \pm\sqrt{\pi}$. 
 
