@@ -14,7 +14,7 @@ We start by approximating. We can surround the region with a rectangle with heig
 
 We have an approximation of the area, using one rectangle. How can we refine our approximation to make it better? The key to this section is this answer: \textit{use more rectangles.}
 
-Let's use 4 rectangles of equal width of 1. This \textit{partitions} the interval $[0,4]$ into 4 \textit{subintervals}, $[0,1]$, $[1,2]$, $[2,3]$ and $[3,4]$. On each subinterval we will draw a rectangle.
+Let's use 4 rectangles with an equal width of 1. This \textit{partitions} the interval $[0,4]$ into 4 \textit{subintervals}, $[0,1]$, $[1,2]$, $[2,3]$ and $[3,4]$. On each subinterval we will draw a rectangle.
 
 There are three common ways to determine the height of these rectangles: the \textbf{Left Hand Rule}, the \textbf{Right Hand Rule}, and the \textbf{Midpoint Rule}. The \textbf{Left Hand Rule} says to evaluate the function at the left--hand endpoint of the subinterval and make the rectangle that height. In Figure \ref{fig:rie1b}, the rectangle drawn on the interval $[2,3]$ has height determined by the Left Hand Rule; it has a height of $f(2)$. (The rectangle is labeled ``LHR.'')\index{Left Hand Rule}\index{Right Hand Rule}\index{Midpoint Rule}
 
@@ -152,7 +152,7 @@ Consider again $\int_0^4(4x-x^2)\ dx$. We will approximate this definite integra
 
 \mfigure{.5}{Dividing $[0,4]$ into 16 equally spaced subintervals.}{fig:rie5}{figures/figrie5}
 
-Figure \ref{fig:rie5} shows a number line of $[0,4]$ divided into 16 equally spaced subintervals. We denote $0$ as $x_1$; we have marked the values of $x_5$, $x_9$, $x_{13}$ and $x_{17}$. We could mark them all, but the figure would get crowded. While it is easy to figure that $x_{10} = 2.25$, in general, we want a method of determining the value of $x_i$ without consulting the figure. Consider:
+Figure \ref{fig:rie5} shows a number line of $[0,4]$ divided, or \textit{partitioned}, into 16 equally spaced subintervals. We denote $0$ as $x_1$; we have marked the values of $x_5$, $x_9$, $x_{13}$ and $x_{17}$. We could mark them all, but the figure would get crowded. While it is easy to figure that $x_{10} = 2.25$, in general, we want a method of determining the value of $x_i$ without consulting the figure. Consider:
 	\begin{center}\myincludegraphics{figures/figrie5a}\end{center}
 	%$$x_i = x_1 + (i-1)\Delta x. \text{TIKZ}$$
 So $x_{10} = x_1 + 9(4/16) = 2.25.$
@@ -230,14 +230,15 @@ Using the summation formulas, consider:
 									&= \sum_{i=1}^{16} \big(4i\Delta x - (i\Delta x)^2\big)\Delta x\notag\\
 									&= \sum_{i=1}^{16} (4i\Delta x^2 - i^2\Delta x^3)\notag\\		
 									&= (4\Delta x^2)\sum_{i=1}^{16} i - \Delta x^3 \sum_{i=1}^{16} i^2 \label{eq:rie7}\\
-									&= (4\Delta x^2)\frac{16\cdot 17}{2} - \Delta x^3 \frac{16(17)(33)}6 \notag\\
-									&=	4\cdot 0.25^2\cdot 136-0.25^3\cdot 1496\notag\\
+									&= (4\Delta x^2)\frac{16\cdot 17}{2} - \Delta x^3 \frac{16(17)(33)}6 \quad \text{\footnotesize $(\Delta x = 0.25)$}\notag\\
+									%&=	4\cdot 0.25^2\cdot 136-0.25^3\cdot 1496\notag\\
 									&=10.625\notag
 \end{align}
-We were able to sum up the areas of 16 rectangles with very little computation. In Figure \ref{fig:rie7} the function and the 16 rectangles are graphed. While some rectangles over--approximate the area, other under--approximate the area (by about the same amount). Thus our approximate area of 10.625 is likely a fairly good approximation. 
+We were able to sum up the areas of 16 rectangles with very little computation. In Figure \ref{fig:rie7} the function and the 16 rectangles are graphed. While some rectangles over--approximate the area, other under--approximate the area (by about the same amount). Thus our approximate area of 10.625 is likely a fairly good approximation.
+\enlargethispage{2\baselineskip} 
 
 Notice  Equation \eqref{eq:rie7}; by changing the 16's to 1,000's (and appropriately changing the value of $\Delta x$), we can use that equation to sum up 1000 rectangles!
-\drawexampleline
+%\drawexampleline
 \mfigure{.5}{Approximating $\int_0^4(4x-x^2)\ dx$ with the Right Hand Rule and 16 evenly spaced subintervals.}{fig:rie7}{figures/figrie7}
 %\enlargethispage{\baselineskip}
 We do so here, skipping from the original summand to the equivalent of Equation \eqref{eq:rie7} to save space. Note that $\Delta x = 4/1000 = 0.004$.
@@ -245,12 +246,12 @@ We do so here, skipping from the original summand to the equivalent of Equation 
 \int_0^4 (4x-x^2)\ dx &\approx \sum_{i=1}^{1000} f(x_{i+1})\Delta x \notag\\
 									&= (4\Delta x^2)\sum_{i=1}^{1000} i - \Delta x^3 \sum_{i=1}^{1000} i^2 \notag\\
 									&= (4\Delta x^2)\frac{1000\cdot 1001}{2} - \Delta x^3 \frac{1000(1001)(2001)}6 \notag\\
-									&=	4\cdot 0.004^2\cdot 500500-0.004^3\cdot 333,833,500\notag\\
+									%&=	4\cdot 0.004^2\cdot 500500-0.004^3\cdot 333,833,500\notag\\
 									&=10.666656\notag
 \end{align}
 
 Using many, many rectangles, we have a likely good approximation of $\int_0^4 (4x-x^2)\dx$. That is, $$\int_0^4(4x-x^2)\ dx \approx 10.666656.$$
-\vskip -1.0\baselineskip
+\vskip -1\baselineskip
 }\\
 
 Before the above example, we stated what the summations for the Left Hand, Right Hand and Midpoint Rules looked like. Each had the same basic structure, which was:
@@ -259,19 +260,44 @@ Before the above example, we stated what the summations for the Left Hand, Right
 	\item	each rectangle's height is determined by evaluating $f$ at a particular point in each subinterval. For instance, the Left Hand Rule states that each rectangle's height is determined by evaluating $f$ at the left hand endpoint of the subinterval the rectangle lives on.
 \end{enumerate}
 %; the only difference was at what values to evaluate $f$. 
-One could partition an interval $[a,b]$ with subintervals that did not have the same size. We refer to the length of the first subinterval as $\Delta x_1$, the length of the second subinterval as $\Delta x_2$, and so on, giving the length of the $i^\text{ th}$ subinterval as $\Delta x_i$. Also, one could determine each rectangle's height by evaluating $f$ at \emph{any} point in the $i^\text{ th}$ subinterval. We refer to the point picked in the first subinterval as $c_1$, the point picked in the second subinterval as $c_2$, and so on, with $c_i$ representing the point picked in the $i^\text{ th}$ subinterval. Thus the height of the $i^\text{ th}$ subinterval would be $f(c_i)$, and the area of the $i^\text{ th}$ rectangle would be $f(c_i)\Delta x_i$.
+One could partition an interval $[a,b]$ with subintervals that do not have the same size. We refer to the length of the %first subinterval as $\Delta x_1$, the length of the second subinterval as $\Delta x_2$, and so on, giving the length of the 
+$i^\text{ th}$ subinterval as $\Delta x_i$. Also, one could determine each rectangle's height by evaluating $f$ at \emph{any} point $c_i$ in the $i^\text{ th}$ subinterval. %We refer to the point picked in the first subinterval as $c_1$, the point picked in the second subinterval as $c_2$, and so on, with $c_i$ representing the point picked in the $i^\text{ th}$ subinterval. 
+Thus the height of the $i^\text{ th}$ subinterval would be $f(c_i)$, and the area of the $i^\text{ th}$ rectangle would be $f(c_i)\Delta x_i$. These ideas are formally defined below.
+\enlargethispage{4\baselineskip}
+
+\definition{def:rie_sum}{Partition, Riemann Sum}
+{A \sword{partition} $\Delta x$ of a closed interval $[a,b]$ is a set of numbers $x_1$, $x_2$, $\ldots$ $x_{n+1}$ where 
+$$a=x_1 < x_2 < \ldots < x_n < x_{n+1}=b.$$
+The length of the $i^\text{ th}$ subinterval, $[x_i,x_{i+1}]$, is $\Delta x_i = x_{i+1}-x_i$. If $[a,b]$ is partitioned into subintervals of equal length, we let $\Delta x$ represent the length of each subinterval.\\
+
+The \sword{size of the partition}, denoted $||\Delta x||$, is the length of the largest subinterval of the partition.\index{partition}\index{partition!size of}
+
+%Let $f$ be defined on a closed interval $[a,b]$ and let $\Delta x$ be a partition of $[a,b]$, \index{Riemann Sum}
+	%%$$a=x_1 < x_2 < \ldots < x_n < x_{n+1}=b.$$
+%%Let $\Delta x_i$ denote the length of the $i^\text{ th}$ subinterval $[x_i,x_{i+1}]$ and 
+%and let $c_i$ denote any value in the $i^\text{ th}$ subinterval.
+%
+%The sum $$\sum_{i=1}^n f(c_i)\Delta x_i$$  is a \textbf{Riemann sum} of $f$ on $[a,b]$.
+}
 
 Summations of rectangles with area $f(c_i)\Delta x_i$ are named after mathematician Georg Friedrich Bernhard Riemann, as given in the following definition.
-\enlargethispage{2\baselineskip}
 
 %All three are examples of an even more general construction, named after mathematician Georg Friedrich Bernhard Riemann.
 
 %In this general form, the subintervals do not have be of equal length, and one can choose a point $c_i$ inside each subinterval any way they choose (and not just the left endpoint, or the midpoint, etc.) Figure \ref{fig:riedef} shows the approximating rectangles of a Riemann sum of $\int_0^4(4x-x^2)\ dx$. (This particular approximation is of little use; clearly the width and heights of the rectangles were not chosen ``well.'')
 
-\definition{def:rie_sum}{Riemann Sum}
-{Let $f$ be defined on the closed interval $[a,b]$ and let $\Delta x$ be a partition of $[a,b]$, with \index{Riemann Sum}
-	$$a=x_1 < x_2 < \ldots < x_n < x_{n+1}=b.$$
-Let $\Delta x_i$ denote the length of the $i^\text{ th}$ subinterval $[x_i,x_{i+1}]$ and let $c_i$ denote any value in the $i^\text{ th}$ subinterval.
+\definition{def:rie_sum}{Partition, Riemann Sum}
+{%
+%A \sword{partition} $\Delta x$ of a closed interval $[a,b]$ is a set of numbers $x_1$, $x_2$, $\ldots$ $x_{n+1}$ where 
+%$$a=x_1 < x_2 < \ldots < x_n < x_{n+1}=b.$$
+%The length of the $i^\text{ th}$ subinterval is $\Delta x_i = x_{i+1}-x_i$. If $[a,b]$ is partitioned into subintervals of equal length, we let $\Delta x$ represent the length of each subinterval.\\
+%
+%The \sword{size of the partition}, denoted $||\Delta x||$, is the length of the largest subinterval of the partition.\index{partition}\index{partition!size of}\\
+%
+Let $f$ be defined on a closed interval $[a,b]$ and let $\Delta x$ be a partition of $[a,b]$, \index{Riemann Sum}
+	%$$a=x_1 < x_2 < \ldots < x_n < x_{n+1}=b.$$
+%Let $\Delta x_i$ denote the length of the $i^\text{ th}$ subinterval $[x_i,x_{i+1}]$ and 
+and let $c_i$ denote any value in the $i^\text{ th}$ subinterval.
 
 The sum $$\sum_{i=1}^n f(c_i)\Delta x_i$$  is a \textbf{Riemann sum} of $f$ on $[a,b]$.}
 
@@ -456,9 +482,9 @@ as ``the limit of the sum of rectangles, where the width of each rectangle can b
 
 We summarize what we have learned over the past few sections here.
 \begin{itemize}
-\item		Knowing the ``area under the curve'' can be useful. One common example is: the area under a velocity curve is displacement.
+\item		Knowing the ``area under the curve'' can be useful. One common example: the area under a velocity curve is displacement.
 \item		We have defined the definite integral, $\int_a^b f(x)\ dx$, to be the signed area under $f$ on the interval $[a,b]$. 
-\item		While we can approximate a definite integral many ways, we have focused on using rectangles whose heights can be determined using: the Left Hand Rule, the Right Hand Rule and the Midpoint Rule. 
+\item		While we can approximate a definite integral many ways, we have focused on using rectangles whose heights can be determined using the Left Hand Rule, the Right Hand Rule and the Midpoint Rule. 
 \item		Sums of rectangles of this type are called Riemann sums.
 \item		The exact value of the definite integral can be computed using the limit of a Riemann sum. We generally use one of the above methods as it makes the algebra simpler.
 \end{itemize}
