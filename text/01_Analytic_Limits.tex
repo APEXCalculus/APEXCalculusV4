@@ -167,7 +167,8 @@ Before stating this theorem formally, suppose we have functions $f$, $g$ and $h$
 {Let $f$, $g$ and $h$ be functions on an open interval $I$ containing $c$ such that for all $x$ in $I$, $$f(x)\leq g(x) \leq h(x).$$ If $$\lim_{x\to c} f(x) = L = \lim_{x\to c} h(x),$$ then $$\lim_{x\to c} g(x) = L.$$ \index{limit!Squeeze Theorem}\index{Squeeze Theorem}
 }
 
-It can take some work to figure out appropriate functions by which to ``squeeze'' the given function of which you are trying to evaluate a limit. However, that is generally the only place work is necessary; the theorem makes the ``evaluating the limit part'' very simple. 
+It can take some work to figure out appropriate functions by which to ``squeeze'' a given function. % of which you are trying to evaluate a limit. 
+However, that is generally the only place where work is necessary; the theorem makes the ``evaluating the limit part'' very simple. 
 
 We use the Squeeze Theorem in the following example to finally prove that $\ds \lim_{x\to 0} \frac{\sin x}{x} = 1$.\\
 
@@ -233,7 +234,7 @@ Our final theorem for this section will be motivated by the following example.\\
 \example{ex_limit_onept}{Using algebra to evaluate a limit}{
 Evaluate the following limit: $$\lim_{x\to 1}\frac{x^2-1}{x-1}.$$}
 {We begin by attempting to apply Theorem \ref{thm:lim_continuous} and substituting 1 for $x$ in the quotient. This gives:
-		$$\lim_{x\to 1}\frac{x^2-1}{x-1} = \frac{1^2-1}{1-1} = \raisebox{8pt}{\text{``\ }}\frac{0}{0}\raisebox{8pt}{\text{\ ''}},$$ and indeterminate form. We cannot apply the theorem.
+		$$\lim_{x\to 1}\frac{x^2-1}{x-1} = \frac{1^2-1}{1-1} = \raisebox{8pt}{\text{``\ }}\frac{0}{0}\raisebox{8pt}{\text{\ ''}},$$ an indeterminate form. We cannot apply the theorem.
 
 \mfigure{.6}{Graphing $f$ in Example \ref{ex_limit_onept} to understand a limit.}{fig:limitxplus1}{figures/fig_LimitXplus1}
 		

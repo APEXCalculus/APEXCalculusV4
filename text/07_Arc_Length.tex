@@ -140,7 +140,7 @@ We have already seen how a curve $y=f(x)$ on $[a,b]$ can be revolved around an a
 
 We begin as we have in the previous sections: we partition the interval $[a,b]$ with $n$ subintervals, where the $i\,^{\text{th}}$ subinterval is $[x_i,x_{i+1}]$. On each subinterval, we can approximate the curve $y=f(x)$ with a straight line that connects $f(x_i)$ and $f(x_{i+1})$ as shown in Figure \ref{fig:surface_intro}(a). Revolving this line segment about the $x$-axis creates part of a cone (called a \textit{frustum} of a cone) as shown in Figure \ref{fig:surface_intro}(b). The surface area of a frustum of a cone is $$2\pi\cdot\text{ length }\cdot\text{average of the two radii $R$ and $r$}.$$
 
-The length is given by $L$; we use the material just covered by arc length to state that $$L\approx \sqrt{1+\fp(c_i)}\dx_i$$ for some $c_i$ in the $i\,^\text{th}$ subinterval. The radii are just the function evaluated at the endpoints of the interval. That is, $$R = f(x_{i+1})\quad \text{and}\quad r = f(x_i).$$
+The length is given by $L$; we use the material just covered by arc length to state that $$L\approx \sqrt{1+\fp(c_i)^2}\dx_i$$ for some $c_i$ in the $i\,^\text{th}$ subinterval. The radii are just the function evaluated at the endpoints of the interval. That is, $$R = f(x_{i+1})\quad \text{and}\quad r = f(x_i).$$
 
 Thus the surface area of this sample frustum of the cone is approximately 
 $$2\pi\frac{f(x_i)+f(x_{i+1})}2\sqrt{1+\fp(c_i)^2}\dx_i.$$
