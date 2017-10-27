@@ -31,7 +31,7 @@ Let $f$ be defined as shown in Figure \ref{fig_continuous1}. Give the interval(s
 We conclude that $f$ is continuous at every point of $(0,3)$ except at $x=1$. Therefore $f$ is continuous on $(0,1)\cup(1,3)$.}\\
 
 \example{ex_contint2}{Finding intervals of continuity}{
-The \textit{floor function},\index{floor function} $f(x) = \lfloor x \rfloor$, returns the largest integer smaller than the input $x$. (For example, $f(\pi) = \lfloor \pi \rfloor = 3$.) The graph of $f$ in Figure \ref{fig:continuous2} demonstrates why this is often called a ``step function.'' \\
+The \textit{floor function},\index{floor function} $f(x) = \lfloor x \rfloor$, returns the largest integer smaller than, or equal to, the input $x$. (For example, $f(\pi) = \lfloor \pi \rfloor = 3$.) The graph of $f$ in Figure \ref{fig:continuous2} demonstrates why this is often called a ``step function.'' \\
 
 \noindent Give the intervals on which $f$ is continuous.
 
@@ -190,7 +190,7 @@ Approximate the root of $f(x) = x-\cos x$, accurate to three places after the de
 
 		\begin{description}
 		\item [Iteration 1:] $f(0.7) < 0$, $f(0.9) > 0$, and $f(0.8) >0$. So replace $0.9$ with $0.8$ and repeat.
-		\item	[Iteration 2:]	$f(0.7)<0$, $f(0.8) > 0$, and at the midpoint, $0.75$, we have $f(0.75) >0 $. So replace $0.8$ with $0.75$ and repeat. Note that we don't need to continue to check the endpoints, just the midpoint. Thus we put the rest of the iterations in Table \ref{table:rootfinding}.
+		\item	[Iteration 2:]	$f(0.7)<0$, $f(0.8) > 0$, and at the midpoint, $0.75$, we have $f(0.75) >0 $. So replace $0.8$ with $0.75$ and repeat. Note that we don't need to continue to check the endpoints, just the midpoint. Thus we put the rest of the iterations in Figure \ref{table:rootfinding}.
 		\end{description}
 		
 \mtable{.5}{Iterations of the Bisection Method of Root Finding}{table:rootfinding}%

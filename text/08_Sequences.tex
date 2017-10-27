@@ -81,7 +81,7 @@ Find the $n^\text{th}$ term of the following sequences, i.e., find a function th
 
 \item		First notice how the sign changes from term to term. This is most commonly accomplished by multiplying the terms by either $(-1)^n$ or $(-1)^{n+1}$. Using $(-1)^n$ multiplies the odd terms by $(-1)$; using $(-1)^{n+1}$ multiplies the even terms by $(-1)$. As this sequence has negative even terms, we will multiply by $(-1)^{n+1}$. 
 
-After this, we might feel a bit stuck as to how to proceed. At this point, we are just looking for a pattern of some sort: what do the numbers 2, 5, 10, 17, etc., have in common? There are many correct answers, but the one that we'll use here is that each is one more than a perfect square. That is, $2=1^1+1$, $5=2^2+1$, $10=3^2+1$, etc. Thus our formula is $a_n= (-1)^{n+1}(n^2+1)$.
+After this, we might feel a bit stuck as to how to proceed. At this point, we are just looking for a pattern of some sort: what do the numbers 2, 5, 10, 17, etc., have in common? There are many correct answers, but the one that we'll use here is that each is one more than a perfect square. That is, $2=1^2+1$, $5=2^2+1$, $10=3^2+1$, etc. Thus our formula is $a_n= (-1)^{n+1}(n^2+1)$.
 
 \item		One who is familiar with the factorial function will readily recognize these numbers. They are $0!$, $1!$, $2!$, $3!$, etc. Since our sequences start with $n=1$, we cannot write $a_n = n!$, for this misses the $0!$ term. Instead, we shift by 1, and write $a_n = (n-1)!$.
 
@@ -163,11 +163,10 @@ Determine the convergence or divergence of the following sequences.\\
 \end{tabular}
 }
 
-\item		The limit $\ds\lim_{x\to\infty}\cos x$ does not exist, as $\cos x$ oscillates (and takes on every value in $[-1,1]$ infinitely many times). Thus we cannot apply Theorem \ref{thm:seq_limit}. 
+\item		The limit $\ds\lim_{x\to\infty}\cos x$ does not exist as $\cos x$ oscillates (and takes on every value in $[-1,1]$ infinitely many times). Thus we cannot apply Theorem \ref{thm:seq_limit}. 
 
-The fact that the cosine function oscillates strongly hints that $\cos n$, when $n$ is restricted to $\mathbb{N}$, will also oscillate. Figure \ref{fig:seq4} (b), where the sequence is plotted, shows that this is true. Because only discrete values of cosine are plotted, it does not bear strong resemblance to the familiar cosine wave.
-
-We conclude that $\ds\lim_{n\to\infty}a_n$ does not exist.
+The fact that the cosine function oscillates strongly hints that $\cos n$, when $n$ is restricted to $\mathbb{N}$, will also oscillate. Figure \ref{fig:seq4} (b), where the sequence is plotted, implies that this is true. Because only discrete values of cosine are plotted, it does not bear strong resemblance to the familiar cosine wave.
+The proof of the following statement is beyond the scope of this text, but it is true: there are infinitely many integers $n$ that are arbitrarily (i.e., \textit{very}) close to an even multiple of $\pi$, so that $\cos n \approx 1$. Similarly, there are infinitely many integers $m$ that are arbitrarily close to an odd multiple of $\pi$, so that $\cos m \approx -1$. As the sequence takes on values near 1 and $-1$ infinitely many times, we conclude that $\ds\lim_{n\to\infty}a_n$ does not exist.
 
 %conclude that the sequence $\{\cos n\}$ diverges. (And in this particular case, since the domain is restricted to $\mathbb{N}$, no value of $\cos n$ is repeated!) This sequence is plotted in Figure \ref{fig:seq4} (b); because only discrete values of cosine are plotted, it does not bear strong resemblance to the familiar cosine wave.
 
@@ -177,7 +176,7 @@ Instead, we invoke the definition of the limit of a sequence. By looking at the 
 \begin{align*}
 |a_n - L| &= \left|\frac{(-1)^n}{n} - 0\right| \\
 					&= \frac1n\\
-					&< \frac1m\quad \text{since $n>m$}\\
+					&< \frac1m\quad \text{(since $n>m$)}\\
 					&< \epsilon.
 \end{align*}
 \enlargethispage{2\baselineskip}
