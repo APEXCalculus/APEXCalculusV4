@@ -1,0 +1,256 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      8001,        246]
+NotebookOptionsPosition[      6922,        203]
+NotebookOutlinePosition[      7264,        218]
+CellTagsIndexPosition[      7221,        215]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"SetDirectory", "[", 
+  "\"\<C:\\\\Users\\\\Gregory\\\\Documents\\\\Greg\\\\Text \
+Projects\\\\APEXCalculusV4\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.7180882954199076`*^9, 3.718088299555873*^9}}],
+
+Cell[BoxData["\<\"C:\\\\Users\\\\Gregory\\\\Documents\\\\Greg\\\\Text \
+Projects\\\\APEXCalculusV4\"\>"], "Output",
+ CellChangeTimes->{3.7180883001892996`*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"file", "=", 
+   RowBox[{"Import", "[", 
+    RowBox[{"\"\<_ErrorList.tex\>\"", ",", "\"\<Text\>\""}], "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.7180883024358935`*^9, 3.718088320762931*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ReadLine", "[", "\"\<_ErrorList.tex\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.71808864847812*^9, 3.718088651133006*^9}, 
+   3.7180887067325935`*^9}],
+
+Cell[BoxData["\<\"%%  Look for REVISIT to find places where changes may/not \
+have been made\"\>"], "Output",
+ CellChangeTimes->{
+  3.718088652237808*^9, {3.7180887081065445`*^9, 3.718088710659378*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"str", "=", 
+   RowBox[{"OpenWrite", "[", "\"\<_ErrorList2.tex\>\"", "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Do", "[", 
+   RowBox[{
+    RowBox[{"WriteLine", "[", 
+     RowBox[{"str", ",", 
+      RowBox[{"ReadLine", "[", "\"\<_ErrorList.tex\>\"", "]"}]}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"i", ",", "1", ",", "10"}], "}"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Close", "[", "str", "]"}]}], "Input",
+ CellChangeTimes->{{3.7180888280178924`*^9, 3.7180889144884205`*^9}}],
+
+Cell[BoxData["\<\"_ErrorList2.tex\"\>"], "Output",
+ CellChangeTimes->{3.7180889155021105`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"newlineplaces", "=", 
+  RowBox[{"DeleteDuplicates", "[", 
+   RowBox[{"Flatten", "[", 
+    RowBox[{
+     RowBox[{"StringPosition", "[", 
+      RowBox[{"file", ",", "\"\<\\n\>\""}], "]"}], "[", 
+     RowBox[{"[", 
+      RowBox[{"Range", "[", "10", "]"}], "]"}], "]"}], "]"}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.7180890094579706`*^9, 3.718089018186183*^9}, {
+  3.7180891167653265`*^9, 3.718089120358906*^9}, {3.7180892125004663`*^9, 
+  3.7180892165413427`*^9}, {3.7180893503765497`*^9, 3.7180893581130543`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "3", ",", "76", ",", "106", ",", "109", ",", "110", ",", "123", ",", "179", 
+   ",", "240", ",", "252", ",", "253"}], "}"}]], "Output",
+ CellChangeTimes->{3.718089019172897*^9, 3.718089121016363*^9, 
+  3.71808921851772*^9, 3.718089358681467*^9}]
+}, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"counter", "=", "0"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Do", "[", 
+   RowBox[{
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"StringTake", "[", 
+          RowBox[{"file", ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"newlineplaces", "[", 
+              RowBox[{"[", "i", "]"}], "]"}], "+", "1"}], "}"}]}], "]"}], 
+         "\[NotEqual]", "\"\<%\>\""}], ")"}], "&&", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"StringTake", "[", 
+          RowBox[{"file", ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"newlineplaces", "[", 
+              RowBox[{"[", "i", "]"}], "]"}], "+", "1"}], "}"}]}], "]"}], 
+         "\[NotEqual]", "\"\<\\n\>\""}], ")"}]}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"counter", "=", 
+        RowBox[{"counter", "+", "1"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"newstring", "=", 
+        RowBox[{"\"\<(\>\"", "<>", 
+         RowBox[{"ToString", "[", "counter", "]"}], "<>", "\"\<)  \>\""}]}], 
+       ";", "\[IndentingNewLine]", 
+       RowBox[{"StringInsert", "[", 
+        RowBox[{"file", ",", "newstring", ",", 
+         RowBox[{
+          RowBox[{"newlineplaces", "[", 
+           RowBox[{"[", "i", "]"}], "]"}], "+", "1"}]}], "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"newlineplaces", "=", 
+        RowBox[{"newlineplaces", "+", 
+         RowBox[{"StringLength", "[", "newstring", "]"}]}]}], ";"}]}], "]"}], 
+    ",", 
+    RowBox[{"{", 
+     RowBox[{"i", ",", "1", ",", "10"}], "}"}]}], "]"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.7180891896111555`*^9, 3.718089228255678*^9}, {
+  3.718089322157493*^9, 3.718089508252906*^9}, {3.7180895494742165`*^9, 
+  3.718089628562484*^9}, {3.7180896655418053`*^9, 3.7180897168192873`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"StringTake", "[", 
+  RowBox[{"file", ",", "300"}], "]"}]], "Input",
+ CellChangeTimes->{{3.7180892303891697`*^9, 3.7180892488923335`*^9}, {
+  3.718089285012063*^9, 3.718089299176119*^9}, {3.718089639614375*^9, 
+  3.718089639958598*^9}}],
+
+Cell[BoxData["\<\"%%\\n%%  Look for REVISIT to find places where changes \
+may/not have been made\\n%$  and revisiting is needed.\\n%%\\n\\nMath errors:\
+\\n1.2 Example7 para-1 line1: $\\\\delta=\\\\leq\\\\frac\\\\epsilon5$.\\n% \
+Fixed before 10/16/17; changed to \\\\delta = \\\\frac\\\\epsilon/5\\n% Check \
+mbx\\n\\n2.4 Exercise33: g(0)=1, so the tangent line is \"\>"], "Output",
+ CellChangeTimes->{3.7180892371289616`*^9, 3.7180893010034113`*^9, 
+  3.7180896404589577`*^9, 3.718089679021386*^9, 3.718089724740917*^9}]
+}, Open  ]],
+
+Cell[BoxData["String"], "Input",
+ CellChangeTimes->{{3.718089541828775*^9, 3.7180895443826056`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"StringTake", "[", 
+   RowBox[{"file", ",", 
+    RowBox[{"{", 
+     RowBox[{"77", "+", "1"}], "}"}]}], "]"}], "==", "\"\<%\>\""}]], "Input",
+ CellChangeTimes->{
+  3.718089692672107*^9, {3.718089729831547*^9, 3.7180897455197096`*^9}, {
+   3.7180898016746874`*^9, 3.7180898272568684`*^9}}],
+
+Cell[BoxData["False"], "Output",
+ CellChangeTimes->{
+  3.718089693296546*^9, {3.718089732217238*^9, 3.7180897465684743`*^9}, {
+   3.718089803172743*^9, 3.718089827680172*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"StringTake", "[", 
+  RowBox[{"file", ",", "78"}], "]"}]], "Input",
+ CellChangeTimes->{{3.7180898481717715`*^9, 3.7180898483148637`*^9}}],
+
+Cell[BoxData["\<\"%%\\n%%  Look for REVISIT to find places where changes \
+may/not have been made\\n%$\"\>"], "Output",
+ CellChangeTimes->{3.7180897647473836`*^9, 3.718089848769186*^9}]
+}, Open  ]]
+},
+WindowSize->{860, 873},
+WindowMargins->{{48, Automatic}, {Automatic, 11}},
+FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (July 28, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 223, 4, 30, "Input"],
+Cell[806, 28, 159, 2, 30, "Output"]
+}, Open  ]],
+Cell[980, 33, 232, 6, 30, "Input"],
+Cell[CellGroupData[{
+Cell[1237, 43, 175, 3, 30, "Input"],
+Cell[1415, 48, 202, 3, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1654, 56, 553, 15, 69, "Input"],
+Cell[2210, 73, 94, 1, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2341, 79, 542, 12, 30, "Input"],
+Cell[2886, 93, 287, 6, 30, "Output"]
+}, Open  ]],
+Cell[3188, 102, 1884, 48, 145, "Input"],
+Cell[CellGroupData[{
+Cell[5097, 154, 259, 5, 30, "Input"],
+Cell[5359, 161, 523, 6, 221, "Output"]
+}, Open  ]],
+Cell[5897, 170, 100, 1, 30, "Input"],
+Cell[CellGroupData[{
+Cell[6022, 175, 321, 8, 30, "Input"],
+Cell[6346, 185, 175, 3, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6558, 193, 160, 3, 30, "Input"],
+Cell[6721, 198, 185, 2, 126, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
