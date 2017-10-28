@@ -260,24 +260,78 @@
 % check mbx
 
 (67)  3.1 p130 #14: The graph has "1+", the function $f(x)$ does not.
+% 10/28/17   the function graphed is '1+...' where the problem states
+% 'f(x) = ...', with no '1+'. So '1+' added to front.
+% check mbx
+
 (68)  3.3 p137 between Thm29 & KI3: The IVT only applies if f' is continuous.  Instead, we need Darboux's Theorem (I had to look it up), which says that f' satisfies the conclusion of the IVT, even if it's not continuous.  We've gone with:
 
-(69)  Let $a$ and $b$ be in $I$ where $\fp(a)>0$ and $\fp(b)<0$. If $\fp$ is continuous, then we can use the Intermediate Value Theorem. Even if $\fp$ isn't continuous, an advanced theorem\footnote{Darboux's Theorem} shows that $\fp$ has the Intermediate Value property.  Either way, there must be some value $c$ between $a$ and $b$ where $\fp(c) = 0$.  This leads us to the following method for finding intervals on which a function is increasing or decreasing.
+Let $a$ and $b$ be in $I$ where $\fp(a)>0$ and $\fp(b)<0$. If $\fp$ is continuous, then we can use the Intermediate Value Theorem. Even if $\fp$ isn't continuous, an advanced theorem\footnote{Darboux's Theorem} shows that $\fp$ has the Intermediate Value property.  Either way, there must be some value $c$ between $a$ and $b$ where $\fp(c) = 0$.  This leads us to the following method for finding intervals on which a function is increasing or decreasing.
+
+% 10/28/17  Above is their fix; below is what is in the text. Didn't refer
+% to Darboux.
+%Let $f$ be differentiable on an interval $I$ and let $a$ and $b$ be in $I$ where $\fp(a)>0$ and $\fp(b)<0$. If $\fp$ is continuous on $[a,b]$, it follows from the Intermediate Value Theorem that there must be some value $c$ between $a$ and $b$ where $\fp(c) = 0$. (It turns out that this is still true even if $\fp$ is not continuous on $[a,b]$.)
+%
+% Definitely check mbx
 
 (70)  5.4 p239 #54 solution: Should have a negative.
+% 10/28/17  added '-' to solution
+% check mbx
+
 (71)  6.7 p329 Example 192 Solution 1 L1: I don't see how Theorem 3 relates.  Do you mean Theorem 5, part 3?
+% 10/28/17  Made the reference '\ref{thm:special_limits}'
+% check mbx
+
 (72)  7.4 p373 para3 L3: the displayed equation should have $[f'(c_i)]^2$.
+% 10/28/17   this is Error (12), already fixed
+% 
+
 (73)  8.1 p401 Figure 8.2(a): a_n should be a function of n, not x.
+% 10/28/17  changed figure legend  of fig_seq4a.tex to 
+% be function of n, not x.
+% check mbx - not sure how figures are made
+
 (74)  8.3 p434 exercise 40 solution: diverges
+% 10/28/17   solution changed to Diverges, use Limit Comp. Test.
+% check mbx
+
 (75)  8.7 p467 L1: In the displayed equation, $f^n$ should be $f^{(n)}$
+% 10/28/17  Yes, 'f^n' changed to 'f^{(n)}'
+% check mbx
+
 (76)  same page, L-5: same thing
+% 10/28/17 ditto Error (75)
+% check mbx
+
 (77)  8.7 p471 para-2: In the displayed equation, $f^{(8)}$ should be $f^{(8)}(0)$
+% 10/28/17   added the '(0)'
+% check mbx
+
 (78)  9.4 p529 Example 301 solution para2 L1: P(0,2) should be P(2,0)
+% 10/28/17  changed to 'P(2,0)'
+% check mbx
+
 (79)  9.5 p539 L-1: The -1 should be -2.  The subsequent quadratic formula correctly uses -2.
+% 10/28/17  the equation should have '...-2=0', not '-1=0'.
+% check mbx
+
 (80)  9.5 p540: In the decimal approximations associated with $\theta = \sin^{-1} (\frac{-1+\sqrt {33}}{8})$, $0.6399$ should be $0.6349$ (this occurs twice) and $3.7815$ should be $2.5067$.
+% 10/28/17   fixed the numbers as suggested
+% check mbx
+
 (81)  9.5 p544 Example 309 solution: The 1/2 disappears two steps from the end.
+% 10/28/17  put the '1/2' in the next to last step, and the final
+% changes from '2\pi' to '\pi'.
+% check mbx
+
 (82)  11.3 p647 mnote: The units of acceleration are ft/s^2 and m/s^2.
+% 10/28/17 Changed beginning of mnote to 'This text uses' then added
+% '$^2$' to both s's of units. Changed the text to fit space better.
+% check mbx
+ 
 (83)  12.4 # 14 solution: There's a $\v$ that should just be $v$.
+% 10/28/17  removed the '\v' and made it 'v..'
+% check mbx
 
 (84)  I've noticed that you sometimes have a habit of starting your examples:
 (85)  \example{label}{Title}{

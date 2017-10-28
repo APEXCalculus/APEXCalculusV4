@@ -47,7 +47,7 @@ To find the vertical lines of tangency, we set the denominator of $\frac{dy}{dx}
 2(\cos^2\theta -\sin^2\theta)-\sin\theta &= 0 .
 \intertext{Convert the $\cos^2\theta$ term to $1-\sin^2\theta$:}
 2(1-\sin^2\theta-\sin^2\theta)-\sin\theta &= 0\\
-4\sin^2\theta + \sin\theta -1 &= 0.
+4\sin^2\theta + \sin\theta -2 &= 0.
 \intertext{Recognize this as a quadratic in the variable $\sin\theta$. Using the quadratic formula, we have}
 \sin\theta &= \frac{-1\pm\sqrt{33}}{8}.
 \end{align*}
@@ -55,10 +55,10 @@ We solve $\sin\theta = \frac{-1+\sqrt{33}}8$ and $\sin\theta = \frac{-1-\sqrt{33
 \begin{align*}
 \sin\theta &=\frac{-1+\sqrt{33}}8 & \sin\theta &= \frac{-1-\sqrt{33}}{8}\\
 \theta &= \sin^{-1}\left(\frac{-1+\sqrt{33}}8\right) & \theta &= \sin^{-1}\left(\frac{-1-\sqrt{33}}8\right)\\
-\theta &= 0.6399 & \theta &= -1.0030
+\theta &= 0.6349 & \theta &= -1.0030
 \end{align*}
 In each of the solutions above, we only get one of the possible two solutions as $\sin^{-1}x$ only returns solutions in $[-\pi/2,\pi/2]$, the 4$^\text{th}$ and $1^\text{st}$ quadrants. Again using reference angles, we have:
-$$\sin\theta = \frac{-1+\sqrt{33}}8 \quad \Rightarrow \quad \theta = 0.6399,\ 3.7815 \text{ radians}$$
+$$\sin\theta = \frac{-1+\sqrt{33}}8 \quad \Rightarrow \quad \theta = 0.6349,\ 2.5067 \text{ radians}$$
 and 
 $$\sin\theta = \frac{-1-\sqrt{33}}8 \quad \Rightarrow \quad \theta = 4.1446,\ 5.2802 \text{ radians.}$$
 These points are also shown in Figure \ref{fig:polcalc1} with white--filled dots.
@@ -182,8 +182,8 @@ Thus we integrate $\frac12\big((3\cos\theta)^2-(1+\cos\theta)^2\big)$ on $[-\pi/
 \begin{align*}
 \text{Area} &= \frac12\int_{-\pi/3}^{\pi/3} \big((3\cos\theta)^2-(1+\cos\theta)^2\big)\ d\theta\\
 		&= \frac12\int_{-\pi/3}^{\pi/3} \big( 8\cos^2\theta-2\cos\theta-1\big)\ d\theta \\
-		&= \big(2\sin(2\theta) - 2\sin\theta+3\theta\big)\Bigg|_{-\pi/3}^{\pi/3}\\
-		&= 2\pi.
+		&= \frac12\big(2\sin(2\theta) - 2\sin\theta+3\theta\big)\Bigg|_{-\pi/3}^{\pi/3}\\
+		&= \pi.
 \end{align*}
 Amazingly enough, the area between these curves has a ``nice'' value.
 }\\
