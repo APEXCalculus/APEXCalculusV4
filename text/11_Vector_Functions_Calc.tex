@@ -230,7 +230,7 @@ At $t=0$, we have $\vrp(0) = \la 0,0\ra=\vec 0$! This implies that the tangent l
 We were unable to compute the equation of the tangent line to $\vec r(t)= \la t^3,t^2\ra$ at $t=0$ because $\vrp(0) = \vec 0$. The graph in Figure \ref{fig:vvfderiv3} shows that there is a cusp at this point. This leads us to another definition of \textbf{smooth}, previously defined by Definition \ref{def:smooth} in Section \ref{sec:param_eqs}.
 
 \definition{def:vector_smooth}{Smooth Vector--Valued Functions}
-{Let $\vec r(t)$ be a differentiable vector--valued function on an open interval $I$. $\vec r(t)$ is \textbf{smooth} on $I$ if $\vrp(t)\neq \vec 0$ on $I$.
+{Let $\vec r(t)$ be a differentiable vector--valued function on an open interval $I$ where $\vrp(t)$ is continuous on $I$. $\vec r(t)$ is \textbf{smooth} on $I$ if $\vrp(t)\neq \vec 0$ on $I$.
 \index{smooth}\index{vector--valued function!smooth}
 }
 
@@ -277,12 +277,12 @@ We now find $\vec u\,'(t)$ using part 3 of Theorem \ref{thm:vvf_deriv_prop}:
 \vec u\,'(t) &=  \fp(t)\vec u(t) + f(t)\vec u\,'(t) \\
 				&=  -\frac{2t(2t^2-1)}{2\big(\sqrt{t^2+(t^2-1)^2}\,\big)^3}\la t,t^2-1\ra + \frac{1}{\sqrt{t^2+(t^2-1)^2}}\la 1,2t\ra.
 \end{align*}
-This is admittedly very ``messy;'' such is usually the case when we deal with unit vectors. We can use this formula to compute $\vec u\,(-2)$, $\vec u\,(-1)$ and $\vec u\,(0)$:
+This is admittedly very ``messy;'' such is usually the case when we deal with unit vectors. We can use this formula to compute $\vec u\,'(-2)$, $\vec u\,'(-1)$ and $\vec u\,'(0)$:
 \begin{align*}
-\vec u\,(-2) &= \la-\frac{15}{13 \sqrt{13}},-\frac{10}{13
+\vec u\,'(-2) &= \la-\frac{15}{13 \sqrt{13}},-\frac{10}{13
    \sqrt{13}}\ra \approx \la -0.320,-0.213\ra\\
-\vec u\,(-1) &= \la 0,-2\ra\\
-\vec u\,(0) &= \la 1,0\ra
+\vec u\,'(-1) &= \la 0,-2\ra\\
+\vec u\,'(0) &= \la 1,0\ra
 \end{align*}
 \mfigure{.75}{Graphing some of the derivatives of $\vec u(t)$ in Example \ref{ex_vvfderiv2}.}{fig:vvfderiv2b}{figures/figvvfderiv2b}
 Each of these is sketched in Figure \ref{fig:vvfderiv2b}. Note how the length of the vector gives an indication of how quickly the circle is being traced at that point. When $t=-2$, the circle is being drawn relatively slow; when $t=-1$, the circle is being traced much more quickly.
