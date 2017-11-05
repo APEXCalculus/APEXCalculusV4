@@ -117,13 +117,13 @@ However, this is not the case. Functions $f$ exist where $f_{xx}$ and $f_{yy}$ a
 To account for this, consider $D = f_{xx}f_{yy}-f_{xy}f_{yx}$. Since $f_{xy}$ and $f_{yx}$ are equal when continuous (refer back to Theorem \ref{thm:mixed_partial}), we can rewrite this as $D = f_{xx}f_{yy}-f_{xy}^{\,2}$. $D$ can be used to test whether the concavity at a point changes depending on direction. If $D>0$, the concavity does not switch (i.e., at that point, the graph is concave up or down in all directions). If $D<0$, the concavity does switch. If $D=0$, our test fails to determine whether concavity switches or not. We state the use of $D$ in the following theorem.
 
 \theorem{thm:multi_second_test}{Second Derivative Test}
-{Let $z=f(x,y)$ be differentiable on an open set containing $P = (x_0,y_0)$, and let 
+{Let $R$ be an open set on which a function $z=f(x,y)$ and all its first and second partial derivatives are defined, let $P = (x_0,y_0)$ be a critical point of $f$ in $R$, and let 
 \index{Second Derivative Test}\index{maximum!relative/local}\index{minimum!relative/local}\index{saddle point}
 $$D = f_{xx}(x_0,y_0)f_{yy}(x_0,y_0)-f_{xy}^{\,2}(x_0,y_0).$$
 \begin{enumerate}
-	\item If $D>0$ and $f_{xx}(x_0,y_0)>0$, then $P$ is a relative minimum of $f$.
-	\item If $D>0$ and $f_{xx}(x_0,y_0)<0$, then $P$ is a relative maximum of $f$.
-	\item	If $D<0$, then $P$ is a saddle point of $f$.
+	\item If $D>0$ and $f_{xx}(x_0,y_0)>0$, then $f$ has a relative minimum at $P$.
+	\item If $D>0$ and $f_{xx}(x_0,y_0)<0$, then $f$ has a relative maximum at $P$.
+	\item	If $D<0$, then $f$ has a saddle point at $P$.
 	\item If $D=0$, the test is inconclusive.
 \end{enumerate}
 }
