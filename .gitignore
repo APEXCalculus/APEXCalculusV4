@@ -4,12 +4,13 @@
 ## Standard LaTeX files types
 *.aux
 *.idx
-*ilg
+*.ilg
 *.ind
 *.log
 *.out
 *.synctex
 *.tps
+*.tcp
 #
 ## Figure files
 *.dep
