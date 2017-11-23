@@ -75,8 +75,8 @@ M = \iint_R(x+y+2)\ dA &= \int_0^1\int_0^1 (x+y+2)\ dx\ dy\\
 It turns out that since since the density of the lamina is so uniformly distributed ``above and below'' $z=3$ that the mass of the lamina is the same as if it had a constant density of 3. The density functions in Examples \ref{ex_mass1} and \ref{ex_mass2} are graphed in Figure \ref{fig:mass2}, which illustrates this concept.
 }\\
 
-\example{ex_mass3}{Finding the weight of a lamina with variable density}{
-Find the weight of the lamina represented by the circle with radius 2ft, centered at the origin, with density function $\delta(x,y) = (x^2+y^2+1)$lb/ft$^2$. Compare this to the weight of the same lamina with density $\delta(x,y) = (2\sqrt{x^2+y^2}+1)$lb/ft$^2$.}
+\example{ex_mass3}{Finding the weight of a lamina with variable density}{%
+Find the weight of the lamina represented by the disk with radius 2ft, centered at the origin, with density function $\delta(x,y) = (x^2+y^2+1)$lb/ft$^2$. Compare this to the weight of the lamina with the same shape and density $\delta(x,y) = (2\sqrt{x^2+y^2}+1)$lb/ft$^2$.}
 {A direct application of Definition \ref{def:mass} states that the weight of the lamina is $\iint_R\delta(x,y)\ dA$. Since our lamina is in the shape of a circle, it makes sense to approach the double integral using polar coordinates.
 
 The density function $\delta(x,y) = x^2+y^2+1$ becomes $\delta(r,\theta) = (r\cos\theta)^2+(r\sin\theta)^2+1 = r^2+1$. The circle is bounded by $0\leq r\leq 2$ and $0\leq\theta\leq2\pi$. Thus the weight $W$ is:
@@ -112,7 +112,7 @@ One would expect different density functions to return different weights, as we 
 3Dc2c=0.6666666865348816 0.6666666865348816 0.3333333432674408,
 3Dcoo=-16.55617904663086 -14.281390190124512 61.674530029296875,
 3Droo=150,
-3Dlights=Headlamp,add3Djscript=asylabels.js}{scale=1.25,trim=4mm 0mm 4mm 0mm,clip}{figures/figmass3a}
+3Dlights=Headlamp,add3Djscript=asylabels.js}{scale=1.,trim=0mm 0mm 0mm 0mm,clip}{figures/figmass3a}
 %\myincludegraphics[scale=1.25,trim=1mm 0mm 1mm 0mm,clip]{figures/figmass3a} 
 &  &
 \myincludegraphicsthree{width=115pt,3Dmenu,activate=onclick,deactivate=onclick,
@@ -121,7 +121,7 @@ One would expect different density functions to return different weights, as we 
 3Dc2c=0.6666666865348816 0.6666666865348816 0.3333333432674408,
 3Dcoo=-16.55617904663086 -14.281390190124512 61.674530029296875,
 3Droo=150,
-3Dlights=Headlamp,add3Djscript=asylabels.js}{scale=1.25,trim=4mm 0mm 4mm 0mm,clip}{figures/figmass3b}\\
+3Dlights=Headlamp,add3Djscript=asylabels.js}{scale=1,trim=0mm 0mm 0mm 0mm,clip}{figures/figmass3b}\\
 %\myincludegraphics[scale=1.25,trim=1mm 0mm 1mm 0mm,clip]{figures/figmass3b} \\
 (a) & & (b) 
 \end{tabular}%

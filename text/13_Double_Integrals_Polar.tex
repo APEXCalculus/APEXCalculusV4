@@ -38,8 +38,8 @@ $$\iint_Rf(x,y)\ dA = \int_\alpha^\beta\int_{g_1(\theta)}^{g_2(\theta)} f\big(r\
 Examples will help us understand this Key Idea.\\
 
 \example{ex_doublepol1}{Evaluating a double integral with polar coordinates}{
-Find the signed volume under the plane $z= 4-x-2y$ over the circle with equation $x^2+y^2=1$.}
-{The bounds of the integral are determined solely by the region $R$ over which we are integrating. In this case, it is a circle with equation $x^2+y^2=1$. We need to find polar bounds for this region. It may help to review Section \ref{sec:polar}; bounds for this circle are $0\leq r\leq 1$ and $0\leq \theta\leq 2\pi$.
+Find the signed volume under the plane $z= 4-x-2y$ over the disk bounded by the circle with equation $x^2+y^2=1$.}
+{The bounds of the integral are determined solely by the region $R$ over which we are integrating. In this case, it is a disk with boundary $x^2+y^2=1$. We need to find polar bounds for this region. It may help to review Section \ref{sec:polar}; bounds for this disk are $0\leq r\leq 1$ and $0\leq \theta\leq 2\pi$.
 
 We replace $f(x,y)$ with $f(r\cos\theta,r\sin\theta)$. That means we make the following substitutions:
 $$4-x-2y \quad \Rightarrow \quad 4-r\cos\theta-2r\sin\theta.$$
@@ -138,7 +138,7 @@ Figure \ref{fig:doublepol5}  shows that $f$ shrinks to near 0 very quickly. Rega
 Find the volume of a sphere with radius $a$.}
 {The sphere of radius $a$, centered at the origin, has equation $x^2+y^2+z^2=a^2$; solving for $z$, we have $z=\sqrt{a^2-x^2-y^2}$. This gives the upper half of a sphere. We wish to find the volume under this top half, then double it to find the total volume. 
 
-The region we need to integrate over is the circle of radius $a$, centered at the origin. Polar bounds for this equation are $0\leq r\leq a$, $0\leq\theta\leq2\pi$.
+The region we need to integrate over is the disk of radius $a$, centered at the origin. Polar bounds for this equation are $0\leq r\leq a$, $0\leq\theta\leq2\pi$.
 
 All together, the volume of a sphere with radius $a$ is:
 \begin{align*}

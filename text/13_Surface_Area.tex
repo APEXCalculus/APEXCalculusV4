@@ -100,7 +100,7 @@ As our function $f$ only defines the top upper hemisphere of the sphere, we doub
 S & = 2\iint_R \sqrt{1+ f_x(x,y)^2+f_y(x,y)^2}\ dA \\
 		&= 2\iint_R \sqrt{1+ \frac{x^2+y^2}{a^2-x^2-y^2}}\ dA.
 \end{align*}
-The region $R$ that we are integrating over is the circle, centered at the origin, with radius $a$: $x^2+y^2=a^2$. Because of this region, we are likely to have greater success with our integration by converting to polar coordinates. Using the substitutions $x=r\cos\theta$, $y=r\sin\theta$, $dA = r\ dr\ d\theta$ and bounds $0\leq\theta\leq2\pi$ and $0\leq r\leq a$, we have:
+The region $R$ that we are integrating over is bounded by the circle, centered at the origin, with radius $a$: $x^2+y^2=a^2$. Because of this region, we are likely to have greater success with our integration by converting to polar coordinates. Using the substitutions $x=r\cos\theta$, $y=r\sin\theta$, $dA = r\ dr\ d\theta$ and bounds $0\leq\theta\leq2\pi$ and $0\leq r\leq a$, we have:
 \begin{align}
 S &= 2\int_0^{2\pi}\int_0^a \sqrt{1+\frac{r^2\cos^2\theta+r^2\sin^2\theta}{a^2-r^2\cos^2\theta-r^2\sin^2\theta}}\ r\ dr\ d\theta \notag\\
 &=2\int_0^{2\pi}\int_0^ar\sqrt{1+\frac{r^2}{a^2-r^2}}\ dr\ d\theta\notag\\
@@ -132,7 +132,7 @@ The general formula for a right cone with height $h$ and base radius $a$ is $$\d
 {We begin by computing partial derivatives. 
 $$f_x(x,y) = -\frac{xh}{a\sqrt{x^2+y^2}}\quad \text{and}\quad -\frac{yh}{a\sqrt{x^2+y^2}}.$$
 
-Since we are integrating over the circle $x^2+y^2=a^2$, we again use polar coordinates. Using the standard substitutions, our integrand becomes
+Since we are integrating over the disk bounded by $x^2+y^2=a^2$, we again use polar coordinates. Using the standard substitutions, our integrand becomes
 $$\sqrt{1+ \left(\frac{hr\cos\theta}{a\sqrt{r^2}}\right)^2 + \left(\frac{hr\sin\theta}{a\sqrt{r^2}}\right)^2}.$$
 This may look intimidating at first, but there are lots of simple simplifications to be done. It amazingly reduces to just
 $$\sqrt{1+\frac{h^2}{a^2}} = \frac1a\sqrt{a^2+h^2}.$$
