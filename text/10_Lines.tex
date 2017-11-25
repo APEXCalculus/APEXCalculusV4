@@ -125,7 +125,7 @@ Give all three equations, as given in Definition \ref{def:lines}, of the line th
 3Dlights=Headlamp,add3Djscript=asylabels.js}{scale=1.25,trim=2mm 2mm 2mm 2mm,clip=true}{.5}{Graphing a line in Example \ref{ex_lines1}.}{fig:lines1}{figures/figlines1}
 %\mfigure[scale=1.25,trim=2mm 2mm 2mm 2mm,clip=true]{.5}{Graphing a line in Example \ref{ex_lines1}.}{fig:lines1}{figures/figlines1}
 
-The first two equations of the line are useful when a $t$ value is given: one can immediately find the corresponding point on the line. These forms are good when calculating with a computer; most software programs easily handle equations in these formats. (For instance, to make Figure \ref{fig:lines1}, a certain graphics program was given the input \texttt{(2-x,3+x,1+2*x)}. This particular program requires the variable always be ``$x$'' instead of ``$t$'').
+The first two equations of the line are useful when a $t$ value is given: one can immediately find the corresponding point on the line. These forms are good when calculating with a computer; most software programs easily handle equations in these formats. (For instance, the graphics program that made Figure \ref{fig:lines1} can be given the input ``\texttt{(2-t,3+t,1+2*t)}'' for $-1\leq t\leq 3$.).
 
 Does the point $Q = (-1,6,6)$ lie on the line? The graph in Figure \ref{fig:lines1} makes it clear that it does not. We can answer this question without the graph using any of the three equation forms. Of the three, the symmetric equations are probably best suited for this task. Simply plug in the values of $x$, $y$ and $z$ and see if equality is maintained:
 $$ \frac{-1-2}{-1} \stackrel{?}{=} \frac{6-3}{1} \stackrel{?}{=} \frac{6-1}{2} \quad \Rightarrow \quad 3=3\neq2.5.$$
@@ -254,7 +254,7 @@ h&=		\snorm{\text{proj}\,_{\vec c}\,\vv{P_1P_2}}\\
 	&=\frac{|\vv{P_1P_2}\cdot \vec c|}{\vnorm c^2}\vnorm c\\
 	&=\frac{|\vv{P_1P_2}\cdot \vec c|}{\vnorm c}.
 \end{align*}
-A problem in the Exercise section is to show that this distance is 0 when the lines intersect. Note the use of the Triple Scalar Product: $\vv{P_1P_2}\cdot c = \vv{P_1P_2}\cdot (\vec d_1\times \vec d_2).$
+A problem in the Exercise section is to show that this distance is 0 when the lines intersect. Note the use of the Triple Scalar Product: $\vv{P_1P_2}\cdot \vec c = \vv{P_1P_2}\cdot (\vec d_1\times \vec d_2).$
 
 
 The following Key Idea restates these two distance formulas.
