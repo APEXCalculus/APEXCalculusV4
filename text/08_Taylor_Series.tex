@@ -122,14 +122,14 @@ f\,^{(n)}(x) &= k(k-1)\cdots\big(k-(n-1)\big)(1+x)^{k-n} & f\,^{(n)}(0) &=k(k-1)
 \end{minipage}
 
 Thus the Maclaurin series for $f(x) = (1+x)^k$ is
-$$1+ k + \frac{k(k-1)}{2!} + \frac{k(k-1)(k-2)}{3!} + \ldots + \frac{k(k-1)\cdots\big(k-(n-1)\big)}{n!}+\ldots$$
+$$1+ kx + \frac{k(k-1)}{2!}x^2 + \frac{k(k-1)(k-2)}{3!}x^3 + \ldots + \frac{k(k-1)\cdots\big(k-(n-1)\big)}{n!}x^n+\ldots$$
 
 It is important to determine the interval of convergence of this series. With 
 $$a_n = \frac{k(k-1)\cdots\big(k-(n-1)\big)}{n!}x^n,$$
 we apply the Ratio Test:
 \begin{align*}
 \lim_{n\to\infty}\frac{|a_{n+1}|}{|a_n|}&=\lim_{n\to\infty} \left|\frac{k(k-1)\cdots(k-n)}{(n+1)!}x^{n+1}\right|\Bigg/\left|\frac{k(k-1)\cdots\big(k-(n-1)\big)}{n!}x^n\right|\\
-		&=\lim_{n\to\infty} \left|\frac{k-n}{n}x\right|\\
+		&=\lim_{n\to\infty} \left|\frac{k-n}{n+1}x\right|\\
 		&= |x|.
 \end{align*}
 
