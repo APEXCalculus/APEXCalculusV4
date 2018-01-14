@@ -767,10 +767,19 @@ Let $a$ and $b$ be in $I$ where $\fp(a)>0$ and $\fp(b)<0$. If $\fp$ is continuou
 
 
 (196)  Subject: Theorem 10 again  Message: In the statement of theorem 10 (the Intermediate Value Theorem), it would be nice to say "there exists at least one value c" instead of "there is a value c". The same goes for the paragraphs that immediately follow Theorem 10 -- there may be multiple roots in the interval [a,b].c    Message: In the statement of the theorem, f(a) < y < f(b) can be replaced by f(a) <= y <= f(b) since you're asserting there exists a value c in [a,b] such that f(c) = y. You could also pair f(a) < y < f(b) with the existence of c in (a,b).
+% 1/14/18  Several things happen here.
+% Statement of the the theorem changes to include 'there is at least one 
+% value $c$ in $(a,b)$'. Note change from closed to open interval.
+%
+% The paragraph following the thm. now ends with 'The Intermediate Value Theorem states that there is at least one $c$ in $(a,b)$ such that $f(c) = 0$. The theorem does not give us any clue as to where to find such a value in the interval $(a,b)$, just that at least one such value exists.' Note several changes in these sentences.
+%
+% Also, the enumerated list following the thm was inconsistently structured. Now each bullet is led by a ':' and followed by capital letter.
 
 (197)  Figure 1.5   Message: This figure should have a hole in the graph when x=3.
+% 1/14/18 Fixed; also added a hole to figure 1.2, editing both fig_limit1.tex and sinx_over_x_2.tex, adding a circle along the lines of '\filldraw [thick,fill=white] (axis cs:0,1) circle (1.5pt);'
 
 (198)  Message: Example 16 solution, second to last line: the reference should be theorem 2, not theorem 3.
+% 1/14/18   Made this change in example ex_limit_allbut1 and ex_limit_diffquot
 
 (199)  Message: The first sentence in the solution for example 14 refers to Theorem 3, but it should refer to Theorem 2
 
@@ -860,4 +869,4 @@ Let $a$ and $b$ be in $I$ where $\fp(a)>0$ and $\fp(b)<0$. If $\fp$ is continuou
 (255) page 794 a $f_y$ is missing in middle displayed equation
 (256) 13.5, exercise #19: drd\theta turns into dy in answer?
 (257) 13.5, exercise #17: t is used instead of theta in answer
-(258) Look at def's of ``increasing/decreasing'' per conversations with Karen and Google group
+(258) Look at def's of ``increasing/decreasing'' per conversations with Karen and Google group - amounts to ``increasing'' means ``a<b => f(a) < f(b)'' which aligns well with ``f'(x)>0''. Drop the ``or equal'' parts and strictly increasing language.
