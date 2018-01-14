@@ -1,0 +1,13 @@
+{Prove the statement ``Let $\{a_n\}$ be a bounded, monotonic sequence. Then $\{a_n\}$ converges; i.e., $\ds \lim_{n \to\infty}a_n$ exists.'' is equivalent to Theorem \ref{thm:monotonic_converge}. That is,
+	\begin{enumerate}
+		\item Show that if Theorem \ref{thm:monotonic_converge} is true, then above statement is true, and
+		\item	Show that if the above statement is true, then Theorem \ref{thm:monotonic_converge} is true.
+	\end{enumerate}
+}
+{A sketch of one proof method:
+
+\begin{enumerate}
+	\item Assume that Theorem \ref{thm:monotonic_converge} is true, and let $\{a_n\}$ be bounded and monotonic. Since $\{a_n\}$ is bounded, it is bounded both above and below. If it is increasing, it is bounded above and we apply Theorem \ref{thm:monotonic_converge}; if it is decreasing, it is bounded below and we apply the theorem. Either way, $\{a_n\}$ converges and the statement is true.
+	\item	Assume the statement is true, and let $\{a_n\}$ be a monotonically increasing sequence that is bounded above. Since $\{a_n\}$ is monotonically increasing, $a_1\leq a_2\leq \ldots$; that is, $a_1$ bounds $\{a_n\}$ from below. Therefore $\{a_n\}$ is bounded and monotonic; by the statement, $\{a_n\}$ converges. A similar statement can be made for when $\{a_n\}$ is monotonically decreasing and bounded below. Therefore Theorem \ref{thm:monotonic_converge} is true.
+\end{enumerate}
+}

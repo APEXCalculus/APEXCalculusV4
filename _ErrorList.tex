@@ -697,24 +697,74 @@ Let $a$ and $b$ be in $I$ where $\fp(a)>0$ and $\fp(b)<0$. If $\fp$ is continuou
 % 1/9/18  Objection is correct. Changed part (c) to read '30' feet; changes the answer to 1.838 which I round in the answer to 1.84.
 
 (186)  Theorem 59 in 8.1: only need part 1.
+% 1/13/18   This was discussed in the APEX/MBX google group for a while.
+% Finally settled on letting parts 2 & 3 stay, and part 1 becomes an
+% exercise.
+% It is added as exercise #42, 08_01_ex_42.tex. Since problems #39-#42 
+% all deal with theory, a new exset was created, 08_01_exset_07.tex 
+% that contains these problems, with instructions
+% '{Exercises}{ explore further the theory of sequences.}'
+%
+% Also, before the theorem the line 'In particular, if we know that a 
+% sequence is bounded and monotonic, we can conclude it converges!' is 
+% removed. Following the theorem, the following paragraph is added: '
+%% We can replace Theorem \ref{thm:monotonic_converge} with the 
+%% statement ``Let $\{a_n\}$ be a bounded, monotonic sequence. Then 
+%% $\{a_n\}$ converges; i.e., $\ds \lim_{n \to\infty}a_n$ exists.'' We 
+%% leave it to the reader in the exercises to show the theorem and the 
+%% above statement are equivalent.'
+% Probably best to look at the tex files for all of this.
+
 
 (187)  In Section 5.3, Key Idea 8 "The Midpoint Rule summation", the subscript on the summand is {x+1} where it should be {i+1}.
+% 1/13/18
 
 (188)  pg 280 ex 164 the 1/2 gets dropped
+% 1/13/18
+% Also added the phrase ' (we can drop the absolute values 
+% as $1+x^2$ is always postive)' to the sentence before
+% the displayed equation.
 
 (189)  Dot product: formula should highlight role of unit vectors    also for orthog projection
+% REVISIT    In Thm of dot product & cosine, should follow with
+% u/||\vec u|| \cdot v/|| v || formula: the dot product of unit
+% vectors is the cosine of the angle between them.
+%
+% Also, orthogonal projection should stress that when 
+% v is unit, proj_v u = (u.v)v; i.e., u.v is the ``amount of
+% u in the direction of v'', or, ``amount of u in a certain
+% direction. Useful in later contexts.
+% Where? components of acceleration, chapter 14, too. Elsewhere?
 
 (190)  Chapter 6.1 problem 33  answer is correct, though perhaps not intuitive. By hand: (3/2)*(ln x)^2+C.
+% 1/13/18
 
 (191)  3.3 Increasing/decreaising: Answers in back use unions; shouldn't. Just be a list of sets.
+% REVISIT
+% In both Incr/decr and concavity sections, all problems should state
+% 'find intervals on which ... ', not 'sets'. Look in both exercises
+% and in examples.
 
 (192)  Can you check 5.2#25 answer? Also in that exercise set maybe for 21 and 25 can you put "find non-zero a and b"
+% 1/13/18  Changed answer to #25, 05_02_ex_25 to '$a=-18$, $b=11$'
+% (had them switched). Also added 'Find nonzero values' so trivial
+% solution couldn't be offered
 
 (193)  Message: Page 280. The solution to example 164 should have a 1/2 in front of the ln(1+x^2)
+% 1/13/18  Yup. Fixed that a few errors ago (188)
 
 (194)  Message: The tangent line in example 45 has the form y = 3(x-3)+4. If I were writing this, I would have avoided having 3 be the slope and 3 be the x-coordinate of the point of tangency at the same time. If the numbers are different, students will have an easier time discerning what role each number fulfills. I would suggest choosing another point, such as x=1 where f(1) = -2 and f ' (1) = -1, for the point of tangency.
+% 1/13/18  Will skip this. It's an ok objection, and I avoided it
+% in other cases. But students should still ponder the role of each
+% number. And I'm doubtful of the reward for fixing the graphics and 
+% example.
+
+(194.5)  The 'What' in the first item of the enumerated list on page 76 should be 'what'.
+% 1/13/18
 
 (195)  Subject: Figure 2.13   Message: The caption should say something like, "Zooming in on f and its tangent line at x=3." As written, the tangent line is not mentioned in the caption, but it appears in the figure.
+% 1/13/18 Added 'and its tangent line' to the caption
+
 
 (196)  Subject: Theorem 10 again  Message: In the statement of theorem 10 (the Intermediate Value Theorem), it would be nice to say "there exists at least one value c" instead of "there is a value c". The same goes for the paragraphs that immediately follow Theorem 10 -- there may be multiple roots in the interval [a,b].c    Message: In the statement of the theorem, f(a) < y < f(b) can be replaced by f(a) <= y <= f(b) since you're asserting there exists a value c in [a,b] such that f(c) = y. You could also pair f(a) < y < f(b) with the existence of c in (a,b).
 
@@ -810,3 +860,4 @@ Let $a$ and $b$ be in $I$ where $\fp(a)>0$ and $\fp(b)<0$. If $\fp$ is continuou
 (255) page 794 a $f_y$ is missing in middle displayed equation
 (256) 13.5, exercise #19: drd\theta turns into dy in answer?
 (257) 13.5, exercise #17: t is used instead of theta in answer
+(258) Look at def's of ``increasing/decreasing'' per conversations with Karen and Google group

@@ -268,8 +268,8 @@ $$\int \ln x\ dx = x\ln{x} - x + C.$$
 $$\int \arctan x \,dx = x\arctan x - \int \frac x{1+x^2}\,dx.$$
 The integral on the right can be solved by substitution.  Taking $u=1+x^2$, we get $du=2x\,dx$.  The integral then becomes
 $$\int \arctan x \,dx = x\arctan x - \frac12\int \frac 1{u}\,du.$$
-The integral on the right evaluates to $\ln|u|+C$, which becomes $\ln(1+x^2)+C$.  Therefore, the answer is
-$$\int \arctan x\ dx = x\arctan x - \ln(1+x^2) + C.$$
+The integral on the right evaluates to $\ln|u|+C$, which becomes $\ln(1+x^2)+C$ (we can drop the absolute values as $1+x^2$ is always postive).  Therefore, the answer is
+$$\int \arctan x\ dx = x\arctan x - \frac12\ln(1+x^2) + C.$$
 \vskip-15pt
 }\\
 

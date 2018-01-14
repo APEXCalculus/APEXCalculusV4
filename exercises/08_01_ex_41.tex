@@ -1,4 +1,6 @@
 {Prove the Squeeze Theorem for sequences: Let $\{a_n\}$ and $\{b_n\}$  be such that $\ds\lim_{n\to\infty} a_n = L$ and $\ds\lim_{n\to\infty} b_n = L$, and let $\{c_n\}$ be such that $a_n\leq c_n\leq b_n$ for all $n$. Then $\ds\lim_{n\to\infty} c_n = L$  
 }
-{Left to reader
+{A sketch of one proof method: 
+
+Let any $\epsilon>0$ be given. Since $\{a_n\}$ and $\{b_n\}$ converge, there exists an $N>0$ such that for all $n\geq N$, both $a_n$ and $b_n$ are within $\epsilon/2$ of $L$; we can conclude that they are at most $\epsilon$ apart from each other. Since $a_n\leq c_n \leq b_n$, one can show that $c_n$ is within $\epsilon$ of $L$, showing that $\{c_n\}$ also converges to $L$.
 }
