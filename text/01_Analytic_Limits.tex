@@ -233,7 +233,7 @@ Our final theorem for this section will be motivated by the following example.\\
 
 \example{ex_limit_onept}{Using algebra to evaluate a limit}{
 Evaluate the following limit: $$\lim_{x\to 1}\frac{x^2-1}{x-1}.$$}
-{We begin by attempting to apply Theorem \ref{thm:lim_continuous} and substituting 1 for $x$ in the quotient. This gives:
+{We begin by attempting to apply Theorem \ref{thm:poly_rat} and substituting 1 for $x$ in the quotient. This gives:
 		$$\lim_{x\to 1}\frac{x^2-1}{x-1} = \frac{1^2-1}{1-1} = \raisebox{8pt}{\text{``\ }}\frac{0}{0}\raisebox{8pt}{\text{\ ''}},$$ an indeterminate form. We cannot apply the theorem.
 
 \mfigure{.6}{Graphing $f$ in Example \ref{ex_limit_onept} to understand a limit.}{fig:limitxplus1}{figures/fig_LimitXplus1}
@@ -254,7 +254,7 @@ then $(x-c)$ is a factor of both $g(x)$ and $f(x)$. One can then use algebra to 
 
 \example{ex_limit_allbut1}{Evaluating a limit using Theorem \ref{thm:limit_allbut1}}
 {Evaluate $\ds \lim_{x\to 3} \frac{x^3-2 x^2-5 x+6}{2 x^3+3 x^2-32 x+15}$.}
-{We begin by applying Theorem \ref{thm:poly_rat} and substituting 3 for $x$. This returns the familiar indeterminate form of ``0/0''. %\zerooverzero. 
+{We attempt to apply Theorem \ref{thm:poly_rat} by substituting 3 for $x$. This returns the familiar indeterminate form of ``0/0''. %\zerooverzero. 
 Since the numerator and denominator are each polynomials, we know that $(x-3)$ is factor of each. Using whatever method is most comfortable to you, factor out $(x-3)$ from each (using polynomial division, synthetic division, a computer algebra system, etc.). We find that $$\frac{x^3-2 x^2-5 x+6}{2 x^3+3 x^2-32 x+15} = \frac{(x-3)(x^2+x-2)}{(x-3)(2 x^2+9 x-5)}.$$ We can cancel the $(x-3)$ terms as long as $x\neq 3$. Using Theorem \ref{thm:limit_allbut1} we conclude:
 		\begin{align*}
 		\lim_{x\to 3} \frac{x^3-2 x^2-5 x+6}{2 x^3+3 x^2-32 x+15} &= \lim_{x\to 3}\frac{(x-3)(x^2+x-2)}{(x-3)(2 x^2+9 x-5)} \\
