@@ -226,7 +226,7 @@ Note how most of the terms in each partial sum are canceled out! In general, we 
 \mfigure{.75}{Scatter plots relating to the series of Example \ref{ex_series3}.}{fig:series3}{figures/figseries3}
 }\\
 
-The series in Example \ref{ex_series3} is an example of a \sword{telescoping series}. Informally, a telescoping series is one in which the partial sums reduce to just a finite number of terms. The partial sum $S_n$ did not contain $n$ terms, but rather just two: 1 and $1/(n+1)$.\index{series!telescoping}\index{telescoping series}
+The series in Example \ref{ex_series3} is an example of a \sword{telescoping series}. Informally, a telescoping series is one in which most terms cancel with preceding or following terms, reducing the number of terms in each partial sum. The partial sum $S_n$ did not contain $n$ terms, but rather just two: 1 and $1/(n+1)$.\index{series!telescoping}\index{telescoping series}
 
 When possible, seek a way to write an explicit formula for the $n^\text{th}$ partial sum $S_n$. This makes evaluating the limit $\ds\lim_{n\to\infty} S_n$ much more approachable. We do so in the next example.\\
 
@@ -392,7 +392,7 @@ Looking back, we can apply this theorem to the series in Example \ref{ex_series1
 \textbf{Important!} This theorem \emph{does not state} that if $\ds \lim_{n\to\infty} a_n = 0$ then $\ds \sum_{n=1}^\infty  a_n $ converges. The standard example of this is the Harmonic Series, as given in Key Idea \ref{idea:famous_series}. The Harmonic Sequence, $\{1/n\}$, converges to 0; the Harmonic Series, $\ds \sum_{n=1}^\infty 1/n$, diverges.
 
 \theorem{thm:series_behavior}{Infinite Nature of Series}
-{The convergence or divergence remains unchanged by the addition or subtraction of any finite number of terms. That is:
+{The convergence or divergence of an infinite series remains unchanged by the addition or subtraction of any finite number of terms. That is:
 	\begin{enumerate}
 	\item		A divergent series will remain divergent with the addition or subtraction of any finite number of terms.
 	\item		A convergent series will remain convergent with the addition or subtraction of any finite number of terms. (Of course, the \emph{sum} will likely change.)
