@@ -53,7 +53,7 @@ We again have a theorem that lets us evaluate continuity component--wise.
 \enlargethispage{2\baselineskip}
 
 \theorem{thm:vvf_continuity}{Continuity of Vector--Valued Functions}
-{Let $\vec r(t)$ be a vector--valued function defined on an open interval $I$ containing $c$. $\vec r(t)$ is continuous at $c$ if, and only if, each of its component functions is continuous at $c$.
+{Let $\vec r(t)$ be a vector--valued function defined on an open interval $I$ containing $c$. Then $\vec r(t)$ is continuous at $c$ if, and only if, each of its component functions is continuous at $c$.
 \index{vector--valued function!continuity}\index{continuous function!vector--valued}
 }\\
 
@@ -304,7 +304,28 @@ Then $\vec r(t)\cdot\vrp(t) = 0$ for all $t$ in $I$.\index{vector--valued functi
 
 \noindent\textbf{\large Integration}\\
 
-Indefinite and definite integrals of vector--valued functions are also evaluated component--wise.
+We can define the indefinite integral of a vector--valued function in the same manner we defined indefinite integrals in Definition \ref{def:antider}. However, we cannot define the definite integral of a vector--valued function as we did in Definition \ref{def:def_int}. That definition was based on the signed area between a function $y=f(x)$ and the $x$-axis. An area--based definition will not be useful in the context of vector--valued functions.
+Instead, we define the definite integral of a vector--valued function in a manner similar to that of Theorem \ref{thm:riemann_sum}, utilizing Riemann sums. 
+
+\definition{def:vvf_integral}{\parbox[t]{225pt}{Antiderivatives, Indefinite and Definite Integrals of Vector--Valued Functions}}
+{Let $\vec r(t)$ be a continuous vector--valued function on $[a,b]$. An \sword{antiderivative} of $\vec r(t)$ is a function $\vec R(t)$ such that $\vec R'(t) = \vec r(t)$.\\
+
+The set of all antiderivatives of $\vec r(t)$ is the \sword{indefinite integral of $\vec r(t)$}, denoted by 
+$$\int \vec r(t)\ dt.$$
+
+The definite integral $\int_a^b \vec r(t)\ dt$ of $\vec r(t)$ on $[a,b]$ is 
+$$\int_a^b \vec r(t)\ dt =\lim_{||\Delta t||\to 0} \sum_{i=1}^n\vec r(c_i)\Delta t_i,$$ where $\Delta t_i$ is the length of the $i^{\,\text{th}}$ subinterval of a partition of $[a,b]$, $||\Delta t||$ is the length of the largest subinterval in the partition, and $c_i$ is any value in the $i^{\,\text{th}}$ subinterval.%
+\index{antiderivative!of vector--valued function}%
+\index{definite integral!of vector--valued function}%
+\index{indefinite integral!of vector--valued function}%
+\index{integration!of vector--valued function}%
+}
+
+
+While the definition of the definite integral may look complicated, in practice computing indefinite and definite integrals of vector--valued functions is accomplished component--wise, as allowed by the following theorem.
+
+
+%Indefinite and definite integrals of vector--valued functions are also evaluated component--wise.
 
 \theorem{thm:vvf_integration}{\parbox[t]{225pt}{Indefinite and Definite Integrals of Vector--Valued Functions}}
 {Let $\vec r(t) = \la f(t),g(t)\ra$ be a vector--valued function in $\mathbb{R}^2$.
