@@ -95,7 +95,7 @@ Note that the index starts at $n=0$, not $n=1$.%
 
 We started this section with a geometric series, although we dropped the first term of $1$. One reason geometric series are important is that they have nice convergence properties.
 
-\theorem{thm:geom_series}{Convergence of Geometric Series}
+\theorem{thm:geom_series}{Geometric Series Test}
 {Consider the geometric series $\ds \sum_{n=0}^\infty r^n$.
 \begin{enumerate}
 \item		The $n^\text{th}$ partial sum is: $\ds S_n = \frac{1-r\,^{n+1}}{1-r}$, $r\neq 1$.
@@ -164,7 +164,7 @@ $$\sum_{n=1}^\infty \frac{1}{(an+b)^p}, \qquad \text{where $p>0$ and $a$, $b$ ar
 
 Like geometric series, one of the nice things about p--series is that they have easy to determine convergence properties.
 
-\theorem{thm:pseries}{Convergence of General $p$--Series}
+\theorem{thm:pseries}{$p$--Series Test}
 {A general $p$--series $\ds\sum_{n=1}^\infty \frac{1}{(an+b)^p}$ will converge if, and only if, $p>1$.\index{series!p@$p$-series}\index{p@$p$-series}
 \index{convergence!of p@of $p$-series}\index{divergence!of p@of $p$-series}
 }
@@ -376,20 +376,24 @@ As one contemplates the behavior of series, a few facts become clear.
 
 These concepts are very important and lie at the heart of the next two theorems.
 
-\theorem{thm:series_nth_term}{$n^\text{th}$--Term Test for Convergence/Divergence}
-{Consider the series $\ds\sum_{n=1}^\infty a_n$. 
+\theorem{thm:series_nth_term}{$n^\text{th}$--Term Test for Divergence}
+{Consider the series $\ds\sum_{n=1}^\infty a_n$. If $\ds \lim_{n\to\infty}a_n \neq 0$, then $\ds\sum_{n=1}^\infty a_n$ diverges.
 \index{series!nth@$n^\text{th}$--term test}\index{nth@$n^\text{th}$--term test}\index{convergence!nth@$n^\text{th}$--term test}\index{divergence!nth@$n^\text{th}$--term test}
-\begin{enumerate}
-\item		If $\ds\sum_{n=1}^\infty a_n$ converges, then $\ds \lim_{n\to\infty}a_n =0$.
-\item		If $\ds \lim_{n\to\infty}a_n \neq 0$, then $\ds\sum_{n=1}^\infty a_n$ diverges.
-\end{enumerate}
+%\begin{enumerate}
+%\item		If $\ds\sum_{n=1}^\infty a_n$ converges, then $\ds \lim_{n\to\infty}a_n =0$.
+%\item		If $\ds \lim_{n\to\infty}a_n \neq 0$, then $\ds\sum_{n=1}^\infty a_n$ diverges.
+%\end{enumerate}
 }
 
-Note that the two statements in Theorem \ref{thm:series_nth_term} are really the same. In order to converge, the limit of the terms of the sequence must approach 0; if they do not, the series will not converge. 
+\textbf{Important!} This theorem \emph{does not state} that if $\ds \lim_{n\to\infty} a_n = 0$ then $\ds \sum_{n=1}^\infty  a_n $ converges. The standard example of this is the Harmonic Series, as given in Key Idea \ref{idea:famous_series}. The Harmonic Sequence, $\{1/n\}$, converges to 0; the Harmonic Series, $\ds \sum_{n=1}^\infty 1/n$, diverges.
+
+%Note that the two statements in Theorem \ref{thm:series_nth_term} are really the same. In order to converge, the limit of the terms of the sequence must approach 0; if they do not, the series will not converge. 
 
 Looking back, we can apply this theorem to the series in Example \ref{ex_series1}. In that example, the $n^\text{th}$ terms of both sequences do not converge to 0, therefore we can quickly conclude that each series diverges.
 
-\textbf{Important!} This theorem \emph{does not state} that if $\ds \lim_{n\to\infty} a_n = 0$ then $\ds \sum_{n=1}^\infty  a_n $ converges. The standard example of this is the Harmonic Series, as given in Key Idea \ref{idea:famous_series}. The Harmonic Sequence, $\{1/n\}$, converges to 0; the Harmonic Series, $\ds \sum_{n=1}^\infty 1/n$, diverges.
+One can rewrite Theorem \ref{thm:series_nth_term} to state ``If a series converges, then the underlying sequence converges to 0.'' While it is important to understand the truth of this statement, in practice it is rarely used. It is generally far easier to prove the convergence of a sequence than the convergence of a series. 
+
+
 
 \theorem{thm:series_behavior}{Infinite Nature of Series}
 {The convergence or divergence of an infinite series remains unchanged by the addition or subtraction of any finite number of terms. That is:
