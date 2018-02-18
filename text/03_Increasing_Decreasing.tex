@@ -10,12 +10,12 @@ where would you say the function is \textit{increasing}? \textit{Decreasing}? Ev
 \mfigure{.75}{A graph of a function $f$ used to illustrate the concepts of \textit{increasing} and \textit{decreasing}.}{fig:incr0}{figures/figincr0}
 
 \definition{def:incr_decr}{Increasing and Decreasing Functions}
-{Let $f$ be a function defined on an interval $I$.\index{increasing function}\index{decreasing function}\index{increasing function!strictly}\index{decreasing function!strictly}
+{Let $f$ be a function defined on an interval $I$.\index{increasing function}\index{decreasing function}%\index{increasing function!strictly}\index{decreasing function!strictly}
 \begin{enumerate}
-\item		$f$ is \textbf{increasing} on $I$ if for every $a<b$ in $I$, $f(a) \leq f(b)$.
-\item		$f$ is \textbf{decreasing} on $I$ if for every $a<b$ in $I$, $f(a) \geq f(b)$.
+\item		$f$ is \textbf{increasing} on $I$ if for every $a<b$ in $I$, $f(a) < f(b)$.
+\item		$f$ is \textbf{decreasing} on $I$ if for every $a<b$ in $I$, $f(a) > f(b)$.
 \end{enumerate}
-A function is \textbf{strictly increasing} when $a<b$ in $I$ implies $f(a) < f(b)$, with a similar definition holding for \textbf{strictly decreasing}.
+%A function is \textbf{strictly increasing} when $a<b$ in $I$ implies $f(a) < f(b)$, with a similar definition holding for \textbf{strictly decreasing}.
 }
 
 Informally, a function is increasing if as $x$ gets larger (i.e., looking left to right) $f(x)$ gets larger.
@@ -27,7 +27,7 @@ $$\frac{f(b)-f(a)}{b-a} \Rightarrow \frac{\text{numerator }>0}{\text{denominator
 
 \mfigure{.35}{Examining the secant line of an increasing function.}{fig:incr00}{figures/figincr00}
 
-We have shown mathematically what may have already been obvious: when $f$ is increasing, its secant lines will have a positive slope. Now recall the Mean Value Theorem guarantees that there is a number $c$, where $a<c<b$, such that $$\fp(c) = \frac{f(b)-f(a)}{b-a}>0.$$ By considering all such secant lines in $I$, we strongly imply that $\fp(x) \geq 0$ on $I$. A similar statement can be made for decreasing functions.
+We have shown mathematically what may have already been obvious: when $f$ is increasing, its secant lines will have a positive slope. Now recall the Mean Value Theorem guarantees that there is a number $c$, where $a<c<b$, such that $$\fp(c) = \frac{f(b)-f(a)}{b-a}>0.$$ By considering all such secant lines in $I$, we strongly imply that $\fp(x) > 0$ on $I$. A similar statement can be made for decreasing functions.
 
 Our above logic can be summarized as ``If $f$ is increasing, then $\fp$ is probably  positive." Theorem \ref{thm:incr_decr} below turns this around by stating ``If $\fp$ is postive, then $f$ is increasing.'' This leads us to a method for finding when functions are increasing and decreasing.
 
@@ -95,7 +95,7 @@ So our second reason why the above work is worthwhile is this: once mastery of a
 
 Finally, our third reason: many problems we face ``in the real world'' are very complex. Solutions are tractable only through the use of computers to do many calculations for us. Computers do not solve problems ``on their own,'' however; they need to be taught (i.e., \textit{programmed}) to do the right things. It would be beneficial to give a function to a computer and have it return maximum and minimum values, intervals on which the function is increasing and decreasing, the locations of relative maxima, etc. The work that we are doing here is easily programmable. It is hard to teach a computer to ``look at the graph and see if it is going up or down.'' It is easy to teach a computer to ``determine if a number is greater than or less than 0.''
 
-\enlargethispage{3\baselineskip}
+\enlargethispage{2\baselineskip}
 In Section \ref{sec:extreme_values} we learned the definition of relative maxima and minima and found that they occur at critical points. We are now learning that functions can switch from increasing to decreasing (and vice--versa) at critical points. This new understanding of increasing and decreasing creates a great method of determining whether a critical point corresponds to a maximum, minimum, or neither. Imagine a function increasing until a critical point at $x=c$, after which it decreases. A quick sketch helps confirm that $f(c)$ must be a relative maximum. A similar statement can be made for relative minimums. We formalize this concept in a theorem.
 
 %\small
@@ -105,7 +105,8 @@ In Section \ref{sec:extreme_values} we learned the definition of relative maxima
 \begin{enumerate}
 \item		If the sign of \fp\ switches from positive to negative at $c$, then $f(c)$ is a relative maximum of $f$.
 \item		If the sign of \fp\ switches from negative to positive at $c$, then $f(c)$ is a relative minimum of $f$.
-\item		If the sign of \fp\ does not change at $c$, then $f(c)$ is not a relative extrema of $f$.
+%\item		If the sign of \fp\ does not change at $c$, then $f(c)$ is not a relative extrema of $f$.
+\item		If \fp\ is positive (or, negative) before and after $c$, then $f(c)$ is not a relative extrema of $f$.
 \end{enumerate}
 }
 \normalsize
@@ -136,13 +137,13 @@ We have found that $f$ has two critical numbers, $x=-1,3$, and at $x=1$ somethin
 \noindent \textbf{Interval 4}, $(3,\infty)$:\quad	Choosing an very large number $p$ from this subinterval will give a positive numerator and (of course) a positive denominator. So $f$ is increasing on $(3,\infty)$.
 
 \mfigure{.8}{A graph of $f(x)$ in Example \ref{ex_incr2}, showing where $f$ is increasing and decreasing.}{fig:incr2}{figures/figincr2}
-In summary, $f$ is increasing on the set $(-\infty,-1)\cup (3,\infty)$ and is decreasing on the set $(-1,1)\cup (1,3)$. Since at $x=-1$, the sign of \fp\ switched from positive to negative, Theorem \ref{thm:first_der} states that $f(-1)$ is a relative maximum of $f$. At $x=3$, the sign of \fp\ switched from negative to positive, meaning $f(3)$ is a relative minimum. At $x=1$, $f$ is not defined, so there is no relative extrema at $x=1$.
+In summary, $f$ is increasing on the intervals $(-\infty,-1)$ and $(3,\infty)$ and is decreasing on the intervals $(-1,1)$ and $(1,3)$. Since at $x=-1$, the sign of \fp\ switched from positive to negative, Theorem \ref{thm:first_der} states that $f(-1)$ is a relative maximum of $f$. At $x=3$, the sign of \fp\ switched from negative to positive, meaning $f(3)$ is a relative minimum. At $x=1$, $f$ is not defined, so there is no relative extrema at $x=1$.
 
 \noindent\begin{minipage}{\textwidth}\centering
 \myincludegraphics{figures/figincrline2}
 \captionsetup{type=figure}%
 \caption{Number line for $f$ in Example \ref{ex_incr2}.}\label{fig:incrline2}
-\end{minipage}
+\end{minipage}\\
  
 This is summarized in the number line shown in Figure \ref{fig:incrline2}. Also, Figure \ref{fig:incr2} shows a graph of $f$, confirming our calculations. This figure also shows $\fp$, again demonstrating that $f$ is increasing when $\fp>0$ and decreasing when $\fp<0$.
 }\\
@@ -155,7 +156,7 @@ We examine one more example.\\
 Find the intervals on which $f(x) = x^{8/3}-4x^{2/3}$ is increasing and decreasing and identify the relative extrema.
 \enlargethispage{2\baselineskip}
 }
-{We again start with taking derivatives. Since we know we want to solve $\fp(x) = 0$, we will do some algebra after taking derivatives.
+{We again start with taking a derivative. Since we know we want to solve $\fp(x) = 0$, we will do some algebra after taking the derivative.
 
 \begin{align*}
 f(x) &= x^{\frac{8}{3}}-4x^{\frac{2}{3}} \\
@@ -186,7 +187,7 @@ This derivation of $\fp$ shows that $\fp(x) = 0$ when $x=\pm 1$ and \fp\ is not 
 \caption{Number line for $f$ in Example \ref{ex_incr3}.}\label{fig:incrline3}
 \end{minipage}\\
 \vskip \baselineskip
-We conclude by stating that $f$ is increasing on $(-1,0) \cup (1,\infty)$ and decreasing on $(-\infty,-1) \cup (0,1)$. The sign of \fp\ changes from negative to positive around $x=-1$ and $x=1$, meaning by Theorem \ref{thm:first_der} that $f(-1)$ and $f(1)$ are relative minima of $f$. As the sign of \fp\ changes from positive to negative at $x=0$, we have a relative maximum at $f(0)$. Figure \ref{fig:incr3} shows a graph of $f$, confirming our result. We also graph $\fp$, highlighting once more that $f$ is increasing when $\fp>0$ and is decreasing when $\fp<0$.
+We conclude by stating that $f$ is increasing on the intervals $(-1,0)$ and $(1,\infty)$ and decreasing on the intervals $(-\infty,-1)$ and $(0,1)$. The sign of \fp\ changes from negative to positive around $x=-1$ and $x=1$, meaning by Theorem \ref{thm:first_der} that $f(-1)$ and $f(1)$ are relative minima of $f$. As the sign of \fp\ changes from positive to negative at $x=0$, we have a relative maximum at $f(0)$. Figure \ref{fig:incr3} shows a graph of $f$, confirming our result. We also graph $\fp$, highlighting once more that $f$ is increasing when $\fp>0$ and is decreasing when $\fp<0$.
 \mfigure{.4}{A graph of $f(x)$ in Example \ref{ex_incr3}, showing where $f$ is increasing and decreasing.}{fig:incr3}{figures/figincr3}
 }\\
 

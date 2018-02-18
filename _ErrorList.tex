@@ -26,9 +26,12 @@
 % check mbx    reference .tex
 
 (7)  3.3 p139 Th30.3: Assumes that $\fp\neq0$ around $c$.  We've changed it to "is positive before and after", and added a #4 with "negative".
-% REVISIT  Not sure this is right. If \fp=0 near c, then we have another
+% REVISIT - RESOLVED Not sure this is right. If \fp=0 near c, then we have another
 % critical number ... think on it.
 % no change to mbx yet
+%
+% 2/17/18  Made a number of changes to chapter 3, especially 3.3.
+% Changed the theorem to say 'If f' is positive (or, negative) before and after $c$, then f(c) is not a relative extrema of f.'
 
 (8)  5.3 p219 example122 para-1 L-4: "partition size" isn't defined until p223 (and not with the words "partition size")
 %  pg 214 ``divided (or, \textit{partitioned}) into''
@@ -39,6 +42,21 @@
 %  check mbx   reference .tex
 %
 %  REVISIT this to make sure rest of chapter flows.
+% As part of this revisit, the paragraphs before Theorem 'Definite 
+% Integrals and the Limit of Riemann Sums' changed. In particular,
+% we reference the new defintion of partition (not the def. of Riemann
+% sums) and combine two sentences into 1. (The paragraph that changed
+% starts with 'The theorem goes on to state...'
+%
+% Also, there is a quote right before the theorem. It's pedantic, but
+% it is wrong to say 'sum of rectangles', rather, the sum of areas of 
+% rectangles.
+%
+% Also, added to the list of variables ``defined before' in the statement
+% of the theorem.
+
+(8.5) The Key Idea of Riemann Sum concepts, point #2, changed to 'The ith term of an equally spaced partition is ...'
+% changed 2/17/18 as part of revisiting (8) above
 
 (9)  5.3 pg. 210 ``Let's use 4 rectangles of equal width of 1'' is awkward.
 % 	fixed on 10/19/17  Changed to ``rectangles with an equal''
@@ -225,10 +243,13 @@
 (56)  7.5: Joule and J should be capitalized (many places)
 % Revisit? Couldn't find cases of this. Only 7.6?
 % check mbx
+% 2/17/18  Changed many cases in the exercises/answers; joule isn't
+% supposed to be capped.
 
 (57)  7.5 p385 Example225 para-1 L-3: "Notice how the emptying of the bottom", emptying is misspelled
 % Revisit? seems like 'emptying' is the correct spelling ... 
-% check mbx
+% check mbx  
+% 2/17/18 seems ok to me...
 
 (58)  Math typos:
 (59)  1.5 p38 Example 22: The floor function "returns the largest integer smaller than _or equal to_ the input".
@@ -342,6 +363,8 @@ Let $a$ and $b$ be in $I$ where $\fp(a)>0$ and $\fp(b)<0$. If $\fp$ is continuou
 %  An automated solutions seems best, but am leery of too much of a global
 %  search/replace.
 %  REVISIT
+% 2/17/18 Looked again, still don't see a difference. Agree that it isn't
+% the best practice, but don't see a problem.
 
 (88)  9.5 Figure fig:polcalc8 was too big (I changed the way mfigure, etc. worked)
 % 11/4/17 changed the trim from '5mm' to '0mm'
@@ -442,6 +465,8 @@ Let $a$ and $b$ be in $I$ where $\fp(a)>0$ and $\fp(b)<0$. If $\fp$ is continuou
 (111)  p190 5.1 Theorem 34 only holds on an interval.  Similarly, the paragraph after should end ``Using Definition 19, we can say that on an interval''.
 % Revisit. Made some changes, but not thrilled by them. 
 % mbx
+% 2/17/18 The changes are ok. Still not thrilled, but ok. Only one
+% person noticed the first time, and now no one will notice.
 
 (112)  p414 8.2 Theorem 60: part 1 is only true if $r\neq 1$.
 % 11/4/17  added ', $r\neq 1$.' at end
@@ -452,6 +477,12 @@ Let $a$ and $b$ be in $I$ where $\fp(a)>0$ and $\fp(b)<0$. If $\fp$ is continuou
 % 'Thus' a x^{n+1} starts in the denominator and switches to numerator.
 % The proof is wrong, and likely very hard to fix. May need to find a
 % new problem.
+%
+% 2/17/18  Problem is changed to only require a solution on (1,2), and the 
+% solution is likewise adjusted.
+
+(113.5) Much of the section on Taylor series, especially at the beginning, was rewritten. Intervals of convergence for the series were added. Text was added to stress the idea we seek equality early on.
+% Should REVISIT after a couple of days.
 
 (114)  p487 8.8 Exercise 16: The problem asks for (-1,0).  The solution proves it for (0,1) with an incorrect equality.
 % 11/4/17   Fixed; ended up just uncommenting part of the solution
@@ -735,15 +766,21 @@ Let $a$ and $b$ be in $I$ where $\fp(a)>0$ and $\fp(b)<0$. If $\fp$ is continuou
 % u in the direction of v'', or, ``amount of u in a certain
 % direction. Useful in later contexts.
 % Where? components of acceleration, chapter 14, too. Elsewhere?
+%
+% 2/17/18 Done. Changed quite of bit of the dot product section.
+% Was going to make changes to components of accleration, but I like
+% how that section is written with a gentle reminder.
 
 (190)  Chapter 6.1 problem 33  answer is correct, though perhaps not intuitive. By hand: (3/2)*(ln x)^2+C.
 % 1/13/18
 
 (191)  3.3 Increasing/decreaising: Answers in back use unions; shouldn't. Just be a list of sets.
-% REVISIT
+% REVISIT - done
 % In both Incr/decr and concavity sections, all problems should state
 % 'find intervals on which ... ', not 'sets'. Look in both exercises
 % and in examples.
+%
+% 2/17/18 Done.
 
 (192)  Can you check 5.2#25 answer? Also in that exercise set maybe for 21 and 25 can you put "find non-zero a and b"
 % 1/13/18  Changed answer to #25, 05_02_ex_25 to '$a=-18$, $b=11$'
@@ -792,9 +829,11 @@ Let $a$ and $b$ be in $I$ where $\fp(a)>0$ and $\fp(b)<0$. If $\fp$ is continuou
 % 1/16/18 added marginal note \mnote{.845}{\textbf{Note:} the common phrase ``the $\epsilon$-$\delta$ definition'' is read aloud as ``the epsilon delta definition.'' The hyphen between $\epsilon$ and $\delta$ is not a minus sign.}
 % 
 % Not sure I love it; REVISIT
+% revisited on 2/17/18. Sticking with just the marginal note.
   
 (202)  It would be nice the textbook would mention that the name "epsilon" is for error (both start with the letter "e") and "delta" is for difference or deviation (both start with the letter "d"). 
 % 1/18/18 Mebbe. REVISIT  Haven't done anything yet.
+% 2/17/18 Revisited; I think I'll pass.
       
 (203)  In example 6, a brief discussion about why we choose delta <= 1.75 would be enlightening. Choosing delta to be the minimum of two numbers will seem arbitrary without any explanation.
 % 1/18/18  
@@ -803,6 +842,7 @@ Let $a$ and $b$ be in $I$ where $\fp(a)>0$ and $\fp(b)<0$. If $\fp$ is continuou
 
 (203.5) Add more problems to 1.2, Limit Definition
 % REVISIT
+% 2/18/18 Added three more.
 
 (204)  Message: Section 1.1, page 4: The statement, "There are three ways in which a limit may fail to exist," implies that there are only three ways in which a limit may fail to exist, which is not entirely true. For instance, the two-sided limit of sqrt(x) as x approaches 0 fails to exist, but is not covered by the three cases in this list. "Three common ways in which a limit may fail to exist," would be a more accurate statement. Also, 
 % 1/19/18  added 'common'
@@ -844,6 +884,7 @@ Let $a$ and $b$ be in $I$ where $\fp(a)>0$ and $\fp(b)<0$. If $\fp$ is continuou
 (217)  2) g(L)=K 
 (218)  See email for my response/ideas. May be solved with PCC group already
 % REVISIT
+% 2/18/18 at some point added ``g(L)=K'' to the conditions.
 
 (219)  Subject: error on page 620      I believe there is an error in the solution to example 355. The z-component of the normal vector should be positive 6, not negative six.
 % 1/22/18 already fixed, as is the line below it
@@ -882,6 +923,7 @@ Let $a$ and $b$ be in $I$ where $\fp(a)>0$ and $\fp(b)<0$. If $\fp$ is continuou
 
 (238)  Look at answers about intervals of incr/decr and concave up/down. Make answers in terms of intervals, not using unions of sets.
 % REVISIT
+% 2/18/18 Done. Lots of answers in those sections changed.
 
 (239)  Thm 63, 8.2, pg 422 not really a test for convergence. Rewrite. Look maybe at mbx conversation to see what was discussed there if I haven't already addressed this above
 % 2/16/18 Checked in with MBX conversation and made changes to the thm and to the
@@ -903,6 +945,7 @@ Let $a$ and $b$ be in $I$ where $\fp(a)>0$ and $\fp(b)<0$. If $\fp$ is continuou
 
 (243) look at series convergence test exercises. Seems like many could have better answers in back of book.
 % REVISIT  as of 2/16/18, don't know what this means.
+% 2/18/18 Fixed. Many answers in 8.2 and 8.3 simply said ``Converge/Diverge'' without explanation. Appropriate tests were given.
 
 (244) 10.1#19: The solution is $x^2+z^2=\frac1{(1+y^2)^2}$.
 % 2/16/18  Already fixed
@@ -956,3 +999,11 @@ Let $a$ and $b$ be in $I$ where $\fp(a)>0$ and $\fp(b)<0$. If $\fp$ is continuou
 (259) Subject: typo on p. 313
 Message: The last sentence of the second to last paragraph on p. 313 should conclude that "as x goes to infinity, both sinhx and coshx approach e ^ x/2, hence tanhx approaches 1." (Not e ^ -x/2)
 % 2/16/18  fixed
+
+(260) Fix all 3d graphics - some have wrong clips attached
+
+(261) Ensure all exsets have even numbers of problems in them.
+
+(262) Curve sketching. Include sketches by hand?
+
+(263) Fix numbering of theorems and definitions, etc.
