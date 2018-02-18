@@ -72,6 +72,11 @@ where $\theta$, $0\leq\theta\leq \pi$, is the angle between $\vec u$ and $\vec v
 \index{dot product!properties}\index{vectors!dot product}
 }
 
+Using Theorem \ref{thm:dot_product_properties}, we can rewrite this theorem as
+$$\frac{\vec u}{\norm{\vec u}}\cdot \frac{\vec v}{\norm{\vec v}} = \cos \theta.$$
+Note how on the left hand side of the equation, we are computing the dot product of two unit vectors. Recalling that unit vectors essentially only provide direction information, we can informally restate Theorem \ref{thm:dot_product} as saying ``The dot product of two directions gives the cosine of the angle between them.''
+
+
 When $\theta$ is an acute angle (i.e., $0\leq \theta <\pi/2$), $\cos \theta$ is positive; when $\theta = \pi/2$, $\cos \theta = 0$; when $\theta$ is an obtuse angle ($\pi/2<\theta \leq \pi$), $\cos \theta$ is negative. Thus the sign of the dot product gives a general indication of the angle between the vectors, illustrated in Figure \ref{fig:dotpsign}.
 
 \begin{center}
@@ -196,7 +201,7 @@ Using trigonometry, we can state that
 \end{tabular}
 }
 
-We also know that $\vec w$ is parallel to to $\vec v$\,; that is, the direction of $\vec w$ is the direction of $\vec v$, described by the unit vector $\frac{1}{\norm{\vec v}}\vec v$. The vector $\vec w$ is the vector in the direction $\frac{1}{\norm{\vec v}}\vec v$ with magnitude $\norm{\vec u}\cos \theta$:
+We also know that $\vec w$ is parallel to to $\vec v$\,; that is, the direction of $\vec w$ is the direction of $\vec v$, described by the unit vector $\vec v/\norm{\vec v}$. The vector $\vec w$ is the vector in the direction $\vec v/\norm{\vec v}$ with magnitude $\norm{\vec u}\cos \theta$:
 \begin{align*}
 \vec w &= \Big(\norm{\vec u}\cos\theta \Big)\frac{1}{\norm{\vec v}}\vec v.
 \intertext{Replace $\cos\theta$ using Theorem \ref{thm:dot_product}:}
@@ -264,8 +269,12 @@ $$\proj uv = \frac{\dotp uv}{\dotp vv}\vec v.$$
 \vskip-\baselineskip
 }\\
 
+A special case of orthogonal projection occurs when $\vec v$ is a unit vector. In this situation, the formula for the orthogonal projection of a vector $\vec u$ onto $\vec v$ reduces to just $\proj uv = (\vec u\cdot\vec v)\vec v$, as $\vec v\cdot\vec v = 1$.
+
+This gives us a new understanding of the dot product. When $\vec v$ is a unit vector, essentially providing only direction information, the dot product of $\vec u$ and $\vec v$ gives ``how much of $\vec u$ is in the direction of $\vec v$.'' This use of the dot product will be very useful in future sections.\\
+
 \mfigure{.23}{Illustrating the orthogonal projection.}{fig:dotpprojc}{figures/figdotpprojc}
-Consider Figure \ref{fig:dotpprojc} where the concept of the orthogonal projection is again illustrated. It is clear that 
+Now consider Figure \ref{fig:dotpprojc} where the concept of the orthogonal projection is again illustrated. It is clear that 
 \begin{equation}
 \vec u = \proj uv + \vec z.
 \label{eq:orthogproj}
