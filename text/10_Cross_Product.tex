@@ -149,15 +149,15 @@ Another wonderful property of the cross product, as defined, is that it follows 
 3Dc2c=.78 .32 .53,
 3Dcoo=0 0 34,
 3Droo=150,
-3Dlights=Headlamp,add3Djscript=asylabels.js}{scale=1.25,trim=5mm 5mm 5mm 5mm,clip=true}{.5}{Illustrating the Right Hand Rule of the cross product.}{fig:crossp_rhr}{figures/figcrossp_rhr}
+3Dlights=Headlamp,add3Djscript=asylabels.js}{}{.5}{Illustrating the Right Hand Rule of the cross product.}{fig:crossp_rhr}{figures/figcrossp_rhr}
 %\mfigure[scale=1.25,trim=5mm 5mm 5mm 5mm,clip=true]{.5}{Illustrating the Right Hand Rule of the cross product.}{fig:crossp_rhr}{figures/figcrossp_rhr}
 
 \vskip\baselineskip
 \noindent\textbf{\large Applications of the Cross Product}\\
 
 There are a number of ways in which the cross product is useful in mathematics, physics and other areas of science beyond ``just'' finding a vector perpendicular to two others. We highlight a few here.\index{cross product!applications}\\
-\enlargethispage{\baselineskip}
-\clearpage\enlargethispage{2\baselineskip}
+%\enlargethispage{\baselineskip}
+%\clearpage\enlargethispage{2\baselineskip}
 
 \noindent\textbf{Area of a Parallelogram}\\
 
@@ -210,7 +210,7 @@ This application is perhaps more useful in finding the area of a triangle (in sh
 \example{ex_crossp5}{Area of a triangle}{
 Find the area of the triangle with vertices $A=(1,2)$, $B=(2,3)$ and $C=(3,1)$, as pictured in Figure \ref{fig:crossp5}.}
 {We found the area of this triangle in Example \ref{ex_abc4} to be $1.5$ using integration. There we discussed the fact that finding the area of a triangle can be inconvenient using the ``$\frac12bh$'' formula as one has to compute the height, which generally involves finding angles, etc. Using a cross product is much more direct.
-\mfigure{.8}{Finding the area of a triangle in Example \ref{ex_crossp5}.}{fig:crossp5}{figures/figcrossp5}
+\mfigure{.78}{Finding the area of a triangle in Example \ref{ex_crossp5}.}{fig:crossp5}{figures/figcrossp5}
 
 We can choose any two sides of the triangle to use to form vectors; we choose $\vv{AB} = \la 1,1\ra$ and $\vv{AC}=\la 2,-1\ra$. As in the previous example, we will rewrite these vectors with a third component of 0 so that we can apply the cross product. The area of the triangle is
 $$\frac12\norm{\vv{AB}\times\vv{AC}} = \frac12\norm{\la 1,1,0\ra \times \la 2,-1,0\ra} = \frac12\norm{\la 0,0,-3\ra} = \frac32.$$
@@ -220,14 +220,14 @@ We arrive at the same answer as before with less work.
 \noindent\textbf{Volume of a Parallelepiped}
 
 The three dimensional analogue to the parallelogram is the \textbf{parallelepiped}. Each face is parallel to the opposite face, as illustrated in Figure \ref{fig:crossp_parallelepiped}. By crossing $\vec v$ and $\vec w$, one gets a vector whose magnitude is the area of the base. Dotting this vector with $\vecu$ computes the volume of parallelepiped! (Up to a sign; take the absolute value.)
-\mnote{.65}{\textbf{Note:} The word ``parallelepiped'' is pronounced ``parallel--eh--pipe--ed.''}
-\mfigurethree{width=75pt,3Dmenu,activate=onclick,deactivate=onclick,
+\mnote{.5}{\textbf{Note:} The word ``parallelepiped'' is pronounced ``parallel--eh--pipe--ed.''}
+\mfigurethree{width=100pt,3Dmenu,activate=onclick,deactivate=onclick,
 3Droll=0,
 3Dortho=0.0045,
 3Dc2c=.84 .46 .26,
 3Dcoo=0 110 86,
 3Droo=150,
-3Dlights=Headlamp,add3Djscript=asylabels.js}{}{.53}{A parallelepiped is the three dimensional analogue to the parallelogram.}{fig:crossp_parallelepiped}{figures/figcrosspparallelpiped}
+3Dlights=Headlamp,add3Djscript=asylabels.js}{}{.35}{A parallelepiped is the three dimensional analogue to the parallelogram.}{fig:crossp_parallelepiped}{figures/figcrosspparallelpiped}
 %\mfigure{.53}{A parallelepiped is the three dimensional analogue to the parallelogram.}{fig:crossp_parallelepiped}{figures/figcrosspparallelpiped}
 \index{cross product!applications!volume of parallelepiped}
 
@@ -247,7 +247,7 @@ So the volume of the parallelepiped is 2 cubic units.
 3Dc2c=4 4 2,
 3Dcoo=0 50 50,
 3Droo=150,
-3Dlights=Headlamp,add3Djscript=asylabels.js}{}{.3}{A parallelepiped in Example \ref{ex_crossp6}.}{fig:crossp6}{figures/figcrossp6}
+3Dlights=Headlamp,add3Djscript=asylabels.js}{}{.8}{A parallelepiped in Example \ref{ex_crossp6}.}{fig:crossp6}{figures/figcrossp6}
 %\mfigure{.3}{A parallelepiped in Example \ref{ex_crossp6}.}{fig:crossp6}{figures/figcrossp6}
 }\\
 
@@ -261,7 +261,7 @@ While a full understanding of torque is beyond the purposes of this book, when a
 
 \example{ex_crossp7}{Computing torque}{
 A lever of length 2ft makes an angle with the horizontal of $45^\circ$. Find the resulting torque when a force of 10lb is applied to the end of the level where:
-\mfigure{.6}{Showing a force being applied to a lever in Example \ref{ex_crossp7}.}{fig:crossp7}{figures/figcrossp7}
+\mfigure{.5}{Showing a force being applied to a lever in Example \ref{ex_crossp7}.}{fig:crossp7}{figures/figcrossp7}
 \begin{enumerate}
 	\item the force is perpendicular to the lever, and
 	\item	the force makes an angle of $60^\circ$ with the lever, as shown in Figure \ref{fig:crossp7}.
