@@ -22,7 +22,7 @@ This parametrization is \sword{smooth} on $R$ if $\vec r_u$ and $\vec r_v$ are c
 \mnote{.6}{\textbf{Note:} A function is \emph{one to one} on its domain if the function never repeats an output value over the domain. In the case of $\vec r(u,v)$, $\vec r$ is one to one if $\vec r(u_1,v_1) \neq \vec r(u_2,v_2)$ for all points $(u_1,v_1) \neq (u_2,v_2)$ in the domain of $\vec r$.
 }
 
-Given a point $(u_0,v_0)$ in the domain of a vector--valued function $\vec r$, the vectors $\vec r_u(u_0,v_0)$ and $\vec r_v(u_0,v_0)$ are tangent to the surface \surfaceS\ at $\vec r(u_0,v_0)$ (a proof of this is developed in the Exercise section). The definition of smoothness dictates that $\vec r_u\times \vec r_v \neq \vec 0$; this ensures that neither $\vec r_u$ nor $\vec r_v$ are $\vec 0$, nor are they ever parallel. Therefore smoothness guarantees that $\vec r_u$ and $\vec r_v$ determine a plane that is tangent to \surfaceS.
+Given a point $(u_0,v_0)$ in the domain of a vector--valued function $\vec r$, the vectors $\vec r_u(u_0,v_0)$ and $\vec r_v(u_0,v_0)$ are tangent to the surface \surfaceS\ at $\vec r(u_0,v_0)$ (a proof of this is developed later in this section). The definition of smoothness dictates that $\vec r_u\times \vec r_v \neq \vec 0$; this ensures that neither $\vec r_u$ nor $\vec r_v$ are $\vec 0$, nor are they ever parallel. Therefore smoothness guarantees that $\vec r_u$ and $\vec r_v$ determine a plane that is tangent to \surfaceS.
 
 A surface \surfaceS\ is said to be \sword{orientable} if a field of normal vectors can be defined on \surfaceS\ that vary continuously along \surfaceS. This definition may be hard to understand; it may help to know that orientable surfaces are often called ``two sided.'' A sphere is an orientable surface, and one can easily envision an ``inside'' and ``outside'' of the sphere. A paraboloid is orientable, where again one can generally envision  ``inside'' and ``outside'' sides (or ``top'' and ``bottom'' sides) to this surface. Just about every surface that one can imagine is orientable, and we'll assume all surfaces we deal with in this text are orientable.
 
@@ -61,7 +61,7 @@ We  let $x=u$ and $y=v$, and let $\vec r(u,v) = \langle u,v, f(u,v)\rangle$. In 
 }
 {We can parametrize the circular boundary of $R$ with the vector--valued function $\la 2\cos u,2\sin u\ra$, where $0\leq u\leq 2\pi$. We can obtain the interior of $R$ by scaling this function by a variable amount, i.e., by multiplying by $v$: $\la 2v\cos u,2v\sin u\ra$, where $0\leq v\leq 1$. 
 
-It is important to understand the role of $v$ in the above function. When $v=1$, we get the boundary of $R$, a circle of radius 2. When $v=0$, we simply get the point $(0,0)$, the center of $R$ (which can be thought of as a circle with radius of 0). When $v=1/2$, we get the circle of radius $1$ that is centered at the origin, which is the circle \emph{halfway} between the boundary and the center.
+It is important to understand the role of $v$ in the above function. When $v=1$, we get the boundary of $R$, a circle of radius 2. When $v=0$, we simply get the point $(0,0)$, the center of $R$ (which can be thought of as a circle with radius of 0). When $v=1/2$, we get the circle of radius $1$ that is centered at the origin, which is the circle \emph{halfway} between the boundary and the center. As $v$ varies from 0 to 1, we create a series of concentric circles that fill out all of $R$.
 
 \mfigurethree{width=145pt,3Dmenu,activate=onclick,deactivate=onclick,
 3Droll=0,
@@ -73,7 +73,7 @@ It is important to understand the role of $v$ in the above function. When $v=1$,
 
 Thus far, we have determined the $x$ and $y$ components of our parametrization of the surface: $x=2v\cos u$ and $y=2v\sin u$. We find the $z$ component simply by using $z = f(x,y) = x^2+2y^2$: 
 $$z = (2v\cos u)^2+2(2v\sin u)^2 = 4v^2\cos^2u+8v^2\sin^2u.$$
-Thus $\vec r(u,v) = \langle 2v\cos u,2v\sin u,4v^2\cos^2u+8v^2\sin^2u\rangle$, $0\leq u\leq 2\pi$, $0\leq v\leq 1$, which is graphed in Figure \ref{fig:parsurf2}. The way that this graphic was generated highlights how the surface was parametrized. When viewing from above, one can see lines emanating from the origin; the represent different values of $u$ as $u$ sweeps from an angle of 0 up to $2\pi$. One can also see concentric circles, each corresponding to a different value of $v$. 
+Thus $\vec r(u,v) = \langle 2v\cos u,2v\sin u,4v^2\cos^2u+8v^2\sin^2u\rangle$, $0\leq u\leq 2\pi$, $0\leq v\leq 1$, which is graphed in Figure \ref{fig:parsurf2}. The way that this graphic was generated highlights how the surface was parametrized. When viewing from above, one can see lines emanating from the origin; they represent different values of $u$ as $u$ sweeps from an angle of 0 up to $2\pi$. One can also see concentric circles, each corresponding to a different value of $v$. 
 }\\
 
 Examples \ref{ex_parsurf1} and \ref{ex_parsurf2} demonstrate an important principle when parameterizing surfaces given in the form $z=f(x,y)$ over a region $R$: if one can determine $x$ and $y$ in terms of $u$ and $v$, then $z$ follows directly as $z=f(x,y)$. 
@@ -115,7 +115,7 @@ Another common way to parametrize the surface is to begin with $y=u$, $0\leq u\l
 We begin with letting $x=u$, $0\leq u\leq 3$. We may be tempted to let $y = v(3-2u/3)$, $0\leq v\leq 1$, but this is incorrect. When $v = 1$, we obtain the upper line of the triangle as desired. However, when $v=0$, the $y$-value is 0, which does not lie in the region $R$. 
 
 
-We will describe the general method of proceeding following this example. For now, consider $y = 1+v(2-2u/3$, $0\leq v\leq 1$. Note that when $v=1$, we have $y=3-2u/3$, the upper line of the boundary of $R$. Also, when $v=0$, we have $y=1$, which is the lower boundary of $R$. With $z=x^2+2y^2$, we determine $\vec r(u,v) = \langle u, 1+v(2-2u/3), u^2+2\big(1+v(2-2u/3)\big)^2\rangle$, $0\leq u\leq 3$, $0\leq v\leq 1$. 
+We will describe the general method of proceeding following this example. For now, consider $y = 1+v(2-2u/3)$, $0\leq v\leq 1$. Note that when $v=1$, we have $y=3-2u/3$, the upper line of the boundary of $R$. Also, when $v=0$, we have $y=1$, which is the lower boundary of $R$. With $z=x^2+2y^2$, we determine $\vec r(u,v) = \langle u, 1+v(2-2u/3), u^2+2\big(1+v(2-2u/3)\big)^2\rangle$, $0\leq u\leq 3$, $0\leq v\leq 1$. 
 
 The surface is graphed in Figure \ref{fig:parsurf4}(b).
 \mtable{.68}{Part (a) shows a graph of the region $R$, and part (b) shows the surface over $R$, as defined in Example \ref{ex_parsurf4}.}{fig:parsurf4}
@@ -166,7 +166,7 @@ where we still need to determine the $y$ component.
 3Dc2c=0.8313615918159485 0.5262497067451477 0.17860320210456848,
 3Dcoo=1.6293458938598633 13.199743270874023 -3.546671152114868,
 3Droo=399.9999708739728,
-3Dlights=Headlamp,add3Djscript=asylabels.js}{scale=1}{.77}{The cylinder parametrized in Example \ref{ex_parsurf5}.}{fig:parsurf5}{figures/figparsurf5} 
+3Dlights=Headlamp,add3Djscript=asylabels.js}{scale=1}{.65}{The cylinder parametrized in Example \ref{ex_parsurf5}.}{fig:parsurf5}{figures/figparsurf5} 
 
 While the cylinder $x^2+z^2/4=1$ is satisfied by any $y$ value, the problem states that all $y$ values are to be between $y=-1$ and $y=2$. Since the value of $y$ does not depend at all on the values of $x$ or $z$, we can use another variable, $v$, to describe $y$. Our final answer is
 $$\vec r(u,v) = \la \cos u, v, 2\sin u\ra, \quad 0\leq u\leq 2\pi,\quad -1\leq v\leq 2.$$
@@ -174,35 +174,50 @@ $$\vec r(u,v) = \la \cos u, v, 2\sin u\ra, \quad 0\leq u\leq 2\pi,\quad -1\leq v
 }\\
 
 \example{ex_parsurf6}{Parameterizing an elliptic cone}
-{Find a parametrization of the elliptic cone $z^2 = \frac{x^2}{4}+\frac{y^2}{9}$, where $-2\leq z\leq 3$, as shown in Figure \ref{fig:parsurf6}(a).
+{Find a parametrization of the elliptic cone $z^2 = \frac{x^2}{4}+\frac{y^2}{9}$, where $-2\leq z\leq 3$, as shown in Figure \ref{fig:parsurf6a}.
 }
 {One way to parametrize this cone is to recognize that given a $z$ value, the cross section of the cone at that $z$ value is an ellipse with equation $\frac{x^2}{(2z)^2} + \frac{y^2}{(3z)^2}=1$. We can let $z=v$, for $-2\leq v\leq 3$ and then parametrize the above ellipses using sines, cosines and $v$.
+\mfigurethree{width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
+3Droll=0,
+3Dortho=0.00452691363170743,
+3Dc2c=0.625795304775238 0.642341136932373 0.44246816635131836,
+3Dcoo=0.0026521924883127213 4.370458126068115 12.347787857055664,
+3Droo=399.9999637774216,
+3Dlights=Headlamp,add3Djscript=asylabels.js}{scale=1}{.35}{The elliptic cone as described in  Example \ref{ex_parsurf6}.}{fig:parsurf6a}{figures/figparsurf6a}
 
 We can parametrize the $x$ component of our surface with $x=2z\cos u$ and the $y$ component with $y=3z\sin u$, where $0\leq u\leq 2\pi$. Putting all components together, we have
 $$\vec r(u,v) = \la 2v\cos u, 3v\sin u, v\ra,\quad 0\leq u\leq 2\pi,\quad -2\leq v\leq 3.$$
 
-\mtable{.35}{An elliptic cone in (a), drawn again in (b) with its domain restricted, as described in  Example \ref{ex_parsurf6}.}{fig:parsurf6}
-{\begin{tabular}{c}
-\myincludegraphicsthree{width=145pt,3Dmenu,activate=onclick,deactivate=onclick,
-3Droll=0,
-3Dortho=0.00452691363170743,
-3Dc2c=0.625795304775238 0.642341136932373 0.44246816635131836,
-3Dcoo=0.0026521924883127213 4.370458126068115 12.347787857055664,
-3Droo=399.9999637774216,
-3Dlights=Headlamp,add3Djscript=asylabels.js}{scale=1}{figures/figparsurf6a}\\
-(a)\\[10pt]
-\myincludegraphicsthree{width=145pt,3Dmenu,activate=onclick,deactivate=onclick,
-3Droll=0,
-3Dortho=0.00452691363170743,
-3Dc2c=0.625795304775238 0.642341136932373 0.44246816635131836,
-3Dcoo=0.0026521924883127213 4.370458126068115 12.347787857055664,
-3Droo=399.9999637774216,
-3Dlights=Headlamp,add3Djscript=asylabels.js}{scale=1}{figures/figparsurf6b}\\
-(b)
-\end{tabular}
-}
+%\mtable{.68}{An elliptic cone in (a), drawn again in (b) with its domain restricted, as described in  Example \ref{ex_parsurf6}.}{fig:parsurf6}
+%{\begin{tabular}{c}
+%\myincludegraphicsthree{width=145pt,3Dmenu,activate=onclick,deactivate=onclick,
+%3Droll=0,
+%3Dortho=0.00452691363170743,
+%3Dc2c=0.625795304775238 0.642341136932373 0.44246816635131836,
+%3Dcoo=0.0026521924883127213 4.370458126068115 12.347787857055664,
+%3Droo=399.9999637774216,
+%3Dlights=Headlamp,add3Djscript=asylabels.js}{scale=1}{figures/figparsurf6a}\\
+%(a)\\[10pt]
+%\myincludegraphicsthree{width=145pt,3Dmenu,activate=onclick,deactivate=onclick,
+%3Droll=0,
+%3Dortho=0.00452691363170743,
+%3Dc2c=0.625795304775238 0.642341136932373 0.44246816635131836,
+%3Dcoo=0.0026521924883127213 4.370458126068115 12.347787857055664,
+%3Droo=399.9999637774216,
+%3Dlights=Headlamp,add3Djscript=asylabels.js}{scale=1}{figures/figparsurf6b}\\
+%(b)
+%\end{tabular}
+%}
 
-When $v$ takes on negative values, the radii of the cross--sectional ellipses become ``negative,'' which can lead to some surprising results. Consider Figure \ref{fig:parsurf6}(b), where the cone is graphed for $0\leq u\leq \pi$. Because $v$ is negative below the $x$-$y$ plane, the radii of the cross--sectional ellipses are negative, and the opposite side of the cone is sketched below the $x$-$y$ plane.
+
+When $v$ takes on negative values, the radii of the cross--sectional ellipses become ``negative,'' which can lead to some surprising results. Consider Figure \ref{fig:parsurf6b}, where the cone is graphed for $0\leq u\leq \pi$. Because $v$ is negative below the $x$-$y$ plane, the radii of the cross--sectional ellipses are negative, and the opposite side of the cone is sketched below the $x$-$y$ plane.
+\mfigurethree{width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
+3Droll=0,
+3Dortho=0.00452691363170743,
+3Dc2c=0.625795304775238 0.642341136932373 0.44246816635131836,
+3Dcoo=0.0026521924883127213 4.370458126068115 12.347787857055664,
+3Droo=399.9999637774216,
+3Dlights=Headlamp,add3Djscript=asylabels.js}{scale=1}{.78}{The elliptic cone as described in  Example \ref{ex_parsurf6} with restricted domain.}{fig:parsurf6b}{figures/figparsurf6b}
 }\\
 
 \example{ex_parsurf7}{Parameterizing an ellipsoid}
@@ -216,7 +231,7 @@ Note how the $x$ and $y$ components of $\vec r$ have  $\cos v$ and $\sin v$ term
 
 One may be tempted to let $0\leq u\leq 2\pi$ as well, but note how the $z$ component is $2\cos u$. We only need $\cos u$ to take on values between $-1$ and $1$ once, therefore we can restrict $u$ to $0\leq u\leq \pi$. 
 
-\mtable{.68}{An ellipsoid in (a), drawn again in (b) with its domain restricted, as described in  Example \ref{ex_parsurf7}.}{fig:parsurf7}
+\mtable{.4}{An ellipsoid in (a), drawn again in (b) with its domain restricted, as described in  Example \ref{ex_parsurf7}.}{fig:parsurf7}
 {\begin{tabular}{c}
 \myincludegraphicsthree{width=145pt,3Dmenu,activate=onclick,deactivate=onclick,
 3Droll=0,
@@ -333,6 +348,6 @@ S = \iint_\surfaceS \ dS &= \iint_R\snorm{\vec r_u\times \vec r_v}\ dA \\
 There is a lot of tedious work in the above calculations and the final integral is nontrivial. The use of a computer-algebra system is highly recommended.
 }\\
 
-In Section \ref{sec:line_int_intro}, we recalled the arc length differential $ds=\snorm{\vrp(t)}dt$. In subsequent sections, we used that differential, but in most applications the ``$\snorm{\vrp(t)}$'' part of the differential canceled out of the integrand (to our benefit, as integrating the square roots of functions is generally difficult). We will find a similar thing happens when we use the surface area differential $dS$ in the following sections. That is, our main goal is not to be able to compute surface area; rather, surface area is tool to obtain other quantities that are more important and useful. In our applications, we will use $dS$, but most of the time the ``$\snorm{\vec r_u\times \vec r_v}$'' part will cancel out of the integrand, making the subsequent integration easier to compute.
+In Section \ref{sec:line_int_intro}, we recalled the arc length differential $ds=\snorm{\vrp(t)}dt$. In subsequent sections, we used that differential, but in most applications the ``$\snorm{\vrp(t)}$'' part of the differential canceled out of the integrand (to our benefit, as integrating the square roots of functions is generally difficult). We will find a similar thing happens when we use the surface area differential $dS$ in the following sections. That is, our main goal is not to be able to compute surface area; rather, surface area is a tool to obtain other quantities that are more important and useful. In our applications, we will use $dS$, but most of the time the ``$\snorm{\vec r_u\times \vec r_v}$'' part will cancel out of the integrand, making the subsequent integration easier to compute.
 
 \printexercises{exercises/14_05_exercises}

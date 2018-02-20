@@ -94,7 +94,7 @@ When the computation of flux is positive, it means that the field is moving from
 We demonstrate the computation of flux, and its interpretation, in the following examples.\\
 
 \example{ex_surfflux1}{Finding flux across a surface}
-{Let \surfaceS\ be the surface given in Example \ref{ex_surfint1}; that is, let \surfaceS\ be the surface paramtetrized by $\vec r(u,v) = \langle u, v(2-2u),3-2u-v(2-2u)\rangle$ on $0\leq u\leq 1$, $0\leq v\leq 1$, and let $\vec F = \langle 1, x,-y\rangle$, as shown in Figure \ref{fig:surfflux1}. Find the flux of $\vec F$ across \surfaceS.
+{Let \surfaceS\ be the surface given in Example \ref{ex_surfint1}, where \surfaceS\ is parametrized by $\vec r(u,v) = \langle u, v(2-2u),3-2u-v(2-2u)\rangle$ on $0\leq u\leq 1$, $0\leq v\leq 1$, and let $\vec F = \langle 1, x,-y\rangle$, as shown in Figure \ref{fig:surfflux1}. Find the flux of $\vec F$ across \surfaceS.
 \mfigurethree{width=145pt,3Dmenu,activate=onclick,deactivate=onclick,
 3Droll=0,
 3Dortho=0.004853160586208105,
@@ -194,6 +194,6 @@ We now compute the flux across each surface with $\vec F_2=\langle 0,0,z\rangle$
 This time the measurements of flux differ. Over $\surfaceS_1$, the field $\vec F_2$ is just $\vec 0$, hence there is no flux. Over $\surfaceS_2$, the flux is again positive as $\vec F_2$ points in the positive $z$ direction over $\surfaceS_2$, as does $\vec n_2$.
 }\\
 
-In the previous example, the surfaces $\surfaceS_1$ and $\surfaceS_2$ form a closed surface that is piecewise smooth. That the measurement of flux across each surface was the same for some fields (and not for others) is reminiscent of a result from Section \ref{sec:greensthm}, where we measured flux across curves. The quick answer to why the flux was the same when considering $\vec F_1$ is that $\divv \vec F_1 = 0$. In the next section, we'll see the second part of the Divergence Theorem which will more fully explain this occurrence. 
+In the previous example, the surfaces $\surfaceS_1$ and $\surfaceS_2$ form a closed surface that is piecewise smooth. That the measurement of flux across each surface was the same for some fields (and not for others) is reminiscent of a result from Section \ref{sec:greensthm}, where we measured flux across curves. The quick answer to why the flux was the same when considering $\vec F_1$ is that $\divv \vec F_1 = 0$. In the next section, we'll see the second part of the Divergence Theorem which will more fully explain this occurrence. We will also explore Stokes' Theorem, the spatial analogue to Green's Theorem.
 
 \printexercises{exercises/14_06_exercises}
