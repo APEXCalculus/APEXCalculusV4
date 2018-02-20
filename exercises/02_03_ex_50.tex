@@ -1,10 +1,14 @@
 {A property of logarithms is that $\ds \log_a x = \frac{\log_b x}{\log_b a}$, for all bases $a,b>0,\neq 1$.
 \begin{enumerate}
-	\item Rewrite this identity when $b=e$, i.e., using $\log_ex =\ln x$.
-	\item	Use part (a) to find the derivative of $y=\log_a x$. 
-	\item	Give the derivative of $y=\log_{10} x$.
+	\item Rewrite this identity when $b=e$, i.e., using $\log_ex =\ln x$, with $a=10$.
+	\item	Use part (a) to find the derivative of $y=\log_{10} x$. 
+	\item	Use part (b) to find the derivative of $y=\log_{a} x$, for any $a>0$, $\neq 1$.
 	\enlargethispage{1\baselineskip}
 \end{enumerate}
 }
-{
+{\begin{enumerate}
+	\item $\log_{10}x = \frac{\ln x}{\ln 10}$.
+	\item	$\frac{d}{dx}\big(\log_{10}x\big) = \frac{d}{dx}\left(\frac{1}{\ln 10}\ln x\right) = \frac{1}{\ln 10}\frac1x$.
+	\item	$\frac{d}{dx}\big(\log_{a}x\big) = \frac{1}{\ln a}\frac1x$
+\end{enumerate}
 }

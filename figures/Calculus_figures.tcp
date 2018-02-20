@@ -6,7 +6,7 @@ Version=4
 MainFile=Calculus_figures.tex
 UseBibTeX=0
 UseMakeIndex=0
-ActiveProfile=Asymptote nopdf
+ActiveProfile=XeLaTeX ⇨ PDF
 ProjectLanguage=en
 ProjectDialect=US
 
