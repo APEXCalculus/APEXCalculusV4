@@ -1,0 +1,22 @@
+\begin{tikzpicture}
+\begin{axis}[width=\marginparwidth+25pt,tick label style={font=\scriptsize},axis y line=middle,axis x line=middle,name=myplot,%
+			xtick=\empty,% 
+%			ytick={-6,-4,-2,0,2,4,6},
+%			minor y tick num=1,
+			extra x ticks={1.57,3.14,4.71,6.28},
+			extra x tick labels={$\pi/2$,$\pi$,$3\pi/2$,$2\pi$},%
+			ymin=-.1,ymax=2.1,%
+			xmin=-.5,xmax=6.5%
+]
+
+%\addplot [thick,{\colorone}] coordinates {(0.,1) (1,2)};
+\addplot [{\colorone},smooth,thick,domain=0:2*pi] {sin(\x r)+1};
+
+%\fill[black,draw=black] (axis cs:0,1) circle (1.5pt);
+%\fill[white,draw=black] (axis cs:1,2) circle (1.5pt);
+%\fill[black,draw=black] (axis cs:1,1) circle (1.5pt);
+%\fill[black,draw=black] (axis cs:2,0) circle (1.5pt);
+\end{axis}
+\node [right] at (myplot.right of origin) {\scriptsize $x$};
+\node [above] at (myplot.above origin) {\scriptsize $y$};
+\end{tikzpicture}
