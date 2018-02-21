@@ -120,11 +120,11 @@ If $c$ is a critical number of $f$, then the point $(c,f(c))$ is a \textbf{criti
 {Let a function $f$ have a relative extrema at the point $(c,f(c))$. Then $c$ is a critical number of $f$.
 }
 
-Be careful to understand that this theorem states  ``All relative extrema occur at critical points.'' It does not say ``All critical numbers produce relative extrema.'' For instance, consider $f(x) = x^3$. Since $\fp(x) = 3x^2$, it is straightforward to determine that $x=0$ is a critical number of $f$. However, $f$ has no relative extrema, as illustrated in Figure \ref{fig:extreme4}. \\
-
+Be careful to understand that this theorem states  ``All relative extrema occur at critical points.'' It does not say ``All critical numbers produce relative extrema.'' For instance, consider $f(x) = x^3$. Since $\fp(x) = 3x^2$, it is straightforward to determine that $x=0$ is a critical number of $f$. However, $f$ has no relative extrema, as illustrated in Figure \ref{fig:extreme4}. 
 \mfigure{.8}{A graph of $f(x)=x^3$ which has a critical value of $x=0$, but no relative extrema.}{fig:extreme4}{figures/figextreme4}
 
-Theorem \ref{thm:extreme_val} states that a continuous function on a closed interval will have absolute extrema, that is, both an absolute maximum and an absolute minimum. These extrema occur either at the endpoints or at critical values in the interval. We combine these concepts to offer a strategy for finding extrema.
+Theorem \ref{thm:extreme_val} states that a continuous function on a closed interval will have both an absolute maximum and an absolute minimum. Common sense tells us ``extrema occur either at the endpoints or somewhere in between.'' It is easy to check for extrema at endpoints, but there are infinite points to check that are ``in between.'' Our theory tells us we need only check at the critical points that are in between the endpoints. %These extrema occur either at the endpoints or at critical values in the interval. 
+We combine these concepts to offer a strategy for finding extrema.
 
 \keyidea{idea:extrema}{Finding Extrema on a Closed Interval}%
 {Let $f$ be a continuous function defined on a closed interval $[a,b]$. To find the maximum and minimum values of $f$ on $[a,b]$:\index{extrema!finding}
@@ -139,70 +139,93 @@ Theorem \ref{thm:extreme_val} states that a continuous function on a closed inte
 We practice these ideas in the next examples.\\
 
 \example{ex_extval4}{Finding extreme values}{
-Find the extreme values of $f(x) = 2x^3+3x^2-12x$ on $[0,3]$, graphed in Figure \ref{fig:extval4}.}
+Find the extreme values of $f(x) = 2x^3+3x^2-12x$ on $[0,3]$, graphed in Figure \ref{table:ext4}(a).}
 {We follow the steps outlined in Key Idea \ref{idea:extrema}. We first evaluate $f$ at the endpoints: $$f(0) = 0 \quad \text{and}\quad f(3) =45.$$
-\mfigure{.35}{A graph of $f(x) = 2x^3+3x^2-12x$ on $[0,3]$ as in Example \ref{ex_extval4}.}{fig:extval4}{figures/figextval4}
+%\mfigure{.35}{A graph of $f(x) = 2x^3+3x^2-12x$ on $[0,3]$ as in Example \ref{ex_extval4}.}{fig:extval4}{figures/figextval4}
 Next, we find the critical values of $f$ on $[0,3]$. $\fp(x) = 6x^2+6x-12 = 6(x+2)(x-1)$; therefore the critical values of $f$ are $x=-2$ and $x=1$. Since $x=-2$ does not lie in the interval $[0,3]$, we ignore it. Evaluating $f$ at the only critical number in our interval gives: $f(1) = -7$. 
 
-The table in Figure \ref{table:ext4} gives $f$ evaluated at the ``important'' $x$ values in $[0,3]$. We can easily see the maximum and minimum values of $f$: the maximum value is $45$ and the minimum value is $-7$.
+The table in Figure \ref{table:ext4}(b) gives $f$ evaluated at the ``important'' $x$ values in $[0,3]$. We can easily see the maximum and minimum values of $f$: the maximum value is $45$ and the minimum value is $-7$.
 
-\mtable{.85}{Finding the extreme values of $f$ in Example \ref{ex_extval4}.}{table:ext4}{\begin{tabular}{cc} $x$ & $f(x)$ \\ \hline \rule{0pt}{10pt} 0 & 0 \\ 1 & $-7$\\3 & 45  \end{tabular}}
+\mtable{.75}{Finding the extreme values of $f(x)= 2x^3+3x^2-12x$ in Example \ref{ex_extval4}.}{table:ext4}{\begin{tabular}{c}%outer table
+\myincludegraphics{figures/figextval4}\\[5pt]
+(a)\\[10pt]
+\begin{tabular}{cc} $x$ & $f(x)$ \\ \hline \rule{0pt}{10pt} 0 & 0 \\ 1 & $-7$\\3 & 45 \\ \end{tabular}\\[20pt]
+(b)
+\end{tabular}}
 \vskip-\baselineskip
 }\\
 
-Note that all this was done without the aid of a graph; this work followed an analytic algorithm and did not depend on any visualization. Figure \ref{fig:extval4} shows $f$ and we can confirm our answer, but it is important to  understand that these answers can be found without graphical assistance.
-
-
+Note that all this was done without the aid of a graph; this work followed an analytic algorithm and did not depend on any visualization. Figure \ref{table:ext4} shows $f$ and we can confirm our answer, but it is important to  understand that these answers can be found without graphical assistance.
 
 We practice again.\\
 
 \example{ex_extval5}{Finding extreme values}{
-Find the maximum and minimum values of $f$ on $[-4,2]$, where $$f(x) = \left\{\begin{array}{cc} (x-1)^2 & x\leq 0 \\ x+1 & x>0 \end{array}\right. .$$
+Find the maximum and minimum values of $f$ on $[-4,2]$, where $$f(x) = \left\{\begin{array}{cc} (x-1)^2 & x\leq 0 \\ x+1 & x>0 \end{array}\right. ,$$ graphed in Figure \ref{table:ext5}(a).
 }
 {Here $f$ is piecewise--defined, but we can still apply Key Idea \ref{idea:extrema} as it is continuous on $[-4,2]$ (one should check to verify that $\ds\lim_{x\to0}f(x) =f(0)$). Evaluating $f$ at the endpoints gives: 
 $$ f(-4) = 25 \quad \text{and} \quad f(2) = 3.$$
 
 We now find the critical numbers of $f$. We have to define $\fp$ in a piecewise manner; it is $$\fp(x) =\left\{\begin{array}{cc} 2(x-1) & x < 0 \\ 1 & x>0 \end{array}\right. .$$ Note that while $f$ is defined for all of $[-4,2]$, $\fp$ is not, as the derivative of $f$ does not exist when $x=0$. (From the left, the derivative approaches $-2$; from the right the derivative is 1.) Thus one critical number of $f$ is $x=0$.
 
-We now set $\fp(x) = 0$. When $x >0$, $\fp(x)$ is never 0.  When $x<0$, $\fp(x)$ is also never 0. (We may be tempted to say that $\fp(x) = 0 $ when $x=1$. However, this is nonsensical, for we only consider $\fp(x) = 2(x-1)$ when $x<0$, so we will ignore a solution that says $x=1$.) 
+We now set $\fp(x) = 0$. When $x >0$, $\fp(x)$ is never 0.  When $x<0$, $\fp(x)$ is also never 0, so we find no critical values from setting $\fp(x)=0$. %(We may be tempted to say that $\fp(x) = 0 $ when $x=1$. However, this is nonsensical, for we only consider $\fp(x) = 2(x-1)$ when $x<0$, so we will ignore a solution that says $x=1$.) 
 
-So we have three important $x$ values to consider: $x= -4, 2$ and $0$. Evaluating $f$ at each gives, respectively, $25$, $3$ and $1$, shown in Figure \ref{table:ext5}. Thus the absolute minimum of $f$ is 1; the absolute maximum of $f$ is $25$. Our answer is confirmed by the graph of $f$ in Figure \ref{fig:extval5}.
-\mtable{.6}{Finding the extreme values of $f$ in Example \ref{ex_extval5}.}{table:ext5}{\begin{tabular}{cc} $x$ & $f(x)$ \\ \hline \rule{0pt}{10pt} $-4$ & 25 \\ 0 & 1 \\ 2 & 3\end{tabular}}
-\mfigure{.4}{A graph of $f(x)$ on $[-4,2]$ as in Example \ref{ex_extval5}.}{fig:extval5}{figures/figextval5}
+So we have three important $x$ values to consider: $x= -4, 2$ and $0$. Evaluating $f$ at each gives, respectively, $25$, $3$ and $1$, shown in Figure \ref{table:ext5}(b). Thus the absolute minimum of $f$ is 1, the absolute maximum of $f$ is $25$, confirmed by the graph of $f$.
+\mtable{.4}{Finding the extreme values of a piecewise--defined function in Example \ref{ex_extval5}.}{table:ext5}{\begin{tabular}{c}% outer table
+\myincludegraphics{figures/figextval5}\\[5pt]
+(a)\\[10pt]
+\begin{tabular}{cc} $x$ & $f(x)$ \\ \hline \rule{0pt}{10pt} $-4$ & 25 \\ 0 & 1 \\ 2 & 3\end{tabular}\\[20pt]% ends inner table
+(b)
+\end{tabular}}
+%\mfigure{.4}{A graph of $f(x)$ on $[-4,2]$ as in Example \ref{ex_extval5}.}{fig:extval5}{figures/figextval5}
 }\\
-\clearpage
+
+%\clearpage
 \example{ex_extval6}{Finding extreme values}{
-Find the extrema of  $f(x) = \cos (x^2)$ on $[-2,2]$.}
+Find the extrema of  $f(x) = \cos (x^2)$ on $[-2,2]$, graphed in Figure \ref{table:ext6}(a).}
 {We again use Key Idea \ref{idea:extrema}. Evaluating $f$ at the endpoints of the interval gives: $f(-2) = f(2) = \cos (4) \approx -0.6536.$ We now find the critical values of $f$.
 
 Applying the Chain Rule, we find $\fp(x) = -2x\sin (x^2)$. Set $\fp(x) = 0$ and solve for $x$ to find the critical values of $f$. 
 
 We have $\fp(x) = 0$ when $x = 0$ and when $\sin (x^2) = 0$. In general, $\sin t = 0$ when $t = \ldots -2\pi, -\pi, 0, \pi, \ldots$ Thus $\sin (x^2) = 0$ when $x^2 = 0, \pi, 2\pi, \ldots$ ($x^2$ is always positive so we ignore $-\pi$, etc.) So $\sin (x^2)=0$ when $x= 0, \pm \sqrt{\pi}, \pm\sqrt{2\pi},$ etc. The only values to fall in the given interval of $[-2,2]$ are $0$ and $\pm\sqrt{\pi}$, where $\sqrt{\pi} \approx 1.77$.
 
-We again construct a table of important values in Figure \ref{table:ext6}. In this example we have 5 values to consider: $x= 0, \pm 2, \pm\sqrt{\pi}$. 
+We again construct a table of important values in Figure \ref{table:ext6}(b). In this example we have 5 values to consider: $x= 0, \pm 2, \pm\sqrt{\pi}$. 
 
-\mtable{.85}{Finding the extrema of $f(x)= \cos (x^2)$ in Example \ref{ex_extval6}.}{table:ext6}{\begin{tabular}{cc} $x$ & $f(x)$ \\ \hline \rule{0pt}{10pt} $-2$ & $-0.65$ \\ $-\sqrt{\pi}$ & $-1$ \\ 0 & 1\\ $\sqrt{\pi}$ & $-1$ \\ 2 & $-0.65$ \end{tabular}}
+\mtable{.75}{Finding the extrema of $f(x)= \cos (x^2)$ in Example \ref{ex_extval6}.}{table:ext6}{%
+\begin{tabular}{c}%
+\myincludegraphics{figures/figextval6}\\[5pt]
+(a)\\[10pt]
+\begin{tabular}{cc} $x$ & $f(x)$ \\ \hline \rule{0pt}{10pt} $-2$ & $-0.65$ \\ $-\sqrt{\pi}$ & $-1$ \\ 0 & 1\\ $\sqrt{\pi}$ & $-1$ \\ 2 & $-0.65$ \end{tabular}\\[20pt]
+(b)
+\end{tabular}%
+}
 
-From the table it is clear that the maximum value of $f$ on $[-2,2]$ is 1; the minimum value is $-1$. The graph in Figure \ref{fig:extval6} confirms our results.
-\mfigure{.67}{A graph of $f(x)=\cos(x^2)$ on $[-2,2]$ as in Example \ref{ex_extval6}.}{fig:extval6}{figures/figextval6}
+From the table it is clear that the maximum value of $f$ on $[-2,2]$ is 1; the minimum value is $-1$. The graph of $f$ confirms our results.
+%\mfigure{.67}{A graph of $f(x)=\cos(x^2)$ on $[-2,2]$ as in Example \ref{ex_extval6}.}{fig:extval6}{figures/figextval6}
 }\\
 
 We consider one more example.\\
 
 
 \example{ex_extval7}{Finding extreme values}{
-Find the extreme values of $f(x) = \sqrt{1-x^2}$.} 
+Find the extreme values of $f(x) = \sqrt{1-x^2}$, graphed in Figure \ref{table:ext7}(a).} 
 {A closed interval is not given, so we find the extreme values of $f$ on its domain. $f$ is defined whenever $1-x^2\geq 0$; thus the domain of $f$ is $[-1,1]$. Evaluating $f$ at either endpoint returns 0. 
-\mfigure{.35}{A graph of $f(x)=\sqrt{1-x^2}$ on $[-1,1]$ as in Example \ref{ex_extval7}.}{fig:extval7}{figures/figextval7}
-\mtable{.5}{Finding the extrema of the half--circle in Example \ref{ex_extval7}.}{table:ext7}{\begin{tabular}{cc} $x$ & $f(x)$ \\ \hline \rule{0pt}{10pt} $-1$ & 0 \\ 0 & 1 \\ 1 & 0 \end{tabular}}
+%\mfigure{.35}{A graph of $f(x)=\sqrt{1-x^2}$ on $[-1,1]$ as in Example \ref{ex_extval7}.}{fig:extval7}{figures/figextval7}
+\mtable{.4}{Finding the extrema of the half--circle in Example \ref{ex_extval7}.}{table:ext7}{%
+\begin{tabular}{c}%
+\myincludegraphics{figures/figextval7}\\[5pt]
+(a)\\[10pt]
+\begin{tabular}{cc} $x$ & $f(x)$ \\ \hline \rule{0pt}{10pt} $-1$ & 0 \\ 0 & 1 \\ 1 & 0 \end{tabular}\\[20pt]
+(b)
+\end{tabular}%
+}
 
-Using the Chain Rule, we find $\ds \fp(x) = \frac{-x}{\sqrt{1-x^2}}$. The critical points of $f$ are found when $\fp(x) = 0$ or when $\fp$ is undefined. It is straightforward to find that $\fp(x) = 0$ when $x=0$, and $\fp$ is undefined when $x=\pm 1$, the endpoints of the interval. The table of important values is given in Figure \ref{table:ext7}. The maximum value is 1, and the minimum value is 0.
+Using the Chain Rule, we find $\ds \fp(x) = \frac{-x}{\sqrt{1-x^2}}$. The critical points of $f$ are found when $\fp(x) = 0$ or when $\fp$ is undefined. It is straightforward to find that $\fp(x) = 0$ when $x=0$, and $\fp$ is undefined when $x=\pm 1$, the endpoints of the interval. The table of important values is given in Figure \ref{table:ext7}(b). The maximum value is 1, and the minimum value is 0.
 }\\
 
 
 \mnote{.18}{\textbf{Note:}  We implicitly found the derivative of $x^2+y^2=1$, the unit circle, in Example \ref{ex_implicit7} as $\frac{dy}{dx} = -x/y$. In Example \ref{ex_extval7}, half of the unit circle is given as $y=f(x) = \sqrt{1-x^2}$. We found $\fp(x) = \frac{-x}{\sqrt{1-x^2}}$. Recognize that the denominator of this fraction is $y$; that is, we again found $\fp(x) = \frac{dy}{dx} = -x/y.$}
 
-
+\enlargethispage{2\baselineskip}
 We have seen that continuous functions on closed intervals always have a maximum and minimum value, and we have also developed a technique to find these values. In the next section, we further our study of the information we can glean from ``nice'' functions with the Mean Value Theorem. On a closed interval, we can find the \textit{average rate of change} of a function (as we did at the beginning of Chapter 2). We will see that differentiable functions always have a point at which their \textit{instantaneous} rate of change is same as the \textit{average} rate of change. This is surprisingly useful, as we'll see.
 
 

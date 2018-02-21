@@ -1,6 +1,6 @@
-In previous chapters we have explored a relationship between vectors and integration. Our most tangible result: if $\vec v(t)$ is a vector--valued velocity function of a moving object, then integrating $\vec v(t)$ from $t=a$ to $t=b$ gives the displacement of that object over that time interval.
+In previous chapters we have explored a relationship between vectors and integration. Our most tangible result: if $\vec v(t)$ is the vector--valued velocity function of a moving object, then integrating $\vec v(t)$ from $t=a$ to $t=b$ gives the displacement of that object over that time interval.
 
-This chapter explores completely different relationships between vectors and integration. These relationships will enable us to compute the work done by a magnetic field in moving an object along a path and how much air moves through an oddly--shaped screen in space, among other things. 
+This chapter explores completely different relationships between vectors and integration. These relationships will enable us to compute the work done by a magnetic field in moving an object along a path and find how much air moves through an oddly--shaped screen in space, among other things. 
 
 Our upcoming work with integration will benefit from a review. We are not concerned here with techniques of integration, but rather what an integral ``does'' and how that relates to the notation we use to describe it.\\
 
@@ -83,7 +83,7 @@ Here we have introduce a new notation, the integral symbol with a subscript of $
 
 All this leads us to a definition. The integral found in Equation \ref{eq:line0} is called a \sword{line integral}. We formally define it below, but note that the definition is very abstract. On one hand, one is apt to say ``the defintion makes sense,'' while on the other, one is equally apt to say ``but I don't know what I'm supposed to do with this definition.'' We'll address that after the definition, and actually find an answer to the area problem we posed at the beginning of this section.
 
-\definition{def:line_integral1}{Line Integral Over Scalar Field}
+\definition{def:line_integral1}{Line Integral Over A Scalar Field}
 {Let $C$ be a smooth curve parametrized by $s$, the arc--length parameter, and let $f$ be a continuous function of $s$. A \sword{line integral} is an integral of the form
 $$\int_C f(s)\ ds = \lim_{||\Delta s||\to 0}\sum_{i=1}^n f(c_i)\Delta s_i,$$
 where $s_1<s_2<\ldots<s_n$ is any partition of the $s$-interval over which $C$ is defined, $c_i$ is any value in the $i\,^\text{th}$ subinterval,  $\Delta s_i$ is the width of the $i\,^\text{th}$ subinterval, and $||\Delta s||$ is the length of the longest subinterval in the partition.
@@ -99,11 +99,11 @@ The definition of the line integral does not specify whether $C$ is a curve in t
 
 This definition of the line integral  doesn't really say anything new. If $C$ is a curve and $s$ is the arc--length parameter of $C$ on $a\leq s\leq b$, then 
 $$\int_Cf(s)\ ds = \int_a^bf(s)\ ds.$$
-The real difference with this integral from the standard ``$\int_a^bf(x)\ dx$'' we used in the past is that of context. Our previous integrals naturally summed up values over an interval on the $x$-axis, whereas now we are summing up values over a curve. If we can parametrize the curve with the arc--length parameter, we can evaluate the line integral just as before.
+The real difference with this integral from the standard ``$\int_a^bf(x)\ dx$'' we used in the past is that of context. Our previous integrals naturally summed up values over an interval on the $x$-axis, whereas now we are summing up values over a curve. \emph{If} we can parametrize the curve with the arc--length parameter, we can evaluate the line integral just as before. Unfortunately, parametrizing a curve in terms of the arc--length parameter is usually very difficult, so we must develop a method of evaluating line integrals using a different parametrization.
 
-The trouble here is that we have generally avoided direct use of the arc--length parameter $s$ in the past as it is usually difficult to use. We continue that methodology here. 
+%The trouble here is that we have generally avoided direct use of the arc--length parameter $s$ in the past as it is usually difficult to use. We continue that methodology here. 
 
-Given a curve $C$, find a parametrization of $C$: $x = g(t)$ and $y=h(t)$, for continuous functions $g$ and $h$, where $a\leq t\leq b$. We can represent this parametrization with a vector--valued function, $\vrt = \langle g(t),h(t)\rangle$.
+Given a curve $C$, find any parametrization of $C$: $x = g(t)$ and $y=h(t)$, for continuous functions $g$ and $h$, where $a\leq t\leq b$. We can represent this parametrization with a vector--valued function, $\vrt = \langle g(t),h(t)\rangle$.
 
 In Section \ref{sec:curvature}, we defined the arc--length parameter in Equation \ref{eq:vvfarc} as 
 $$
@@ -126,9 +126,9 @@ We write this as a Key Idea, along with its three--dimensional analogue, followe
 }
 
 %\mnote{.8}{\textbf{Notation:} We often write $f\big(\vec r(t)\big)$ to represent $f\big(g(t),h(t)\big)$ or $f\big(g(t),h(t),k(t)\big)$. As the input of $f$ are points, it is an abuse of notation to use a vector, $\vec r(t)$, as $f$\,'s input. As this notation is concise and intuitive, this notational abuse is common practice and used extensively in subsequent sections.} Removed as already explained in 14.3
-To be clear, the first point of Key Idea \ref{idea:line1} can be used to find the area under a surface $z=f(x,y)$ and above a curve $C$.
+To be clear, the first point of Key Idea \ref{idea:line1} can be used to find the area under a surface $z=f(x,y)$ and above a curve $C$. We will later give an understanding of the line integral when $C$ is a curve in space.
 
-Let's finally do an example where we actually compute an area.\\
+Let's do an example where we actually compute an area.\\
 
 \example{ex_linescalarfield2}{Evaluating a line integral: area under a surface over a curve.}
 {Find the area under the surface $f(x,y) =\cos(x)+\sin(y)+2$ over the curve $C$, which is the segment of the line $y=2x+1$ on $-1\leq x\leq 1$, as shown in Figure \ref{fig:linescalarfield2}.
@@ -241,6 +241,8 @@ where the approximation was obtained using numerical methods.
 3Dlights=Headlamp,add3Djscript=asylabels.js}{}{.77}{Finding area under a curve in Example \ref{ex_linescalarfield4}.}{fig:linescalarfield4}{figures/figlinescalarfield4}
 }\\
 
+Note how in each of the previous examples we are effectively finding ``area under a curve'', just as we did when first learning of integration. We have used the phrase ``area \emph{over} a curve $C$ and under a surface,'' but that is because of the important role $C$ plays in the integral. The figures show how the curve $C$ defines another curve on the surface $z=f(x,y)$, and we are finding the area under that curve.
+
 \vskip \baselineskip
 \noindent\textbf{\large Properties of Line Integrals}\\
 
@@ -266,9 +268,9 @@ A curve $C$ that is composed of two or more smooth curves is said to be \sword{p
 We state these properties as a theorem.
 
 \theorem{thm:line_int_properties_scalar}{Properties of Line Integrals Over Scalar Fields}
-{Let $C$ be a smooth curve parametrized by the arc--length parameter $s$, let $f$ and $g$ be continuous functions of $s$, and let $k_1$ and $k_2$ be scalars. Then:
+{
 \begin{enumerate}
-	\item	$\ds \int_C\big(k_1f(s)+k_2g(s)\big)\ ds = k_1\int_Cf(s)\ ds +k_2\int_Cg(s)\ ds.$
+	\item	Let $C$ be a smooth curve parametrized by the arc--length parameter $s$, let $f$ and $g$ be continuous functions of $s$, and let $k_1$ and $k_2$ be scalars. Then $$\ds \int_C\big(k_1f(s)+k_2g(s)\big)\ ds = k_1\int_Cf(s)\ ds +k_2\int_Cg(s)\ ds.$$
 	\item Let $C$ be piecewise smooth, composed of smooth components $C_1$ and $C_2$. Then
 	$$\int_Cf(s)\ ds = \int_{C_1}f(s)\ ds + \int_{C_2}f(s)\ ds.$$
 	\end{enumerate}
@@ -280,7 +282,7 @@ We state these properties as a theorem.
 
 We first learned integration as a method to find area under a curve, then later used integration to compute a variety of other quantities, such as arc length, volume, force, etc. In this section, we also introduced line integrals as a method to find area under a curve, and now we explore one more application.
 
-Let a curve $C$ (either in the plane or in space) represent a thin wire with variable density $\delta(s)$. We can approximate the mass of the wire by dividing the wire (i.e., the curve) into small segments and assume the density is constant across these small segments. The mass of each segment is density of the segment $\times$ its length; by summing up the approximate mass of each segment we can approximate the total mass:
+Let a curve $C$ (either in the plane or in space) represent a thin wire with variable density $\delta(s)$. We can approximate the mass of the wire by dividing the wire (i.e., the curve) into small segments of length $\Delta s_i$ and assume the density is constant across these small segments. The mass of each segment is density of the segment $\times$ its length; by summing up the approximate mass of each segment we can approximate the total mass:
 $$\text{Total Mass of Wire } = \sum \delta(s_i)\Delta s_i.$$
 
 By taking the limit as the length of the segments approaches 0, we have the definition of the line integral as seen in Definition \ref{def:line_integral1}. When learning of the line integral, we let $f(s)$ represent a height; now we let $f(s) = \delta(s)$ represent a density.
@@ -313,13 +315,13 @@ $$\delta(x,y,z) = \delta\big(1+\cos t,1+\sin t, 1+\sin(2t)\big) = 2+\sin t+\sin(
 $$ds = \norm{\vrp(t)}\ dt = \sqrt{\sin^2t+\cos^2t+4\cos^2(2t)}\ dt = \sqrt{1+4\cos^2(2t)}\ dt.$$
 Thus the mass is
 $$M = \oint_C \delta(s)\ ds = \int_0^{2\pi} \big(2+\sin t+\sin(2t)\big)\sqrt{1+4\cos^2(2t)}\ dt \approx 21.08\text{gm}. $$
-We compute the moments about the coordinate planes:
+We compute the moments about the coordinate planes:\small
 \begin{align*}
 M_{yz} &= \oint_C x\delta(s)\ ds = \int_0^{2\pi}(1+\cos t)\big(2+\sin t+\sin(2t)\big)\sqrt{1+4\cos^2(2t)}\ dt \approx 21.08. \\
 M_{xz} &= \oint_C y\delta(s)\ ds = \int_0^{2\pi}(1+\sin t)\big(2+\sin t+\sin(2t)\big)\sqrt{1+4\cos^2(2t)}\ dt \approx
 26.35\\
 M_{xy} &= \oint_C z\delta(s)\ ds = \int_0^{2\pi}\big(1+\sin(2 t)\big)\big(2+\sin t+\sin(2t)\big)\sqrt{1+4\cos^2(2t)}\ dt \approx 25.40
-\end{align*}
+\end{align*}\normalsize
 Thus the center of mass of the wire is located at 
 $$(\overline{x},\overline{y},\overline{z}) = \left(\frac{M_{yz}}M, \frac{M_{xz}}M,\frac{M_{xy}}M\right) \approx (1,1.25,1.20),$$
 as indicated by the dot in Figure \ref{fig:linescalarfield6}. Note how in this example, the curve $C$ is ``centered'' about the point $(1,1,1)$, though the variable density of the wire pulls the center of mass out along the $y$ and $z$ axes.
@@ -327,6 +329,8 @@ as indicated by the dot in Figure \ref{fig:linescalarfield6}. Note how in this e
 
 We end this section with a callback to the Integration Review that preceded this section. A line integral looks like: $\int_C f(s)\ ds$. As stated before the definition of the line integral, this means ``sum up, along a curve $C$, function values $f(s)$ $\times$ small arc lengths.'' When $f(s)$ represents a height, we have ``height $\times$ length = area.'' When $f(s)$ is a density (and we use $\delta(s)$ by convention), we have ``density (mass per unit length) $\times$ length = mass.''
 
-We'll expand our uses for line integrals after the next section. First, we'll investigate a new mathematical object, called a vector field.
+In the next section, we investigate a new mathematical object, the \emph{vector field}. The remaining sections of this chapter are devoted to understanding integration in the context of vector fields.
+
+%We'll expand our uses for line integrals after the next section. First, we'll investigate a new mathematical object, called a vector field.
 
 \printexercises{exercises/14_01_exercises}

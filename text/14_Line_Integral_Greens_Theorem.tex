@@ -68,7 +68,7 @@ Measuring flow is essentially the same as finding work performed by a force as d
 \example{ex_flux1}{Finding flux across curves in the plane}
 {Curves $C_1$ and $C_2$ each start at $(1,0)$ and end at $(0,1)$, where $C_1$ follows the line $y=1-x$ and $C_2$ follows the unit circle, as shown in Figure \ref{fig:flux1}. Find the flux across both curves for the vector fields $\vec F_1 = \la y, -x+1\ra$ and $\vec F_2 = \la -x, 2y-x\ra$. 
 }
-{\mtable{.55}{Illustrating the curves and vector fields in Example \ref{ex_flux1}. In (a) the vector field is $\vec F_1$, and in (b) the vector field is $\vec F_2$.}{fig:flux1}{%
+{\mtable{.45}{Illustrating the curves and vector fields in Example \ref{ex_flux1}. In (a) the vector field is $\vec F_1$, and in (b) the vector field is $\vec F_2$.}{fig:flux1}{%
 \begin{tabular}{c}
 \myincludegraphics{figures/figflux1a}\\
 (a)\\
@@ -171,7 +171,7 @@ which matches our previous measurement of circulation.
 
 Green's Theorem states that $\oint_C\vec F\cdot d\vec r = \iint_R \curl\vec F\ dA$; since $\curl \vec F = 0$ in this example, the double integral is simply 0 and hence the circulation is 0.
 
-Since $\curl \vec F = 0$, we can conclude that the circulation is 0 in two ways. One method is to employ Green's Theorem as done above. The second way is to recognize that $\vec F$ is a conservative field, hence there is a function $z=f(x,y)$ wherein $\vec F = \nabla f$. Let $A$ be any point on the curve $C$; since $C$ is closed, we can say that $C$ ``begins'' and ``end'' at $A$. By the Fundamental Theorem of Line Integrals, $\oint_C \vec F\ d\vec r = f(A)-f(A) = 0$.\vskip-6pt
+Since $\curl \vec F = 0$, we can conclude that the circulation is 0 in two ways. One method is to employ Green's Theorem as done above. The second way is to recognize that $\vec F$ is a conservative field, hence there is a function $z=f(x,y)$ wherein $\vec F = \nabla f$. Let $A$ be any point on the curve $C$; since $C$ is closed, we can say that $C$ ``begins'' and ``ends'' at $A$. By the Fundamental Theorem of Line Integrals, $\oint_C \vec F\ d\vec r = f(A)-f(A) = 0$.\vskip-6pt
 }\\
 
 One can use Green's Theorem to find the area of an enclosed region by integrating along its boundary. Let $C$ be a closed curve, enclosing the region $R$, parametrized by $\vec r(t) = \la f(t),g(t)\ra$. We know the area of $R$ is computed by the double integral $\iint_R \ dA$, where the integrand is $1$. By creating a field $\vec F$ where $\curl \vec F =1$, we can employ Green's Theorem to compute the area of $R$ as $\oint_C \vec F\cdot d\vec r$. 

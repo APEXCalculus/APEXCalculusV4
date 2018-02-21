@@ -235,7 +235,7 @@ Using the summation formulas, consider:
 									&=10.625\notag
 \end{align}
 We were able to sum up the areas of 16 rectangles with very little computation. In Figure \ref{fig:rie7} the function and the 16 rectangles are graphed. While some rectangles over--approximate the area, other under--approximate the area (by about the same amount). Thus our approximate area of 10.625 is likely a fairly good approximation.
-\enlargethispage{2\baselineskip} 
+\enlargethispage{3\baselineskip} 
 
 Notice  Equation \eqref{eq:rie7}; by changing the 16's to 1,000's (and appropriately changing the value of $\Delta x$), we can use that equation to sum up 1000 rectangles!
 %\drawexampleline
@@ -250,7 +250,9 @@ We do so here, skipping from the original summand to the equivalent of Equation 
 									&=10.666656\notag
 \end{align}
 
-Using many, many rectangles, we have a likely good approximation of $\int_0^4 (4x-x^2)\dx$. That is, $$\int_0^4(4x-x^2)\ dx \approx 10.666656.$$
+Using many, many rectangles, we have a likely good approximation of 
+
+$\int_0^4 (4x-x^2)\dx$. That is, $$\int_0^4(4x-x^2)\ dx \approx 10.666656.$$
 \vskip -1\baselineskip
 }\\
 
@@ -263,7 +265,7 @@ Before the above example, we stated what the summations for the Left Hand, Right
 One could partition an interval $[a,b]$ with subintervals that do not have the same size. We refer to the length of the %first subinterval as $\Delta x_1$, the length of the second subinterval as $\Delta x_2$, and so on, giving the length of the 
 $i^\text{ th}$ subinterval as $\Delta x_i$. Also, one could determine each rectangle's height by evaluating $f$ at \emph{any} point $c_i$ in the $i^\text{ th}$ subinterval. %We refer to the point picked in the first subinterval as $c_1$, the point picked in the second subinterval as $c_2$, and so on, with $c_i$ representing the point picked in the $i^\text{ th}$ subinterval. 
 Thus the height of the $i^\text{ th}$ subinterval would be $f(c_i)$, and the area of the $i^\text{ th}$ rectangle would be $f(c_i)\Delta x_i$. These ideas are formally defined below.
-\enlargethispage{4\baselineskip}
+%\enlargethispage{4\baselineskip}
 
 \definition{def:partition}{Partition}
 {A \sword{partition} $\Delta x$ of a closed interval $[a,b]$ is a set of numbers $x_1$, $x_2$, $\ldots$ $x_{n+1}$ where 
@@ -301,8 +303,9 @@ and let $c_i$ denote any value in the $i^\text{ th}$ subinterval.
 
 The sum $$\sum_{i=1}^n f(c_i)\Delta x_i$$  is a \textbf{Riemann sum} of $f$ on $[a,b]$.}
 
-\mfigure{.35}{An example of a general Riemann sum to approximate $\int_0^4(4x-x^2)\ dx$.}{fig:riedef}{figures/figriedef}
+
 Figure \ref{fig:riedef} shows the approximating rectangles of a Riemann sum of $\int_0^4(4x-x^2)\ dx$. While the rectangles in this example do not approximate well the shaded area, they demonstrate that the subinterval widths may vary and the heights of the rectangles can be determined without following a particular rule.
+\mfigure{.8}{An example of a general Riemann sum to approximate $\int_0^4(4x-x^2)\ dx$.}{fig:riedef}{figures/figriedef}
 
 ``Usually'' Riemann sums are calculated using one of the three methods we have introduced. The uniformity of construction  makes computations easier. Before working another example, let's summarize some of what we have learned in a convenient way.
 %\clearpage
@@ -315,7 +318,7 @@ Figure \ref{fig:riedef} shows the approximating rectangles of a Riemann sum of $
 
 \begin{enumerate}
 \item	When the $n$ subintervals have equal length, $\ds \Delta x_i = \Delta x = \frac{b-a}n.$
-\item		The $i^\text{ th}$ term of the partition is $x_i = a + (i-1)\Delta x$. (This makes $x_{n+1} = b$.)
+\item		The $i^\text{ th}$ term of an equally spaced partition is $x_i = a + (i-1)\Delta x$. (This makes $x_{n+1} = b$.)
 \item		The Left Hand Rule summation is: $\ds \sum_{i=1}^n f(x_i)\Delta x$.
 \item		The Right Hand Rule summation is: $\ds \sum_{i=1}^n f(x_{i+1})\Delta x$.
 \item		The Midpoint Rule summation is: $\ds \sum_{i=1}^n f\left(\frac{x_i+x_{i+1}}{2}\right)\Delta x$.
@@ -388,7 +391,7 @@ We construct the Right Hand Rule Riemann sum as follows. Be sure to follow each 
 											&=\frac{32(n+1)}{n} - \frac{32(n+1)(2n+1)}{3n^2} \quad \text{\scriptsize (now simplify)} \\
 											&= \frac{32}{3}\left(1-\frac{1}{n^2}\right)
 \end{align*}
-\drawexampleline
+%\drawexampleline
 
 The result is an amazing, easy to use formula. To approximate the definite integral with 10 equally spaced subintervals and the Right Hand Rule, set $n=10$ and compute $$\int_0^4 (4x-x^2)\ dx \approx \frac{32}{3}\left(1-\frac{1}{10^2}\right) = 10.56.$$
 Recall how earlier we approximated the definite integral with 4 subintervals; with $n=4$, the formula gives 10, our answer as before.
@@ -440,7 +443,7 @@ $$\int_{-1}^5 x^3\ dx = \lim_{n\to\infty} \left(156 + \frac{378}n + \frac{216}{n
 \noindent\textbf{\large Limits of Riemann Sums}
 \vskip \baselineskip
 
-We have used limits to evaluate exactly given definite limits. Will this always work? We will show, given not--very--restrictive conditions, that yes, it will always work.
+We have used limits to evaluate given definite integrals. Will this always work? We will show, given not--very--restrictive conditions, that yes, it will always work.
 
 The previous two examples demonstrated how an expression such as $$\sum_{i=1}^n f(x_{i+1})\Delta x$$ can be rewritten as an expression explicitly involving $n$, such as $32/3(1-1/n^2)$. 
 
@@ -459,9 +462,9 @@ Recall the definition of a limit as $n\to\infty$:
 
 The following theorem states that we can use any of our three rules to find the exact value of a definite integral $\int_a^b f(x)\ dx$. It also goes two steps further. The theorem states that the height of each rectangle doesn't have to be determined following a specific rule, but could be $f(c_i)$, where $c_i$ is any point in the $i^\text{ th}$ subinterval, as discussed before Riemann Sums where defined in Definition \ref{def:rie_sum}.
 
-The theorem goes on to state that the rectangles do not need to be of the same width. Using the notation of Definition \ref{def:rie_sum}, let $\Delta x_i$ denote the length of the $i^\text{ th}$ subinterval in a partition of $[a,b]$. Now let $||\Delta x||$ represent the length of the largest subinterval in the partition: that is, $||\Delta x||$ is the largest of all the $\Delta x_i$'s. If $||\Delta x||$ is small, then $[a,b]$ must be partitioned into many subintervals, since all subintervals must have small lengths. ``Taking the limit as $||\Delta x||$ goes to zero'' implies that the number $n$ of subintervals in the partition is growing to infinity, as the largest subinterval length is becoming arbitrarily small. We then interpret the expression 
+The theorem goes on to state that the rectangles do not need to be of the same width. Using the notation of Definition \ref{def:partition}, let $\Delta x_i$ denote the length of the $i^\text{ th}$ subinterval in a partition of $[a,b]$ and let $||\Delta x||$ represent the length of the largest subinterval in the partition: that is, $||\Delta x||$ is the largest of all the $\Delta x_i$'s. If $||\Delta x||$ is small, then $[a,b]$ must be partitioned into many subintervals, since all subintervals must have small lengths. ``Taking the limit as $||\Delta x||$ goes to zero'' implies that the number $n$ of subintervals in the partition is growing to infinity, as the largest subinterval length is becoming arbitrarily small. We then interpret the expression 
 $$\lim_{||\Delta x||\to 0}\sum_{i=1}^nf(c_i)\Delta x_i$$
-as ``the limit of the sum of rectangles, where the width of each rectangle can be different but getting small, and the height of each rectangle is not necessarily determined by a particular rule.'' The theorem states that this Riemann Sum also gives the value of the definite integral of $f$ over $[a,b]$.
+as ``the limit of the sum of the areas of rectangles, where the width of each rectangle can be different but getting small, and the height of each rectangle is not necessarily determined by a particular rule.'' The theorem states that this Riemann Sum also gives the value of the definite integral of $f$ over $[a,b]$.
 
 %Let $\Delta x$ represent \textit{any} partition of $[a,b]$, and let $\|\Delta x\|$ denote the length of the longest subinterval of this partition. The theorem also states that limit of \textit{any} Riemann sum of the form $\sum_{i=1}^n f(c_i)\Delta x_i$, as $\|\Delta x\|\to 0$, also gives the exact value of the definite integral.
 
@@ -469,7 +472,7 @@ as ``the limit of the sum of rectangles, where the width of each rectangle can b
 %\noindent\hskip-5pt
 %\begin{minipage}{\specialboxlength}
 \theorem{thm:riemann_sum}{Definite Integrals and the Limit of Riemann Sums}
-{Let $f$ be continuous on the closed interval $[a,b]$  and let $S_L(n)$, $S_R(n)$ and $S_M(n)$ be defined as before. Then:\index{Riemann Sum!and definite integral}\index{integration!definite!Riemann Sums}
+{Let $f$ be continuous on the closed interval $[a,b]$  and let $S_L(n)$, $S_R(n)$, $S_M(n)$, $\Delta x$, $\Delta x_i$ and $c_i$ be defined as before. Then:\index{Riemann Sum!and definite integral}\index{integration!definite!Riemann Sums}
 \begin{enumerate}
 	\item		$\ds \lim_{n\to\infty} S_L(n) = \lim_{n\to\infty} S_R(n) = \lim_{n\to\infty} S_M(n) = \lim_{n\to\infty}\sum_{i=1}^n f(c_i)\Delta x$, 
 	

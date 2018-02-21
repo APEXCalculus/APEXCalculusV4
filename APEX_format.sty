@@ -28,6 +28,8 @@
 \RequirePackage{enumitem}
 \RequirePackage[h]{esvect}
 
+\RequirePackage{chngcntr}
+
 
 
 \makeindex
@@ -186,6 +188,8 @@
 
 \newcounter{examplecounter}
 \setcounter{examplecounter}{0}
+
+\counterwithin{examplecounter}{section}
 
 % the example environment has a regular and starred version.
 % the regular version takes 3 arguments: label, problem, solution.
@@ -433,13 +437,14 @@
 
 \long\def\newspecialbox#1#2#3#4{%
 \newcounter{#1counter}
+\counterwithin{#1counter}{section}
 \expandafter\long\expandafter\def\csname #1\endcsname ##1##2##3{%
 \vskip\baselineskip
 \noindent\refstepcounter{#1counter}\label{##1}%
 \begin{tikzpicture}
 %\draw (0,0) node[anchor=north west,text width=\specialboxtitlelength,inner sep=0pt]{\bf #2 \the\value{#1counter}};
 \ifthenelse{\boolean{in_color}} %first, in color
-{\draw (\specialboxtitlelength,0) node[rectangle,text width = \specialboxlength, inner xsep=\specialboxinnerseplengthx, inner ysep=\specialboxinnerseplengthy, anchor=north west,yshift=\specialboxinnerseplengthy] [#3] {\textbf{#2 \the\value{#1counter}\hskip 20pt ##2%
+{\draw (\specialboxtitlelength,0) node[rectangle,text width = \specialboxlength, inner xsep=\specialboxinnerseplengthx, inner ysep=\specialboxinnerseplengthy, anchor=north west,yshift=\specialboxinnerseplengthy] [#3] {\textbf{#2 \thesection.\the\value{#1counter}\hskip 20pt ##2%
 }\vskip.5\baselineskip%\\
 
 ##3};}%if not in color
@@ -458,6 +463,8 @@
 
 \newspecialbox{keyidea}{Key Idea}{draw = red!30!black!50,top color = white!95!red, bottom color = red!60!black!20, text justified, very thick}{draw, text justified, very thick}
 
+%\counterwithin{definitioncounter}{section}
+%\renewcommand{\thedefinitioncounter}{\thesection .\thedefinitioncounter}
 
 %%%%
 %% Begins the exercise section, containing all commands

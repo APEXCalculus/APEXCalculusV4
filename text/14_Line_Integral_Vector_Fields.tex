@@ -21,7 +21,7 @@ These integrals are known as \sword{line integrals over vector fields}. By contr
 
 We formally define this line integral, then give examples and applications.
 
-\definition{def:line_integral2}{Line Integral Over Vector Field}
+\definition{def:line_integral2}{Line Integral Over A Vector Field}
 {Let $\vec F$ be a vector field with continuous components defined on a smooth curve $C$, parametrized by $\vrt$, and let $\vec T$ be the unit tangent vector of $\vrt$. The \sword{line integral over $\vec F$ along $C$} is
 $$\int_C \vec F\cdot d\vec r = \int_C \vec F\cdot\vec T\ ds.$$
 }
@@ -43,9 +43,9 @@ We use an example to practice evaluating line integrals over vector fields.\\
 \example{ex_livf1}{Evaluating a line integral over a vector field: computing work}
 {Two particles move from $(0,0)$ to $(1,1)$ under the influence of the force field $\vec F  = \langle x, x+y\rangle$. One particle follows $C_1$, the line $y=x$; the other follows $C_2$, the curve $y=x^4$, as shown in Figure \ref{fig:livf1}. Force is measured in newtons and distance is measured in meters. Find the work performed by each particle.
 }
-{To compute work, we need parametrize each path. We use $\vec r_1(t) = \langle t,t\rangle$ to parametrize $y=x$, and let $\vec r_2(t) =\langle t,t^4\rangle$ parametrize $y=x^4$; for each, $0\leq t\leq 1$. 
+{To compute work, we need to parametrize each path. We use $\vec r_1(t) = \langle t,t\rangle$ to parametrize $y=x$, and let $\vec r_2(t) =\langle t,t^4\rangle$ parametrize $y=x^4$; for each, $0\leq t\leq 1$. 
 
-Along the straight--line path, $\vec F\big(\vec r_1(t)\big) = \langle x, x+y\rangle = \langle t, t+t\rangle = \langle t,2t\rangle$. We find $\vrp_1(t) =\langle 1,1\rangle$. The integral that computes work is:
+Along the straight--line path, $\vec F\big(\vec r_1(t)\big) = \langle x, x+y\rangle = \langle t, t+t\rangle = \langle t,2t\rangle$. We find $\vrp_1(t) =\langle 1,2\rangle$. The integral that computes work is:
 \begin{align*}
 \int_{C_1} \vec F\cdot d\vec r &= \int_0^1 \langle t,2t\rangle\cdot\la 1,1\ra\ dt \\
 			&= \int_0^1 3t\ dt \\
@@ -59,6 +59,7 @@ Along the curve $y = x^4$, $\vec F\big(\vec r_2(t)\big) = \la x, x+y\ra = \la t,
 			&= \big(\frac12t^2 + \frac45t^5 + \frac12t^8\big)\Big|_0^1 =  1.8 \text{ joules}.
 \end{align*}
 \mfigure{.75}{Paths through a vector field in Example \ref{ex_livf1}.}{fig:livf1}{figures/figlivf1}
+
 Note how differing amounts of work are performed along the different paths. This should not be too surprising: the force is variable, one path is longer than the other, etc.
 }\\
 
@@ -66,7 +67,7 @@ Note how differing amounts of work are performed along the different paths. This
 {Two particles move from $(-1,1)$ to $(1,1)$ under the influence of a force field $\vec F = \la y, x\ra$. One moves along the curve $C_1$, the parabola defined by $y = 2x^2-1$. The other particle moves along the curve $C_2$, the bottom half of the circle defined by $x^2+(y-1)^2=1$, as shown in Figure \ref{fig:livf2}. Force is measured in pounds and distances are measured in feet. Find the work performed by moving each particle along its path.
 }
 {We start by parametrizing $C_1$: the parametrization $\vec r_1(t) = \la t, 2t^2-1\ra$ is straightforward, giving $\vrp_1 = \la 1,4t\ra$. On $C_1$, $\vec F\big(\vec r_1(t)\big) = \la y,x\ra = \la 2t^2-1,t\ra$.
-\mfigure{.35}{Paths through a vector field in Example \ref{ex_livf2}.}{fig:livf2}{figures/figlivf2}
+\mfigure{.79}{Paths through a vector field in Example \ref{ex_livf2}.}{fig:livf2}{figures/figlivf2}
 
 Computing the work along $C_1$, we have:
 \begin{align*}
@@ -93,9 +94,10 @@ Line integrals over vector fields share the same properties as line integrals ov
 It is relatively easy to see why. Let $C$ be the unit circle. The area under a surface over $C$ is the same whether we traverse the circle in a clockwise or counterclockwise fashion, hence the line integral over a scalar field on $C$ is the same irrespective of orientation. On the other hand, if we are computing work done by a force field, direction of travel definitely matters. Opposite directions create opposite signs when computing dot products, so traversing the circle in opposite directions will create line integrals that differ by a factor of $-1$. 
 
 \theorem{thm:line_int_properties_vector}{Properties of Line Integrals Over Vector Fields}
-{Let $\vec F$ and $\vec G$ be  vector fields with continuous components defined on a smooth curve $C$, parametrized by $\vrt$, and let $k_1$ and $k_2$ be scalars. Then:
+{
 \begin{enumerate}
-	\item	$\ds \int_C\big(k_1\vec F+k_2\vec G\big)\cdot d\vec r = k_1\int_C\vec F\cdot d\vec r +k_2\int_C\vec G\cdot d\vec r.$
+	\item	Let $\vec F$ and $\vec G$ be  vector fields with continuous components defined on a smooth curve $C$, parametrized by $\vrt$, and let $k_1$ and $k_2$ be scalars. Then
+	$$\ds \int_C\big(k_1\vec F+k_2\vec G\big)\cdot d\vec r = k_1\int_C\vec F\cdot d\vec r +k_2\int_C\vec G\cdot d\vec r.$$
 	\item Let $C$ be piecewise smooth, composed of smooth components $C_1$ and $C_2$. Then
 	$$\int_C\vec F\cdot d\vec r = \int_{C_1}\vec F\cdot d\vec r + \int_{C_2}\vec F\cdot d\vec r.$$
 	\item	Let $C^*$ be the curve $C$ with opposite orientation, parametrized by $\vec r\,^*$. Then
@@ -160,7 +162,7 @@ A region in the plane is \sword{connected} if any two points in the region can b
 
 A region is \sword{simply connected} if every simple closed curve that lies entirely in the region can be continously deformed (shrunk) to a single point without leaving the region.  (A curve is \sword{simple} if it does not cross itself.) In Figure \ref{fig:simply_connected_plane}, only set $R_1$ is simply connected. Region $R_2$ is not simple as any closed curve that goes around the ``hole'' in $R_2$ cannot be continously shrunk to a single point. As $R_3$ is not even connected, it cannot be simply connected, though again it consists of two simply connected subregions. 
 
-We have applied these terms to regions of the plane, but they can be extended intuitively to regions in space (and hyperspace). In Figure \ref{fig:simply_connected_space}(a), the sphere (at left) and the sphere with a subsphere removed (at right) are both simply connected. Any simple closed path that lies entirely within these domains can be continuously deformed into a single point. In Figure \ref{fig:simply_connected_space}(b), neither domain is simply connected. A left, the sphere has a hole that extends its length and the pictured closed path cannot be deformed to a point. At right, two paths are illustrated on the torus that cannot be shrunk to a point. 
+We have applied these terms to regions of the plane, but they can be extended intuitively to domains in space (and hyperspace). In Figure \ref{fig:simply_connected_space}(a), the domain bounded by the sphere (at left) and the domain with a subsphere removed (at right) are both simply connected. Any simple closed path that lies entirely within these domains can be continuously deformed into a single point. In Figure \ref{fig:simply_connected_space}(b), neither domain is simply connected. A left, the ball has a hole that extends its length and the pictured closed path cannot be deformed to a point. At right, two paths are illustrated on the torus that cannot be shrunk to a point. 
 
 We will use the terms connected and simply connected in subsequent definitions and theorems.
 

@@ -1,0 +1,23 @@
+{$\displaystyle \lim_{x\to 4} 2x+5 = 13$}
+{Let $\epsilon >0$ be given. We wish to find $\delta >0$ such that when $|x-4|<\delta$, $|f(x)-13|<\epsilon$. 
+
+Consider $|f(x)-13|<\epsilon$:
+\begin{gather*}
+|f(x) -13 | < \epsilon \\
+|(2x+5)-13 |<\epsilon \\
+| 2x-8 | < \epsilon \\
+2| x-4 | < \epsilon \\
+-\epsilon/2 < x-4 < \epsilon/2. \\
+\end{gather*}
+This implies we can let $\delta =\epsilon/2$. Then:
+\begin{gather*}
+|x-4|<\delta \\
+-\delta < x-4 < \delta\\
+-\epsilon/2 < x-4 < \epsilon/2\\
+-\epsilon < 2x-8 < \epsilon \\
+-\epsilon < (2x+5)-13 < \epsilon \\
+|(2x+5) - 13| < \epsilon,
+\end{gather*}
+which is what we wanted to prove.
+}
+

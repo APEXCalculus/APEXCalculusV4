@@ -16,6 +16,8 @@ $$\lim_{t\to c} \vec r(t) = \vec L,$$ means that given any $\epsilon>0$, there e
 Note how the measurement of distance between real numbers is the absolute value of their difference; the measure of distance between vectors is the vector norm, or magnitude, of their difference.
 \enlargethispage{2\baselineskip}
 
+Theorem \ref{thm:vvf_limit} states that we can compute limits of vector--valued functions component--wise.
+
 \theorem{thm:vvf_limit}{Limits of Vector--Valued Functions}
 {\begin{enumerate}
 	\item Let $\vec r(t) = \la \,f(t),g(t)\,\ra$ be a vector--valued function in $\mathbb{R}^2$ defined on an open interval $I$ containing $c$. Then
@@ -25,7 +27,6 @@ Note how the measurement of distance between real numbers is the absolute value 
 	$$\lim_{t\to c} \vec r(t) = \la \lim_{t\to c}f(t)\, , \,\lim_{t\to c} g(t)\,, \,\lim_{t\to c} h(t)\ra$$
 \end{enumerate}
 }
-Theorem \ref{thm:vvf_limit} states that we compute limits component--wise.\\
 
 \example{ex_vvflimit1}{Finding limits of vector--valued functions}{
 Let $\ds\vec r(t) = \la \frac{\sin t}{t},\, t^2-3t+3,\,\cos t\ra.$ Find $\ds \lim_{t\to 0}\vec r(t)$.
@@ -38,7 +39,7 @@ Let $\ds\vec r(t) = \la \frac{\sin t}{t},\, t^2-3t+3,\,\cos t\ra.$ Find $\ds \li
 \vskip-1.5\baselineskip
 }\\
 
-\noindent\textbf{\large Continuity}\\
+\noindent\textbf{\large Continuity}
 
 \definition{def:vvf_continuity}{Continuity of Vector--Valued Functions}
 {Let $\vec r(t)$ be a vector--valued function defined on an open interval $I$ containing $c$.
@@ -50,10 +51,10 @@ Let $\ds\vec r(t) = \la \frac{\sin t}{t},\, t^2-3t+3,\,\cos t\ra.$ Find $\ds \li
 }
 
 We again have a theorem that lets us evaluate continuity component--wise.
-\enlargethispage{2\baselineskip}
+%\enlargethispage{2\baselineskip}
 
 \theorem{thm:vvf_continuity}{Continuity of Vector--Valued Functions}
-{Let $\vec r(t)$ be a vector--valued function defined on an open interval $I$ containing $c$. $\vec r(t)$ is continuous at $c$ if, and only if, each of its component functions is continuous at $c$.
+{Let $\vec r(t)$ be a vector--valued function defined on an open interval $I$ containing $c$. Then $\vec r(t)$ is continuous at $c$ if, and only if, each of its component functions is continuous at $c$.
 \index{vector--valued function!continuity}\index{continuous function!vector--valued}
 }\\
 
@@ -81,7 +82,7 @@ Consider a vector--valued function $\vec r$ defined on an open interval $I$ cont
 \enlargethispage{3\baselineskip}
 \vskip \baselineskip
 
-The \textbf{derivative} of a vector--valued function is a measure of the \emph{instantaneous} rate of change, measured by taking the limit as the length of $[t_0,t_1]$ goes to 0. Instead of thinking of an interval as $[t_0,t_1]$, we think of it as $[c,c+h]$ for some value of $h$ (hence the interval has length $h$).  The \emph{average} rate of change is 
+The \sword{derivative} of a vector--valued function is a measure of the \emph{instantaneous} rate of change, measured by taking the limit as the length of $[t_0,t_1]$ goes to 0. Instead of thinking of an interval as $[t_0,t_1]$, we think of it as $[c,c+h]$ for some value of $h$ (hence the interval has length $h$).  The \emph{average} rate of change is 
 $$\frac{\vec r(c+h)-\vec r(c)}{h}$$ for any value of $h\neq0$. We take the limit as $h\to0$ to measure the instantaneous rate of change; this is the derivative of $\vec r$.
 
 %We begin with a definition of the derivative that is very similar to Definition \ref{def:the_derivative}.
@@ -172,7 +173,7 @@ Let $\vec r(t) = \la \cos t, \sin t, t\ra$. Compute $\vrp(t)$ and $\vrp(\pi/2)$.
 %\vskip-1.5\baselineskip
 }\\  %ends example
 
-\ifthenelse{\boolean{in_threeD}}{\vskip\baselineskip}{}
+%\ifthenelse{\boolean{in_threeD}}{\vskip\baselineskip}{}
 In Examples \ref{ex_vvflimit3} and \ref{ex_vvflimit4}, sketching a particular derivative with its initial point at the origin did not seem to reveal anything significant. However, when we sketched the vector with its initial point on the corresponding point on the graph, we did see something significant: the vector appeared to be \textit{tangent} to the graph. We have not yet defined what ``tangent'' means in terms of curves in space; in fact, we use the derivative to define this term.
 
 \definition{def:vector_tangent}{Tangent Vector, Tangent Line}
@@ -190,12 +191,12 @@ Let $\vec r(t) = \la t,t^2,t^3\ra$ on $[-1.5,1.5]$. Find the vector equation of 
 {To find the equation of a line, we need a point on the line and the line's direction. The point is given by $\vec r(-1) = \la -1,1,-1\ra$. (To be clear, $\la -1,1,-1\ra$ is a \emph{vector}, not a point, but we use the point ``pointed to'' by this vector.)
 
 The direction comes from $\vrp(-1)$. We compute, component--wise, $\vrp(t) = \la 1,2t, 3t^2\ra$. Thus $\vrp(-1) = \la 1,-2,3\ra$. 
-\enlargethispage{2\baselineskip}
+%\enlargethispage{2\baselineskip}
 
 %%%
 %%%   Long figure statements follow for if in/not in 3D
 \ifthenelse{\boolean{in_threeD}}{% in threeD
-\mfigurethree{width=125pt,3Dmenu,activate=onclick,deactivate=onclick,
+\mfigurethree{width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
 3Droll=0.5961816528018784,
 3Dortho=0.00514203542843461,
 3Dc2c=0.8352102637290955 0.5152699947357178 0.19214747846126556,
@@ -216,6 +217,7 @@ The direction comes from $\vrp(-1)$. We compute, component--wise, $\vrp(t) = \la
 The vector equation of the line is $\ell(t) = \la -1,1,-1\ra + t\la 1,-2,3\ra$. \ifthenelse{\boolean{in_threeD}}{This line and $\vec r(t)$ are sketched in Figure \ref{fig:vvfderiv1}.}{This line and $\vec r(t)$ are sketched, from two perspectives, in Figure \ref{fig:vvfderiv1} (a) and (b).}
 }\\
 
+%\clearpage
 \example{ex_vvfderiv3}{Finding tangent lines to curves}{
 Find the equations of the lines tangent to $\vec r(t) = \la t^3,t^2\ra$ at $t=-1$ and $t=0$.}
 {We find that $\vrp(t) = \la 3t^2,2t\ra$. At $t=-1$, we have
@@ -304,7 +306,35 @@ Then $\vec r(t)\cdot\vrp(t) = 0$ for all $t$ in $I$.\index{vector--valued functi
 
 \noindent\textbf{\large Integration}\\
 
-Indefinite and definite integrals of vector--valued functions are also evaluated component--wise.
+Before formally defining integrals of vector--valued functions, consider the following equation that our calculus experience tells us \emph{should} be true:
+$$\int_a^b \vrp(t)\ dt = \vec r(b) - \vec r(a).$$
+That is, the integral of a rate of change function should give total change. In the context of vector--valued functions, this total change is displacement. The above equation \emph{is} true; we now develop the theory to show why.
+
+We can define antiderivatives and the indefinite integral of vector--valued functions in the same manner we defined indefinite integrals in Definition \ref{def:antider}. However, we cannot define the definite integral of a vector--valued function as we did in Definition \ref{def:def_int}. That definition was based on the signed area between a function $y=f(x)$ and the $x$-axis. An area--based definition will not be useful in the context of vector--valued functions.
+Instead, we define the definite integral of a vector--valued function in a manner similar to that of Theorem \ref{thm:riemann_sum}, utilizing Riemann sums. 
+\clearpage
+
+\definition{def:vvf_integral}{\parbox[t]{225pt}{Antiderivatives, Indefinite and Definite Integrals of Vector--Valued Functions}}
+{Let $\vec r(t)$ be a continuous vector--valued function on $[a,b]$. An \sword{antiderivative} of $\vec r(t)$ is a function $\vec R(t)$ such that $\vec R'(t) = \vec r(t)$.\\
+
+The set of all antiderivatives of $\vec r(t)$ is the \sword{indefinite integral of $\vec r(t)$}, denoted by 
+$$\int \vec r(t)\ dt.$$
+
+The definite integral  of $\vec r(t)$ on $[a,b]$ is 
+$$\int_a^b \vec r(t)\ dt =\lim_{||\Delta t||\to 0} \sum_{i=1}^n\vec r(c_i)\Delta t_i,$$ where $\Delta t_i$ is the length of the $i^{\,\text{th}}$ subinterval of a partition of $[a,b]$, $||\Delta t||$ is the length of the largest subinterval in the partition, and $c_i$ is any value in the $i^{\,\text{th}}$ subinterval of the partition.%
+\index{antiderivative!of vector--valued function}%
+\index{definite integral!of vector--valued function}%
+\index{indefinite integral!of vector--valued function}%
+\index{integration!of vector--valued function}%
+}
+
+It is probably difficult to infer meaning from the definition of the definite integral. The important thing to realize from the definition is that it is built upon limits, which we can evaluate component--wise. 
+
+The following theorem simplifies the computation of definite integrals; the rest of this section and the following section will give meaning and application to these integrals.
+%While the definition of the definite integral may look complicated, in practice computing indefinite and definite integrals of vector--valued functions is accomplished component--wise, as allowed by the following theorem.
+
+
+%Indefinite and definite integrals of vector--valued functions are also evaluated component--wise.
 
 \theorem{thm:vvf_integration}{\parbox[t]{225pt}{Indefinite and Definite Integrals of Vector--Valued Functions}}
 {Let $\vec r(t) = \la f(t),g(t)\ra$ be a vector--valued function in $\mathbb{R}^2$.
@@ -359,8 +389,8 @@ So $\vrp(t) = \la 2t,\sin t,6t^2\ra + \la 5,3,0\ra = \la 2t+5, \sin t + 3, 6t^2\
 							&= \la t^2+5t, -\cos t + 3t, 2t^3\ra + \vec C.
 \end{align*}
 With $\vec r(0) = \la -7,-1,2\ra$, we solve for $\vec C$:
-\clearpage
-\rule{0pt}{1pt}\vskip-3\baselineskip
+%\clearpage
+%\rule{0pt}{1pt}\vskip-3\baselineskip
 \begin{align*}
 \vec r(t) &= \la t^2+5t, -\cos t + 3t, 2t^3\ra + \vec C\\
 \vec r(0) &= \la 0,-1,0\ra + \vec C\\
@@ -377,7 +407,8 @@ A key understanding for us comes from considering the integral of a derivative: 
 
 Noting that vector--valued functions are closely related to parametric equations, we can describe the arc length of the graph of a vector--valued function as an integral. Given parametric equations $x=f(t)$, $y=g(t)$, the arc length on $[a,b]$ of the graph is
 $$\text{Arc Length} = \int_a^b\sqrt{\fp(t)^2+g\primeskip'(t)^2}\ dt,$$
-as stated in Theorem \ref{thm:arc_length_parametric} in Section \ref{sec:par_calc}. If $\vrt = \la f(t), g(t)\ra$, note that $\sqrt{\fp(t)^2+g\primeskip'(t)^2} = \norm{\vrp(t)}$. Therefore we can express the arc length of the graph of a vector--valued function as an integral of the magnitude of its derivative.
+as stated in Theorem \ref{thm:arc_length_parametric}. %in Section \ref{sec:par_calc}. 
+If $\vrt = \la f(t), g(t)\ra$, note that $\sqrt{\fp(t)^2+g\primeskip'(t)^2} = \norm{\vrp(t)}$. Therefore we can express the arc length of the graph of a vector--valued function as an integral of the magnitude of its derivative.
 
 \theorem{thm:vvf_arc_length}{Arc Length of a Vector--Valued Function}
 {Let \vrt\ be a vector--valued function where $\vrp(t)$ is continuous on $[a,b]$. The arc length $L$ of the graph of \vrt\ is 

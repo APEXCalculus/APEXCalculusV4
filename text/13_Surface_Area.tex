@@ -120,13 +120,13 @@ The computation of the surface area is still valid. The definition makes stronge
 
 \example{ex_surfacearea3}{Finding the surface area of a cone}{
 The general formula for a right cone with height $h$ and base radius $a$ is $$\ds f(x,y) = h-\frac{h}a\sqrt{x^2+y^2},$$ shown in Figure \ref{fig:surfacearea3}. Find the surface area of this cone.
-\mfigurethree{width=125pt,3Dmenu,activate=onclick,deactivate=onclick,
+\mfigurethree{width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
 3Droll=0.,
 3Dortho=0.0046491301618516445,
 3Dc2c=0.5819994807243347 0.633007287979126 0.5104687213897705,
 3Dcoo=-19.82758331298828 -17.547298431396484 45.13401794433594,
 3Droo=149.99999339949443,
-3Dlights=Headlamp,add3Djscript=asylabels.js}{scale=1.5,trim=0mm 0mm 0mm 0mm, clip}{.78}{Finding the surface area of a cone in Example \ref{ex_surfacearea3}.}{fig:surfacearea3}{figures/figsurfacearea3}
+3Dlights=Headlamp,add3Djscript=asylabels.js}{}{.75}{Finding the surface area of a cone in Example \ref{ex_surfacearea3}.}{fig:surfacearea3}{figures/figsurfacearea3}
 %\mfigure[scale=1.5,trim=5mm 5mm 5mm 0mm, clip]{.8}{Finding the surface area of a cone in Example \ref{ex_surfacearea3}.}{fig:surfacearea3}{figures/figsurfacearea3}
 }
 {We begin by computing partial derivatives. 
@@ -145,18 +145,18 @@ S &=	\int_0^{2\pi}\int_0^ar\frac1a\sqrt{a^2+h^2}\ dr\ d\theta\\
 \end{align*}
 This matches the formula found in the back of this text.
 }\\
-\mnote{.5}{\textbf{Note:} Note that once again $f_x$ and $f_y$ are not continuous on the domain of $f$, as both are undefined at $(0,0)$. (A similar problem occurred in the previous example.) Once again the resulting improper integral converges and the computation of the surface area is valid.
+\mnote{.5}{\textbf{Note:} Once again $f_x$ and $f_y$ are not continuous on the domain of $f$, as both are undefined at $(0,0)$. (A similar problem occurred in the previous example.) Once again the resulting improper integral converges and the computation of the surface area is valid.
 }
 
 \example{ex_surfacearea4}{Finding surface area over a region}{
 Find the area of the surface $f(x,y) = x^2-3y+3$ over the region $R$ bounded by $-x\leq y\leq x$, $0\leq x\leq 4$, as pictured in Figure \ref{fig:surfacearea4}.
-\mfigurethree{width=125pt,3Dmenu,activate=onclick,deactivate=onclick,
+\mfigurethree{width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
 3Droll=0,
 3Dortho=0.0046491301618516445,
 3Dc2c=0.43148449063301086 0.6710871458053589 0.6028791069984436,
 3Dcoo=31.701290130615234 -40.52073669433594 19.84035873413086,
 3Droo=150.00000342734387,
-3Dlights=Headlamp,add3Djscript=asylabels.js}{scale=1.2,trim=1mm 0mm 1mm 0mm, clip}{.3}{Graphing the surface in Example \ref{ex_surfacearea4}.}{fig:surfacearea4}{figures/figsurfacearea4}
+3Dlights=Headlamp,add3Djscript=asylabels.js}{}{.3}{Graphing the surface in Example \ref{ex_surfacearea4}.}{fig:surfacearea4}{figures/figsurfacearea4}
 %\mfigure[scale=1.2,trim=1mm 0mm 1mm 0mm, clip]{.3}{Graphing the surface in Example \ref{ex_surfacearea4}.}{fig:surfacearea4}{figures/figsurfacearea4}
 }
 {It is straightforward to compute $f_x(x,y) = 2x$ and $f_y(x,y) = -3$. Thus the surface area is described by the double integral
