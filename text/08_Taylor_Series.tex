@@ -13,12 +13,18 @@ In Section \ref{sec:power_series}, we showed how certain functions can be repres
 \end{enumerate}
 }
 
-The difference between a Taylor polynomial and a Taylor series is the former is a polynomial, containing only a finite number of terms, whereas the latter is a series, a summation of an infinite set of terms. When creating the Taylor polynomial of degree $n$ for a function $f(x)$ at $x=c$, we needed to evaluate $f$, and the first $n$ derivatives of $f$, at $x=c$. When creating the Taylor series of $f$, it helps to find a pattern that describes the $n^\text{th}$ derivative of $f$ at $x=c$. We demonstrate this in the next two examples.\\
+If $p_n(x)$ is the $n^\text{th}$ degree Taylor polynomial for $f(x)$ centered at $x=c$, we saw how $f(x)$ is \emph{approximately equal} to $p_n(x)$ near $x=c$. We also saw how increasing the degree of the polynomial generally reduced the error.
+
+%In the previous section we used Taylor polynomials to approximate other functions and saw, in general, the more terms used in the polynomial, the smaller the error and the better the approximation. 
+We are now considering \emph{series}, where we sum an infinite set of terms. Our ultimate hope is to see the error vanish and claim a function is \emph{equal} to its Taylor series.
+%The difference between a Taylor polynomial and a Taylor series is the former is a polynomial, containing only a finite number of terms, whereas the latter is a series, a summation of an infinite set of terms. 
+
+When creating the Taylor polynomial of degree $n$ for a function $f(x)$ at $x=c$, we needed to evaluate $f$, and the first $n$ derivatives of $f$, at $x=c$. When creating the Taylor series of $f$, it helps to find a pattern that describes the $n^\text{th}$ derivative of $f$ at $x=c$. We demonstrate this in the next two examples.\\
 
 \example{ex_ts1}{The Maclaurin series of $f(x) = \cos x$}
 {Find the Maclaurin series of $f(x)=\cos x$.}
 {In Example \ref{ex_taypoly4} we found the $8^\text{th}$ degree Maclaurin polynomial of $\cos x$. In doing so, we created the table shown in Figure \ref{fig:ts1}.
-\mtable{.35}{A table of the derivatives of $f(x)=\cos x$ evaluated at $x=0$.}{fig:ts1}{%
+\mtable{.3}{A table of the derivatives of $f(x)=\cos x$ evaluated at $x=0$.}{fig:ts1}{%
 \begin{tabular}{lll}
 $f(x) = \cos x $&$\Rightarrow $&$f(0) = 1$\\
 $\fp(x) = -\sin x $&$\Rightarrow $&$\fp(0) = 0$\\
@@ -36,13 +42,19 @@ Notice how $f\,^{(n)}(0)=0$ when $n$ is odd,  $f\,^{(n)}(0)=1$ when $n$ is divis
 $$1-\frac{x^2}2+\frac{x^4}{4!}-\frac{x^6}{6!}+\frac{x^8}{8!} - \cdots$$
 We can go further and write this as a summation. Since we only need the terms where the power of $x$ is even, we write the power series in terms of $x^{2n}$:
 $$\sum_{n=0}^\infty (-1)^{n}\frac{x^{2n}}{(2n)!}.$$
-\vskip-1.\baselineskip
+% New as of 2/17/18
+This Maclaurin series is a special type of power series. As such, we should determine its interval of convergence. Applying the Ratio Test, we have
+\begin{align*}
+\lim_{n\to\infty}\left|(-1)^{n+1}\frac{x^{2(n+1)}}{\big(2(n+1)\big)!}\right|\Bigg/\left|(-1)^n\frac{x^{2n}}{(2n)!}\right| &= \lim_{n\to\infty}\left|\frac{x^{2n+2}}{x^{2n}}\right|\frac{(2n)!}{(2n+2)!}\\
+&= \lim_{n\to\infty} \frac{x^2}{(2n+2)(2n+1)}.
+\end{align*}
+For any fixed $x$, this limit is 0. Therefore this power series has an infinite radius of convergence, converging for all $x$. It is important to note what we have, and have not, determined: we have determined the Maclaurin series for $\cos x$ along with its interval of convergence. We \emph{have not} shown that $\cos x$ is \emph{equal} to this power series.
 }\\
 
 \example{ex_ts2}{The Taylor series of $f(x)=\ln x$ at $x=1$}
 {Find the Taylor series of $f(x) = \ln x$ centered at $x=1$.}
 {Figure \ref{fig:ts2} shows the $n^\text{th}$ derivative of $\ln x$ evaluated at $x=1$ for $n=0,\ldots,5$, along with an expression for the $n^\text{th}$ term: $$f\,^{(n)}(1) = (-1)^{n+1}(n-1)!\quad \text{for $n\geq 1$.}$$ Remember that this is what distinguishes Taylor series from Taylor polynomials; we are very interested in finding a pattern for the $n^\text{th}$ term, not just finding a finite set of coefficients for a polynomial.
-\mtable{.65}{Derivatives of $\ln x$ evaluated at $x=1$.}{fig:ts2}{%
+\mtable{.4}{Derivatives of $\ln x$ evaluated at $x=1$.}{fig:ts2}{%
 \begin{tabular}{lll}
 $f(x) = \ln x $&$\Rightarrow $&$f(1) = 0$\\
 $\fp(x) = 1/x $&$\Rightarrow $&$\fp(1) = 1$\\
@@ -57,10 +69,28 @@ $\ds \rule{0pt}{15pt}\frac{(-1)^{n+1}(n-1)!}{x^n} $ & & $(-1)^{n+1}(n-1)!$
 }
 Since $f(1) = \ln 1 = 0$, we skip the first term and start the summation with $n=1$, giving the Taylor series for $\ln x$, centered at $x=1$, as 
 $$\sum_{n=1}^\infty (-1)^{n+1}(n-1)!\frac{1}{n!}(x-1)^n = \sum_{n=1}^\infty (-1)^{n+1}\frac{(x-1)^n}{n}. $$
-\vskip-1.5\baselineskip
+We now determine the interval of convergence, using the Ratio Test.
+\begin{align*}
+\lim_{n\to\infty} \left|(-1)^{n+2}\frac{(x-1)^{n+1}}{n+1}\right|\Bigg/\left|(-1)^{n+1}\frac{(x-1)^n}{n}\right| &= \lim_{n\to\infty} \left|\frac{(x-1)^{n+1}}{(x-1)^n}\right|\frac{n}{n+1}\\
+&= \big|(x-1)\big|.
+\end{align*}
+By the Ratio Test, we have convergence when $\big|(x-1)\big| <1$: the radius of convergence is 1, and we have convergence on $(0,2)$. We now check the endpoints.
+
+At $x=0$, the series is 
+$$\sum_{n=1}^\infty (-1)^{n+1}\frac{(-1)^n}{n} = -\sum_{n=1}^\infty \frac1n,$$
+which diverges (it is the Harmonic Series times $(-1)$.)
+
+At $x=2$, the series is
+$$\sum_{n=1}^\infty (-1)^{n+1}\frac{(1)^n}{n} = \sum_{n=1}^\infty (-1)^{n+1}\frac{1}{n},$$
+the Alternating Harmonic Series, which converges.
+\mnote{.55}{\textbf{Note:} It can be shown that $\ln x$ is equal to this Taylor series on $(0,2]$. From the work in Example \ref{ex_ts2}, this justifies our previous declaration that the Alternating Harmonic Series converges to $\ln 2$.} 
+
+We have found the Taylor series of $\ln x$ centered at $x=1$, and have determined the series converges on $(0,2]$. We cannot (yet) say that $\ln x$ is equal to this Taylor series on $(0,2]$.
 }\\
 
-It is important to note that Definition \ref{def:taylor_series} defines a Taylor series given a function $f(x)$; however, we \emph{cannot} yet state that $f(x)$ \emph{is equal} to its Taylor series. We will find that ``most of the time'' they are equal, but we need to consider the conditions that allow us to conclude this.
+It is important to note that Definition \ref{def:taylor_series} defines a Taylor series given a function $f(x)$%; however, we \emph{cannot} yet state that $f(x)$ \emph{is equal} to its Taylor series.
+, but makes no claim about their equality. %
+ We will find that ``most of the time'' they are equal, but we need to consider the conditions that allow us to conclude this.
 
 Theorem \ref{thm:taylorthm} states that the error between a function $f(x)$ and its $n^\text{th}$--degree Taylor polynomial $p_n(x)$ is $R_n(x)$, where
 $$ \big|R_n(x)\big| \leq \frac{\max\left|\,f\,^{(n+1)}(z)\right|}{(n+1)!}\big|(x-c)^{(n+1)}\big|.$$
@@ -92,7 +122,8 @@ $$\cos x = \sum_{n=0}^\infty (-1)^{n}\frac{x^{2n}}{(2n)!}\quad \text{for all $x$
 \vskip-1.5\baselineskip
 }\\
 
-It is natural to assume that a function is  equal to its Taylor series on the series' interval of convergence, but this is not the case. In order to properly establish equality, one must use Theorem \ref{thm:function_series_equality}. This is a bit disappointing, as we developed beautiful techniques for determining the interval of convergence of a power series, and proving that $R_n(x)\to 0$ can be cumbersome as it deals with high order derivatives of the function.
+It is natural to assume that a function is equal to its Taylor series on the series' interval of convergence, but this is not always the case. In order to properly establish equality, one must use Theorem \ref{thm:function_series_equality}. This is a bit disappointing, as we developed beautiful techniques for determining the interval of convergence of a power series, and proving that $R_n(x)\to 0$ can be difficult. For instance, it is not a simple task to show that $\ln x$ equals  its Taylor series on $(0,2]$ as found in Example \ref{ex_ts2}; in the Exercises, the reader is only asked to show equality on $(1,2)$, which is simpler.
+%cumbersome as it deals with high order derivatives of the function. (In the Exercises, proof of equality is sometimes limited
 
 There is good news. A function $f(x)$ that is equal to its Taylor series, centered at any point the domain of $f(x)$, is said to be an \sword{analytic function},\index{analytic function} and most, if not all, functions that we encounter within this course are analytic functions. Generally speaking, any function that one creates with elementary functions (polynomials, exponentials, trigonometric functions, etc.) that is not piecewise defined is probably analytic. For most functions, we assume the function is equal to its Taylor series on the series' interval of convergence and only use Theorem \ref{thm:function_series_equality} when we suspect something may not work as expected.
 

@@ -1,0 +1,35 @@
+{$\displaystyle \lim_{x\to 1} 2x^2+3x+1 = 6$}
+{Let $\epsilon >0$ be given. We wish to find $\delta >0$ such that when $|x-1|<\delta$, $|f(x)-6|<\epsilon$. 
+
+Consider $|f(x)-6|<\epsilon$, keeping in  mind we want to make a statement about $|x-1|$:
+\begin{gather*}
+|f(x) -6 | < \epsilon \\
+|(2x^2+3x+1)-6 |<\epsilon \\
+| 2x^2+3x-5 | < \epsilon \\
+| 2x+5 |\cdot|x-1| < \epsilon \\
+| x-1 | < \epsilon/|2x+5| \\
+\end{gather*}
+Since $x$ is near 1, we can safely assume that, for instance, $0<x<2$. Thus
+\begin{gather*}
+0+5<2x+5<4+5 \\
+5 < 2x+5 < 9 \\
+\frac{1}{9} < \frac{1}{2x+5} < \frac{1}{5} \\
+\frac{\epsilon}{9} < \frac{\epsilon}{2x+5} < \frac{\epsilon}{5} \\
+\end{gather*}
+Let $\delta =\frac{\epsilon}{9}$. Then:
+\begin{gather*}
+|x-1|<\delta \\
+|x-1| < \frac{\epsilon}{9}\\
+|x-1| < \frac{\epsilon}{2x+5}\\
+|x-1|\cdot|2x+5| < \frac{\epsilon}{2x+5}\cdot|2x+5|\\
+\end{gather*}
+Assuming $x$ is near 1, $2x+5$ is positive and we can drop the absolute value signs on the right.
+\begin{gather*}
+|x-1|\cdot|2x+5| < \frac{\epsilon}{2x+5}\cdot(2x+5)\\
+|2x^2+3x-5| < \epsilon\\
+|(2x^2+3x+1) -6| < \epsilon,
+\end{gather*}
+which is what we wanted to prove.
+}
+
+

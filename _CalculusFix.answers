@@ -3,5 +3,11 @@
 \noindent {\Large \bf Chapter 1} \vskip \baselineskip 
 \noindent {\bf Section 1.1} \vskip \baselineskip 
 
+<<<<<<< HEAD
 \printanswers {exercises/06_02_exercises}
+=======
+\printanswers {exercises/05_01_exercises}
+\noindent {\bf Section 1.2} \vskip \baselineskip 
+\printanswers {exercises/05_05_exercises}
+>>>>>>> c3717e75b460b58ce975e380aa50c7eb899e5b89
 \end {multicols}\normalsize 

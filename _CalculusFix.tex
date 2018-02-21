@@ -63,9 +63,13 @@
 %\printinblackandwhite
 \printallanswers
 
+%%\ifthenelse{\boolean{printquestions}}{\columnbreak}{}
+%5\ifthenelse{\boolean{printquestions}}{\vfill\null\columnbreak}{}
+
+
 
 %%\input{text/front_matter_and_coverI}
-%
+
 %\chapter{Limits}\label{chapter:limits}
 %\thispagestyle{empty}
 %%%%
@@ -92,11 +96,11 @@
 %\input{text/02_Derivative_Inverse_Functions}
 %%%%
 %%%%\addtocounter{chapter}{2}
-%
+%%
 %\clearpage{\pagestyle{empty}\cleardoublepage}
 %\chapter{The Graphical Behavior of Functions}\label{chapter:graphbehavior}
 %\thispagestyle{empty}
-%
+
 %\input{text/03_Extreme_Values}
 %\input{text/03_Mean_Value_Theorem}
 %\input{text/03_Increasing_Decreasing}
@@ -133,26 +137,34 @@
 %%%%
 %%%%%\addtocounter{chapter}{4}
 %%
-%\clearpage{\pagestyle{empty}\cleardoublepage}
-%\chapter{Integration}\label{chapter:integration}
-%\thispagestyle{empty}
-%\addtocontents{toc}{\protect\thispagestyle{empty}}
+\clearpage{\pagestyle{empty}\cleardoublepage}
+\chapter{Integration}\label{chapter:integration}
+\thispagestyle{empty}
+\addtocontents{toc}{\protect\thispagestyle{empty}}
 
-%\input{text/05_Antiderivatives}
+\input{text/05_Antiderivatives}
 %\addtocontents{toc}{\protect\thispagestyle{empty}}
 %\input{text/05_Definite_Integral}
 %\input{text/05_Riemann_Sums}
 %\input{text/05_FTC}
-%\input{text/05_Numerical_Integration}
+\input{text/05_Numerical_Integration}
 %%%
 %%%%%%
 %%%%%%%
 %%%%\addtocounter{chapter}{5}
+<<<<<<< HEAD
 %
 \clearpage{\pagestyle{empty}\cleardoublepage}
 \chapter{Techniques of Antidifferentiation}\label{chapter:anti_tech}
 \thispagestyle{empty}
 %
+=======
+
+%\clearpage{\pagestyle{empty}\cleardoublepage}
+%\chapter{Techniques of Antidifferentiation}\label{chapter:anti_tech}
+%\thispagestyle{empty}
+
+>>>>>>> c3717e75b460b58ce975e380aa50c7eb899e5b89
 %\input{text/06_Substitution}
 \input{text/06_Int_By_Parts}
 %\input{text/06_Trigonometric_Integrals}
@@ -181,11 +193,11 @@
 %%
 %%
 %%%
-%%%%\addtocounter{chapter}{7}
+%%%\addtocounter{chapter}{7}
 %\clearpage{\pagestyle{empty}\cleardoublepage}
 %\chapter{Sequences and Series}\label{chapter:sequences_series}
 %\thispagestyle{empty}
-%%%
+%
 %\input{text/08_Sequences}
 %\input{text/08_Series}
 %\input{text/08_Integral_Comparison_Tests}
@@ -293,6 +305,18 @@
 %\input{text/13_Triple_Integration}
 
 
+%\addtocounter{chapter}{13}
+%
+%\clearpage{\pagestyle{empty}\cleardoublepage}
+%\chapter{Vector Analysis}
+%\thispagestyle{empty}
+%\input{text/14_Line_Integral_Intro}
+%\input{text/14_Vector_Fields}
+%\input{text/14_Line_Integral_Vector_Fields}
+%\input{text/14_Line_Integral_Greens_Theorem}
+%\input{text/14_Parametrized_Surfaces}
+%\input{text/14_Surface_Integrals}
+%\input{text/14_Stokes_Divergence}
 %%%\layout
 
 

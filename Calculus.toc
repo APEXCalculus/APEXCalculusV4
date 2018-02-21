@@ -55,25 +55,26 @@
 \contentsline {section}{\numberline {8.1}Sequences}{401}{section.8.1}
 \contentsline {section}{\numberline {8.2}Infinite Series}{415}{section.8.2}
 \contentsline {section}{\numberline {8.3}Integral and Comparison Tests}{430}{section.8.3}
-\contentsline {section}{\numberline {8.4}Ratio and Root Tests}{439}{section.8.4}
-\contentsline {section}{\numberline {8.5}Alternating Series and Absolute Convergence}{445}{section.8.5}
-\contentsline {section}{\numberline {8.6}Power Series}{456}{section.8.6}
-\contentsline {section}{\numberline {8.7}Taylor Polynomials}{469}{section.8.7}
-\contentsline {section}{\numberline {8.8}Taylor Series}{482}{section.8.8}
-\contentsline {chapter}{\numberline {9}Curves in the Plane}{493}{chapter.9}
-\contentsline {section}{\numberline {9.1}Conic Sections}{493}{section.9.1}
-\contentsline {section}{\numberline {9.2}Parametric Equations}{507}{section.9.2}
-\contentsline {section}{\numberline {9.3}Calculus and Parametric Equations}{517}{section.9.3}
-\contentsline {section}{\numberline {9.4}Introduction to Polar Coordinates}{529}{section.9.4}
-\contentsline {section}{\numberline {9.5}Calculus and Polar Functions}{542}{section.9.5}
-\contentsline {chapter}{\numberline {10}Vectors}{555}{chapter.10}
-\contentsline {section}{\numberline {10.1}Introduction to Cartesian Coordinates in Space}{555}{section.10.1}
-\contentsline {section}{\numberline {10.2}An Introduction to Vectors}{571}{section.10.2}
-\contentsline {section}{\numberline {10.3}The Dot Product}{585}{section.10.3}
-\contentsline {section}{\numberline {10.4}The Cross Product}{598}{section.10.4}
-\contentsline {section}{\numberline {10.5}Lines}{609}{section.10.5}
-\contentsline {section}{\numberline {10.6}Planes}{620}{section.10.6}
+\contentsline {section}{\numberline {8.4}Ratio and Root Tests}{440}{section.8.4}
+\contentsline {section}{\numberline {8.5}Alternating Series and Absolute Convergence}{446}{section.8.5}
+\contentsline {section}{\numberline {8.6}Power Series}{457}{section.8.6}
+\contentsline {section}{\numberline {8.7}Taylor Polynomials}{470}{section.8.7}
+\contentsline {section}{\numberline {8.8}Taylor Series}{483}{section.8.8}
+\contentsline {chapter}{\numberline {9}Curves in the Plane}{495}{chapter.9}
+\contentsline {section}{\numberline {9.1}Conic Sections}{495}{section.9.1}
+\contentsline {section}{\numberline {9.2}Parametric Equations}{509}{section.9.2}
+\contentsline {section}{\numberline {9.3}Calculus and Parametric Equations}{519}{section.9.3}
+\contentsline {section}{\numberline {9.4}Introduction to Polar Coordinates}{531}{section.9.4}
+\contentsline {section}{\numberline {9.5}Calculus and Polar Functions}{544}{section.9.5}
+\contentsline {chapter}{\numberline {10}Vectors}{557}{chapter.10}
+\contentsline {section}{\numberline {10.1}Introduction to Cartesian Coordinates in Space}{557}{section.10.1}
+\contentsline {section}{\numberline {10.2}An Introduction to Vectors}{574}{section.10.2}
+\contentsline {section}{\numberline {10.3}The Dot Product}{588}{section.10.3}
+\contentsline {section}{\numberline {10.4}The Cross Product}{601}{section.10.4}
+\contentsline {section}{\numberline {10.5}Lines}{613}{section.10.5}
+\contentsline {section}{\numberline {10.6}Planes}{624}{section.10.6}
 \thispagestyle {empty}
+<<<<<<< HEAD
 \contentsline {chapter}{\numberline {11}Vector Valued Functions}{629}{chapter.11}
 \contentsline {section}{\numberline {11.1}Vector--Valued Functions}{629}{section.11.1}
 \contentsline {section}{\numberline {11.2}Calculus and Vector--Valued Functions}{635}{section.11.2}
@@ -106,3 +107,37 @@
 \contentsline {section}{\numberline {14.7}The Divergence Theorem and Stokes' Theorem}{888}{section.14.7}
 \contentsline {chapter}{\numberline {A}Solutions To Selected Problems}{A.1}{appendix.A}
 \contentsline {chapter}{Index}{A.35}{section*.550}
+=======
+\contentsline {chapter}{\numberline {11}Vector Valued Functions}{633}{chapter.11}
+\contentsline {section}{\numberline {11.1}Vector--Valued Functions}{633}{section.11.1}
+\contentsline {section}{\numberline {11.2}Calculus and Vector--Valued Functions}{639}{section.11.2}
+\contentsline {section}{\numberline {11.3}The Calculus of Motion}{654}{section.11.3}
+\contentsline {section}{\numberline {11.4}Unit Tangent and Normal Vectors}{667}{section.11.4}
+\contentsline {section}{\numberline {11.5}The Arc Length Parameter and Curvature}{676}{section.11.5}
+\contentsline {chapter}{\numberline {12}Functions of Several Variables}{687}{chapter.12}
+\contentsline {section}{\numberline {12.1}Introduction to Multivariable Functions}{687}{section.12.1}
+\contentsline {section}{\numberline {12.2}Limits and Continuity of Multivariable Functions}{694}{section.12.2}
+\contentsline {section}{\numberline {12.3}Partial Derivatives}{704}{section.12.3}
+\contentsline {section}{\numberline {12.4}Differentiability and the Total Differential}{716}{section.12.4}
+\contentsline {section}{\numberline {12.5}The Multivariable Chain Rule}{725}{section.12.5}
+\contentsline {section}{\numberline {12.6}Directional Derivatives}{732}{section.12.6}
+\contentsline {section}{\numberline {12.7}Tangent Lines, Normal Lines, and Tangent Planes}{742}{section.12.7}
+\contentsline {section}{\numberline {12.8}Extreme Values}{752}{section.12.8}
+\contentsline {chapter}{\numberline {13}Multiple Integration}{763}{chapter.13}
+\contentsline {section}{\numberline {13.1}Iterated Integrals and Area}{763}{section.13.1}
+\contentsline {section}{\numberline {13.2}Double Integration and Volume}{773}{section.13.2}
+\contentsline {section}{\numberline {13.3}Double Integration with Polar Coordinates}{784}{section.13.3}
+\contentsline {section}{\numberline {13.4}Center of Mass}{791}{section.13.4}
+\contentsline {section}{\numberline {13.5}Surface Area}{803}{section.13.5}
+\contentsline {section}{\numberline {13.6}Volume Between Surfaces and Triple Integration}{810}{section.13.6}
+\contentsline {chapter}{\numberline {14}Vector Analysis}{833}{chapter.14}
+\contentsline {section}{\numberline {14.1}Introduction to Line Integrals}{834}{section.14.1}
+\contentsline {section}{\numberline {14.2}Vector Fields}{844}{section.14.2}
+\contentsline {section}{\numberline {14.3}Line Integrals over Vector Fields}{853}{section.14.3}
+\contentsline {section}{\numberline {14.4}Flow, Flux, Green's Theorem and the Divergence Theorem}{864}{section.14.4}
+\contentsline {section}{\numberline {14.5}Parametrized Surfaces and Surface Area}{874}{section.14.5}
+\contentsline {section}{\numberline {14.6}Surface Integrals}{885}{section.14.6}
+\contentsline {section}{\numberline {14.7}The Divergence Theorem and Stokes' Theorem}{894}{section.14.7}
+\contentsline {chapter}{\numberline {A}Solutions To Selected Problems}{A.1}{appendix.A}
+\contentsline {chapter}{Index}{A.67}{section*.550}
+>>>>>>> c3717e75b460b58ce975e380aa50c7eb899e5b89

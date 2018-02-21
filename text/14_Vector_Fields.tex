@@ -1,6 +1,6 @@
 \section{Vector Fields}\label{sec:vector_fields}
 
-We have studied functions of two or three variables, where the input of such functions is a point (either a point in the plane or in space) and the output is a number.
+We have studied functions of two and three variables, where the input of such functions is a point (either a point in the plane or in space) and the output is a number.
 
 We could also create functions where the input is a point (again, either in the plane or in space), but the output is a {\em vector}. For instance, we could create the following function: $\vec F(x,y) = \langle x+y, x-y\rangle$, where $\vec F(2,3) = \langle 5,-1\rangle$. We are to think of $\vec F$ assigning the vector $\langle 5,-1\rangle$ to the point $(2,3)$; in some sense, the vector $\langle 5,-1\rangle$ lies at the point $(2,3)$. 
 
@@ -70,20 +70,23 @@ Another item of notation will become useful: the ``del operator.'' Recall in Sec
 
 We now define $\nabla$ to be the ``del operator.'' It is a vector whose components are partial derivative operations. 
 
-In the plane, $\ds\nabla = \left\langle \frac{\partial}{\partial x}, \frac{\partial}{\partial y}\right\rangle$; in space, $\ds\nabla = \left\langle \frac{\partial}{\partial x}, \frac{\partial}{\partial y},\frac{\partial}{\partial z}\right\rangle$.
+In the plane, $\ds\nabla = \left\langle \frac{\partial}{\partial x}, \frac{\partial}{\partial y}\right\rangle$; in space, $\ds\nabla = \left\langle \frac{\partial}{\partial x}, \frac{\partial}{\partial y},\frac{\partial}{\partial z}\right\rangle$. 
 
-Let $\vec F = \langle x+\sin y,y^2+z,x^2\rangle$. We can use vector operations and find the dot product of $\nabla$ and $\vec F$:
+With this definition of $\nabla$, we can better understand the gradient $\nabla f$. As $f$ returns a scalar, the properties of scalar and vector multiplication gives
+$$\nabla f = \left\langle \frac{\partial}{\partial x}, \frac{\partial}{\partial y}\right\rangle f = \left\langle \frac{\partial}{\partial x}\,f, \frac{\partial}{\partial y}\,f\right\rangle = \langle f_x, f_y\rangle.$$
+
+Now apply the del operator $\nabla$ to vector fields. Let $\vec F = \langle x+\sin y,y^2+z,x^2\rangle$. We can use vector operations and find the dot product of $\nabla$ and $\vec F$:
 \begin{align*}
 \nabla \cdot \vec F &= \left\langle \frac{\partial}{\partial x}, \frac{\partial}{\partial y},\frac{\partial}{\partial z}\right\rangle\cdot  \langle x+\sin y,y^2+z,x^2\rangle \\
   &= \frac{\partial}{\partial x}(x+\sin y)+ \frac{\partial}{\partial y}(y^2+z) + \frac{\partial}{\partial z}(x^2) \\
 		&=1+2y.
 \end{align*}
 
-We can also compute their cross products:
+We can also compute their cross products:\small
 \begin{align*}
-\nabla\times \vec F &= \left\langle \frac{\partial}{\partial y}\big(x^2\big)-\frac{\partial}{\partial z}\big(y^2+z\big),\frac{\partial}{\partial z}\big(x+\sin y\big)-\frac{\partial}{\partial x}\big(x^2\big),\frac{\partial}{\partial x}\big(y^2+z\big)-\frac{\partial}{\partial y}\big(x+\sin y\big)\right\rangle \\
+{\nabla\times \vec F }&= {\left\langle \frac{\partial}{\partial y}\big(x^2\big)-\frac{\partial}{\partial z}\big(y^2+z\big),\frac{\partial}{\partial z}\big(x+\sin y\big)-\frac{\partial}{\partial x}\big(x^2\big),\frac{\partial}{\partial x}\big(y^2+z\big)-\frac{\partial}{\partial y}\big(x+\sin y\big)\right\rangle }\\
 			&=\langle -1,-2x,-\cos y\rangle.
-\end{align*}
+\end{align*}\normalsize
 
 We do not yet know why we would want to compute the above. However, as we next learn about properties of vector fields, we will see how these dot and cross products with the del operator are quite useful.
 
@@ -92,7 +95,7 @@ We do not yet know why we would want to compute the above. However, as we next l
 
 Two properties of vector fields will prove themselves to be very important: divergence and curl. Each is a special ``derivative'' of a vector field; that is, each measures an instantaneous rate of change of a vector field.
 
-If the vector field represents the velocity of a fluid or gas, then the \sword{divergence} of the field is a measure of the ``compressibility'' of the fluid. If the divergence is negative at a point, it means that the fluid is compressing: more fluid is going into the point than is going out. If the divergence is positive, is means the fluid is expanding: more fluid is going out at that point than going in. A divergence of zero means the same amount of fluid is going in as is going out. If the divergence is zero at all points, we say the field is \sword{incompressible}. 
+If the vector field represents the velocity of a fluid or gas, then the \sword{divergence} of the field is a measure of the ``compressibility'' of the fluid. If the divergence is negative at a point, it means that the fluid is compressing: more fluid is going into the point than is going out. If the divergence is positive, it means the fluid is expanding: more fluid is going out at that point than going in. A divergence of zero means the same amount of fluid is going in as is going out. If the divergence is zero at all points, we say the field is \sword{incompressible}. 
 
 It turns out that the proper measure of divergence is simply $\nabla \cdot \vec F$, as stated in the following definition.
 
@@ -111,7 +114,7 @@ Curl is a measure of the spinning action of the field. Let $\vec F$ represent th
 
 In space, things are a bit more complicated. Again let $\vec F$ represent the flow of water, and imagine suspending a tennis ball in one location in this flow. The water may cause the ball to spin along an axis. If so, the curl of the vector field is a \emph{vector} (not a \emph{scalar}, as before), parallel to the axis of rotation, following a right hand rule: when the thumb of one's right hand points in the direction of the curl, the ball will spin in the direction of the curling fingers of the hand.
 
-In space, it turns out the proper measure of curl is $\nabla \times \vec F$, as stated in the following definition. To find the curl of a planar vector field $\vec F = \langle M,N\rangle$, embed it into space as $\vec F = \langle M, N, 0\rangle$ and apply the cross product definition. Since $M$ and $N$ are functions of just $x$ and $y$ (and not $z$), all partial derivatives with respect to $z$ become 0 and the result is simply $\langle 0,0,N_x-M_y\rangle$. The third component is the measure of curl. 
+In space, it turns out the proper measure of curl is $\nabla \times \vec F$, as stated in the following definition. To find the curl of a planar vector field $\vec F = \langle M,N\rangle$, embed it into space as $\vec F = \langle M, N, 0\rangle$ and apply the cross product definition. Since $M$ and $N$ are functions of just $x$ and $y$ (and not $z$), all partial derivatives with respect to $z$ become 0 and the result is simply $\langle 0,0,N_x-M_y\rangle$. The third component is the measure of curl of a planar vector field. 
 
 \definition{def:curl}{Curl of a Vector Field}
 {\begin{itemize}
