@@ -63,6 +63,10 @@
 %\printinblackandwhite
 \printallanswers
 
+%%\ifthenelse{\boolean{printquestions}}{\columnbreak}{}
+%5\ifthenelse{\boolean{printquestions}}{\vfill\null\columnbreak}{}
+
+
 
 %%\input{text/front_matter_and_coverI}
 
@@ -79,9 +83,9 @@
 %%
 %%%%\addtocounter{chapter}{1}
 %
-\clearpage{\pagestyle{empty}\cleardoublepage}
-\chapter{Derivatives}\label{chapter:derivatives}
-\thispagestyle{empty}
+%\clearpage{\pagestyle{empty}\cleardoublepage}
+%\chapter{Derivatives}\label{chapter:derivatives}
+%\thispagestyle{empty}
 %%
 %\input{text/02_Derivative}
 %\input{text/02_Derivative_Meaning}
@@ -89,14 +93,14 @@
 %\input{text/02_Product_Quotient_Rules}
 %\input{text/02_Chain_Rule}
 %\input{text/02_Implicit_Differentiation}
-\input{text/02_Derivative_Inverse_Functions}
+%\input{text/02_Derivative_Inverse_Functions}
 %%%%
 %%%%\addtocounter{chapter}{2}
-%
+%%
 %\clearpage{\pagestyle{empty}\cleardoublepage}
 %\chapter{The Graphical Behavior of Functions}\label{chapter:graphbehavior}
 %\thispagestyle{empty}
-%
+
 %\input{text/03_Extreme_Values}
 %\input{text/03_Mean_Value_Theorem}
 %\input{text/03_Increasing_Decreasing}
@@ -133,17 +137,17 @@
 %%%%
 %%%%%\addtocounter{chapter}{4}
 %%
-%\clearpage{\pagestyle{empty}\cleardoublepage}
-%\chapter{Integration}\label{chapter:integration}
-%\thispagestyle{empty}
-%\addtocontents{toc}{\protect\thispagestyle{empty}}
+\clearpage{\pagestyle{empty}\cleardoublepage}
+\chapter{Integration}\label{chapter:integration}
+\thispagestyle{empty}
+\addtocontents{toc}{\protect\thispagestyle{empty}}
 
-%\input{text/05_Antiderivatives}
+\input{text/05_Antiderivatives}
 %\addtocontents{toc}{\protect\thispagestyle{empty}}
 %\input{text/05_Definite_Integral}
 %\input{text/05_Riemann_Sums}
 %\input{text/05_FTC}
-%\input{text/05_Numerical_Integration}
+\input{text/05_Numerical_Integration}
 %%%
 %%%%%%
 %%%%%%%
