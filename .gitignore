@@ -21,6 +21,9 @@
 *.tmp
 *.tps
 #
+## Some of my files
+*.answers
+#
 ## Don't skip these files
 !CalculusI.aux
 !CalculusII.aux
