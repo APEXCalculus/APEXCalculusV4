@@ -1,0 +1,12 @@
+\begin{tikzpicture}
+\begin{axis}[width=\marginparwidth+25pt,tick label style={font=\scriptsize},axis y line=middle,axis x line=middle,name=myplot,
+%minor x tick num=4,minor y tick num=4,
+ymin=-4.5,ymax=4.5,xmin=-.1,xmax=4.5]
+
+\addplot [thick, smooth,domain=-2:2,samples=60] ({cosh(x)},{sinh(x)});
+\draw[>=latex,->,thick] (axis cs:2.35241, -2.12928)-- (axis cs:2.33123, -2.10586);
+\end{axis}
+\node [right] at (myplot.right of origin) {\scriptsize $x$};
+\node [above] at (myplot.above origin) {\scriptsize $y$};
+
+\end{tikzpicture}
