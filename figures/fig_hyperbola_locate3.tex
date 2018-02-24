@@ -13,10 +13,10 @@ tick label style={font=\scriptsize},axis y line=middle,axis x line=middle,name=m
 			xmin=-1100,xmax=1100%
 ]
 
-\addplot [thick, smooth,domain=-85:85,samples=60] ({170*sec(x)},{470*tan(x)});
+\addplot [{\colorone},thick, smooth,domain=-85:85,samples=60] ({170*sec(x)},{470*tan(x)});
 
-\addplot [dashed,thick, smooth,domain=-85:85,samples=60] ({367*tan(x)-500},{340*sec(x)+500});
-\addplot [thick, smooth,domain=-85:85,samples=60] ({367*tan(x)-500},{-340*sec(x)+500});
+\addplot [{\colortwo},dashed,thick, smooth,domain=-85:85,samples=60] ({367*tan(x)-500},{340*sec(x)+500});
+\addplot [{\colortwo},thick, smooth,domain=-85:85,samples=60] ({367*tan(x)-500},{-340*sec(x)+500});
 
 \filldraw (axis cs:500,0) circle (1.5pt) node [above] {\scriptsize $A$};
 \filldraw (axis cs:-500,0) circle (1.5pt) node [above] {\scriptsize $B$};
