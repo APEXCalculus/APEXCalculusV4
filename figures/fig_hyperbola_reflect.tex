@@ -13,8 +13,8 @@ tick label style={font=\scriptsize},axis y line=none,axis x line=none,name=myplo
 			xmin=-5,xmax=5%
 ]
 
-\addplot [thick, smooth,domain=-85:85,samples=60] ({sec(x)},{2.83*tan(x)});
-\addplot [thick,smooth,domain=-85:85,samples=60] ({-sec(x)},{2.83*tan(x)});
+\addplot [{\colorone},thick, smooth,domain=-85:85,samples=60] ({sec(x)},{2.83*tan(x)});
+\addplot [{\colorone},thick,smooth,domain=-85:85,samples=60] ({-sec(x)},{2.83*tan(x)});
 
 \filldraw (axis cs:0,0) circle (1.5pt);
 \filldraw [{\colorone}] (axis cs:-1,0) circle (1.5pt);

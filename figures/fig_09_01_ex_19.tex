@@ -16,12 +16,12 @@ tick label style={font=\scriptsize},axis y line=middle,axis x line=middle,name=m
 %\draw (axis cs:4,-1) node (A) {}
 			%(axis cs:4,3) node (B) {} ;
 %\draw [->,>=latex] (A) parabola bend (axis cs:0,1) (B);
-\addplot [thick, smooth,domain=0:360,samples=60] ({5*cos(x)},{3*sin(x)-3)});
+\addplot [{\colorone},thick, smooth,domain=0:360,samples=60] ({5*cos(x)},{3*sin(x)-3)});
 
 \filldraw (axis cs: 0,-3) circle (1.5pt)
 					(axis cs: -5,-3) circle (1.5pt)
-					(axis cs: 5,-3) circle (1.5pt)
-					(axis cs: -4,-3) circle (1.5pt)
+					(axis cs: 5,-3) circle (1.5pt);
+\filldraw [{\colortwo}]					(axis cs: -4,-3) circle (1.5pt)
 					(axis cs: 4,-3) circle (1.5pt);
 
 \end{axis}

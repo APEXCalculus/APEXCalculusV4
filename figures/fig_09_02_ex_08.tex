@@ -16,9 +16,9 @@ tick label style={font=\scriptsize},axis y line=middle,axis x line=middle,name=m
 %\draw (axis cs:4,-1) node (A) {}
 			%(axis cs:4,3) node (B) {} ;
 %\draw [->,>=latex] (A) parabola bend (axis cs:0,1) (B);
-\addplot [thick, smooth,domain=-2:2,samples=30] ({x^3-x+3},{x^2+1});
+\addplot [{\colorone},thick, smooth,domain=-2:2,samples=30] ({x^3-x+3},{x^2+1});
 
-\draw [>=latex,->,thick] (axis cs: 3.897,2.69) -- (axis cs:3.938,2.7161);
+\draw [{\colorone},>=latex,->,thick] (axis cs: 3.897,2.69) -- (axis cs:3.938,2.7161);
 \end{axis}
 
 \node [right] at (myplot.right of origin) {\scriptsize $x$};
