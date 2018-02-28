@@ -5,5 +5,5 @@
 
 \printanswers {exercises/10_01_exercises}
 \noindent {\bf Section 1.2} \vskip \baselineskip 
-\printanswers {exercises/10_02_exercises}
+\printanswers {exercises/10_05_exercises}
 \end {multicols}\normalsize 
