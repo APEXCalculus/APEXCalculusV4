@@ -10,7 +10,7 @@ Because these functions are so important, we need to formally define them.
 
 \definition{def:vector_field}{Vector Field}
 {\begin{enumerate}
-	\item A \textbf{vector field in the plane} is a function $\vec F(x,y)$ whose domain is a subset of $\mathbb{R}^2$ and whose output is a two--dimensional vector:
+	\item A \textbf{vector field in the plane} is a function $\vec F(x,y)$ whose domain is a subset of $\mathbb{R}^2$ and whose output is a two--dimensional vector:\index{vector field}
 	$$\vec F(x,y) = \langle M(x,y), N(x,y)\rangle.$$
 	
 	\item A \textbf{vector field in space} is a function $\vec F(x,y,z)$ whose domain is a subset of $\mathbb{R}^3$ and whose output is a three--dimensional vector:
@@ -66,7 +66,7 @@ It is good practice to try to visualize certain vector fields in one's head. For
 Definition \ref{def:vector_field} defines a vector field $\vec F$ using the notation $$\vec F(x,y) = \langle M(x,y), N(x,y)\rangle\quad \text{and}\quad \vec F(x,y,z) = \langle M(x,y,z), N(x,y,z),P(x,y,z)\rangle.$$ That is, the components of $\vec F$ are each functions of $x$ and $y$ (and also $z$ in space). As done in other contexts, we will drop the ``of $x$, $y$ and $z$'' portions of the notation and refer to vector fields in the plane and in space as 
 $$\vec F = \langle M, N\rangle \quad \text{and} \quad \vec F  = \langle M,N,P\rangle,$$ respectively, as this shorthand is quite convenient.
 
-Another item of notation will become useful: the ``del operator.'' Recall in Section \ref{sec:directional_derivative} how we used the symbol $\nabla$ (pronounced ``del'') to represent the gradient of a function of two variables. That is, if $z = f(x,y)$, then ``del $f$\,'' $= \nabla f = \langle f_x, f_y\rangle$. 
+Another item of notation will become useful: the ``del operator.'' \index{del operator}Recall in Section \ref{sec:directional_derivative} how we used the symbol $\nabla$ (pronounced ``del'') to represent the gradient of a function of two variables. That is, if $z = f(x,y)$, then ``del $f$\,'' $= \nabla f = \langle f_x, f_y\rangle$. 
 
 We now define $\nabla$ to be the ``del operator.'' It is a vector whose components are partial derivative operations. 
 
@@ -95,12 +95,12 @@ We do not yet know why we would want to compute the above. However, as we next l
 
 Two properties of vector fields will prove themselves to be very important: divergence and curl. Each is a special ``derivative'' of a vector field; that is, each measures an instantaneous rate of change of a vector field.
 
-If the vector field represents the velocity of a fluid or gas, then the \sword{divergence} of the field is a measure of the ``compressibility'' of the fluid. If the divergence is negative at a point, it means that the fluid is compressing: more fluid is going into the point than is going out. If the divergence is positive, it means the fluid is expanding: more fluid is going out at that point than going in. A divergence of zero means the same amount of fluid is going in as is going out. If the divergence is zero at all points, we say the field is \sword{incompressible}. 
+If the vector field represents the velocity of a fluid or gas, then the \sword{divergence}\index{divergence}\index{vector field!divergence of} of the field is a measure of the ``compressibility'' of the fluid. If the divergence is negative at a point, it means that the fluid is compressing: more fluid is going into the point than is going out. If the divergence is positive, it means the fluid is expanding: more fluid is going out at that point than going in. A divergence of zero means the same amount of fluid is going in as is going out. If the divergence is zero at all points, we say the field is \sword{incompressible}.\index{incompressible vector field}
 
 It turns out that the proper measure of divergence is simply $\nabla \cdot \vec F$, as stated in the following definition.
 
 \definition{def:divergence}{Divergence of a Vector Field}
-{The \sword{divergence} of a vector field $\vec F$ is
+{The \sword{divergence} of a vector field $\vec F$ is\index{divergence}\index{vector field!divergence of}
 $$\divv \vec F = \nabla \cdot \vec F.$$
 \begin{itemize}
 	\item In the plane, with $\vec F = \langle M,N\rangle$, $\divv \vec F = M_x+N_y$.
@@ -110,7 +110,7 @@ $$\divv \vec F = \nabla \cdot \vec F.$$
 
 %Divergence is a measure of the \emph{compressibility} of the ``substance'' the field represents. Imagine drawing a small box anywhere on the graph of the vector field in Figure \ref{fig:vectorfieldintrob}(b). There would be some vectors pointing into the box, and some arrows pointing out of the box. In short, divergence measures ``the amount going out minus the amount going in.'' If the vector field represented the flow of air being pumped into an enclosed room, then there is likely more air going into a region than going out. Via a limit process, we can shrink the box to a point, and divergence measures the amount going out of the point vs. the amount going into the point. If the divergence of a field is zero everywhere, we say that the field represents an \sword{incompressible fluid} -- that is, the same amount goes into each point as goes out. (It turns out that the divergence of the field in Figure \ref{fig:vectorfieldintrob} is zero everywhere.)
 
-Curl is a measure of the spinning action of the field. Let $\vec F$ represent the flow of water over a flat surface. If a small round cork were held in place at a point in the water, would the water cause the cork to spin? No spin corresponds to zero curl; counterclockwise spin corresponds to positive curl and clockwise spin corresponds to negative curl. 
+\sword{Curl}\index{vector field!curl of}\index{curl} is a measure of the spinning action of the field. Let $\vec F$ represent the flow of water over a flat surface. If a small round cork were held in place at a point in the water, would the water cause the cork to spin? No spin corresponds to zero curl; counterclockwise spin corresponds to positive curl and clockwise spin corresponds to negative curl. 
 
 In space, things are a bit more complicated. Again let $\vec F$ represent the flow of water, and imagine suspending a tennis ball in one location in this flow. The water may cause the ball to spin along an axis. If so, the curl of the vector field is a \emph{vector} (not a \emph{scalar}, as before), parallel to the axis of rotation, following a right hand rule: when the thumb of one's right hand points in the direction of the curl, the ball will spin in the direction of the curling fingers of the hand.
 
@@ -118,7 +118,7 @@ In space, it turns out the proper measure of curl is $\nabla \times \vec F$, as 
 
 \definition{def:curl}{Curl of a Vector Field}
 {\begin{itemize}
-	\item Let $\vec F = \langle M,N\rangle$ be a vector field in the plane. The \sword{curl} of $\vec F$ is $\curl \vec F = N_x - M_y$.
+	\item Let $\vec F = \langle M,N\rangle$ be a vector field in the plane. The \sword{curl} of $\vec F$ is $\curl \vec F = N_x - M_y$.\index{curl}
 	\item Let $\vec F = \langle M,N,P\rangle$ be a vector field in space. The \sword{curl} of $\vec F$ is $\curl \vec F = \nabla \times \vec F = \langle P_y-N_z,M_z-P_x,N_x - M_y\rangle$.
 \end{itemize}
 }
@@ -232,7 +232,7 @@ The analogous planar vector field is given in Figure \ref{fig:vectorfield3}. Not
 }\\
 
 \mfigure{.78}{A vector field representing a planar gravitational force.}{fig:vectorfield3}{figures/figvectorfield3}
-A function $z=f(x,y)$ naturally induces a vector field, $\vec F = \nabla f = \langle f_x,f_y\rangle$. Given what we learned of the gradient in Section \ref{sec:directional_derivative}, we know that the vectors of $\vec F$ point in the direction of greatest increase of $f$. Because of this, $f$ is said to be the \sword{potential function} of $\vec F$. Vector fields that are the gradient of potential functions will play an important role in the next section.\\
+A function $z=f(x,y)$ naturally induces a vector field, $\vec F = \nabla f = \langle f_x,f_y\rangle$. Given what we learned of the gradient in Section \ref{sec:directional_derivative}, we know that the vectors of $\vec F$ point in the direction of greatest increase of $f$. Because of this, $f$ is said to be the \sword{potential function}\index{potential function}\index{vector field!potential function of} of $\vec F$. Vector fields that are the gradient of potential functions will play an important role in the next section.\\
 
 \example{ex_vectorfield4}{A vector field that is the gradient of a potential function}
 {Let $f(x,y) = 3-x^2-2y^2$ and let $\vec F = \nabla f$. Graph $\vec F$, and find the divergence and curl of $\vec F$. 

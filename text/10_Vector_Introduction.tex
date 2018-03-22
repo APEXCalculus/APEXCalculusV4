@@ -200,7 +200,7 @@ Our examples have illustrated key principles in vector algebra: how to add and s
 %$$\norm{c\vec v} = |c|\cdot\norm{\vec v}.$$
 %}
 
-As stated before, each vector $\vec v$ conveys magnitude and direction information. We have a method of extracting the magnitude, which we write as $\norm{\vec v}$. \textit{Unit vectors} are a way of extracting just the direction information from a vector.
+As stated before, each nonvector $\vec v$ conveys magnitude and direction information. We have a method of extracting the magnitude, which we write as $\norm{\vec v}$. \textit{Unit vectors} are a way of extracting just the direction information from a vector.
 
 \definition{def:unit_vector}{Unit Vector}
 {A \textbf{unit vector} is a vector $\vec v$ with a magnitude of 1; that is, 
@@ -212,7 +212,7 @@ Consider this scenario: you are given a vector $\vec v$ and are told to create a
 
 Property \ref{thm:norm_prop} of Theorem \ref{thm:vector_properties} holds the key. If we divide $\vec v$ by its magnitude, it becomes a vector of length 1. Consider:
 \begin{align*}
-\snorm{\frac{1}{\norm{\vec v}}\vec v} &= \frac{1}{\norm{\vec v}}\norm{\vec v} & \text{\small (we can pull out $\ds \frac{1}{\norm{\vec v}}$ as it is a scalar)}\\
+\snorm{\frac{1}{\norm{\vec v}}\vec v} &= \frac{1}{\norm{\vec v}}\norm{\vec v} & \text{\small (we can pull out $\ds \frac{1}{\norm{\vec v}}$ as it is a positive scalar)}\\
 								&= 1.
 \end{align*}			
 So the vector of length 10 in the direction of $\vec v$ is $\ds 10\frac{1}{\norm{\vec v}}\vec v.$ An example will make this more clear.\\
@@ -239,7 +239,7 @@ $$\vec v = \norm{\vec v}\frac{1}{\norm{\vec v}}\vec v.$$
 We rewrite the equation with parentheses to make a point:
 $$\vec v = \underbrace{\rule[-9.5pt]{0pt}{15pt}\norm{\vec v}}_{\text{\scriptsize magnitude}}\cdot\underbrace{\left(\frac{1}{\norm{\vec v}}\vec v\right)}_{\text{\scriptsize direction}}.$$
 
-This equation illustrates the fact that a vector has both magnitude and direction, where we view a unit vector as supplying \textit{only} direction information. Identifying unit vectors with direction allows us to define \textbf{parallel vectors}.
+This equation illustrates the fact that a nonzero vector has both magnitude and direction, where we view a unit vector as supplying \textit{only} direction information. Identifying unit vectors with direction allows us to define \textbf{parallel vectors}.
 
 \definition{def:parallel_vectors}{Parallel Vectors}
 {\begin{enumerate}
@@ -250,9 +250,11 @@ This equation illustrates the fact that a vector has both magnitude and directio
 }
 
 It is equivalent to say that vectors $\vec v_1$ and $\vec v_2$ are parallel if there is a scalar $c\neq 0$ such that $\vec v_1 = c\vec v_2$ (see marginal note).
-\mnote{.8}{\textbf{Note:} $\vec 0$ is directionless; because $\vnorm{0}=0$, there is no unit vector in the ``direction'' of $\vec 0$. 
+\mnote{.75}{\textbf{Note:} $\vec 0$ is directionless; because $\vnorm{0}=0$, there is no unit vector in the ``direction'' of $\vec 0$. \\
 
-Some texts define two vectors as being parallel if one is a scalar multiple of the other. By this definition, $\vec 0$ is parallel to all vectors as $\vec 0 = 0\vec v$ for all $\vec v$.
+Some texts define two vectors as being parallel if one is a scalar multiple of the other. By this definition, $\vec 0$ is parallel to all vectors as $\vec 0 = 0\vec v$ for all $\vec v$.\\
+
+One can also rewrite Definition \ref{def:orthogonal} to include $\vec 0$; by such a definition, $\vec 0$ is perpendicular to all vectors. While counter-intuitive, it is mathematically sound to allow $\vec 0$ to be both parallel and perpendicular to all vectors.\\
 
 We prefer the given definition of parallel as it is grounded in the fact that unit vectors provide direction information. One may adopt the convention that $\vec 0$ is parallel to all vectors if they desire. (See also the marginal note on page \pageref{note:crossp}.)\label{note:parallel}}
 
@@ -262,7 +264,7 @@ A similar construction in $\mathbb{R}^3$ shows that the terminal points all lie 
 
 \keyidea{idea:unit_vectors}{Unit Vectors}
 {\begin{enumerate}
-\item		The unit vector in the direction of $\vec v$ is $$ \vec u = \frac1{\norm{\vec v}} \vec v.$$
+\item		The unit vector in the direction of a nonzero vector $\vec v$ is $$ \vec u = \frac1{\norm{\vec v}} \vec v.$$
 
 \item A vector $\vec u$ in $\mathbb{R}^2$ is a unit vector if, and only if, its component form is $\la \cos\theta,\sin\theta\ra$ for some angle $\theta$.
 \index{unit vector!properties}\index{vectors!unit vector}
