@@ -1,20 +1,10 @@
 \section{The Multivariable Chain Rule}\label{sec:multi_chain}
-The Chain Rule, as learned in Section \ref{sec:chainrule}, states that $\ds \frac{d}{dx}\Big(f\big(g(x)\big)\Big) = \fp\big(g(x)\big)g\primeskip'(x)$. If $t=g(x)$, we can express the Chain Rule as 
-$$\frac{df}{dx} = \frac{df}{dt}\frac{dt}{dx}.$$
-In this section we extend the Chain Rule to functions of more than one variable.
+Consider driving an off-road vehicle along a dirt road. As you drive, your elevation likely changes. What factors determine how quickly your elevation rises and falls? 
+After some thought, generally one recognizes that one's \emph{velocity} (speed and direction) and the \emph{terrain} influence your rise and fall. 
 
-\theorem{thm:multi_chain}{Multivariable Chain Rule, Part I}
-{Let $z=f(x,y)$, $x=g(t)$ and $y=h(t)$, where $f$, $g$ and $h$ are differentiable functions. Then $z = f(x,y) = f\big(g(t),h(t)\big)$ is a function of $t$, and 
-\index{derivative!Chain Rule}\index{Chain Rule!multivariable}
-\begin{align*}
-\frac{dz}{dt} = \frac{df}{dt} &= f_x(x,y)\frac{dx}{dt}+f_y(x,y)\frac{dy}{dt}\\[5pt]
-		&= \frac{\partial f}{\partial x}\frac{dx}{dt}+\frac{\partial f}{\partial y}\frac{dy}{dt}.
-\end{align*}
-}
+One can represent the terrain as the surface defined by a multivariable function $z=f(x,y)$; one can represent the path of the off-road vehicle, as seen from above, with a vector--valued function $\vec r(t) = \langle x(t), y(t)\rangle$; the velocity of the vehicle is thus $\vrp(t) = \langle x'(t),y'(t)\rangle$.
 
-It is good to understand what the situation of $z=f(x,y)$, $x=g(t)$ and $y=h(t)$ describes. We know that $z=f(x,y)$ describes a surface; we also recognize that $x=g(t)$ and $y=h(t)$ are parametric equations for a curve in the $x$-$y$ plane. Combining these together, we are describing a curve that lies on the surface described by $f$. The parametric equations for this curve are $x=g(t)$, $y=h(t)$ and $z=f\big(g(t),h(t)\big)$.
-
-Consider Figure \ref{fig:mchain_intro} in which a surface is drawn, along with a dashed curve in the $x$-$y$ plane. Restricting $f$ to just the points on this circle gives the curve shown on the surface. The derivative $\frac{df}{dt}$ gives the instantaneous rate of change of $f$ with respect to $t$. If we consider an object traveling along this path, $\frac{df}{dt}$ gives the rate at which the object rises/falls.
+Consider Figure \ref{fig:mchain_intro} in which a surface $z=f(x,y)$ is drawn, along with a dashed curve in the $x$-$y$ plane. Restricting $f$ to just the points on this circle gives the curve shown on the surface (i.e., ``the path of the off-road vehicle.'') The derivative $\frac{df}{dt}$ gives the instantaneous rate of change of $f$ with respect to $t$. If we consider an object traveling along this path, $\frac{df}{dt}=\frac{dz}{dt}$ gives the rate at which the object rises/falls (i.e., ``the rate of elevation change'' of the vehicle.) Conceptually, the Multivariable Chain Rule combines terrain and velocity information properly to compute this rate of elevation change. 
 
 \mfigurethree{width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
 3Droll=0.8635092805006537,
@@ -22,8 +12,34 @@ Consider Figure \ref{fig:mchain_intro} in which a surface is drawn, along with a
 3Dc2c=0.5845005512237549 0.6486009955406189 0.48752015829086304,
 3Dcoo=-1.2457355260849 0.0923926830291748 4.189182281494141,
 3Droo=130.00000264534413,
-3Dlights=Headlamp,add3Djscript=asylabels.js}{}{.5}{Understanding the application of the Multivariable Chain Rule.}{fig:mchain_intro}{figures/figmchain_intro}
+3Dlights=Headlamp,add3Djscript=asylabels.js}{}{.7}{Understanding the application of the Multivariable Chain Rule.}{fig:mchain_intro}{figures/figmchain_intro}
 %\mfigure[scale=1.25,trim=1mm 0mm 0mm 0mm,clip]{.5}{Understanding the application of the Multivariable Chain Rule.}{fig:mchain_intro}{figures/figmchain_intro} 
+
+
+
+Abstractly, let $z$ be a function of $x$ and $y$; that is, $z=f(x,y)$ for some function $f$, and let $x$ and $y$ each be functions of $t$. By choosing a $t$-value, $x$- and $y$-values are determined, which in turn determine $z$: this defines $z$ as a function of $t$. The Multivariable Chain Rule gives a method of computing $ \frac{dz}{dt}$.
+
+
+
+\theorem{thm:multi_chain}{Multivariable Chain Rule, Part I}
+{Let $z=f(x,y)$, $x=g(t)$ and $y=h(t)$, where $f$, $g$ and $h$ are differentiable functions. Then $z = f(x,y) = f\big(g(t),h(t)\big)$ is a function of $t$, and 
+\index{derivative!Chain Rule}\index{Chain Rule!multivariable}
+\begin{align*}
+\frac{dz}{dt} = \frac{df}{dt} &= f_x(x,y)\frac{dx}{dt}+f_y(x,y)\frac{dy}{dt}\\[5pt]
+		&= \frac{\partial f}{\partial x}\frac{dx}{dt}+\frac{\partial f}{\partial y}\frac{dy}{dt}\\
+		&= \langle\, f_x,f_y\rangle \cdot \langle x',y'\rangle.
+\end{align*}
+}
+
+The Chain Rule of Section \ref{sec:chainrule} states that $\ds \frac{d}{dx}\Big(f\big(g(x)\big)\Big) = \fp\big(g(x)\big)g\primeskip'(x)$. If $t=g(x)$, we can express the Chain Rule as 
+$$\frac{df}{dx} = \frac{df}{dt}\frac{dt}{dx};$$
+recall that the derivative notation is deliberately chosen to reflect their fraction--like properties. A similar effect is seen in Theorem \ref{thm:multi_chain}. In the second line of equations, one can think of the $dx$ and $\partial x$ as ``sort of'' canceling out, and likewise with $dy$ and $\partial y$. 
+
+
+%It is good to understand what the situation of $z=f(x,y)$, $x=g(t)$ and $y=h(t)$ describes. We know that $z=f(x,y)$ describes a surface; we also recognize that $x=g(t)$ and $y=h(t)$ are parametric equations for a curve in the $x$-$y$ plane. Combining these together, we are describing a curve that lies on the surface described by $f$. The parametric equations for this curve are $x=g(t)$, $y=h(t)$ and $z=f\big(g(t),h(t)\big)$.
+
+Notice, too, the third line of equations in Theorem \ref{thm:multi_chain}. The vector $\langle\,f_x,f_y\rangle$ contains information about the surface (terrain); the vector $\langle x',y'\rangle$ can represent velocity. In the context measuring the rate of elevation change of the off-road vehicle, the Multivariable Chain Rule states it can be found through a product of terrain and velocity information.
+
 
 We now practice applying the Multivariable Chain Rule.\\
 
@@ -75,7 +91,7 @@ $$\frac{dz}{dt} = -(2x-y)\sin t + (2y-x)\cos t.$$
 3Dc2c=0.8537693023681641 0.47485026717185974 0.2135305553674698,
 3Dcoo=-7.264009952545166 -8.125178337097168 66.59317779541016,
 3Droo=130.0000024373742,
-3Dlights=Headlamp,add3Djscript=asylabels.js}{}{.4}{Plotting the path of a particle on a surface in Example \ref{ex_mchain2}.}{fig:mchain2}{figures/figmchain2}
+3Dlights=Headlamp,add3Djscript=asylabels.js}{}{.35}{Plotting the path of a particle on a surface in Example \ref{ex_mchain2}.}{fig:mchain2}{figures/figmchain2}
 %\mfigure{.4}{Plotting the path of a particle on a surface in Example \ref{ex_mchain2}.}{fig:mchain2}{figures/figmchain2}
 
 When $t=0$, $x=1$ and $y=0$. Thus $\ds\frac{dz}{dt} = -(2)(0)+ (-1)(1) = -1$. When $t=0$, the particle is moving down, as shown in Figure \ref{fig:mchain2}. 

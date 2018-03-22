@@ -109,13 +109,15 @@ Property 5 from the theorem is also left to the reader to prove in the Exercise 
 We have just shown that the cross product of parallel vectors is $\vec 0$. This hints at something deeper. Theorem \ref{thm:dot_product} related the angle between two vectors and their dot product; there is a similar relationship relating the cross product of two vectors and the angle between them, given by the following theorem.
 
 \theorem{thm:cross_product}{The Cross Product and Angles}
-{Let $\vec u$ and $\vec v$ be vectors in $\mathbb{R}^3$. Then
+{Let $\vec u$ and $\vec v$ be nonzero vectors in $\mathbb{R}^3$. Then
 $$\norm{\crossp uv} = \vnorm u\, \vnorm v \sin\theta,$$
 where $\theta$, $0\leq \theta \leq \pi$, is the angle between $\vecu$ and $\vecv$.
 \index{vectors!cross product}\index{cross product!properties}
 }
 
-\mnote{.52}{\textbf{Note:} Definition \ref{def:orthogonal} (through Theorem \ref{thm:dot_product}) defines $\vec u$ and $\vec v$ to be orthogonal if $\vec u\cdot\vec v=\vec 0$. We could use Theorem \ref{thm:cross_product} to define $\vec u$ and $\vec v$ are parallel if $\vec u\times \vec v =\vec 0$. By such a definition, $\vec 0$ would be both orthogonal and parallel to every vector. Apparent paradoxes such as this are not uncommon in mathematics and can be very useful. (See also the marginal note on page \pageref{note:parallel}.)\label{note:crossp}}
+\mnote{.52}{\textbf{Note:} We could rewrite Definition \ref{def:orthogonal} and Theorem \ref{thm:cross_product} to include $\vec 0$, then define that $\vec u$ and $\vec v$ are parallel if $\vec u\times\vec v=\vec 0$. Since $\vec 0\cdot \vec v =0$ and $\vec 0\times \vec v = \vec 0$, this would mean that $\vec 0$ is both parallel \emph{and} orthogonal to all vectors.
+%Definition \ref{def:orthogonal} (through Theorem \ref{thm:dot_product}) defines $\vec u$ and $\vec v$ to be orthogonal if $\vec u\cdot\vec v=\vec 0$. We could rewrite Theorem \ref{thm:cross_product} to include $\vec 0$, then define that $\vec u$ and $\vec v$ are parallel if $\vec u\times \vec v =\vec 0$. By such a definition, $\vec 0$ would be both orthogonal and parallel to every vector. 
+Apparent paradoxes such as this are not uncommon in mathematics and can be very useful. (See also the marginal note on page \pageref{note:parallel}.)\label{note:crossp}}
 Note that this theorem makes a statement about the \emph{magnitude} of the cross product. When the angle between $\vecu$ and $\vecv$ is 0 or $\pi$ (i.e., the vectors are parallel), the magnitude of the cross product is 0. The only vector with a magnitude of 0 is $\vec 0$ (see Property \ref{thm:zero_norm} of Theorem \ref{thm:vector_properties}), hence the cross product of  parallel vectors is $\vec 0$.\\
 
 We demonstrate the truth of this theorem in the following example.\\

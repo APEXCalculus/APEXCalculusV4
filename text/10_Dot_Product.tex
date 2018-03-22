@@ -66,7 +66,7 @@ The same is also true of 2 vectors in space: given $\vec u$ and $\vec v$ in $\ma
 The following theorem connects this angle $\theta$ to the dot product of $\vec u$ and $\vec v$.
 
 \theorem{thm:dot_product}{The Dot Product and Angles}
-{Let $\vec u$ and $\vec v$ be vectors in $\mathbb{R}^2$ or $\mathbb{R}^3$. Then 
+{Let $\vec u$ and $\vec v$ be nonzero vectors in $\mathbb{R}^2$ or $\mathbb{R}^3$. Then 
 $$\dotp uv = \norm{\vec u}\,\norm{\vec v} \cos\theta,$$
 where $\theta$, $0\leq\theta\leq \pi$, is the angle between $\vec u$ and $\vec v$.
 \index{dot product!properties}\index{vectors!dot product}
@@ -154,7 +154,7 @@ While our work shows that each angle is $\pi/2$, i.e.,  $90^\circ$, none of thes
 All three angles between these vectors was $\pi/2$, or $90^\circ$. We know from geometry and everyday life that $90^\circ$ angles are ``nice'' for a variety of reasons, so it should seem significant that these angles are all $\pi/2$. Notice the common feature in each calculation (and also the calculation of $\alpha$ in Example \ref{ex_dotp2}): the dot products of each pair of angles was 0. We use this as a basis for a definition of the term \textbf{orthogonal}, which is essentially synonymous to \textit{perpendicular}.
 
 \definition{def:orthogonal}{Orthogonal}
-{Vectors $\vec u$ and $\vec v$ are \textbf{orthogonal} if their dot product is 0.
+{Nonzero vectors $\vec u$ and $\vec v$ are \textbf{orthogonal} if their dot product is 0.
 \index{orthogonal}\index{perpendicular|see{orthogonal}}\index{vectors!orthogonal}
 }
 
@@ -214,7 +214,7 @@ We also know that $\vec w$ is parallel to to $\vec v$\,; that is, the direction 
 Since this construction is so important, it is given a special name.
 
 \definition{def:orthogonal_projection}{Orthogonal Projection}
-{Let $\vec u$ and $\vec v\neq \vec0$ be given. The \textbf{orthogonal projection of $\vec u$ onto $\vec v$}, denoted $\proj uv$, is 
+{Let nonzero vectors $\vec u$ and $\vec v$ be given. The \textbf{orthogonal projection of $\vec u$ onto $\vec v$}, denoted $\proj uv$, is 
 \index{orthogonal projection}\index{vectors!orthogonal projection}
 $$\proj uv = \frac{\dotp uv}{\dotp vv}\vec v.$$
 }
@@ -284,7 +284,7 @@ This leads us to rewrite Equation \eqref{eq:orthogproj} in a seemingly silly way
 This is not nonsense, as pointed out in the following Key Idea. (Notation note: the expression ``$\parallel \vec y$\,'' means ``is parallel to $\vec y$.'' We can use this notation to state ``$\vec x\parallel\vec y$\,'' which means ``$\vec x$ is parallel to $\vec y$.'' The expression ``$\perp \vec y$\,'' means ``is orthogonal to $\vec y$,'' and is used similarly.)
 
 \keyidea{idea:orthog_proj}{Orthogonal Decomposition of Vectors}
-{Let $\vec u$ and $\vec v$ be given. Then $\vec u$ can be written as the sum of two vectors, one of which is parallel to $\vec v$, and one of which is orthogonal to $\vec v$:
+{Let nonzero vectors $\vec u$ and $\vec v$ be given. Then $\vec u$ can be written as the sum of two vectors, one of which is parallel to $\vec v$, and one of which is orthogonal to $\vec v$:
 \index{orthogonal decomposition of vectors}\index{orthogonal!decomposition}\index{vectors!orthogonal decomposition}
 $$\vec u = \underbrace{\proj uv}_{\parallel\ \vec v}\ +\  (\underbrace{\vec u-\proj uv}_{\perp\ \vec v}).$$
 }

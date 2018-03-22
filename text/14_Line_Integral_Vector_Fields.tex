@@ -17,20 +17,20 @@ W = \int_C \vec F\cdot\vec T\ ds = \int_C \vec F\cdot \frac{\vrp(t)}{\norm{\vrp(
 \label{eq:line_integral}\end{equation}
 where the final integral uses the differential $d\vec r$ for $\vrp(t)\,dt$.
 
-These integrals are known as \sword{line integrals over vector fields}. By contrast, the line integrals we dealt with in Section \ref{sec:line_int_intro} are sometimes referred to as \sword{line integrals over scalar fields}. Just as a vector field is defined by a function that returns a vector, a scalar field is a function that returns a scalar, such as $z = f(x,y)$. We waited until now to introduce this terminology so we could contrast the concept with vector fields. 
+These integrals are known as \sword{line integrals over vector fields}. By contrast, the line integrals we dealt with in Section \ref{sec:line_int_intro} are sometimes referred to as \sword{line integrals over scalar fields}.\index{line integral!over scalar field} Just as a vector field is defined by a function that returns a vector, a scalar field is a function that returns a scalar, such as $z = f(x,y)$. We waited until now to introduce this terminology so we could contrast the concept with vector fields. 
 
 We formally define this line integral, then give examples and applications.
 
 \definition{def:line_integral2}{Line Integral Over A Vector Field}
-{Let $\vec F$ be a vector field with continuous components defined on a smooth curve $C$, parametrized by $\vrt$, and let $\vec T$ be the unit tangent vector of $\vrt$. The \sword{line integral over $\vec F$ along $C$} is
+{Let $\vec F$ be a vector field with continuous components defined on a smooth curve $C$, parametrized by $\vrt$, and let $\vec T$ be the unit tangent vector of $\vrt$. The \sword{line integral over $\vec F$ along $C$} is\index{line integral!over vector field}
 $$\int_C \vec F\cdot d\vec r = \int_C \vec F\cdot\vec T\ ds.$$
 }
 
 In Definition \ref{def:line_integral2}, note how the dot product $\vec F \cdot \vec T$ is just a scalar. %Note how on the right--hand side of the equation in Definition \ref{def:line_integral2}, the dot product $\vec F\cdot\vec T$ is just a scalar. 
 Therefore, this new line integral is really just a special kind of line integral found in Section \ref{sec:line_int_intro}; letting $f(s) = \vec F(s)\cdot \vec T(s)$, the right--hand side simply becomes $\int_C f(s)\ ds$, and we can use the techniques of that section to evaluate the integral. We combine those techniques, along with parts of Equation \eqref{eq:line_integral}, to clearly state how to evaluate a line integral over a vector field in the following Key Idea. 
 
-\keyidea{idea:line2}{Evaluating a Line Integral over a Vector Field}
-{Let $\vec F$ be a vector field with continuous components defined on a smooth curve $C$, parametrized by $\vrt$, $a\leq t\leq b$, where $\vec r$ is continuously differentiable. Then
+\keyidea{idea:line2}{Evaluating a Line Integral Over A Vector Field}
+{Let $\vec F$ be a vector field with continuous components defined on a smooth curve $C$, parametrized by $\vrt$, $a\leq t\leq b$, where $\vec r$ is continuously differentiable. Then\index{vector field!over vector field}
 	$$\int_C\vec F\cdot\vec T\ ds = \int_C \vec F\cdot d\vec r =\int_a^b \vec F\big(\vec r(t)\big) \cdot \vrp(t)\ dt.$$
 }
 
@@ -96,7 +96,7 @@ It is relatively easy to see why. Let $C$ be the unit circle. The area under a s
 \theorem{thm:line_int_properties_vector}{Properties of Line Integrals Over Vector Fields}
 {
 \begin{enumerate}
-	\item	Let $\vec F$ and $\vec G$ be  vector fields with continuous components defined on a smooth curve $C$, parametrized by $\vrt$, and let $k_1$ and $k_2$ be scalars. Then
+	\item	Let $\vec F$ and $\vec G$ be  vector fields with continuous components defined on a smooth curve $C$, parametrized by $\vrt$, and let $k_1$ and $k_2$ be scalars. Then\index{line integral!properties over a vector field}
 	$$\ds \int_C\big(k_1\vec F+k_2\vec G\big)\cdot d\vec r = k_1\int_C\vec F\cdot d\vec r +k_2\int_C\vec G\cdot d\vec r.$$
 	\item Let $C$ be piecewise smooth, composed of smooth components $C_1$ and $C_2$. Then
 	$$\int_C\vec F\cdot d\vec r = \int_{C_1}\vec F\cdot d\vec r + \int_{C_2}\vec F\cdot d\vec r.$$
@@ -156,11 +156,11 @@ We have $\vec F\big(\vec r(t)\big) = \la -\sin t, \cos t, 1\ra$ and $\vrp(t) = \
 \vskip \baselineskip
 \noindent\textbf{\large The Fundamental Theorem of Line Integrals}\\
 
-We are preparing to make important statements about the value of certain line integrals over special vector fields. Before we can do that, we need to define some terms that describe the domains over which a vector field is defined.
+We are preparing to make important statements about the value of certain line integrals over special vector fields. Before we can do that, we need to define some terms that describe the domains over which a vector field is defined.\index{line integral!Fundamental Theorem}\index{Fundamental Theorem of Line Integrals}
 
-A region in the plane is \sword{connected} if any two points in the region can be joined by a piecewise smooth curve that lies entirely in the region. In Figure \ref{fig:simply_connected_plane}, sets $R_1$ and $R_2$ are connected; set $R_3$ is not connected, though it is composed of two connected subregions.
+A region in the plane is \sword{connected}\index{connected} if any two points in the region can be joined by a piecewise smooth curve that lies entirely in the region. In Figure \ref{fig:simply_connected_plane}, sets $R_1$ and $R_2$ are connected; set $R_3$ is not connected, though it is composed of two connected subregions.
 
-A region is \sword{simply connected} if every simple closed curve that lies entirely in the region can be continously deformed (shrunk) to a single point without leaving the region.  (A curve is \sword{simple} if it does not cross itself.) In Figure \ref{fig:simply_connected_plane}, only set $R_1$ is simply connected. Region $R_2$ is not simple as any closed curve that goes around the ``hole'' in $R_2$ cannot be continously shrunk to a single point. As $R_3$ is not even connected, it cannot be simply connected, though again it consists of two simply connected subregions. 
+A region is \sword{simply connected}\index{simply connected}\index{connected!simply} if every simple closed curve that lies entirely in the region can be continuously deformed (shrunk) to a single point without leaving the region.  (A curve is \sword{simple}\index{simple curve} if it does not cross itself.) In Figure \ref{fig:simply_connected_plane}, only set $R_1$ is simply connected. Region $R_2$ is not simple as any closed curve that goes around the ``hole'' in $R_2$ cannot be continously shrunk to a single point. As $R_3$ is not even connected, it cannot be simply connected, though again it consists of two simply connected subregions. 
 
 We have applied these terms to regions of the plane, but they can be extended intuitively to domains in space (and hyperspace). In Figure \ref{fig:simply_connected_space}(a), the domain bounded by the sphere (at left) and the domain with a subsphere removed (at right) are both simply connected. Any simple closed path that lies entirely within these domains can be continuously deformed into a single point. In Figure \ref{fig:simply_connected_space}(b), neither domain is simply connected. A left, the ball has a hole that extends its length and the pictured closed path cannot be deformed to a point. At right, two paths are illustrated on the torus that cannot be shrunk to a point. 
 
@@ -195,7 +195,7 @@ Recall how in Example \ref{ex_livf2} particles moved from $A = (-1,1)$ to $B = (
 
 \definition{def:conservative}{Conservative Field, Path Independent}
 {Let $\vec F$ be a vector field defined on an open, connected domain $D$ in the plane or in space  containing points $A$ and $B$. If the line integral
-$\int_C \vec F\cdot d\vec r$\ \ has the same value for all choices of paths $C$ starting at $A$ and ending at $B$, then
+$\int_C \vec F\cdot d\vec r$\ \ has the same value for all choices of paths $C$ starting at $A$ and ending at $B$, then\index{conservative field}\index{vector field!conservative}\index{path independent}\index{line integral!path independent}
 \begin{itemize}
 	\item $\vec F$ is a \sword{conservative field} and
 	\item	The line integral $\int_C \vec F\cdot d\vec r$ is \sword{path independent} and can be written as $$\int_C \vec F\cdot d\vec r = \int_A^B \vec F\cdot \ d\vec r.$$ 
@@ -209,17 +209,17 @@ How can we tell if a field is conservative? To show a field $\vec F$ is conserva
 There is a simpler method. Consider the surface defined by $z = f(x,y) = xy$. We can compute the gradient of this function: $\nabla f = \la f_x, f_y\ra = \la y, x\ra$. Note that this is the field from Example \ref{ex_livf2}, which we have claimed is conservative. We will soon give a theorem that states that a field $\vec F$ is conservative if, and only if, it is the gradient of some scalar function $f$. To show $\vec F$ is conservative, we need to determine whether or not $\vec F = \nabla f$ for some function $f$. (We'll later see that there is a yet simpler method). To recognize the special relationship between $\vec F$ and $f$ in this situation, $f$ is given a name.
 
 \definition{def:potential}{Potential Function}
-{Let $f$ be a function defined on a open domain $D$ in the plane or in space (i.e., $z = f(x,y)$ or $w = f(x,y,z)$) and let $\vec F = \nabla f$, the gradient of $f$. Then $f$ is a \sword{potential function} of $\vec F$.
+{Let $f$ be a function defined on a open domain $D$ in the plane or in space (i.e., $z = f(x,y)$ or $w = f(x,y,z)$) and let $\vec F = \nabla f$, the gradient of $f$. Then $f$ is a \sword{potential function} of $\vec F$.\index{potential function}\index{vector field!potential function of}
 }
 
 We now state the Fundamental Theorem of Line Integrals, which connects conservative fields and path independence to fields with potential functions. 
 
 \theorem{thm:FTofLineIntegrals}{Fundamental Theorem of Line Integrals}
-{Let $\vec F$ be a vector field whose components are continuous on an open, connected domain $D$ in the plane or in space. 
+{Let $\vec F$ be a vector field whose components are continuous on an open, connected domain $D$ in the plane or in space, let $A$ and $B$ be any points in $D$, and let $C$ be any path in $D$ starting at $A$ and ending at $B$.\index{line integral!Fundamental Theorem}\index{Fundamental Theorem of Line Integrals}\index{conservative field}\index{vector field!conservative}\index{path independent}\index{line integral!path independent}
 \begin{enumerate}
 	\item $\vec F$ is conservative if and only if there exists a differentiable function $f$ such that $\vec F = \nabla f$. 
-	\item	If $\vec F$ is conservative, then given any points $A$ and $B$ in $D$, 
-	$$\int_A^B \vec F\cdot d\vec r = f(B) - f(A).$$
+	\item	If $\vec F$ is conservative, then 
+	$$\int_C\vec F\cdot d\vec r = \int_A^B \vec F\cdot d\vec r = f(B) - f(A).$$
 \end{enumerate}
 }
 
@@ -267,7 +267,7 @@ which matches our previous result.
 The Fundamental Theorem of Line Integrals states that we can determine whether or not $\vec F$ is conservative by determining whether or not $\vec F$ has a potential function. This can be difficult. A simpler method exists if the domain of $\vec F$ is simply connected (not just connected as needed in the Fundamental Theorem of Line Integrals), which is a reasonable requirement. We state this simpler method as a theorem.
 
 \theorem{thm:conservative_field_curl}{Curl of Conservative Fields}
-{Let $\vec F$ be a vector field whose components are continuous on an open, simply connected domain $D$ in the plane or in space. Then $\vec F$ is conservative if and only if $\curl \vec F = 0$ or $\vec 0$, respectively.
+{Let $\vec F$ be a vector field whose components are continuous on an open, simply connected domain $D$ in the plane or in space. Then $\vec F$ is conservative if and only if $\curl \vec F = 0$ or $\vec 0$, respectively.\index{curl!of conservative fields}\index{conservative field}
 }\\
 
 In Example \ref{ex_livf5}, we showed that $\vec F =\langle 3x^2y+2x,x^3+1\rangle$ is conservative by finding a potential function for $\vec F$. Using the above theorem, we can show that $\vec F$ is conservative much more easily by computing its curl:
