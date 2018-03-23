@@ -7,10 +7,10 @@ Theorem \ref{thm:divergence1} gives the Divergence Theorem in the plane, which s
 We now consider the three-dimensional version of the Divergence Theorem. It states, in words, that the flux across a closed \emph{surface} equals the sum of the divergences over the domain enclosed by the surface. Since we are in space (versus the plane), we measure flux via a surface integral, and the sums of divergences will be measured through a triple integral.
 
 \theorem{thm:divergence2}{The Divergence Theorem (in space)}
-{Let $D$ be a closed domain in space whose boundary is an orientable, piecewise smooth surface \surfaceS\ with outer unit normal vector $\vec n$, and let $\vec F$ be a vector field whose components are differentiable on $D$. Then
+{Let $D$ be a closed domain in space whose boundary is an orientable, piecewise smooth surface \surfaceS\ with outer unit normal vector $\vec n$, and let $\vec F$ be a vector field whose components are differentiable on $D$. Then\index{Divergence Theorem!in space}
 $$\iint_\surfaceS \vec F\cdot\vec n\ dS =\iiint_D \divv \vec F\ dV.$$ 
 }
-\mnote{.60}{\textbf{Note:} the term ``outer unit normal vector'' used in Theorem \ref{thm:divergence2} means $\vec n$ points to the outside of \surfaceS.}
+\mnote{.60}{\textbf{Note:} the term ``outer unit normal vector'' used in Theorem \ref{thm:divergence2} means $\vec n$ points to the outside of \surfaceS.\index{outer unit normal vector}}
 
 \example{ex_divthm_space2}{Using the Divergence Theorem in space}
 {Let $D$ be the domain in space bounded by the planes $z=0$ and $z=2x$, along with the cylinder $x=1-y^2$, as graphed in Figure \ref{fig:divthm_space2}, let \surfaceS\ be the boundary of $D$, and let $\vec F = \langle x+y,y^2, 2z\rangle$. 
@@ -109,7 +109,7 @@ which matches our flux computation above.
 }\\
 
 \example{ex_divthm_space3}{A ``paradox'' of the Divergence Theorem and Gauss's Law}
-{The magnitude of many physical quantities (such as light intensity or electromagnetic and gravitational forces) follow an ``inverse square law'': the magnitude of the quantity at a point is inversely proportional to the square of the distance to the source of the quantity. 
+{The magnitude of many physical quantities (such as light intensity or electromagnetic and gravitational forces) follow an ``inverse square law'': the magnitude of the quantity at a point is inversely proportional to the square of the distance to the source of the quantity.\index{Gauss's Law} 
 
 Let a point light source be placed at the origin and let $\vec F$ be the vector field which describes the intensity and direction of the emanating light. At a point $(x,y,z)$, the unit vector describing the direction of the light passing through that point is $\langle x,y,z\rangle/\sqrt{x^2+y^2+z^2}$. As the intensity of light follows the inverse square law, the magnitude of $\vec F$ at $(x,y,z)$ is $k/(x^2+y^2+z^2)$ for some constant $k$. Taken together, 
 $$\vec F(x,y,z) = \frac{k}{(x^2+y^2+z^2)^{3/2}}\langle x,y,z\rangle.$$
@@ -170,7 +170,7 @@ Just as the spatial Divergence Theorem of this section is an extension of the pl
 Green's Theorem dictated that the curve was to be traversed counterclockwise when measuring circulation. Stokes' Theorem will follow a right hand rule: when the thumb of one's right hand points in the direction of $\vec n$, the path $C$ will be traversed in the direction of the curling fingers of the hand (this is equivalent to traversing counterclockwise in the plane).
 
 \theorem{thm:stokes_thm}{Stokes' Theorem}
-{Let \surfaceS\ be a piecewise smooth, orientable surface whose boundary is a piecewise smooth curve $C$, let $\vec n$ be a unit vector normal to \surfaceS, let $C$ be traversed with respect to $\vec n$ according to the right hand rule, and let the components of $\vec F$ have continuous first partial derivatives over \surfaceS. Then
+{Let \surfaceS\ be a piecewise smooth, orientable surface whose boundary is a piecewise smooth curve $C$, let $\vec n$ be a unit vector normal to \surfaceS, let $C$ be traversed with respect to $\vec n$ according to the right hand rule, and let the components of $\vec F$ have continuous first partial derivatives over \surfaceS. Then\index{Stokes' Theorem}
 $$\oint_C \vec F\cdot \ d\vec r = \iint_\surfaceS (\curl\vec F)\cdot \vec n\ dS.$$
 }\\
 

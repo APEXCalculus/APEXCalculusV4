@@ -2,7 +2,7 @@
 
 \noindent\textbf{\large Flow and Flux}\\
 
-Line integrals over vector fields have the natural interpretation of computing work when $\vec F$ represents a force field. It is also common to use vector fields to represent velocities. In these cases, the line integral $\int_C \vec F\cdot d\vec r$ is said to represent \sword{flow}.
+Line integrals over vector fields have the natural interpretation of computing work when $\vec F$ represents a force field. It is also common to use vector fields to represent velocities. In these cases, the line integral $\int_C \vec F\cdot d\vec r$ is said to represent \sword{flow}.\index{flow}\index{flux}\index{circulation}
 
 \mfigure{.7}{Illustrating the principles of flow and flux.}{fig:flowfluxintro}{figures/figflowfluxintro}
 
@@ -52,11 +52,11 @@ Letting $\vec F = \la M, N\ra$, we calculate flux as:
 We summarize the above in the following definition.
 
 \definition{def:flowflux}{Flow, Flux}
-{Let $\vec F=\la M,N\ra$ be a vector field with continuous components defined on a smooth curve $C$, parametrized by $\vrt =\la f(t),g(t)\ra$, let $\vec T$ be the unit tangent vector of $\vrt$, and let $\vec n$ be the clockwise 90$^\circ$degree rotation of $\vec T$.
+{Let $\vec F=\la M,N\ra$ be a vector field with continuous components defined on a smooth curve $C$, parametrized by $\vrt =\la f(t),g(t)\ra$, let $\vec T$ be the unit tangent vector of $\vrt$, and let $\vec n$ be the clockwise 90$^\circ$degree rotation of $\vec T$.\index{flow}\index{flux}
 \begin{itemize}
-	\item The \sword{flow} of $\vec F$ over $C$ is
+	\item The \sword{flow} of $\vec F$ along $C$ is
 $$\int_C \vec F\cdot\vec T\ ds=\int_C \vec F\cdot d\vec r.$$
-	\item The \sword{flux} of $\vec F$ over $C$ is
+	\item The \sword{flux} of $\vec F$ across $C$ is
 $$\int_C \vec F\cdot \vec n\ ds =  \int_C M\ dy -N\ dx = \int_C\Big(M\,g'(t) - N\,\fp(t)\Big)dt. $$
 \end{itemize}
 }
@@ -125,12 +125,12 @@ We also saw in the example that the flux across $C_1$ was 0 when the field was $
 \vskip \baselineskip
 \noindent\textbf{\large Green's Theorem}\\
 
-There is an important connection between the circulation around a closed region $R$ and the curl of the vector field inside of $R$, as well as a connection between the flux across the boundary of $R$ and the divergence of the field inside $R$. These connections are described by Green's Theorem and the Divergence Theorem, respectively. We'll explore each in turn.
+There is an important connection between the circulation around a closed region $R$ and the curl of the vector field inside of $R$, as well as a connection between the flux across the boundary of $R$ and the divergence of the field inside $R$. These connections are described by Green's Theorem and the Divergence Theorem, respectively. We'll explore each in turn.\index{Green's Theorem}
 
 Green's Theorem states ``the counterclockwise circulation around a closed region $R$ is equal to the sum of the curls over $R$.''
 
 \theorem{thm:greens}{Green's Theorem}
-{Let $R$ be a closed, bounded region of the plane whose boundary $C$ is composed of finitely many smooth curves, let $\vec r(t)$ be a counterclockwise parametrization of $C$, and let $\vec F =\la M,N\ra$ where $N_x$ and $M_y$ are continuous over $R$. Then
+{Let $R$ be a closed, bounded region of the plane whose boundary $C$ is composed of finitely many smooth curves, let $\vec r(t)$ be a counterclockwise parametrization of $C$, and let $\vec F =\la M,N\ra$ where $N_x$ and $M_y$ are continuous over $R$. Then\index{Green's Theorem}
 $$\oint_C \vec F\cdot d\vec r = \iint_R\curl \vec F\ dA.$$
 }
 
@@ -201,7 +201,7 @@ One is free to choose any field $\vec F$ to use as long as $\curl\vec F = 1$. Co
 Green's Theorem makes a connection between the circulation around a closed region $R$ and the sum of the curls over $R$. The Divergence Theorem makes a somewhat ``opposite'' connection: the total flux across the boundary of $R$ is equal to the sum of the divergences over $R$. 
 
 \theorem{thm:divergence1}{The Divergence Theorem (in the plane)}
-{Let $R$ be a closed, bounded region of the plane whose boundary $C$ is composed of finitely many smooth curves, let $\vec r(t)$ be a counterclockwise parametrization of $C$, and let $\vec F =\la M,N\ra$ where $M_x$ and $N_y$ are continuous over $R$. Then
+{Let $R$ be a closed, bounded region of the plane whose boundary $C$ is composed of finitely many smooth curves, let $\vec r(t)$ be a counterclockwise parametrization of $C$, and let $\vec F =\la M,N\ra$ where $M_x$ and $N_y$ are continuous over $R$. Then\index{Divergence Theorem!in the plane}
 $$\oint_C \vec F\cdot \vec n\ ds = \iint_R\divv \vec F\ dA.$$
 }
 

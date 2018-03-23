@@ -18,7 +18,7 @@ To evaluate the above integral, we would seek $\vec r(u,v)$, a smooth parametriz
 The integral in Equation \eqref{eq:surface_int} is a specific example of a more general construction defined below.
 
 \definition{def:surface_integral}{Surface Integral}
-{Let $G(x,y,z)$ be a continuous function defined on a surface \surfaceS. The \sword{surface integral of $G$ on \surfaceS} is
+{Let $G(x,y,z)$ be a continuous function defined on a surface \surfaceS. The \sword{surface integral of $G$ on \surfaceS} is\index{surface integral}
 $$\iint_\surfaceS G(x,y,z)\ dS.$$
 }\\
 
@@ -61,7 +61,7 @@ M &= \iint_\surfaceS\ dm\\
 \vskip \baselineskip
 \noindent\textbf{\large Flux}\\
 
-Let a surface \surfaceS\ lie within a vector field $\vec F$. One is often interested in measuring the \emph{flux} of $\vec F$ across \surfaceS; that is, measuring ``how much of the vector field passes across \surfaceS.'' For instance, if $\vec F$ represents the velocity field of moving air and \surfaceS\ represents the shape of an air filter, the flux will measure how much air is passing through the filter per unit time.
+Let a surface \surfaceS\ lie within a vector field $\vec F$. One is often interested in measuring the \emph{flux} of $\vec F$ across \surfaceS; that is, measuring ``how much of the vector field passes across \surfaceS.'' For instance, if $\vec F$ represents the velocity field of moving air and \surfaceS\ represents the shape of an air filter, the flux will measure how much air is passing through the filter per unit time.\index{flux}
 
 As flux measures the amount of $\vec F$ passing across \surfaceS, we need to find the ``amount of $\vec F$ orthogonal to \surfaceS.'' Similar to our measure of flux in the plane, this is equal to $\vec F\cdot \vec n$, where $\vec n$ is a unit vector normal to \surfaceS\ at a point. We now consider how to find $\vec n$.
 
@@ -81,7 +81,7 @@ A nice thing happens with the actual computation of flux: the $\snorm{\vec r_u\t
 The above only makes sense if \surfaceS\ is orientable; the normal vectors $\vec n$ must vary continuously across \surfaceS. We assume that $\vec n$ does vary continuously. (If the parametrization $\vec r$ of \surfaceS\ is smooth, then our above definition of $\vec n$ will vary continuously.)
 
 \definition{def:surfflux}{Flux over a surface}
-{Let $\vec F$ be a vector field with continuous components defined on an orientable surface \surfaceS\ with normal vector $\vec n$. The \sword{flux} of $\vec F$ across \surfaceS\ is
+{Let $\vec F$ be a vector field with continuous components defined on an orientable surface \surfaceS\ with normal vector $\vec n$. The \sword{flux} of $\vec F$ across \surfaceS\ is\index{flux}
 $$\text{Flux} = \iint_\surfaceS \vec F\cdot \vec n\ dS.$$
 If \surfaceS\ is parametrized by $\vec r(u,v)$, which is smooth on its domain $R$, then
 $$\text{Flux} = \iint_R \vec F\big(\vec r(u,v)\big)\cdot (\vec r_u\times \vec r_v)\ dA.$$
