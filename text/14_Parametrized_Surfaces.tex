@@ -16,17 +16,17 @@ We are accustomed to describing surfaces as functions of two variables, usually 
 {Let $\vec r(u,v) = \langle\, f(u,v),g(u,v),h(u,v)\rangle$ be a vector--valued function
 that is continuous and one to one on the interior of its domain $R$ in the $u$-$v$ plane. The set of all terminal points of $\vec r$ (i.e., the \emph{range} of $\vec r$\,) is the \sword{surface} \surfaceS, and $\vec r$ along with its domain $R$ form a \sword{parametrization} of \surfaceS.\\
 
-This parametrization is \sword{smooth} on $R$ if $\vec r_u$ and $\vec r_v$ are continuous and $\vec r_u\times \vec r_v$ is never $\vec 0$ on the interior of $R$.
+This parametrization is \sword{smooth} on $R$ if $\vec r_u$ and $\vec r_v$ are continuous and $\vec r_u\times \vec r_v$ is never $\vec 0$ on the interior of $R$.\index{surface}\index{parametric equations!of a surface}\index{parametrized surface}\index{smooth!surface}\index{surface!smooth}
 }
 
-\mnote{.6}{\textbf{Note:} A function is \emph{one to one} on its domain if the function never repeats an output value over the domain. In the case of $\vec r(u,v)$, $\vec r$ is one to one if $\vec r(u_1,v_1) \neq \vec r(u_2,v_2)$ for all points $(u_1,v_1) \neq (u_2,v_2)$ in the domain of $\vec r$.
+\mnote{.6}{\textbf{Note:} A function is \emph{one to one} on its domain if the function never repeats an output value over the domain. In the case of $\vec r(u,v)$, $\vec r$ is one to one if $\vec r(u_1,v_1) \neq \vec r(u_2,v_2)$ for all points $(u_1,v_1) \neq (u_2,v_2)$ in the domain of $\vec r$.\index{one to one}
 }
 
 Given a point $(u_0,v_0)$ in the domain of a vector--valued function $\vec r$, the vectors $\vec r_u(u_0,v_0)$ and $\vec r_v(u_0,v_0)$ are tangent to the surface \surfaceS\ at $\vec r(u_0,v_0)$ (a proof of this is developed later in this section). The definition of smoothness dictates that $\vec r_u\times \vec r_v \neq \vec 0$; this ensures that neither $\vec r_u$ nor $\vec r_v$ are $\vec 0$, nor are they ever parallel. Therefore smoothness guarantees that $\vec r_u$ and $\vec r_v$ determine a plane that is tangent to \surfaceS.
 
-A surface \surfaceS\ is said to be \sword{orientable} if a field of normal vectors can be defined on \surfaceS\ that vary continuously along \surfaceS. This definition may be hard to understand; it may help to know that orientable surfaces are often called ``two sided.'' A sphere is an orientable surface, and one can easily envision an ``inside'' and ``outside'' of the sphere. A paraboloid is orientable, where again one can generally envision  ``inside'' and ``outside'' sides (or ``top'' and ``bottom'' sides) to this surface. Just about every surface that one can imagine is orientable, and we'll assume all surfaces we deal with in this text are orientable.
+A surface \surfaceS\ is said to be \sword{orientable}\index{orientable} if a field of normal vectors can be defined on \surfaceS\ that vary continuously along \surfaceS. This definition may be hard to understand; it may help to know that orientable surfaces are often called ``two sided.'' A sphere is an orientable surface, and one can easily envision an ``inside'' and ``outside'' of the sphere. A paraboloid is orientable, where again one can generally envision  ``inside'' and ``outside'' sides (or ``top'' and ``bottom'' sides) to this surface. Just about every surface that one can imagine is orientable, and we'll assume all surfaces we deal with in this text are orientable.
 
-It is enlightening to examine a classic non-orientable surface: the M\"obius band, shown in Figure \ref{fig:mobius}. Vectors normal to the surface are given, starting at the point indicated in the figure. These normal vectors ``vary continuously'' as they move along the surface. Letting each vector indicate the ``top'' side of the band, we can easily see near any vector which side is the ``top''.
+It is enlightening to examine a classic non-orientable surface: the M\"obius band\index{M\"obius band}, shown in Figure \ref{fig:mobius}. Vectors normal to the surface are given, starting at the point indicated in the figure. These normal vectors ``vary continuously'' as they move along the surface. Letting each vector indicate the ``top'' side of the band, we can easily see near any vector which side is the ``top''.
 
 However, if as we progress along the band, we recognize that we are labeling ``both sides'' of the band as the top; in fact, there are not two ``sides'' to this band, but one. The M\"obius band is a non-orientable surface.
 
@@ -265,7 +265,7 @@ Just as we could parametrize curves in more than one way, there will always be m
 \vskip \baselineskip
 \noindent\textbf{\large Surface Area}\\
 
-It will become important in the following sections to be able to compute the surface area of a surface \surfaceS\ given a smooth parametrization $\vec r(u,v)$, $a\leq u\leq b$, $c\leq v\leq d$. Following the principles given in the integration review at the beginning of this chapter, we can say that
+It will become important in the following sections to be able to compute the surface area of a surface \surfaceS\ given a smooth parametrization $\vec r(u,v)$, $a\leq u\leq b$, $c\leq v\leq d$. Following the principles given in the integration review at the beginning of this chapter, we can say that\index{surface area!of parametrized surface}
 $$\text{Surface Area of \surfaceS}=S = \iint_{\surfaceS}\ dS,$$
 where $dS$ represents a small amount of surface area. That is, to compute total surface area $S$, add up lots of small amounts of surface area $dS$ across the entire surface \surfaceS. The key to finding surface area is knowing how to compute $dS$. We begin by approximating.
 
@@ -321,7 +321,7 @@ Thus, in the limit, the double sum leads to a double integral:
 $$\lim_{n\to\infty} \sum_{j=1}^n\sum_{i=1}^n \snorm{\vec u_{i,j}\times \vec v_{i,j}}= \int_c^d\int_a^b \snorm{\vec r_u\times\vec r_v}\ du\ dv.$$
 
 \theorem{thm:par_surface_area}{Surface Area of Parametrically Defined Surfaces}
-{Let $\vec r(u,v)$ be a smooth parametrization of a surface \surfaceS\ over a region $R$ of the $u$-$v$ plane. 
+{Let $\vec r(u,v)$ be a smooth parametrization of a surface \surfaceS\ over a region $R$ of the $u$-$v$ plane.\index{surface area!of parametrized surface} 
 \begin{itemize}
 \item	The surface area differential $dS$ is: $dS = \snorm{\vec r_u\times \vec r_v}\ dA$.
 \item The surface area $S$ of \surfaceS\ is
