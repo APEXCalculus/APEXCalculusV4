@@ -4,7 +4,7 @@ We continue with the pattern we have established in this text: after defining a 
 
 We begin with a series of definitions. We are used to ``open intervals'' such as $(1,3)$, which represents the set of all $x$ such that $1<x<3$,  and ``closed intervals'' such as $[1,3]$, which represents the set of all $x$ such that $1\leq x\leq 3$. We need analogous definitions for open and closed sets in the $x$-$y$ plane.
 
-\definition{def:open}{\parbox[t]{225pt}{Open Disk, Boundary and Interior Points, Open and Closed Sets, Bounded Sets}}
+\definition{def:open}{\parbox[t]{180pt}{Open Disk, Boundary and Interior Points, Open and Closed Sets, Bounded Sets}}
 {An \textbf{open disk} $B$ in $\mathbb{R}^2$ centered at $(x_0,y_0)$ with radius $r$ is the set of all points $(x,y)$ such that $\ds\sqrt{(x-x_0)^2+(y-y_0)^2} < r$. \\
 
 Let $S$ be a set of points in $\mathbb{R}^2$. A point $P$ in $\mathbb{R}^2$ is a \textbf{boundary point} of $S$  if all open disks centered at $P$ contain both points in $S$ and points not in $S$.\\
@@ -43,30 +43,40 @@ Determine if the domain of the function $f(x,y)=\sqrt{1-\frac{x^2}9-\frac{y^2}4}
 Determine if the domain of $f(x,y) = \frac1{x-y}$ is open, closed, or neither.}
 {As we cannot divide by 0, we find the domain to be $D = \{(x,y)\ |\ x-y\neq 0\}$. In other words, the domain is the set of all points $(x,y)$ \emph{not} on the line $y=x$. 
 
-\mfigure{.68}{Sketching the domain of the function in Example \ref{ex_multilimit2}.}{fig:multilimit2}{figures/figmultilimit2}
+\mfigure{.63}{Sketching the domain of the function in Example \ref{ex_multilimit2}.}{fig:multilimit2}{figures/figmultilimit2}
 The domain is sketched in Figure \ref{fig:multilimit2}. Note how we can draw an open disk around any point in the domain that lies entirely inside the domain, and also note how the only boundary points of the domain are the points on the line $y=x$. We conclude the domain is an open set. The set is unbounded.
 }\\
 
 \noindent\textbf{\large Limits}\\
 
 Recall a pseudo--definition of the limit of a function of one variable: ``$\ds \lim_{x\to c}f(x) = L$'' means that if $x$ is ``really close'' to $c$, then $f(x)$ is ``really close'' to $L$. A similar pseudo--definition holds for functions of two variables. We'll say that 
-\enlargethispage{3\baselineskip}
+%\enlargethispage{3\baselineskip}
 
 \begin{center}
 ``$\ds \lim_{(x,y)\to (x_0,y_0)} f(x,y) = L$'' \end{center}
-means ``if the point $(x,y)$ is really close to the point $(x_0,y_0)$, then $f(x,y)$ is really close to $L$.'' The formal definition is given below.
+means ``if the point $(x,y)$ is really close to the point $(x_0,y_0)$, then $f(x,y)$ is really close to $L$.'' 
 
-\definition{def:multilimit}{Limit of a Function of Two Variables}
-{Let $S$ be an open set containing $(x_0,y_0)$, and let $f$ be a function of two variables defined on $S$, except possibly at $(x_0,y_0)$. 
+The formal definition is given below. While our first limit definition was defined over an interval, we now define limits over a set $S$ in the plane. As planar sets can be far more complicated than intervals, our definition adds a restriction to the shape of $S$. In this text, all sets we'll consider will satisfy this condition and we won't bother to check; it is included in the definition for completeness.
+
+\definition{def:multilimita}{Limit of a Function of Two Variables}
+{Let $S$ be a set containing $P=(x_0,y_0)$ where every open disk centered at $P$ contains points in $S$ other than $P$, let $f$ be a function of two variables defined on $S$, except possibly at $P$, and let $L$ be a real number. 
 %Let $f(x,y)$ be a function of two variables and let $(x_0,y_0)$ be a point in the domain of $f$. 
-The \textbf{limit} of $f(x,y)$ as $(x,y)$ approaches $(x_0,y_0)$ is $L$, denoted $$\ds \lim_{(x,y)\to (x_0,y_0)} f(x,y) = L,$$
-means that given any $\epsilon>0$, there exists $\delta>0$ such that for all  $(x,y)\neq (x_0,y_0)$, if $(x,y)$ is in the open disk centered at $(x_0,y_0)$ with radius $\delta$, then $|f(x,y) - L|<\epsilon.$
+The \sword{limit of $f(x,y)$ as $(x,y)$ approaches $(x_0,y_0)$ is $L$}, denoted $$\ds \lim_{(x,y)\to (x_0,y_0)} f(x,y) = L,$$
+means that given any $\epsilon>0$, there exists $\delta>0$ such that for all  $(x,y)$ in $S$, where $(x,y)\neq (x_0,y_0)$, if $(x,y)$ is in the open disk centered at $(x_0,y_0)$ with radius $\delta$, then $|f(x,y) - L|<\epsilon.$
 \index{limit!of multivariable function}\index{multivariable function!limit}
 }
+%\definition{def:multilimit}{Limit of a Function of Two Variables}
+%{Let $S$ be an open set containing $(x_0,y_0)$, and let $f$ be a function of two variables defined on $S$, except possibly at $(x_0,y_0)$. 
+%%Let $f(x,y)$ be a function of two variables and let $(x_0,y_0)$ be a point in the domain of $f$. 
+%The \textbf{limit} of $f(x,y)$ as $(x,y)$ approaches $(x_0,y_0)$ is $L$, denoted $$\ds \lim_{(x,y)\to (x_0,y_0)} f(x,y) = L,$$
+%means that given any $\epsilon>0$, there exists $\delta>0$ such that for all  $(x,y)\neq (x_0,y_0)$, if $(x,y)$ is in the open disk centered at $(x_0,y_0)$ with radius $\delta$, then $|f(x,y) - L|<\epsilon.$
+%\index{limit!of multivariable function}\index{multivariable function!limit}
+%}
 
 
 The concept behind Definition \ref{def:multilimit} is sketched in Figure \ref{fig:multilimitdef}. Given $\epsilon>0$, find $\delta>0$ such that if $(x,y)$ is any point in the open disk centered at $(x_0,y_0)$ in the $x$-$y$ plane with radius $\delta$, then $f(x,y)$ should be within $\epsilon$ of $L$. 
 
+\enlargethispage{3\baselineskip}
 Computing limits using this definition is rather cumbersome. The following theorem allows us to evaluate limits much more easily.
 
 \mfigurethree{width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
@@ -147,7 +157,7 @@ Our theorems tell us that we can evaluate most limits quite simply, without worr
 	&= \lim_{x\to 0} \frac{\sin(mx^2)}{x}\cdot\frac1{m+1}.
 	\end{align*}
 	By applying L'H\^opital's Rule, we can show this limit is 0 \emph{except} when $m=-1$, that is, along the line $y=-x$. This line is not in the domain of $f$, so we have found the following fact: along every line $y=mx$ in the domain of $f$, $\ds \lim_{(x,y)\to(0,0)} f(x,y)=0$. %Along this line, $f(x,y)$ is not defined, so it stands to reason that a limit along this line does not exist.
-\drawexampleline
+%\drawexampleline
 	
 	Now consider the limit along the path $y=-\sin x$:
 	\begin{align*}
