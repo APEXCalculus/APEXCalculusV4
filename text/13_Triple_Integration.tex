@@ -166,10 +166,10 @@ To find the bounds on $y$ and $x$, we ``collapse'' the region onto the $x$-$y$ p
 We define that region $R$, in the integration order of $dy\ dx$, with bounds $0\leq y\leq 6-2x$ and $0\leq x\leq 3$. Thus the volume $V$ of the region $D$ is:
 \begin{align*}
 V &= \iiint_D \ dV\\
-		&= \int_0^3\int_0^{6-2x}\int_0^{2-\frac 13y-\frac 23x}\ dz\ dy\ dz \\
-		&= \int_0^3\int_0^{6-2x}\left(\int_0^{2-\frac 13y-\frac 23x}\ dz\right)\ dy\ dz \\
-		&=\int_0^3\int_0^{6-2x}z\Big|_0^{2-\frac 13y-\frac 23x}\ dy\ dz \\
-		&= \int_0^3\int_0^{6-2x}\left(2-\frac 13y-\frac 23x\right)\ dy\ dz.
+		&= \int_0^3\int_0^{6-2x}\int_0^{2-\frac 13y-\frac 23x}\ dz\ dy\ dx \\
+		&= \int_0^3\int_0^{6-2x}\left(\int_0^{2-\frac 13y-\frac 23x}\ dz\right)\ dy\ dx \\
+		&=\int_0^3\int_0^{6-2x}z\Big|_0^{2-\frac 13y-\frac 23x}\ dy\ dx \\
+		&= \int_0^3\int_0^{6-2x}\left(2-\frac 13y-\frac 23x\right)\ dy\ dx.
 		\intertext{From this step on, we are evaluating a double integral as done many times before. We skip these steps and give the final volume,}
 		&= 6\text{u}^3.		
 \end{align*}

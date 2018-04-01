@@ -269,6 +269,15 @@ $$\proj uv = \frac{\dotp uv}{\dotp vv}\vec v.$$
 \vskip-\baselineskip
 }\\
 
+We can use the properties of the dot product found in Theorem \ref{thm:dot_product_properties} to rearrange the formula found in Definition \ref{def:orthogonal_projection}:
+\begin{align*}
+\proj uv &= \frac{\dotp uv}{\dotp vv}\vec v\\
+		&= \frac{\dotp uv}{\norm{\vec v}^2}\vec v\\
+		&= \left(\vec u \cdot \frac{\vec v}{\norm{\vec v}}\right) \frac{\vec v}{\norm{\vec v}}.
+\end{align*}
+
+The above formula shows that the orthogonal projection of $\vec u$ onto $\vec v$ is only concerned with the \emph{direction} of $\vec v$, as both instances of $\vec v$ in the formula come in the form $\vec v/\norm{\vec v}$, the unit vector in the direction of $\vec v$.
+
 A special case of orthogonal projection occurs when $\vec v$ is a unit vector. In this situation, the formula for the orthogonal projection of a vector $\vec u$ onto $\vec v$ reduces to just $\proj uv = (\vec u\cdot\vec v)\vec v$, as $\vec v\cdot\vec v = 1$.
 
 This gives us a new understanding of the dot product. When $\vec v$ is a unit vector, essentially providing only direction information, the dot product of $\vec u$ and $\vec v$ gives ``how much of $\vec u$ is in the direction of $\vec v$.'' This use of the dot product will be very useful in future sections.\\
