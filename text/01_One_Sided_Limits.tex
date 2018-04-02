@@ -22,33 +22,53 @@ In this section we explore in depth the concepts behind \#1 by introducing the \
 %
 %\ifthenelse{\boolean{longpage}}{}
 %{\setlength{\specialboxlength}{\textwidth+4\specialboxinnerseplength}}
-\enlargethispage{1\baselineskip}
+\enlargethispage{3\baselineskip}
 %\setboxwidth{115pt}%
 %\noindent\ifthenelse{\isodd{\thepage}}{}{\hskip -115pt}%
 %\noindent\begin{minipage}{\specialboxlength}
-\definition{def:onesidedlimit}{One Sided Limits}
-{\textbf{Left-Hand Limit} \index{limit!one sided}\index{limit!right handed}\index{limit!left handed}
+\definition{def:onesidedlimit}{One Sided Limits: Left- and Right-Hand Limits}
+{%
+\textbf{Left-Hand Limit} \index{limit!one sided}\index{limit!right handed}\index{limit!left handed}
 
-\indent Let $I$ be an open interval containing $c$, and let $f$ be a function defined on $I$, except possibly at $c$. 
+\indent Let $f$ be a function defined on $(a,c)$ for some $a<c$ and let $L$ be a real number. 
+
 The \sword{limit of $f(x)$, as $x$ approaches $c$ from the left, is $L$}, or, \sword{the left--hand limit of $f$ at $c$ is $L$}, denoted by  
 $$\displaystyle \lim_{x\rightarrow c^-} f(x) = L,$$
-means that given any $\epsilon > 0$, there exists $\delta > 0$ such that for all $x< c$,  
+means  given any $\epsilon > 0$, there exists $\delta > 0$ such that for all $a<x<c$,  
 if  $|x - c| < \delta$, then $|f(x) - L| < \epsilon$.\\
-%Let $f$ be a function defined on an open interval containing $c$. 
-%The notation $$ \lim_{x\rightarrow c^-} f(x) = L, $$ read as ``the limit of $f(x)$ as $x$ approaches $c$ from the left is $L$,'' or ``the \textit{left-hand limit of $f$ at $c$ is L}'' 
-%means that given any $\epsilon > 0$, there exists $\delta > 0$ such that 
-%$|x - c| < \delta$ implies $|f(x) - L| < \epsilon$, for all $x<c$.\\
+
+% Version 3.0 definition
+%\textbf{Left-Hand Limit} \index{limit!one sided}\index{limit!right handed}\index{limit!left handed}
+%%
+%%\indent Let $I$ be an open interval containing $c$, and let $f$ be a function defined on $I$, except possibly at $c$. 
+%%The \sword{limit of $f(x)$, as $x$ approaches $c$ from the left, is $L$}, or, \sword{the left--hand limit of $f$ at $c$ is $L$}, denoted by  
+%%$$\displaystyle \lim_{x\rightarrow c^-} f(x) = L,$$
+%%means that given any $\epsilon > 0$, there exists $\delta > 0$ such that for all $x< c$,  
+%%if  $|x - c| < \delta$, then $|f(x) - L| < \epsilon$.\\
+%%% Really old definition
+% Let $f$ be a function defined on an open interval containing $c$. 
+%%%The notation $$ \lim_{x\rightarrow c^-} f(x) = L, $$ read as ``the limit of $f(x)$ as $x$ approaches $c$ from the left is $L$,'' or ``the \textit{left-hand limit of $f$ at $c$ is L}'' 
+%%%means that given any $\epsilon > 0$, there exists $\delta > 0$ such that 
+%%%$|x - c| < \delta$ implies $|f(x) - L| < \epsilon$, for all $x<c$.\\
 
 \textbf{Right-Hand Limit}
 
-Let $I$ be an open interval containing $c$, and let $f$ be a function defined on $I$, except possibly at $c$. 
+\indent Let $f$ be a function defined on $(c,b)$ for some $b>c$ and let $L$ be a real number. 
+
 The \sword{limit of $f(x)$, as $x$ approaches $c$ from the right, is $L$}, or, \sword{the right--hand limit of $f$ at $c$ is $L$}, denoted by  
 $$\displaystyle \lim_{x\rightarrow c^+} f(x) = L,$$
-means that given any $\epsilon > 0$, there exists $\delta > 0$ such that for all $x> c$,  
+means  given any $\epsilon > 0$, there exists $\delta > 0$ such that for all $c<x<b$,  
 if  $|x - c| < \delta$, then $|f(x) - L| < \epsilon$.
-%Let $f$ be a function defined on an open interval containing $c$. The notation $$ \lim_{x\rightarrow c^+} f(x) = L, $$ read as ``the limit of $f(x)$ as $x$ approaches $c$ from the right is $L$,'' or ``the \textit{right-hand limit of $f$ at $c$ is L}'' 
-%means that given any $\epsilon > 0$, there exists $\delta > 0$ such that 
-%$|x - c| < \delta$ implies $|f(x) - L| < \epsilon$, for all $x>c$.
+%Version 3.0 Definition
+%Let $I$ be an open interval containing $c$, and let $f$ be a function defined on $I$, except possibly at $c$. 
+%The \sword{limit of $f(x)$, as $x$ approaches $c$ from the right, is $L$}, or, \sword{the right--hand limit of $f$ at $c$ is $L$}, denoted by  
+%$$\displaystyle \lim_{x\rightarrow c^+} f(x) = L,$$
+%means that given any $\epsilon > 0$, there exists $\delta > 0$ such that for all $x> c$,  
+%if  $|x - c| < \delta$, then $|f(x) - L| < \epsilon$.
+%%% Really old definition
+%%% Let $f$ be a function defined on an open interval containing $c$. The notation $$ \lim_{x\rightarrow c^+} f(x) = L, $$ read as ``the limit of $f(x)$ as $x$ approaches $c$ from the right is $L$,'' or ``the \textit{right-hand limit of $f$ at $c$ is L}'' 
+%%means that given any $\epsilon > 0$, there exists $\delta > 0$ such that 
+%%$|x - c| < \delta$ implies $|f(x) - L| < \epsilon$, for all $x>c$.
 }
 %\end{minipage}
 \restoreboxwidth
