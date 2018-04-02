@@ -14,10 +14,10 @@ Recognizing that $\epsilon$-$\delta$ proofs are cumbersome, this section gives a
 
 Suppose that $\lim_{x\to 2} f(x)=2$ and $\lim_{x\to 2} g(x) = 3$. What is $\lim_{x\to 2}(f(x)+g(x))$? Intuition tells us that the limit should be 5, as we expect limits to behave in a nice way. The following theorem states that already established limits do behave nicely.
 
-%\enlargethispage{4\baselineskip}
+\enlargethispage{1\baselineskip}
 
 \theorem{thm:limit_algebra}{Basic Limit Properties}{\small
-Let $b$, $c$, $L$ and $K$ be real numbers, let $n$ be a positive integer, and let $f$ and $g$ be functions with the following limits: \index{limit!properties}
+Let $b$, $c$, $L$ and $K$ be real numbers, let $n$ be a positive integer, and let $f$ and $g$ be functions defined on an open interval $I$ containing $c$ with the following limits: \index{limit!properties}
 $$\lim_{x\to c}f(x) = L \text{\ and\ } \lim_{x\to c} g(x) = K.$$
 The following limits hold.
 \begin{enumerate}
@@ -28,7 +28,7 @@ The following limits hold.
 \item	\parbox{80pt}{Products:}	$\displaystyle \lim_{x\to c} f(x)\cdot g(x) = LK$
 \item	\parbox{80pt}{Quotients:} $\displaystyle \lim_{x\to c} f(x)/g(x) = L/K$, ($K\neq 0)$
 \item	\parbox{80pt}{Powers:} 	$\displaystyle \lim_{x\to c} f(x)^n = L^n$
-\item	\parbox{80pt}{Roots:}		\parbox[t]{185pt}{$\displaystyle \lim_{x\to c} \sqrt[n]{f(x)} = \sqrt[n]{L}$}% \qquad \small (if $n$ is even then $L$ must be greater than 0; when $n$ is odd, it is true for all $L$.)}
+\item	\parbox{80pt}{Roots:}		\parbox[t]{185pt}{$\displaystyle \lim_{x\to c} \sqrt[n]{f(x)} = \sqrt[n]{L}$ \par \small (If $n$ is even then require $f(x)\geq 0$ on $I$.)}
 \item	\parbox{80pt}{Compositions:} \parbox[t]{200pt}{Adjust our previously given limit situation to: $$\lim_{x\to c}f(x) = L,\ \lim_{x\to L} g(x) = K \text{\ and\ } g(L)=K .$$ Then $\ds \lim_{x\to c}g(f(x)) = K$.}
 \end{enumerate}
 }
@@ -88,10 +88,8 @@ It was likely frustrating in Section \ref{sec:limit_def} to do a lot of work to 
 
 Polynomial and rational functions are not the only functions to behave in such a predictable way. The following theorem gives a list of functions whose behavior is particularly ``nice'' in terms of limits. In the next section, we will give a formal name to these functions that behave ``nicely.''
 
-\enlargethispage{2\baselineskip}
-\ifthenelse{\boolean{longpage}}{}
-{\setboxwidth{100pt}
-}
+\enlargethispage{2\baselineskip}%
+\setboxwidth{100pt}%
 \noindent\ifthenelse{\isodd{\thepage}}{}{\hskip -100pt}%
 \noindent\begin{minipage}{\specialboxlength}
 \theorem{thm:lim_continuous}{Special Limits}{%
@@ -265,7 +263,7 @@ Since the numerator and denominator are each polynomials, we know that $(x-3)$ i
 }\\
 																															
 
-
+\enlargethispage{\baselineskip}
 We end this section by revisiting a limit first seen in Section \ref{sec:limit_intro}, a limit of a difference quotient. Let $f(x) = -1.5x^2+11.5x$; we approximated the limit $\ds \lim_{h\to 0}\frac{f(1+h)-f(1)}{h}\approx 8.5.$ We formally evaluate this limit in the following example.\\
 
 \example{ex_limit_diffquot}{Evaluating the limit of a difference quotient}{
