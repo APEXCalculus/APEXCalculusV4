@@ -46,7 +46,7 @@ It is important to note that by saying $\lim_{x\to c}f(x) = \infty$ we are impli
 
 We define one-sided limits that approach infinity in a similar way.
 
-\definition{def:onesided_limit_of_infinity}{One-Sided Limit of Infinity}
+\definition{def:onesided_limit_of_infinity}{One-Sided Limits of Infinity}
 {\begin{itemize}
 \item \indent Let $f$ be a function defined on $(a,c)$ for some $a<c$. 
 
@@ -85,12 +85,17 @@ Find $\displaystyle\lim_{x\rightarrow 0}\frac1x$, as shown in Figure \ref{fig:on
 {It is easy to see that the function grows without bound near 0, but it does so in different ways on different sides of 0.  Since its behavior is not consistent, we cannot say that $\ds \lim_{x\to 0}\frac{1}{x}=\infty$. However, we can make a statement about one--sided limits. We can state that $\ds \lim_{x\rightarrow 0^+}\frac1x=\infty$ and $\ds \lim_{x\rightarrow 0^-}\frac1x=-\infty$.  
 
 \mfigure{.65}{Evaluating $\ds\lim_{x\rightarrow 0}\frac1x$.}{fig:oneoverx}{figures/figoneoverx}
-}
+}\\
 
-\vskip \baselineskip
-\noindent\textbf{\large Vertical asymptotes}\index{asymptote!vertical}\\
+%\vskip \baselineskip
+%\noindent\textbf{\large Vertical asymptotes}\index{asymptote!vertical}\\
+The graphs in the two previous examples demonstrate that if a function $f$ has a limit (or, left- or right-hand limit) of infinity at $x=c$, then the graph of $f$ looks similar to a vertical line near $x=c$.  This observation leads to a definition.
 
-If the limit of $f(x)$ as $x$ approaches $c$ from either the left or right (or both) is $\infty$ or $-\infty$, we say the function has a \sword{vertical asymptote} at $c$.\\
+\definition{def:vertical_asymptote}{Vertical Asymptote}
+{Let $I$ be an interval containing $c$ and let $f$ be a function defined on $I$, except possibly at $c$, or let $c$ be an endpoint of $I$.
+
+If the limit of $f(x)$ as $x$ approaches $c$ from either the left or right (or both) is $\infty$ or $-\infty$, then the line $x=c$ is a \sword{vertical asymptote} of $f$.\index{asymptote!vertical}
+}\\
 
 \example{ex_vertasy1}{Finding vertical asymptotes}{
 Find the vertical asymptotes of $f(x)=\dfrac{3x}{x^2-4}$.}
