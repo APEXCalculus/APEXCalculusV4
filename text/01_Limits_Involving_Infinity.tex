@@ -1,10 +1,10 @@
 \section{Limits Involving Infinity}\label{sec:limits_infty}
 
-In Definition \ref{def:limit} we stated that in the equation $\ds \lim_{x\to c}f(x) = L$, both $c$ and $L$ were numbers. In this section we relax that definition a bit by considering situations when it makes sense to let $c$ and/or $L$ be ``infinity.''
+In Definition \ref{def:limit} we stated that in the equation $\lim_{x\to c}f(x) = L$, both $c$ and $L$ were numbers. In this section we relax that definition a bit by considering situations when it makes sense to let $c$ and/or $L$ be ``infinity.''
 
-As a motivating example, consider $f(x) = 1/x^2$, as shown in Figure \ref{fig:oneoverxsquared}. Note how, as $x$ approaches 0, $f(x)$ grows very, very large. It seems appropriate, and descriptive, to state that $$\lim_{x\rightarrow 0} \frac1{x^2}=\infty.$$ Also note that as $x$ gets very large, $f(x)$ gets very, very small. We could represent this concept with notation such as $$\lim_{x\rightarrow \infty} \frac1{x^2}=0.$$
+As a motivating example, consider $f(x) = 1/x^2$, as shown in Figure \ref{fig:oneoverxsquared}. Note how, as $x$ approaches 0, $f(x)$ grows very, very large -- in fact, it grows without bound. It seems appropriate, and descriptive, to state that $$\lim_{x\rightarrow 0} \frac1{x^2}=\infty.$$ Also note that as $x$ gets very large, $f(x)$ gets very, very small. We could represent this concept with notation such as $$\lim_{x\rightarrow \infty} \frac1{x^2}=0.$$
 
-\mfigure{.8}{Graphing $f(x) = 1/x^2$ for values of $x$ near 0.}{fig:oneoverxsquared}{figures/figoneoverxsquared}
+\mfigure{.75}{Graphing $f(x) = 1/x^2$ for values of $x$ near 0.}{fig:oneoverxsquared}{figures/figoneoverxsquared}
 
 We explore both types of use of $\infty$ in turn.
 
@@ -17,12 +17,56 @@ We explore both types of use of $\infty$ in turn.
 %We can make more precise this notion precise as follows:
 
 \definition{def:limit_of_infinity}{Limit of Infinity, $\infty$}
-{We say $\ds \lim_{x\rightarrow c} f(x)=\infty$ if for every $M>0$ there exists $\delta>0$ such that for all $x\neq c$, if  $|x-c|<\delta$, then $f(x)\geq M$. \index{limit!of infinity}  
+{Let $I$ be an open interval containing $c$, and let $f$ be a function defined on $I$, except possibly at $c$. 
+\begin{itemize}
+\item The \sword{limit of $f(x)$, as $x$ approaches $c$, is infinity}, denoted by  
+$$\displaystyle \lim_{x\rightarrow c} f(x) = \infty,$$
+means that given any $M > 0$, there exists $\delta > 0$ such that for all $x$ in $I$, where $x\neq c$,  
+if  $|x - c| < \delta$, then $f(x) >M$.
+
+\item The \sword{limit of $f(x)$, as $x$ approaches $c$, is negative infinity}, denoted by  
+$$\displaystyle \lim_{x\rightarrow c} f(x) = -\infty,$$
+means that given any $M < 0$, there exists $\delta > 0$ such that for all $x$ in $I$, where $x\neq c$,  
+if  $|x - c| < \delta$, then $f(x)  < M$.
+
+\end{itemize}%
+\index{limit!of infinity}
 }
 
-This is just like the $\epsilon$--$\delta$ definition from Section \ref{sec:limit_def}.  In that definition, given any (small) value $\epsilon$, if we let $x$ get close enough to $c$ (within $\delta$ units of $c$) then $f(x)$ is guaranteed to be within $\epsilon$ of $f(c)$.  Here, given any (large) value $M$, if we let $x$ get close enough to $c$ (within $\delta$ units of $c$), then $f(x)$ will be at least as large as $M$.  In other words, if we get close enough to $c$, then we can make $f(x)$ as large as we want.  We can define limits equal to $-\infty$ in a similar way.
 
-It is important to note that by saying $\ds \lim_{x\to c}f(x) = \infty$ we are implicitly stating that \textit{the} limit of $f(x)$, as $x$ approaches $c$, \textit{does not exist.} A limit only exists when $f(x)$ approaches an actual numeric value. We use the concept of limits that approach infinity because it is helpful and descriptive.\\
+%\definition{def:limit_of_infinity}{Limit of Infinity, $\infty$}
+%{We say $\ds \lim_{x\rightarrow c} f(x)=\infty$ if for every $M>0$ there exists $\delta>0$ such that for all $x\neq c$, if  $|x-c|<\delta$, then $f(x)\geq M$. \index{limit!of infinity}  
+%}
+
+
+
+The first definition is similar to the $\epsilon$--$\delta$ definition from Section \ref{sec:limit_def}.  In that definition, given any (small) value $\epsilon$, if we let $x$ get close enough to $c$ (within $\delta$ units of $c$) then $f(x)$ is guaranteed to be within $\epsilon$ of $L$.  Here, given any (large) value $M$, if we let $x$ get close enough to $c$ (within $\delta$ units of $c$), then $f(x)$ will be at least as large as $M$.  In other words, if we get close enough to $c$, then we can make $f(x)$ as large as we want.  We define limits equal to $-\infty$ in a similar way.
+
+It is important to note that by saying $\lim_{x\to c}f(x) = \infty$ we are implicitly stating that \textit{the} limit of $f(x)$, as $x$ approaches $c$, \textit{does not exist.} A limit only exists when $f(x)$ approaches an actual numeric value. We use the concept of limits that approach infinity because it is helpful and descriptive.
+
+We define one-sided limits that approach infinity in a similar way.
+
+\definition{def:onesided_limit_of_infinity}{One-Sided Limit of Infinity}
+{\begin{itemize}
+\item \indent Let $f$ be a function defined on $(a,c)$ for some $a<c$. 
+
+The \sword{limit of $f(x)$, as $x$ approaches $c$ from the left, is infinity}, or, \sword{the left-hand limit of $f$ at $c$ is infinity}, denoted by  
+$$\displaystyle \lim_{x\rightarrow c^-} f(x) = \infty,$$
+means  given any $M > 0$, there exists $\delta > 0$ such that for all \phantom{all all}
+$a<x<c$,  
+if  $|x - c| < \delta$, then $f(x) >M$.
+
+\item \indent Let $f$ be a function defined on $(c,b)$ for some $b>c$. 
+
+The \sword{limit of $f(x)$, as $x$ approaches $c$ from the right, is infinity}, or, \sword{the right-hand limit of $f$ at $c$ is infinity}, denoted by  
+$$\displaystyle \lim_{x\rightarrow c^+} f(x) = \infty,$$
+means  given any $M > 0$, there exists $\delta > 0$ such that for all \phantom{all all}
+$c<x<b$,  
+if  $|x - c| < \delta$, then $f(x) >M$.
+
+\item	The term \sword{left- (or, right-) hand limit of $f$ at c is negative infinity} is defined in a manner similar to Definition \ref{def:limit_of_infinity}.
+\end{itemize}
+}\\
 
 \example{ex_inflim1}{Evaluating limits involving infinity}{Find $\displaystyle \lim_{x\rightarrow 1}\frac1{(x-1)^2}$ as shown in Figure \ref{fig:inflim1}.
 
