@@ -21,13 +21,13 @@ We explore both types of use of $\infty$ in turn.
 \begin{itemize}
 \item The \sword{limit of $f(x)$, as $x$ approaches $c$, is infinity}, denoted by  
 $$\displaystyle \lim_{x\rightarrow c} f(x) = \infty,$$
-means that given any $M > 0$, there exists $\delta > 0$ such that for all $x$ in $I$, where $x\neq c$,  
-if  $|x - c| < \delta$, then $f(x) >M$.
+means that given any $N > 0$, there exists $\delta > 0$ such that for all $x$ in $I$, where $x\neq c$,  
+if  $|x - c| < \delta$, then $f(x) >N$.
 
 \item The \sword{limit of $f(x)$, as $x$ approaches $c$, is negative infinity}, denoted by  
 $$\displaystyle \lim_{x\rightarrow c} f(x) = -\infty,$$
-means that given any $M < 0$, there exists $\delta > 0$ such that for all $x$ in $I$, where $x\neq c$,  
-if  $|x - c| < \delta$, then $f(x)  < M$.
+means that given any $N < 0$, there exists $\delta > 0$ such that for all $x$ in $I$, where $x\neq c$,  
+if  $|x - c| < \delta$, then $f(x)  < N$.
 
 \end{itemize}%
 \index{limit!of infinity}
@@ -40,7 +40,7 @@ if  $|x - c| < \delta$, then $f(x)  < M$.
 
 
 
-The first definition is similar to the $\epsilon$--$\delta$ definition from Section \ref{sec:limit_def}.  In that definition, given any (small) value $\epsilon$, if we let $x$ get close enough to $c$ (within $\delta$ units of $c$) then $f(x)$ is guaranteed to be within $\epsilon$ of $L$.  Here, given any (large) value $M$, if we let $x$ get close enough to $c$ (within $\delta$ units of $c$), then $f(x)$ will be at least as large as $M$.  In other words, if we get close enough to $c$, then we can make $f(x)$ as large as we want.  We define limits equal to $-\infty$ in a similar way.
+The first definition is similar to the $\epsilon$--$\delta$ definition from Section \ref{sec:limit_def}.  In that definition, given any (small) value $\epsilon$, if we let $x$ get close enough to $c$ (within $\delta$ units of $c$) then $f(x)$ is guaranteed to be within $\epsilon$ of $L$.  Here, given any (large) value $N$, if we let $x$ get close enough to $c$ (within $\delta$ units of $c$), then $f(x)$ will be at least as large as $N$.  In other words, if we get close enough to $c$, then we can make $f(x)$ as large as we want.  We define limits equal to $-\infty$ in a similar way.
 
 It is important to note that by saying $\lim_{x\to c}f(x) = \infty$ we are implicitly stating that \textit{the} limit of $f(x)$, as $x$ approaches $c$, \textit{does not exist.} A limit only exists when $f(x)$ approaches an actual numeric value. We use the concept of limits that approach infinity because it is helpful and descriptive.
 
@@ -52,17 +52,17 @@ We define one-sided limits that approach infinity in a similar way.
 
 The \sword{limit of $f(x)$, as $x$ approaches $c$ from the left, is infinity}, or, \sword{the left-hand limit of $f$ at $c$ is infinity}, denoted by  
 $$\displaystyle \lim_{x\rightarrow c^-} f(x) = \infty,$$
-means  given any $M > 0$, there exists $\delta > 0$ such that for all \phantom{all all}
+means  given any $N > 0$, there exists $\delta > 0$ such that for all \phantom{all all}
 $a<x<c$,  
-if  $|x - c| < \delta$, then $f(x) >M$.
+if  $|x - c| < \delta$, then $f(x) >N$.
 
 \item \indent Let $f$ be a function defined on $(c,b)$ for some $b>c$. 
 
 The \sword{limit of $f(x)$, as $x$ approaches $c$ from the right, is infinity}, or, \sword{the right-hand limit of $f$ at $c$ is infinity}, denoted by  
 $$\displaystyle \lim_{x\rightarrow c^+} f(x) = \infty,$$
-means  given any $M > 0$, there exists $\delta > 0$ such that for all \phantom{all all}
+means  given any $N > 0$, there exists $\delta > 0$ such that for all \phantom{all all}
 $c<x<b$,  
-if  $|x - c| < \delta$, then $f(x) >M$.
+if  $|x - c| < \delta$, then $f(x) >N$.
 
 \item	The term \sword{left- (or, right-) hand limit of $f$ at c is negative infinity} is defined in a manner similar to Definition \ref{def:limit_of_infinity}.
 \end{itemize}
@@ -70,12 +70,12 @@ if  $|x - c| < \delta$, then $f(x) >M$.
 
 \example{ex_inflim1}{Evaluating limits involving infinity}{Find $\displaystyle \lim_{x\rightarrow 1}\frac1{(x-1)^2}$ as shown in Figure \ref{fig:inflim1}.
 
-\mfigure{.3}{Observing infinite limit as $x\to 1$ in Example \ref{ex_inflim1}.}{fig:inflim1}{figures/fignolimit2}}
-{In Example \ref{ex_no_limit2} of Section \ref{sec:limit_intro}, by inspecting values of $x$ close to 1 we concluded that this limit does not exist.  That is, it cannot equal any real number.  But the limit could be infinite.  And in fact, we see that the function does appear to be growing larger and larger, as $f(.99)=10^4$, $f(.999)=10^6$, $f(.9999)=10^8$.  A similar thing happens on the other side of 1.  In general, let a ``large'' value $M$ be given. Let $\delta=1/\sqrt{M}$. If $x$ is within $\delta$ of 1, i.e., if $|x-1|<1/\sqrt{M}$, then:
+\mfigure{.31}{Observing infinite limit as $x\to 1$ in Example \ref{ex_inflim1}.}{fig:inflim1}{figures/fignolimit2}}
+{In Example \ref{ex_no_limit2} of Section \ref{sec:limit_intro}, by inspecting values of $x$ close to 1 we concluded that this limit does not exist.  That is, it cannot equal any real number.  But the limit could be infinite.  And in fact, we see that the function does appear to be growing larger and larger, as $f(.99)=10^4$, $f(.999)=10^6$, $f(.9999)=10^8$.  A similar thing happens on the other side of 1.  In general, let a ``large'' value $N$ be given. Let $\delta=1/\sqrt{N}$. If $x$ is within $\delta$ of 1, i.e., if $|x-1|<1/\sqrt{N}$, then:
 	\begin{align*}
-	|x-1| &< \frac{1}{\sqrt{M}} \\
-	(x-1)^2 &< \frac{1}{M}\\
-	\frac{1}{(x-1)^2} &> M,
+	|x-1| &< \frac{1}{\sqrt{N}} \\
+	(x-1)^2 &< \frac{1}{N}\\
+	\frac{1}{(x-1)^2} &> N,
 	\end{align*}
 	which is what we wanted to show.  So we may say $\ds\lim_{x\rightarrow 1}1/{(x-1)^2}=\infty$.
 }\\
@@ -92,7 +92,7 @@ Find $\displaystyle\lim_{x\rightarrow 0}\frac1x$, as shown in Figure \ref{fig:on
 The graphs in the two previous examples demonstrate that if a function $f$ has a limit (or, left- or right-hand limit) of infinity at $x=c$, then the graph of $f$ looks similar to a vertical line near $x=c$.  This observation leads to a definition.
 
 \definition{def:vertical_asymptote}{Vertical Asymptote}
-{Let $I$ be an interval containing $c$ and let $f$ be a function defined on $I$, except possibly at $c$, or let $c$ be an endpoint of $I$.
+{Let $I$ be an interval that either contains $c$ or has $c$ as an endpoint, and let $f$ be a function defined on $I$, except possibly at $c$.
 
 If the limit of $f(x)$ as $x$ approaches $c$ from either the left or right (or both) is $\infty$ or $-\infty$, then the line $x=c$ is a \sword{vertical asymptote} of $f$.\index{asymptote!vertical}
 }\\
@@ -100,22 +100,21 @@ If the limit of $f(x)$ as $x$ approaches $c$ from either the left or right (or b
 \example{ex_vertasy1}{Finding vertical asymptotes}{
 Find the vertical asymptotes of $f(x)=\dfrac{3x}{x^2-4}$.}
 {Vertical asymptotes occur where the function grows without bound; this can occur at values of $c$ where the denominator is 0. When $x$ is near $c$, the denominator is small, which in turn can make the function take on large values.  In the case of the given function, the denominator is 0 at $x=\pm 2$.  Substituting in values of $x$ close to $2$ and $-2$ seems to indicate that the function tends toward $\infty$ or $-\infty$ at those points.  We can graphically confirm this by looking at Figure \ref{fig:multipleasymptotes}. Thus the vertical asymptotes are at $x=\pm2$.
-
-\mfigure{.4}{Graphing $f(x) = \dfrac{3x}{x^2-4}$.}{fig:multipleasymptotes}{figures/figmultipleasymptotes}
 }\\
 
+\mfigure{.82}{Graphing $f(x) = \dfrac{3x}{x^2-4}$.}{fig:multipleasymptotes}{figures/figmultipleasymptotes}
 When a rational function has a vertical asymptote at $x=c$, we can conclude that the denominator is 0 at $x=c$. However, just because the denominator is 0 at a certain point does not mean there is a vertical asymptote there.  For instance, $f(x)=(x^2-1)/(x-1)$ does not have a vertical asymptote at $x=1$, as shown in Figure \ref{fig:noasy}.  While the denominator does get small near $x=1$, the numerator gets small too, matching the denominator step for step. In fact, factoring the numerator, we get
 $$f(x)=\frac{(x-1)(x+1)}{x-1}.$$
-Canceling the common term, we get that $f(x)=x+1$ for $x\not=1$.   So there is clearly no asymptote, rather a hole exists in the graph at $x=1$.\\
+Canceling the common term, we get that $f(x)=x+1$ for $x\not=1$.   So there is clearly no asymptote; rather, a hole exists in the graph at $x=1$.\\
 
-\mfigure{.8}{Graphically showing that $f(x) = \dfrac{x^2-1}{x-1}$ does not have an asymptote at $x=1$.}{fig:noasy}{figures/fignoasy}
+\mfigure{.55}{Graphically showing that $f(x) = \dfrac{x^2-1}{x-1}$ does not have an asymptote at $x=1$.}{fig:noasy}{figures/fignoasy}
 
-The above example may seem a little contrived.  Another example demonstrating this important concept is $f(x)= (\sin x)/x$. We have considered this function several times in the previous sections. We found that $\ds \lim_{x\to0}\frac{\sin x}{x}=1$; i.e., there is no vertical asymptote. No simple algebraic cancellation makes this fact obvious; we used the Squeeze Theorem in Section \ref{sec:limit_analytically} to prove this.\\
+The above example may seem a little contrived.  Another example demonstrating this important concept is $f(x)= (\sin x)/x$. We have considered this function several times in the previous sections. We found that $ \lim_{x\to0}\frac{\sin x}{x}=1$; i.e., there is no vertical asymptote. No simple algebraic cancellation makes this fact obvious; we used the Squeeze Theorem in Section \ref{sec:limit_analytically} to prove this.\\
 
 If the denominator is 0 at a certain point but the numerator is not, then there will usually be a vertical asymptote at that point.  On the other hand,  if the numerator and denominator are both zero at that point, then there may or may not be a vertical asymptote at that point.  This case where the numerator and denominator are both zero returns us to an important topic.
 
 \vskip\baselineskip
-\noindent\textbf{Indeterminate Forms}\index{limit!indeterminate form}\index{indeterminate form}\\
+\noindent\textbf{\large Indeterminate Forms}\index{limit!indeterminate form}\normalsize\index{indeterminate form}\\
 
 %When working with limits and infinity, it is important not to go beyond what the rules of algebra and limits allow.  Consider again the limit below:
 We have seen how the limits 
@@ -133,30 +132,45 @@ A key concept to understand is that such limits do not really return $0/0$. Rath
 An indeterminate form indicates that one needs to do more work in order to compute the limit. That work may be algebraic (such as factoring and canceling) or it may require a tool such as the Squeeze Theorem. %algebraically manipulate the expression in some way in order to compute the limit.  It may also indicate that you need a completely different approach, like with $(\sin x)/x$. 
  In a later section we will learn a technique called l'H\^ospital's Rule that provides another way to handle indeterminate forms.  
  
-Some other common indeterminate forms are $\infty-\infty$, $\infty\cdot 0$, $\infty/\infty$, $0^0$, $\infty^0$ and $1^{\infty}$. Again, keep in mind that these are the ``blind'' results of evaluating a limit, and each, in and of itself, has no meaning. The expression $\infty-\infty$ does not really mean ``subtract infinity from infinity.'' Rather, it means ``One quantity is subtracted from the other, but both are growing without bound.'' What is the result? It is possible to get every value between $-\infty$ and $\infty$
+Some other common indeterminate forms are $\infty-\infty$, $\infty\cdot 0$, $\infty/\infty$, $0^0$, $\infty^0$ and $1^{\infty}$. Again, keep in mind that these are the ``blind'' results of evaluating a limit, and each, in and of itself, has no meaning. The expression $\infty-\infty$ does not really mean ``subtract infinity from infinity.'' Rather, it means ``One quantity is subtracted from the other, but both are growing without bound.'' What is the result? It is possible to get every value between $-\infty$ and $\infty$.
 
 Note that $1/0$ and $\infty/0$ are not indeterminate forms, though they are not exactly valid mathematical expressions, either.  In each, the function is growing without bound, indicating that the limit will be $\infty$, $-\infty$, or simply not exist if the left- and right-hand limits do not match.
 
 
 \vskip \baselineskip
-\noindent\textbf{Limits at Infinity and Horizontal Asymptotes}\\
+\noindent\textbf{\large Limits at Infinity and Horizontal Asymptotes}\normalsize\\
 
 At the beginning of this section we briefly considered what happens to $f(x) = 1/x^2$ as $x$ grew very large. 
 Graphically, it concerns the behavior of the function to the ``far right'' of the graph. We make this notion more explicit in the following definition.
+\enlargethispage{2\baselineskip}
+
+\definition{def:limit_at_infinity}{Limits at Infinity and Horizontal Asymptotes}
+{Let $L$ be a real number.
+\begin{enumerate}
+\item Let $f$ be a function defined on $(a,\infty)$ for some number $a$. The \sword{limit of $f$ at infinity is $L$}, or $\ds\lim_{x\rightarrow\infty} f(x)=L$, means for every $\epsilon>0$ there exists $M>a$ such that if $x > M$, then $|f(x)-L|<\epsilon$.\index{limit!at infinity}\index{asymptote!horizontal} \\
+
+\item Let $f$ be a function defined on $(-\infty,b)$ for some number $b$. The \sword{limit of $f$ at negative infinity is $L$}, or $\ds\lim_{x\rightarrow-\infty} f(x)=L$, means for every $\epsilon>0$ there exists $M<b$ such that if $x < M$, then $|f(x)-L|<\epsilon$. \\
+
+ \item  If $\ds\lim_{x\rightarrow\infty} f(x)=L$ or $\ds\lim_{x\rightarrow-\infty} f(x)=L$, we say the line $y=L$ is a \sword{horizontal asymptote} of $f$.
+\end{enumerate}
+}
 
 %\setboxwidth{65pt}%
 %\noindent\ifthenelse{\isodd{\thepage}}{}{\hskip -65pt}%
 %\noindent\begin{minipage}{\specialboxlength}
-\definition{def:limit_at_infinity}{Limits at Infinity and Horizontal Asymptote}
-{\begin{enumerate}
-\item We say $\ds\lim_{x\rightarrow\infty} f(x)=L$ if for every $\epsilon>0$ there exists $M>0$ such that if $x\geq M$, then $|f(x)-L|<\epsilon$.\index{limit!at infinity}\index{asymptote!horizontal} \\
-
-\item We say $\ds\lim_{x\rightarrow-\infty} f(x)=L$ if for every $\epsilon>0$ there exists $M<0$ such that if $x\leq M$, then $|f(x)-L|<\epsilon$. \\
-
- %In other words, the limit is $L$ if no matter how close you want to get to $L$, for large enough values of $x$ ($x>M$), you can get that close.
-\item  If $\ds\lim_{x\rightarrow\infty} f(x)=L$ or $\ds\lim_{x\rightarrow-\infty} f(x)=L$, we say that $y=L$ is a \textbf{horizontal asymptote} of $f$.
-\end{enumerate}
-}
+%%
+%% old definition of Version 3.0
+%%
+%%\definition{def:limit_at_infinity}{Limits at Infinity and Horizontal Asymptote}
+%%{\begin{enumerate}
+%%\item We say $\ds\lim_{x\rightarrow\infty} f(x)=L$ if for every $\epsilon>0$ there exists $M>0$ such that if $x\geq M$, then $|f(x)-L|<\epsilon$.\index{limit!at infinity}\index{asymptote!horizontal} \\
+%%
+%%\item We say $\ds\lim_{x\rightarrow-\infty} f(x)=L$ if for every $\epsilon>0$ there exists $M<0$ such that if $x\leq M$, then $|f(x)-L|<\epsilon$. \\
+%%
+ %%%In other words, the limit is $L$ if no matter how close you want to get to $L$, for large enough values of $x$ ($x>M$), you can get that close.
+%%\item  If $\ds\lim_{x\rightarrow\infty} f(x)=L$ or $\ds\lim_{x\rightarrow-\infty} f(x)=L$, we say that $y=L$ is a \textbf{horizontal asymptote} of $f$.
+%%\end{enumerate}
+%%}
 %\end{minipage}
 \restoreboxwidth
 %\setlength{\specialboxlength}{\textwidth-2\specialboxinnerseplength}
@@ -164,7 +178,7 @@ Graphically, it concerns the behavior of the function to the ``far right'' of th
 %We can define $\lim_{x\rightarrow-\infty} f(x)=L$ in an analogous way.  
 We can also define limits such as $\ds\lim_{x\rightarrow\infty}f(x)=\infty$ by combining this definition with Definition \ref{def:limit_of_infinity}. \\ %It is a good exercise to try this.
 
-\clearpage
+%\clearpage
 \example{ex_hzasy1}{Approximating horizontal asymptotes}{
 Approximate the horizontal asymptote(s) of $\ds f(x)=\frac{x^2}{x^2+4}$.}
 {We will approximate the horizontal asymptotes by approximating the limits $$\lim_{x\to-\infty} \frac{x^2}{x^2+4}\quad \text{and}\quad \lim_{x\to\infty} \frac{x^2}{x^2+4}.$$ Figure \ref{fig:hzasy1}(a) shows a sketch of $f$, and part (b) gives values of $f(x)$ for large magnitude values of $x$. It seems reasonable to conclude from both of these sources that $f$ has a horizontal asymptote at $y=1$.
@@ -202,7 +216,8 @@ Figure \ref{fig:hzasy}(c) shows that $f(x) = (\sin x)/x$ has even more interesti
 % count.
 \addtocounter{figure}{1}
 \vskip 10pt
-\hskip-160pt\noindent\begin{minipage}{\textwidth+100pt}
+%\hskip-160pt
+\noindent\begin{minipage}{\textwidth+100pt}
 \begin{tabular}{ccc}
 \myincludegraphics{figures/fighzasy2} & \myincludegraphics{figures/fighzasy3}  & \myincludegraphics{figures/fighzasy4} \\
 (a) & (b) & (c)
@@ -216,7 +231,7 @@ Figure \ref{fig:hzasy}(c) shows that $f(x) = (\sin x)/x$ has even more interesti
 % further adjusting figure count
 \addtocounter{figure}{-2}
 
-We can analytically evaluate limits at infinity for rational functions once we understand $\ds\lim_{x\rightarrow\infty} 1/x$.  As $x$ gets larger and larger, the $1/x$ gets smaller and smaller, approaching 0.  We can, in fact, make $1/x$ as small as we want by choosing a large enough value of $x$.  Given $\epsilon$, we can make $1/x<\epsilon$  by choosing $x>1/\epsilon$.  Thus we have $\lim_{x\rightarrow\infty} 1/x=0$.  
+We can analytically evaluate limits at infinity for rational functions once we understand $\lim_{x\rightarrow\infty} 1/x$.  As $x$ gets larger and larger,   $1/x$ gets smaller and smaller, approaching 0.  We can, in fact, make $1/x$ as small as we want by choosing a large enough value of $x$.  Given $\epsilon$, we can make $1/x<\epsilon$  by choosing $x>1/\epsilon$.  Thus we have $\lim_{x\rightarrow\infty} 1/x=0$.  
 
 %\mfigure{.3}{Graphing $f(x) = \dfrac{\sin x}{x}$ to display the oscillating behavior of its horizontal asymptote.}{fig:hzasy4}{figures/fighzasy4}
 
@@ -225,7 +240,7 @@ $$\lim_{x\rightarrow\infty}\frac1{x^n}=0\quad \text{and}\quad \lim_{x\rightarrow
 
 Now suppose we need to compute the following limit:
 $$\lim_{x\rightarrow\infty}\frac{x^3+2x+1}{4x^3-2x^2+9}.$$
-A good way of approaching this is to divide through the numerator and denominator by $x^3$ (hence dividing by 1), which is the largest power of $x$ to appear in the function.  Doing this, we get
+A good way of approaching this is to divide through the numerator and denominator by $x^3$ (hence multiplying by 1), which is the largest power of $x$ to appear in the function.  Doing this, we get
 \begin{align*}
 \lim_{x\rightarrow\infty}\frac{x^3+2x+1}{4x^3-2x^2+9} &=
 \lim_{x\rightarrow\infty}\frac{1/x^3}{1/x^3}\cdot\frac{x^3+2x+1}{4x^3-2x^2+9}\\ &=\lim_{x\rightarrow\infty}\frac{x^3/x^3+2x/x^3+1/x^3}{4x^3/x^3-2x^2/x^3+9/x^3}\\ &= \lim_{x\rightarrow\infty}\frac{1+2/x^2+1/x^3}{4-2/x+9/x^3}.
@@ -295,7 +310,7 @@ Use Theorem \ref{thm:lim_rational_fn_at_infty} to evaluate each of the following
 	
 	%\mfigure{.55}{Visualizing $\ds\lim_{x\rightarrow\infty}\frac{x^2+2x-1}{1-x-3x^2}$.}{fig:hzasy6}{figures/fighzasy6}
 	
-	\mtable{.55}{Visualizing the functions in Example \ref{ex_hzasy3}.}{fig:hzasy3}{%
+	\mtable{.5}{Visualizing the functions in Example \ref{ex_hzasy3}.}{fig:hzasy3}{%
 	\noindent\begin{tabular}{c}
 	\myincludegraphics{figures/fighzasy5}\\[10pt]
 	(a)\\[10pt]
@@ -306,29 +321,30 @@ Use Theorem \ref{thm:lim_rational_fn_at_infty} to evaluate each of the following
 	\end{tabular}
 	}
 	
+	\enlargethispage{2\baselineskip}
 	\item		The highest power of $x$ is in the numerator so the limit will be $\infty$ or $-\infty$.  To see which, consider only the dominant terms from the numerator and denominator, which are $x^2$ and $-x$.  The expression in the limit will behave like $x^2/(-x) = -x$ for large values of $x$.  Therefore, the limit is $-\infty$. See Figure \ref{fig:hzasy3}(c).
 	
 	%\mfigure{.3}{Visualizing $\ds\lim_{x\rightarrow\infty}\frac{x^2-1}{3-x}$.}{fig:hzasy7}{figures/fighzasy7}
 	\end{enumerate}
-\vskip -\baselineskip
+\vskip -1.5\baselineskip
 }\\
 
-\clearpage
-\vskip 2\baselineskip
+%\clearpage
+%\vskip 2\baselineskip
 \noindent\textbf{\Large Chapter Summary}
 \vskip \baselineskip
 
 In this chapter we:
 \begin{itemize}
 \item defined the limit, 
-\item found accessible ways to approximate their values numerically and graphically, 
+\item found accessible ways to approximate the value of limits numerically and graphically, 
 \item	developed a not--so--easy method of proving the value of a limit ($\epsilon$-$\delta$ proofs),
 \item	explored when limits do not exist,
 \item	defined continuity and explored properties of continuous functions, and 
 \item	considered limits that involved infinity.
 \end{itemize}
 
-Why? Mathematics is famous for building on itself and calculus proves to be no exception. In the next chapter we will be interested in ``dividing by 0.'' That is, we will want to divide a quantity by a smaller and smaller number and see what value the quotient approaches. In other words, we will want to find a limit. These limits will enable us to, among other things, determine \textit{exactly} how fast something is moving when we are only given position information.
+Why? Mathematics is famous for building on itself and calculus proves to be no exception. In the next chapter we will be interested in ``dividing by 0.'' That is, we will want to divide a quantity by  smaller and smaller numbers and see what value the quotient approaches. In other words, we will want to find a limit. These limits will enable us to, among other things, determine \textit{exactly} how fast something is moving when we are only given position information.
 
 Later, we will want to add up an infinite list of numbers. We will do so by first adding up a finite list of numbers, then take a limit as the number of things we are adding approaches infinity. Surprisingly, this sum often is finite; that is, we can add up an infinite list of numbers and get, for instance, 42. 
 
