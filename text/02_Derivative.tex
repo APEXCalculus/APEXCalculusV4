@@ -26,7 +26,7 @@ $$\frac{f(2.01)-f(2)}{2.01-2} = \frac{f(2.01)-f(2)}{0.01} =-64.16\ \text{ft/s}.$
 
 What we are really computing is the average velocity on the interval $[2,2+h]$ for small values of $h$. That is, we are computing $$\frac{f(2+h) - f(2)}{h}$$ where $h$ is small.
 
-What we really want is for $h=0$, but this, of course, returns the familiar ``$0/0$'' %\zerooverzero\ 
+We really want to use $h=0$, but this, of course, returns the familiar ``$0/0$'' %\zerooverzero\ 
 indeterminate form. So we employ a limit, as we did in Section \ref{sec:limit_intro}.
 
 We can approximate the value of this limit numerically with small values of $h$ as seen in Figure \ref{table:falling}. It looks as though the velocity is approaching $-64$ ft/s. Computing the limit directly gives
@@ -161,7 +161,7 @@ So given a line $f(x) = ax+b$, the derivative at any point $x$ will be $a$; that
 It is now easy to see that the tangent line to the graph of $f$ at $x=1$ is just $f$, with the same being true for $x=7$.
 }\\
 
-\enlargethispage{2\baselineskip}
+%\enlargethispage{2\baselineskip}
 We often desire to find the tangent line to the graph of a function without knowing the actual derivative of the function. In these cases, the best we may be able to do is approximate the tangent line. We demonstrate this in the next example.\\
 %\enlargethispage{\baselineskip}
 \mfigure{.55}{$f(x) = \sin x$ graphed with an approximation to its tangent line at $x=0$.}{fig:tangentsinx}{figures/figtangentsinx}
@@ -171,7 +171,7 @@ We often desire to find the tangent line to the graph of a function without know
 Thus our approximation of the equation of the tangent line is $y = 0.9983(x-0) +0 = 0.9983x$; it is graphed in Figure \ref{fig:tangentsinx}. The graph seems to imply the approximation is rather good.
 }\\
 
-Recall from Section \ref{sec:limit_analytically} that $\ds \lim_{x\to 0}\frac{\sin x}x =1$, meaning for values of $x$ near 0, $\sin x \approx x$. Since the slope of the line $y=x$ is 1 at $x=0$, it should seem reasonable that ``the slope of $f(x)=\sin x$'' is near 1 at $x=0$. In fact, since we \textit{approximated} the value of the slope to be $0.9983$, we might guess the \textit{actual value} is 1. We'll come back to this later.\\
+Recall from Section \ref{sec:limit_analytically} that $ \lim_{x\to 0}\frac{\sin x}x =1$, meaning for values of $x$ near 0, $\sin x \approx x$. Since the slope of the line $y=x$ is 1 at $x=0$, it should seem reasonable that ``the slope of $f(x)=\sin x$'' is near 1 at $x=0$. In fact, since we \textit{approximated} the value of the slope to be $0.9983$, we might guess the \textit{actual value} is 1. We'll come back to this later.\\
 
 Consider again Example \ref{ex_derv_point1}. To find the derivative of $f$ at $x=1$, we needed to evaluate a limit. To find the derivative of $f$ at $x=3$, we needed to again evaluate a limit. We have this process:
 		\begin{center}
@@ -205,7 +205,7 @@ The output is the ``derivative function,'' $\fp(x)$. The $\fp(x)$ function will 
 
 \sword{Notation:} 
 
-Let $y = f(x)$. The following notations all represent the derivative:
+Let $y = f(x)$. The following notations all represent the derivative of $f$:
 $$\fp(x)\ =\ y'\ =\ \frac{dy}{dx}\ =\ \frac{df}{dx}\ =\ \frac{d}{dx}(f)\ =\ \frac{d}{dx}(y). $$}
 \setlength{\specialboxlength}{\textwidth-2\specialboxinnerseplength}
 
@@ -239,7 +239,7 @@ Let $\ds f(x) = \frac{1}{x+1}$. Find $\fp(x)$.}
 						&=	\lim_{h\to 0} \frac1h\cdot\left(\frac{-h}{(x+1)(x+h+1)}\right)\\
 						&=	\lim_{h\to 0} \frac{-1}{(x+1)(x+h+1)} \\
 						&= \frac{-1}{(x+1)(x+1)}\\
-						&= \frac{-1}{(x+1)^2}
+						&= \frac{-1}{(x+1)^2}.
 	\end{align*}
 	
 So $\ds\fp(x) = \frac{-1}{(x+1)^2}$. To practice using our notation, we could also state $$\ds \frac{d}{dx}\left(\frac{1}{x+1}\right) = \frac{-1}{(x+1)^2}.$$
@@ -331,7 +331,7 @@ Being more rigorous, we can again evaluate the difference quotient limit at $x=\
 \lim_{h\to0^-}\frac{\sin(\pi/2+h)-\sin(\pi/2)}{h}&=\\
 \lim_{h\to0^-}{ \frac{\sin(\frac{\pi}{2})\cos(h)+\sin(h)\cos(\frac{\pi}{2})-\sin(\frac{\pi}{2})}{h}}&=\\
 \lim_{h\to0^-}\frac{1\cdot\cos(h)+\sin(h)\cdot 0-1}{h} &=\\
-0
+0.
 \end{align*}
 \end{minipage}
 \begin{minipage}{1pt}
@@ -342,7 +342,7 @@ Being more rigorous, we can again evaluate the difference quotient limit at $x=\
 \lim_{h\to0^+}\frac{f(\pi/2+h)-f(\pi/2)}{h} &=\\
 \lim_{h\to0^+}\frac{1-1}{h}&=\\
 \lim_{h\to0^+}\frac{0}{h}&=\\
-0&\\
+0.&\\
 \phantom{0}\\
 \phantom{0}
 \end{align*}

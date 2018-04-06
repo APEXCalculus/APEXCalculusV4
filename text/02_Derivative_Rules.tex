@@ -16,31 +16,65 @@ So if $y = 6x^2+11x-13$, we can immediately compute $y\primeskip' = 12x+11$. \\
 
 In this section (and in some sections to follow) we will learn some of what mathematicians have already discovered about the derivatives of certain functions and how derivatives interact with arithmetic operations. We start with a theorem.
 
-\setboxwidth{110pt}
-\noindent\hskip-110pt
-\begin{minipage}{\specialboxlength}
+%\setboxwidth{110pt}
+%\noindent\hskip-110pt
+%\begin{minipage}{\specialboxlength}
 \theorem{thm:deriv_common}{Derivatives of Common Functions}{
-		\noindent\begin{minipage}[t]{175pt}
+		\noindent\begin{minipage}[t]{.6\linewidth}
 		\begin{enumerate}
 		\item		\sword{Constant Rule:}\index{derivative!Constant Rule} 
 		
-		$\ds \frac{d}{dx}\big( c\big) = 0$, where $c$ is a constant.\addtocounter{enumi}{1}
-		\item		$\ds \frac{d}{dx}(\sin x) = \cos x$\addtocounter{enumi}{1}
-		\item		$\ds \frac{d}{dx}\left(e^x\right) = e^x$
-		\end{enumerate}
-		\end{minipage}
-		\begin{minipage}[t]{210pt}
-		\begin{enumerate}\addtocounter{enumi}{1}
+		$\ds \frac{d}{dx}\big( c\big) = 0$, where $c$ is a constant.
+		
 		\item		\sword{Power Rule:}\index{derivative!Power Rule}\index{Power Rule!differentiation}
 		
-		$\ds \frac{d}{dx}\left(x^n\right) = nx^{n-1}$, where $n$ is an integer, $n>0$.\addtocounter{enumi}{1}
-		\item		$\ds \frac{d}{dx}(\cos x) = -\sin x$\addtocounter{enumi}{1}
+		$\ds \frac{d}{dx}\big(x^n\big) = nx^{n-1}$, \parbox[t]{60pt}{where $n$ is an integer, $n>0$.}
+		
+		
+		
+		\end{enumerate}
+		\end{minipage}
+		\begin{minipage}[t]{.39\linewidth}
+		\begin{enumerate}\addtocounter{enumi}{4}
+		 
+		\item		$\ds \frac{d}{dx}(\sin x) = \cos x$
+		
+		\item		$\ds \frac{d}{dx}(\cos x) = -\sin x$
+		
+		\item		$\ds \frac{d}{dx}\left(e^x\right) = e^x$
+		
 		\item		$\ds \frac{d}{dx}(\ln x) = \frac{1}{x}$
 		\end{enumerate}\index{derivative!basic rules}
 		\end{minipage}
 }
-\end{minipage}
-\restoreboxwidth
+%\end{minipage}
+%\restoreboxwidth
+
+%\setboxwidth{110pt}
+%\noindent\hskip-110pt
+%\begin{minipage}{\specialboxlength}
+%\theorem{thm:deriv_common}{Derivatives of Common Functions}{
+		%\noindent\begin{minipage}[t]{175pt}
+		%\begin{enumerate}
+		%\item		\sword{Constant Rule:}\index{derivative!Constant Rule} 
+		%
+		%$\ds \frac{d}{dx}\big( c\big) = 0$, where $c$ is a constant.\addtocounter{enumi}{1}
+		%\item		$\ds \frac{d}{dx}(\sin x) = \cos x$\addtocounter{enumi}{1}
+		%\item		$\ds \frac{d}{dx}\left(e^x\right) = e^x$
+		%\end{enumerate}
+		%\end{minipage}
+		%\begin{minipage}[t]{210pt}
+		%\begin{enumerate}\addtocounter{enumi}{1}
+		%\item		\sword{Power Rule:}\index{derivative!Power Rule}\index{Power Rule!differentiation}
+		%
+		%$\ds \frac{d}{dx}\left(x^n\right) = nx^{n-1}$, where $n$ is an integer, $n>0$.\addtocounter{enumi}{1}
+		%\item		$\ds \frac{d}{dx}(\cos x) = -\sin x$\addtocounter{enumi}{1}
+		%\item		$\ds \frac{d}{dx}(\ln x) = \frac{1}{x}$
+		%\end{enumerate}\index{derivative!basic rules}
+		%\end{minipage}
+%}
+%\end{minipage}
+%\restoreboxwidth
 
 This theorem starts by stating an intuitive fact: constant functions have no rate of change as they are \textit{constant}. Therefore their derivative is 0 (they change at the rate of 0). The theorem then states some fairly amazing things. The Power Rule states that the derivatives of Power Functions (of the form $y=x^n$) are very straightforward: multiply by the power, then subtract 1 from the power. We see something incredible about the function $y=e^x$: it is its own derivative. We also see a new connection between the sine and cosine functions. 
 
@@ -126,25 +160,25 @@ The point is \textit{not} ``Here's a cool way to do some math without a calculat
 %\vskip \baselineskip
 \noindent\textbf{\large Higher Order Derivatives}\\
 
-\mnote{.4}{\textbf{Note:} Definition \ref{def:Higher_Deriv} comes with the caveat ``Where the corresponding limits exist.'' With $f$ differentiable on $I$, it is possible that $\fp$ is \textit{not} differentiable on all of $I$, and so on.}
+\mnote{.4}{\textbf{Note:} The second derivative notation could be written as $$\frac{d\primeskip^2y}{dx^2}=\frac{d\primeskip^2y}{(dx)^2}=\frac{d\primeskip^2}{(dx)^2}\big(y\big).$$ That is, we take the derivative of $y$ twice (hence $d\primeskip^2$), both times with respect to $x$ (hence $(dx)^2=dx^2$).}
 The derivative of a function $f$ is itself a function, therefore we can take its derivative. The following definition gives a name to this concept and introduces its notation.
 \enlargethispage{2\baselineskip}
 %\clearpage
 %\small
 \definition{def:Higher_Deriv}{Higher Order Derivatives}
-{Let $y=f(x)$ be a differentiable function on $I$. \index{derivative!higher order}\index{derivative!notation}
+{Let $y=f(x)$ be a differentiable function on $I$. The following are defined, provided the corresponding limits exist. \index{derivative!higher order}\index{derivative!notation}\index{derivative!second}\index{derivative!third}
 		\begin{enumerate}
-		\item		The \textit{second derivative} of $f$ is: 
+		\item		The \sword{second derivative of $f$} is: 
 						$$ \fp'(x) = \frac{d}{dx}\Big(\fp(x)\Big) = \frac{d}{dx}\left(\frac{dy}{dx}\right) = \frac{d\primeskip^2y}{dx^2}=y\primeskip''.$$
-				\item		The \textit{third derivative} of $f$ is: 
+				\item		The \sword{third derivative of $f$} is: 
 						$$ \fp''(x) = \frac{d}{dx}\Big(\fp'(x)\Big) = \frac{d}{dx}\left(\frac{d\primeskip^2y}{dx^2}\right) = \frac{d\primeskip^3y}{dx^3}=y\primeskip'''.$$
-				\item		The \textit{n$^{\text{th}}$ derivative} of $f$ is:
+				\item		The \sword{n$^{\text{th}}$ derivative of $f$} is:
 						$$ f\,^{(n)}(x) = \frac{d}{dx}\left(f\,^{(n-1)}(x)\right) = \frac{d}{dx}\left(\frac{d\primeskip^{n-1}y}{dx^{n-1}}\right) = \frac{d\primeskip^ny}{dx^n}=y^{(n)}.$$
 		\end{enumerate}
 }
 \normalsize
 
-In general, when finding the fourth derivative and on, we resort to the $f\,^{(4)}(x)$ notation, not $\fp'''(x)$; after a while, too many ticks is too confusing.\\
+In general, when finding the fourth derivative and on, we resort to the $f\,^{(4)}(x)$ notation, not $\fp'''(x)$; after a while, too many ticks is  confusing.\\
 
 Let's practice using this new concept.\\
 
