@@ -30,7 +30,9 @@ $$
 F\hskip.5pt_1'(x) = -2(1-x),\quad  F\hskip.5pt_2'(x) = -3(1-x)^2\ \textrm{ and } \ 
 F\hskip.5pt_3'(x) = -4(1-x)^3.
 $$  
-A pattern might jump out at you.  Recognize that each of these functions is a composition, letting $g(x) = 1-x$:
+A pattern might jump out at you; note how the we end up multiplying by the old power and the new power is reduced by 1. We also always multiply by $(-1)$.
+
+Recognize that each of these functions is a composition, letting $g(x) = 1-x$:
 \begin{eqnarray*}
 F_1(x) = f_1(g(x)),& \text{ where } f_1(x) = x^2,\\
 F_2(x) = f_2(g(x)),& \text{ where } f_2(x) = x^3,\\
@@ -39,10 +41,19 @@ F_3(x) = f_3(g(x)),& \text{ where } f_3(x) = x^4.
 
 We'll come back to this example after giving the formal statements of the Chain Rule; for now, we are just illustrating a pattern.}\\
 
+When composing functions, we need to make sure that the new function is actually defined. For instance, consider $f(x) = \sqrt{x}$ and $g(x) = -x^2-1$. The domain of $f$ excludes all negative numbers, but the range of $g$ is only negative numbers. Therefore the composition $f\big(g(x)\big) = \sqrt{-x^2-1}$ is not defined for any $x$, and hence is not differentiable.
+
+The following definition takes care to ensure this problem does not arise. We'll focus more on the derivative result than on the domain/range conditions.
 
 \theorem{thm:chain_rule}{The Chain Rule}
-{Let $y = f(u)$ be a differentiable function of $u$ and let $u = g(x)$ be a differentiable function of $x$.\index{derivative!Chain Rule}\index{Chain Rule} Then $y=f(g(x))$ is a differentiable function of $x$, and $$y\primeskip' = \fp(g(x))\cdot g\primeskip'(x).$$
+{%
+Let $g$ be a differentiable function on an interval $I$, let the range of $g$ be a subset of the interval $J$, and let $f$ be a differentiable function on $J$.
+\index{derivative!Chain Rule}\index{Chain Rule} Then $y=f(g(x))$ is a differentiable function on $I$, and $$y\primeskip' = \fp(g(x))\cdot g\primeskip'(x).$$%
 }
+%% old definition of V3%
+%%
+%%{Let $y = f(u)$ be a differentiable function of $u$ and let $u = g(x)$ be a differentiable function of $x$.\index{derivative!Chain Rule}\index{Chain Rule} Then $y=f(g(x))$ is a differentiable function of $x$, and $$y\primeskip' = \fp(g(x))\cdot g\primeskip'(x).$$
+%%}
   
  
 % The derivative of $(f \circ g)(x)$ is $(f^{\, \prime} \circ g)(x) \cdot g^{\, \prime}(x)$.  Written with the other notation, the derivative of $f(g(x))$ is $f^{\, \prime}(g(x)) \cdot g^{\, \prime}(x)$.  
@@ -66,7 +77,7 @@ Part of the Chain Rule uses $\fp(g(x))$. This means substitute $g(x)$ for $x$ in
 
 Let $y = (1-x)^3 = f(g(x))$, where $f(x) = x^3$ and $g(x) = (1-x)$. We have $\fp(x) = 3x^2$, so $\fp(g(x)) = 3(1-x)^2$. The Chain Rule then states $$y\primeskip' = \fp(g(x))\cdot g\primeskip'(x) = 3(1-x)^2\cdot(-1) = -3(1-x)^2.$$
 
-\enlargethispage{2\baselineskip}%\vskip\baselineskip
+%\enlargethispage{2\baselineskip}%\vskip\baselineskip
 \noindent $F_3(x) = (1-x)^4$:\\
 
 Finally, when $y = (1-x)^4$, we have $f(x)= x^4$ and $g(x) = (1-x)$. Thus $\fp(x) = 4x^3$ and $\fp(g(x)) = 4(1-x)^3$. Thus $$y\primeskip' = \fp(g(x))\cdot g\primeskip'(x) = 4(1-x)^3\cdot (-1) = -4(1-x)^3.$$
@@ -126,7 +137,7 @@ Let $f(x) = \cos x^2$. Find the equation of the line tangent to the graph of $f$
 $\fp(x) = -\sin(x^2) \cdot(2x) = -2x\sin x^2$. Evaluated at $x=1$, we have $\fp(1) = -2\sin 1\approx -1.68$. Thus the equation of the tangent line is $$y = -1.68(x-1)+0.54 .$$
 
 The tangent line is sketched along with $f$ in Figure \ref{fig:chain7}.
-\mfigure{.56}{$f(x) = \cos x^2$ sketched along with its tangent line at $x=1$.}{fig:chain7}{figures/figchain7}
+\mfigure{.4}{$f(x) = \cos x^2$ sketched along with its tangent line at $x=1$.}{fig:chain7}{figures/figchain7}
 }\\
 
 The Chain Rule is used often in taking derivatives. Because of this, one can become familiar with the basic process and learn  patterns that facilitate finding derivatives quickly. For instance, $$\frac{d}{dx}\Big(\ln (\text{anything})\Big) = \frac{1}{\text{anything}}\cdot (\text{anything})' = \frac{(\text{anything})'}{\text{anything}}.$$
@@ -184,7 +195,7 @@ y\primeskip' &= 5\big(\tan(6x^3-7x)\big)^4\cdot\sec^2(6x^3-7x)\cdot(18x^2-7)\\
 &= (90x^2-35)\sec^2(6x^3-7x)\tan^4(6x^3-7x).
 \end{align*}
 
-This function is frankly a ridiculous function, possessing no real practical value. It is very difficult to graph, as the tangent function has many vertical asymptotes and $6x^3-7x$ grows so very fast. The important thing to learn from this is that the derivative can be found. In fact, it is not ``hard;'' one must take several simple steps and be careful to keep track of how to apply each of these steps.%However, just to demonstrate that this is the proper derivative, we have plotted the tangent line to the function, along with $y$, in FIGURE. The derivative gives the correct slope.
+This function is frankly a ridiculous function, possessing no real practical value. It is very difficult to graph, as the tangent function has many vertical asymptotes and $6x^3-7x$ grows so very fast. The important thing to learn from this is that the derivative can be found. In fact, it is not ``hard;'' one can take several simple steps and should be careful to keep track of how to apply each of these steps.%However, just to demonstrate that this is the proper derivative, we have plotted the tangent line to the function, along with $y$, in FIGURE. The derivative gives the correct slope.
 %Do for x=.05
 }\\
 %\enlargethispage{3\baselineskip}
@@ -240,36 +251,39 @@ The reader is highly encouraged to look at each term and recognize why it is the
 The Chain Rule also has theoretic value. That is, it can be used to find the derivatives of functions that we have not yet learned as we do in the following example.\\
 
 \example{ex_chain8}{The Chain Rule and exponential functions}{
-Use the Chain Rule to find the derivative of $y= a^x$ where $a>0$, $a\neq 1$ is constant.}
-{We only know how to find the derivative of one exponential function: $y = e^x$; this problem is asking us to find the derivative of functions such as $y = 2^x$. 
+Use the Chain Rule to find the derivative of $y= 2^x$.% where $a>0$, $a\neq 1$ is constant.
+}
+{We only know how to find the derivative of one exponential function, $y = e^x$. %; this problem is asking us to find the derivative of functions such as $y = 2^x$. 
+ We can accomplish our goal by rewriting $2$ in terms of $e$. Recalling that $e^x$ and $\ln x$ are inverse functions, we can write
+$$2=e^{\ln 2} \quad \text{and so }\quad y=2^x = \big(e^{\ln 2}\big)^x = e^{x(\ln 2)}.$$
 
-This can be accomplished by rewriting $a^x$ in terms of $e$.  Recalling that $e^x$ and $\ln x$ are inverse functions, we can write
-$$
-a = e^{\ln a} \quad \text{and so } \quad y = a^x = e^{\ln (a^x)}.
-$$  
+%This can be accomplished by rewriting $a^x$ in terms of $e$.  Recalling that $e^x$ and $\ln x$ are inverse functions, we can write
+%$$
+%a = e^{\ln a} \quad \text{and so } \quad y = a^x = e^{\ln (a^x)}.
+%$$  
 
-By the exponent property of logarithms, we can ``bring down'' the power to get 
+%By the exponent property of logarithms, we can ``bring down'' the power to get 
+%
+%$$
+%y = a^x = e^{x (\ln a)}.
+%$$
+
+The function is now the composition $y=f(g(x))$, with $f(x) = e^x$ and $g(x) = x(\ln 2)$.  Since $\fp(x) = e^x$ and $g\primeskip'(x) = \ln 2$, the Chain Rule  gives 
 
 $$
-y = a^x = e^{x (\ln a)}.
+y\primeskip' = e^{x (\ln 2)} \cdot \ln 2.
 $$
-
-The function is now the composition $y=f(g(x))$, with $f(x) = e^x$ and $g(x) = x(\ln a)$.  Since $\fp(x) = e^x$ and $g\primeskip'(x) = \ln a$, the Chain Rule  gives 
-
+Recall that the $e^{x(\ln 2)}$ term on the right hand side is just $2^x$, our original function. Thus, the derivative contains the original function itself. We have
 $$
-y\primeskip' = e^{x (\ln a)} \cdot \ln a.
+y\primeskip' = y \cdot \ln 2 = 2^x\cdot \ln 2.
 $$
-Recall that the $e^{x(\ln a)}$ term on the right hand side is just $a^x$, our original function. Thus, the derivative contains the original function itself. We have
-$$
-y\primeskip' = y \cdot \ln a = a^x\cdot \ln a.
-$$
-The Chain Rule, coupled with the derivative rule of $e^x$, allows us to find the derivatives of all exponential functions.
+We can extend this process to use any base $a$, where $a>0$ and $a\neq 1$. All we need to do is replace each ``2'' in our work with ``$a$.'' The Chain Rule, coupled with the derivative rule of $e^x$, allows us to find the derivatives of all exponential functions.
 }\\
 
-The previous example produced a result worthy of its own ``box.''
+The comment at the end of previous example is important and is restated formally as a theorem.
 
 \theorem{thm:exponentials}{Derivatives of Exponential Functions}
-{Let $f(x)=a^x$, for $a>0, a\neq 1$.\index{derivative!exponential functions} Then $f$ is differentiable for all real numbers and $$\fp(x) = \ln a\cdot a^x.$$
+{Let $f(x)=a^x$, for $a>0, a\neq 1$.\index{derivative!exponential functions} Then $f$ is differentiable for all real numbers (i.e., differentiable everywhere) and $$\fp(x) = \ln a\cdot a^x.$$
 }
 
 %{\bf Hard Examples:} For constants $a$ and $\nu,$ find the derivatives of 
@@ -354,7 +368,7 @@ y\primeskip' &= \fp(g(x))\cdot g\primeskip'(x) \\
 %$$
 
 Here the ``fractional'' aspect of the derivative notation stands out. On the right hand side, it seems as though the ``$du$'' terms cancel out, leaving $$ \frac{dy}{dx} = \frac{dy}{dx}.$$
-It is important to realize that we \textit{are not} canceling these terms; the derivative notation of $\frac{dy}{dx}$ is one symbol. It is equally important to realize that this notation was chosen precisely because of this behavior. It makes applying the Chain Rule easy with multiple variables. For instance,
+It is important to realize that we \textit{are not} canceling these terms; the derivative notation of $\frac{dy}{du}$ is one symbol. It is equally important to realize that this notation was chosen precisely because of this behavior. It makes applying the Chain Rule easy with multiple variables. For instance,
 
 %If you look at it like a fraction it sort of looks like the $dx$ part ``cancels out'' leaving $\displaystyle \frac{dy}{dt}.$  This isn't quite right, but it does work.  In fact you can extend this as
 $$
@@ -372,7 +386,7 @@ One of the most common ways of
 Likewise, every revolution of $u$ causes 3 revolutions of $y$: $\frac{dy}{du} = 3$. How does $y$ change with respect to $x$? For each revolution of $x$, $y$ revolves 6 times; that is, $$\frac{dy}{dx} = \frac{dy}{du}\cdot \frac{du}{dx} = 2\cdot 3 = 6.$$
 We can then extend the Chain Rule with more variables by adding more gears to the picture.\\
 
-It is difficult to overstate the importance of the Chain Rule. So often the functions that we deal with are compositions of two or more functions, requiring us to use this rule to compute derivatives. It is often used in practice when actual functions are unknown. Rather, through measurement, we can calculate $\frac{dy}{du}$ and $\frac{du}{dx}$. With our knowledge of the Chain Rule, finding $\frac{dy}{dx}$ is straightforward. 
+It is difficult to overstate the importance of the Chain Rule. So often the functions that we deal with are compositions of two or more functions, requiring us to use this rule to compute derivatives. It is also often used in real life when actual functions are unknown. Through measurement, we can calculate (or, approximate) $\frac{dy}{du}$ and $\frac{du}{dx}$. With our knowledge of the Chain Rule, we can find $\frac{dy}{dx}$.
 
 In the next section, we use the Chain Rule to justify another differentiation technique. There are many curves that we can draw in the plane that fail the ``vertical line test.'' For instance, consider $x^2+y^2=1$, which describes the unit circle. We may still be interested in finding slopes of tangent lines to the circle at various points. The next section shows how we can find $\frac{dy}{dx}$ without first ``solving for $y$.'' While we can in this instance, in many other instances solving for $y$ is impossible. In these situations, \emph{implicit differentiation} is indispensable. 
 
