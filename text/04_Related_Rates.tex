@@ -2,9 +2,9 @@
 
 When two quantities are related by an equation, knowing the value of one quantity can determine the value of the other. For instance, the circumference and radius of a circle are related by $C=2\pi r$; knowing that $C = 6\pi$in determines the radius must be 3in.
 
-The topic of \sword{related rates} takes this one step further: knowing the \textit{rate} at which one quantity is changing can determine the \textit{rate} at which the other changes.\index{related rates}\\
+The topic of \sword{related rates} takes this one step further: knowing the \textit{rate} at which one quantity is changing can determine the \textit{rate} at which another changes.\index{related rates}\\
 
-\mnote{.5}{\textbf{Note:} This section relies heavily on implicit differentiation, so referring back to Section \ref{sec:imp_deriv} may help.}
+\mnote{.8}{\textbf{Note:} This section relies heavily on implicit differentiation, so referring back to Section \ref{sec:imp_deriv} may help.}
 
 We demonstrate the concepts of related rates through examples.\\
 
@@ -104,7 +104,7 @@ How fast must the camera be able to turn to track the car?
 }
 {We seek information about how fast the camera is to \textit{turn}; therefore, we need an equation that will relate an angle $\theta$ to the position of the camera and the speed and position of the car.
 
-Figure \ref{fig:rr4} suggests we use a trigonometric equation. Letting $x$ represent the distance the car is from the point on the road directly in front of the camera, we have \begin{equation}\tan \theta = \frac{x}{10}.\label{eq:rr4}\end{equation} As the car is moving at 100mph, we have $\frac{dx}{dt} = -100$mph (as in the last example, since $x$ is getting smaller as the car travels, $\frac{dx}{dt}$ is negative). We need to convert the measurements so they use the same units; rewrite -100mph in terms of ft/s:
+Figure \ref{fig:rr4} suggests we use a trigonometric equation. Letting $x$ represent the distance the car is from the point on the road directly in front of the camera, we have \begin{equation}\tan \theta = \frac{x}{10}.\label{eq:rr4}\end{equation} As the car is moving at 100mph, we have $\frac{dx}{dt} = -100$mph (as in the last example, since $x$ is getting smaller as the car travels, $\frac{dx}{dt}$ is negative). We need to convert the measurements so they use the same units; rewrite $-100$mph in terms of ft/s:
 $$\frac{dx}{dt} = -100\frac{\text{m}}{\text{hr}} = -100\frac{\text{m}}{\text{hr}}\cdot5280\frac{\text{ft}}{\text{m}}\cdot\frac{1}{3600}\frac{\text{hr}}{\text{s}} =-146.\overline{6}\text{ft/s}.$$
 Now take the derivative of both sides of Equation \eqref{eq:rr4} using implicit differentiation:
 \begin{align}
