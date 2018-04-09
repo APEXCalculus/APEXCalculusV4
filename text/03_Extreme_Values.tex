@@ -1,4 +1,4 @@
-Our study of limits led to continuous functions, which is a certain class of functions that behave in a particularly nice way. Limits then gave us an even nicer class of functions, functions that are differentiable.
+Our study of limits led to continuous functions,  a certain class of functions that behave in a particularly nice way. Limits then gave us an even nicer class of functions, functions that are differentiable.
 
 This chapter explores many of the ways we can take advantage of the information that continuous and differentiable functions  provide.
 
@@ -62,24 +62,41 @@ Consider $f(x) = 2x^3-9x^2$ on $I=[-1,5]$, as graphed in Figure \ref{fig:extval1
 {The graph is drawn in such a way to draw attention to certain points. It certainly seems that the smallest $y$ value is $-27$, found when $x=3$. It also seems that the largest $y$ value is 25, found at the endpoint of $I$, $x=5$. We use the word \textit{seems}, for by the graph alone we cannot be sure the smallest value is not less than $-27$. Since the problem asks for an approximation, we approximate the extreme values to be $25$ and $-27$.
 }\\
 
-Notice how the minimum value came at ``the bottom of a hill,'' and the maximum value came at an endpoint. Also note that while $0$ is not an extreme value, it would be if we narrowed our interval to $[-1,4]$. The idea that the point $(0,0)$ is the location of an extreme value for some interval is important, leading us to a definition.
+Notice how the minimum value came at ``the bottom of a hill,'' and the maximum value came at an endpoint. Also note that while $0$ is not an extreme value, it would be if we narrowed our interval to $[-1,4]$. The idea that the point $(0,0)$ is the location of an extreme value for some interval is important, leading us to a definition of a \emph{relative maximum}. In short, a ``relative max'' is a $y$-value that's the largest $y$-value ``nearby.''
 
-%\enlargethispage{2\baselineskip}
-\mnote{.35}{\textbf{Note:} The terms \textit{local minimum} and \textit{local maximum} are often used as synonyms for \textit{relative minimum} and \textit{relative maximum}.}
+\enlargethispage{2\baselineskip}
+\mnote{.37}{\textbf{Note:} The terms \textit{local minimum} and \textit{local maximum} are often used as synonyms for \textit{relative minimum} and \textit{relative maximum}.\\
+
+As it makes intuitive sense that an absolute maximum is also a relative maximum, Definition \ref{def:rel_ext} allows a relative maximum to occur at an interval's endpoint.}
+
+\definition{def:rel_ext}{Relative Minimum and Relative Maximum}%
+{Let $f$ be defined on an interval $I$ containing $c$. 
+		\begin{enumerate}
+		\item	If there is a $\delta>0$ such that $f(c) \leq f(x)$ for all $x$ in $I$ where $|x-c|<\delta$, then $f(c)$ is a \sword{relative minimum} of $f$. We also say that $f$ has a relative minimum at $(c,f(c))$. \index{minimum!relative/local}\index{extrema!relative}
+		
+		\item	If there is a $\delta>0$ such that $f(c) \geq f(x)$ for all $x$ in $I$ where $|x-c|<\delta$, then $f(c)$ is a \sword{relative maximum} of $f$. We also say that $f$ has a relative maximum at $(c,f(c))$. \index{maximum!relative/local}\index{extrema!relative}
+		\end{enumerate}
+		
+The relative maximum and minimum values comprise the \textbf{relative extrema} of $f$.
+}
 
 %\setboxwidth{70pt}
 %\noindent\hskip-70pt
 %\noindent\begin{minipage}{\textwidth+100pt}
 %\small
-\definition{def:rel_ext}{Relative Minimum and Relative Maximum}%
-{Let $f$ be defined on an interval $I$ containing $c$. 
-		\begin{enumerate}
-		\item		If there is an open interval containing $c$ such that $f(c)$ is the minimum value, then $f(c)$ is a \textbf{relative minimum} of $f$. We also say that $f$ has a relative minimum at $(c,f(c))$. \index{minimum!relative/local}
-		\item		If there is an open interval containing $c$ such that $f(c)$ is the maximum value, then $f(c)$ is a \textbf{relative maximum} of $f$. We also say that $f$ has a relative maximum at $(c,f(c))$. \index{maximum!relative/local}\index{extrema!relative}
-		\end{enumerate}
-		
-The relative maximum and minimum values comprise the \textbf{relative extrema} of $f$.
-}
+%%
+%% Version 3.0 definition
+%\definition{def:rel_ext}{Relative Minimum and Relative Maximum}%
+%{Let $f$ be defined on an interval $I$ containing $c$. 
+		%\begin{enumerate}
+		%\item		If there is an open interval containing $c$ such that $f(c)$ is the minimum value, then $f(c)$ is a \textbf{relative minimum} of $f$. We also say that $f$ has a relative minimum at $(c,f(c))$. \index{minimum!relative/local}
+		%\item		If there is an open interval containing $c$ such that $f(c)$ is the maximum value, then $f(c)$ is a \textbf{relative maximum} of $f$. We also say that $f$ has a relative maximum at $(c,f(c))$. \index{maximum!relative/local}\index{extrema!relative}
+		%\end{enumerate}
+		%
+%The relative maximum and minimum values comprise the \textbf{relative extrema} of $f$.
+%}
+%%
+%% end V3.0 def
 %\end{minipage}\\
 
 \restoreboxwidth
@@ -116,11 +133,16 @@ What can we learn from the previous two examples? We were able to visually appro
 If $c$ is a critical number of $f$, then the point $(c,f(c))$ is a \textbf{critical point} of $f$.
 }
 
+%% Version 3.0 theorem
+%%
+%\theorem{thm:criticalpts}{Relative Extrema and Critical Points}
+%{Let a function $f$ have a relative extrema at the point $(c,f(c))$. Then $c$ is a critical number of $f$.
+%}
 \theorem{thm:criticalpts}{Relative Extrema and Critical Points}
-{Let a function $f$ have a relative extrema at the point $(c,f(c))$. Then $c$ is a critical number of $f$.
+{Let a function $f$ be defined on an open interval $I$ containing $c$, and let $f$ have a relative extrema at the point $(c,f(c))$. Then $c$ is a critical number of $f$.
 }
 
-Be careful to understand that this theorem states  ``All relative extrema occur at critical points.'' It does not say ``All critical numbers produce relative extrema.'' For instance, consider $f(x) = x^3$. Since $\fp(x) = 3x^2$, it is straightforward to determine that $x=0$ is a critical number of $f$. However, $f$ has no relative extrema, as illustrated in Figure \ref{fig:extreme4}. 
+Be careful to understand that this theorem states  ``Relative extrema on open intervals occur at critical points.'' It does not say ``All critical numbers produce relative extrema.'' For instance, consider $f(x) = x^3$. Since $\fp(x) = 3x^2$, it is straightforward to determine that $x=0$ is a critical number of $f$. However, $f$ has no relative extrema, as illustrated in Figure \ref{fig:extreme4}. 
 \mfigure{.8}{A graph of $f(x)=x^3$ which has a critical value of $x=0$, but no relative extrema.}{fig:extreme4}{figures/figextreme4}
 
 Theorem \ref{thm:extreme_val} states that a continuous function on a closed interval will have both an absolute maximum and an absolute minimum. Common sense tells us ``extrema occur either at the endpoints or somewhere in between.'' It is easy to check for extrema at endpoints, but there are infinite points to check that are ``in between.'' Our theory tells us we need only check at the critical points that are in between the endpoints. %These extrema occur either at the endpoints or at critical values in the interval. 
@@ -219,7 +241,7 @@ Find the extreme values of $f(x) = \sqrt{1-x^2}$, graphed in Figure \ref{table:e
 \end{tabular}%
 }
 
-Using the Chain Rule, we find $\ds \fp(x) = \frac{-x}{\sqrt{1-x^2}}$. The critical points of $f$ are found when $\fp(x) = 0$ or when $\fp$ is undefined. It is straightforward to find that $\fp(x) = 0$ when $x=0$, and $\fp$ is undefined when $x=\pm 1$, the endpoints of the interval. The table of important values is given in Figure \ref{table:ext7}(b). The maximum value is 1, and the minimum value is 0.
+Using the Chain Rule, we find $\ds \fp(x) = \frac{-x}{\sqrt{1-x^2}}$. The critical points of $f$ are found when $\fp(x) = 0$ or when $\fp$ is undefined. It is straightforward to find that $\fp(x) = 0$ when $x=0$, and $\fp$ is undefined when $x=\pm 1$, the endpoints of the interval. The table of important values is given in Figure \ref{table:ext7}(b). The maximum value is 1, and the minimum value is 0. (See also the marginal note.)
 }\\
 
 
