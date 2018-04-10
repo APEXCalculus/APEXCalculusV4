@@ -42,7 +42,7 @@ Using this line to approximate $\sin 1.1$, we have:
 We now generalize this concept. Given $f(x)$ and an $x$--value $c$,  the tangent line is $\ell(x) = \fp(c)(x-c)+f(c)$. Clearly, $f(c) = \ell(c)$. Let $\dx$ be a small number, representing a small change in $x$ value. We assert that:
 $$f(c+\dx) \approx \ell(c+\dx),$$ since the tangent line to a function approximates well the values of that function near $x=c$. 
 
-As the $x$ value changes from $c$ to $c+\dx$, the $y$ value of $f$ changes from $f(c)$ to $f(c+\dx)$. We call this change of $y$ value \dy. That is:
+As the $x$-value changes from $c$ to $c+\dx$, the $y$-value of $f$ changes from $f(c)$ to $f(c+\dx)$. We call this change of $y$ value \dy. That is:
 $$\dy = f(c+\dx)-f(c).$$
 Replacing $f(c+\dx)$ with its tangent line approximation, we have 
 \begin{align} \dy &\approx \ell(c+\dx) - f(c) \notag\\
@@ -50,7 +50,7 @@ Replacing $f(c+\dx)$ with its tangent line approximation, we have
 								&=\fp(c)\dx		\label{eq:differential}
 \end{align}
 
-This final equation is important; we'll come back to it in Key Idea \ref{idea:differential}.
+This final equation is important; it becomes the basis of the upcoming Definition and Key Idea. In short, it says that when the $x$-value changes from $c$ to $c+\Delta x$, the $y$ value of a function $f$ changes by about $\fp(c)\Delta x$.
 
 We introduce two new variables, $dx$ and $dy$ in the context of a formal definition. %We defined $dx = \dx$; that is, it is a small change in $x$. We define
 
@@ -65,10 +65,10 @@ It is helpful to organize our new concepts and notations in one place.
 \keyidea{idea:differential}{Differential Notation}
 {Let $y = f(x)$ be a differentiable function. \index{differential!notation}
 \begin{enumerate}
-	\item $\dx$ represents a small, nonzero change in $x$ value.
-	\item	$dx$ represents a small, nonzero change in $x$ value (i.e., $\dx = dx$).
-	\item	$\dy$ is the change in $y$ value as $x$ changes by $\dx$; hence $$\dy = f(x+\dx)-f(x).$$
-	\item		$dy = \fp(x)dx$ which, by Equation (\ref{eq:differential}), is an \textit{approximation} of the change in $y$ value as $x$ changes by $\dx$; $dy \approx \dy$.
+	\item Let $\dx$ represent a small, nonzero change in $x$ value.
+	\item	Let $dx$ represent a small, nonzero change in $x$ value (i.e., $\dx = dx$).
+	\item	Let $\dy$ be the change in $y$ value as $x$ changes by $\dx$; hence $$\dy = f(x+\dx)-f(x).$$
+	\item		Let $dy = \fp(x)dx$ which, by Equation (\ref{eq:differential}), is an \textit{approximation} of the change in $y$ value as $x$ changes by $\dx$; $dy \approx \dy$.
 \end{enumerate}
 }
 
@@ -137,9 +137,9 @@ $$ dy = \frac{(2x+3)dx}{2\sqrt{x^2+3x-1}}.$$
 
 Finding the differential $dy$ of $y=f(x)$ is really no harder than finding the derivative of $f$; we just \textit{multiply} $\fp(x)$ by $dx$. It is important to remember that we are not simply adding the symbol ``$dx$'' at the end.\\
 
-We have seen a practical use of differentials as they offer a good method of making certain approximations. Another use is \textit{error propagation.} Suppose a length is measured to be $x$, although the actual value is $x+\dx$ (where we hope \dx\ is small). This measurement of $x$ may be used to compute some other value; we can think of this as $f(x)$ for some function $f$. As the true length is $x+\dx$, one really should have computed $f(x+\dx)$. The difference between $f(x)$ and $f(x+\dx)$ is the propagated error. 
+We have seen a practical use of differentials as they offer a good method of making certain approximations. Another use is \textit{error propagation.} Suppose a length is measured to be $x$, although the actual value is $x+\dx$ (where \dx\ is the error, which we hope  is small). This measurement of $x$ may be used to compute some other value; we can think of this latter value as $f(x)$ for some function $f$. As the true length is $x+\dx$, one really should have computed $f(x+\dx)$. The difference between $f(x)$ and $f(x+\dx)$ is the propagated error. 
 
-How close are $f(x)$ and $f(x+\dx)$? This is a difference in ``y'' values; $$f(x+\dx)-f(x) = \dy \approx dy.$$ We can approximate the propagated error using differentials.\\
+How close are $f(x)$ and $f(x+\dx)$? This is a difference in ``y'' values: $$f(x+\dx)-f(x) = \dy \approx dy.$$ We can approximate the propagated error using differentials.\\
 
 \example{ex_diffal4}{Using differentials to approximate propagated error}{
 A steel ball bearing is to be manufactured with a diameter of 2cm. The manufacturing process has a tolerance of $\pm 0.1$mm in the diameter. Given that the density of steel is about 7.85g/cm$^3$, estimate the propagated error in the mass of the ball bearing.}
@@ -164,8 +164,8 @@ We leave it to the reader to confirm this, but if the diameter of the ball was s
 
 We first learned of the derivative in the context of instantaneous rates of change and slopes of tangent lines. We furthered our understanding of the power of the derivative by studying how it relates to the graph of a function (leading to ideas of increasing/decreasing and concavity). This chapter has put the derivative to yet more uses:
 \begin{itemize}
-\item Equation solving (Newton's Method)
-\item	Related Rates (furthering our use of the derivative to find instantaneous rates of change)
+\item Equation solving (Newton's Method),
+\item	Related Rates (furthering our use of the derivative to find instantaneous rates of change),
 \item	Optimization (applied extreme values), and
 \item	Differentials (useful for various approximations and for something called integration).
 \end{itemize}
