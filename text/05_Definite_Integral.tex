@@ -1,6 +1,6 @@
 \section{The Definite Integral}\label{sec:def_int}
 
-We start with an easy problem. An object travels in a straight line at a constant velocity of 5 ft/s for 10 seconds. How far away from its starting point is the object?
+We start with an easy problem. An object travels in a straight line at a constant velocity of 5ft/s for 10 seconds. How far away from its starting point is the object?
 
 We approach this problem with the familiar ``Distance $=$ Rate $\times$ Time'' equation. In this case, Distance = 5ft/s $\times$ 10s $=$ 50 feet.
 
@@ -54,10 +54,10 @@ Recall how in our previous work that the displacement of the object (in this cas
 $$\text{Area } = \frac12\text{Base} \times \text{Height} =\frac12\times 1.5\text{s}\times 48\text{ft/s} = 36\text{ft},$$
 which matches our previous calculation of the maximum height.
 
-%\enlargethispage{3\baselineskip}
+\enlargethispage{\baselineskip}
 \drawexampleline
 %Finally, we find the total \textit{signed} area under the velocity function from $t=0$ to $t=2$ to find the $s(2)$, the height at $t=2$, which is a displacement, the distance from the current position to the starting position. 
-Finally, to find the height of the object at time $t=2$ we calculate the total signed area under the velocity function from $t=0$ to $t=2$. This signed area is equal to $s(2)$, the displacement (i.e., signed distance) from the starting position at $t=0$ to the position at time $t=2$. That is,
+Finally, to find the height of the object at time $t=2$ we calculate the total ``signed area'' (where some area is negative) under the velocity function from $t=0$ to $t=2$. This signed area is equal to $s(2)$, the displacement (i.e., signed distance) from the starting position at $t=0$ to the position at time $t=2$. That is,
 	\begin{center}
 	Displacement = Area above the $t$--axis $-$ Area below $t$--axis.
 	\end{center}
@@ -113,7 +113,7 @@ Consider the function $f$ given in Figure \ref{fig:defint4}.
 		\item		$ \int_0^3 f(x)\ dx$ is the area under $f$ on the interval $[0,3]$. This region is a triangle, so the area is $\int_0^3 f(x)\ dx=\frac12(3)(1) = 1.5$. 
 		\item		$\int_3^5 f(x)\ dx$ represents the area of the triangle found under the $x$--axis on $[3,5]$. The area is $\frac12(2)(1) = 1$; since it is found \textit{under} the $x$--axis, this is ``negative area.'' Therefore $ \int_3^5 f(x)\ dx = -1$.
 		\item		$ \int_0^5f(x)\ dx$ is the total signed area under $f$ on $[0,5]$. This is $1.5 + (-1) = 0.5$.
-		\item		$ \int_0^35f(x)\ dx$ is the area under $5f$ on $[0,3]$. This is sketched in Figure \ref{fig:defint4a}. Again, the region is a triangle, with height 5 times that of the height of the original triangle. Thus the area is $ \int_0^35f(x)\ dx = 15/2 = 7.5.$
+		\item		$ \int_0^35f(x)\ dx$ is the area under $5f$ on $[0,3]$. This is sketched in Figure \ref{fig:defint4a}. Again, the region is a triangle, with height 5 times that of the height of the original triangle. Thus the area is $ \int_0^35f(x)\ dx = \frac12(15)(1) = 7.5.$
 		
 \mfigure{.5}{A graph of $5f$ in Example \ref{ex_defint4}. (Yes, it looks just like the graph of $f$ in Figure \ref{fig:defint4}, just with a different $y$-scale.)}{fig:defint4a}{figures/figdefint4a}		
 		
@@ -155,6 +155,7 @@ Property $(3)$ justifies changing the sign and switching the bounds of integrati
 The conclusion is this: by adopting the convention of Property (3), Property (2) holds no matter the order of $a$, $b$ and $c$. Again, in the next section we will see another justification for this property.
 	\item[4,5.]	Each of these may be non--intuitive. Property (5) states that when one scales a function by, for instance, 7, the area of the enclosed region also is scaled by a factor of 7. Both Properties (4) and (5)  can be proved using geometry. The details are not complicated but are not discussed here.
 \end{enumerate}
+%\vskip\baselineskip
 
 %\enlargethispage{2\baselineskip}%\clearpage
 \example{ex_defint5}{Evaluating definite integrals using Theorem \ref{thm:defintprop}.}
