@@ -333,12 +333,12 @@ A second method is to use Error Analysis. While the details are beyond the scope
 {\begin{enumerate}\index{integration!numerical!Trapezoidal Rule}\index{integration!numerical!Simpson's Rule}
 \index{Trapezoidal Rule!error bounds}\index{Simpson's Rule!error bounds}
 \index{numerical integration!Trapezoidal Rule!error bounds}\index{numerical integration!Simpson's Rule!error bounds}
-\item	Let $E_T$ be the error in approximating $\ds \int_a^b f(x)\ dx$ using the Trapezoidal Rule. 
+\item	Let $E_T$ be the error in approximating $\ds \int_a^b f(x)\ dx$ using the Trapezoidal Rule with $n$ subintervals. 
 
 If $f$ has a continuous 2$^\text{nd}$ derivative on $[a,b]$ and $M$ is any upper bound of $\big|\fpp(x)\big|$ on $[a,b]$, then
 $$\ds E_T \leq \frac{(b-a)^3}{12n^2}M.$$
 
-\item	Let $E_S$ be the error in approximating $\ds \int_a^b f(x)\ dx$ using Simpson's Rule. 
+\item	Let $E_S$ be the error in approximating $\ds \int_a^b f(x)\ dx$ using Simpson's Rule  with $n$ subintervals. 
 
 If $f$ has a continuous 4$^\text{th}$ derivative on $[a,b]$ and $M$ is any upper bound of $\big|f\,^{(4)}\big|$ on $[a,b]$, then
 $$E_S \leq \frac{(b-a)^5}{180n^4}M.$$
@@ -386,7 +386,7 @@ Our error estimation formula states that our approximation of $0.7468\overline{3
 $$0.74683-0.00026 = .74657 \leq \int_0^1e^{-x^2}\ dx \leq 0.74709 = 0.74683 + 0.00026.$$ Once again we affirm the validity of Theorem \ref{thm:numerical_error}.
 }\\
 
-At the beginning of this section we mentioned two main situations where numerical integration was desirable. We have considered the case where an antiderivative of the integrand cannot be computed. We now investigate the situation where the integrand is not known. This is, in fact, the most widely used application of Numerical Integration methods. ``Most of the time'' we observe behavior but do not know ``the'' function that describes it. We instead collect data about the behavior and make approximations based off of this data. We demonstrate this in an example.\\
+At the beginning of this section we mentioned two main situations where numerical integration was desirable. We have considered the case where an antiderivative of the integrand cannot be computed. We now investigate the situation where the integrand is not known. This is, in fact, the most widely used application of Numerical Integration methods. ``Most of the time'' we observe behavior but do not know ``the'' function that describes it. We instead collect data about the behavior and make approximations based on this data. We demonstrate this in an example.\\
 
 \example{ex_num8}{Approximating distance traveled}{
 One of the authors drove his daughter home from school while she recorded their speed every 30 seconds. The data is given in Figure \ref{fig:num8}. Approximate the distance they traveled.}
