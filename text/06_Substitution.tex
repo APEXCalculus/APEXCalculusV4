@@ -137,7 +137,7 @@ Evaluate $\ds \int \frac{1}{x\ln x}\ dx$.}
 
 Choosing $u = 1/x$ makes $du = -1/x^2\ dx$; that does not seem helpful. However, setting $u = \ln x$ makes $du = 1/x\ dx$, which is part of the integrand. Thus:
 \begin{align*}
-	\int \frac1{x\ln x}\ dx 	&=	\int \frac{1}{\underbrace{\ln x}_{1/u}}\underbrace{\frac1x\ dx}_{du} \\
+	\int \frac1{x\ln x}\ dx 	&=	\int \frac{1}{\underbrace{\ln x}_{u}}\underbrace{\frac1x\ dx}_{du} \\
 												&= \int \frac1u\ du \\
 												&= \ln |u| + C \\
 												&= \ln | \ln x| + C.
