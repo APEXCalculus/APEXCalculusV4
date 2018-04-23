@@ -8,7 +8,7 @@ In previous sections we have used integration to answer the following questions:
 	
 In this section, we address a related question: Given a curve, what is its length? This is often referred to as \textbf{arc length}. 
 
-Consider the graph of $y=\sin x$ on $[0,\pi]$ given in Figure \ref{fig:arcintro} (a). How long is this curve? That is, if we were to use a piece of string to exactly match the shape of this curve, how long would the string be?
+Consider the graph of $y=\sin x$ on $[0,\pi]$ given in Figure \ref{fig:arcintro}(a). How long is this curve? That is, if we were to use a piece of string to exactly match the shape of this curve, how long would the string be?
 
 As we have done in the past, we start by approximating; later, we will refine our answer using limits to get an exact solution.
 
@@ -24,7 +24,7 @@ The length of straight--line segments is easy to compute using the Distance Form
 %(c)
 \end{tabular}
 }
-In Figure \ref{fig:arcintro} (b), the curve $y=\sin x$ has been approximated with 4 line segments (the interval $[0,\pi]$ has been divided into 4 equally--lengthed subintervals). It is clear that these four line segments approximate $y=\sin x$ very well on the first and last subinterval, though not so well in the middle. Regardless, the sum of the lengths of the line segments is $3.79$, so we approximate the arc length of $y=\sin x$ on $[0,\pi]$ to be $3.79$. 
+In Figure \ref{fig:arcintro}(b), the curve $y=\sin x$ has been approximated with 4 line segments (the interval $[0,\pi]$ has been divided into 4 equally--lengthed subintervals). It is clear that these four line segments approximate $y=\sin x$ very well on the first and last subinterval, though not so well in the middle. Regardless, the sum of the lengths of the line segments is $3.79$, so we approximate the arc length of $y=\sin x$ on $[0,\pi]$ to be $3.79$. 
 
 %Using 6 evenly spaced subintervals is not too much more work and gives a better approximation. The six lines are shown in Figure \ref{fig:arcintro} (c) and provide an arc length approximation of $3.81$. 
 
@@ -49,13 +49,13 @@ In the above expression factor out a $\dx_i^2$ term:
 			&= \int_a^b\sqrt{1+\fp(x)^2}\ dx.
 \end{align*}
 
-\keyidea{idea:arclength}{Arc Length}
+\theorem{thm:arclength}{Arc Length}
 {Let $f$ be differentiable on an open interval containing $[a,b]$, where $\fp$ is also continuous on $[a,b]$. Then the arc length of $f$ from $x=a$ to $x=b$ is
 \index{integration!arc length}\index{arc length}
 $$L = \int_a^b \sqrt{1+\fp(x)^2}\ dx.$$
 }
 
-As the integrand contains a square root, it is often difficult to use the formula in Key Idea \ref{idea:arclength} to find the length exactly. When exact answers are difficult to come by, we resort to using numerical methods of approximating definite integrals. The following examples will demonstrate this.\\
+As the integrand contains a square root, it is often difficult to use the formula in Theorem \ref{thm:arclength} to find the length exactly. When exact answers are difficult to come by, we resort to using numerical methods of approximating definite integrals. The following examples will demonstrate this.\\
 
 \example{ex_arc1}{Finding arc length}{
 Find the arc length of $f(x) = x^{3/2}$ from $x=0$ to $x=4$. }
