@@ -16,10 +16,18 @@ We use this definition to find the \textbf{force} exerted on a horizontal sheet 
 
 \example{ex_fluid1}{Computing fluid force}{%
 	\begin{enumerate}
-	\item		A cylindrical storage tank has a radius of 2 ft and holds 10 ft of a fluid with a weight--density of 50 lb/ft$^3$. (See Figure \ref{fig:fluid1a}.) What is the force exerted on the base of the cylinder by the fluid?
-	\mfigure{.6}{A cylindrical tank in Example \ref{ex_fluid1}.}{fig:fluid1a}{figures/figfluid1a}
-	\item		A rectangular tank whose base is a 5 ft square has a circular hatch at the bottom with a radius of 2 ft. The tank holds 10 ft of a fluid with a weight--density of 50 lb/ft$^3$. (See Figure \ref{fig:fluid1b}.) What is the force exerted on the hatch by the fluid?
-	\mfigure{.35}{A rectangular tank in Example \ref{ex_fluid1}.}{fig:fluid1b}{figures/figfluid1b}
+	\item		A cylindrical storage tank has a radius of 2 ft and holds 10 ft of a fluid with a weight--density of 50 lb/ft$^3$. (See Figure \ref{fig:fluid1}(a).) What is the force exerted on the base of the cylinder by the fluid?
+	%\mfigure{.6}{A cylindrical tank in Example \ref{ex_fluid1}.}{fig:fluid1a}{figures/figfluid1a}
+	\item		A rectangular tank whose base is a 5 ft square has a circular hatch at the bottom with a radius of 2 ft. The tank holds 10 ft of a fluid with a weight--density of 50 lb/ft$^3$. (See Figure \ref{fig:fluid1}(b).) What is the force exerted on the hatch by the fluid?
+	%\mfigure{.35}{A rectangular tank in Example \ref{ex_fluid1}.}{fig:fluid1b}{figures/figfluid1b}
+	\mtable{.45}{The  cylindrical and rectangular tank in Example \ref{ex_fluid1}.}{fig:fluid1}{%
+	\begin{tabular}{c}
+	\myincludegraphics{figures/figfluid1a}\\
+	(a)\\[10pt]
+	\myincludegraphics{figures/figfluid1b}\\
+	(b)
+	\end{tabular}
+	}
 	\end{enumerate}
 }
 {\begin{enumerate}
@@ -118,7 +126,7 @@ F 		&= 62.4\int_{-1.5}^{1.5} 2(50-y)\sqrt{2.25-y^2}\ dy \\
 			&= 62.4\int_{-1.5}^{1.5} \big(100\sqrt{2.25-y^2} - 2y\sqrt{2.25-y^2}\big)\ dy \\
 			&= 6240\int_{-1.5}^{1.5} \big(\sqrt{2.25-y^2}\big)\ dy - 62.4\int_{-1.5}^{1.5} \big(2y\sqrt{2.25-y^2}\big)\ dy. \\
 \end{align*}			
-The second integral above can be evaluated using Substitution. Let $u=2.25-y^2$ with $du = -2y\,dy$. The new bounds are: $u(-1.5)=0$ and $u(1.5)=0$; the new integral will integrate from $u=0$ to $u=0$, hence the integral is 0.
+The second integral above can be evaluated using substitution. Let $u=2.25-y^2$ with $du = -2y\,dy$. The new bounds are: $u(-1.5)=0$ and $u(1.5)=0$; the new integral will integrate from $u=0$ to $u=0$, hence the integral is 0.
 
 The first integral above finds the area of half a circle of radius 1.5, thus the first integral evaluates to $6240\cdot\pi\cdot1.5^2/2 = 22,054$. Thus the total fluid force on a vertically oriented porthole is $22,054$ lb.
 
