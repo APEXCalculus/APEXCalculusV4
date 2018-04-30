@@ -1,0 +1,15 @@
+\small \raggedright \begin {multicols}{2}
+\thispagestyle {empty}
+\noindent {\Large \bf Chapter 11} \vskip \baselineskip 
+\noindent {\bf Section 11.1} \vskip \baselineskip 
+
+\printanswers {exercises/11_01_exercises}
+\noindent {\bf Section 11.2} \vskip \baselineskip 
+\printanswers {exercises/11_02_exercises}
+\noindent {\bf Section 11.3} \vskip \baselineskip 
+\printanswers {exercises/11_03_exercises}
+\noindent {\bf Section 11.4} \vskip \baselineskip 
+\printanswers {exercises/11_04_exercises}
+\noindent {\bf Section 11.5} \vskip \baselineskip 
+\printanswers {exercises/11_05_exercises}
+\end {multicols}\normalsize 
