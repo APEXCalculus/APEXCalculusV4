@@ -137,7 +137,7 @@ Evaluate $\ds \int \frac{1}{x\ln x}\ dx$.}
 
 Choosing $u = 1/x$ makes $du = -1/x^2\ dx$; that does not seem helpful. However, setting $u = \ln x$ makes $du = 1/x\ dx$, which is part of the integrand. Thus:
 \begin{align*}
-	\int \frac1{x\ln x}\ dx 	&=	\int \frac{1}{\underbrace{\ln x}_{1/u}}\underbrace{\frac1x\ dx}_{du} \\
+	\int \frac1{x\ln x}\ dx 	&=	\int \frac{1}{\underbrace{\ln x}_{u}}\underbrace{\frac1x\ dx}_{du} \\
 												&= \int \frac1u\ du \\
 												&= \ln |u| + C \\
 												&= \ln | \ln x| + C.
@@ -327,15 +327,19 @@ Example \ref{ex_subst14} demonstrates a general technique that can be applied to
 Let's practice using Theorem \ref{thm:int_inverse_trig}.\\
 
 \example{ex_subst15}{Integrating by substitution: inverse trigonometric functions}{Evaluate the given indefinite integrals.
-$$\int \frac{1}{9+x^2}\ dx,\quad \int \frac{1}{x\sqrt{x^2-\frac{1}{100}}}\ dx\quad \text{ and }\quad  \int \frac{1}{\sqrt{5-x^2}}\ dx.$$
+$$1.\ \int \frac{1}{9+x^2}\ dx,\quad 2.\ \int \frac{1}{x\sqrt{x^2-\frac{1}{100}}}\ dx\quad 3.\  \int \frac{1}{\sqrt{5-x^2}}\ dx.$$
 }
 {Each can be answered using a straightforward application of Theorem \ref{thm:int_inverse_trig}.\\
 
+\begin{enumerate}
+	\item 
 $\ds \int \frac{1}{9+x^2}\ dx = \frac13\tan^{-1} \frac x3 + C$, as $a = 3$.\vskip 10pt
 
-$\ds \int  \frac{1}{x\sqrt{x^2-\frac{1}{100}}}\ dx = 10\sec^{-1}10x + C$, as $a = \frac1{10}$.\vskip 10pt
+\item $\ds \int  \frac{1}{x\sqrt{x^2-\frac{1}{100}}}\ dx = 10\sec^{-1}10x + C$, as $a = \frac1{10}$.\vskip 10pt
 
-$\ds \int \frac{1}{\sqrt{5-x^2}} = \sin^{-1}\frac{x}{\sqrt{5}}+C$, as $a = \sqrt{5}$.\\
+\item $\ds \int \frac{1}{\sqrt{5-x^2}} = \sin^{-1}\frac{x}{\sqrt{5}}+C$, as $a = \sqrt{5}$.
+\end{enumerate}
+\vskip -1\baselineskip
 }\\
 
 \enlargethispage{2\baselineskip}

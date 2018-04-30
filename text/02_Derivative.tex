@@ -67,6 +67,9 @@ As $h\to 0$, these secant lines approach the \textit{tangent line}, a line that 
 We have just introduced a number of important concepts that we will flesh out more within this section. First, we formally define two of them.
 
 \definition{def:derivative_at_a_point}{Derivative at a Point}{Let $f$ be a continuous function on an open interval $I$ and let $c$ be in $I$.\index{derivative!at a point} The \sword{derivative of $f$ at $c$}, denoted $\fp(c)$, is $$\lim_{h\to 0}\frac{f(c+h)-f(c)}{h},$$ provided the limit exists. If the limit exists, we say that \sword{$f$ is differentiable at $c$}; if the limit does not exist, then \sword{$f$ is not differentiable at $c$}. If $f$ is differentiable at every point in $I$, then \sword{$f$ is differentiable on $I$}.\index{differentiable}
+%
+%If $f$ is differentiable on $(a,b)$, and the one-sided limits 
+%$$\lim_{h\to0^+}\frac{f(a+h)-f(a)}{h}\quad\text{and}\quad\lim_{h\to0^-}\frac{f(b+h)-f(b)}{h}$$ exist, we say \sword{$f$ is differentiable on $[a,b]$.}
 }
 
 \definition{def:tangent_line}{Tangent Line}{Let $f$ be continuous on an open interval $I$ and differentiable at $c$, for some $c$ in $I$. The line with equation $\ell(x) = \fp(c)(x-c)+f(c)$ is the \textbf{tangent line} to the graph of $f$ at $c$; that is, it is the line through $(c,f(c))$ whose slope is the derivative of $f$ at $c$.\index{tangent line}\index{derivative!tangent line}}
@@ -362,6 +365,67 @@ Since both the left and right hand limits are 0 at $x=\pi/2$, the limit exists a
 }\\
 
 Recall we pseudo--defined a continuous function as one in which we could sketch its graph without lifting our pencil. We can give a pseudo--definition for differentiability as well: it is a continuous function that does not have any ``sharp corners.'' One such sharp corner is shown in Figure \ref{fig:absolutevalue}. Even though the function $f$ in Example \ref{ex_diff_piecewise} is piecewise--defined, the transition is ``smooth'' hence it is differentiable. Note how in the graph of $f$ in Figure \ref{fig:piecewisesinx1} it is difficult to tell when $f$ switches from one piece to the other; there is no ``corner.''
+\clearpage
+
+%\vskip \baselineskip
+\noindent\textbf{\large Differentiablity on Closed Intervals}\\
+
+When we defined the derivative at a point in Definition \ref{def:derivative_at_a_point}, we specified that the interval $I$ over which a function $f$ was defined needed to be an open interval. Open intervals are required so that we can take a limit at any point $c$ in $I$, meaning we want to approach $c$ from both the left and right.
+
+Recall we also required open intervals in Definition \ref{def:continuous} when we defined what it meant for a function to be continuous. Later, we used one-sided limits to extend continuity to closed intervals. We now extend differentiability to closed intervals by again considering one-sided limits.
+
+Our motivation is three-fold. First, we consider ``common sense.'' In Example \ref{ex_deriv1} we found that when $f(x) =  3x^2+5x-7$, $\fp(x) = 6x+5$, and this derivative is defined for all real numbers, hence $f$ is differentiable everywhere. It seems appropriate to also conclude that $f$ is differentiable on closed intervals, like $[0,1]$, as well. After all, $\fp(x)$ is defined at both $x=0$ and $x=1$.
+
+Secondly, consider $f(x) = \sqrt{x}$. The domain of $f$ is $[0,\infty)$. Is $f$ differentiable on its domain -- specifically, is $f$ differentiable at $0$? (We'll consider this in the next example.)
+
+Finally, in later sections, having the derivative defined on closed intervals will prove  useful. One such place is Section \ref{sec:arc_length} where the derivative plays a role in measuring the length of a curve.
+
+After a formal definition of differentiability on a closed interval, we explore the concept in an example.
+
+\definition{def:diff_closed}{Differentiability on a Closed Interval}
+{Let $f$ be continuous on $[a,b]$ and differentiable on $(a,b)$, and let the one-sided limits 
+$$\lim_{h\to0^+}\frac{f(a+h)-f(a)}{h}\quad\text{and}\quad\lim_{h\to0^-}\frac{f(b+h)-f(b)}{h}$$ exist. Then we say \sword{$f$ is differentiable on $[a,b]$.}
+}
+
+For all the functions $f$ \emph{in this text}, we can determine differentiability on $[a,b]$ by considering the limits $\lim_{x\to a^+}\fp(x)$ and $\lim_{x\to b^-}\fp(x)$. This is often easier to evaluate than the limit of the difference quotient.\\
+
+%Given a function $f$ that is differentiable on $(a,b)$, w
+\enlargethispage{2\baselineskip}
+\example{ex_diff_closed1}{Differentiability at an endpoint}
+{Consider $f(x) = \sqrt{x}=x^{1/2}$ and $g(x) = \sqrt{x^3}=x^{3/2}$. The domain of each function is $[0,\infty)$. It can be shown that each is differentiable on $(0,\infty)$; determine the differentiability of each at $x=0$.
+}
+{We start by considering $f$ and take the right-hand limit of the difference quotient:
+\begin{align*}
+\lim_{h\to0^+}\frac{f(a+h)-f(a)}{h} &= \lim_{h\to0^+}\frac{\sqrt{0+h}-\sqrt{0}}h \\
+ &= \lim_{h\to0^+}\frac{\sqrt{h}}h\\
+ &= \lim_{h\to0^+}\frac{1}{h^{1/2}}\ =\ \infty.
+ %&= \infty.
+\end{align*}
+The one-sided limit of the difference quotient does not exist at $x=0$ for $f$; therefore $f$ is differentiable on $(0,\infty)$ and not differentiable on $[0,\infty)$.
+
+We state (without proof) that $\fp(x) = 1/\big(2\sqrt{x}\big)$. Note that $\lim_{x\to0^+}\fp(x) = \infty$; this limit was easier to evaluate than the limit of the difference quotient, though it required us to already know the derivative of $f$.
+
+Now consider $g$:
+\begin{align*}
+\lim_{h\to0^+}\frac{g(a+h)-g(a)}{h} &= \lim_{h\to0^+}\frac{\sqrt{(0+h)^3}-\sqrt{0}}h \\
+ &= \lim_{h\to0^+}\frac{h^{3/2}}h\\
+ &= \lim_{h\to0^+}h^{1/2}\ =\ 0.
+ %&= 0.
+\end{align*}
+As the one-sided limit exists at $x=0$, we conclude $g$ is differentiable on its domain of $[0,\infty)$.
+\mfigure{.6}{A graph of $y=x^{1/2}$ and $y=x^{3/2}$ in Example \ref{ex_diff_closed1}.}{fig:diff_closed1}{figures/figdiff_closed1}
+
+We state (without proof) that $\gp(x) = 3\sqrt{x}/2$. Note that $\lim_{x\to0^+}\gp(x) = 0$; again, this limit is easier to evaluate than the limit of the difference quotient.
+
+
+The two functions are graphed in Figure \ref{fig:diff_closed1}. Note how $f(x) = \sqrt{x}$ seems to ``go vertical'' as $x$ approaches 0, implying the slopes of its tangent lines are growing toward infinity. Also note how the slopes of the tangent lines to $g(x)= \sqrt{x^3}$ approach 0 as $x$ approaches 0.
+}\\
+
+%Sometimes the limits defining the derivative are difficult to evaluate. In later sections, we will learn tools that make finding derivatives easier. Once these rules are learned, we can determine differentiability on an interval more easily.
+%
+%Suppose we want to determine the differentiability
+
+Most calculus textbooks omit this topic and simply avoid specific cases where it could be applied. We choose in this text to not make use of the topic unless it is ``needed.'' Many theorems in later sections require a function $f$ to be differentiable on an \emph{open} interval $I$; we could remove the word ``open'' and just use ``$\ldots$ on an interval $I$,'' but choose to not do so in keeping with the current mathematical tradition. Our first use of  differentiability on closed intervals comes in Chapter \ref{chapter:app_of_int}, where we measure the lengths of curves. \\
 
 This section defined the derivative; in some sense, it answers the question of ``What \textit{is} the derivative?'' The next section addresses the question ``What does the derivative \textit{mean}?''
 

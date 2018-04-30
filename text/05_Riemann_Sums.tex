@@ -2,7 +2,7 @@
 
 In the previous section we defined the definite integral of a function on $[a,b]$ to be the signed area between the curve and the $x$--axis. Some areas were simple to compute; we ended the section with a region whose area was not simple to compute. In this section we develop a technique to find such areas.\index{Riemann Sum}
 
-A fundamental calculus technique is to first answer a given problem with an approximation, then refine that approximation to make it better, then use limits in the refining process to find the exact answer. That is exactly what we will do here.
+A fundamental calculus technique is to first answer a given problem with an approximation, then refine that approximation to make it better, then use limits in the refining process to find the exact answer. That is  what we will do here.
 
 Consider the region given in Figure \ref{fig:rie1a}, which is the area under $y=4x-x^2$ on $[0,4]$. What is the signed area of this region -- i.e., what is $\int_0^4(4x-x^2)\ dx$?
 
@@ -30,29 +30,40 @@ The following example will approximate the value of $\int_0^4 (4x-x^2)\ dx$ usin
 
 \example{ex_rie2}{Using the Left Hand, Right Hand and Midpoint Rules}{
 Approximate the value of $\int_0^4 (4x-x^2)\ dx$ using the Left Hand Rule, the Right Hand Rule, and the Midpoint Rule, using 4 equally spaced subintervals.}
-{We break the interval $[0,4]$ into four subintervals as before. In Figure \ref{fig:rie2a} we see 4 rectangles drawn on $f(x) = 4x-x^2$ using the Left Hand Rule. (The areas of the rectangles are given in each figure.)
+{We break the interval $[0,4]$ into four subintervals as before. In Figure \ref{fig:rie2}(a) we see 4 rectangles drawn on $f(x) = 4x-x^2$ using the Left Hand Rule. (The areas of the rectangles are given in each figure.)
 
-\mfigure{.8}{Approximating $\int_0^4(4x-x^2)\ dx$ using the Left Hand Rule in Example \ref{ex_rie2}.}{fig:rie2a}{figures/figrie2a}
+%\mfigure{.8}{Approximating $\int_0^4(4x-x^2)\ dx$ using the Left Hand Rule in Example \ref{ex_rie2}.}{fig:rie2a}{figures/figrie2a}
+%
+\mtable{.6}{Approximating $\int_0^4(4x-x^2)\ dx$ in Example \ref{ex_rie2}. In (a), the Left Hand Rule is used; in (b), the Right Hand Rule is used; in (c), the Midpoint Rule is used.}{fig:rie2}{
+\begin{tabular}{c}
+\includegraphics{figures/figrie2a}\\
+(a)\\
+\includegraphics{figures/figrie2b}\\
+(b)\\
+\includegraphics{figures/figrie2c}\\
+(c)\\
+\end{tabular}
+}
 
-\noindent Note how in the first subinterval, $[0,1]$, the rectangle has height $f(0)=0$. We add up the areas of each rectangle (height$\times$ width) for our Left Hand Rule approximation:
+%\noindent 
+Note how in the first subinterval, $[0,1]$, the rectangle has height $f(0)=0$. We add up the areas of each rectangle (height$\times$ width) for our Left Hand Rule approximation:
 	\begin{align*} f(0)\cdot 1 + f(1)\cdot 1+ f(2)\cdot 1+f(3)\cdot 1 &=\\
 	0+3+4+3&= 10.
 	\end{align*}
 	
-Figure \ref{fig:rie2b} shows 4 rectangles drawn under $f$ using the Right Hand Rule; note how the $[3,4]$ subinterval has a rectangle of height 0. 
+Figure \ref{fig:rie2}(b) shows 4 rectangles drawn under $f$ using the Right Hand Rule; note how the $[3,4]$ subinterval has a rectangle of height 0. 
 
-\mfigure{.57}{Approximating $\int_0^4(4x-x^2)\ dx$ using the Right Hand Rule in Example \ref{ex_rie2}.}{fig:rie2b}{figures/figrie2b}
+%\mfigure{.57}{Approximating $\int_0^4(4x-x^2)\ dx$ using the Right Hand Rule in Example \ref{ex_rie2}.}{fig:rie2b}{figures/figrie2b}
 
-\noindent In this example, these rectangle seem to be the mirror image of those found in Figure \ref{fig:rie2a}. (This is because of the symmetry of our shaded region.) Our approximation gives the same answer as before, though calculated a different way:
+%\noindent 
+In this example, these rectangle seem to be the mirror image of those found in part (a) of the Figure. This is because of the symmetry of our shaded region. Our approximation gives the same answer as before, though calculated a different way:
 	\begin{align*} f(1)\cdot 1 + f(2)\cdot 1+ f(3)\cdot 1+f(4)\cdot 1 &=\\
 	3+4+3+0&= 10.
 	\end{align*}
 
-Figure \ref{fig:rie2c} shows 4 rectangles drawn under $f$ using the Midpoint Rule.
-
-\mfigure{.35}{Approximating $\int_0^4(4x-x^2)\ dx$ using the Midpoint Rule in Example \ref{ex_rie2}.}{fig:rie2c}{figures/figrie2c}
-
-\noindent This gives an approximation of $\int_0^4(4x-x^2)\ dx$ as:
+Figure \ref{fig:rie2}(c) shows 4 rectangles drawn under $f$ using the Midpoint Rule. 
+%\mfigure{.35}{Approximating $\int_0^4(4x-x^2)\ dx$ using the Midpoint Rule in Example \ref{ex_rie2}.}{fig:rie2c}{figures/figrie2c}
+This gives an approximation of $\int_0^4(4x-x^2)\ dx$ as:
 \begin{align*} f(0.5)\cdot 1 + f(1.5)\cdot 1+ f(2.5)\cdot 1+f(3.5)\cdot 1 &=\\
 	1.75+3.75+3.75+1.75&= 11.
 	\end{align*}
@@ -98,7 +109,7 @@ $$ 1.\ \sum_{i=1}^6 a_i \qquad\qquad\qquad 2.\ \sum_{i=3}^7 (3a_i-4)\qquad\qquad
 						\begin{align*}
 						\sum_{i=1}^4 (a_i)^2 &=	(a_1)^2+(a_2)^2+(a_3)^2+(a_4)^2\\
 																&=	1^2+3^2+5^2+7^2 \\
-																&=	84
+																&=	84.
 						\end{align*}
 \end{enumerate}	
 \vskip-3\baselineskip											
@@ -296,7 +307,7 @@ Summations of rectangles with area $f(c_i)\Delta x_i$ are named after mathematic
 %
 %The \sword{size of the partition}, denoted $||\Delta x||$, is the length of the largest subinterval of the partition.\index{partition}\index{partition!size of}\\
 %
-Let $f$ be defined on a closed interval $[a,b]$ and let $\Delta x$ be a partition of $[a,b]$, \index{Riemann Sum}
+Let $f$ be defined on a closed interval $[a,b]$, let $\Delta x$ be a partition of $[a,b]$ \index{Riemann Sum}
 	%$$a=x_1 < x_2 < \ldots < x_n < x_{n+1}=b.$$
 %Let $\Delta x_i$ denote the length of the $i^\text{ th}$ subinterval $[x_i,x_{i+1}]$ and 
 and let $c_i$ denote any value in the $i^\text{ th}$ subinterval.
@@ -318,7 +329,7 @@ Figure \ref{fig:riedef} shows the approximating rectangles of a Riemann sum of $
 
 \begin{enumerate}
 \item	When the $n$ subintervals have equal length, $\ds \Delta x_i = \Delta x = \frac{b-a}n.$
-\item		The $i^\text{ th}$ term of an equally spaced partition is $x_i = a + (i-1)\Delta x$. (This makes $x_{n+1} = b$.)
+\item		The $i^\text{ th}$ term of an equally spaced partition is $x_i = a + (i-1)\Delta x$. (Thus $x_1=a$ and  $x_{n+1} = b$.)
 \item		The Left Hand Rule summation is: $\ds \sum_{i=1}^n f(x_i)\Delta x$.
 \item		The Right Hand Rule summation is: $\ds \sum_{i=1}^n f(x_{i+1})\Delta x$.
 \item		The Midpoint Rule summation is: $\ds \sum_{i=1}^n f\left(\frac{x_i+x_{i+1}}{2}\right)\Delta x$.
@@ -460,7 +471,7 @@ Recall the definition of a limit as $n\to\infty$:
 		$\ds\lim_{n\to\infty}S_L(n) = K$ if, given any $\epsilon>0$, there exists $N>0$ such that 
 		$$\left|S_L(n)-K\right| < \epsilon \quad \text{when}\quad n\geq N.$$
 
-The following theorem states that we can use any of our three rules to find the exact value of a definite integral $\int_a^b f(x)\ dx$. It also goes two steps further. The theorem states that the height of each rectangle doesn't have to be determined following a specific rule, but could be $f(c_i)$, where $c_i$ is any point in the $i^\text{ th}$ subinterval, as discussed before Riemann Sums where defined in Definition \ref{def:rie_sum}.
+The following theorem states that we can use any of our three rules to find the exact value of a definite integral $\int_a^b f(x)\ dx$. It also goes two steps further. The theorem states that the height of each rectangle doesn't have to be determined following a specific rule, but could be $f(c_i)$, where $c_i$ is any point in the $i^\text{ th}$ subinterval, as discussed before Riemann Sums were defined in Definition \ref{def:rie_sum}.
 
 The theorem goes on to state that the rectangles do not need to be of the same width. Using the notation of Definition \ref{def:partition}, let $\Delta x_i$ denote the length of the $i^\text{ th}$ subinterval in a partition of $[a,b]$ and let $||\Delta x||$ represent the length of the largest subinterval in the partition: that is, $||\Delta x||$ is the largest of all the $\Delta x_i$'s. If $||\Delta x||$ is small, then $[a,b]$ must be partitioned into many subintervals, since all subintervals must have small lengths. ``Taking the limit as $||\Delta x||$ goes to zero'' implies that the number $n$ of subintervals in the partition is growing to infinity, as the largest subinterval length is becoming arbitrarily small. We then interpret the expression 
 $$\lim_{||\Delta x||\to 0}\sum_{i=1}^nf(c_i)\Delta x_i$$
