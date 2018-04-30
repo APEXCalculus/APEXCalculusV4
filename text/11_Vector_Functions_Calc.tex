@@ -5,6 +5,7 @@ The previous section introduced us to a new mathematical object, the vector--val
 \noindent\textbf{\large Limits of Vector--Valued Functions}\\
 
 The initial definition of the limit of a vector--valued function is a bit intimidating, as was the definition of the limit in Definition \ref{def:limit}. The theorem following the definition shows that in practice, taking limits of vector--valued functions is no more difficult than taking limits of real--valued functions.
+\mnote{.65}{\textbf{Note:} we can define one-sided limits in a manner very similar to Definition \ref{def:vvf_limit}.}
 
 \definition{def:vvf_limit}{Limits of Vector--Valued Functions}
 {Let $I$ be an open interval containing $c$, and let $\vec r(t)$ be a vector--valued function defined on $I$, except possibly at $c$. %Let a vector--valued function $\vec r(t)$ be given, defined on an open interval $I$ containing $c$. 
@@ -20,10 +21,10 @@ Theorem \ref{thm:vvf_limit} states that we can compute limits of vector--valued 
 
 \theorem{thm:vvf_limit}{Limits of Vector--Valued Functions}
 {\begin{enumerate}
-	\item Let $\vec r(t) = \la \,f(t),g(t)\,\ra$ be a vector--valued function in $\mathbb{R}^2$ defined on an open interval $I$ containing $c$. Then
+	\item Let $\vec r(t) = \la \,f(t),g(t)\,\ra$ be a vector--valued function in $\mathbb{R}^2$ defined on an open interval $I$ containing $c$, except possibly at $c$. Then
 	\index{vector--valued function!limits}\index{limit!of vector--valued functions}
 	$$\lim_{t\to c} \vec r(t) = \la \lim_{t\to c}f(t)\, , \,\lim_{t\to c} g(t)\ra.$$
-	\item Let $\vec r(t) = \la \,f(t),g(t),h(t)\,\ra$ be a vector--valued function in $\mathbb{R}^3$ defined on an open interval $I$ containing $c$. Then 
+	\item Let $\vec r(t) = \la \,f(t),g(t),h(t)\,\ra$ be a vector--valued function in $\mathbb{R}^3$ defined on an open interval $I$ containing $c$, except possibly at $c$. Then 
 	$$\lim_{t\to c} \vec r(t) = \la \lim_{t\to c}f(t)\, , \,\lim_{t\to c} g(t)\,, \,\lim_{t\to c} h(t)\ra$$
 \end{enumerate}
 }
@@ -49,9 +50,10 @@ Let $\ds\vec r(t) = \la \frac{\sin t}{t},\, t^2-3t+3,\,\cos t\ra.$ Find $\ds \li
 	\item	If $\vec r(t)$ is continuous at all $c$ in $I$, then $\vec r(t)$ is \textbf{continuous on $I$.}
 \end{enumerate}
 }
+\mnote{.65}{\textbf{Note:} Using one-sided limits, we can also define continuity on closed intervals as done before.}
 
 We again have a theorem that lets us evaluate continuity component--wise.
-%\enlargethispage{2\baselineskip}
+\enlargethispage{2\baselineskip}
 
 \theorem{thm:vvf_continuity}{Continuity of Vector--Valued Functions}
 {Let $\vec r(t)$ be a vector--valued function defined on an open interval $I$ containing $c$. Then $\vec r(t)$ is continuous at $c$ if, and only if, each of its component functions is continuous at $c$.
@@ -79,7 +81,7 @@ Consider a vector--valued function $\vec r$ defined on an open interval $I$ cont
 \captionsetup{type=figure}
 \caption{Illustrating displacement, leading to an understanding of the derivative of vector--valued functions.}\label{fig:vvfderiv_intro}
 \end{minipage}
-\enlargethispage{3\baselineskip}
+%\enlargethispage{3\baselineskip}
 \vskip \baselineskip
 
 The \sword{derivative} of a vector--valued function is a measure of the \emph{instantaneous} rate of change, measured by taking the limit as the length of $[t_0,t_1]$ goes to 0. Instead of thinking of an interval as $[t_0,t_1]$, we think of it as $[c,c+h]$ for some value of $h$ (hence the interval has length $h$).  The \emph{average} rate of change is 
@@ -91,11 +93,12 @@ $$\frac{\vec r(c+h)-\vec r(c)}{h}$$ for any value of $h\neq0$. We take the limit
 {Let $\vec r(t)$ be continuous on an open interval $I$ containing $c$.
 \index{vector--valued function!derivatives}\index{derivative!vector--valued functions}
 \begin{enumerate}
-	\item The derivative of $\vec r$ at $t=c$ is
+	\item The \sword{derivative of $\vec r$ at $t=c$} is
 	$$ \vrp (c) = \lim_{h\to 0} \frac{\vec r(c+h) - \vec r(c)}{h}.$$
-	\item	The derivative of $\vec r$ is
+	\item	The \sword{derivative of $\vec r$} is
 	$$ \vrp (t) = \lim_{h\to 0} \frac{\vec r(t+h) - \vec r(t)}{h}.$$
 \end{enumerate}
+%If $\vec r(t)$ i
 \vskip-\baselineskip
 }\\
 
@@ -104,7 +107,9 @@ $$\frac{\vec r(c+h)-\vec r(c)}{h}$$ for any value of $h\neq0$. We take the limit
 
 If a vector--valued function  has a derivative for all $c$ in an open interval $I$, we say that $\vec r(t)$ is \textbf{differentiable} on $I$.
 
+
 Once again we might view this definition as intimidating, but recall that we can evaluate limits component--wise. The following theorem verifies that this means we can compute derivatives component--wise as well, making the task not too difficult.
+\mnote{.85}{\textbf{Note:} again, using one-sided limits, we can define differentiability on closed intervals. We'll make use of this a few times in this chapter.}
 \enlargethispage{2\baselineskip}
 
 \theorem{thm:vvf_deriv}{Derivatives of Vector--Valued Functions}
@@ -300,7 +305,7 @@ This is true of any vector--valued function that has a constant length, that is,
 
 \theorem{thm:vects_of_constant_length}{Vector--Valued Functions of Constant Length% are Orthogonal to their Derivative
 }
-{Let $\vec r(t)$ be a differentiable vector--valued function on an open interval $I$ of constant length. That is, $\norm{\vec r(t)} = c$ for all $t$ in $I$ (equivalently, $\vec r(t)\cdot \vec r(t) = c^2$ for all $t$ in $I$). 
+{Let $\vec r(t)$ be a  vector--valued function of constant length that is differentiable on an open interval $I$. That is, $\norm{\vec r(t)} = c$ for all $t$ in $I$ (equivalently, $\vec r(t)\cdot \vec r(t) = c^2$ for all $t$ in $I$). 
 Then $\vec r(t)\cdot\vrp(t) = 0$ for all $t$ in $I$.\index{vector--valued function!of constant length}
 }\\
 
@@ -314,7 +319,7 @@ We can define antiderivatives and the indefinite integral of vector--valued func
 Instead, we define the definite integral of a vector--valued function in a manner similar to that of Theorem \ref{thm:riemann_sum}, utilizing Riemann sums. 
 \clearpage
 
-\definition{def:vvf_integral}{\parbox[t]{225pt}{Antiderivatives, Indefinite and Definite Integrals of Vector--Valued Functions}}
+\definition{def:vvf_integral}{\parbox[t]{205pt}{Antiderivatives, Indefinite and Definite Integrals of Vector--Valued Functions}}
 {Let $\vec r(t)$ be a continuous vector--valued function on $[a,b]$. An \sword{antiderivative} of $\vec r(t)$ is a function $\vec R(t)$ such that $\vec R'(t) = \vec r(t)$.\\
 
 The set of all antiderivatives of $\vec r(t)$ is the \sword{indefinite integral of $\vec r(t)$}, denoted by 
@@ -335,9 +340,9 @@ The following theorem simplifies the computation of definite integrals; the rest
 
 
 %Indefinite and definite integrals of vector--valued functions are also evaluated component--wise.
-
-\theorem{thm:vvf_integration}{\parbox[t]{225pt}{Indefinite and Definite Integrals of Vector--Valued Functions}}
-{Let $\vec r(t) = \la f(t),g(t)\ra$ be a vector--valued function in $\mathbb{R}^2$.
+%\enlargethispage{2\baselineskip}
+\theorem{thm:vvf_integration}{\parbox[t]{205pt}{Indefinite and Definite Integrals of Vector--Valued Functions}}
+{Let $\vec r(t) = \la f(t),g(t)\ra$ be a vector--valued function in $\mathbb{R}^2$ that are continuous on $[a,b]$.
 \begin{enumerate}
 	\item $\ds \int \vec r(t)\ dt = \la \int f(t)\ dt, \int g(t)\ dt\ra$
 	\item	$\ds \int_a^b \vec r(t)\ dt = \la \int_a^b f(t)\ dt, \int_a^b g(t)\ dt\ra$
@@ -361,11 +366,13 @@ Let $\vec r(t) = \la e^{2t},\sin t\ra$. Evaluate $\ds \int_0^1 \vec r(t) \ dt$.
 }\\
 
 \example{ex_vvfint2}{Solving an initial value problem}{
-Let $\vrp'(t) = \la 2, \cos t, 12t\ra$. Find $\vec r(t)$ where:
-\begin{itemize}
-	\item $\vec r(0) = \la-7,-1,2\ra$ and
-	\item	$\vrp(0) = \la 5,3,0\ra.$
-\end{itemize}
+Let $\vrp'(t) = \la 2, \cos t, 12t\ra$. Find $\vec r(t)$, where 
+%\begin{itemize}
+	%\item 
+	$\vec r(0) = \la-7,-1,2\ra$ and\\ 
+	%\item	
+	$\vrp(0) = \la 5,3,0\ra.$
+%\end{itemize}
 }
 {Knowing $\vrp'(t) = \la 2,\cos t, 12t\ra$, we find $\vrp(t)$ by evaluating the indefinite integral.
 \begin{align*}
@@ -402,6 +409,7 @@ So $\vec r(t) = \la t^2+5t, -\cos t + 3t, 2t^3\ra + \la -7,0,2\ra = \la t^2+5t-7
 }\\
 
 What does the integration of a vector--valued function \emph{mean}? There are many applications, but none as direct as ``the area under the curve'' that we used in understanding the integral of a real--valued function.
+\enlargethispage{2\baselineskip}
 
 A key understanding for us comes from considering the integral of a derivative: $$\int_a^b \vrp(t)\ dt = \vec r(t)\Big|_a^b = \vec r(b)-\vec r(a).$$ Integrating a \emph{rate of change} function gives \emph{displacement}.\index{displacement}
 

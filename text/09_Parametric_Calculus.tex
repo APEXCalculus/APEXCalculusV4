@@ -190,10 +190,11 @@ L &= \int_a^b\sqrt{1+\left(\frac{dy}{dx}\right)^2}\ dx\\
 Note the new bounds (no longer ``$x$'' bounds, but ``$t$'' bounds). They are found by finding $t_1$ and $t_2$ such that $a= f(t_1)$ and $b=f(t_2)$. This formula is important, so we restate it as a theorem.
 
 \theorem{thm:arc_length_parametric}{Arc Length of Parametric Curves}
-{Let $x=f(t)$ and $y=g(t)$ be parametric equations with $\fp$ and $g\primeskip'$ continuous on some open interval $I$ containing $t_1$ and $t_2$ on which the graph traces itself only once. The arc length of the graph, from $t=t_1$ to $t=t_2$, is
+{Let $x=f(t)$ and $y=g(t)$ be parametric equations with $\fp$ and $g\primeskip'$ continuous on $[t_1,t_2]$, on which the graph traces itself only once. The arc length of the graph, from $t=t_1$ to $t=t_2$, is
 \index{parametric equations!arc length}\index{arc length}
 $$L = \int_{t_1}^{t_2} \sqrt{\fp(t)^2+g\primeskip'(t)^2}\ dt.$$
 }
+\mnote{.4}{\textbf{Note:} Theorem \ref{thm:arc_length_parametric} makes use of differentiability on closed intervals, just as was done in Section \ref{sec:arc_length}.}
 
 As before, these integrals are often not easy to compute. We start with a simple example, then give  another where we approximate the solution.\\
 
@@ -226,10 +227,10 @@ Unfortunately, the integrand does not have an antiderivative expressible by elem
 %\enlargethispage{2\baselineskip}
 \noindent\textbf{\large Surface Area of a Solid of Revolution}\\
 
-Related to the formula for finding arc length is the formula for finding surface area. We can adapt the formula found in Key Idea \ref{idea:surface_area} from Section \ref{sec:arc_length} in a similar way as done to produce the formula for arc length done before.
+Related to the formula for finding arc length is the formula for finding surface area. We can adapt the formula found in Theorem \ref{thm:surface_area} from Section \ref{sec:arc_length} in a similar way as done to produce the formula for arc length done before.
 
 %\setboxwidth{100pt}
-\keyidea{idea:surface_area_parametric}{Surface Area of a Solid of Revolution}
+\theorem{thm:surface_area_parametric}{Surface Area of a Solid of Revolution}
 {Consider the graph of the parametric equations $x=f(t)$ and $y=g(t)$, where $\fp$ and $g\primeskip'$ are continuous on an open interval $I$ containing $t_1$ and $t_2$ on which the graph does not cross itself.\index{surface area!solid of revolution}\index{integration!surface area}\index{parametric equations!surface area}
 \begin{enumerate}
 	\item	The surface area of the solid formed by revolving the graph about the $x$-axis is (where $g(t)\geq~0$ on $[t_1,t_2]$):
@@ -244,7 +245,7 @@ Related to the formula for finding arc length is the formula for finding surface
 
 \example{ex_parcalc8}{Surface Area of a Solid of Revolution}{
 Consider the teardrop shape formed by the parametric equations $x=t(t^2-1)$, $y=t^2-1$ as seen in Example \ref{ex_parcalc7}. Find the surface area if this shape is rotated about the $x$-axis, as shown in Figure \ref{fig:parcalc8}.}
-{The teardrop shape is formed between $t=-1$ and $t=1$. Using Key Idea \ref{idea:surface_area_parametric}, we see we need for $g(t)\geq 0$ on $[-1,1]$, and this is not the case. To fix this, we simplify replace $g(t)$ with $-g(t)$, which flips the whole graph about the $x$-axis (and does not change the surface area of the resulting solid). The surface area is: 
+{The teardrop shape is formed between $t=-1$ and $t=1$. Using Theorem \ref{thm:surface_area_parametric}, we see we need for $g(t)\geq 0$ on $[-1,1]$, and this is not the case. To fix this, we simplify replace $g(t)$ with $-g(t)$, which flips the whole graph about the $x$-axis (and does not change the surface area of the resulting solid). The surface area is: 
 \begin{align*}
 \text{Area}\ S &= 2\pi\int_{-1}^1 (1-t^2)\sqrt{(3t^2-1)^2+(2t)^2}\ dt\\
 		&=	2\pi\int_{-1}^1 (1-t^2)\sqrt{9t^4-2t^2+1} \ dt.
