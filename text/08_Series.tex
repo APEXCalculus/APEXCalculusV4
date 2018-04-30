@@ -13,12 +13,12 @@ Let $S_n$ be the sum of the first $n$ terms of the sequence $\{1/2^n\}$. From th
 
 Now consider the following limit: $\ds \lim_{n\to\infty}S_n = \lim_{n\to\infty}\big(1-1/2^n\big) = 1$. This limit can be interpreted as saying something amazing: \emph{the sum of \emph{all} the terms of the sequence $\{1/2^n\}$ is 1.} 
 
-\enlargethispage{\baselineskip}
+\enlargethispage{2\baselineskip}
 
 This example illustrates some interesting concepts that we explore in this section. We begin this exploration with some definitions.
 
-\setboxwidth{50pt}
-\definition{def:series}{Infinite Series, $n^\text{th}$ Partial Sums, Convergence, Divergence}
+%\setboxwidth{50pt}
+\definition{def:series}{\parbox[t]{195pt}{Infinite Series, $n^\text{th}$ Partial Sums, Convergence, Divergence}}
 {Let $\{a_n\}$ be a sequence.
 \begin{enumerate}
 \item		The sum $\ds \sum_{n=1}^\infty a_n$ is an \textbf{infinite series} (or, simply \textbf{series}).
@@ -168,7 +168,7 @@ Like geometric series, one of the nice things about p--series is that they have 
 {A general $p$--series $\ds\sum_{n=1}^\infty \frac{1}{(an+b)^p}$ will converge if, and only if, $p>1$.\index{series!p@$p$-series}\index{p@$p$-series}
 \index{convergence!of p@of $p$-series}\index{divergence!of p@of $p$-series}
 }
-\mnote{.3}{\textbf{Note:} Theorem \ref{thm:pseries} assumes that $an+b\neq 0$ for all $n$. If $an+b=0$ for some $n$, then of course the series does not converge regardless of $p$ as not all of the terms of the sequence are defined.}
+\mnote{.33}{\textbf{Note:} Theorem \ref{thm:pseries} assumes that $an+b\neq 0$ for all $n$. If $an+b=0$ for some $n$, then of course the series does not converge regardless of $p$ as not all of the terms of the sequence are defined.}
 
 \example{ex_series6}{Determining convergence of series}{
 Determine the convergence of the following series.\\
@@ -385,7 +385,7 @@ These concepts are very important and lie at the heart of the next two theorems.
 %\end{enumerate}
 }
 
-\textbf{Important!} This theorem \emph{does not state} that if $\ds \lim_{n\to\infty} a_n = 0$ then $\ds \sum_{n=1}^\infty  a_n $ converges. The standard example of this is the Harmonic Series, as given in Key Idea \ref{idea:famous_series}. The Harmonic Sequence, $\{1/n\}$, converges to 0; the Harmonic Series, $\ds \sum_{n=1}^\infty 1/n$, diverges.
+\textbf{Important!} This theorem \emph{does not state} that if $\ds \lim_{n\to\infty} a_n = 0$ then $\ds \sum_{n=1}^\infty  a_n $ converges. The standard example of this is the Harmonic Series, as given in Key Idea \ref{idea:famous_series}. The Harmonic Sequence, $\{1/n\}$, converges to 0; the Harmonic Series, $\ds \sum_{n=1}^\infty \frac1n$, diverges.
 
 %Note that the two statements in Theorem \ref{thm:series_nth_term} are really the same. In order to converge, the limit of the terms of the sequence must approach 0; if they do not, the series will not converge. 
 

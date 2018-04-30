@@ -135,7 +135,7 @@ Find the area of the circle defined by $r=\cos \theta$. (Recall this circle has 
 Of course, we already knew the area of a circle with radius $1/2$. We did this example to demonstrate that the area formula is correct.
 }\\
 
-\mnote{.7}{\textbf{Note:} Example \ref{ex_polcalc3} requires the use of the integral $\ds\int \cos^2\theta\ d\theta$. This is handled well by using the power reducing formula as found in the back of this text. Due to the nature of the area formula, integrating $\cos^2\theta$ and $\sin^2\theta$ is required often. We offer here these indefinite integrals as a time--saving measure.\\
+\mnote{.7}{\textbf{Note:} Example \ref{ex_polcalc3} requires the use of the integral $\ds\int \cos^2\theta\ d\theta$. This is handled well by using the power reducing formula as found at the end of this text. Due to the nature of the area formula, integrating $\cos^2\theta$ and $\sin^2\theta$ is required often. We offer here these indefinite integrals as a time--saving measure.\\
 $$\int\cos^2\theta\ d\theta = \frac12\theta+\frac14\sin(2\theta)+C$$
 $$\int\sin^2\theta\ d\theta = \frac12\theta-\frac14\sin(2\theta)+C$$
 }
@@ -219,14 +219,14 @@ Now consider the polar function $r=f(\theta)$. We again use the identities $x=f(
 
 The expression $x\primeskip'(\theta)^2+y\primeskip'(\theta)^2$ can be simplified a great deal; we leave this as an exercise and state that $$x\primeskip'(\theta)^2+y\primeskip'(\theta)^2 = \fp(\theta)^2+f(\theta)^2.$$ This leads us to the  arc length formula.
 
-\keyidea{idea:polar_arclength}{Arc Length of Polar Curves}
-{Let  $r=f(\theta)$ be a polar function with $\fp$ continuous on an open interval $I$ containing $[\alpha,\beta]$, on which the graph traces itself only once. The arc length $L$ of the graph on $[\alpha,\beta]$ is
+\theorem{thm:polar_arclength}{Arc Length of Polar Curves}
+{Let  $r=f(\theta)$ be a polar function with $\fp$ continuous on $[\alpha,\beta]$, on which the graph traces itself only once. The arc length $L$ of the graph on $[\alpha,\beta]$ is
 $$L = \int_\alpha^\beta \sqrt{\fp(\theta)^2+f(\theta)^2}\ d\theta = \int_\alpha^\beta\sqrt{(r\,')^2+ r^2}\ d\theta.$$
 }
 
 \example{ex_polcalc7}{Arc length of a lima\c con}{
 Find the arc length of the lima\c con $r=1+2\sin t$.}
-{With $r=1+2\sin t$, we have $r\,' = 2\cos t$. The lima\c con is traced out once on $[0,2\pi]$, giving us our bounds of integration. Applying Key Idea \ref{idea:polar_arclength}, we have
+{With $r=1+2\sin t$, we have $r\,' = 2\cos t$. The lima\c con is traced out once on $[0,2\pi]$, giving us our bounds of integration. Applying Theorem \ref{thm:polar_arclength}, we have
 \begin{align*}
 L 	&= \int_0^{2\pi} \sqrt{(2\cos\theta)^2+(1+2\sin\theta)^2}\ d\theta \\
 		&=	\int_0^{2\pi} \sqrt{4\cos^2\theta+4\sin^2\theta +4\sin\theta+1}\ d\theta\\
@@ -239,10 +239,10 @@ The final integral cannot be solved in terms of elementary functions, so we reso
 
 \noindent\textbf{\large Surface Area}\\
 
-The formula for arc length leads us to a formula for surface area. The following Key Idea is based on Key Idea \ref{idea:surface_area_parametric}.
+The formula for arc length leads us to a formula for surface area. The following Theorem is based on Theorem \ref{thm:surface_area_parametric}.
 
-\keyidea{idea:surface_area_polar}{Surface Area of a Solid of Revolution}
-{Consider the graph of the polar equation $r=f(\theta)$, where $\fp$ is continuous on an open interval containing $[\alpha,\beta]$ on which the graph does not cross itself.
+\theorem{idea:surface_area_polar}{Surface Area of a Solid of Revolution}
+{Consider the graph of the polar equation $r=f(\theta)$, where $\fp$ is continuous on  $[\alpha,\beta]$, on which the graph does not cross itself.
 \index{surface area!solid of revolution}\index{polar!function!surface area}\index{integration!surface area}
 	\begin{enumerate}
 		\item The surface area of the solid formed by revolving the graph about the initial ray ($\theta=0$) is:
@@ -286,7 +286,7 @@ Find the surface area formed by revolving one petal of the rose curve $r=\cos(2\
 (b)\\
 \end{tabular}
 }
-We choose, as implied by the figure, to revolve the portion of the curve that lies on $[0,\pi/4]$ about the initial ray. Using Key Idea \ref{idea:surface_area_polar} and the fact that $\fp(\theta) = -2\sin(2\theta)$, we have
+We choose, as implied by the figure, to revolve the portion of the curve that lies on $[0,\pi/4]$ about the initial ray. Using Theorem \ref{thm:surface_area_polar} and the fact that $\fp(\theta) = -2\sin(2\theta)$, we have
 \begin{align*}
 \text{Surface Area} &= 2\pi\int_0^{\pi/4} \cos(2\theta)\sin(\theta)\sqrt{\big(-2\sin(2\theta)\big)^2+\big(\cos(2\theta)\big)^2}\ d\theta \\
 &\approx 1.36707.

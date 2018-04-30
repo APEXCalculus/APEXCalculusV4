@@ -223,15 +223,21 @@ Let $f$ be a function on $[a,b]$ with $c$ such that $f(c)(b-a) = \int_a^bf(x)\ d
 \end{align*}
 When $f(x)$ is shifted by $-f(c)$, the amount of area under $f$ above the $x$--axis on $[a,b]$ is the same as the amount of area below the $x$--axis above $f$; see Figure \ref{fig:ftc9} for an illustration of this. In this sense, we can say that $f(c)$ is the \textit{average value} of $f$ on $[a,b]$. 
 
-\ifthenelse{\boolean{longpage}}%is longpage
-{% longpage
-\mtable{.5}{On the left, a graph of $y=f(x)$ and the rectangle guaranteed by the Mean Value Theorem. On the right, $y=f(x)$ is shifted down by $f(c)$; the resulting ``area under the curve'' is 0.}{fig:ftc9}
-{\myincludegraphics{figures/figftc9a}\hfill \myincludegraphics{figures/figftc9b}}
-} %end longpage
-{%not longpage
-\mtable{.4}{On top, a graph of $y=f(x)$ and the rectangle guaranteed by the Mean Value Theorem. Below, $y=f(x)$ is shifted down by $f(c)$; the resulting ``area under the curve'' is 0.}{fig:ftc9}
-{\myincludegraphics{figures/figftc9a}\\ \noindent \myincludegraphics{figures/figftc9b}}
-}%end ifthen else
+%\ifthenelse{\boolean{longpage}}%is longpage
+%{% longpage
+%\mtable{.5}{On the left, a graph of $y=f(x)$ and the rectangle guaranteed by the Mean Value Theorem. On the right, $y=f(x)$ is shifted down by $f(c)$; the resulting ``area under the curve'' is 0.}{fig:ftc9}
+%{\myincludegraphics{figures/figftc9a}\hfill \myincludegraphics{figures/figftc9b}}
+%} %end longpage
+%{%not longpage
+\mtable{.4}{In (a), a graph of $y=f(x)$ and the rectangle guaranteed by the Mean Value Theorem. In (b), $y=f(x)$ is shifted down by $f(c)$; the resulting ``area under the curve'' is 0.}{fig:ftc9}
+{\begin{tabular}{c}
+\myincludegraphics{figures/figftc9a}\\ 
+(a)\\
+\myincludegraphics{figures/figftc9b}\\
+(b)
+\end{tabular}
+}
+%}%end ifthen else
 
 The value $f(c)$ is the average value in another sense. First, recognize that the Mean Value Theorem can be rewritten as $$f(c) = \frac{1}{b-a}\int_a^b f(x)\ dx,$$ for some value of $c$ in $[a,b]$. Next, partition the interval $[a,b]$ into $n$ equally spaced subintervals, $a=x_1 < x_2 < \ldots < x_{n+1}=b$ and choose any $c_i$ in $[x_i,x_{i+1}]$. The average of the numbers $f(c_1)$, $f(c_2)$, \ldots, $f(c_n)$ is:
 	$$\frac1n\Big(f(c_1) + f(c_2) + \ldots + f(c_n)\Big) = \frac1n\sum_{i=1}^n f(c_i).$$ Multiply this last expression by 1 in the form of $\frac{(b-a)}{(b-a)}$:
@@ -272,6 +278,6 @@ What was the displacement of the object in Example \ref{ex_ftc10}? We calculate 
 
 This section has laid the groundwork for a lot of great mathematics to follow. The most important lesson is this: definite integrals can be evaluated using antiderivatives. Since the previous section established that definite integrals are the limit of Riemann sums, we can later create Riemann sums to approximate values other than ``area under the curve,'' convert the sums to definite integrals, then evaluate these using the Fundamental Theorem of Calculus. This will allow us to compute the work done by a variable force, the volume of certain solids, the arc length of curves, and more.
 
-The downside is this: generally speaking, computing antiderivatives is much more difficult than computing derivatives. The next chapter is devoted to techniques of finding antiderivatives so that a wide variety of definite integrals can be evaluated. Before that, the next section explores techniques of approximating the value of definite integrals beyond using the Left Hand, Right Hand and Midpoint Rules.
+The downside is this: generally speaking, computing antiderivatives is much more difficult than computing derivatives. The next chapter is devoted to techniques of finding antiderivatives so that a wide variety of definite integrals can be evaluated. Before that, the next section explores techniques of approximating the value of definite integrals beyond using the Left Hand, Right Hand and Midpoint Rules. These techniques are invaluable when antiderivatives cannot be computed, or when the actual function $f$ is unknown and all we know is the value of $f$ at certain $x$-values.
 
 \printexercises{exercises/05_04_exercises}

@@ -1,0 +1,38 @@
+\begin{tikzpicture}
+\begin{axis}[width=\marginparwidth+25pt,%
+tick label style={font=\scriptsize},axis y line=middle,axis x line=middle,name=myplot,axis on top,%
+			%x=.37\marginparwidth,
+			%y=.37\marginparwidth,
+			xtick={1},% 
+%			extra x ticks={.79,1.57,2.36,3.14},
+%			extra x tick labels={$\frac{\pi}4$,$\frac{\pi}2$,$\frac{3\pi}{4}$,$\pi$},
+			ytick={1},
+%			yticklabels={$-0.002$,$0.002$,$0.004$},
+			%minor y tick num=1,
+%			extra y ticks={1.8},%
+%			extra y tick labels={$y$},
+%			minor x tick num=4,
+			ymin=-.2,ymax=1.2,%
+			xmin=-.1,xmax=1.1,%
+]
+
+\addplot [{\colorone},smooth,thick,domain=0:1,samples=25] ({\x^2},{\x^3});
+
+\addplot [{\colortwo},smooth,thick,domain=0:1,samples=25] ({\x^2},{\x});
+
+\draw (axis cs:.25,.7) node {\scriptsize$y=x^{1/2}$};
+\draw (axis cs:.7,.35) node {\scriptsize$y=x^{3/2}$};
+
+\end{axis}
+
+\node [right] at (myplot.right of origin) {\scriptsize $x$};
+\node [above] at (myplot.above origin) {\scriptsize $y$};
+\end{tikzpicture}
+
+
+
+
+
+
+
+
