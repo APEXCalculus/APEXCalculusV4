@@ -31,7 +31,7 @@ The key notion to extract from this example is: by treating $y$ as  constant (it
 
 %\enlargethispage{4\baselineskip}
 \definition{def:partial_derivative}{Partial Derivative}
-{Let $z=f(x,y)$ be a continuous function on an open set $S$ in $\mathbb{R}^2$.
+{Let $z=f(x,y)$ be a continuous function on a set $S$ in $\mathbb{R}^2$.
 \begin{enumerate}
 	\item The \textbf{partial derivative of $f$ with respect to $x$} is:
 	$$f_x(x,y) = \lim_{h\to 0} \frac{f(x+h,y) - f(x,y)}h.$$
@@ -148,7 +148,7 @@ Since the magnitude of $f_x$ is greater than the magnitude of $f_y$ at $(2,1)$, 
 Let $z=f(x,y)$. We have learned to find the partial derivatives $f_x(x,y)$ and $f_y(x,y)$, which are each functions of $x$ and $y$. Therefore we can take partial derivatives of them, each with respect to $x$ and $y$. We define these ``second partials'' along with the notation, give examples, then discuss their meaning.
 
 \definition{def:second_partial}{Second Partial Derivative, Mixed Partial Derivative}
-{Let $z=f(x,y)$ be continuous on an open set $S$.
+{Let $z=f(x,y)$ be continuous on a set $S$.
 \begin{enumerate}
 	\item The \textbf{second partial derivative of $f$ with respect to $x$ then $x$} is $$\frac{\partial}{\partial x}\left(\frac{\partial f}{\px}\right) = \frac{\partial^2 f}{\px^2} = \big(\,f_x\,\big)_x = f_{xx}$$
 
@@ -237,7 +237,7 @@ $\ds f_x(x,y) = e^x\sin(x^2y) + 2xye^x\cos(x^2y)$
 Notice how in each of the three functions in Example \ref{ex_partial6}, $f_{xy} = f_{yx}$. Due to the complexity of the examples, this likely is not a coincidence. The following theorem states that it is not.
 
 \theorem{thm:mixed_partial}{Mixed Partial Derivatives}
-{Let $f$ be defined such that $f_{xy}$ and $f_{yx}$ are continuous on an open set $S$. Then for each point $(x,y)$ in $S$, $f_{xy}(x,y) = f_{yx}(x,y)$.
+{Let $f$ be defined such that $f_{xy}$ and $f_{yx}$ are continuous on a set $S$. Then for each point $(x,y)$ in $S$, $f_{xy}(x,y) = f_{yx}(x,y)$.
 }
 
 Finding $f_{xy}$ and $f_{yx}$ independently and comparing the results provides a convenient way of checking our work.\\
@@ -300,7 +300,7 @@ Thus far we have a visual understanding of $f_x$, $f_y$, and $f_{xy}=f_{yx}$. We
 The concepts underlying partial derivatives can be easily extend to more than two variables. We give some definitions and examples in the case of three variables and trust the reader can extend these definitions to more variables if needed.
 
 \definition{def:partial_multiple}{Partial Derivatives with Three Variables}
-{Let $w=f(x,y,z)$ be a continuous function on an open set $S$ in $\mathbb{R}^3$. 
+{Let $w=f(x,y,z)$ be a continuous function on a set $D$ in $\mathbb{R}^3$. 
 
 The \textbf{partial derivative of $f$ with respect to $x$} is:
 	$$f_x(x,y,z) = \lim_{h\to 0} \frac{f(x+h,y,z)-f(x,y,z)}{h}.$$

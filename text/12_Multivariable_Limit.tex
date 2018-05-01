@@ -35,7 +35,7 @@ The set depicted in Figure \ref{fig:multilimit_intro}(a) is a closed set as it c
 \clearpage
 
 \example{ex_multilimit1}{Determining open/closed, bounded/unbounded}{
-Determine if the domain of the function $f(x,y)=\sqrt{1-\frac{x^2}9-\frac{y^2}4}$ is open, closed, or neither, and if it is bounded.}
+Determine if the domain of the function $f(x,y)=\sqrt{1-x^2/9-y^2/4}$ is open, closed, or neither, and if it is bounded.}
 {This domain of this function was found in Example \ref{ex_multi2} to be $D = \{(x,y)\ |\ \frac{x^2}9+\frac{y^2}4\leq 1\}$, the region \textit{bounded} by the ellipse $\frac{x^2}9+\frac{y^2}4=1$. Since the region includes the boundary (indicated by the use of ``$\leq$''), the set contains all of its boundary points and hence is closed. The region is bounded as a disk of radius 4, centered at the origin, contains $D$.
 }\\
 
@@ -50,14 +50,16 @@ The domain is sketched in Figure \ref{fig:multilimit2}. Note how we can draw an 
 \noindent\textbf{\large Limits}\\
 
 Recall a pseudo--definition of the limit of a function of one variable: ``$\ds \lim_{x\to c}f(x) = L$'' means that if $x$ is ``really close'' to $c$, then $f(x)$ is ``really close'' to $L$. A similar pseudo--definition holds for functions of two variables. We'll say that 
-%\enlargethispage{3\baselineskip}
+\enlargethispage{3\baselineskip}
 
 \begin{center}
 ``$\ds \lim_{(x,y)\to (x_0,y_0)} f(x,y) = L$'' \end{center}
-means ``if the point $(x,y)$ is really close to the point $(x_0,y_0)$, then $f(x,y)$ is really close to $L$.'' 
+means ``if the point $(x,y)$ is really close to the point $(x_0,y_0)$, then $f(x,y)$ is really close to $L$.'' The formal definition is given below.
+\mnote{.33}{\textbf{Note:} %As sets in the plane can be more complicated than simple intervals along the real line, Definition \ref{def:multilimita} contain language about the shape of a set $S$ that is different from our first limit definition. %
+While our first limit definition was defined over an open interval, we now define limits over a set $S$ in the plane (where $S$ does not have to be open). As planar sets can be far more complicated than intervals, our definition adds the restriction ``$\ldots$ where every open disk centered at $P$ contains points in $S$ other than $P$.'' 
+In this text, all sets we'll consider will satisfy this condition and we won't bother to check; it is included in the definition for completeness.}
 
-The formal definition is given below. While our first limit definition was defined over an interval, we now define limits over a set $S$ in the plane. As planar sets can be far more complicated than intervals, our definition adds a restriction to the shape of $S$. In this text, all sets we'll consider will satisfy this condition and we won't bother to check; it is included in the definition for completeness.
-
+%\setboxwidth{40pt}
 \definition{def:multilimita}{Limit of a Function of Two Variables}
 {Let $S$ be a set containing $P=(x_0,y_0)$ where every open disk centered at $P$ contains points in $S$ other than $P$, let $f$ be a function of two variables defined on $S$, except possibly at $P$, and let $L$ be a real number. 
 %Let $f(x,y)$ be a function of two variables and let $(x_0,y_0)$ be a point in the domain of $f$. 
@@ -76,7 +78,7 @@ means that given any $\epsilon>0$, there exists $\delta>0$ such that for all  $(
 
 The concept behind Definition \ref{def:multilimit} is sketched in Figure \ref{fig:multilimitdef}. Given $\epsilon>0$, find $\delta>0$ such that if $(x,y)$ is any point in the open disk centered at $(x_0,y_0)$ in the $x$-$y$ plane with radius $\delta$, then $f(x,y)$ should be within $\epsilon$ of $L$. 
 
-\enlargethispage{3\baselineskip}
+\enlargethispage{1\baselineskip}
 Computing limits using this definition is rather cumbersome. The following theorem allows us to evaluate limits much more easily.
 
 \mfigurethree{width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
@@ -89,8 +91,8 @@ Computing limits using this definition is rather cumbersome. The following theor
 %\mfigure[scale=1.25]{.77}{\textbf{Illustrating the definition of a limit.} The open disk in the $x$-$y$ plane has radius $\delta$. Let $(x,y)$ be any point in this disk; $f(x,y)$ is within $\epsilon$ of $L$.}{fig:multilimitdef}{figures/figmultilimit_def}
 
 
-\setboxwidth{0pt}
-\theorem{thm:multi_limit_algebra}{Basic Limit Properties of Functions of Two Variables}{%\small
+%\setboxwidth{0pt}
+\theorem{thm:multi_limit_algebra}{\parbox[t]{180pt}{Basic Limit Properties of Functions of Two Variables}}{%\small
 Let $b$, $x_0$, $y_0$, $L$ and $K$ be real numbers,  let $n$ be a positive integer, and let $f$ and $g$ be functions with the following limits:
 $$\lim_{(x,y)\to (x_0,y_0)}f(x,y) = L \quad \text{\ and\ } \lim_{(x,y)\to (x_0,y_0)} g(x,y) = K.$$
 The following limits hold.
@@ -157,7 +159,7 @@ Our theorems tell us that we can evaluate most limits quite simply, without worr
 	&= \lim_{x\to 0} \frac{\sin(mx^2)}{x}\cdot\frac1{m+1}.
 	\end{align*}
 	By applying L'H\^opital's Rule, we can show this limit is 0 \emph{except} when $m=-1$, that is, along the line $y=-x$. This line is not in the domain of $f$, so we have found the following fact: along every line $y=mx$ in the domain of $f$, $\ds \lim_{(x,y)\to(0,0)} f(x,y)=0$. %Along this line, $f(x,y)$ is not defined, so it stands to reason that a limit along this line does not exist.
-%\drawexampleline
+\drawexampleline
 	
 	Now consider the limit along the path $y=-\sin x$:
 	\begin{align*}
@@ -168,7 +170,7 @@ Our theorems tell us that we can evaluate most limits quite simply, without worr
 	\begin{align*}
 	 \quad &= \lim_{x\to 0}\frac{\cos\big(-x\sin x\big)(-\sin x-x\cos x)}{1-\cos x} \quad \left(\text{``}= 0/0\text{''}\right)\\
 	&= \lim_{x\to 0}\frac{-\sin\big(-x\sin x\big)(-\sin x-x\cos x)^2+\cos\big(-x\sin x\big)(-2\cos x+x\sin x)}{\sin x}\\
-	&= \text{``-2/0''} \Rightarrow \text{the limit does not exist.}
+	&= \text{``$-2/0$''} \Rightarrow \text{the limit does not exist.}
 	\end{align*}
 	\normalsize
 Step back and consider what we have just discovered. Along any line $y=mx$ in the domain of the $f(x,y)$, the limit is 0. However, along the path $y=-\sin x$, which lies in the domain of  $f(x,y)$ for all $x\neq 0$, the limit does not exist. Since the limit is not the same along every path to $(0,0)$, we say $\ds \lim_{(x,y)\to (0,0)}\frac{\sin(xy)}{x+y}$ does not exist.
@@ -201,12 +203,12 @@ Thus if $\sqrt{(x-0)^2+(y-0)^2}<\delta$ then $|f(x,y)-0|<\epsilon$, which is wha
 Definition \ref{def:continuous} defines what it means for a function of one variable to be continuous. In brief, it meant that the graph of the function did not have breaks, holes, jumps, etc. We define continuity for functions of two variables in a similar way as we did for functions of one variable.
 
 \definition{def:multi_continuous}{Continuous}
-{Let a function $f(x,y)$ be defined on an open disk $B$ containing the point $(x_0,y_0)$. 
+{Let a function $f(x,y)$ be defined on a set $S$ containing the point $(x_0,y_0)$. 
 
 \begin{enumerate}
 	\item $f$ is \textbf{continuous} at $(x_0,y_0)$ if $\ds\lim_{(x,y)\to(x_0,y_0)} f(x,y) = f(x_0,y_0)$.
 	\index{continuous function}\index{multivariable function!continuity}
-	\item	$f$ is \textbf{continuous on $B$} if $f$ is continuous at all points in $B$. If $f$ is continuous at all points in $\mathbb{R}^2$, we say that $f$ is \textbf{continuous everywhere}.
+	\item	$f$ is \textbf{continuous on $S$} if $f$ is continuous at all points in $S$. If $f$ is continuous at all points in $\mathbb{R}^2$, we say that $f$ is \textbf{continuous everywhere}.
 \end{enumerate}
 }
 
@@ -249,16 +251,16 @@ A similar analysis shows that $f$ is continuous at all points in $\mathbb{R}^2$.
 The following theorem is very similar to Theorem \ref{thm:continuity_algebra}, giving us ways to combine continuous functions to create other continuous functions.
 
 \theorem{thm:multi_continuous_prop}{Properties of Continuous Functions}
-{Let $f$ and $g$ be continuous on an open disk $B$, let $c$ be a real number, and let $n$ be a positive integer. The following functions are continuous on $B$.
+{Let $f$ and $g$ be continuous on a set $S$, let $c$ be a real number, and let $n$ be a positive integer. The following functions are continuous on $S$.
 \index{continuous function!properties}\index{multivariable function!continuity}
 		\begin{enumerate}
 		\item		\parbox{80pt}{Sums/Differences:}	$f\pm g$
 		\item		\parbox{80pt}{Constant Multiples:}	$c\cdot f$
 		\item		\parbox{80pt}{Products:}	$f\cdot g$
-		\item		\parbox{80pt}{Quotients:}	$f/g$ \qquad {\small (as longs as $g\neq 0$ on $B$)}
+		\item		\parbox{80pt}{Quotients:}	$f/g$ \qquad {\small (as longs as $g\neq 0$ on $S$)}
 		\item		\parbox{80pt}{Powers:}	$f\,^n$
-		\item		\parbox{80pt}{Roots:}	$\sqrt[n]{f}$ \qquad \parbox[t]{150pt}{\small (if $n$ is even then $f\geq 0$ on $B$; if $n$ is odd, then true for all values of $f$ on $B$.)}
-		\item		\parbox{80pt}{Compositions:}\parbox[t]{185pt}{Adjust the definitions of $f$ and $g$ to: Let $f$ be continuous on $B$, where the range of $f$ on $B$ is $J$, and let $g$ be a single variable function that is continuous on $J$. Then $g\circ f$, i.e., $g(f(x,y))$, is continuous on $B$.}
+		\item		\parbox{80pt}{Roots:}	$\sqrt[n]{f}$ \qquad \parbox[t]{150pt}{\small (if $n$ is even then $f\geq 0$ on $S$; if $n$ is odd, then true for all values of $f$ on $S$.)}
+		\item		\parbox{80pt}{Compositions:}\parbox[t]{185pt}{Adjust the definitions of $f$ and $g$ to: Let $f$ be continuous on $S$, where the range of $f$ on $S$ is $J$, and let $g$ be a single variable function that is continuous on $J$. Then $g\circ f$, i.e., $g(f(x,y))$, is continuous on $S$.}
 		\end{enumerate}
 }
 \enlargethispage{\baselineskip}
@@ -280,11 +282,11 @@ The definitions and theorems given in this section can be extended in a natural 
 \index{multivariable function!limit}\index{limit!of multivariable function}\index{multivariable function!continuity}\index{open ball}
 \\
 
-\item Let $D$ be an open set in $\mathbb{R}^3$ containing $(x_0,y_0,z_0)$, and let $f(x,y,z)$ be a function of three variables defined on $D$, except possibly at  $(x_0,y_0,z_0)$. The \textbf{limit} of $f(x,y,z)$ as $(x,y,z)$ approaches $(x_0,y_0,z_0)$ is $L$, denoted 
+\item Let $D$ be a set in $\mathbb{R}^3$ containing $(x_0,y_0,z_0)$ where every open ball centered at $(x_0,y_0,z_0)$ contains points of $D$ other than $(x_0,y_0,z_0)$, and let $f(x,y,z)$ be a function of three variables defined on $D$, except possibly at  $(x_0,y_0,z_0)$. The \textbf{limit} of $f(x,y,z)$ as $(x,y,z)$ approaches $(x_0,y_0,z_0)$ is $L$, denoted 
 $$\lim_{(x,y,z)\to (x_0,y_0,z_0)} f(x,y,z) = L,$$
-means that given any $\epsilon >0$, there is a $\delta >0$ such that for all  $(x,y,z)\neq(x_0,y_0,z_0)$, if $(x,y,z)$ is in the open ball centered at $(x_0,y_0,z_0)$ with radius $\delta$, then $|f(x,y,z) - L|< \epsilon$.\\
+means that given any $\epsilon >0$, there is a $\delta >0$ such that for all  $(x,y,z)$ in $D$, $(x,y,z)\neq(x_0,y_0,z_0)$, if $(x,y,z)$ is in the open ball centered at $(x_0,y_0,z_0)$ with radius $\delta$, then $|f(x,y,z) - L|< \epsilon$.\\
 
-\item Let $f(x,y,z)$ be defined on an open ball $B$ containing $(x_0,y_0,z_0)$. $f$ is \textbf{continuous} at $(x_0,y_0,z_0)$ if $\ds \lim_{(x,y,z)\to (x_0,y_0,z_0)} f(x,y,z) = f(x_0,y_0,z_0)$.
+\item Let $f(x,y,z)$ be defined on a set $D$ containing $(x_0,y_0,z_0)$. $f$ is \textbf{continuous} at $(x_0,y_0,z_0)$ if $\ds \lim_{(x,y,z)\to (x_0,y_0,z_0)} f(x,y,z) = f(x_0,y_0,z_0)$; if $f$ is continuous at all points in $D$, we say $f$ is \sword{continuous on $D$}.
 \end{enumerate}
 }
 \restoreboxwidth
