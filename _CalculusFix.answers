@@ -10,4 +10,8 @@
 \printanswers {exercises/12_03_exercises}
 \noindent {\bf Section 12.4} \vskip \baselineskip 
 \printanswers {exercises/12_04_exercises}
+\noindent {\bf Section 12.5} \vskip \baselineskip 
+\printanswers {exercises/12_08_exercises}
+\noindent {\bf Section 12.6} \vskip \baselineskip 
+\printanswers {exercises/12_05_exercises}
 \end {multicols}\normalsize 

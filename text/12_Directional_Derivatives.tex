@@ -7,7 +7,7 @@ But what if we didn't move due north or east? What if we needed to move northeas
 We begin with a definition.
 
 \definition{def:direct_deriv}{Directional Derivatives}
-{Let $z=f(x,y)$ be continuous on an open set $S$ and let $\vec u = \la u_1,u_2\ra$ be a unit vector. For all points $(x,y)$, the \textbf{directional derivative of $f$ at $(x,y)$ in the direction of $\vec u$} is
+{Let $z=f(x,y)$ be continuous on a set $S$ and let $\vec u = \la u_1,u_2\ra$ be a unit vector. For all points $(x,y)$, the \textbf{directional derivative of $f$ at $(x,y)$ in the direction of $\vec u$} is
 \index{derivative!directional}\index{directional derivative}
 $$D_{\vec u\,}f(x,y) = \lim_{h\to 0} \frac{f(x+hu_1,y+hu_2) - f(x,y)}h.$$
 }
@@ -18,7 +18,7 @@ The partial derivatives $f_x$ and $f_y$ are defined with similar limits, but onl
 %This definition may look intimidating as it incorporates trigonometric functions inside of a function $f$ inside of a limit. The following theorem allows us to compute directional derivatives without difficulty.
 
 \theorem{thm:direct_deriv1}{Directional Derivatives}
-{Let $z=f(x,y)$ be differentiable on an open set $S$ containing $(x_0,y_0)$, and let $\vec u = \la u_1,u_2\ra$ be a unit vector. The directional derivative of $f$ at $(x_0,y_0)$ in the direction of $\vec u$ is
+{Let $z=f(x,y)$ be differentiable on a set $S$ containing $(x_0,y_0)$, and let $\vec u = \la u_1,u_2\ra$ be a unit vector. The directional derivative of $f$ at $(x_0,y_0)$ in the direction of $\vec u$ is
 \index{derivative!directional}\index{directional derivative}
 $$D_{\vec u\,}f(x_0,y_0)=f_x(x_0,y_0)u_1 + f_y(x_0,y_0)u_2.$$
 }
@@ -62,7 +62,7 @@ The surface is plotted in Figure \ref{fig:direct1}, where the point $P=(1,2)$ is
 As we study directional derivatives, it will help to make an important connection between the unit vector $\vec u = \la u_1,u_2\ra$ that describes the direction and the partial derivatives $f_x$ and $f_y$. We start with a definition and follow this with a Key Idea.
 
 \definition{def:gradient}{Gradient}
-{Let $z=f(x,y)$ be differentiable on an open set $S$ that contains the point $(x_0,y_0)$.
+{Let $z=f(x,y)$ be differentiable on a set $S$ that contains the point $(x_0,y_0)$.
 \index{gradient} 
 \begin{enumerate}
 	\item The \textbf{gradient of $f$} is $\nabla f(x,y) = \la f_x(x,y),f_y(x,y)\ra$.
@@ -70,7 +70,7 @@ As we study directional derivatives, it will help to make an important connectio
 \end{enumerate}
 }
 
-\mnote{.7}{\textbf{Note:} The symbol ``$\nabla$'' is named ``nabla,'' derived from the Greek name of a Jewish harp. Oddly enough, in mathematics the expression $\nabla f$ is pronounced ``del $f$.''}
+\mnote{.68}{\textbf{Note:} The symbol ``$\nabla$'' is named ``nabla,'' derived from the Greek name of a Jewish harp. Oddly enough, in mathematics the expression $\nabla f$ is pronounced ``del $f$.''}
 
 To simplify notation, we often express the gradient as $\nabla f = \la f_x, f_y\ra$. The gradient allows us to compute directional derivatives in terms of a dot product.
 
@@ -118,7 +118,7 @@ We restate these ideas in a theorem, then use them in an example.
 \enlargethispage{4\baselineskip}
 
 \theorem{thm:gradient}{The Gradient and Directional Derivatives}
-{Let $z=f(x,y)$ be differentiable on an open set $S$ with gradient $\nabla f$, let $P=(x_0,y_0)$ be a point in $S$ and let $\vec u$ be a unit vector.
+{Let $z=f(x,y)$ be differentiable on a set $S$ with gradient $\nabla f$, let $P=(x_0,y_0)$ be a point in $S$ and let $\vec u$ be a unit vector.
 \begin{enumerate}
 	\item The maximum value of $D_{\vec u\,}f(x_0,y_0)$ is $\norm{\nabla f(x_0,y_0)}$; the direction of maximal $z$ increase is $\nabla f(x_0,y_0)$.
 	%obtained when the angle between $\nabla f$ and $\vec u$ is 0, i.e.,  the direction of maximal increase is $\nabla f$.
@@ -246,7 +246,7 @@ Thus the water follows the curve $y=x^2/4$ in the $x$-$y$ plane. The surface and
 The concepts of directional derivatives and the gradient are easily extended to three (and more) variables. We combine the concepts behind Definitions \ref{def:direct_deriv} and \ref{def:gradient} and Theorem \ref{thm:direct_deriv1} into one set of definitions.
 
 \definition{def:direct_deriv3}{\parbox[t]{195pt}{Directional Derivatives and Gradient with Three Variables}}
-{Let $w=F(x,y,z)$ be differentiable on an open ball $B$ and let $\vec u $ be a unit vector in $\mathbb{R}^3$.\index{gradient}\index{directional derivative}\index{derivative!directional}
+{Let $w=F(x,y,z)$ be differentiable on a set $D$ and let $\vec u $ be a unit vector in $\mathbb{R}^3$.\index{gradient}\index{directional derivative}\index{derivative!directional}
 \begin{enumerate}
 	\item	The \textbf{gradient} of $F$ is $\nabla F = \la F_x,F_y,F_z\ra$.
 	\item The \textbf{directional derivative of $F$ in the direction of $\vec u$} is $$D_{\vec u\,}F=\nabla F\cdot \vec u.$$
@@ -256,8 +256,8 @@ The concepts of directional derivatives and the gradient are easily extended to 
 The same properties of the gradient given in Theorem \ref{thm:gradient}, when $f$ is a function of two variables, hold for $F$, a function of three variables.
 
 \enlargethispage{2\baselineskip}
-\theorem{thm:gradient3}{\parbox[t]{225pt}{The Gradient and Directional Derivatives with Three Variables}}
-{Let $w=F(x,y,z)$ be differentiable on an open ball $B$, let $\nabla F$ be the gradient of $F$, and let $\vec u$ be a unit vector.\index{gradient}\index{directional derivative}\index{derivative!directional}
+\theorem{thm:gradient3}{\parbox[t]{195pt}{The Gradient and Directional Derivatives with Three Variables}}
+{Let $w=F(x,y,z)$ be differentiable on a set $D$, let $\nabla F$ be the gradient of $F$, and let $\vec u$ be a unit vector.\index{gradient}\index{directional derivative}\index{derivative!directional}
 \begin{enumerate}
 	\item The maximum value of $D_{\vec u\,}F$ is $\norm{\nabla F}$, obtained when the angle between $\nabla F$ and $\vec u$ is 0, i.e.,  the direction of maximal increase is $\nabla F$.
 	\item The minimum value of $D_{\vec u\,}F$ is $-\norm{\nabla F}$, obtained when the angle between $\nabla F$ and $\vec u$ is $\pi$, i.e., the direction of minimal increase is $-\nabla F$.

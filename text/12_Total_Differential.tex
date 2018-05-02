@@ -30,8 +30,8 @@ If the approximation of $\ddz$ by $dz$ is good, then as $dx$ and $dy$ get small,
 {Let $z=f(x,y)$ be defined on a set $S$ containing $(x_0,y_0)$ where $f_x(x_0,y_0)$ and $f_y(x_0,y_0)$ exist. Let $dz$ be the total differential of $z$ at $(x_0,y_0)$, let $\ddz = f(x_0+dx,y_0+dy) - f(x_0,y_0)$, and let $E_x$ and $E_y$ be functions of $dx$ and $dy$  such that 
 $$\ddz = dz + E_xdx + E_ydy.$$
 \begin{enumerate}
-	\item $f$ is \textbf{differentiable at $(x_0,y_0)$} if, given $\epsilon >0$, there is a $\delta >0$ such that if $||\la dx,dy\ra|| < \delta$, then $||\la E_x,E_y\ra|| < \epsilon$. That is, as $dx$ and $dy$ go to 0, so do $E_x$ and $E_y$.
-	\item	$f$ is \textbf{differentiable on $S$} if $f$ is differentiable at every point in $S$. If $f$ is differentiable on $\mathbb{R}^2$, we say that $f$ is \textbf{differentiable everywhere}.
+	\item We say $f$ is \textbf{differentiable at $(x_0,y_0)$} if, given $\epsilon >0$, there is a $\delta >0$ such that if $||\la dx,dy\ra|| < \delta$, then $||\la E_x,E_y\ra|| < \epsilon$. That is, as $dx$ and $dy$ go to 0, so do $E_x$ and $E_y$.
+	\item	We say $f$ is \textbf{differentiable on $S$} if $f$ is differentiable at every point in $S$. If $f$ is differentiable on $\mathbb{R}^2$, we say that $f$ is \textbf{differentiable everywhere}.
 	\index{differentiable}\index{derivative!multivariable differentiability}\index{multivariable function!differentiability}
 \end{enumerate}
 }
@@ -59,13 +59,13 @@ Our intuitive understanding of differentiability of functions $y=f(x)$ of one va
 more tangible way of determining whether a great number of functions are differentiable or not.
 
 \theorem{thm:diff_cont_multi}{\parbox[t]{205pt}{Continuity and Differentiability of Multivariable Functions}}
-{Let $z=f(x,y)$ be defined on an open set $S$ containing $(x_0,y_0)$. 
+{Let $z=f(x,y)$ be defined on a set $S$ containing $(x_0,y_0)$. 
 If $f$ is differentiable at $(x_0,y_0)$, then $f$ is continuous at $(x_0,y_0)$.
 \index{multivariable function!differentiability}\index{multivariable function!continuity}
 }
 
 \theorem{thm:differentiable}{Differentiability of Multivariable Functions}
-{Let $z=f(x,y)$ be defined on an open set $S$ containing $(x_0,y_0)$. 
+{Let $z=f(x,y)$ be defined on a set $S$ containing $(x_0,y_0)$. 
 If $f_x$ and $f_y$ are both continuous on $S$, then $f$ is differentiable on $S$.
 \index{multivariable function!differentiability}
 }
@@ -165,7 +165,7 @@ One could make a chart of small changes in radius and height and find exact chan
 The definition of differentiability for functions of three variables is very similar to that of functions of two variables. We again start with the total differential.
 
 \definition{def:total_differential3}{Total Differential}
-{Let $w=f(x,y,z)$ be continuous on an open set $S$. Let $dx$, $dy$ and $dz$ represent changes in $x$, $y$ and  $z$, respectively. Where the partial derivatives $f_x$, $f_y$ and $f_z$ exist, the \textbf{total differential of $w$} is
+{Let $w=f(x,y,z)$ be continuous on a set $D$. Let $dx$, $dy$ and $dz$ represent changes in $x$, $y$ and  $z$, respectively. Where the partial derivatives $f_x$, $f_y$ and $f_z$ exist, the \textbf{total differential of $w$} is
 \index{total differential}\index{partial derivative!total differential} 
 $$dw = f_x(x,y,z)dx + f_y(x,y,z)dy+f_z(x,y,z)dz.$$
 }
@@ -173,19 +173,19 @@ $$dw = f_x(x,y,z)dx + f_y(x,y,z)dy+f_z(x,y,z)dz.$$
 This differential can be a good approximation of the change in $w$ when $w = f(x,y,z)$ is \textbf{differentiable}.
 
 \definition{def:multi_differentiability3}{Multivariable Differentiability}
-{Let $w=f(x,y,z)$ be defined on an open ball $B$ containing $(x_0,y_0,z_0)$ where $f_x(x_0,y_0,z_0)$, $f_y(x_0,y_0,z_0)$ and $f_z(x_0,y_0,z_0)$ exist. Let $dw$ be the total differential of $w$ at $(x_0,y_0,z_0)$, let $\Delta w = f(x_0+dx,y_0+dy,z_0+dz) - f(x_0,y_0,z_0)$, and let $E_x$, $E_y$ and $E_z$ be functions of $dx$, $dy$ and $dz$  such that
+{Let $w=f(x,y,z)$ be defined on a set $D$ containing $(x_0,y_0,z_0)$ where $f_x(x_0,y_0,z_0)$, $f_y(x_0,y_0,z_0)$ and $f_z(x_0,y_0,z_0)$ exist. Let $dw$ be the total differential of $w$ at $(x_0,y_0,z_0)$, let $\Delta w = f(x_0+dx,y_0+dy,z_0+dz) - f(x_0,y_0,z_0)$, and let $E_x$, $E_y$ and $E_z$ be functions of $dx$, $dy$ and $dz$  such that
 \index{differentiable}\index{derivative!multivariable differentiability}\index{multivariable function!differentiability}
 $$\Delta w = dw + E_xdx + E_ydy + E_zdz.$$
 \begin{enumerate}
-	\item $f$ is \textbf{differentiable at $(x_0,y_0,z_0)$} if, given $\epsilon >0$, there is a $\delta >0$ such that if $||\la dx,dy,dz\ra|| < \delta$, then $||\la E_x,E_y,E_z\ra|| < \epsilon$. 
-	\item	$f$ is \textbf{differentiable on $B$} if $f$ is differentiable at every point in $B$. If $f$ is differentiable on $\mathbb{R}^3$, we say that $f$ is \textbf{differentiable everywhere}.
+	\item We say $f$ is \textbf{differentiable at $(x_0,y_0,z_0)$} if, given $\epsilon >0$, there is a $\delta >0$ such that if $||\la dx,dy,dz\ra|| < \delta$, then $||\la E_x,E_y,E_z\ra|| < \epsilon$. 
+	\item	We say $f$ is \textbf{differentiable on $B$} if $f$ is differentiable at every point in $B$. If $f$ is differentiable on $\mathbb{R}^3$, we say that $f$ is \textbf{differentiable everywhere}.
 \end{enumerate}
 }
 
 Just as before, this definition gives a rigorous statement about what it means to be differentiable that is not very intuitive. We follow it with a theorem similar to Theorem \ref{thm:differentiable}.
 
 \theorem{thm:differentiable3}{\parbox[t]{215pt}{Continuity and Differentiability of Functions of Three Variables}}
-{Let $w=f(x,y,z)$ be defined on an open ball $B$ containing $(x_0,y_0,z_0)$. 
+{Let $w=f(x,y,z)$ be defined on a set $D$ containing $(x_0,y_0,z_0)$. 
 \begin{enumerate}
 \item	If $f$ is differentiable at $(x_0,y_0,z_0)$, then $f$ is continuous at $(x_0,y_0,z_0)$.
 \item If $f_x$, $f_y$  and $f_z$ are continuous on $B$, then $f$ is differentiable on $B$.
