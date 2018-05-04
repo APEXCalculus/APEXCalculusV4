@@ -18,7 +18,7 @@ In Figure \ref{fig:space_tangent_intro} we see lines that are tangent to curves 
 \setboxwidth{10pt}
 \noindent\hskip-10pt\begin{minipage}{\specialboxlength}
 \definition{def:directional_tangent_line}{Directional Tangent Line}
-{Let $z=f(x,y)$ be differentiable on an open set $S$ containing $(x_0,y_0)$ and let $\vec u = \la u_1, u_2\ra$ be a unit vector.
+{Let $z=f(x,y)$ be differentiable on a set $S$ containing $(x_0,y_0)$ and let $\vec u = \la u_1, u_2\ra$ be a unit vector.
 \index{tangent line!directional}
 \begin{enumerate}
 	\item The line $\ell_x$ through $\big(x_0,y_0,f(x_0,y_0)\big)$ parallel to $\la 1,0,f_x(x_0,y_0)\ra$	is the \textbf{tangent line to $f$ in the direction of $x$ at $(x_0,y_0)$}.
@@ -41,8 +41,8 @@ It is instructive to consider each of three directions given in the definition i
 %Note how the tangent line in the direction of $x$ has a constant $y$-value and only the $x$- and $z$-values change. 
 Definition \ref{def:directional_tangent_line} leads to the following parametric equations of directional tangent lines:
 
-\noindent\hskip -120pt 
-\begin{minipage}{1.2\linewidth}
+%\noindent\hskip -120pt 
+\noindent\begin{minipage}{1.2\linewidth}
 $$\ell_x(t) = \left\{\begin{array}{l} x=x_0+t \\ y=y_0\\z=z_0+f_x(x_0,y_0)t \end{array}\right. \ \text{,}\quad \ell_y(t)=\left\{\begin{array}{l} x=x_0 \\ y=y_0+t\\z=z_0+f_y(x_0,y_0)t \end{array}\right.\  \text{and}\quad \ell_{\vec u}(t)=\left\{\begin{array}{l} x=x_0+u_1t \\ y=y_0+u_2t\\z=z_0+D_{\vec u\,}f(x_0,y_0)t \end{array}\right..$$
 \end{minipage}\\
 
@@ -123,7 +123,7 @@ It is often more convenient to refer to the opposite of this direction, namely $
 %\enlargethispage{3\baselineskip}
 
 \definition{def:normal_line_space}{Normal Line}
-{Let $z=f(x,y)$ be differentiable on an open set $S$ containing $(x_0,y_0)$ where
+{Let $z=f(x,y)$ be differentiable on a set $S$ containing $(x_0,y_0)$ where
 $$a = f_x(x_0,y_0) \quad \text{and}\quad b=f_y(x_0,y_0)$$
 are defined.\index{normal line}\index{orthogonal}
 
@@ -137,6 +137,7 @@ are defined.\index{normal line}\index{orthogonal}
 Thus the parametric equations of the normal line to a surface $f$ at $\big(x_0,y_0,f(x_0,y_0)\big)$ is:
 $$\ell_{n}(t) = \left\{\begin{array}{l} x= x_0+at\\ y = y_0 + bt \\ z = f(x_0,y_0) - t\end{array}\right..$$
 \vskip\baselineskip
+\enlargethispage{2\baselineskip}
 
 \example{ex_tpl3}{Finding a normal line}{
 Find the equation of the normal line to $z=-x^2-y^2+2$ at $(0,1)$.
@@ -217,7 +218,7 @@ The surface is graphed along with points $P$, $Q_1$, $Q_2$ and a portion of the 
 We can use the direction of the normal line to define a plane. With $a=f_x(x_0,y_0)$, $b=f_y(x_0,y_0)$ and $P = \big(x_0,y_0,f(x_0,y_0)\big)$, the vector $\vec n=\la a,b,-1\ra$ is orthogonal to $f$ at $P$. The plane through $P$ with normal vector $\vec n$ is therefore \textbf{tangent} to $f$ at $P$.
 
 \definition{def:tangent_plane}{Tangent Plane}
-{Let $z=f(x,y)$ be differentiable on an open set $S$ containing $(x_0,y_0)$, where
+{Let $z=f(x,y)$ be differentiable on a set $S$ containing $(x_0,y_0)$, where
 $a = f_x(x_0,y_0)$, $b=f_y(x_0,y_0)$, $\vec n= \la a,b,-1\ra$ and $P=\big(x_0,y_0,f(x_0,y_0)\big)$.\\
 
 The plane through $P$ with normal vector $\vec n$ is the \textbf{tangent plane to $f$ at $P$}. The standard form of this plane is 
@@ -237,7 +238,7 @@ $$-2(y-1)-(z-1)=0.$$
 3Dc2c=0.6500301957130432 0.6791614890098572 0.3408818244934082,
 3Dcoo=-2.8726136684417725 0.033301327377557755 9.961321830749512,
 3Droo=200.99997428361934,
-3Dlights=Headlamp,add3Djscript=asylabels.js}{}{.6}{Graphing a surface with  tangent plane from Example \ref{ex_tpl6}.}{fig:tpl6}{figures/figtpl6}
+3Dlights=Headlamp,add3Djscript=asylabels.js}{}{.65}{Graphing a surface with  tangent plane from Example \ref{ex_tpl6}.}{fig:tpl6}{figures/figtpl6}
 %\mfigure[scale=1.5,trim=6mm 0mm 5mm 0mm,clip]{.8}{Graphing a surface with  tangent plane from Example \ref{ex_tpl6}.}{fig:tpl6}{figures/figtpl6}
 
 The surface $z=-x^2-y^2+2$ and tangent plane are graphed in Figure \ref{fig:tpl6}. 
@@ -260,7 +261,7 @@ Thus the ``new $z$-value'' is the sum of the change in $z$ (i.e., $dz$) and the 
 The methods developed in this section so far give a straightforward method of finding equations of normal lines and tangent planes for surfaces with explicit equations of the form $z=f(x,y)$. However, they do not handle implicit equations well, such as $x^2+y^2+z^2=1$. There is a technique that allows us to find vectors orthogonal to these surfaces based on the \textbf{gradient}.
 
 \definition{def:gradient3}{Gradient}
-{Let $w=F(x,y,z)$ be differentiable on an open ball $B$ that contains the point $(x_0,y_0,z_0)$.
+{Let $w=F(x,y,z)$ be differentiable on a set $D$ that contains the point $(x_0,y_0,z_0)$.
 \index{gradient} 
 \begin{enumerate}
 	\item The \textbf{gradient of $F$} is $\nabla F(x,y,z) = \la f_x(x,y,z),f_y(x,y,z),f_z(x,y,z)\ra$.
@@ -272,7 +273,7 @@ The methods developed in this section so far give a straightforward method of fi
 Recall that when $z=f(x,y)$, the gradient $\nabla f = \la f_x,f_y\ra$ is orthogonal to level curves of $f$. An analogous statement can be made about the gradient $\nabla F$, where $w= F(x,y,z)$. Given a point $(x_0,y_0,z_0)$, let $c = F(x_0,y_0,z_0)$. Then $F(x,y,z) = c$ is a \textbf{level surface} that contains the point $(x_0,y_0,z_0)$. The following theorem states that $\nabla F(x_0,y_0,z_0)$ is orthogonal to this level surface.
 
 \theorem{thm:gradient4}{The Gradient and Level Surfaces}
-{Let $w=F(x,y,z)$ be differentiable on an open ball $B$ containing $(x_0,y_0,z_0)$ with gradient $\nabla F$, where $F(x_0,y_0,z_0) = c$. \\
+{Let $w=F(x,y,z)$ be differentiable on a set $D$ containing $(x_0,y_0,z_0)$ with gradient $\nabla F$, where $F(x_0,y_0,z_0) = c$. \\
 
 The vector $\nabla F(x_0,y_0,z_0)$ is orthogonal to the level surface $F(x,y,z)=c$ at $(x_0,y_0,z_0)$.
 \index{gradient!and level surfaces}\index{level surface}
@@ -295,7 +296,7 @@ $$\frac 16(x-1) + \frac23(y-2) + \frac 12(z-1) = 0.$$
 3Dc2c=0.721064031124115 0.6547372937202454 0.22668422758579254,
 3Dcoo=-2.872609853744507 0.03330020606517792 9.961324691772461,
 3Droo=200.99997078585088,
-3Dlights=Headlamp,add3Djscript=asylabels.js}{}{.6}{An ellipsoid and its tangent plane at a point.}{fig:tpl8}{figures/figtpl8}
+3Dlights=Headlamp,add3Djscript=asylabels.js}{}{.73}{An ellipsoid and its tangent plane at a point.}{fig:tpl8}{figures/figtpl8}
 %\mfigure[scale=1.5,trim= 6mm 5mm 2mm 0mm,clip]{.8}{An ellipsoid and its tangent plane at a point.}{fig:tpl8}{figures/figtpl8}
 The ellipsoid and tangent plane are graphed in Figure \ref{fig:tpl8}.
 }\\
