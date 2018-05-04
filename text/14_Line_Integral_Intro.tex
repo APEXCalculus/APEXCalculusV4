@@ -67,10 +67,10 @@ In Figure \ref{fig:lineint0}(c), four rectangles have been drawn over the curve 
 
 As we know how to find the area of each rectangle, we are able to approximate the area above $C$ and under $f$. Clearly, our approximation will be \textit{an approximation}. The heights of the rectangles do not match exactly with the surface $f$, nor does the base of each rectangle follow perfectly the path of $C$.
 
-In typical calculus fashion, our approximation can be improved by using more rectangles. The sum of the areas of these rectangles gives an approximate value of the true area above $C$ and under $f$. As the area of each rectangle is ``height$\times$width'', we assert that the
+In typical calculus fashion, our approximation can be improved by using more rectangles. The sum of the areas of these rectangles gives an approximate value of the true area above $C$ and under $f$. As the area of each rectangle is ``height $\times$ width'', we assert that the
 $$\text{area above $C$}\approx \sum (\text{heights}\times\text{widths}).$$
 
-When first learning of the integral, and approximating areas with ``heights$\times$ widths'', the width was a small change in $x$: $dx$. That will not suffice in this context. Rather, each width of a rectangle is actually approximating the arc length of a small portion of $C$. In Section \ref{sec:curvature}, we used $s$ to represent the arc--length parameter of a curve. A small amount of arc length will thus be represented by $ds$. 
+When first learning of the integral, and approximating areas with ``heights $\times$ widths'', the width was a small change in $x$: $dx$. That will not suffice in this context. Rather, each width of a rectangle is actually approximating the arc length of a small portion of $C$. In Section \ref{sec:curvature}, we used $s$ to represent the arc--length parameter of a curve. A small amount of arc length will thus be represented by $ds$. 
 
 The height of each rectangle will be determined in some way by the surface $f$. If we parametrize $C$ by $s$, an $s$-value corresponds to an $(x,y)$ pair that lies on the parabola $C$. Since $f$ is a function of $x$ and $y$, and $x$ and $y$ are functions of $s$, we can say that $f$ is a function of $s$. Given a value $s$, we can compute $f(s)$ and find a height. Thus
 \begin{align}
@@ -114,19 +114,19 @@ By the Fundamental Theorem of Calculus, $ds = \norm{\vec r\,'(t)}\ dt$. We can s
 We can view $f$ as being a function of $x$ and $y$ since it is a function of $s$. Thus $f(s) =f(x,y) =f\big(g(t),h(t)\big)$. This gives us a concrete way to evaluate a line integral:
 $$\int_C f(s)\ ds = \int_a^bf\big(g(t),h(t)\big)\norm{\vec r\,'(t)}\ dt.$$
 
-We write this as a Key Idea, along with its three--dimensional analogue, followed by an example where we finally evaluate an integral and find an area.
+We restate this as a theorem, along with its three--dimensional analogue, followed by an example where we finally evaluate an integral and find an area.
 
-\keyidea{idea:line1}{Evaluating a Line Integral Over A Scalar Field}
+\theorem{thm:line1}{Evaluating a Line Integral Over A Scalar Field}
 {\begin{itemize}
-	\item Let $C$ be a curve parametrized by $\vrt =\langle g(t), h(t)\rangle$, $a\leq t\leq b$, where $g$ and $h$ are continuously differentiable, and let $z=f(x,y)$. Then\index{line integral!over scalar field}%
+	\item Let $C$ be a curve parametrized by $\vrt =\langle g(t), h(t)\rangle$, $a\leq t\leq b$, where $g$ and $h$ are continuously differentiable, and let $z=f(x,y)$, where $f$ is defined over $\vec r$. Then\index{line integral!over scalar field}%
 	$$\int_Cf(s)\ ds = \int_a^bf\big(g(t),h(t)\big)\norm{\vec r\,'(t)}\ dt.$$
-	\item Let $C$ be a curve parametrized by $\vrt =\langle g(t), h(t),k(t)\rangle$, $a\leq t\leq b$, where $g$, $h$ and $k$ are continuously differentiable, and let $w=f(x,y,z)$. Then
+	\item Let $C$ be a curve parametrized by $\vrt =\langle g(t), h(t),k(t)\rangle$, $a\leq t\leq b$, where $g$, $h$ and $k$ are continuously differentiable, and let $w=f(x,y,z)$, where $f$ is defined over $\vec r$. Then
 	$$\int_Cf(s)\ ds = \int_a^bf\big(g(t),h(t),k(t)\big)\norm{\vec r\,'(t)}\ dt.$$
 \end{itemize}
 }
 
 %\mnote{.8}{\textbf{Notation:} We often write $f\big(\vec r(t)\big)$ to represent $f\big(g(t),h(t)\big)$ or $f\big(g(t),h(t),k(t)\big)$. As the input of $f$ are points, it is an abuse of notation to use a vector, $\vec r(t)$, as $f$\,'s input. As this notation is concise and intuitive, this notational abuse is common practice and used extensively in subsequent sections.} Removed as already explained in 14.3
-To be clear, the first point of Key Idea \ref{idea:line1} can be used to find the area under a surface $z=f(x,y)$ and above a curve $C$. We will later give an understanding of the line integral when $C$ is a curve in space.
+To be clear, the first point of Theorem \ref{thm:line1} can be used to find the area under a surface $z=f(x,y)$ and above a curve $C$. We will later give an understanding of the line integral when $C$ is a curve in space.
 
 Let's do an example where we actually compute an area.\\
 
