@@ -163,10 +163,13 @@ To find the bounds on $y$ and $x$, we ``collapse'' the region onto the $x$-$y$ p
 \end{tabular}
 }
 
+\enlargethispage{2\baselineskip}
 We define that region $R$, in the integration order of $dy\ dx$, with bounds $0\leq y\leq 6-2x$ and $0\leq x\leq 3$. Thus the volume $V$ of the region $D$ is:
 \begin{align*}
 V &= \iiint_D \ dV\\
-		&= \int_0^3\int_0^{6-2x}\int_0^{2-\frac 13y-\frac 23x}\ dz\ dy\ dx \\
+		&= \int_0^3\int_0^{6-2x}\int_0^{2-\frac 13y-\frac 23x}\ dz\ dy\ dx %\\
+		\end{align*}
+		\begin{align*}
 		&= \int_0^3\int_0^{6-2x}\left(\int_0^{2-\frac 13y-\frac 23x}\ dz\right)\ dy\ dx \\
 		&=\int_0^3\int_0^{6-2x}z\Big|_0^{2-\frac 13y-\frac 23x}\ dy\ dx \\
 		&= \int_0^3\int_0^{6-2x}\left(2-\frac 13y-\frac 23x\right)\ dy\ dx.
@@ -219,7 +222,8 @@ $$\\
 (b)
 \end{tabular}
 }
-\drawexampleline
+%\drawexampleline
+
 The $x$-bounds are the same as the order above. We now consider the triangle in Figure \ref{fig:trip2b}(a) and describe it with the order $dz\ dy$: $0\leq z\leq 2-y/3$ and $0\leq y\leq 6$. Thus the volume is given by:
 $$\begin{array}{cc}
 		\begin{array}{c}
@@ -269,7 +273,7 @@ In the previous example, we collapsed the surface into the $x$-$y$, $x$-$z$, and
 
 The following example shows us how to do this when dealing with more complicated surfaces and curves.\\
 
-\example{ex_trip2b}{Finding the projection of a curve in space onto the coordinate planes}{
+\example{ex_trip2b}{\parbox[t]{215pt}{Finding the projection of a curve in space onto the coordinate planes}}{
 Consider the surfaces $z=3-x^2-y^2$ and $z=2y$, as shown in Figure \ref{fig:trip2bb}(a). The curve of their intersection is shown, along with the projection of this curve into the coordinate planes, shown dashed. Find the equations of the projections into the coordinate planes.}
 {The two surfaces are $z=3-x^2-y^2$ and $z=2y$. To find where they intersect, it is natural to set them equal to each other: $3-x^2-y^2=2y$. This is an implicit function of $x$ and $y$ that gives all points $(x,y)$ in the $x$-$y$ plane where the $z$ values of the two surfaces are equal. 
 
@@ -315,6 +319,7 @@ All three projections are shown in Figure \ref{fig:trip2bb}(b).
 
 \example{ex_trip3}{Finding the volume of a space region with triple integration}{
 Set up the triple integrals that find the volume of the space region $D$ bounded by the surfaces $x^2+y^2=1$, $z=0$ and $z=-y$, as shown in Figure \ref{fig:trip3}(a), with the orders of integration $dz\ dy\ dx$, $dy\ dx\ dz$ and $dx\ dz\ dy$.
+
 \mtable{.6}{The region $D$ in Example \ref{ex_trip3} is shown in (a); in (b), it is collapsed onto the $x$-$y$ plane.}{fig:trip3}{%
 \begin{tabular}{c}
 \myincludegraphicsthree{width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
@@ -361,7 +366,7 @@ We evaluate this triple integral:
 				&= \left.\left(\frac12\left(x-\frac13x^3\right)\right)\right|_{-1}^1\\
 				&= \frac23\text{units}^3.
 \end{align*}\\
-\clearpage
+%\clearpage
 \noindent With the order $dy\ dx\ dz$:\\
 
 The region is bounded ``below'' in the $y$-direction by the surface $x^2+y^2=1 \Rightarrow y=-\sqrt{1-x^2}$ and ``above'' by the surface $y=-z$. Thus the $y$ bounds are $-\sqrt{1-x^2}\leq y\leq -z$.
@@ -582,6 +587,7 @@ We give one more example of finding the volume of a space region.\\
 
 \example{ex_trip5}{Finding the volume of a space region}{
 Set up a triple integral that gives the volume of the space region $D$ bounded by $z= 2x^2+2$ and $z=6-2x^2-y^2$. These surfaces are plotted in Figure \ref{fig:trip5}(a) and (b), respectively; the region $D$ is shown in part (c) of the figure.
+
 \mtable{.5}{The region $D$ is bounded by the surfaces shown in (a) and (b); $D$ is shown in (c). }{fig:trip5}{%
 \begin{tabular}{c}
 \myincludegraphicsthree{width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
@@ -671,6 +677,13 @@ $$\begin{array}{cc}
 		\ds \Rightarrow \int_{-1}^1\int_{2x^2+2}^{6-2x^2}\int_{-\sqrt{6-2x^2-z}}^{\sqrt{6-2x^2-z}}\ dy\ dz\ dx. 
 	\end{array}
 $$\\
+
+
+
+\noindent The order $dx\ dz\ dy$:\\
+
+This order takes more effort as $D$ must be split into two subregions. The two surfaces create two sets of upper/lower bounds in terms of $x$; the cylinder creates bounds $$-\sqrt{z/2-1}\leq x\leq \sqrt{z/2-1}$$ for region $D_1$  and the paraboloid creates bounds $$-\sqrt{3-y^2/2-z^2/2}\leq x\leq \sqrt{3-y^2/2-z^2/2}$$ for region $D_2$.
+
 \mtable{.6}{The region $D$ in Example \ref{ex_trip5} is collapsed onto the $x$-$z$ plane in (a); in (b), it is collapsed onto the $y$-$z$ plane.}{fig:trip5b}{%
 \begin{tabular}{c}
 \myincludegraphicsthree{width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
@@ -694,15 +707,12 @@ $$\\
 \end{tabular}
 }
 
-\noindent The order $dx\ dz\ dy$:\\
-
-This order takes more effort as $D$ must be split into two subregions. The two surfaces create two sets of upper/lower bounds in terms of $x$; the cylinder creates bounds $$-\sqrt{z/2-1}\leq x\leq \sqrt{z/2-1}$$ for region $D_1$  and the paraboloid creates bounds $$-\sqrt{3-y^2/2-z^2/2}\leq x\leq \sqrt{3-y^2/2-z^2/2}$$ for region $D_2$.
-
 
 Collapsing $D$ onto the $y$-$z$ axes gives the regions shown in Figure \ref{fig:trip5b}(b). We find the equation of the curve $z=4-y^2/2$ by noting that the equation of the ellipse seen in Figure \ref{fig:trip5}(c) has equation 
 $$x^2+y^2/4=1 \quad \Rightarrow \quad x = \sqrt{1-y^2/4}.$$  
 Substitute this expression for $x$ in either surface equation, $z=6-2x^2-y^2$ or $z=2x^2+2$. In both cases, we find $$z=4-\frac12y^2.$$
-\drawexampleline
+%\drawexampleline
+
 Region $R_1$, corresponding to $D_1$, has bounds $$2\leq z\leq 4-y^2/2,\quad -2\leq y\leq 2$$ and region $R_2$, corresponding to $D_2$, has bounds $$4-y^2/2\leq z\leq 6-y^2,\quad -2\leq y\leq 2.$$ Thus the volume of $D$ is given by:
 $$\int_{-2}^2\int_2^{4-y^2/2}\int_{-\sqrt{z/2-1}}^{\sqrt{z/2-1}}\ dx\ dz\ dy \ +\ \int_{-2}^2\int_{4-y^2/2}^{6-y^2}\int_{-\sqrt{3-y^2/2-z^2/2}}^{\sqrt{3-y^2/2-z^2/2}}\ dx\ dz\ dy.$$
 
@@ -728,13 +738,18 @@ Evaluate $\ds \int_0^1\int_{x^2}^x\int_{x^2-y}^{2x+3y} \big(xy+2xz\big)\ dz\ dy\
 }
 {We evaluate this integral according to Definition \ref{def:triple_integral_2}.\\
 
-$\ds \int_0^1\int_{x^2}^x\int_{x^2-y}^{2x+3y} \big(xy+2xz\big)\ dz\ dy\ dx $
+%$\ds \int_0^1\int_{x^2}^x\int_{x^2-y}^{2x+3y} \big(xy+2xz\big)\ dz\ dy\ dx $
+
+\enlargethispage{2\baselineskip}
 \begin{align*}
-			&=	\int_0^1\int_{x^2}^x\left(\int_{x^2-y}^{2x+3y} \big(xy+2xz\big)\ dz\right)\ dy\ dx\\
-			&= \int_0^1\int_{x^2}^x\left(\big(xyz+ xz^2\big)\Big|_{x^2-y}^{2x+3y}\right)\ dy\ dx\\
-			&= \int_0^1\int_{x^2}^x\Bigg(xy(2x+3y)+x(2x+3y)^2-\Big(xy(x^2-y)+x(x^2-y)^2\Big)\Bigg)\ dy\ dx\\
-			&=\int_0^1\int_{x^2}^x\Big(-x^5+x^3y+4x^3+14x^2y+12xy^2\Big)\ dy\ dx.
-			\intertext{We continue as we have in the past, showing fewer steps.}
+&\int_0^1\int_{x^2}^x\int_{x^2-y}^{2x+3y} \big(xy+2xz\big)\ dz\ dy\ dx\\ 
+&=	\int_0^1\int_{x^2}^x\left(\int_{x^2-y}^{2x+3y} \big(xy+2xz\big)\ dz\right)\ dy\ dx\\
+&= \int_0^1\int_{x^2}^x\left(\big(xyz+ xz^2\big)\Big|_{x^2-y}^{2x+3y}\right)\ dy\ dx\\
+	&= \int_0^1\int_{x^2}^x\Bigg(xy(2x+3y)+x(2x+3y)^2-\Big(xy(x^2-y)+x(x^2-y)^2\Big)\Bigg)\ dy\ dx\\
+	&=\int_0^1\int_{x^2}^x\Big(-x^5+x^3y+4x^3+14x^2y+12xy^2\Big)\ dy\ dx.\end{align*}
+	We continue as we have in the past, showing fewer steps.
+\begin{align*}
+			%\intertext{We continue as we have in the past, showing fewer steps.}
 			&= \int_0^1\Bigg(-\frac72x^7-8x^6-\frac72x^5+15x^4\Bigg)\ dx\\
 			&= \frac{281}{336}\approx 0.836.
 \end{align*}
@@ -757,13 +772,7 @@ We now use the above limit to define the \textbf{triple integral}, give a theore
 \index{integration!triple}\index{triple integral}\index{iterated integration}
 $$\iiint_Dh(x,y,z)\ dV = \lim_{||\Delta D||\to 0}\sum_{i=1}^n h(x_i,y_i,z_i)\Delta V_i.$$
 }
-\mnote{.6}{\textbf{Note:} In the marginal note on page \pageref{note:doubleint}, we showed how the summation of rectangles over a region $R$ in the plane could be viewed as a double sum, leading to the double integral. Likewise, we can view the sum $\ds \sum_{i=1}^nh(x_i,y_i,z_i)\dx_i\dy_i\ddz_i$ as a triple sum, $$\sum_{k=1}^p\sum_{j=1}^n\sum_{i=1}^mh(x_i,y_j,z_k)\dx_i\dy_j\ddz_k,$$ which we evaluate as
-$$\sum_{k=1}^p\left(\sum_{j=1}^n\left(\sum_{i=1}^mh(x_i,y_j,z_k)\dx_i\right)\dy_j\right)\ddz_k.$$
-Here we fix a $k$ value, which establishes the $z$-height of the rectangular solids on one ``level'' of all the rectangular solids in the space region $D$. The inner double summation adds up all the volumes of the rectangular solids on this level, while the outer summation adds up the volumes of each level.
 
-This triple summation understanding leads to the $\iiint_D$ notation of the triple integral, as well as the method of evaluation shown in Theorem \ref{thm:triple_integration2}.
-
-}
 
 The following theorem assures us that the above limit exists for continuous functions $h$ and gives us a method of evaluating the limit.
 
@@ -778,7 +787,19 @@ The following theorem assures us that the above limit exists for continuous func
 	$$\iiint_D h(x,y,z)\ dV = \int_a^b\int_{g_1(x)}^{g_2(x)}\int_{f_1(x,y)}^{f_2(x,y)} h(x,y,z)\ dz\ dy\ dx.$$
 
 \end{enumerate}
-}
+}\\
+%\mnote{.6}{\textbf{Note:} In the marginal note on page \pageref{note:doubleint}, we showed how the summation of rectangles over a region $R$ in the plane could be viewed as a double sum, leading to the double integral. Likewise, we can view the sum $$\ds \sum_{i=1}^nh(x_i,y_i,z_i)\dx_i\dy_i\ddz_i$$ as a triple sum, $$\sum_{k=1}^p\sum_{j=1}^n\sum_{i=1}^mh(x_i,y_j,z_k)\dx_i\dy_j\ddz_k,$$ which we evaluate as
+%$$\sum_{k=1}^p\left(\sum_{j=1}^n\left(\sum_{i=1}^mh(x_i,y_j,z_k)\dx_i\right)\dy_j\right)\ddz_k.$$
+%Here we fix a $k$ value, which establishes the $z$-height of the rectangular solids on one ``level'' of all the rectangular solids in the space region $D$. The inner double summation adds up all the volumes of the rectangular solids on this level, while the outer summation adds up the volumes of each level.
+
+%This triple summation understanding leads to the $\iiint_D$ notation of the triple integral, as well as the method of evaluation shown in Theorem \ref{thm:triple_integration2}.
+%}
+
+\textbf{Note:} In the marginal note on page \pageref{note:doubleint}, we showed how the summation of rectangles over a region $R$ in the plane could be viewed as a double sum, leading to the double integral. Likewise, we can view the sum $$\ds \sum_{i=1}^nh(x_i,y_i,z_i)\dx_i\dy_i\ddz_i$$ as a triple sum, $$\sum_{k=1}^p\sum_{j=1}^n\sum_{i=1}^mh(x_i,y_j,z_k)\dx_i\dy_j\ddz_k,$$ which we evaluate as
+$$\sum_{k=1}^p\left(\sum_{j=1}^n\left(\sum_{i=1}^mh(x_i,y_j,z_k)\dx_i\right)\dy_j\right)\ddz_k.$$
+Here we fix a $k$ value, which establishes the $z$-height of the rectangular solids on one ``level'' of all the rectangular solids in the space region $D$. The inner double summation adds up all the volumes of the rectangular solids on this level, while the outer summation adds up the volumes of each level.
+
+This triple summation understanding leads to the $\iiint_D$ notation of the triple integral, as well as the method of evaluation shown in Theorem \ref{thm:triple_integration2}.
 
  We now apply triple integration to find the centers of mass of solid objects.\\
 
@@ -854,6 +875,7 @@ Find the center of mass of the solid represented by the region bounded by the pl
 %\mfigure[scale=1.25,trim=4mm 0mm 0mm 0mm,clip]{.4}{Finding the center of mass of this solid in Example \ref{ex_trip8}.}{fig:trip8}{figures/figtrip3}
 }
 {As we start, consider the density function. It is symmetric about the $y$-$z$ plane, and the farther one moves from this plane, the denser the object is. The symmetry indicates that $\overline x$ should be 0. 
+\enlargethispage{2\baselineskip}
 
 As one moves away from the origin in the $y$ or $z$ directions, the object becomes less dense, though there is more volume in these regions.  
 

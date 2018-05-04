@@ -29,12 +29,14 @@ Taking a limit, where the number of subregions goes to infinity and both $r_2-r_
 So to evaluate $\iint_Rf(x,y)\ dA$, replace $dA$ with $r\ dr\ d\theta$. Convert the function $z=f(x,y)$ to a function with polar coordinates with the substitutions $x=r\cos\theta$, $y=r\sin\theta$. Finally, find bounds $g_1(\theta)\leq r\leq g_2(\theta)$ and $\alpha\leq\theta\leq\beta$ that describe $R$. This is the key principle of this section, so we restate it here as a Key Idea.
 
 \keyidea{idea:doublepol}{Evaluating Double Integrals with Polar Coordinates}
-{Let $R$ be a plane region bounded by the polar equations $\alpha\leq\theta\leq\beta$ and  $g_1(\theta)\leq r\leq g_2(\theta)$. Then
+{Let $z=f(x,y)$ be a continuous function defined over a closed, bounded region $R$ in the $x$-$y$ plane, where $R$ is
+%Let $R$ be a plane region 
+bounded by the polar equations $\alpha\leq\theta\leq\beta$ and  $g_1(\theta)\leq r\leq g_2(\theta)$. Then
 \index{double integral!in polar}
 $$\iint_Rf(x,y)\ dA = \int_\alpha^\beta\int_{g_1(\theta)}^{g_2(\theta)} f\big(r\cos\theta,r\sin\theta\big)\ r\ dr\ d\theta.$$
 }
 
-\enlargethispage{2\baselineskip}
+\enlargethispage{3\baselineskip}
 Examples will help us understand this Key Idea.\\
 
 \example{ex_doublepol1}{Evaluating a double integral with polar coordinates}{
@@ -58,7 +60,7 @@ Finally, we replace $dA$ in the double integral with $r\ dr\ d\theta$. This give
 3Dc2c=0.8617081642150879 -0.29301872849464417 0.4142450988292694,
 3Dcoo=-13.165555000305176 3.489872455596924 52.97535705566406,
 3Droo=149.99999574342704,
-3Dlights=Headlamp,add3Djscript=asylabels.js}{}{.6}{Evaluating a double integral with polar coordinates in Example \ref{ex_doublepol1}.}{fig:doublepol1}{figures/figdoublepol1}
+3Dlights=Headlamp,add3Djscript=asylabels.js}{}{.55}{Evaluating a double integral with polar coordinates in Example \ref{ex_doublepol1}.}{fig:doublepol1}{figures/figdoublepol1}
 %\mfigure[scale=1.25,trim=4mm 0mm 2mm 0mm, clip]{.6}{Evaluating a double integral with polar coordinates in Example \ref{ex_doublepol1}.}{fig:doublepol1}{figures/figdoublepol1}
 The surface and region $R$ are shown in Figure \ref{fig:doublepol1}.
 }\\

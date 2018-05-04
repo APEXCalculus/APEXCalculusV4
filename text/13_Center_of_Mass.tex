@@ -37,7 +37,7 @@ $$M \approx \sum_{i=1}^n \Delta m_i = \sum_{i=1}^n \delta(x_i,y_i)\Delta A_i.$$
 Taking the limit as the size of the subregions shrinks to 0 gives us the actual mass; that is, integrating $\delta(x,y)$ over $R$ gives the mass of the lamina.
 
 \definition{def:mass}{Mass of a Lamina with Vairable Density}
-{Let $\delta(x,y)$ be a continuous density function of a lamina corresponding to a plane region $R$. The mass $M$ of the lamina is\index{mass}
+{Let $\delta(x,y)$ be a continuous density function of a lamina corresponding to a closed, bounded plane region $R$. The mass $M$ of the lamina is\index{mass}
 $$\text{mass } M = \iint_R\ dm = \iint_R \delta(x,y)\ dA.$$
 }
 
@@ -249,7 +249,7 @@ We begin by representing a planar lamina with a region $R$ in the $x$-$y$ plane 
 By taking limits, where size of each subregion shrinks to 0 in both the $x$ and $y$ directions, we arrive at the double integrals given in the following theorem.
 
 \theorem{thm:center_of_mass}{Center of Mass of a Planar Lamina, Moments}
-{Let a planar lamina be represented by a region $R$ in the $x$-$y$ plane with density function $\delta(x,y)$. \index{center of mass}\index{moment}
+{Let a planar lamina be represented by a closed, bounded region $R$ in the $x$-$y$ plane with density function $\delta(x,y)$. \index{center of mass}\index{moment}
 \begin{enumerate}
 	\item $\ds \text{mass: } M = \iint_R\delta(x,y)\ dA$
 	\item	$\ds \text{moment about the $x$-axis: } M_x = \iint_Ry\delta(x,y)\ dA$
@@ -285,6 +285,7 @@ M_y &= \iint_R x(x+y+2)\ dA = \int_0^1\int_0^1 x(x+y+2)\ dx\ dy =\frac{19}{12}.
 \end{align*}
 Thus the center of mass is $\ds (\overline{x},\overline{y}) = \left(\frac{M_y}M,\frac{M_x}M\right) = \left(\frac{19}{36},\frac{19}{36}\right) \approx (0.528,0.528).$ While the mass of this lamina is the same as the lamina in the previous example, the greater density found with greater $x$ and $y$ values pulls the center of mass from the center slightly towards the upper righthand corner.
 }\\
+\enlargethispage{2\baselineskip}
 
 \example{ex_mass8}{Finding the center of mass of a lamina}{
 Find the center of mass of the lamina represented by the circle with radius 2ft, centered at the origin, with density function $\delta(x,y) = (x^2+y^2+1)$lb/ft$^2$. (Note: this is one of the lamina used in Example \ref{ex_mass3}.)}
