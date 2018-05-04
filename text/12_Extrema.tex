@@ -6,21 +6,33 @@ Given a function $z=f(x,y)$, we are often interested in points where $z$ takes o
 {Let $z=f(x,y)$ be defined on a set $S$ containing the point $P=(x_0,y_0)$.
 \index{maximum!relative/local}\index{minimum!relative/local}\index{extrema!relative}\index{extrema!absolute}\index{maximum!absolute}\index{minimum!absolute}
 \begin{enumerate}
-	\item If there is an open disk $D$ containing $P$ such that $f(x_0,y_0) \geq f(x,y)$ for all $(x,y)$ in $D$, then $f$ has a \textbf{relative maximum} at $P$; if $f(x_0,y_0) \leq f(x,y)$ for all $(x,y)$ in $D$, then $f$ has a \textbf{relative minimum} at $P$.
+	\item	If $f(x_0,y_0)\geq f(x,y)$ for all $(x,y)$ in $S$, then $f$ has an \textbf{absolute maximum} at $P$
 	
-	\item	If $f(x_0,y_0)\geq f(x,y)$ for all $(x,y)$ in $S$, then $f$ has an \textbf{absolute maximum} at $P$; if $f(x_0,y_0)\leq f(x,y)$ for all $(x,y)$ in $S$, then $f$ has an \textbf{absolute minimum} at $P$.
+	If $f(x_0,y_0)\leq f(x,y)$ for all $(x,y)$ in $S$, then $f$ has an \textbf{absolute minimum} at $P$.
 	
-	\item		If $f$ has a relative maximum or minimum at $P$, then $f$ has a \textbf{relative extrema} at $P$; if $f$ has an absolute maximum or minimum at $P$, then $f$ has an \textbf{absolute extrema} at $P$.
+	\item If there is an open disk $D$ containing $P$ such that $f(x_0,y_0) \geq f(x,y)$ for all points $(x,y)$ that are in both $D$ and $S$, then $f$ has a \textbf{relative maximum} at $P$.
+	
+	If there is an open disk $D$ containing $P$ such that $f(x_0,y_0) \leq f(x,y)$ for all points $(x,y)$ that are in both $D$ and $S$, then $f$ has a \textbf{relative minimum} at $P$.
+	
+	
+	\item		If $f$ has an absolute maximum or minimum at $P$, then $f$ has an \textbf{absolute extrema} at $P$.
+	
+	If $f$ has a relative maximum or minimum at $P$, then $f$ has a \textbf{relative extrema} at $P$.
+	
+	
 \end{enumerate}
 }
 
+\enlargethispage{4\baselineskip}
 If $f$ has a relative or absolute maximum at $P=(x_0,y_0)$, it means every curve on the surface of $f$ through $P$ will also have a relative or absolute maximum at $P$. Recalling what we learned in Section \ref{sec:extreme_values}, the slopes of the tangent lines to these curves at $P$ must be 0 or undefined. Since directional derivatives are computed using $f_x$ and $f_y$, we are led to the following definition and theorem.
 
 \definition{def:multi_critical_point}{Critical Point}
-{Let $z = f(x,y)$ be continuous on an open set $S$. A \textbf{critical point} $P=(x_0,y_0)$ of $f$ is a point in $S$ such that \index{critical point}
+{Let $z = f(x,y)$ be continuous on a set $S$. A \textbf{critical point} $P=(x_0,y_0)$ of $f$ is a point in $S$ such that, at $P$,\index{critical point}
 \begin{itemize}
 	\item $f_x(x_0,y_0) = 0$ and $f_y(x_0,y_0) = 0$, or
 	\item	$f_x(x_0,y_0)$ and/or $f_y(x_0,y_0)$ is undefined.
+	%\item $f_x$ and $f_y$ are both 0 or both undefined, or
+	%\item one of $f_x$ and $f_y$ is 0 and the other is undefined.
 \end{itemize}
 }
 
@@ -93,7 +105,7 @@ If one walks parallel to the $y$-axis towards this critical point, then this poi
 }\\
 
 \definition{def:saddle_point}{Saddle Point}
-{Let $P=(x_0,y_0)$ be in the domain of $f$ where $f_x=0$ and $f_y=0$ at $P$. $P$ is a \textbf{saddle point} of $f$ if, for every open disk $D$ containing $P$, there are points $(x_1,y_1)$ and $(x_2,y_2)$ in $D$ such that $f(x_0,y_0)>f(x_1,y_1)$ and $f(x_0,y_0)<f(x_2,y_2)$.
+{Let $P=(x_0,y_0)$ be in the domain of $f$ where $f_x=0$ and $f_y=0$ at $P$. We say $P$ is a \textbf{saddle point} of $f$ if, for every open disk $D$ containing $P$, there are points $(x_1,y_1)$ and $(x_2,y_2)$ in $D$ such that $f(x_0,y_0)>f(x_1,y_1)$ and $f(x_0,y_0)<f(x_2,y_2)$.
 \index{saddle point}\index{critical point}
 }
 
@@ -315,6 +327,6 @@ The volume function $V(w,\ell)$ is shown in Figure \ref{fig:conopt2} along with 
 
 It is hard to overemphasize the importance of optimization. In ``the real world,'' we routinely seek to make \textit{something} better. By expressing the \textit{something} as a mathematical function, ``making \textit{something} better'' means ``optimize \textit{some function.}'' 
 
-The techniques shown here are only the beginning of an incredibly important field. Many functions that we seek to optimize are incredibly complex, making the step of ``find the gradient and set it equal to $\vec 0$'' highly nontrivial. Mastery of the principles here are key to being able to tackle these more complicated problems.
+The techniques shown here are only the beginning of an incredibly important field. Many functions that we seek to optimize are incredibly complex, making the step of ``find the gradient and set it equal to $\vec 0$\,'' highly nontrivial. Mastery of the principles here are key to being able to tackle these more complicated problems.
 
 \printexercises{exercises/12_07_exercises}
