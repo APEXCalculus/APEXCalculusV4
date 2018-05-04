@@ -40,7 +40,7 @@ An important concept implicit in this Key Idea: we can use any continuously diff
 
 We use an example to practice evaluating line integrals over vector fields.\\
 
-\example{ex_livf1}{Evaluating a line integral over a vector field: computing work}
+\example{ex_livf1}{\parbox[t]{190pt}{Evaluating a line integral over a vector field: computing work}}
 {Two particles move from $(0,0)$ to $(1,1)$ under the influence of the force field $\vec F  = \langle x, x+y\rangle$. One particle follows $C_1$, the line $y=x$; the other follows $C_2$, the curve $y=x^4$, as shown in Figure \ref{fig:livf1}. Force is measured in newtons and distance is measured in meters. Find the work performed by each particle.
 }
 {To compute work, we need to parametrize each path. We use $\vec r_1(t) = \langle t,t\rangle$ to parametrize $y=x$, and let $\vec r_2(t) =\langle t,t^4\rangle$ parametrize $y=x^4$; for each, $0\leq t\leq 1$. 
@@ -63,7 +63,7 @@ Along the curve $y = x^4$, $\vec F\big(\vec r_2(t)\big) = \la x, x+y\ra = \la t,
 Note how differing amounts of work are performed along the different paths. This should not be too surprising: the force is variable, one path is longer than the other, etc.
 }\\
 
-\example{ex_livf2}{Evaluating a line integral over a vector field: computing work}
+\example{ex_livf2}{\parbox[t]{190pt}{Evaluating a line integral over a vector field: computing work}}
 {Two particles move from $(-1,1)$ to $(1,1)$ under the influence of a force field $\vec F = \la y, x\ra$. One moves along the curve $C_1$, the parabola defined by $y = 2x^2-1$. The other particle moves along the curve $C_2$, the bottom half of the circle defined by $x^2+(y-1)^2=1$, as shown in Figure \ref{fig:livf2}. Force is measured in pounds and distances are measured in feet. Find the work performed by moving each particle along its path.
 }
 {We start by parametrizing $C_1$: the parametrization $\vec r_1(t) = \la t, 2t^2-1\ra$ is straightforward, giving $\vrp_1 = \la 1,4t\ra$. On $C_1$, $\vec F\big(\vec r_1(t)\big) = \la y,x\ra = \la 2t^2-1,t\ra$.
@@ -109,7 +109,7 @@ We demonstrate using these properties in the following example.\\
 
 \example{ex_livf3}{Using properties of line integrals over vector fields}
 {Let $\vec F = \la 3(y-1/2),1\ra$ and let $C$ be the path that starts at $(0,0)$, goes to $(1,1)$ along the curve $y=x^3$, then returns to $(0,0)$ along the line $y=x$, as shown in Figure \ref{fig:livf3}. Evaluate $\oint_C \vec F\cdot d\vec r$.
-\mfigure{.5}{The vector field and curve in Example \ref{ex_livf3}.}{fig:livf3}{figures/figlivf3}
+\mfigure{.4}{The vector field and curve in Example \ref{ex_livf3}.}{fig:livf3}{figures/figlivf3}
 }
 {As $C$ is piecewise smooth, we break it into two components $C_1$ and $C_2$, where $C_1$ follows the curve $y=x^3$ and $C_2$ follows the curve $y=x$. 
 
@@ -140,7 +140,7 @@ If we interpret this integral as computing work, the negative work implies that 
 3Dc2c=0.7812440395355225 0.4906015396118164 0.38596370816230774,
 3Dcoo=12.9679536819458 12.412303924560547 19.615886688232422,
 3Droo=399.99998637870164,
-3Dlights=Headlamp,add3Djscript=asylabels.js}{}{.5}{The graph of $\vec r(t)$ in Example \ref{ex_livf4}.}{fig:livf4}{figures/figlivf4} 
+3Dlights=Headlamp,add3Djscript=asylabels.js}{}{.47}{The graph of $\vec r(t)$ in Example \ref{ex_livf4}.}{fig:livf4}{figures/figlivf4} 
 }
 {A parametrization is already given for $C$, so we just need to find $\vec F\big(\vec r(t)\big)$ and \vrp(t). 
 
@@ -160,7 +160,7 @@ We are preparing to make important statements about the value of certain line in
 
 A region in the plane is \sword{connected}\index{connected} if any two points in the region can be joined by a piecewise smooth curve that lies entirely in the region. In Figure \ref{fig:simply_connected_plane}, sets $R_1$ and $R_2$ are connected; set $R_3$ is not connected, though it is composed of two connected subregions.
 
-A region is \sword{simply connected}\index{simply connected}\index{connected!simply} if every simple closed curve that lies entirely in the region can be continuously deformed (shrunk) to a single point without leaving the region.  (A curve is \sword{simple}\index{simple curve} if it does not cross itself.) In Figure \ref{fig:simply_connected_plane}, only set $R_1$ is simply connected. Region $R_2$ is not simple as any closed curve that goes around the ``hole'' in $R_2$ cannot be continously shrunk to a single point. As $R_3$ is not even connected, it cannot be simply connected, though again it consists of two simply connected subregions. 
+A region is \sword{simply connected}\index{simply connected}\index{connected!simply} if every simple closed curve that lies entirely in the region can be continuously deformed (shrunk) to a single point without leaving the region.  (A curve is \sword{simple}\index{simple curve} if it does not cross itself.) In Figure \ref{fig:simply_connected_plane}, only set $R_1$ is simply connected. Region $R_2$ is not simply connected as any closed curve that goes around the ``hole'' in $R_2$ cannot be continously shrunk to a single point. As $R_3$ is not even connected, it cannot be simply connected, though again it consists of two simply connected subregions. 
 
 We have applied these terms to regions of the plane, but they can be extended intuitively to domains in space (and hyperspace). In Figure \ref{fig:simply_connected_space}(a), the domain bounded by the sphere (at left) and the domain with a subsphere removed (at right) are both simply connected. Any simple closed path that lies entirely within these domains can be continuously deformed into a single point. In Figure \ref{fig:simply_connected_space}(b), neither domain is simply connected. A left, the ball has a hole that extends its length and the pictured closed path cannot be deformed to a point. At right, two paths are illustrated on the torus that cannot be shrunk to a point. 
 
@@ -209,13 +209,13 @@ How can we tell if a field is conservative? To show a field $\vec F$ is conserva
 There is a simpler method. Consider the surface defined by $z = f(x,y) = xy$. We can compute the gradient of this function: $\nabla f = \la f_x, f_y\ra = \la y, x\ra$. Note that this is the field from Example \ref{ex_livf2}, which we have claimed is conservative. We will soon give a theorem that states that a field $\vec F$ is conservative if, and only if, it is the gradient of some scalar function $f$. To show $\vec F$ is conservative, we need to determine whether or not $\vec F = \nabla f$ for some function $f$. (We'll later see that there is a yet simpler method). To recognize the special relationship between $\vec F$ and $f$ in this situation, $f$ is given a name.
 
 \definition{def:potential}{Potential Function}
-{Let $f$ be a function defined on a open domain $D$ in the plane or in space (i.e., $z = f(x,y)$ or $w = f(x,y,z)$) and let $\vec F = \nabla f$, the gradient of $f$. Then $f$ is a \sword{potential function} of $\vec F$.\index{potential function}\index{vector field!potential function of}
+{Let $f$ be a differentiable function defined on a  domain $D$ in the plane or in space (i.e., $z = f(x,y)$ or $w = f(x,y,z)$) and let $\vec F = \nabla f$, the gradient of $f$. Then $f$ is a \sword{potential function} of $\vec F$.\index{potential function}\index{vector field!potential function of}
 }
 
 We now state the Fundamental Theorem of Line Integrals, which connects conservative fields and path independence to fields with potential functions. 
 
 \theorem{thm:FTofLineIntegrals}{Fundamental Theorem of Line Integrals}
-{Let $\vec F$ be a vector field whose components are continuous on an open, connected domain $D$ in the plane or in space, let $A$ and $B$ be any points in $D$, and let $C$ be any path in $D$ starting at $A$ and ending at $B$.\index{line integral!Fundamental Theorem}\index{Fundamental Theorem of Line Integrals}\index{conservative field}\index{vector field!conservative}\index{path independent}\index{line integral!path independent}
+{Let $\vec F$ be a vector field whose components are continuous on a connected domain $D$ in the plane or in space, let $A$ and $B$ be any points in $D$, and let $C$ be any path in $D$ starting at $A$ and ending at $B$.\index{line integral!Fundamental Theorem}\index{Fundamental Theorem of Line Integrals}\index{conservative field}\index{vector field!conservative}\index{path independent}\index{line integral!path independent}
 \begin{enumerate}
 	\item $\vec F$ is conservative if and only if there exists a differentiable function $f$ such that $\vec F = \nabla f$. 
 	\item	If $\vec F$ is conservative, then 
