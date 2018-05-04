@@ -118,9 +118,9 @@ We restate this as a theorem, along with its three--dimensional analogue, follow
 
 \theorem{thm:line1}{Evaluating a Line Integral Over A Scalar Field}
 {\begin{itemize}
-	\item Let $C$ be a curve parametrized by $\vrt =\langle g(t), h(t)\rangle$, $a\leq t\leq b$, where $g$ and $h$ are continuously differentiable, and let $z=f(x,y)$, where $f$ is defined over $\vec r$. Then\index{line integral!over scalar field}%
+	\item Let $C$ be a curve parametrized by $\vrt =\langle g(t), h(t)\rangle$, $a\leq t\leq b$, where $g$ and $h$ are continuously differentiable, and let $z=f(x,y)$, where $f$ is continuous over $C$. Then\index{line integral!over scalar field}%
 	$$\int_Cf(s)\ ds = \int_a^bf\big(g(t),h(t)\big)\norm{\vec r\,'(t)}\ dt.$$
-	\item Let $C$ be a curve parametrized by $\vrt =\langle g(t), h(t),k(t)\rangle$, $a\leq t\leq b$, where $g$, $h$ and $k$ are continuously differentiable, and let $w=f(x,y,z)$, where $f$ is defined over $\vec r$. Then
+	\item Let $C$ be a curve parametrized by $\vrt =\langle g(t), h(t),k(t)\rangle$, $a\leq t\leq b$, where $g$, $h$ and $k$ are continuously differentiable, and let $w=f(x,y,z)$, where $f$ is continuous over $C$. Then
 	$$\int_Cf(s)\ ds = \int_a^bf\big(g(t),h(t),k(t)\big)\norm{\vec r\,'(t)}\ dt.$$
 \end{itemize}
 }
@@ -159,6 +159,7 @@ We find the values of $f$ over $C$ as $f(x,y) = f(t,2t+1) = \cos(t)+\sin(2t+1) +
 (b)
 \end{tabular}
 }
+\enlargethispage{\baselineskip}
 
 The area we seek is 
 \begin{align*}
