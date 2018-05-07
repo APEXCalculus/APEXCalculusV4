@@ -32,7 +32,7 @@ indeterminate form. So we employ a limit, as we did in Section \ref{sec:limit_in
 We can approximate the value of this limit numerically with small values of $h$ as seen in Figure \ref{table:falling}. It looks as though the velocity is approaching $-64$ ft/s. Computing the limit directly gives
 		\begin{align*}\lim_{h\to 0} \frac{f(2+h)-f(2)}{h} &= \lim_{h\to 0}\frac{-16(2+h)^2+150 - (-16(2)^2+150)}{h} \\
 																											&=	\lim_{h\to 0}\frac{-64h-16h^2}{h} \\
-																											&= \lim_{h\to 0}-64 -16h \\
+																											&= \lim_{h\to 0}(-64 -16h) \\
 																											&=-64.
 		\end{align*}
 		
@@ -102,7 +102,7 @@ Let $f(x) = 3x^2+5x-7$. Find:
 					%\end{align*}
 					%\begin{align*}
 										&=	\lim_{h\to 0} \frac{3h^2+11h}{h}\\
-										&= 	\lim_{h\to 0}	3h+11=11.%\\
+										&= 	\lim_{h\to 0}	(3h+11)=11.%\\
 										%&= 11.
 					\end{align*}
 	\item		The tangent line at $x=1$ has slope $\fp(1)$ and goes through the point $(1,f(1)) = (1,1)$. Thus the tangent line has equation, in point-slope form, $y = 11(x-1) + 1$. In slope-intercept form we have $y = 11x-10$.
@@ -112,7 +112,7 @@ Let $f(x) = 3x^2+5x-7$. Find:
 					\fp(3) &=	\lim_{h\to 0} \frac{f(3+h)-f(3)}{h} \\
 									&=	\lim_{h\to 0} \frac{3(3+h)^2+5(3+h)-7 - (3(3)^2+5(3)-7)}{h} \\
 									&=	\lim_{h\to 0} \frac{3h^2+23h}{h}\\
-									&= \lim_{h\to 0} 3h+23 \\
+									&= \lim_{h\to 0} (3h+23) \\
 									&= 23.
 					\end{align*}
 	
@@ -223,7 +223,7 @@ Let $f(x) = 3x^2+5x-7$ as in Example \ref{ex_derv_point1}. Find $\fp(x)$.}
 	\fp(x) &= \lim_{h\to 0} \frac{f(x+h)-f(x)}{h} \\
 					&=	\lim_{h\to 0} \frac{3(x+h)^2+5(x+h)-7-(3x^2+5x-7)}{h}\\
 					&=	\lim_{h\to 0} \frac{3h^2 +6xh+5h}{h}\\
-					&= \lim_{h\to 0} 3h+6x+5\\
+					&= \lim_{h\to 0} (3h+6x+5)\\
 					&= 6x+5
 	\end{align*}
 	So $\fp(x) = 6x+5$. Recall earlier we found that $\fp(1) = 11$ and $\fp(3) = 23$. Note our new computation of $\fp(x)$ affirm these facts.

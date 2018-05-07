@@ -131,11 +131,12 @@ We now state the major theorem of this section.\vskip-5pt
 We evaluated the area of a plane region $R$ by iterated integration, where the bounds were ``from curve to curve, then from point to point.'' Theorem \ref{thm:triple_integration} allows us to find the volume of a space region with an iterated integral with bounds ``from surface to surface, then from curve to curve, then from point to point.'' In the iterated integral 
 $$\int_a^b\int_{g_1(x)}^{g_2(x)}\int_{f_1(x,y)}^{f_2(x,y)} \ dz\ dy\ dx,$$
 the bounds $a\leq x\leq b$ and $g_1(x)\leq y\leq g_2(x)$ define a region $R$ in the $x$-$y$ plane over which the region $D$ exists in space. However, these bounds are also defining surfaces in space; $x=a$ is a plane and $y=g_1(x)$ is a cylinder. The combination of these 6 surfaces enclose, and define, $D$.
+\mnote{.75}{\textbf{Note:} Example \ref{ex_trip2} uses the term ``first octant.'' Recall how the $x$-, $y$- and $z$-axes divide space into eight \emph{octants}; the octant in which $x$, $y$ and $z$ are all positive is called the \emph{first octant}.}
 
 Examples will help us understand triple integration, including integrating with various orders of integration.\\
 
 \example{ex_trip2}{Finding the volume of a space region with triple integration}{
-Find the volume of the space region in the $1^{\,st}$ octant bounded by the plane $z=2-y/3-2x/3$, shown in Figure \ref{fig:trip2}(a), using the order of integration $dz\ dy\ dx$. Set up the triple integrals that give the volume in the other 5 orders of integration.}
+Find the volume of the space region in the first octant bounded by the plane $z=2-y/3-2x/3$, shown in Figure \ref{fig:trip2}(a), using the order of integration $dz\ dy\ dx$. Set up the triple integrals that give the volume in the other 5 orders of integration.}
 {Starting with the order of integration $dz\ dy\ dx$, we need to first find bounds on $z$. The region $D$ is bounded below by the plane $z=0$ (because we are restricted to the first octant) and above by $z=2-y/3-2x/3$; $0\leq z\leq 2-y/3-2x/3$.
 
 To find the bounds on $y$ and $x$, we ``collapse'' the region onto the $x$-$y$ plane, giving the triangle shown in Figure \ref{fig:trip2}(b). (We know the equation of the line $y=6-2x$ in two ways. First, by setting $z=0$, we have $0 = 2-y/3-2x/3 \Rightarrow y=6-2x$. Secondly, we know this is going to be a straight line between the points $(3,0)$ and $(0,6)$ in the $x$-$y$ plane.) 
