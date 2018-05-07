@@ -52,7 +52,7 @@ We  let $x=u$ and $y=v$, and let $\vec r(u,v) = \langle u,v, f(u,v)\rangle$. In 
 3Dc2c=0.6257953643798828 0.642341136932373 0.44246822595596313,
 3Dcoo=-11.887701988220215 -11.637335777282715 52.40430450439453,
 3Droo=399.9999800778292,
-3Dlights=Headlamp,add3Djscript=asylabels.js}{scale=1}{.55}{The surface parametrized in Example \ref{ex_parsurf1}.}{fig:parsurf1}{figures/figparsurf1} 
+3Dlights=Headlamp,add3Djscript=asylabels.js}{scale=1}{.57}{The surface parametrized in Example \ref{ex_parsurf1}.}{fig:parsurf1}{figures/figparsurf1} 
 
 }\\
 
@@ -147,7 +147,9 @@ Following the above discussion, we can set $x=u$, where $0\leq u\leq 3$, and set
 One can do a similar thing if $R$ is bounded by $c\leq y\leq d$, $h_1(y)\leq x\leq h_2(y)$, but for the sake of simplicity we leave it to the reader to flesh out those details. The principles outlined above are given in the following Key Idea for reference.
 
 \keyidea{idea:parameterizing_surfaces}{Parameterizing Surfaces}
-{Let a surface \surfaceS\ be the portion of the graph of $z=f(x,y)$ that lies above a region $R$ in the $x$-$y$ plane. Let $R$ be bounded by $a\leq x\leq b$, $g_1(x)\leq y\leq g_2(x)$, i.e., the area of $R$ can be found using the iterated integral $\int_a^b\int_{g_1(x)}^{g_2(x)}\ dy\ dx$, and let $h(u,v) = g_1(u)+v\big(g_2(u)-g_1(u)\big)$. 
+{Let a surface \surfaceS\ be the graph of a function $z=f(x,y)$, where the domain of $f$ is  a closed, bounded region $R$ in the $x$-$y$ plane. 
+%be the portion of the graph of $z=f(x,y)$ that lies above a region $R$ in the $x$-$y$ plane. 
+Let $R$ be bounded by $a\leq x\leq b$, $g_1(x)\leq y\leq g_2(x)$, i.e., the area of $R$ can be found using the iterated integral $\int_a^b\int_{g_1(x)}^{g_2(x)}\ dy\ dx$, and let $h(u,v) = g_1(u)+v\big(g_2(u)-g_1(u)\big)$. 
 
 \surfaceS\ can be parametrized as 
 $$\vec r(u,v) = \la u, h(u,v), f\big(u,h(u,v)\big)\ra,\quad a\leq u\leq b,\ 0\leq v\leq 1.$$
@@ -321,7 +323,7 @@ Thus, in the limit, the double sum leads to a double integral:
 $$\lim_{n\to\infty} \sum_{j=1}^n\sum_{i=1}^n \snorm{\vec u_{i,j}\times \vec v_{i,j}}= \int_c^d\int_a^b \snorm{\vec r_u\times\vec r_v}\ du\ dv.$$
 
 \theorem{thm:par_surface_area}{Surface Area of Parametrically Defined Surfaces}
-{Let $\vec r(u,v)$ be a smooth parametrization of a surface \surfaceS\ over a region $R$ of the $u$-$v$ plane.\index{surface area!of parametrized surface} 
+{Let $\vec r(u,v)$ be a smooth parametrization of a surface \surfaceS\ over a closed, bounded region $R$ of the $u$-$v$ plane.\index{surface area!of parametrized surface} 
 \begin{itemize}
 \item	The surface area differential $dS$ is: $dS = \snorm{\vec r_u\times \vec r_v}\ dA$.
 \item The surface area $S$ of \surfaceS\ is

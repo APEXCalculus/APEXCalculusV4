@@ -15,7 +15,7 @@
 \newboolean{printlabelname}
 \setboolean{printlabelname}{false}
 \ifthenelse{\boolean{printlabelname}}{\usepackage[notref,notcite]{showkeys}}{}
-
+\usepackage{pdfpages}
 
 
 %% end detour
@@ -181,7 +181,7 @@
 %%
 %%%\addtocounter{chapter}{8}
 \clearpage{\pagestyle{empty}\cleardoublepage}
-\chapter{Curves in the Plane}
+\chapter{Curves in the Plane}\label{chapter:planar_curves}
 \thispagestyle{empty}
 
 \input{text/09_Conic_Sections}
@@ -193,7 +193,7 @@
 %
 %%\addtocounter{chapter}{9}
 \clearpage{\pagestyle{empty}\cleardoublepage}
-\chapter{Vectors}
+\chapter{Vectors}\label{chapter:vectors}
 \thispagestyle{empty}
 \input{text/10_Space_Intro}
 \input{text/10_Vector_Introduction}
@@ -215,7 +215,7 @@
 \input{text/11_Arc_Length_Parameter_Curvature}
 
 \clearpage{\pagestyle{empty}\cleardoublepage}
-\chapter{Functions of Several Variables}\label{chap:multi}
+\chapter{Functions of Several Variables}\label{chapter:multi}
 \thispagestyle{empty}
 \input{text/12_Multivariable_Intro}
 \input{text/12_Multivariable_Limit}
@@ -237,13 +237,9 @@
 \input{text/13_Surface_Area}
 \input{text/13_Triple_Integration}
 
-<<<<<<< HEAD
-=======
-%%\addtocounter{chapter}{13}
 
->>>>>>> c3717e75b460b58ce975e380aa50c7eb899e5b89
 \clearpage{\pagestyle{empty}\cleardoublepage}
-\chapter{Vector Analysis}
+\chapter{Vector Analysis}\label{chapter:vector_calc}
 \thispagestyle{empty}
 \input{text/14_Line_Integral_Intro}
 \input{text/14_Vector_Fields}
