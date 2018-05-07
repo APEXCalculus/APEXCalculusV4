@@ -81,6 +81,7 @@ $$ \vec r_1(t) = \la 1-t, t\ra, \quad \vrp_1(t) = \la -1,1\ra.$$
 $$\vec r_2(t) = \la \cos t, \sin t\ra, \quad \vrp_2(t) = \la -\sin t ,\cos t\ra.$$
 
 When $\vec F = \vec F_1 = \la y, -x+1\ra$ (as shown in Figure \ref{fig:flux1}(a)), over $C_1$ we have $M = y =t$ and $N = -x+1 = -(1-t)+1 = t$. Using Definition \ref{def:flowflux}, we compute the flux:
+
 \begin{align*}
 \int_{C_1} \vec F\cdot \vec n\ ds & = \int_{C_1} \Big(M\,g'(t) - N\,\fp(t)\Big)\ dt\\
 			&= \int_0^1 \Big( t(1) - t(-1)\Big)\ dt \\
@@ -96,6 +97,7 @@ Over $C_2$, we have $M = y = \sin t$ and $N = -x+1 = 1-\cos t$. Thus the flux ac
 \end{align*}
 Notice how the flux was the same across both curves. This won't hold true when we change the vector field.
 \drawexampleline%
+%\enlargethispage{2\baselineskip}
 
 When $\vec F = \vec F_2 = \la -x,2y-x\ra$ (as shown in Figure \ref{fig:flux1}(b)), over $C_1$ we have $M = -x = t-1$ and $N = 2y-x = 2t-(1-t) = 3t-1$. Computing the flux across $C_1$:
 \begin{align*}
@@ -105,6 +107,7 @@ When $\vec F = \vec F_2 = \la -x,2y-x\ra$ (as shown in Figure \ref{fig:flux1}(b)
 			&= 0.
 \end{align*}
 Over $C_2$, we have $M = -x = -\cos t$ and $N = 2y-x = 2\sin t-\cos t$. Thus the flux across $C_2$ is:
+
 \begin{align*}
 \int_{C_1} \vec F\cdot \vec n\ ds & = \int_{C_1} \Big(M\,g'(t) - N\,\fp(t)\Big)\ dt\\
 				&= \int_0^{\pi/2}\Big((-\cos t)(\cos t) - (2\sin t-\cos t)(-\sin t)\Big)\ dt\\
@@ -116,12 +119,12 @@ We analyze the results of this example below.
 
 In Example \ref{ex_flux1}, we saw that the flux across the two curves was the same when the vector field was $\vec F_1 = \la y, -x+1\ra$. This is not a coincidence. We show why they are equal in Example \ref{ex_div2}. In short, the reason is this: the divergence of $\vec F_1$ is 0, and when $\divv \vec F = 0$, the flux across any two paths with common beginning and ending points will be the same.
 
-We also saw in the example that the flux across $C_1$ was 0 when the field was $\vec F_2 = \la -x, 2y-x\ra$. Flux measures ``how much'' of the field crosses the path from left to right (following the conventions established before). Positive flux means most of the field is crossing from left to right; negative flux means most of the field is crossing from right to left; zero flux means the same amount crosses from left to right as from right to left. When we consider Figure \ref{fig:flux1}(b), it seems plausible that the same amount of $\vec F_2$ was crossing $C_1$ from left to right as from right to left.
+We also saw in the example that the flux across $C_1$ was 0 when the field was $\vec F_2 = \la -x, 2y-x\ra$. Flux measures ``how much'' of the field crosses the path from left to right (following the conventions established before). Positive flux means most of the field is crossing from left to right; negative flux means most of the field is crossing from right to left; zero flux means the same amount crosses from each side. When we consider Figure \ref{fig:flux1}(b), it seems plausible that the same amount of $\vec F_2$ was crossing $C_1$ from left to right as from right to left.
 
 %In short, the flux across $C_2$ was different than the flux across $C_1$ because $\divv \vec F_2 \neq 0$.
 %
 %In the next section, we'll investigate the connection between flux and divergence, as well as the connection between flow and curl.
-
+\enlargethispage{4\baselineskip}
 \vskip \baselineskip
 \noindent\textbf{\large Green's Theorem}\\
 
@@ -138,7 +141,7 @@ We'll explore Green's Theorem through an example. \\
 
 \example{ex_green1}{Confirming Green's Theorem}
 {Let $\vec F =\la -y,x^2+1\ra$ and let $R$ be the region of the plane bounded by the triangle with vertices $(-1,0)$, $(1,0)$ and $(0,2)$, shown in Figure \ref{fig:green1}. Verify Green's Theorem; that is, find the circulation of $\vec F$ around the boundary of $R$ and show that is equal to the double integral of $\curl \vec F$ over $R$.
-\mfigure{.55}{The vector field and planar region used in Example \ref{ex_green1}.}{fig:green1}{figures/figgreen1}
+\mfigure{.7}{The vector field and planar region used in Example \ref{ex_green1}.}{fig:green1}{figures/figgreen1}
 }
 {The curve $C$ that bounds $R$ is composed of 3 lines. While we need to traverse the boundary of $R$ in a counterclockwise fashion, we may start anywhere we choose. We arbitrarily choose to start at $(-1,0)$, move to $(1,0)$, etc., with each line parametrized by $\vec r_1(t)$, $\vec r_2(t)$ and $\vec r_3(t)$, respectively.
 
@@ -165,7 +168,7 @@ which matches our previous measurement of circulation.
 
 \example{ex_green2}{Using Green's Theorem}
 {Let $\vec F = \la \sin x,\cos y\ra$ and let $R$ be the region enclosed by the curve $C$ parametrized by $\vec r(t) = \la 2\cos t+ \frac1{10}\cos(10t),2\sin t+\frac1{10}\sin(10t)\ra$ on $0\leq t\leq 2\pi$, as shown in Figure \ref{fig:green2}. Find the circulation around $C$.
-\mfigure{.7}{The vector field and planar region used in Example \ref{ex_green2}.}{fig:green2}{figures/figgreen2}
+\mfigure{.35}{The vector field and planar region used in Example \ref{ex_green2}.}{fig:green2}{figures/figgreen2}
 }
 {Computing the circulation directly using the line integral looks difficult, as the integrand will include terms like ``$\sin\big(2\cos t + \frac1{10}\cos(10t)\big)$.'' 
 
@@ -176,13 +179,13 @@ Since $\curl \vec F = 0$, we can conclude that the circulation is 0 in two ways.
 
 One can use Green's Theorem to find the area of an enclosed region by integrating along its boundary. Let $C$ be a closed curve, enclosing the region $R$, parametrized by $\vec r(t) = \la f(t),g(t)\ra$. We know the area of $R$ is computed by the double integral $\iint_R \ dA$, where the integrand is $1$. By creating a field $\vec F$ where $\curl \vec F =1$, we can employ Green's Theorem to compute the area of $R$ as $\oint_C \vec F\cdot d\vec r$. 
 
-One is free to choose any field $\vec F$ to use as long as $\curl\vec F = 1$. Common choices are $\vec F = \la 0,x\ra$, $\vec F = \la -y,0\ra$ and $\vec F = \la -y/2,x/2\ra$. We demonstrate this below.
+One is free to choose any field $\vec F$ to use as long as $\curl\vec F = 1$. Common choices are $\vec F = \la 0,x\ra$, $\vec F = \la -y,0\ra$ and $\vec F = \la -y/2,x/2\ra$. We demonstrate this below.\\
 
 %Note: take this sentnec out and make as exerciseChoosing $\vec F = \la -y,0\ra$ has special significance. This field leads to the line integral $\oint_C \la 0,-f(t)\ra\cdot \la \fp(t),\gp(t)\ra\ dt$. \\
 
 \example{ex_green3}{Using Green's Theorem to find area}
 {Let $C$ be the closed curve parametrized by $\vrt = \la t-t^3,t^2\ra$ on $-1\leq t\leq 1$, enclosing the region $R$, as shown in Figure \ref{fig:green3}. Find the area of $R$. 
-\mfigure{.3}{The region $R$, whose area is found in Example \ref{ex_green3}.}{fig:green3}{figures/figgreen3}
+\mfigure{.45}{The region $R$, whose area is found in Example \ref{ex_green3}.}{fig:green3}{figures/figgreen3}
 }
 {We can choose any field $\vec F$, as long as $\curl \vec F = 1$. We choose $\vec F = \la -y,0\ra$. We also confirm (left to the reader) that $\vrt$ traverses the region $R$ in a counterclockwise fashion. Thus
 \begin{align*}
@@ -195,6 +198,7 @@ One is free to choose any field $\vec F$ to use as long as $\curl\vec F = 1$. Co
 \vskip-1.5\baselineskip
 }\\
 
+\clearpage
 \vskip \baselineskip
 \noindent\textbf{\large The Divergence Theorem}\\
 
@@ -207,9 +211,9 @@ $$\oint_C \vec F\cdot \vec n\ ds = \iint_R\divv \vec F\ dA.$$
 
 \example{ex_div1}{Confirming the Divergence Theorem}
 {Let $\vec F = \la x-y,x+y\ra$, let $C$ be the circle of radius 2 centered at the origin and define $R$ to be the interior of that circle, as shown in Figure \ref{fig:div1}. Verify the Divergence Theorem; that is, find the flux across $C$ and show it is equal to the double integral of $\divv \vec F$ over $R$.
-\mfigure{.3}{The region $R$ used in Example \ref{ex_div1}.}{fig:div1}{figures/figdiv1}
+\mfigure{.5}{The region $R$ used in Example \ref{ex_div1}.}{fig:div1}{figures/figdiv1}
 }
-{We parametrize the circle in the usual way, with $\vrt =\la 2\cos t,2\sin t\ra$, $0\leq t\leq 2\pi$. The flux across $C$ is
+{We parametrize the circle in the usual way, with $\vrt =$\\ $\la 2\cos t,2\sin t\ra$, $0\leq t\leq 2\pi$. The flux across $C$ is
 \begin{align*}
 \oint_C \vec F\cdot \vec n\ ds &= \oint_C\big(M\gp(t)-N\fp(t)\big)\ dt\\ &= \int_0^{2\pi} \big((2\cos t-2\sin t)(2\cos t) - (2\cos t+2\sin t)(-2\sin t)\big)\ dt\\
 		&= \int_0^{2\pi} 4\ dt = 8\pi.
@@ -226,7 +230,7 @@ which matches our previous result.
 $$\oint_C \vec F\cdot \vec n\ ds = \iint_R \divv \vec F\ dA = \iint_R 0\ dA = 0.$$
 Using the properties and notation given in Theorem 
 \ref{thm:line_int_properties_vector}, consider:
-\mfigure{.55}{As used in Example \ref{ex_div2}, the vector field has a divergence of 0 and the two paths only intersect at their initial and terminal points.}{fig:div2}{figures/figdiv3}
+\mfigure{.7}{As used in Example \ref{ex_div2}, the vector field has a divergence of 0 and the two paths only intersect at their initial and terminal points.}{fig:div2}{figures/figdiv3}
 \begin{align*}
 0 &= \oint_C \vec F\cdot \vec n\ ds \\
  &= \int_{C_1} \vec F\cdot \vec n\ ds +\int_{C_2^*} \vec F\cdot \vec n\ ds
@@ -235,7 +239,11 @@ Using the properties and notation given in Theorem
 	\int_{C_2} \vec F\cdot \vec n\ ds&= \int_{C_1} \vec F\cdot \vec n\ ds.
 \end{align*}
 Thus the flux across each path is equal.
-}
+}\\
+
+In this section, we have investigated flow and flux, quantities that measure interactions between a vector field and a planar curve. We can also measure flow along spatial curves, though as mentioned before, it does not make sense to measure flux across spatial curves.
+
+It does, however, make sense to measure the amount of a vector field that passes across a surface in space -- i.e, the flux across a surface. We will study this, though in the next section we first  learn about a more powerful way to describe surfaces than using functions of the form $z=f(x,y)$.
 
 %Regular S, math $S$, and mathcal $\mathcal{S}$. $\mathcal{U}$
 %\begin{tikzpicture}[x={(.55ex,0)},y={(0,.55ex)}]
