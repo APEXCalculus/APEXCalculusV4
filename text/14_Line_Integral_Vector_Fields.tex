@@ -223,10 +223,11 @@ We now state the Fundamental Theorem of Line Integrals, which connects conservat
 \end{enumerate}
 }
 
-Once again considering Example \ref{ex_livf2}, we have $A = (-1,1)$ and $B = (1,1)$ and $\vec F = \la y,x\ra$. In that example, we evaluated two line integrals from $A$ to $B$ and found the value of each was 2. Note that $f(x,y) = xy$ is a potential function for $\vec F$. Following the Fundamental Theorem of Line Integrals, consider $f(B) - f(A)$:
+Once again considering Example \ref{ex_livf2}, we have $A = (-1,1)$, $B = (1,1)$ and $\vec F = \la y,x\ra$. In that example, we evaluated two line integrals from $A$ to $B$ and found the value of each was 2. Note that $f(x,y) = xy$ is a potential function for $\vec F$. Following the Fundamental Theorem of Line Integrals, consider $f(B) - f(A)$:
 $$f(B) - f(A) = f(1,1) - f(-1,1) = 1 - (-1) = 2,$$
 the same value given by the line integrals.
 
+\enlargethispage{\baselineskip}
 We practice using this theorem again in the next example.\\
 
 \example{ex_livf5}{Using the Fundamental Theorem of Line Integrals}
@@ -267,7 +268,7 @@ which matches our previous result.
 The Fundamental Theorem of Line Integrals states that we can determine whether or not $\vec F$ is conservative by determining whether or not $\vec F$ has a potential function. This can be difficult. A simpler method exists if the domain of $\vec F$ is simply connected (not just connected as needed in the Fundamental Theorem of Line Integrals), which is a reasonable requirement. We state this simpler method as a theorem.
 
 \theorem{thm:conservative_field_curl}{Curl of Conservative Fields}
-{Let $\vec F$ be a vector field whose components are continuous on an open, simply connected domain $D$ in the plane or in space. Then $\vec F$ is conservative if and only if $\curl \vec F = 0$ or $\vec 0$, respectively.\index{curl!of conservative fields}\index{conservative field}
+{Let $\vec F$ be a vector field whose components are continuous on a simply connected domain $D$ in the plane or in space. Then $\vec F$ is conservative if and only if $\curl \vec F = 0$ or $\vec 0$, respectively.\index{curl!of conservative fields}\index{conservative field}
 }\\
 
 In Example \ref{ex_livf5}, we showed that $\vec F =\langle 3x^2y+2x,x^3+1\rangle$ is conservative by finding a potential function for $\vec F$. Using the above theorem, we can show that $\vec F$ is conservative much more easily by computing its curl:
