@@ -6,7 +6,7 @@ Version=4
 MainFile=asymptote_figures.tex
 UseBibTeX=0
 UseMakeIndex=0
-ActiveProfile=XeLaTeX ⇨ PDF
+ActiveProfile=Asy no pdf default view
 ProjectLanguage=en
 ProjectDialect=US
 
