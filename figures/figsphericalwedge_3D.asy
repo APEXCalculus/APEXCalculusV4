@@ -7,7 +7,7 @@ import apexstyle;
 
 size(200,200,IgnoreAspect);
 //currentprojection=perspective(7,2,1);
-currentprojection=orthographic(12,13,3);
+currentprojection=orthographic(14.4,2.6,10);
 defaultrender.merge=true;
 
 //usepackage("mathspec");texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");texpreamble("\setmathsfont(Greek){[cmmi10]}");
@@ -18,8 +18,8 @@ real[] myychoice={};
 real[] myzchoice={};
 defaultpen(0.5mm);
 
-pair xbounds=(-.1,1);
-pair ybounds=(-.1,1);
+pair xbounds=(-.1,.75);
+pair ybounds=(-.1,.75);
 pair zbounds=(-.1,1);
 
 xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
@@ -31,9 +31,9 @@ label("$y$",(0,ybounds.y+0.05*(ybounds.y-ybounds.x),0));
 label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
 
 
-real t1=pi/3;
+real t1=pi/3-.2;
 real t2=pi/3+.2;
-real p1=pi/6;
+real p1=pi/6-.2;
 real p2=pi/6+.2;
 real r1=.8;
 real r2=.9;
@@ -90,14 +90,38 @@ draw(s,emissive(rgb(.6,.6,1)+opacity(.7)),meshpen=p);
 
 
 
-
+// lines for phi
 draw((r1*cos(t1)*sin(p1),r1*sin(t1)*sin(p1),r1*cos(p1)) -- (0,0,0) -- (r1*cos(t1)*sin(p2),r1*sin(t1)*sin(p2),r1*cos(p2)),black+.25mm+dashed);
-
 
 draw(arc((0,0,0),(r1*cos(t1)*sin(p1)/2,r1*sin(t1)*sin(p1)/2,r1*cos(p1)/2),(r1*cos(t1)*sin(p2)/2,r1*sin(t1)*sin(p2)/2,r1*cos(p2)/2)),Arrow3(size=2mm));
 
+label("\footnotesize$\Delta\varphi$",1.15*(r1*cos(t1)*sin((p1+p2)/2)/2,r1*sin(t1)*sin((p1+p2)/2)/2,r1*cos((p1+p2)/2)/2));
+
+//
+//  lines for theta
+//
+
+draw((0,0,0) -- (r1*cos(t1)*sin(p2),r1*sin(t1)*sin(p2),0) -- (r1*cos(t1)*sin(p2),r1*sin(t1)*sin(p2),r1*cos(p2)),black+.25mm+dashed);
+
+draw((0,0,0) -- (r1*cos(t2)*sin(p2),r1*sin(t2)*sin(p2),0) -- (r1*cos(t2)*sin(p2),r1*sin(t2)*sin(p2),r1*cos(p2)),black+.25mm+dashed);
+
+draw(arc((0,0,0),.5*(r1*cos(t1)*sin(p2),r1*sin(t1)*sin(p2),0),.5*(r1*cos(t2)*sin(p2),r1*sin(t2)*sin(p2),0)),Arrow3(size=2mm));
+
+label("\footnotesize$\Delta\theta$",1.2*.5*(r1*cos((t1+t2)/2)*sin(p2),r1*sin((t1+t2)/2)*sin(p2),0));
+
+//
+// lines for rho
+//
+
+draw(arc((0,0,0),(r1*cos(t1)*sin(0),r1*sin(t1)*sin(0),r1*cos(0)),(r1*cos(t1)*sin(p1),r1*sin(t1)*sin(p1),r1*cos(p1))),black+.25mm+dashed);
+
+draw(arc((0,0,0),(r2*cos(t1)*sin(0),r2*sin(t1)*sin(0),r2*cos(0)),(r2*cos(t1)*sin(p1),r2*sin(t1)*sin(p1),r2*cos(p1))),black+.25mm+dashed);
 
 
+label("\footnotesize$\Delta\rho$",((r1+r2)/2*cos(t1)*sin((p1)/2),(r1+r2)/2*sin(t1)*sin((p1)/2),(r1+r2)/2*cos((p1)/2)));
+
+
+//(p1+p2)/2
 //dot((0,0,2.799),rgb(0,0,0)+1.2mm);
 
 
@@ -107,8 +131,8 @@ draw(arc((0,0,0),(r1*cos(t1)*sin(p1)/2,r1*sin(t1)*sin(p1)/2,r1*cos(p1)/2),(r1*co
 
 
 
-triple g(real t) {return (1.5/sqrt(3)*cos(t),1.5/sqrt(3)*sin(t),1.5);}
-path3 mypath=graph(g,0,2*pi,operator ..);
+//triple g(real t) {return (1.5/sqrt(3)*cos(t),1.5/sqrt(3)*sin(t),1.5);}
+//path3 mypath=graph(g,0,2*pi,operator ..);
 //draw(mypath,rgb(0,0,.8));
 
 
