@@ -10,7 +10,7 @@ size(200,200,IgnoreAspect);
 currentprojection=orthographic(14.4,2.6,10);
 defaultrender.merge=true;
 
-//usepackage("mathspec");texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");texpreamble("\setmathsfont(Greek){[cmmi10]}");
+usepackage("mathspec");texpreamble("\setallmainfonts[Mapping=tex-text]{Calibri}");texpreamble("\setmainfont[Mapping=tex-text]{Calibri}");texpreamble("\setsansfont[Mapping=tex-text]{Calibri}");texpreamble("\setmathsfont(Greek){[cmmi10]}");
 
 // setup and draw the axes
 real[] myxchoice={};
@@ -18,8 +18,8 @@ real[] myychoice={};
 real[] myzchoice={};
 defaultpen(0.5mm);
 
-pair xbounds=(-.1,.75);
-pair ybounds=(-.1,.75);
+pair xbounds=(-.1,.6);
+pair ybounds=(-.1,.6);
 pair zbounds=(-.1,1);
 
 xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
@@ -35,7 +35,7 @@ real t1=pi/3-.2;
 real t2=pi/3+.2;
 real p1=pi/6-.2;
 real p2=pi/6+.2;
-real r1=.8;
+real r1=.75;
 real r2=.9;
 
 
@@ -89,13 +89,16 @@ pen p=rgb(0,0,0.7);
 draw(s,emissive(rgb(.6,.6,1)+opacity(.7)),meshpen=p);
 
 
-
+//
 // lines for phi
+//
 draw((r1*cos(t1)*sin(p1),r1*sin(t1)*sin(p1),r1*cos(p1)) -- (0,0,0) -- (r1*cos(t1)*sin(p2),r1*sin(t1)*sin(p2),r1*cos(p2)),black+.25mm+dashed);
 
-draw(arc((0,0,0),(r1*cos(t1)*sin(p1)/2,r1*sin(t1)*sin(p1)/2,r1*cos(p1)/2),(r1*cos(t1)*sin(p2)/2,r1*sin(t1)*sin(p2)/2,r1*cos(p2)/2)),Arrow3(size=2mm));
+draw(arc((0,0,0),(r1*cos(t1)*sin(p1)/2.5,r1*sin(t1)*sin(p1)/2.5,r1*cos(p1)/2.5),(r1*cos(t1)*sin(p2)/2.5,r1*sin(t1)*sin(p2)/2.5,r1*cos(p2)/2.5)),black+.25mm,Arrow3(size=1.5mm));
 
-label("\footnotesize$\Delta\varphi$",1.15*(r1*cos(t1)*sin((p1+p2)/2)/2,r1*sin(t1)*sin((p1+p2)/2)/2,r1*cos((p1+p2)/2)/2));
+label("\scriptsize$\Delta\varphi$",.95*(r1*cos(t1)*sin((p1+p2)/2)/2,r1*sin(t1)*sin((p1+p2)/2)/2,r1*cos((p1+p2)/2)/2));
+
+
 
 //
 //  lines for theta
@@ -105,9 +108,9 @@ draw((0,0,0) -- (r1*cos(t1)*sin(p2),r1*sin(t1)*sin(p2),0) -- (r1*cos(t1)*sin(p2)
 
 draw((0,0,0) -- (r1*cos(t2)*sin(p2),r1*sin(t2)*sin(p2),0) -- (r1*cos(t2)*sin(p2),r1*sin(t2)*sin(p2),r1*cos(p2)),black+.25mm+dashed);
 
-draw(arc((0,0,0),.5*(r1*cos(t1)*sin(p2),r1*sin(t1)*sin(p2),0),.5*(r1*cos(t2)*sin(p2),r1*sin(t2)*sin(p2),0)),Arrow3(size=2mm));
+draw(arc((0,0,0),.5*(r1*cos(t1)*sin(p2),r1*sin(t1)*sin(p2),0),.5*(r1*cos(t2)*sin(p2),r1*sin(t2)*sin(p2),0)),black+.25mm,Arrow3(size=1.5mm));
 
-label("\footnotesize$\Delta\theta$",1.2*.5*(r1*cos((t1+t2)/2)*sin(p2),r1*sin((t1+t2)/2)*sin(p2),0));
+label("\scriptsize$\Delta\theta$",1.2*.5*(r1*cos((t1+t2)/2)*sin(p2),r1*sin((t1+t2)/2)*sin(p2),0));
 
 //
 // lines for rho
@@ -118,11 +121,44 @@ draw(arc((0,0,0),(r1*cos(t1)*sin(0),r1*sin(t1)*sin(0),r1*cos(0)),(r1*cos(t1)*sin
 draw(arc((0,0,0),(r2*cos(t1)*sin(0),r2*sin(t1)*sin(0),r2*cos(0)),(r2*cos(t1)*sin(p1),r2*sin(t1)*sin(p1),r2*cos(p1))),black+.25mm+dashed);
 
 
-label("\footnotesize$\Delta\rho$",((r1+r2)/2*cos(t1)*sin((p1)/2),(r1+r2)/2*sin(t1)*sin((p1)/2),(r1+r2)/2*cos((p1)/2)));
+label("\scriptsize$\Delta\rho$",((r1+r2)/2*cos(t1)*sin(.65*(p1)),(r1+r2)/2*sin(t1)*sin(.65*(p1)),(r1+r2)/2*cos(.65*(p1))));
+
+real poff = -0.05;
+
+draw((r1*cos(t1)*sin(p1+poff),r1*sin(t1)*sin(p1+poff),r1*cos(p1+poff)) -- (r2*cos(t1)*sin(p1+poff),r2*sin(t1)*sin(p1+poff),r2*cos(p1+poff)),black+.25mm,Arrows3(size=1.5mm));
+
+label("\scriptsize$\rho$",(0,-.04,.5*r1));
+
+draw((0,-.02,.01) -- (0,-.02,.99*r1),black+.25mm,Arrows3(size=1.5mm));
+
+
+//
+//  lines for theta length
+//
+
+draw((r1*cos(t1)*sin(p2),r1*sin(t1)*sin(p2),r1*cos(p2)-.05) -- (r1*cos(t2)*sin(p2),r1*sin(t2)*sin(p2),r1*cos(p2)-.05),black+.25mm,Arrows3(size=1.5mm));
+
+label("\scriptsize$\rho\sin(\varphi)\Delta\theta$",1.5*((r1*cos(t1)*sin(p2),r1*sin(t1)*sin(p2),r1*cos(p2)-.05) + (r1*cos(t2)*sin(p2),r1*sin(t2)*sin(p2),r1*cos(p2)-.05)+(0,0,-.05))/2+(0,0,-.25),S);
+
+draw(1.5*((r1*cos(t1)*sin(p2),r1*sin(t1)*sin(p2),r1*cos(p2)-.05) + (r1*cos(t2)*sin(p2),r1*sin(t2)*sin(p2),r1*cos(p2)-.05)+(0,0,-.05))/2 + (0,0,-.25) -- 1.05((r1*cos(t1)*sin(p2),r1*sin(t1)*sin(p2),r1*cos(p2)-.05) + (r1*cos(t2)*sin(p2),r1*sin(t2)*sin(p2),r1*cos(p2)-.05))/2+(0,0,-.01),black+.25mm+dashed,Arrow3(size=1.5mm));
+
+//
+// lines for phi length
+//
+
+label("\scriptsize$\rho\Delta\varphi$",.85*(r1*cos(t1)*sin((p1+p2)/2),r1*sin(t1)*sin((p1+p2)/2),r1*cos((p1+p2)/2)));
+
+draw(arc((0,0,0),.95*(r1*cos(t1)*sin(p1),r1*sin(t1)*sin(p1),r1*cos(p1)),.95*(r1*cos(t1)*sin(p2),r1*sin(t1)*sin(p2),r1*cos(p2))),black+.25mm,Arrows3(size=1.5mm));
+
+
+
+
+
+
 
 
 //(p1+p2)/2
-//dot((0,0,2.799),rgb(0,0,0)+1.2mm);
+//dot((0,0,2.799),rgb(0,0,0)+1.1.5mm);
 
 
 

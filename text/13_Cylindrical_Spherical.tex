@@ -63,7 +63,7 @@ This process should sound plausible; the following theorem states it is truly a 
 
 \theorem{thm:triple_int_cylindrical}{Triple Integration in Cylindrical Coordinates}
 {%
-Let $w=h(r,\theta,z)$ be a continuous function on a closed, bounded region $D$ in space, bounded in cylindrical coordinates by $\alpha \leq \theta \leq \beta$, $g_1(\theta)\leq r \leq g_2(\theta)$ and $f_1(r,\theta) \leq z \leq f_2(r,\theta)$. Then 
+Let $w=h(r,\theta,z)$ be a continuous function on a closed, bounded region $D$ in space, bounded in cylindrical coordinates by $\alpha \leq \theta \leq \beta$, $g_1(\theta)\leq r \leq g_2(\theta)$ and $f_1(r,\theta) \leq z \leq f_2(r,\theta)$. Then \index{integration!with cylindrical coordinates} 
 $$\iiint_D h(r,\theta,z)\ dV = \int_\alpha^\beta\int_{g_1(\theta)}^{g_2(\theta)}\int_{f_1(r,\theta)}^{f_2(r,\theta)}h(r,\theta,z) r\,dz\,dr\,d\theta.$$
 }
 
@@ -181,26 +181,33 @@ The equation $\varphi=\pi/6$ describes all points $P$ in space where the ray fro
 3Dc2c=0.6936245560646057 0.5807817578315735 0.4261191189289093,
 3Dcoo=-10.144089698791504 -8.685287475585938 24.90442657470703,
 3Droo=150.00000093140036,
-3Dlights=Headlamp,add3Djscript=asylabels.js}{scale=1.25}{.75}{Graphing the canonical surfaces in spherical coordinates from Example \ref{ex_spherical1}.}{fig:spherical1}{figures/figspherical1} 
+3Dlights=Headlamp,add3Djscript=asylabels.js}{scale=1.25}{.78}{Graphing the canonical surfaces in spherical coordinates from Example \ref{ex_spherical1}.}{fig:spherical1}{figures/figspherical1} 
 
 All three surfaces are graphed in Figure \ref{fig:spherical1}. Note how their intersection uniquely defines the point $P=(1,\pi/3,\pi/6)$.
 }\\
 
 Spherical coordinates are useful when describing certain domains in space, allowing us to evaluate triple integrals over these domains more easily than if we used rectangular coordinates or cylindrical coordinates. The crux of setting up a triple integral in spherical coordinates is appropriately describing the ``small amount of volume,'' $dV$, used in the integral.
 
-Considering Figure \ref{..}, we can make a small ``spherical wedge'' by varying $\rho$, $\theta$ and $\varphi$ each a small amount, $\Delta\rho$, $\Delta\theta$ and $\Delta\varphi$, respectively. This wedge is approximately a rectangular solid when the change in each coordinate is small, giving a volume of about
+Considering Figure \ref{fig:sphericalwedge}, we can make a small ``spherical wedge'' by varying $\rho$, $\theta$ and $\varphi$ each a small amount, $\Delta\rho$, $\Delta\theta$ and $\Delta\varphi$, respectively. This wedge is approximately a rectangular solid when the change in each coordinate is small, giving a volume of about
 $$\Delta V \approx \Delta\rho\ \times\ \rho\Delta\varphi\ \times\ \rho\sin(\varphi)\Delta\theta.$$
+\mfigurethree{width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
+3Droll=-0.545358908878901,
+3Dortho=0.004904536530375481,
+3Dc2c=0.25393617153167725 0.2084963023662567 0.9444817304611206,
+3Dcoo=-6.77640962600708 2.852377414703369 51.19231414794922,
+3Droo=299.99999864287065,
+3Dlights=Headlamp,add3Djscript=asylabels.js}{}{.5}{Approximating the volume of a standard region in space using spherical coordinates.}{fig:sphericalwedge}{figures/figsphericalwedge} 
 
 Given a region $D$ in space, we can approximate the volume of $D$ with many such wedges. As the size of each of $\Delta\rho$, $\Delta\theta$ and $\Delta\varphi$ goes to zero, the number of wedges increases to infinity and the volume of $D$ is more accurately approximated, giving
 $$dV = d\rho\ \times\ \rho\ d\varphi\ \times\ \rho\sin(\varphi)d\theta = \rho^2\sin(\varphi)\ d\rho\ d\theta\ d\varphi.$$
 
 Again, this development of $dV$ should sound reasonable, and the following theorem states it is the appropriate manner by which triple integrals are to be evaluated in spherical coordinates.
-\mnote{.39}{\textbf{Note:} It is generally most intuitive to evaluate the triple integral in Theorem \ref{thm:triple_int_spherical} by integrating with respect to $\rho$ first; it often does not matter whether we next integrate with respect to $\theta$ or $\varphi$. Different texts present different standard orders, some preferring $d\varphi\ d\theta$ instead of $d\theta\ d\varphi$. As the bounds for these variables are usually constants in practice, it generally is a matter of preference.
+\mnote{.25}{\textbf{Note:} It is generally most intuitive to evaluate the triple integral in Theorem \ref{thm:triple_int_spherical} by integrating with respect to $\rho$ first; it often does not matter whether we next integrate with respect to $\theta$ or $\varphi$. Different texts present different standard orders, some preferring $d\varphi\ d\theta$ instead of $d\theta\ d\varphi$. As the bounds for these variables are usually constants in practice, it generally is a matter of preference.
 }
 %\enlargethispage{2\baselineskip}
 
 \theorem{thm:triple_int_spherical}{Triple Integration in Spherical Coordinates}
-{Let $w=h(\rho,\theta,\varphi)$ be a continuous function on a closed, bounded region $D$ in space, bounded in spherical coordinates by $\alpha_1 \leq \varphi \leq \alpha_2$, $\beta_1 \leq \theta \leq \beta_2$ and $f_1(\theta,\varphi) \leq \rho \leq f_2(\theta,\varphi)$. Then
+{Let $w=h(\rho,\theta,\varphi)$ be a continuous function on a closed, bounded region $D$ in space, bounded in spherical coordinates by $\alpha_1 \leq \varphi \leq \alpha_2$, $\beta_1 \leq \theta \leq \beta_2$ and $f_1(\theta,\varphi) \leq \rho \leq f_2(\theta,\varphi)$. Then \index{integration!with spherical coordinates}
 $$\iiint_D h(\rho,\theta,\varphi)\ dV = \int_{\alpha_1}^{\alpha_2}\int_{\beta_1}^{\beta_2}\int_{f_1(\theta,\varphi)}^{f_2(\theta,\varphi)} h(\rho,\theta,\varphi) \rho^2\sin(\varphi)\ d\rho\ d\theta\ d\varphi.$$
 }
 
@@ -269,7 +276,17 @@ M_{xy} &= \iiint_D z\ dm \\
 \end{align*}
 
 Thus the center of mass is $(0,0,M_{xy}/M) \approx (0,0,2.799)$, as indicated in Figure \ref{fig:spherical3}. 
-}
+}\\
+
+This section has provided a brief introduction into two new coordinate systems useful for identifying points in space. Each can be used to define a variety of surfaces in space beyond the canonical surfaces graphed as each system was introduced.
+
+The usefulness of these coordinate systems does not lie in the variety of surfaces that they can describe nor the regions in space these surfaces may enclose. Rather,  cylindrical coordinates are mostly used to describe cylinders and spherical coordinates are mostly used to describe spheres. These shapes are of special interest in the sciences, especially in physics, and computations on/inside these shapes is difficult using rectangular coordinates.
+
+For instance, in the study of electricity and magnetism, one often studies the effects of an electrical current passing through a wire; that wire is essentially a cylinder, described well by cylindrical coordinates. \\
+
+This chapter investigated the natural follow--on to partial derivatives: iterated integration. We learned how to use the bounds of a double integral to describe a region in the plane using both rectangular and polar coordinates, then later expanded to use the bounds of a triple integral to describe a region in space. We used double integrals to find volumes under surfaces, surface area, and the center of mass of lamina; we used triple integrals as an alternate method of finding volumes of space regions and also to find the center of mass of a region in space.
+
+Integration does not stop here. We could continue to iterate our integrals, next investigating ``quadruple integrals'' whose bounds describe a region in 4--dimensional space (which are very hard to visualize). We can also look back to ``regular'' integration where we found the area under a curve in the plane. A natural analogue to this is finding the ``area under a curve,'' where the curve is in space, not in a plane. These are just two of many avenues to explore under the heading of ``integration.''
 
 
 
@@ -320,4 +337,4 @@ Thus the center of mass is $(0,0,M_{xy}/M) \approx (0,0,2.799)$, as indicated in
 %The volume between the surfaces is $16$ cubic units.
 %}\\
 
-\printexercises{exercises/13_06_exercises}
+\printexercises{exercises/13_07_exercises}
