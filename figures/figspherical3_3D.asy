@@ -35,16 +35,15 @@ label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
 triple f(pair t) {
 	return (t.y*cos(t.x)*sin(pi/6),t.y*sin(t.x)*sin(pi/6),t.y*cos(pi/6));//
 }
-surface s=surface(f,(0,0),(2*pi,4),16,8,usplinetype=new splinetype[] {notaknot,notaknot,monotonic},vsplinetype=new splinetype[] {notaknot,notaknot,monotonic});
-pen p=rgb(0,0,0.7);
+surface s=surface(f,(0,0),(2*pi,4),16,4,usplinetype=new splinetype[] {notaknot,notaknot,monotonic},vsplinetype=new splinetype[] {notaknot,notaknot,monotonic});
+pen p=rgb(0,0,0.7)+.1mm;
 draw(s,emissive(rgb(.6,.6,1)+opacity(.7)),meshpen=p);
 
 //Draw the plane  z=7-2x-2y
 triple f(pair t) {
 	return (4*cos(t.x)*sin(t.y),4*sin(t.x)*sin(t.y),4*cos(t.y));//
 }
-surface s=surface(f,(0,0),(2*pi,pi/6),16,8,usplinetype=new splinetype[] {notaknot,notaknot,monotonic},vsplinetype=new splinetype[] {notaknot,notaknot,monotonic});
-pen p=rgb(0,0,0.7);
+surface s=surface(f,(0,0),(2*pi,pi/6),16,4,usplinetype=new splinetype[] {notaknot,notaknot,monotonic},vsplinetype=new splinetype[] {notaknot,notaknot,monotonic});
 draw(s,emissive(rgb(.6,.6,1)+opacity(.7)),meshpen=p);
 
 

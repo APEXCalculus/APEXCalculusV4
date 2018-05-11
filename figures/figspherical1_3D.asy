@@ -20,7 +20,7 @@ defaultpen(0.5mm);
 
 pair xbounds=(-2,2);
 pair ybounds=(-2,2);
-pair zbounds=(-2,2);
+pair zbounds=(-1.5,2);
 
 xaxis3("",xbounds.x,xbounds.y,black,OutTicks(myxchoice),Arrow3(size=3mm));
 yaxis3("",ybounds.x,ybounds.y,black,OutTicks(myychoice),Arrow3(size=3mm));
@@ -35,8 +35,8 @@ label("$z$",(0,0,zbounds.y+0.05*(zbounds.y-zbounds.x)));
 triple f(pair t) {
 	return (t.y*cos(t.x),t.y*sin(t.x),sqrt(3)*t.y);//
 }
-surface s=surface(f,(0,0),(2*pi,1.5/sqrt(3)),16,8,usplinetype=new splinetype[] {notaknot,notaknot,monotonic},vsplinetype=new splinetype[] {notaknot,notaknot,monotonic});
-pen p=rgb(0,0,0.7);
+surface s=surface(f,(0,0),(2*pi,1.5/sqrt(3)),16,4,usplinetype=new splinetype[] {notaknot,notaknot,monotonic},vsplinetype=new splinetype[] {notaknot,notaknot,monotonic});
+pen p=rgb(0,0,0.5)+.1mm;
 draw(s,emissive(rgb(.6,.6,1)+opacity(.7)),meshpen=p);
 
 //draw((-1.5,-1.5,2) -- (-1.5,1.5,2) -- (1.5,1.5,2) -- (1.5,-1.5,2) -- (-1.5,-1.5,2),rgb(0,0,.7)+.25mm);
@@ -49,11 +49,11 @@ draw(mypath,rgb(0,0,.8));
 triple f(pair t) {
 	return (t.x,t.x*sqrt(3),t.y);//
 }
-surface s=surface(f,(-1.25,-1.5),(1.25,1.5),8,8,usplinetype=new splinetype[] {notaknot,notaknot,monotonic},vsplinetype=new splinetype[] {notaknot,notaknot,monotonic});
-pen q=rgb(0.7,0,0);
+surface s=surface(f,(0,-1.25),(1.25,1.5),4,4,usplinetype=new splinetype[] {notaknot,notaknot,monotonic},vsplinetype=new splinetype[] {notaknot,notaknot,monotonic});
+pen q=rgb(0.5,0,0)+.1mm;
 draw(s,emissive(rgb(1,.6,.6)+opacity(.7)),meshpen=q);
 
-draw((-1.25,-1.25*sqrt(3),-1.5) -- (1.25,1.25*sqrt(3),-1.5) -- (1.25,1.25*sqrt(3),1.5) -- (-1.25,-1.25*sqrt(3),1.5) -- (-1.25,-1.25*sqrt(3),-1.5),rgb(.8,0,0)+.25mm);
+draw((0,0,-1.25) -- (1.25,1.25*sqrt(3),-1.25) -- (1.25,1.25*sqrt(3),1.5) -- (0,0,1.5) -- (0,0,-1.5),rgb(.8,0,0)+.25mm);
 
 
 //Draw the plane  z=7-2x-2y
@@ -61,7 +61,7 @@ triple f(pair t) {
 	return (sin(t.y)*cos(t.x),sin(t.y)*sin(t.x),cos(t.y));//
 }
 surface s=surface(f,(0,0),(2*pi,pi),16,16,usplinetype=new splinetype[] {notaknot,notaknot,monotonic},vsplinetype=new splinetype[] {notaknot,notaknot,monotonic});
-pen q=rgb(0,.7,0);
+pen q=rgb(0,.5,0)+.1mm;
 draw(s,emissive(rgb(.5,.9,.5)+opacity(.7)),meshpen=q);
 
 //dot((.5,sqrt(3)*.5,2),rgb(.1,.1,.1));
@@ -73,10 +73,10 @@ path3 mypath=graph(g,0,2*pi,operator ..);
 draw(mypath,rgb(0,0,0));
 
 //(1.5/sqrt(3)*cos(t),1.5/sqrt(3)*sin(t),1.5)
-draw((1.5/sqrt(3)*cos(4*pi/3),1.5/sqrt(3)*sin(4*pi/3),1.5) -- (0,0,0) -- (1.5/sqrt(3)*cos(pi/3),1.5/sqrt(3)*sin(pi/3),1.5));
+draw((0,0,0) -- (1.5/sqrt(3)*cos(pi/3),1.5/sqrt(3)*sin(pi/3),1.5));
 
 triple g(real t) {return (sin(t)*cos(pi/3),sin(t)*sin(pi/3),cos(t));}
-path3 mypath=graph(g,0,2*pi,operator ..);
+path3 mypath=graph(g,0,pi,operator ..);
 draw(mypath,rgb(0,0,0));
 
 triple g(real t) {return (cos(t),sin(t),-.5);}
@@ -95,7 +95,7 @@ path3 mypath=graph(g,-.866,.866,operator ..);
 
 
 label("$\varphi=\frac{\pi}{6}$",(1.5/sqrt(3)*cos(2pi/3),1.5/sqrt(3)*sin(2pi/3),1.5),E);
-label("$\rho=1$",(1.1*cos(pi/6),1.1*sin(pi/6),-.5));
+label("$\rho=1$",(1.1*cos(pi/200),1.1*sin(pi/200),-.9));
 label("$\theta=\frac{\pi}{3}$",(1.25,1.25*sqrt(3),1));
 
 //draw((0,1,0)--(0,3,0)--(3,1,0)--cycle,curvepen);

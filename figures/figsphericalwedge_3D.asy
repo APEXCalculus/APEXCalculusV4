@@ -45,7 +45,7 @@ triple f(pair t) {
 	return (r1*cos(t.x)*sin(t.y),r1*sin(t.x)*sin(t.y),r1*cos(t.y));//
 }
 surface s=surface(f,(t1,p1),(t2,p2),4,4,usplinetype=new splinetype[] {notaknot,notaknot,monotonic},vsplinetype=new splinetype[] {notaknot,notaknot,monotonic});
-pen p=rgb(0,0,0.7);
+pen p=rgb(0,0,0.7)+.1mm;
 draw(s,emissive(rgb(.6,.6,1)+opacity(.7)),meshpen=p);
 
 
@@ -53,7 +53,6 @@ triple f(pair t) {
 	return (r2*cos(t.x)*sin(t.y),r2*sin(t.x)*sin(t.y),r2*cos(t.y));//
 }
 surface s=surface(f,(t1,p1),(t2,p2),4,4,usplinetype=new splinetype[] {notaknot,notaknot,monotonic},vsplinetype=new splinetype[] {notaknot,notaknot,monotonic});
-pen p=rgb(0,0,0.7);
 draw(s,emissive(rgb(.6,.6,1)+opacity(.7)),meshpen=p);
 
 
@@ -61,7 +60,6 @@ triple f(pair t) {
 	return (t.y*cos(t.x)*sin(p1),t.y*sin(t.x)*sin(p1),t.y*cos(p1));//
 }
 surface s=surface(f,(t1,r1),(t2,r2),4,4,usplinetype=new splinetype[] {notaknot,notaknot,monotonic},vsplinetype=new splinetype[] {notaknot,notaknot,monotonic});
-pen p=rgb(0,0,0.7);
 draw(s,emissive(rgb(.6,.6,1)+opacity(.7)),meshpen=p);
 
 
@@ -69,7 +67,6 @@ triple f(pair t) {
 	return (t.y*cos(t.x)*sin(p2),t.y*sin(t.x)*sin(p2),t.y*cos(p2));//
 }
 surface s=surface(f,(t1,r1),(t2,r2),4,4,usplinetype=new splinetype[] {notaknot,notaknot,monotonic},vsplinetype=new splinetype[] {notaknot,notaknot,monotonic});
-pen p=rgb(0,0,0.7);
 draw(s,emissive(rgb(.6,.6,1)+opacity(.7)),meshpen=p);
 
 
@@ -77,7 +74,6 @@ triple f(pair t) {
 	return (t.y*cos(t1)*sin(t.x),t.y*sin(t1)*sin(t.x),t.y*cos(t.x));//
 }
 surface s=surface(f,(p1,r1),(p2,r2),4,4,usplinetype=new splinetype[] {notaknot,notaknot,monotonic},vsplinetype=new splinetype[] {notaknot,notaknot,monotonic});
-pen p=rgb(0,0,0.7);
 draw(s,emissive(rgb(.6,.6,1)+opacity(.7)),meshpen=p);
 
 
@@ -85,7 +81,6 @@ triple f(pair t) {
 	return (t.y*cos(t2)*sin(t.x),t.y*sin(t2)*sin(t.x),t.y*cos(t.x));//
 }
 surface s=surface(f,(p1,r1),(p2,r2),4,4,usplinetype=new splinetype[] {notaknot,notaknot,monotonic},vsplinetype=new splinetype[] {notaknot,notaknot,monotonic});
-pen p=rgb(0,0,0.7);
 draw(s,emissive(rgb(.6,.6,1)+opacity(.7)),meshpen=p);
 
 

@@ -36,7 +36,7 @@ triple f(pair t) {
 	return (2*t.y*cos(t.x),2*t.y*sin(t.x),sqrt(4-4*t.y^2)+3);//
 }
 surface s=surface(f,(0,0),(2pi,1),16,16,Spline);
-pen p=rgb(0,0,0.7);
+pen p=rgb(0,0,0.5)+.1mm;
 draw(s,emissive(rgb(.6,.6,1)+opacity(.7)),meshpen=p);
 
 //draw((-1.5,-1.5,2) -- (-1.5,1.5,2) -- (1.5,1.5,2) -- (1.5,-1.5,2) -- (-1.5,-1.5,2),rgb(0,0,.7)+.25mm);
@@ -47,7 +47,7 @@ triple f(pair t) {
 	return (2*cos(t.x),2*sin(t.x),t.y);//
 }
 surface s=surface(f,(0,0),(2*pi,3),16,8,usplinetype=new splinetype[] {notaknot,notaknot,monotonic},vsplinetype=new splinetype[] {notaknot,notaknot,monotonic});
-pen p=rgb(0,0,0.7);
+pen p=rgb(0,0,0.5)+.1mm;
 draw(s,emissive(rgb(.6,.6,1)+opacity(.7)),meshpen=p);
 
 

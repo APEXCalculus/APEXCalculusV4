@@ -36,7 +36,7 @@ triple f(pair t) {
 	return (t.x,t.y,2);//
 }
 surface s=surface(f,(-1.5,-1.5),(1.5,1.5),8,8,usplinetype=new splinetype[] {notaknot,notaknot,monotonic},vsplinetype=new splinetype[] {notaknot,notaknot,monotonic});
-pen p=rgb(0,0,0.7);
+pen p=rgb(0,0,0.5)+.1mm;
 draw(s,emissive(rgb(.6,.6,1)+opacity(.7)),meshpen=p);
 
 draw((-1.5,-1.5,2) -- (-1.5,1.5,2) -- (1.5,1.5,2) -- (1.5,-1.5,2) -- (-1.5,-1.5,2),rgb(0,0,.7)+.25mm);
@@ -46,11 +46,11 @@ draw((-1.5,-1.5,2) -- (-1.5,1.5,2) -- (1.5,1.5,2) -- (1.5,-1.5,2) -- (-1.5,-1.5,
 triple f(pair t) {
 	return (t.x,t.x*sqrt(3),t.y);//
 }
-surface s=surface(f,(-1.25,-.5),(1.25,2.25),8,8,usplinetype=new splinetype[] {notaknot,notaknot,monotonic},vsplinetype=new splinetype[] {notaknot,notaknot,monotonic});
-pen q=rgb(0.7,0,0);
+surface s=surface(f,(0,-.5),(1.25,2.25),8,8,usplinetype=new splinetype[] {notaknot,notaknot,monotonic},vsplinetype=new splinetype[] {notaknot,notaknot,monotonic});
+pen q=rgb(0.5,0,0)+.1mm;
 draw(s,emissive(rgb(1,.6,.6)+opacity(.7)),meshpen=q);
 
-draw((-1.25,-1.25*sqrt(3),-.5) -- (1.25,1.25*sqrt(3),-.5) -- (1.25,1.25*sqrt(3),2.25) -- (-1.25,-1.25*sqrt(3),2.25) -- (-1.25,-1.25*sqrt(3),-.5),rgb(.8,0,0)+.25mm);
+draw((0,0,-.5) -- (1.25,1.25*sqrt(3),-.5) -- (1.25,1.25*sqrt(3),2.25) -- (0,0,2.25) -- (0,0,-.5),rgb(.8,0,0)+.25mm);
 
 
 //Draw the plane  z=7-2x-2y
@@ -58,7 +58,7 @@ triple f(pair t) {
 	return (cos(t.x),sin(t.x),t.y);//
 }
 surface s=surface(f,(0,-.5),(2*pi,2.25),16,8,usplinetype=new splinetype[] {notaknot,notaknot,monotonic},vsplinetype=new splinetype[] {notaknot,notaknot,monotonic});
-pen q=rgb(0,.7,0);
+pen q=rgb(0,.5,0)+.1mm;
 draw(s,emissive(rgb(.5,.9,.5)+opacity(.7)),meshpen=q);
 
 //dot((.5,sqrt(3)*.5,2),rgb(.1,.1,.1));
@@ -78,7 +78,7 @@ path3 mypath=graph(g,0,2*pi,operator ..);
 draw(mypath,rgb(0,.7,0)+.25mm);
 
 triple g(real t) {return (t,sqrt(3)*t,2);}
-path3 mypath=graph(g,-.866,.866,operator ..);
+path3 mypath=graph(g,0,.866,operator ..);
 draw(mypath,rgb(0,0,0));
 
 //draw(s,emissive(gray+opacity(.3)),meshpen=invisible);
@@ -88,8 +88,8 @@ draw(mypath,rgb(0,0,0));
 
 
 
-label("$z=2$",(-1.25,1.25,2.1));
-label("$r=1$",(1.1*cos(pi/6),1.1*sin(pi/6),-.5));
+label("$z=2$",(-1.25,1.25,2.3));
+label("$r=1$",(1.1*cos(pi/6),1.1*sin(pi/6),-.75));
 label("$\theta=\frac{\pi}{3}$",(1.25,1.25*sqrt(3),1));
 
 //draw((0,1,0)--(0,3,0)--(3,1,0)--cycle,curvepen);
