@@ -59,6 +59,7 @@ triple f(pair t) {
 }
 surface s=surface(f,(0,-.5),(2*pi,2.25),16,8,usplinetype=new splinetype[] {notaknot,notaknot,monotonic},vsplinetype=new splinetype[] {notaknot,notaknot,monotonic});
 pen q=rgb(0,.5,0)+.1mm;
+
 draw(s,emissive(rgb(.5,.9,.5)+opacity(.7)),meshpen=q);
 
 //dot((.5,sqrt(3)*.5,2),rgb(.1,.1,.1));
@@ -79,6 +80,7 @@ draw(mypath,rgb(0,.7,0)+.25mm);
 
 triple g(real t) {return (t,sqrt(3)*t,2);}
 path3 mypath=graph(g,0,.866,operator ..);
+
 draw(mypath,rgb(0,0,0));
 
 //draw(s,emissive(gray+opacity(.3)),meshpen=invisible);
@@ -90,6 +92,7 @@ draw(mypath,rgb(0,0,0));
 
 label("$z=2$",(-1.25,1.25,2.3));
 label("$r=1$",(1.1*cos(pi/6),1.1*sin(pi/6),-.75));
+
 label("$\theta=\frac{\pi}{3}$",(1.25,1.25*sqrt(3),1));
 
 //draw((0,1,0)--(0,3,0)--(3,1,0)--cycle,curvepen);

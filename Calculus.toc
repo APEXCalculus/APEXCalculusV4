@@ -1,6 +1,6 @@
 \thispagestyle {empty}
 \contentsline {chapter}{Table of Contents}{iii}{Doc-Start}
-\contentsline {chapter}{Preface}{vii}{section*.2}
+\contentsline {chapter}{Preface}{v}{section*.2}
 \contentsline {chapter}{\numberline {1}Limits}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}An Introduction To Limits}{1}{section.1.1}
 \contentsline {section}{\numberline {1.2}Epsilon-Delta Definition of a Limit}{9}{section.1.2}
