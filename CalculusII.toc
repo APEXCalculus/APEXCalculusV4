@@ -2,38 +2,41 @@
 \enlargethispage \baselineskip 
 \contentsline {chapter}{Table of Contents}{iii}{Doc-Start}
 \contentsline {chapter}{Preface}{v}{section*.2}
-\contentsline {chapter}{\numberline {5}Integration}{189}{chapter.5}
-\enlargethispage {2\baselineskip }
-\contentsline {section}{\numberline {5.1}Antiderivatives and Indefinite Integration}{189}{section.5.1}
+\contentsline {chapter}{\numberline {5}Integration}{197}{chapter.5}
 \thispagestyle {empty}
-\contentsline {section}{\numberline {5.2}The Definite Integral}{199}{section.5.2}
-\contentsline {section}{\numberline {5.3}Riemann Sums}{210}{section.5.3}
-\contentsline {section}{\numberline {5.4}The Fundamental Theorem of Calculus}{228}{section.5.4}
-\contentsline {section}{\numberline {5.5}Numerical Integration}{240}{section.5.5}
-\contentsline {chapter}{\numberline {6}Techniques of Antidifferentiation}{255}{chapter.6}
-\contentsline {section}{\numberline {6.1}Substitution}{255}{section.6.1}
-\contentsline {section}{\numberline {6.2}Integration by Parts}{275}{section.6.2}
-\contentsline {section}{\numberline {6.3}Trigonometric Integrals}{286}{section.6.3}
-\contentsline {section}{\numberline {6.4}Trigonometric Substitution}{296}{section.6.4}
-\contentsline {section}{\numberline {6.5}Partial Fraction Decomposition}{305}{section.6.5}
-\contentsline {section}{\numberline {6.6}Hyperbolic Functions}{313}{section.6.6}
-\contentsline {section}{\numberline {6.7}L'H\^opital's Rule}{324}{section.6.7}
-\contentsline {section}{\numberline {6.8}Improper Integration}{333}{section.6.8}
-\contentsline {chapter}{\numberline {7}Applications of Integration}{345}{chapter.7}
-\contentsline {section}{\numberline {7.1}Area Between Curves}{346}{section.7.1}
-\contentsline {section}{\numberline {7.2}Volume by Cross-Sectional Area; Disk and Washer Methods}{353}{section.7.2}
-\contentsline {section}{\numberline {7.3}The Shell Method}{361}{section.7.3}
-\contentsline {section}{\numberline {7.4}Arc Length and Surface Area}{369}{section.7.4}
-\contentsline {section}{\numberline {7.5}Work}{378}{section.7.5}
-\contentsline {section}{\numberline {7.6}Fluid Forces}{388}{section.7.6}
-\contentsline {chapter}{\numberline {8}Sequences and Series}{397}{chapter.8}
-\contentsline {section}{\numberline {8.1}Sequences}{397}{section.8.1}
-\contentsline {section}{\numberline {8.2}Infinite Series}{411}{section.8.2}
-\contentsline {section}{\numberline {8.3}Integral and Comparison Tests}{426}{section.8.3}
-\contentsline {section}{\numberline {8.4}Ratio and Root Tests}{435}{section.8.4}
-\contentsline {section}{\numberline {8.5}Alternating Series and Absolute Convergence}{441}{section.8.5}
-\contentsline {section}{\numberline {8.6}Power Series}{452}{section.8.6}
-\contentsline {section}{\numberline {8.7}Taylor Polynomials}{465}{section.8.7}
-\contentsline {section}{\numberline {8.8}Taylor Series}{477}{section.8.8}
+\enlargethispage {10\baselineskip }
+\contentsline {section}{\numberline {5.1}Antiderivatives and Indefinite Integration}{197}{section.5.1}
 \thispagestyle {empty}
+\contentsline {section}{\numberline {5.2}The Definite Integral}{207}{section.5.2}
+\contentsline {section}{\numberline {5.3}Riemann Sums}{218}{section.5.3}
+\contentsline {section}{\numberline {5.4}The Fundamental Theorem of Calculus}{236}{section.5.4}
+\contentsline {section}{\numberline {5.5}Numerical Integration}{248}{section.5.5}
+\contentsline {chapter}{\numberline {6}Techniques of Antidifferentiation}{263}{chapter.6}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {6.1}Substitution}{263}{section.6.1}
+\contentsline {section}{\numberline {6.2}Integration by Parts}{283}{section.6.2}
+\contentsline {section}{\numberline {6.3}Trigonometric Integrals}{294}{section.6.3}
+\contentsline {section}{\numberline {6.4}Trigonometric Substitution}{304}{section.6.4}
+\contentsline {section}{\numberline {6.5}Partial Fraction Decomposition}{313}{section.6.5}
+\contentsline {section}{\numberline {6.6}Hyperbolic Functions}{321}{section.6.6}
+\contentsline {section}{\numberline {6.7}L'H\^opital's Rule}{332}{section.6.7}
+\contentsline {section}{\numberline {6.8}Improper Integration}{341}{section.6.8}
+\contentsline {chapter}{\numberline {7}Applications of Integration}{353}{chapter.7}
+\contentsline {section}{\numberline {7.1}Area Between Curves}{354}{section.7.1}
+\contentsline {section}{\numberline {7.2}Volume by Cross-Sectional Area; Disk and Washer Methods}{362}{section.7.2}
+\contentsline {section}{\numberline {7.3}The Shell Method}{370}{section.7.3}
+\contentsline {section}{\numberline {7.4}Arc Length and Surface Area}{378}{section.7.4}
+\contentsline {section}{\numberline {7.5}Work}{387}{section.7.5}
+\contentsline {section}{\numberline {7.6}Fluid Forces}{397}{section.7.6}
+\contentsline {chapter}{\numberline {8}Sequences and Series}{405}{chapter.8}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {8.1}Sequences}{405}{section.8.1}
+\contentsline {section}{\numberline {8.2}Infinite Series}{419}{section.8.2}
+\contentsline {section}{\numberline {8.3}Integral and Comparison Tests}{434}{section.8.3}
+\contentsline {section}{\numberline {8.4}Ratio and Root Tests}{443}{section.8.4}
+\contentsline {section}{\numberline {8.5}Alternating Series and Absolute Convergence}{449}{section.8.5}
+\contentsline {section}{\numberline {8.6}Power Series}{460}{section.8.6}
+\contentsline {section}{\numberline {8.7}Taylor Polynomials}{473}{section.8.7}
+\contentsline {section}{\numberline {8.8}Taylor Series}{485}{section.8.8}
 \contentsline {chapter}{\numberline {A}Solutions To Selected Problems}{A.1}{appendix.A}
+\contentsline {chapter}{Index}{A.11}{section*.147}

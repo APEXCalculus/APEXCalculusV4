@@ -7,6 +7,6 @@ MainFile=CalculusII.tex
 UseBibTeX=0
 UseMakeIndex=0
 ActiveProfile=XeLaTeX ⇨ PDF
-ProjectLanguage=
-ProjectDialect=
+ProjectLanguage=en
+ProjectDialect=US
 

@@ -1,8 +1,8 @@
 %%%%
-% June 4, 2015, CreateSpace ISBN created
-% ISBN-13: 978-1514225158 
-% 
-% ISBN-10: 1514225158 
+% May 15, 2018, CreateSpace ISBN created
+% ISBN-13: 978-1719219594 
+%
+% ISBN-10: 1719219591 
 %%%%
 \RequirePackage{ifthen}
 \newboolean{longpage}
@@ -66,77 +66,65 @@
 
 \input{text/front_matter_and_coverI}
 
-%\chapter{Limits}\label{chapter:limits}
-%\thispagestyle{empty}
-%%%
-%\input{text/01_Limit_Introduction}
-%\input{text/01_Limit_Definition}
-%\input{text/01_Analytic_Limits}
-%\input{text/01_One_Sided_Limits}
-%\input{text/01_Continuity}
-%\input{text/01_Limits_Involving_Infinity}
 
-%%
-%%%%%\addtocounter{chapter}{1}
-%%
-%\clearpage{\pagestyle{empty}\cleardoublepage}
-%\chapter{Derivatives}\label{chapter:derivatives}
-%\thispagestyle{empty}
+\chapter{Limits}\label{chapter:limits}
+\thispagestyle{empty}
 %
-%\input{text/02_Derivative}
-%\input{text/02_Derivative_Meaning}
-%\input{text/02_Derivative_Rules}
-%\input{text/02_Product_Quotient_Rules}
-%\input{text/02_Chain_Rule}
-%\input{text/02_Implicit_Differentiation}
-%\input{text/02_Derivative_Inverse_Functions}
-%%%%
-%%%%\addtocounter{chapter}{2}
+\input{text/01_Limit_Introduction}
+\input{text/01_Limit_Definition}
+\input{text/01_Analytic_Limits}
+\input{text/01_One_Sided_Limits}
+\input{text/01_Continuity}
+\input{text/01_Limits_Involving_Infinity}
+
 %
-%\clearpage{\pagestyle{empty}\cleardoublepage}
-%\chapter{The Graphical Behavior of Functions}\label{chapter:graphbehavior}
-%\thispagestyle{empty}
+%%%\addtocounter{chapter}{1}
 %
-%\input{text/03_Extreme_Values}
-%\input{text/03_Mean_Value_Theorem}
-%\input{text/03_Increasing_Decreasing}
-%\input{text/03_Concavity}
-%\input{text/03_Curve_Sketching}
-%%%
-%%%%%\addtocounter{chapter}{3}
+\clearpage{\pagestyle{empty}\cleardoublepage}
+\chapter{Derivatives}\label{chapter:derivatives}
+\thispagestyle{empty}
+\addtocontents{toc}{\protect\enlargethispage{4\baselineskip}}
+
+\input{text/02_Derivative}
+\input{text/02_Derivative_Meaning}
+\input{text/02_Derivative_Rules}
+\input{text/02_Product_Quotient_Rules}
+\input{text/02_Chain_Rule}
+\input{text/02_Implicit_Differentiation}
+\input{text/02_Derivative_Inverse_Functions}
+
+%%\addtocounter{chapter}{2}
+
+\clearpage{\pagestyle{empty}\cleardoublepage}
+\chapter{The Graphical Behavior of Functions}\label{chapter:graphbehavior}
+\thispagestyle{empty}
+
+\input{text/03_Extreme_Values}
+\input{text/03_Mean_Value_Theorem}
+\input{text/03_Increasing_Decreasing}
+\input{text/03_Concavity}
+\input{text/03_Curve_Sketching}
+
+%%\addtocounter{chapter}{3}
+
+\clearpage{\pagestyle{empty}\cleardoublepage}
+\chapter{Applications of the Derivative}\label{chapter:deriv_apps}
+\thispagestyle{empty}
+
+\input{text/04_NewtonsMethod}
+\input{text/04_Related_Rates}
+\input{text/04_Optimization}
+\input{text/04_Differentials}
+
 %
-%\clearpage{\pagestyle{empty}\cleardoublepage}
-%\chapter{Applications of the Derivative}\label{chapter:deriv_apps}
-%\thispagestyle{empty}
-%
-%\input{text/04_NewtonsMethod}
-%\input{text/04_Related_Rates}
-%\input{text/04_Optimization}
-%\input{text/04_Differentials}
-%%
-%%
-%%
-%\refstepcounter{definitioncounter}
-%\label{lastdefcount1}
-%\refstepcounter{theoremcounter}
-%\label{lastthmcount1}
-%\refstepcounter{keyideacounter}
-%\label{lastideacount1}
-%\refstepcounter{examplecounter}
-%\label{lastexamplecount1}
-%\addtocounter{definitioncounter}{-1}
-%\addtocounter{theoremcounter}{-1}
-%\addtocounter{keyideacounter}{-1}
-%\addtocounter{examplecounter}{-1}
-%%
-%%
-%%%%
-%%%%%\addtocounter{chapter}{4}
-%%
+%%%\addtocounter{chapter}{4}
+%\addtocontents{toc}{\protect\textbf{(Calculus II begins here)}\protect\par}
+
 \clearpage{\pagestyle{empty}\cleardoublepage}
 \chapter{Integration}\label{chapter:integration}
 \thispagestyle{empty}
 \addtocontents{toc}{\protect\thispagestyle{empty}}
+\addtocontents{toc}{\protect\enlargethispage{4\baselineskip}}
 
 \input{text/05_Antiderivatives}
 \addtocontents{toc}{\protect\thispagestyle{empty}}
@@ -144,28 +132,26 @@
 \input{text/05_Riemann_Sums}
 \input{text/05_FTC}
 \input{text/05_Numerical_Integration}
-%%%
-%%%%%%
-%%%%%%%
-%%%%\addtocounter{chapter}{5}
 %
-%\clearpage{\pagestyle{empty}\cleardoublepage}
-%\chapter{Techniques of Antidifferentiation}\label{chapter:anti_tech}
-%\thispagestyle{empty}
+%%
+%%%\addtocounter{chapter}{5}
+%%
+\clearpage{\pagestyle{empty}\cleardoublepage}
+\chapter{Techniques of Antidifferentiation}\label{chapter:anti_tech}
+\thispagestyle{empty}
+\addtocontents{toc}{\protect\thispagestyle{empty}}
+
+\input{text/06_Substitution}
+%\input{text/06_Int_By_Parts}
+%\input{text/06_Trigonometric_Integrals}
+%\input{text/06_Trig_Sub}
+%\input{text/06_Partial_Fractions}
+%\input{text/06_Hyperbolic_Functions}
+%\input{text/06_LHopitals_Rule}
+%\input{text/06_Improper_Integration}
 %
-%\input{text/06_Substitution}
-%%\input{text/06_Int_By_Parts}
-%%\input{text/06_Trigonometric_Integrals}
-%%\input{text/06_Trig_Sub}
-%%\input{text/06_Partial_Fractions}
-%%\input{text/06_Hyperbolic_Functions}
-%%\input{text/06_LHopitals_Rule}
-%%\input{text/06_Improper_Integration}
-%%
-%%
-%%%
-%%%%%\addtocounter{chapter}{6}
-%%%
+%%%%\addtocounter{chapter}{6}
+%
 %\clearpage{\pagestyle{empty}\cleardoublepage}
 %\chapter{Applications of Integration}\label{chapter:app_of_int}
 %\thispagestyle{empty}
@@ -176,15 +162,12 @@
 %\input{text/07_Arc_Length}
 %\input{text/07_Work}
 %\input{text/07_Fluid_Force}
-%%
-%%
-%%
-%%
-%%%
-%%%%%\addtocounter{chapter}{7}
+%
+%%%%\addtocounter{chapter}{7}
 %\clearpage{\pagestyle{empty}\cleardoublepage}
 %\chapter{Sequences and Series}\label{chapter:sequences_series}
 %\thispagestyle{empty}
+%\addtocontents{toc}{\protect\thispagestyle{empty}}
 %
 %\input{text/08_Sequences}
 %\input{text/08_Series}
@@ -194,18 +177,12 @@
 %\input{text/08_Power_Series}
 %\input{text/08_Taylor_Polynomials}
 %\input{text/08_Taylor_Series}
-%
-%
-%
-%
-%
-%%
-%%
 %%%
-%%%%%\addtocounter{chapter}{8}
+%%%%\addtocounter{chapter}{8}
 %\clearpage{\pagestyle{empty}\cleardoublepage}
-%\chapter{Curves in the Plane}
+%\chapter{Curves in the Plane}\label{chapter:planar_curves}
 %\thispagestyle{empty}
+%
 %\input{text/09_Conic_Sections}
 %\input{text/09_Parametric_Equations}
 %\input{text/09_Parametric_Calculus}
@@ -213,13 +190,12 @@
 %\input{text/09_Polar_Calculus}
 %
 %
+%\addtocontents{toc}{\protect\clearpage}
 %%
 %%
-%%%
-%%%%
-%%%%%\addtocounter{chapter}{9}
+%%%\addtocounter{chapter}{9}
 %\clearpage{\pagestyle{empty}\cleardoublepage}
-%\chapter{Vectors}
+%\chapter{Vectors}\label{chapter:vectors}
 %\thispagestyle{empty}
 %\input{text/10_Space_Intro}
 %\input{text/10_Vector_Introduction}
@@ -227,10 +203,12 @@
 %\input{text/10_Cross_Product}
 %\input{text/10_Lines}
 %\input{text/10_Planes}
-%%
-%%
-%%%
-%%%%%%\addtocounter{chapter}{10}
+%
+%
+%\addtocontents{toc}{\protect\thispagestyle{empty}}
+%\addtocontents{toc}{\protect\enlargethispage{7\baselineskip}}
+%
+%%%%\addtocounter{chapter}{10}
 %\clearpage{\pagestyle{empty}\cleardoublepage}
 %\chapter{Vector Valued Functions}\label{chap:vvf}
 %\thispagestyle{empty}
@@ -239,15 +217,9 @@
 %\input{text/11_Vector_Functions_Motion}
 %\input{text/11_Vector_Tangent_Normal}
 %\input{text/11_Arc_Length_Parameter_Curvature}
-%%
 %
-%
-%
-%%
-%%
-%%%%%\addtocounter{chapter}{11}
 %\clearpage{\pagestyle{empty}\cleardoublepage}
-%\chapter{Functions of Several Variables}\label{chap:multi}
+%\chapter{Functions of Several Variables}\label{chapter:multi}
 %\thispagestyle{empty}
 %\input{text/12_Multivariable_Intro}
 %\input{text/12_Multivariable_Limit}
@@ -257,33 +229,10 @@
 %\input{text/12_Directional_Derivatives}
 %\input{text/12_Tangent_Planes_Lines}
 %\input{text/12_Extrema}
-
-
-%\refstepcounter{definitioncounter}
-%\label{lastdefcount1}
-%\refstepcounter{theoremcounter}
-%\label{lastthmcount1}
-%\refstepcounter{keyideacounter}
-%\label{lastideacount1}
-%\refstepcounter{examplecounter}
-%\label{lastexamplecount1}
-%\addtocounter{definitioncounter}{-1}
-%\addtocounter{theoremcounter}{-1}
-%%\addtocounter{keyideacounter}{-1}
-%\addtocounter{examplecounter}{-1}
-%%
-%%\refstepcounter{definitioncounter}
-%%\label{lastdefcount1}
-%%\refstepcounter{theoremcounter}
-%%\label{lastthmcount1}
-%%\refstepcounter{keyideacounter}
-%%\label{lastideacount1}
-%%\refstepcounter{examplecounter}
-%%\label{lastexamplecount1}
-
-%%\addtocounter{chapter}{12}
+%
+%%%\addtocounter{chapter}{12}
 %\clearpage{\pagestyle{empty}\cleardoublepage}
-%\chapter{Multiple Integration}
+%\chapter{Multiple Integration}\label{chapter:mult_int}
 %\thispagestyle{empty}
 %\input{text/13_Iterated_Integrals}
 %\input{text/13_Double_Integrals_Volume}
@@ -291,45 +240,45 @@
 %\input{text/13_Center_of_Mass}
 %\input{text/13_Surface_Area}
 %\input{text/13_Triple_Integration}
-
+%\input{text/13_Cylindrical_Spherical}
+%
+%
+%\clearpage{\pagestyle{empty}\cleardoublepage}
+%\chapter{Vector Analysis}\label{chapter:vector_calc}
+%\thispagestyle{empty}
+%\input{text/14_Line_Integral_Intro}
+%\input{text/14_Vector_Fields}
+%\input{text/14_Line_Integral_Vector_Fields}
+%\input{text/14_Line_Integral_Greens_Theorem}
+%\input{text/14_Parametrized_Surfaces}
+%\input{text/14_Surface_Integrals}
+%\input{text/14_Stokes_Divergence}
 
 %%%\layout
 
 
+%\clearpage
 
 
-\clearpage{\pagestyle{empty}\cleardoublepage}
+
 \appendix
-\thispagestyle{empty}
 \clearpage{\pagestyle{empty}\cleardoublepage}
 
 \pagenumbering{arabic}\renewcommand{\thepage}{A.\arabic{page}}
 \makeexercisesection{Solutions To Selected Problems}
-%
-%%
-%%
-%%%%%
-%%%%%%%%%%
-%%%%%%%%		 The following makes the index and includes
-%%%%%%%%		it in the file
-%%%%%%%%%%
-%%%%
-%%%%\clearpage{\pagestyle{empty}\cleardoublepage}
-%%%%\phantomsection
-%%%%\addcontentsline{toc}{chapter}{\indexname}
-%%%%\printindex
-%%%
-%%
+
+
+
+
 \qendheader
 \eendgeometry
-%\cleardoublepage
 
 \phantomsection
 \cleardoublepage
 \addcontentsline{toc}{chapter}{\indexname}
-%\printindex
-%\includepdf[pages={863-868}]{Calculus.pdf}
+\printindex
 
+\cleardoublepage
 \input{text/Inside_Cover_Of_The_Text_Material_Complete}
 
 

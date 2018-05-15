@@ -99,7 +99,7 @@
 \newcommand{\myincludegraphicsthreenostar}[3]{{%
 				\ifthenelse{\boolean{in_threeD}}{% in 3D
 				\includemedia[#1]{\includegraphics[#2]{#3_3D\colornamesuffix}}{#3_3D.prc}}% now not in 3D
-				{\myincludegraphics[#2]{#3}}}}
+				{\myincludegraphics[#2]{#3_3D}}}}
 
 \newcommand{\myincludegraphicsthreestarred}[3]{{%
 				\ifthenelse{\boolean{in_threeD}}{% in 3D
@@ -448,7 +448,7 @@
 }\vskip.5\baselineskip%\\
 
 ##3};}%if not in color
-{\draw (\specialboxtitlelength,0) node[draw=black,thick,rectangle,text width = \specialboxlength, inner xsep=\specialboxinnerseplengthx, inner ysep=\specialboxinnerseplengthy, anchor=north west,yshift=\specialboxinnerseplengthy] [#4]  {\textbf{#2 \the\value{#1counter}\hskip 20pt ##2%
+{\draw (\specialboxtitlelength,0) node[draw=black,thick,rectangle,text width = \specialboxlength, inner xsep=\specialboxinnerseplengthx, inner ysep=\specialboxinnerseplengthy, anchor=north west,yshift=\specialboxinnerseplengthy] [#4]  {\textbf{#2 \thesection.\the\value{#1counter}\hskip 20pt ##2%
 }\vskip.5\baselineskip%\\
 
 ##3};}

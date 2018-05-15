@@ -297,7 +297,7 @@ Notes:
 				\centering%
 				\ifthenelse{\boolean{in_threeD}}{% in 3D
 	  		\includemedia[#1]{\includegraphics[#2]{#6_3D\colornamesuffix}}{#6_3D.prc}}%now not in 3D
-				{\myincludegraphics[#2]{#6}}%
+				{\myincludegraphics[#2]{#6_3D}}%
   			\captionsetup{type=figure}%
   			%#1%
 	  		\caption{#4}\label{#5}%
@@ -307,7 +307,7 @@ Notes:
 			  \centering%
   			\ifthenelse{\boolean{in_threeD}}{% in 3D
 	  		\includemedia[#1]{\includegraphics[#2]{#6_3D\colornamesuffix}}{#6_3D.prc}}%now not in 3D
-				{\myincludegraphics[#2]{#6}}%
+				{\myincludegraphics[#2]{#6_3D}}%
   			\captionsetup{type=figure}%
   			%#1%
 	  		\caption{#4}\label{#5}%

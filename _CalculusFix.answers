@@ -1,7 +1,7 @@
 \small \raggedright \begin {multicols}{2}
 \thispagestyle {empty}
-\noindent {\Large \bf Chapter 12} \vskip \baselineskip 
-\noindent {\bf Section 12.1} \vskip \baselineskip 
+\noindent {\Large \bf Chapter 0} \vskip \baselineskip 
+\noindent {\bf Section 0.1} \vskip \baselineskip 
 
 \printanswers {exercises/13_07_exercises}
 \end {multicols}\normalsize 

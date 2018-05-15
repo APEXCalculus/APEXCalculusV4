@@ -10,13 +10,13 @@ One can identify a point $(x_0,y_0,z_0)$, given in rectangular coordinates, with
 \index{cylindrical coordinates}\index{coordinates!cylindrical}
 \mfigurethree{width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
 3Droll=0,
-3Dortho=0.005137228406965733,
-3Dc2c=0.6936245560646057 0.5807817578315735 0.4261191189289093,
-3Dcoo=-10.144089698791504 -8.685287475585938 24.90442657470703,
-3Droo=150.00000093140036,
+3Dortho=0.004267800133675337,
+3Dc2c=0.6733480095863342 0.6255449652671814 0.39407607913017273,
+3Dcoo=-12.612065315246582 -11.544181823730469 33.65996551513672,
+3Droo=150.0000065104165,
 3Dlights=Headlamp,add3Djscript=asylabels.js}{scale=1.25}{.75}{Illustrating the principles behind cylindrical coordinates.}{fig:cylindricalintro}{figures/figcylindricalintro}
 
-We use the identity $z=z$ along with the identities found in Key Idea \ref{idea:polarconvert} to convert between the  rectangular coordinate $(x,y,z)$ and the  cylindrical coordinate $(r,\theta,z)$, namely
+We use the identity $z=z$ along with the identities found in Key Idea \ref{idea:polarconvert} to convert between the  rectangular coordinate $(x,y,z)$ and the  cylindrical coordinate $(r,\theta,z)$, namely:
 $$\begin{array}{l}
 \text{From rectangular to cylindrical:}\quad r=\sqrt{x^2+y^2},\quad \tan\theta = y/x \quad\text{and}\quad z=z;\\
 \text{From cylindrical to rectangular:} \quad x=r\cos\theta\quad y=r\sin\theta\quad \text{and}\quad z=z.\end{array}$$
@@ -44,10 +44,10 @@ The equation $\theta=\pi/3$ describes the plane formed by extending the line $\t
 The equation $z=2$ describes the plane of all points in space that are 2 units above the $x$-$y$ plane. This plane is the same as the plane described by $z=2$ in rectangular coordinates.
 \mfigurethree{width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
 3Droll=0,
-3Dortho=0.005137228406965733,
-3Dc2c=0.6936245560646057 0.5807817578315735 0.4261191189289093,
-3Dcoo=-10.144089698791504 -8.685287475585938 24.90442657470703,
-3Droo=150.00000093140036,
+3Dortho=0.005137230269610882,
+3Dc2c=0.8924431204795837 0.30546268820762634 0.3320206105709076,
+3Dcoo=-13.9379243850708 -4.1078948974609375 30.89048194885254,
+3Droo=149.9999934895832,
 3Dlights=Headlamp,add3Djscript=asylabels.js}{scale=1.25}{.75}{Graphing the canoncial surfaces in cylindrical coordinates from Example \ref{ex_cylindrical1}.}{fig:cylindrical1}{figures/figcylindrical1}
 
 All three surfaces are graphed in Figure \ref{fig:cylindrical1}. Note how their intersection uniquely defines the point $P=(1,\pi/3,2)$.
@@ -57,7 +57,7 @@ Cylindrical coordinates are useful when describing certain domains in space, all
 
 Theorem \ref{thm:triple_integration2} shows how to evaluate $\iiint_Dh(x,y,z)\ dV$ using rectangular coordinates. In that evaluation, we use $dV = dz\,dy\,dx$ (or one of the other five orders of integration). Recall how, in this order of integration, the bounds on $y$ are ``curve to curve'' and the bounds on $x$ are ``point to point'': these bounds describe a region $R$ in the $x$-$y$ plane. We could describe $R$ using polar coordinates as done in Section \ref{sec:double_int_polar}. In that section, we saw how we used $dA = r\,dr\,d\theta$ instead of $dA = dy\,dx$. 
 
-Considering the above thoughts, we have $dV = dz\big(r\,dr\,d\theta\big) = r\,dz\,dr\,d\theta$. We set bounds on $z$ as ``surface to surface'' as done in the previous section, and then use ``curve to curve'' and ``point to point'' bounds on $r$ and $\theta$, respectively. Finally, using the identities given above, we replace the integrand $h(x,y,z)$ to $h(r,\theta,z)$.
+Considering the above thoughts, we have $dV = dz\big(r\,dr\,d\theta\big) = r\,dz\,dr\,d\theta$. We set bounds on $z$ as ``surface to surface'' as done in the previous section, and then use ``curve to curve'' and ``point to point'' bounds on $r$ and $\theta$, respectively. Finally, using the identities given above, we change the integrand $h(x,y,z)$ to $h(r,\theta,z)$.
 
 This process should sound plausible; the following theorem states it is truly a way of evaluating a triple integral.
 
@@ -72,11 +72,11 @@ $$\iiint_D h(r,\theta,z)\ dV = \int_\alpha^\beta\int_{g_1(\theta)}^{g_2(\theta)}
 }
 {We begin by describing this region of space with cylindrical coordinates. The plane $z=0$ is left unchanged; with the identity $r=\sqrt{x^2+y^2}$, we convert the hemisphere of radius 2 to the equation $z=\sqrt{4-r^2}$; the cylinder $x^2+y^2=4$ is converted to $r^2=4$, or, more simply, $r=2$.  We also convert the density function: $\delta(r,\theta,z) = r^2+z+1$. 
 \mfigurethree{width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
-3Droll=-0.545358908878901,
-3Dortho=0.004904536530375481,
-3Dc2c=0.25393617153167725 0.2084963023662567 0.9444817304611206,
+3Droll=0,
+3Dortho=0.004440656863152981,
+3Dc2c=0.6615753173828125 0.6849026679992676 0.30533018708229065,
 3Dcoo=-6.77640962600708 2.852377414703369 51.19231414794922,
-3Droo=299.99999864287065,
+3Droo=300,
 3Dlights=Headlamp,add3Djscript=asylabels.js}{}{.75}{Visualizing the solid used in Example \ref{ex_cylindrical2}.}{fig:cylindrical2}{figures/figcylindrical2} 
 
 To describe this solid with the bounds of a triple integral, we bound $z$ with $0\leq z\leq \sqrt{4-r^2}+3$; we bound $r$ with $0 \leq r \leq 2$; we bound $\theta$ with $0 \leq \theta \leq 2\pi$.
@@ -127,10 +127,10 @@ In short, spherical coordinates can be thought of as a ``double application'' of
 }
 \mfigurethree{width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
 3Droll=0,
-3Dortho=0.005137228406965733,
+3Dortho=0.0045,
 3Dc2c=0.6936245560646057 0.5807817578315735 0.4261191189289093,
-3Dcoo=-10.144089698791504 -8.685287475585938 24.90442657470703,
-3Droo=150.00000093140036,
+3Dcoo=-15.555180549621582 -9.786354064941406 35.21320343017578,
+3Droo=150,
 3Dlights=Headlamp,add3Djscript=asylabels.js}{scale=1.25}{.5}{Illustrating the principles behind spherical coordinates.}{fig:sphericalintro}{figures/figsphericalintro} 
 
 The following Key Idea gives conversions to/from our three spatial coordinate systems.
@@ -180,10 +180,10 @@ The equation $\theta = \pi/3$ describes the same surface in spherical coordinate
 The equation $\varphi=\pi/6$ describes all points $P$ in space where the ray from the origin to $P$ makes an angle of $\pi/6$ with the positive $z$-axis. This describes a cone, with the positive $z$-axis its axis of symmetry, with point at the origin.
 \mfigurethree{width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
 3Droll=0,
-3Dortho=0.005137228406965733,
-3Dc2c=0.6936245560646057 0.5807817578315735 0.4261191189289093,
-3Dcoo=-10.144089698791504 -8.685287475585938 24.90442657470703,
-3Droo=150.00000093140036,
+3Dortho=0.004559914115816355,
+3Dc2c=0.8784526586532593 0.3397093713283539 0.3360334038734436,
+3Dcoo=7.126433849334717 10.647956848144531 4.059844017028809,
+3Droo=300,
 3Dlights=Headlamp,add3Djscript=asylabels.js}{scale=1.25}{.78}{Graphing the canonical surfaces in spherical coordinates from Example \ref{ex_spherical1}.}{fig:spherical1}{figures/figspherical1} 
 
 All three surfaces are graphed in Figure \ref{fig:spherical1}. Note how their intersection uniquely defines the point $P=(1,\pi/3,\pi/6)$.
@@ -194,11 +194,11 @@ Spherical coordinates are useful when describing certain domains in space, allow
 Considering Figure \ref{fig:sphericalwedge}, we can make a small ``spherical wedge'' by varying $\rho$, $\theta$ and $\varphi$ each a small amount, $\Delta\rho$, $\Delta\theta$ and $\Delta\varphi$, respectively. This wedge is approximately a rectangular solid when the change in each coordinate is small, giving a volume of about
 $$\Delta V \approx \Delta\rho\ \times\ \rho\Delta\varphi\ \times\ \rho\sin(\varphi)\Delta\theta.$$
 \mfigurethree{width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
-3Droll=-0.545358908878901,
-3Dortho=0.004904536530375481,
-3Dc2c=0.25393617153167725 0.2084963023662567 0.9444817304611206,
-3Dcoo=-6.77640962600708 2.852377414703369 51.19231414794922,
-3Droo=299.99999864287065,
+3Droll=0,
+3Dortho=0.004123700316995382,
+3Dc2c=0.8697938919067383 0.43597298860549927 0.23105460405349731,
+3Dcoo=-19.780941009521484 32.02916717529297 43.93011474609375,
+3Droo=300.000013020833,
 3Dlights=Headlamp,add3Djscript=asylabels.js}{}{.5}{Approximating the volume of a standard region in space using spherical coordinates.}{fig:sphericalwedge}{figures/figsphericalwedge} 
 
 Given a region $D$ in space, we can approximate the volume of $D$ with many such wedges. As the size of each of $\Delta\rho$, $\Delta\theta$ and $\Delta\varphi$ goes to zero, the number of wedges increases to infinity and the volume of $D$ is more accurately approximated, giving
@@ -231,16 +231,16 @@ the familiar formula for the volume of a sphere. Note how the integration steps 
 }\\
 
 \example{ex_spherical3}{Finding the center of mass using spherical coordinates}
-{Find the center of mass of the solid with constant density whose surface can be represented by $\rho=4$, $\varphi = \pi/6$, where $\theta$ ranges from $0$ to $2\pi$, as illustrated in Figure \ref{fig:spherical3}.
+{Find the center of mass of the solid with constant density enclosed above by $\rho=4$ and below by $\varphi = \pi/6$, as illustrated in Figure \ref{fig:spherical3}.
 }
-{We will set up the four triple integrals needed to find the center of mass (i.e., to compute $M$, $M_{yz}$, $M_{xz}$ and $M_{xy}$) and leave it to the reader to evaluate each integral. Because of symmetry, we expect the $x$ and $y$ coordinates of the center of mass to be 0.
+{We will set up the four triple integrals needed to find the center of mass (i.e., to compute $M$, $M_{yz}$, $M_{xz}$ and $M_{xy}$) and leave it to the reader to evaluate each integral. Because of symmetry, we expect the $x$- and $y$- coordinates of the center of mass to be 0.
 \mfigurethree{width=150pt,3Dmenu,activate=onclick,deactivate=onclick,
 3Droll=0,
-3Dortho=0.005137228406965733,
-3Dc2c=0.6936245560646057 0.5807817578315735 0.4261191189289093,
-3Dcoo=-10.144089698791504 -8.685287475585938 24.90442657470703,
-3Droo=150.00000093140036,
-3Dlights=Headlamp,add3Djscript=asylabels.js}{scale=1.25}{.4}{Graphing the solid, and its center of mass, from Example \ref{ex_spherical3}.}{fig:spherical3}{figures/figspherical3} 
+3Dortho=0.004498619586229324,
+3Dc2c=0.7278125882148743 0.6620227098464966 0.17892660200595856,
+3Dcoo=-23.626569747924805 -17.348602294921875 60.14314270019531,
+3Droo=150,
+3Dlights=Headlamp,add3Djscript=asylabels.js}{scale=1.25}{.35}{Graphing the solid, and its center of mass, from Example \ref{ex_spherical3}.}{fig:spherical3}{figures/figspherical3} 
 
 While the surfaces describing the solid are given in the statement of the problem, to describe the full solid $D$, we use the following bounds: $0 \leq \rho \leq 4$, $0 \leq \theta \leq 2\pi$ and $0 \leq \varphi \leq \pi/6$. Since density $\delta$ is constant, we assume $\delta =1$.
 
@@ -252,7 +252,7 @@ M &= \iiint_D\ dm = \iiint_D\ dV\\
 \end{align*}
 
 To compute $M_{yz}$, the integrand is $x$; using Key Idea \ref{idea:convert_coords}, we have $x = \rho\sin\varphi\cos\theta$. This gives:
-\drawexampleline
+%\drawexampleline
 \begin{align*}
 M_{yz} &= \iiint_D x\ dm \\
 	&= \int_0^{\pi/6}\int_0^{2\pi}\int_0^4 \big((\rho\sin(\varphi)\cos(\theta))\rho^2\sin(\varphi)\big) \ d\rho\ d\theta\ d\varphi\\
@@ -283,9 +283,7 @@ Thus the center of mass is $(0,0,M_{xy}/M) \approx (0,0,2.799)$, as indicated in
 
 This section has provided a brief introduction into two new coordinate systems useful for identifying points in space. Each can be used to define a variety of surfaces in space beyond the canonical surfaces graphed as each system was introduced.
 
-The usefulness of these coordinate systems does not lie in the variety of surfaces that they can describe nor the regions in space these surfaces may enclose. Rather,  cylindrical coordinates are mostly used to describe cylinders and spherical coordinates are mostly used to describe spheres. These shapes are of special interest in the sciences, especially in physics, and computations on/inside these shapes is difficult using rectangular coordinates.
-
-For instance, in the study of electricity and magnetism, one often studies the effects of an electrical current passing through a wire; that wire is essentially a cylinder, described well by cylindrical coordinates. \\
+However, the usefulness of these coordinate systems does not lie in the variety of surfaces that they can describe nor the regions in space these surfaces may enclose. Rather,  cylindrical coordinates are mostly used to describe cylinders and spherical coordinates are mostly used to describe spheres. These shapes are of special interest in the sciences, especially in physics, and computations on/inside these shapes is difficult using rectangular coordinates. For instance, in the study of electricity and magnetism, one often studies the effects of an electrical current passing through a wire; that wire is essentially a cylinder, described well by cylindrical coordinates. \\
 
 This chapter investigated the natural follow--on to partial derivatives: iterated integration. We learned how to use the bounds of a double integral to describe a region in the plane using both rectangular and polar coordinates, then later expanded to use the bounds of a triple integral to describe a region in space. We used double integrals to find volumes under surfaces, surface area, and the center of mass of lamina; we used triple integrals as an alternate method of finding volumes of space regions and also to find the center of mass of a region in space.
 
