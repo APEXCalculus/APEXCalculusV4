@@ -4,7 +4,7 @@
 
 Cylindrical: $\int_0^{2\pi}\int_0^1\int_{0}^{1}r\ dz\ dr\ d\theta$
 
-Spherical: $\int_0^\pi\int_0^{2\pi}\int_0^1 \rho^2\sin(\varphi)\ d\rho\ d\theta\ d\varphi$
+Spherical: $\int_0^{\pi/4}\int_0^{2\pi}\int_0^{\sec\varphi} \rho^2\sin(\varphi)\ d\rho\ d\theta\ d\varphi + \int_{\pi/4}^{\pi/2}\int_0^{2\pi}\int_0^{\csc\varphi} \rho^2\sin(\varphi)\ d\rho\ d\theta\ d\varphi$
 
-Spherical appears simplest, avoiding the integration of square-roots and using techniques such as Substitution; all bounds are constants.
+Cylindrical appears simplest, avoiding the integration of square-roots and two triple integrals; all bounds are constants.
 }

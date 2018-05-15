@@ -1,7 +1,7 @@
 \documentclass{article}
 
 %%% Width is 0.002252 x page count + 0.125 bleed + 0.125 bleed + 8.5*2
-\usepackage[paperwidth=17.95in,paperheight=11.25in]{geometry}
+\usepackage[paperwidth=18.28in,paperheight=11.25in]{geometry}
 %\usepackage{fontspec}
 %\usepackage{pgfplots}
 \usepackage{tikz}
@@ -54,20 +54,32 @@
 %\draw [green] (lspine top) -- (lspine bot) (rspine top) -- (rspine bot);
 %%%\draw[green] (ptop right) -- (pbot left);
 
+\begin{scope}%[rotate=90]
 
+%\node[xshift=-.75in,yshift=0in,scale=4,white,right color=blue,left color=blue!25!white,transform shape,rotate=90] at ($.5*(ptop right)+.5*(pbot right)$) {\fontspec[Scale=1]{Calibri} \rule{0pt}{0pt} \parbox{170pt}{\hfill\ Version 4.0}\ };
 
-\node[xshift=4.475in,yshift=2.75in,scale=4,red] at (current page.center) {\fontspec[Scale=3]{Calibri}\scshape C\fontspec[Scale=2.5]{Calibri}alculus \fontspec[Scale=3]{Calibri}3};
+\node[xshift=-2in,yshift=0in,scale=6,red,transform shape,rotate=90] at ($.5*(ptop right)+.5*(pbot right)$) {\fontspec[Scale=3]{Calibri}\scshape C\fontspec[Scale=2.5]{Calibri}alculus \fontspec[Scale=3]{Calibri}3};
 
-\node[xshift=.2in,yshift=1.94in,scale=2,white,right color=blue,left color=blue!25!white] at (frontpagecenter) {\fontspec[Scale=1]{Calibri} \rule{0pt}{4pt} \hskip3.1in\ };
+\node[xshift=-.75in,yshift=0in,scale=4,white,transform shape,rotate=90] at ($.5*(ptop right)+.5*(pbot right)$) {\fontspec[Scale=1]{Calibri} \parbox{170pt}{\hfill\ Version 4.0}};
 
-\node[xshift=7in,yshift=2.in,scale=2,white] at (current page.center) {\fontspec[Scale=1]{Calibri} Version 3.0};
+\node [xshift=-2.6in,yshift=-3.in,white,scale=3,transform shape,rotate=90] at ($.5*(ptop right)+.5*(pbot right)$) {\fontspec[Scale=1]{Calibri} \apex};
 
-\node [xshift=2.475in,yshift=3.2in,white,scale=2] at (current page.center) {\fontspec[Scale=1]{Calibri} \apex};
+\end{scope}
+
+\draw [white] ($(current page.center)!.75!(current page.south)$) node [xshift=3in] {\fontspec[Scale=2]{Calibri}\parbox{4in}{{ Volume Three of }\apex\ Calculus\\ Chapters 9 - 14}};
+
+%%\node[xshift=4.475in,yshift=2.75in,scale=4,red] at (current page.center) {\fontspec[Scale=3]{Calibri}\scshape C\fontspec[Scale=2.5]{Calibri}alculus \fontspec[Scale=3]{Calibri}3};
+%%
+%%\node[xshift=.2in,yshift=1.94in,scale=2,white,right color=blue,left color=blue!25!white] at (frontpagecenter) {\fontspec[Scale=1]{Calibri} \rule{0pt}{4pt} \hskip3.1in\ };
+%%
+%%\node[xshift=7in,yshift=2.in,scale=2,white] at (current page.center) {\fontspec[Scale=1]{Calibri} Version 3.0};
+%%
+%%\node [xshift=2.475in,yshift=3.2in,white,scale=2] at (current page.center) {\fontspec[Scale=1]{Calibri} \apex};
 
 %\node[xshift=3.25in,yshift=3.2in,scale=3,black] at (current page.center) {\fontspec[Scale=1]{Calibri} \apex};
 
 
-\draw [white] ($(current page.center)!.75!(current page.south)$) node [xshift=6.9in] {\fontspec[Scale=2]{Calibri}\parbox{4in}{{ Volume Three of }\apex\ Calculus\\ Chapters 9 - 13}};
+%%\draw [white] ($(current page.center)!.75!(current page.south)$) node [xshift=6.9in] {\fontspec[Scale=2]{Calibri}\parbox{4in}{{ Volume Three of }\apex\ Calculus\\ Chapters 9 - 13}};
 
 
 
@@ -75,7 +87,7 @@
 %
 %\draw (current page.center) node [yshift=0in,rotate=-90,red] {\fontspec[Scale=2]{Calibri} \scshape \phantom{\apex} \fontspec[Scale=4]{Calibri} \hskip 2in Calculus 3 \hskip 2in \fontspec[Scale=2]{Calibri} \phantom{Version 2.0}};
 
-\draw (current page.center) node [yshift=0in,rotate=-90,white] {\fontspec[Scale=2]{Calibri} \scshape \apex \fontspec[Scale=4]{Calibri} \hskip 2in \hskip 2.5in\hskip 2in \fontspec[Scale=2]{Calibri} Version 3.0};
+\draw (current page.center) node [yshift=0in,rotate=-90,white] {\fontspec[Scale=2]{Calibri} \scshape \apex \fontspec[Scale=4]{Calibri} \hskip 2in \hskip 2.5in\hskip 2in \fontspec[Scale=2]{Calibri} Version 4.0};
 
 \draw (current page.center) node [yshift=0in,rotate=-90,red] { \scshape  \fontspec[Scale=4]{Calibri}  Calculus 3 };
 

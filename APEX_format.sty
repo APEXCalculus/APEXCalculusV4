@@ -99,7 +99,7 @@
 \newcommand{\myincludegraphicsthreenostar}[3]{{%
 				\ifthenelse{\boolean{in_threeD}}{% in 3D
 				\includemedia[#1]{\includegraphics[#2]{#3_3D\colornamesuffix}}{#3_3D.prc}}% now not in 3D
-				{\myincludegraphics[#2]{#3}}}}
+				{\myincludegraphics[#2]{#3_3D}}}}
 
 \newcommand{\myincludegraphicsthreestarred}[3]{{%
 				\ifthenelse{\boolean{in_threeD}}{% in 3D
