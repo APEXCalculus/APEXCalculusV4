@@ -55,7 +55,7 @@ The next theorem extends this understanding by connecting the dot product to mag
 3Dc2c=.54 .61 .58,
 3Dcoo=0 0 40,
 3Droo=170,
-3Dlights=Headlamp,add3Djscript=asylabels.js}{}{figures/figdotpangle3D}\\
+3Dlights=Headlamp,add3Djscript=asylabels.js}{width=125pt}{figures/figdotpangle3D}\\
 %\includegraphics{figures/figdotpangle3D}\\
 (b)
 \end{tabular}
@@ -124,7 +124,7 @@ We do a similar example next in the context of vectors in space.\\
 3Dc2c=.89 .4 .23,
 3Dcoo=10 50 46,
 3Droo=200,
-3Dlights=Headlamp,add3Djscript=asylabels.js}{}{.4}{Vectors used in Example \ref{ex_dotp3}.}{fig:dotp3}{figures/figdotp3}%
+3Dlights=Headlamp,add3Djscript=asylabels.js}{width=150pt}{.4}{Vectors used in Example \ref{ex_dotp3}.}{fig:dotp3}{figures/figdotp3}%
 %\mfigure{.4}{Vectors used in Example \ref{ex_dotp3}.}{fig:dotp3}{figures/figdotp3}
 \example{ex_dotp3}{Using the dot product to find angles}{
 Let $\vec u = \la 1,1,1\ra$, $\vec v = \la -1,3,-2\ra$ and $\vec w = \la -5,1,4\ra$, as illustrated in Figure \ref{fig:dotp3}. Find the angle between each pair of vectors.}
@@ -243,7 +243,7 @@ $$\proj uv = \frac{\dotp uv}{\dotp vv}\vec v.$$
 3Dc2c=.9 .12 .42,
 3Dcoo=0 50 30,
 3Droo=250,
-3Dlights=Headlamp,add3Djscript=asylabels.js}{}{figures/figdotp4b}\\
+3Dlights=Headlamp,add3Djscript=asylabels.js}{width=100pt}{figures/figdotp4b}\\
 %\includegraphics{figures/figdotp4b}\\
 (b)\\[15pt]
 \myincludegraphicsthree{width=100pt,3Dmenu,activate=onclick,deactivate=onclick,
@@ -252,7 +252,7 @@ $$\proj uv = \frac{\dotp uv}{\dotp vv}\vec v.$$
 3Dc2c=.29 .77 .56,
 3Dcoo=50 0 40,
 3Droo=250,
-3Dlights=Headlamp,add3Djscript=asylabels.js}{}{figures/figdotp4c}\\
+3Dlights=Headlamp,add3Djscript=asylabels.js}{width=100pt}{figures/figdotp4c}\\
 %\includegraphics{figures/figdotp4c}\\
 (c)\\[15pt]
 \end{tabular}
@@ -282,7 +282,7 @@ A special case of orthogonal projection occurs when $\vec v$ is a unit vector. I
 
 This gives us a new understanding of the dot product. When $\vec v$ is a unit vector, essentially providing only direction information, the dot product of $\vec u$ and $\vec v$ gives ``how much of $\vec u$ is in the direction of $\vec v$.'' This use of the dot product will be very useful in future sections.\\
 
-\mfigure{.23}{Illustrating the orthogonal projection.}{fig:dotpprojc}{figures/figdotpprojc}
+\mfigure{.7}{Illustrating the orthogonal projection.}{fig:dotpprojc}{figures/figdotpprojc}
 Now consider Figure \ref{fig:dotpprojc} where the concept of the orthogonal projection is again illustrated. It is clear that 
 \begin{equation}
 \vec u = \proj uv + \vec z.
@@ -370,7 +370,7 @@ Consider Figure \ref{fig:dotp6}(a), showing a box weighing 50lb on a ramp that r
 
 In physics, the application of a force $F$ to move an object in a straight line a distance $d$ produces \emph{work}; the amount of work $W$ is $W=Fd$, (where $F$ is in the direction of travel). The orthogonal projection allows us to compute work when the force is not in the direction of travel.
 
-\mfigure{.6}{Finding work when the force and direction of travel are given as vectors.}{fig:dotpwork}{figures/figdotpwork}
+\mfigure{.35}{Finding work when the force and direction of travel are given as vectors.}{fig:dotpwork}{figures/figdotpwork}
 Consider Figure \ref{fig:dotpwork}, where a force $\vec F$ is being applied to an object moving in the direction of $\vec d$. (The distance the object travels is the magnitude of $\vec d$.) The work done is the amount of force in the direction of $\vec d$, $\norm{\proj Fd}$, times $\vnorm d$:
 \begin{align*}
 \norm{\proj Fd}\cdot\vnorm d &= \snorm{\frac{\dotp Fd}{\dotp dd}\vec d}\cdot \vnorm d \\
@@ -391,7 +391,7 @@ A man slides a box along a ramp that rises 3ft over a distance of 15ft by applyi
 {The figure indicates that the force applied makes a $30^\circ$ angle with the horizontal, so $\vec F = 50\la \cos 30^\circ,\sin 30^\circ\ra \approx \la 43.3,25\ra.$ The ramp is represented by $\vec d  = \la 15,3\ra$. The work done is simply
 $$\dotp Fd = 50\la \cos 30^\circ,\sin 30^\circ\ra \cdot \la 15,3\ra \approx 724.5 \text{ft--lb}.$$
 
-\mfigure{.8}{Computing work when sliding a box up a ramp in Example \ref{ex_dotp7}.}{fig:dotp7}{figures/figdotp7}
+\mfigure{.45}{Computing work when sliding a box up a ramp in Example \ref{ex_dotp7}.}{fig:dotp7}{figures/figdotp7}
 Note how we did not actually compute the distance the object traveled, nor the magnitude of the force in the direction of travel; this is all inherently computed by the dot product!
 }\\
 
