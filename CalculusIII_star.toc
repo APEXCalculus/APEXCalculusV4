@@ -1,6 +1,7 @@
 \thispagestyle {empty}
 \contentsline {chapter}{Table of Contents}{iii}{Doc-Start}
 \contentsline {chapter}{Preface}{v}{section*.2}
+\textbf {(Calculus II begins here)}\par 
 \contentsline {chapter}{\numberline {9}Curves in the Plane}{497}{chapter.9}
 \contentsline {section}{\numberline {9.1}Conic Sections}{497}{section.9.1}
 \contentsline {section}{\numberline {9.2}Parametric Equations}{511}{section.9.2}
