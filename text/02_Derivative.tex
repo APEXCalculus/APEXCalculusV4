@@ -146,7 +146,7 @@ Linear functions are easy to work with; many functions that arise in the course 
 
 One type of function that does not benefit from a tangent--line approximation is a line; it is rather simple to recognize that the tangent line to a line is the line itself. We look at this in the following example.\\
 
-\example{ex_der_line}{Finding the Derivative of a Line}{Consider $f(x) = 3x+5$. Find the equation of the tangent line to $f$ at $x=1$ and $x=7$.}
+\example{ex_der_line}{Finding the derivative of a linear function}{Consider $f(x) = 3x+5$. Find the equation of the tangent line to $f$ at $x=1$ and $x=7$.}
 {We find the slope of the tangent line by using Definition \ref{def:derivative_at_a_point}.
 
 	\begin{align*}
@@ -169,7 +169,7 @@ We often desire to find the tangent line to the graph of a function without know
 %\enlargethispage{\baselineskip}
 \mfigure{.55}{$f(x) = \sin x$ graphed with an approximation to its tangent line at $x=0$.}{fig:tangentsinx}{figures/figtangentsinx}
 
-\example{ex_der_num_approx}{Numerical Approximation of the Tangent Line}{Approximate the equation of the tangent line to the graph of $f(x)=\sin x$ at $x=0$.}
+\example{ex_der_num_approx}{Numerical approximation of the tangent line}{Approximate the equation of the tangent line to the graph of $f(x)=\sin x$ at $x=0$.}
 {In order to find the equation of the tangent line, we need a slope and a point. The point is given to us: $(0,\sin 0) = (0,0)$. To compute the slope, we need the derivative. This is where we will make an approximation. Recall that $$\fp(0) \approx \frac{\sin(0+h)- \sin 0}{h}$$ for a small value of $h$. We choose (somewhat arbitrarily) to let $h=0.1$. Thus $$\fp(0) \approx \frac{\sin(0.1)-\sin 0}{0.1} \approx 0.9983.$$
 Thus our approximation of the equation of the tangent line is $y = 0.9983(x-0) +0 = 0.9983x$; it is graphed in Figure \ref{fig:tangentsinx}. The graph seems to imply the approximation is rather good.
 }\\
