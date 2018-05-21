@@ -1,7 +1,6 @@
 \thispagestyle {empty}
 \contentsline {chapter}{Table of Contents}{iii}{Doc-Start}
 \contentsline {chapter}{Preface}{v}{section*.2}
-\textbf {(Calculus II begins here)}\par 
 \contentsline {chapter}{\numberline {9}Curves in the Plane}{497}{chapter.9}
 \contentsline {section}{\numberline {9.1}Conic Sections}{497}{section.9.1}
 \contentsline {section}{\numberline {9.2}Parametric Equations}{511}{section.9.2}
@@ -40,5 +39,6 @@
 \contentsline {section}{\numberline {13.5}Surface Area}{799}{section.13.5}
 \contentsline {section}{\numberline {13.6}Volume Between Surfaces and Triple Integration}{806}{section.13.6}
 \contentsline {section}{\numberline {13.7}Triple Integration with Cylindrical and Spherical Coordinates}{828}{section.13.7}
+\thispagestyle {empty}
 \contentsline {chapter}{\numberline {A}Solutions To Selected Problems}{A.1}{appendix.A}
 \contentsline {chapter}{Index}{A.17}{section*.241}
