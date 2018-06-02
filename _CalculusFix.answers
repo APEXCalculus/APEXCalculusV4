@@ -1,7 +1,0 @@
-\small \raggedright \begin {multicols}{2}
-\thispagestyle {empty}
-\noindent {\Large \bf Chapter 0} \vskip \baselineskip 
-\noindent {\bf Section 0.1} \vskip \baselineskip 
-
-\printanswers {exercises/10_04_exercises}
-\end {multicols}\normalsize 
