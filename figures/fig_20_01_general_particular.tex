@@ -1,0 +1,24 @@
+\begin{tikzpicture}
+\begin{axis}[width=\marginparwidth+25pt,
+tick label style={font=\scriptsize},
+%axis y line=middle,axis x line=middle,
+axis lines = middle,
+name=myplot,%
+%			xtick={0,1,2,3,4},%
+%			xticklabels={-2,-1,..,2},
+%			ytick={0,0.05,.1},
+%			yticklabels = {0,0.05,0.1},
+%			minor x tick num=1,
+%			extra x ticks={.25,.75},%
+			ymin=-10.5,ymax=10.75,
+			xmin=-2,xmax=2.15%
+]
+\foreach \n in {-6,...,6}
+	{
+	\addplot[{\colortwo},domain = -2:2, samples=50] {\n/2*exp(2*x)};
+	}
+\addplot[{\colorone},domain=-2:2,thick,samples=50]{3/2*exp(2*x)};
+\end{axis}
+\node [right] at (myplot.right of origin) {\scriptsize $x$};
+\node [above] at (myplot.above origin) {\scriptsize $y$};
+\end{tikzpicture}

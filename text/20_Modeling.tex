@@ -1,0 +1,250 @@
+
+\section{Modeling with Differential Equations}\label{sec:Modeling}
+
+\index{differential equation!modeling}In the first three sections of this chapter, we focused on the basic ideas behind differential equations and the mechanics of solving certain types of differential equations.  We have only hinted at their practical use.  In this section, we use differential equations for mathematical modeling, the process of using equations to describe real world processes.  We explore a few different mathematical models with the goal of gaining an introduction to this large field of applied mathematics.
+
+\vskip\baselineskip
+\noindent\textbf{\large Models Involving Proportional Change}
+\vskip\baselineskip
+
+Some of the simplest differential equation models involve one quantity that changes at a rate proportional to another quantity.  In the introduction to this chapter, we considered a population that grows at a rate proportional to the current population.  The words in this assumption can be directly translated into a differential equation as shown below.
+
+\begin{center}
+	\myincludegraphics{figures/fig20_04_translation}
+	\captionsetup{type=figure}%
+	\caption{Translating words into a differential equation.}\label{fig:20_translation}
+\end{center}
+
+There are some key ideas that can be helpful when translating words into a differential equation.  Any time we see something about rates or changes, we should think about derivatives.  The word ``is" usually corresponds to an equal sign in the equation.  The words ``proportional to" mean we have a constant multiplied by something.
+
+The differential equation in Figure \ref{fig:20_translation} is easily solved using separation of variables. We find
+	\[
+		p = Ce^{kt}.
+	\]
+Notice that we need values for both $C$ and $k$ before we can use this formula to predict population size.  We require information about the population at two different times in order to fully determine the population model.
+
+\vskip\baselineskip
+
+\enlargethispage{\baselineskip}
+
+\appendixexample{ex_ecoli}{Bacterial Growth}{
+\index{bacterial growth}Suppose a population of \emph{e-coli} bacteria grows at a rate proportional to the current population.  If an initial popluation of 200 bacteria has grown to 1600 three hours later, find a function for the size of the population at time $t$, and use it to predict when the population size will reach 10,000.}
+{We already know that the population at time $t$ is given by $p = Ce^{kt}$ for some $C$ and $k$.  The information about the initial size of the population means that $p(0)=200.$ Thus $C=200.$  Our knowledge of the population size after three hours allows us to solve for $k$ via the equation
+	\[
+		1600 = 200e^{3k}.
+	\]
+Solving this exponential equation yields $k =\ln(8)/3 \approx 0.6931.$  The popluation at time $t$ is given by
+	\[
+		p = 200 e^{(\ln(8)/3)t}.
+	\]
+Solving
+	\[
+		10000 = 200e^{(\ln(8)/3)t}
+	\]
+yields $t =(3\ln 50)/\ln 8 \approx 5.644.$  The population is predicted to reach 10,000 bacteria in slightly more than five and a half hours.
+}\\
+
+Another example of porportional change is \textbf{Newton's Law of Cooling.}\index{Newton's Law of Cooling} The laws of thermodynamics state that heat flows from areas of higher temperature to areas of lower temperature.  A simple example is a hot object that cools down when placed in a cool room.  Newton's Law of Cooling is the simple assumption that the temperature of the object changes at a rate proportional to the difference between the temperature of the object and the ambient temperature of the room.  If $T$ is the temperature of the object and $A$ is the constant ambient temperature, Newton's Law of Cooling can be expressed as the differential equation
+	\[
+		\frac{dT}{dt} = k(A - T).
+	\]
+This differential equation is both linear and separable. The separated form is
+	\[
+		\frac{1}{A-T}\,dT = k\,dt.
+	\]
+Then an implicit definition of the temperature is given by
+	\[
+		-\ln|A-T| = kt + C.
+	\]
+If we solve for $T$, we find the explicit temperature
+	\[
+		T = A-Ce^{-kt}.
+	\]
+Though we didn't show the steps, the explicit solution involves the typical process of renaming the constant $\pm e^{-C}$ as $C$, and allowing $C$ to be positive, negative, or zero to account for both cases of the absolution value and to catch the constant solution $T=A.$ Notice that the temperature of the object approaches the ambient temperature in the limit as $t\to\infty$.
+
+\appendixmnote{.5}{\textbf{Note:} The equation $\displaystyle \frac{dT}{dt} = k(T-A)$ is also a valid representation of Newton's Law of Cooling.  Intuition tells us that $T$ will increase if $T$ is less than $A$ and decrease if $T$ is greater then $A$.  The form we use in the text follows this intuition with a positive $k$ value.  The form above will require that $k$ take on a negative value. In the end, both forms result in the same function.}
+
+\appendixexample{ex_coffee}{Hot Coffee}{A freshly brewed cup of coffee is set on the counter and has a temperature of 200$^\circ$ Fahrenheit.  After 3 minutes, it has cooled to 190$^\circ$, but is still too hot to drink.  If the room is 72$^\circ$ and the coffee cools according to Newton's Law of Cooling, how long will the impatient coffee drinker have to wait until the coffee has cooled to 165$^\circ$?}
+{Since we have already solved the differential equation for Newton's Law of Cooling, we can immediately use the function
+	\[
+		T = A - Ce^{-kt}.
+	\]
+Since the room is 72$^\circ$, we know $A = 72.$  The initial temperature is 200$^\circ$, which means $C = -128.$  At this point, we have
+	\[
+		T = 72 + 128e^{-kt}
+	\]
+The information about the coffee cooling to 190$^\circ$ in 3 minutes leads to the equation
+	\[
+		190 = 72 + 128e^{-3k}.
+	\]
+Solving the exponential equation for $k$, we have
+	\[
+		k = -\frac{1}{3}\ln \left(\frac{59}{64}\right) \approx 0.0271.
+	\]
+Finally, we finish the problem by solving the exponential equation
+	\[
+		165 = 72 + 128e^{\frac{1}{3}\ln \left(\frac{59}{64}\right)t}.
+	\]
+The coffee drinker must wait $\displaystyle t = \frac{3 \ln \left(\frac{93}{128}\right)}{\ln \left(\frac{59}{64}\right)} \approx 11.78$ minutes.
+\vskip.25\baselineskip
+}\\
+
+We finish our discussion of models of proportional change by exploring three different models of disease spread through a population.  In all of the models, we let $y$ denote the proportion of the population that is sick ($0 \leq y \leq 1$).  We assume a proportion of $0.05$ is initially sick and that a proportion of $0.1$ is sick 1 week later.
+
+\vskip\baselineskip
+
+\appendixexample{ex_disease_exponential}{Disease Spread 1}{Suppose a disease spreads through a population at a rate proportional to the number of individuals who are sick.  If 5\% of the population is sick initially and 10\% of the population is sick one week later, find a formula for the proportion of the popoulation that is sick at time $t$.}
+{The assumption here seems to have some merit because it matches our intuition that a disease should spread more rapidly when more individuals are sick.  The differential equation is simply
+	\[
+		\frac{dy}{dt} = ky,
+	\]
+with solution
+	\[
+		y = Ce^{kt}.
+	\]
+The conditions $y(0)=0.05$ and $y(1) = 0.1$ lead to $C = 0.05$ a and $k = \ln 2$, so the function is
+	\[
+		y = 0.05e^{(\ln 2)t}.
+	\]
+We should point out a glaring problem with this model.  The variable $y$ is a proportion and should take on values between 0 and 1, but the function $y = 0.05e^{2t}$ grows without bound.  After $t \approx 4.32$ weeks, $y$ exceeds 1, and the model ceases to make physical sense.
+}\\
+
+\appendixexample{ex_disease_newton}{Disease Spread 2}{Suppose a disease spreads through a population at a rate proportional to the number of individuals who are not sick.  If 5\% of the population is sick initially and 10\% of the population is sick one week later, find a formula for the proportion of the popoulation that is sick at time $t$}
+{The intuition behind the assumption here is that a disease can only spread if there are individuals who are susceptible to the infection.  As fewer and fewer people are able to be infected, the disease spread should slow down.  Since $y$ is proportion of the population that is sick, $1-y$ is the proportion who are not sick, and the differential equation is
+	\[
+		\frac{dy}{dt} = k(1-y).
+	\]
+Though the context is quite different, the differential equation is identical to the differential equation for Newton's Law of Cooling, with $A=1$.  The solution is
+	\[
+		y = 1 - Ce^{-kt}.
+	\]
+The conditions $y(0)=0.05$ and $y(1) = 0.1$ yield $C = 0.95$ and $k = -\ln\left(\frac{18}{19}\right) \approx 0.0541,$ so the final function is
+	\[
+		y = 1-.95e^{\ln\left(\frac{18}{19}\right)t}.
+	\]
+Notice that this function approaches $y=1$ in the limit as $t \to \infty,$ and does not suffer from the non-physical behavior described in Example \ref{ex_disease_exponential}.
+}\\
+
+In Example \ref{ex_disease_exponential}, we assumed disease spread depends on the number of infected individuals.  In Example \ref{ex_disease_newton}, we assumed disease spread depends on the number of susceptible individuals who are able to become infected.  In reality, we would expect many diseases to require the interaction of both infected and susceptible individuals in order to spread.  One of the simplest ways to model this required interaction is to assume disease spread depends on the product of the proportions of infected and uninfected individuals.  This assumption (regularly seen in the context of chemical reactions) is often called the \emph{law of mass action.}\\
+
+\appendixmtable{.4}{Plots of the functions from Example \ref{ex_disease_exponential} (dotted), Example \ref{ex_disease_newton} (dashed), and Example \ref{ex_disease_logistic} (solid).}{fig:disease}{\begin{tabular}{c} \myincludegraphics{figures/fig20_04_disease} \\ \rule{0pt}{10pt}(a) \\ \\ \myincludegraphics{figures/fig20_04_disease1}  \\  \rule{0pt}{10pt}(b) \end{tabular}}
+
+\appendixexample{ex_disease_logistic}{Disease Spread 3}{\index{differential equation!logistic}Suppose a disease spreads through a population at a rate proportional to the product of the number of infected and uninfected individuals. If 5\% of the population is sick initially and 10\% of the population is sick one week later, find a formula for the proportion of the population that is sick at time $t$}
+{The differential equation is
+	\[
+		\frac{dy}{dt} = ky(1-y).
+	\]
+This is exactly the logistic equation with $M = 1.$  We solved this differential equation in Example \ref{ex_logistic}, and found
+	\[
+		y = \frac{1}{1 + be^{-kt}}.
+	\]
+The conditions $y(0)=0.05$ and $y(1) = 0.1$ yield $b = 19$ and $k = -\ln\left(\frac{9}{19}\right) \approx 0.7472.$  The final function is
+	\[
+		y = \frac{1}{1+19e^{\ln\left(\frac{9}{19}\right)t}}.
+	\]
+	
+Based on the three different assumptions about the rate of disease spread explored in the last three examples, we now have three different functions giving the proportion of a population that is sick at time $t$.  Each of the three functions meets the conditions $y(0)=0.05$ and $y(1) = 0.1$.  The three functions are shown in Figure \ref{fig:disease}.  Notice that the logistic function mimics specific parts of the functions from Examples \ref{ex_disease_exponential} and \ref{ex_disease_newton}.  We see in Figure \ref{fig:disease}(a) that the logistic and exponential functions are virtually indistinguishable for small $t$ values.  When there are few infected individuals and lots of susceptible individuals, the spread of a disease is largely determined by the number of sick people.  The logistic curve captures this feature, and is ``almost exponential" early on.  In Figure \ref{fig:disease}(b), we see that the logistic curve leaves the exponential curve from Example \ref{ex_disease_exponential} and approaches the curve from Example \ref{ex_disease_newton}.  This result implies that when most of the population is sick, the spread of the disease is largely dependent on the number of susceptible individuals. Though there are much more sophisticated mathematical models describing the spread of infections, we could argue that the logistic model presented in this example is the ``best" of the three.
+}
+
+
+
+\vskip\baselineskip
+\noindent\textbf{\large Rate-in Rate-out Problems}
+\vskip\baselineskip
+
+One of the classic ways to build a mathematical model involves tracking the way the amount of something can change. We sometimes say these models are based on \emph{conservation laws}. Consider a box with some amount of a specific type of material inside. (Some type of chemical, for example.)  The amount of material of the specific type in the box can only change in four ways; we can add more to the box, we can remove some  from the box, some of the material can change into material of a different type, or some other type of material can turn into the type we're tracking.  In the examples that follow, we assume material doesn't change type, so we only need to keep track of material coming into the box and material leaving the box.  To derive a differential equation, we track rates:
+	\[
+		\text{rate of change of some quantity} = \text{rate in} - \text{rate out}.
+	\]
+Though we stick to relatively simple examples, this basic idea can be used to derive some very important differential equations in mathematics and physics.
+
+The examples to follow involve tracking the amount of a chemical in solution.  We assume liquid containing some chemical flows into a container at some rate. That liquid mixes instantaneously with the liquid already in the container.  Then the liquid from the container flows out at some (potentially different) rate.
+
+\vskip\baselineskip
+
+\appendixmnote{.5}{\textbf{Note:} The assumption about instantaneous mixing, though not physically accurate, leads to a differential equation we have hope of solving.  In reality, the amount of chemical at a specific location in the container depends both on the location and how long we have been waiting.  This dependence on both space and time leads to a type of differential equation called a \emph{partial differential equation.} Differential equations of this type are more interesting, but significantly harder to study.  Instantaneous mixing removes any spatial dependence from the problem, and leaves us with an \emph{ordinary differential equation}.}
+
+\appendixexample{ex_equal_flow}{Equal Flow Rates}{Suppose a 10 liter tank has 5 liters of salt solution in it.  The initial concentration of the salt solution is 1 gram per liter.  A salt solution with concentration 3 g/L flows into the tank at a rate of 2 L/min.  Suppose the salt solution mixes instantaneously with the solution already in the tank and that the mixed solution from the tank flows out at a rate of 2 L/min.  Find a function that gives the amount of salt in the tank at time $t$.}
+{We use the rate in $-$ rate out setup described above.  The quantity here is the amount (in grams) of salt in the tank at time $t$.  Let $y$ denote the amount of salt.  In words, the differential equation is given by
+	\[
+		\frac{dy}{dt} = \text{rate in} - \text{rate out}.
+	\]
+Thinking in terms of units can help fill in the details of the differential equation.  Since $y$ has units of grams, the left hand side of the equation has units g/min.  Both terms on the right hand side must have these same units.  Notice that the product of a concentration (with units g/L) and a flow rate (with units L/min) results in a quantity with units g/min.  Both terms on the right hand side of the equation will include a concentration multiplied by a flow rate.
+
+For the rate in, we multiply the inflow concentration by the rate that fluid is flowing into the bucket.  This is $\displaystyle \left(3 \frac{\text{g}}{\text{L}}\right)\left(2 \frac{\text{L}}{\text{min}}\right) = 6$ g/min.
+
+The rate out is more complicated.  The flow rate is still 2 L/min, meaning that the overall volume of the fluid in the bucket is the constant 5 L.  The salt concentration in the bucket is not constant though, meaning that the outflow concentration is not constant.  In particular, the outflow concentration is \emph{not} the constant 1 g/L.  This is simply the initial concentration.  To find the concentration at any time, we need the amount of salt in the bucket at that time and the volume of liquid in the bucket at that time.  The volume of liquid is the constant 5 L, and the amount of salt is given by the dependent variable $y$.  Thus, the outflow concentration is $\displaystyle \frac{y}{5}$ g/L, yielding a rate out given by $\displaystyle \left(\frac{y}{5}\frac{\text{g}}{\text{L}}\right)\left(2 \frac{\text{L}}{\text{min}}\right) = \frac{2y}{5}$ g/min
+
+The differential equation we wish to solve is given by
+	\[
+		\frac{dy}{dt} = 6 - \frac{2y}{5}.
+	\]
+To furnish an initial condition, we must convert the initial salt concentration into an initial amount of salt.  This is $\left(1\displaystyle \frac{\text{g}}{\text{L}}\right)(5 \text{ L}) = 5$ g, so $y(0) = 5$ is our initial condition.
+
+Our differential equation is both separable and linear.  We solve using separation of variables.  The separated form of the differential equation is
+	\[
+		\frac{5}{30 - 2y}\,dy = dt.
+	\]
+Integration yields the implicit solution
+	\[
+		-\frac{5}{2}\ln|30 - 2y| = t+C.
+	\]
+Solving for $y$ (and redefining the arbitrary constant $C$ as necessary) yields the explicit solution
+\drawoddexampleline
+	\[
+		y = 15 + Ce^{-\frac{2}{5}t}.
+	\]
+The initial condition $y(0) = 5$ means that $C = -10$ so that
+	\[
+		y = 15 - 10e^{-\frac{2}{5}t}
+	\]
+is the particular solution to our initial value problem.
+
+This function is plotted in Figure \ref{fig:equal_flow}.  Notice that in the limit as $t\to\infty$, $y$ approaches $15$.  This corresponds to a bucket concentration of $15/5 = 3$ g/L.  It should not be surprising that salt concentration inside the tank will move to match the inflow salt concentration.
+}
+
+\appendixmfigure{.8}{Salt concentration at time $t$, from Example \ref{ex_equal_flow}.}{fig:equal_flow}{figures/fig20_04_equal_flow}
+
+\vskip\baselineskip
+
+\appendixexample{ex_unequal_flow}{Unequal Flow Rates}{Suppose the setup is identical to the setup in Example \ref{ex_equal_flow} except that now liquid flows out of the bucket at a rate of 1 L/min. Find a function that gives the amount of salt in the bucket at time $t$. What is the salt concentration when the solution ceases to be valid?}
+{Because the inflow and outflow rates no longer match, the volume of liquid in the bucket is not the constant 5 L.  In general, we can find the volume of liquid via the equation
+	\[
+		\text{volume} = \text{initial volume} + \text{(inflow rate - outflow rate)}t.
+	\]
+In this example, the volume at time $t$ is $5 + t$ liters.  Because the total volume of the bucket is only 10 L, it follows that our solution will only be valid for $0 \leq t \leq 5$.  At that point it is no longer possible to have liquid flow into a the bucket at a rate of 2 L/min and out of the bucket at a rate of 1 L/min.
+
+To update the differential equation, we must modify the rate out.  Since the volume is $5 + t,$ the concentration at time $t$ is given by $\frac{y}{5+t}$ g/L.  Thus for rate out, we must use $\left( \frac{y}{5+t}\right)(1)$ g/min.  The initial value problem is
+	\[
+		\frac{dy}{dt} = 6 - \frac{y}{5+t}, \text{ with } y(0)=5.
+	\]
+Unlike Example \ref{ex_equal_flow}, where we had equal flow rates, this differential equation is no longer separable.  We must proceed with an integrating factor.  Writing the differential equation in the form
+	\[
+		\frac{dy}{dt} + \frac{1}{5+t}y = 6,
+	\]
+we identify the integrating factor
+	\[
+		\mu(t) = e^{\int \hskip -2pt \frac{1}{5+t}\,dt} = e^{\ln(5+t)} = 5+t.
+	\]
+Then
+	\[
+		\frac{d}{dt}\big((5+t)y\big) = 6(5+t),
+	\]
+yielding the implicit solution
+	\[
+		(5+t)y = 30t + 3t^2 + C.
+	\]
+The initial condition $y(0) = 5$ implies $C = 25$, so the explicit solution to our initial value problem is given by
+	\[
+		y = \frac{3t^2 + 30t + 25}{5+t}.
+	\]
+This solution ceases to be valid at $t=5$.  At that time, there are 25 g of salt in the tank.  The volume of liquid is 10 L, resulting in a salt concentration of $2.5$ g/L.
+\vskip-\baselineskip
+}
+\vskip\baselineskip
+
+Differential equations are powerful tools that can be used to help describe the world around us.  Though relatively simple in concept, the ideas of proportional change and matching rates can serve as building blocks in the development of more sophisticated mathematical models.  As we saw in this section, some simple mathematical models can be solved analytically using the techniques developed in this chapter.  Most  sophisticated mathematical models don't allow for analytic solutions.  Even so, there are an array of graphical and numerical techniques that can be used to analyze the model to make predictions and infer information about real world phenomena.
+
+
+
+\printexercises{exercises/20_04_exercises}

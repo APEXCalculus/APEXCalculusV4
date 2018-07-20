@@ -1,0 +1,36 @@
+\thispagestyle {empty}
+\contentsline {chapter}{Table of Contents}{iii}{Doc-Start}
+\contentsline {chapter}{Preface}{v}{section*.2}
+\contentsline {chapter}{\numberline {8}Sequences and Series}{405}{chapter.8}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {8.1}Sequences}{405}{section.8.1}
+\contentsline {section}{\numberline {8.2}Infinite Series}{419}{section.8.2}
+\contentsline {section}{\numberline {8.3}Integral and Comparison Tests}{434}{section.8.3}
+\contentsline {section}{\numberline {8.4}Ratio and Root Tests}{443}{section.8.4}
+\contentsline {section}{\numberline {8.5}Alternating Series and Absolute Convergence}{449}{section.8.5}
+\contentsline {section}{\numberline {8.6}Power Series}{460}{section.8.6}
+\contentsline {section}{\numberline {8.7}Taylor Polynomials}{473}{section.8.7}
+\contentsline {section}{\numberline {8.8}Taylor Series}{485}{section.8.8}
+\contentsline {chapter}{\numberline {9}Curves in the Plane}{497}{chapter.9}
+\contentsline {section}{\numberline {9.1}Conic Sections}{497}{section.9.1}
+\contentsline {section}{\numberline {9.2}Parametric Equations}{511}{section.9.2}
+\contentsline {section}{\numberline {9.3}Calculus and Parametric Equations}{521}{section.9.3}
+\contentsline {section}{\numberline {9.4}Introduction to Polar Coordinates}{533}{section.9.4}
+\contentsline {section}{\numberline {9.5}Calculus and Polar Functions}{546}{section.9.5}
+\contentsline {chapter}{\numberline {10}Vectors}{559}{chapter.10}
+\contentsline {section}{\numberline {10.1}Introduction to Cartesian Coordinates in Space}{559}{section.10.1}
+\contentsline {section}{\numberline {10.2}An Introduction to Vectors}{574}{section.10.2}
+\contentsline {section}{\numberline {10.3}The Dot Product}{588}{section.10.3}
+\contentsline {section}{\numberline {10.4}The Cross Product}{601}{section.10.4}
+\contentsline {section}{\numberline {10.5}Lines}{612}{section.10.5}
+\contentsline {section}{\numberline {10.6}Planes}{623}{section.10.6}
+\thispagestyle {empty}
+\contentsline {chapter}{\numberline {11}Vector Valued Functions}{631}{chapter.11}
+\contentsline {section}{\numberline {11.1}Vector--Valued Functions}{631}{section.11.1}
+\contentsline {section}{\numberline {11.2}Calculus and Vector--Valued Functions}{637}{section.11.2}
+\contentsline {section}{\numberline {11.3}The Calculus of Motion}{651}{section.11.3}
+\contentsline {section}{\numberline {11.4}Unit Tangent and Normal Vectors}{664}{section.11.4}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {11.5}The Arc Length Parameter and Curvature}{673}{section.11.5}
+\contentsline {chapter}{\numberline {A}Solutions To Selected Problems}{A.1}{appendix.A}
+\contentsline {chapter}{Index}{A.13}{section*.182}

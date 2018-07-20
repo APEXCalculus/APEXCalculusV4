@@ -1,0 +1,28 @@
+\def\length{sqrt(1+(y*sin(deg x))^2)}
+\begin{tikzpicture}
+\begin{axis}[width=\marginparwidth+25pt,
+tick label style={font=\scriptsize},
+%axis y line=middle,axis x line=middle,
+axis lines = center,
+name=myplot,%
+view={0}{90},
+%y domain = -.5:10,
+domain = -.5:10,
+%			xtick={0,1,..,10},%
+%			xticklabels={-1,0,1,2,3,4,5},
+%			ytick={-2,-1,0,1,2},
+%			yticklabels = {-2,-1,0,1,2},
+			minor x tick num=1,
+			extra x ticks={2.5,7.5},%
+			minor y tick num=1,
+			extra y ticks={2.5,7.5},
+%			ymin=-.1,ymax=1.6,%
+%			xmin=-.1,xmax=5.2%
+]
+\addplot3 [{\colortwo},quiver = {u = {1/(\length)}, v = {(y*sin(deg x))/(\length)},scale arrows=.4},samples=15]{0};
+\addplot [{\colorone},thick,domain=0:10,samples = 100] {exp(1-cos(deg x))};
+\fill[black,draw=black] (axis cs:0,1) circle (1.5pt);
+\end{axis}
+\node [right] at (myplot.right of origin) {\scriptsize $x$};
+\node [above] at (myplot.above origin) {\scriptsize $y$};
+\end{tikzpicture}

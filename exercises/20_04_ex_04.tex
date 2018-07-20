@@ -1,0 +1,10 @@
+{
+Consider a chemical reaction where molecules of type A combine with molecules of type B to form molecules of type C.  Suppose one molecule of type A combines with one molecule of type B to form one molecule of type C, and that type C is produced at a rate proportional the product of the remaining number of molecules of types A and B.  Let $x$ denote moles of molecules of type $C$.  Find a function giving the number of moles of type C at time $t$ if there are originally $a$ moles of type A, $b$ moles of type B, and zero moles of type C.
+}
+{
+$ x =
+\begin{cases}
+	\displaystyle\frac{ab(1 - e^{(a-b)kt})}{b-ae^{(a-b)kt}} & \text{ if } a \neq b\\
+	\displaystyle \frac{a^2kt}{1+akt} & \text{ if } a = b
+\end{cases}$
+}

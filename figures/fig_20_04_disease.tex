@@ -1,0 +1,24 @@
+\begin{tikzpicture}
+\begin{axis}[width=\marginparwidth+25pt,
+tick label style={font=\scriptsize},
+%axis y line=middle,axis x line=middle,
+axis lines = middle,
+name=myplot,%
+%			xtick={0,1,2,3,4},%
+%			xticklabels={-2,-1,..,2},
+			ytick={0,0.05,.1},
+			yticklabels = {0,0.05,0.1},
+%			minor x tick num=1,
+%			extra x ticks={.25,.75},%
+			ymin=-.01,ymax=.11,
+			xmin=-.1,xmax=1.25%
+]
+\addplot [{\colorone},thick,domain = 0:10, samples=50] {1/(1+19*exp(ln(9/19)*x)};
+\addplot [{\colorone},thick,domain = 0:10, samples=50,dashed] {1-.95*exp(ln(18/19)*x)};
+\addplot [{\colorone},thick,domain = 0:2, samples=50,dotted] {.05*exp(ln(2)*x)};
+\fill[black,draw=black](axis cs:0,.05) circle (1.5pt);
+\fill[black,draw=black](axis cs:1,.1) circle (1.5pt);
+\end{axis}
+\node [right] at (myplot.right of origin) {\scriptsize $t$};
+\node [above] at (myplot.above origin) {\scriptsize $y$};
+\end{tikzpicture}

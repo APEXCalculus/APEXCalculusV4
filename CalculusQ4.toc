@@ -1,0 +1,32 @@
+\thispagestyle {empty}
+\contentsline {chapter}{Table of Contents}{iii}{Doc-Start}
+\contentsline {chapter}{Preface}{v}{section*.2}
+\contentsline {chapter}{\numberline {12}Functions of Several Variables}{683}{chapter.12}
+\contentsline {section}{\numberline {12.1}Introduction to Multivariable Functions}{683}{section.12.1}
+\contentsline {section}{\numberline {12.2}Limits and Continuity of Multivariable Functions}{690}{section.12.2}
+\contentsline {section}{\numberline {12.3}Partial Derivatives}{700}{section.12.3}
+\contentsline {section}{\numberline {12.4}Differentiability and the Total Differential}{712}{section.12.4}
+\contentsline {section}{\numberline {12.5}The Multivariable Chain Rule}{721}{section.12.5}
+\contentsline {section}{\numberline {12.6}Directional Derivatives}{729}{section.12.6}
+\contentsline {section}{\numberline {12.7}Tangent Lines, Normal Lines, and Tangent Planes}{739}{section.12.7}
+\contentsline {section}{\numberline {12.8}Extreme Values}{749}{section.12.8}
+\contentsline {chapter}{\numberline {13}Multiple Integration}{759}{chapter.13}
+\contentsline {section}{\numberline {13.1}Iterated Integrals and Area}{759}{section.13.1}
+\contentsline {section}{\numberline {13.2}Double Integration and Volume}{769}{section.13.2}
+\contentsline {section}{\numberline {13.3}Double Integration with Polar Coordinates}{780}{section.13.3}
+\contentsline {section}{\numberline {13.4}Center of Mass}{787}{section.13.4}
+\contentsline {section}{\numberline {13.5}Surface Area}{799}{section.13.5}
+\contentsline {section}{\numberline {13.6}Volume Between Surfaces and Triple Integration}{806}{section.13.6}
+\contentsline {section}{\numberline {13.7}Triple Integration with Cylindrical and Spherical Coordinates}{828}{section.13.7}
+\thispagestyle {empty}
+\enlargethispage {6\baselineskip }
+\contentsline {chapter}{\numberline {14}Vector Analysis}{839}{chapter.14}
+\contentsline {section}{\numberline {14.1}Introduction to Line Integrals}{840}{section.14.1}
+\contentsline {section}{\numberline {14.2}Vector Fields}{850}{section.14.2}
+\contentsline {section}{\numberline {14.3}Line Integrals over Vector Fields}{859}{section.14.3}
+\contentsline {section}{\numberline {14.4}Flow, Flux, Green's Theorem and the Divergence Theorem}{870}{section.14.4}
+\contentsline {section}{\numberline {14.5}Parametrized Surfaces and Surface Area}{880}{section.14.5}
+\contentsline {section}{\numberline {14.6}Surface Integrals}{891}{section.14.6}
+\contentsline {section}{\numberline {14.7}The Divergence Theorem and Stokes' Theorem}{900}{section.14.7}
+\contentsline {chapter}{\numberline {A}Solutions To Selected Problems}{A.1}{appendix.A}
+\contentsline {chapter}{Index}{A.11}{section*.137}

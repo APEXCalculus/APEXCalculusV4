@@ -1,0 +1,24 @@
+\def\length{sqrt(1+(-x)^2)}
+\begin{tikzpicture}
+\begin{axis}[width=\marginparwidth+25pt,
+tick label style={font=\scriptsize},
+%axis y line=middle,axis x line=middle,
+axis lines = center,
+name=myplot,%
+view={0}{90},
+domain = -2:2,
+y domain = -2:2,
+%			xtick={-2,-1,..,2},%
+%			xticklabels={-2,-1,..,2},
+			ytick={-3,-2,-1,0,1,2,3},
+%			yticklabels = {-2,-1,0,1,2},
+%			minor x tick num=1,
+%			extra x ticks={.25,.75},%
+%			ymin=-.1,ymax=1.1,%
+%			xmin=-.1,xmax=1.1%
+]
+\addplot3 [{\colortwo},quiver = {u = {1/(\length)}, v = {(-x)/(\length)},scale arrows=.1},samples=15]{0};
+\end{axis}
+\node [right] at (myplot.right of origin) {\scriptsize $x$};
+\node [above] at (myplot.above origin) {\scriptsize $y$};
+\end{tikzpicture}

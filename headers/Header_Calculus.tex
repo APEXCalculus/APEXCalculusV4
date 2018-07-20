@@ -99,6 +99,29 @@ Notes:
 \fancyhfoffset[LE,RO]{\marginparsep+\marginparwidth}
 }
 
+\newcommand{\appendixtextheader}[1]{%
+\fancyhead[LE]{\nouppercase{\leftmark}}%
+\fancyhead[RO]{\rightmark}%
+\fancyfoot[LE]{\begin{minipage}{\textwidth}%
+\noindent\hskip\marginparwidth\hskip\marginparsep\hskip0pt\rule{\textwidth}{.4pt}
+\vskip.2\baselineskip
+\noindent\hskip\marginparwidth\hskip\marginparsep\hskip0pt%
+Notes:
+\vskip 1.5in\textbf{#1.\thepage}
+\end{minipage}} 
+
+\fancyfoot[RO]{\begin{minipage}{\textwidth+\marginparwidth+\marginparsep}%
+\rule{\textwidth-\marginparwidth-\marginparsep}{.4pt}
+\vskip.2\baselineskip
+Notes:
+\vskip 1.5in
+\hfill\textbf{#1.\thepage}
+\end{minipage}}
+\fancyhfoffset[LE,RO]{\marginparsep+\marginparwidth}
+}
+
+
+
 \newcommand{\qendheader}{%
 		\fancyhead{}%
 		\fancyfoot{}%
@@ -506,3 +529,68 @@ Notes:
 %\end{tikzpicture}%
 %\end{center}%
 %}
+
+
+%%%
+%%
+%%%
+\newcommand{\appendixoddcheck}{\checkoddpage\ifoddpage\setboolean{oddpg}{true}\else\setboolean{oddpg}{false}\fi}
+
+
+\newcommand{\appendixmfigure}[5][]{%
+		%\ifthenelse{\isodd{\thepage}}%
+		  \appendixoddcheck%
+			\ifthenelse{\boolean{oddpg}}%
+			{\AddToShipoutPicture*{\put(427,\LenToUnit{#2\paperheight}){%
+			\begin{minipage}{\marginparwidth}%
+				\centering%
+	  		\myincludegraphics[#1]{#5}%
+  			\captionsetup{type=figure}%
+  			%#1%
+	  		\caption{#3}\label{#4}%
+  		\end{minipage}}}}%
+			{\AddToShipoutPicture*{\put(36,\LenToUnit{#2\paperheight}){%
+			\begin{minipage}{\marginparwidth}%
+			  \centering%
+  		  \myincludegraphics[#1]{#5}%
+  			\captionsetup{type=figure}%
+  			%#1%
+	  		\caption{#3}\label{#4}%
+  		\end{minipage}}}}%
+		}
+		
+		\newcommand{\appendixmtable}[4]{%
+			%\ifthenelse{\isodd{\thepage}}%
+			\appendixoddcheck%
+			\ifthenelse{\boolean{oddpg}}%
+				{\AddToShipoutPicture*{\put(427,\LenToUnit{#1\paperheight}){%
+					\begin{minipage}{\marginparwidth}%
+  					\centering\small%
+  					#4%
+  					\captionsetup{type=figure}%
+	  				\caption{#2}\label{#3}%
+  				\end{minipage}}}}%
+				{\AddToShipoutPicture*{\put(36,\LenToUnit{#1\paperheight}){%
+					\begin{minipage}{\marginparwidth}%
+ 						 \centering\small%
+ 						 #4%
+						  \captionsetup{type=figure}%
+	  					\caption{#2}\label{#3}%
+ 					 \end{minipage}}}}%
+		}
+		
+		\newcommand{\appendixmnote}[2]{%
+			%\ifthenelse{\isodd{\thepage}}%
+			 \appendixoddcheck%
+			\ifthenelse{\boolean{oddpg}}%
+				{\AddToShipoutPicture*{\put(427,\LenToUnit{#1\paperheight}){%
+					\begin{minipage}{\marginparwidth}
+  					\small
+  					#2
+  				\end{minipage}}}}%
+				{\AddToShipoutPicture*{\put(36,\LenToUnit{#1\paperheight}){%
+					\begin{minipage}{\marginparwidth}
+ 						 \small
+ 						 #2
+					\end{minipage}}}}
+		}

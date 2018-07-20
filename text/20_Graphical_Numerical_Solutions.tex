@@ -1,0 +1,342 @@
+One of the strengths of calculus is its ability to describe real-world phenomena.  We have seen hints of this in our discussion of the applications of derivatives and integrals in the previous chapters.  The process of formulating an equation or multiple equations to describe a physical phenomenon is called \emph{mathematical modeling.} As a simple example, populations of bacteria are often described as ``growing exponentially." Looking in a biology text, we might see $P(t) = P_0e^{kt},$ where $P(t)$ is the bacteria population at time $t$, $P_0$ is the initial population at time $t=0$, and the constant $k$ describes how quickly the population grows. This equation for exponential growth arises from the assumption that the population of bacteria grows at a rate proportional to its size.  Recalling that the derivative gives the rate of change of a function, we can describe the growth assumption precisely using the equation  $P\primeskip' = kP.$ This equation is called a \emph{differential equation}, and these equations are the subject of the current chapter.
+
+\vskip-\baselineskip
+\section{Graphical and Numerical Solutions to Differential Equations}\label{sec:Graphical_Numerical}
+In Section \ref{sec:antider}, we were introduced to the idea of a differential equation.  Given a function $y = f(x),$ we defined a \emph{differential equation} as an equation involving $y, x,$ and derivatives of $y$. We explored the simple differential equation $\yp = 2x,$
+and saw that a \emph{solution} to a differential equation is simply a function that satisfies the differential equation.
+
+\vskip\baselineskip
+\noindent\textbf{\large Introduction and Terminology}
+\vskip\baselineskip
+
+\definition{def:ODE}{Differential Equation}
+{Given a function $y=f(x)$, a \textbf{differential equation}\index{differential equation!definition} is an equation relating $x, y,$ and derivatives of $y$.
+\begin{itemize}
+\item The variable $x$ is called the \textbf{independent variable}.
+\item The variable $y$ is called the \textbf{dependent variable}.
+\item The \textbf{order} of the differential equation is the order of the highest derivative of $y$ that appears in the equation.
+\end{itemize}
+}
+
+Let us return to the simple differential equation
+\[
+\yp = 2x.
+\]
+To find a solution, we must find a function whose derivative is $2x$.  In other words, we seek an antiderivative of $2x.$  The function 
+\[y = x^2\]
+is an antiderivative of $2x$, and solves the differential equation.  So do the functions
+\[y = x^2 + 1\]
+and
+\[y = x^2 - 2346.\]
+We call the function
+\[y = x^2 +  C,\]
+with $C$ an arbitrary constant of integration, the \emph{general solution} to the differential equation.
+
+In order to specify the value of the integration constant $C$, we require additional information.  For example, if we know that $y(1) = 3$, it follows that $C=2$.  This additional information is called an \emph{initial condition.}
+
+\definition{def:IVP}{Initial Value Problem}
+{A differential equation paired with an initial condition (or initial conditions) is called an \textbf{initial value problem.}\index{initial value problem}\\
+
+The solution to an initial value problem is called a \textbf{particular solution}\index{differential equation!particular solution}. A particular solution does not include arbitrary constants.\\
+
+The family of solutions to a differential equation that encompasses all possible solutions is called the \textbf{general solution}\index{differential equation!general solution} to the differential equation.}\\
+
+\appendixmnote{.45}{\textbf{Note:} A general solution typically includes one or more arbitrary constants. Different values of the constant(s) specify different members in the family of solutions. The particular solution to an initial value problem is the specific member in the family of solutions that corresponds to the given initial condition(s).}
+
+\appendixexample{ex_simple_de}{A simple first-order differential equation}{
+Solve the differential equation $\displaystyle \yp = 2y$.}
+{The solution is a function $y$ such that differentiation yields twice the original function.  Unlike our starting example, finding the solution here does not involve computing an antiderivative.  Notice that ``integrating both sides'' would yield the result $y = \int 2y\,dx,$ which is not useful.  Without knowledge of the function $y$, we can't compute the indefinite integral. Later sections will explore systematic ways to find analytic solutions to simple differential equations.  For now, a bit of thought might let us guess the solution 
+\[y = e^{2x}.\]
+Notice that application of the chain rule yields $\yp = 2e^{2x} = 2y.$ Another solution is given by
+\[y = -3e^{2x}.\]
+In fact,
+\[y = Ce^{2x},\]
+where $C$ is any constant, is the \emph{general solution} to the differential equation because $\yp = 2Ce^{2x} = 2y$.
+
+If we are provided with a single initial condition, say $y(0) = 3/2,$ we can identify $C=3/2$ so that
+\[y = \frac{3}{2}e^{2x}\]
+is the \emph{particular solution} to the initial value problem 
+\[\yp = 2y, \text{ with } y(0) = \frac{3}{2}.\]
+
+Figure \ref{fig:general_particular} shows various members of the general solution to the differential equation $\displaystyle \yp = 2y$. Each $C$ value yields a different member of the family, and a different function. We emphasize the particular solution corresponding to the initial condition $y(0)=3/2.$
+\vskip -\baselineskip
+}\\
+
+\appendixmfigure{.63}{A representation of some of the members of general solution to the differential equation $\yp = 2y$, including the particular solution to the initial value problem with $y(0)=\displaystyle 3/2,$ from Example \ref{ex_simple_de}}{fig:general_particular}{figures/fig20_01_general_particular}
+
+\appendixexample{ex_simple_de2}{A second-order differential equation}{
+Solve the differential equation $\yp' + 9y = 0.$}
+{We seek a function whose second derivative is negative 9 multiplied by the original function.  Both $\sin(3x)$ and $\cos(3x)$ have this feature.  The general solution to the differential equation is given by
+\[y = C_1\sin(3x) + C_2\cos(3x),\]
+where $C_1$ and $C_2$ are arbitrary constants.  To fully specify a particular solution, we require two additional conditions.  For example, the initial conditions $y(0)=1$ and $\yp(0)=3$ yield $C_1 = C_2 = 1.$}\\
+
+The differential equation in Example \ref{ex_simple_de2} is second order because the equation involves a second derivative.  In general, the number of initial conditions required to specify a particular solution depends on the order of the differential equation.  For the remainder of the chapter, we restrict our attention to first order differential equations and first order initial value problems.
+
+\vskip\baselineskip
+\appendixexample{ex_verify_solutions}{Verifying a solution to the differential equation}{
+Which of the following is a solution to the differential equation \[ \yp + \frac{y}{x} - \sqrt{y} = 0\text{?}\]
+\begin{center}
+\hfill a) $y = C \left ( 1 + \ln x \right )^2$ \hfill b) $y = \left ( \frac{1}{3}x + \frac{C}{\sqrt{x}} \right )^2$ \hfill c) $y = C e^{-3x} + \sqrt{\sin x}$ \hfill
+\end{center}}
+{Verifying a solution to a differential equation is simply an exercise in differentiation and simplification.  We substitute each potential solution into the differential equation to see if it satisfies the equation.\\
+
+\noindent a) Testing the potential solution $y = C \left ( 1 + \ln x \right )^2$:
+
+Differentiating, we have $\displaystyle \yp = \frac{2C(1 + \ln x)}{x}$.  Substituting into the differential equation,
+\begin{align*}
+&\ \frac{2C(1+\ln x)}{x} + \frac{C(1+\ln x)^2}{x} -\sqrt{C}(1+\ln x)\\
+=&\ (1+\ln x)\left( \frac{2C}{x} + \frac{C(1+\ln x)}{x} - \sqrt{C}\right)\\
+ \neq &\ 0.
+\end{align*}
+Since it doesn't satisfy the differential equation, $y = C(1 + \ln x)^2$ is \emph{not} a solution.\\
+
+\noindent b) Testing the potential solution $\displaystyle y = \left ( \frac{1}{3}x + \frac{C}{\sqrt{x}} \right )^2$:
+
+Differentiating, we have $\displaystyle \yp = 2\left ( \frac{1}{3}x + \frac{C}{\sqrt{x}} \right )\left ( \frac{1}{3} - \frac{C}{2x^{3/2}}\right ).$ Substituting into the differential equation,
+\begin{align*}
+&\ 2\left ( \frac{1}{3}x + \frac{C}{\sqrt{x}} \right )\left ( \frac{1}{3} - \frac{C}{2x^{3/2}}\right ) + \frac{1}{x}\left ( \frac{1}{3}x + \frac{C}{\sqrt{x}} \right )^2 - \left (\frac{1}{3}x + \frac{C}{\sqrt{x}}\right) \\
+=&\ \left ( \frac{1}{3}x + \frac{C}{\sqrt{x}} \right ) \left ( \frac{2}{3} - \frac{C}{x^{3/2}} + \frac{1}{3} + \frac{C}{x^{3/2}} - 1 \right )\\
+=&\ 0.\quad \text{(Note how the second parenthetical grouping above reduces to 0.)}
+\end{align*}
+Thus  $\displaystyle y = \left ( \frac{1}{3}x + \frac{C}{\sqrt{x}} \right )^2$ \emph{is} a solution to the differential equation.\\
+
+\noindent c) Testing the potential solution $\displaystyle y = C e^{-3x} + \sqrt{\sin x}$:
+
+Differentiating, $\displaystyle \yp = -3Ce^{-3x} + \frac{\cos x}{2\sqrt{\sin x}}.$ Substituting into the differential equation,
+\begin{align*}
+&\ -3Ce^{-3x} + \frac{\cos x}{2\sqrt{\sin x}} + \frac{C e^{-3x} + \sqrt{\sin x}}{x} - \sqrt{C e^{-3x} + \sqrt{\sin x}} \neq 0.
+\end{align*}
+The function $\displaystyle y = C e^{-3x} + \sqrt{\sin x}$ is \emph{not} a solution to the differential equation.
+}\\
+
+\appendixexample{ex_verify_solutions2}{Verifying a solution to a differential equation}{
+Verify that $x^2+y^2 = Cy$ is a solution to $\displaystyle \yp = \frac{2xy}{x^2-y^2}.$}
+{The solution in this example is called an \emph{implicit solution.}\index{differential equation!implicit soution}  That means the dependent variable $y$ is a function of $x$, but has not been explicitly solved for.  Verifying the solution still involves differentiation, but we must take the derivatives implicitly.  Differentiating, we have
+\[2x + 2y\yp = C\yp.\]
+Solving for $\yp,$ we have
+\[\yp = \frac{2x}{C-2y}.\]
+From the solution, we know that $\displaystyle C = \frac{x^2+y^2}{y}.$ Then
+\begin{align*}
+\yp &= \frac{2x}{\displaystyle \frac{x^2+y^2}{y} - 2y}\\
+&=\frac{2xy}{x^2+y^2-2y^2}\\
+&= \frac{2xy}{x^2-y^2}.
+\end{align*}
+We have verified that $x^2+y^2 = Cy$ is a solution to $\displaystyle \yp = \frac{2xy}{x^2-y^2}.$
+}
+
+
+\vskip\baselineskip
+\noindent\textbf{\large Graphical Solutions to Differential Equations}
+\vskip\baselineskip
+
+ In the examples we have explored so far, we have found exact forms for the functions that solve the  differential equations. Solutions of this type are called \emph{analytic solutions.} Many times a differential equation has a solution, but it is difficult or impossible to find the solution analytically.  This is analogous to algebraic equations.  The algebraic equation $x^2 + 3x - 1 = 0$ has two real solutions that can be found analytically by using the quadratic formula. The equation $\cos x = x$ has one real solution, but we can't find it analytically. As shown in Figure \ref{fig:20_01_intersection}, we can find an approximate solution graphically by plotting $\cos x$ and $x$ and observing the $x$-value of the intersection. We can similarly use graphical tools to understand the qualitative behavior of solutions to a first order-differential equation.
+
+\appendixmfigure{.8}{Graphically finding an approximate solution to $\cos x = x.$}{fig:20_01_intersection}{figures/fig20_01_intersection}
+
+Consider the first-order differential equation
+\[\yp = f(x,y).\]
+The function $f$ could be any function of the two variables $x$ and $y$.  Written in this way, we can think of the function $f$ as providing a formula to find the slope of a solution at a given point in the $xy$-plane.  In other words, suppose a solution to the differential equation passes through the point $(x_0,y_0)$.  At the point $(x_0,y_0)$, the slope of the solution curve will be $f(x_0,y_0).$  Since this calculation of the slope is possible at any point $(x,y)$ where the function $f(x,y)$ is defined, we can produce a plot called a \emph{slope field} (or direction field\index{direction field|see{slope field}}) that shows the slope of a solution at any point in the $xy$-plane where the solution is defined.  Further, this process can be done purely by working with the differential equation itself.  In other words, we can draw a slope field and use it to determine the qualitative behavior of solutions to a differential equation without having to solve the differential equation.
+
+\definition{def:slope_field}{Slope Field}
+{A \textbf{slope field}\index{slope field} for a first-order differential equation $\yp = f(x,y)$ is a plot in the $xy$-plane made up of short line segments or arrows. At each point $(x_0,y_0)$ where $f(x,y)$ is defined, the slope of the line segment is given by $f(x_0,y_0)$. Plots of solutions to a differential equation are tangent to the line segments in the slope field.}\\
+
+\appendixexample{ex_slope_field}{Sketching a slope field}{
+Find a slope field for the differential equation $\displaystyle \yp = x+y$.}
+{Because the function $f(x,y) = x+y$ is defined for all points $(x,y)$, every point in the $xy$-plane has an associated line segment. It is not practical to draw an entire slope field by hand, but many tools exist for drawing slope fields on a computer.  Here, we explicitly calculate  a few of the line segments in the slope field.
+
+\begin{itemize}
+\item The slope of the line segment at $(0,0)$ is $f(0,0) = 0 + 0 = 0.$
+\item The slope of the line segment at $(1,1)$ is $f(1,1) = 1 + 1 = 2.$
+\item The slope of the line segment at $(1,-1)$ is $f(1,-1) = 1 - 1 = 0.$
+\item The slope of the line segment at $(-2,3)$ is $f(-2,-1) = -2 - 1 = -3.$
+\end{itemize}
+
+Though it is possible to continue this process to sketch a slope field, we usually use a computer to make the drawing.  Most popular computer algebra systems can draw slope fields.  There are also various online tools that can make the drawings.  The slope field for $\yp = x+y$ is shown in Figure \ref{fig:20_01_slopefield1}.
+%\vskip -\baselineskip
+}\\
+
+\appendixmfigure{.81}{Slope field for $\yp = x+y$ from Example \ref{ex_slope_field}.}{fig:20_01_slopefield1}{figures/fig20_01_slopefield1}
+
+\appendixexample{ex_IVP_graphical}{Sketch a graphical solution to an initial value problem}{
+Approximate, with a sketch, the solution to the initial value problem $\displaystyle \yp = x+y$, with $y(1)=-1$.}
+{The solution to the initial value problem should be a continuous smooth curve.  Using the slope field, we can draw of a sketch of the solution using the following two criteria:
+
+\begin{enumerate}
+\item The solution must pass through the point $(1,-1)$.
+\item When the solution passes through a point $(x_0,y_0)$ it must be tangent to the line segment at $(x_0,y_0)$.
+\end{enumerate}
+Essentially, we sketch a solution to the initial value problem by starting at the point $(1,-1)$ and ``following the lines" in either direction.  A sketch of the solution is shown in Figure \ref{fig:20_01_slopefield1solution}.
+%\vskip -\baselineskip
+}\\
+
+\appendixmfigure{.6}{Solution to the initial value problem $\yp = x+y$, with $y(1)=-1$ from Example \ref{ex_IVP_graphical}}{fig:20_01_slopefield1solution}{figures/fig20_01_slopefield1solution}
+
+
+\appendixmfigure{.375}{Slope field for the logistic differential equation $\yp = y(1-y)$ from Example \ref{ex_logistic_slope_field}.}{fig:20_01_slopefield2}{figures/fig20_01_slopefield2}
+
+
+\appendixexample{ex_logistic_slope_field}{Using a slope field to predict long term behavior}{
+Use the slope field for the differential equation $\yp = y(1-y)$, shown in Figure \ref{fig:20_01_slopefield2}, to predict long term behavior of solutions to the equation.}
+{This differential equation, called the \emph{logistic differential equation},\index{differential equation!logistic} often appears in population biology to describe the size of a population.  For that reason, we use $t$ (time) as the independent variable instead of $x$. We also often restrict attention to non-negative $y$-values because negative values correspond to a negative population.\\
+
+Looking at the slope field in Figure \ref{fig:20_01_slopefield2}, we can predict long term behavior for a given initial condition.
+\begin{itemize}
+\item If the initial $y$-value is negative ($y(0)<0$), the solution curve must pass though the point $(0,y(0))$ and follow the slope field.  We expect the solution $y$ to become more and more negative as time increases.  Note that this result is not physically relevant when considering a population.
+\item If the initial $y$-value is greater than 0 but less than 1, we expect the solution $y$ to increase and level off at $y=1$.
+\item If the initial $y$-value is greater than 1, we expect the solution $y$ to decrease and level off at $y=1$.  
+\end{itemize}
+The slope field for the logistic differential equation, along with representative solution curves, is shown in Figure \ref{fig:20_01_slopefield2solution}.  Notice that any solution curve with positive initial value will tend towards the value $y=1.$  We call this the \emph{carrying capacity.}
+\vskip-\baselineskip
+}
+
+\appendixmfigure{.8}{Slope field for the logistic differential equation $\yp = y(1-y)$ from Example \ref{ex_logistic_slope_field} with a few representative solution curves.}{fig:20_01_slopefield2solution}{figures/fig20_01_slopefield2solution}
+
+\vskip\baselineskip
+\noindent\textbf{\large Numerical Solutions to Differential Equations: Euler's Method}
+\vskip\baselineskip
+
+While the slope field is an effective way to understand the qualitative behavior of solutions to a differential equation, it is difficult to use a slope field to make quantitative predictions.  For example, if we have the slope field for the differential equation $\yp = x+y$ from Example \ref{ex_slope_field} along with the initial condition $y(0)=1$, we can understand the qualitative behavior of the solution to the initial value problem, but will struggle to predict a specific value, $y(2)$ for example, with any degree of confidence. The most straight forward way to predict $y(2)$ is to find the analytic solution to the the initial value problem and evaluate it at $x=2$.  Unfortunately, we have already mentioned that it is impossible to find analytic solutions to many differential equations.  In the absence of an analytic solution, a \emph{numerical solution} can serve as an effective tool to make quantitative predictions about the solution to an initial value problem.
+
+There are many techniques for computing numerical solutions to initial value problems. A course in numerical analysis will discuss various techniques along with their strengths and weaknesses. The simplest technique is called \emph{Euler's Method}.% (pronounced ``oil-er," not ``you-ler"). 
+\appendixmnote{.4}{\textbf{Note:} Euler's Method is named for Leonhard Euler, a prolific Swiss mathematician during the 1700's. His last name is properly pronounced ``oil-er'', not ``you-ler.''}Consider the first-order initial value problem
+\[\yp = f(x,y), \text{ with } y(x_0) = y_0.\]
+Using the definition of the derivative,
+\[\yp(x) = \lim_{h \to 0} \frac{y(x+h) - y(x)}{h}.\]
+%%
+This notation can be confusing at first, but ``$y(x)$'' simply means ``the $y$-value of the solution when the $x$-value is $x$'', and ``$y(x+h)$'' means ``the $y$-value of the solution when the $x$-value is $x+h$''.
+%%
+
+If we remove the limit but restrict $h$ to be ``small," we have
+\[\yp(x) \approx \frac{y(x+h) - y(x)}{h},\]
+so that
+\[f(x,y) \approx \frac{y(x+h)-y(x)}{h},\]
+because $\yp = f(x,y)$ according to the differential equation.  Rearranging terms,
+\[y(x + h) \approx y(x) + h\,f(x,y).\]
+This statement says that if we know the solution ($y$-value) to the initial value problem for some given $x$-value, we can find an approximation for the solution at the value $x+h$ by taking our  $y$-value and adding $h$ times the function $f$ evaluated at the $x$ and $y$ values. Euler's method uses the initial condition of an initial value problem as the starting point, and then uses the above idea to find approximate values for the solution $y$ at later $x$-values.  The algorithm is summarized in Key Idea \ref{idea:Euler}.
+
+%This equation states that if we know a point $(x,y)$ on a particular solution to a differential equation, we can approximate the location of a nearby point on the curve of the same solution. 
+%As $x$ moves to $x+h$, the corresponding $y$-value is 
+%we can approximate the $y$-value, i.e., the value $y(x+h)$, of the same solution, at $x+h$.
+
+\keyidea{idea:Euler}{Euler's Method}
+{Consider the initial value problem \index{Euler's Method}
+\[
+\yp = f(x,y) \text{ with } y(x_0)=y_0.
+\]
+Let $h$ be a small positive number and $N$ be an integer.
+\begin{enumerate}
+\item For $i = 0, 1, 2, \ldots, N,$ define
+\[x_i = x_0 + ih.\]
+\item  The value $y_0$ is given by the initial condition.\\
+For $i = 0, 1, 2, \ldots, N-1,$ define
+\[y_{i+1} = y_i + hf(x_i,y_i).\]
+\end{enumerate}
+This process yields a sequence of $N+1$ points $(x_i,y_i)$ for $i= 0,1,2,\ldots,N$, where $(x_i, y_i)$ is an approximation for $(x_i,y(x_i))$.
+}
+
+
+Let's practice Euler's Method using a few concrete examples.\\
+
+\appendixexample{ex_euler1}{Using Euler's Method 1}{
+Find an approximation at $x=2$ for the solution to $\yp = x + y$ with $y(1)=-1$ using Euler's Method with $h=0.5$.
+}
+{Our initial condition yields the starting values $x_0 = 1$ and $y_0 = -1$.  With $h = 0.5,$ it takes $N=2$ steps to get to $x=2.$  Using steps 1 and 2 from the Euler's Method algorithm,
+\[
+\begin{array}{rl | rl}
+x_0  &= 1			& 	y_0	&= -1\\ \hline
+x_1 	&= x_0 + h 	& 	y_1 	&= y_0 + hf(x_0,y_0)\\
+	&= 1 + 0.5	 	&		&= -1 + 0.5(1 - 1)\\
+	&= 1.5		&		&= -1\\ \hline
+x_2	&= x_0 + 2h	&	y_2	&= y_1 + hf(x_1,y_1)\\
+	&= 1 + 2(0.5)	&		&= -1 + 0.5(1.5 -1)\\
+	&= 2			&		&= -0.75
+\end{array}
+\]
+Using Euler's method, we find the approximate $y(2) \approx -0.75.$
+
+To help visualize the Euler's method approximation, these three points (connected by line segments) are plotted along with the analytical solution to the initial value problem in Figure \ref{fig:20_01_euler1}.
+}\\
+
+\appendixmfigure{.8}{Euler's Method approximation to $\yp = x + y$ with $y(1) = -1$ from Example \ref{ex_euler1}, along with the analytical solution to the initial value problem.}{fig:20_01_euler1}{figures/fig20_01_euler1}
+
+This approximation doesn't appear terrific, though it is better than merely guessing. 
+\enlargethispage{3\baselineskip}%
+Let's repeat the previous example using a smaller $h$-value.\\
+
+\appendixexample{ex_euler2}{Using Euler's Method 2}{
+Find an approximation on the interval $[1,2]$ for the solution to $\yp = x + y$ with $y(1)=-1$ using Euler's Method with $h=0.25$.
+}
+{Our initial condition yields the starting values $x_0 = 1$ and $y_0 = -1$.  With $h = 0.25,$ we need $N=4$ steps on the interval $[1,2]$  Using steps 1 and 2 from the Euler's Method algorithm (and rounding to 4 decimal points), we have
+\[
+\begin{array}{rl | rl}
+x_0  &= 1			& 	y_0	&= -1\\ \hline
+x_1 	&= 1.25		&	y_1 	&= -1 + 0.25(1 - 1)\\
+	&			&		&= -1\\ \hline
+x_2 	&= 1.5 		& 	y_2 	&= -1 + 0.25(1.25-1)\\
+	&			&		&= -0.9375\\ \hline
+x_3	&= 1.75		&	y_3 	&= -0.9375 + 0.25(1.5-0.9375)\\
+	&			&		&= -0.7969\\ \hline
+x_4	&= 2			&	y_4	&= -0.7969 + 0.25(1.75 - 0.7969)\\
+	&			&		&= -0.5586\\ \hline
+\end{array}
+\]
+Using Euler's method, we find  $y(2) \approx -0.5586.$
+
+These five points, along with the points from Example \ref{ex_euler1} and the analytic solution, are plotted in Figure \ref{fig:20_01_euler2}.
+}\\
+
+\appendixmfigure{.43}{Euler's Method approximations to $\yp = x + y$ with $y(1) = -1$ from Examples \ref{ex_euler1} and \ref{ex_euler2}, along with the analytical solution.}{fig:20_01_euler2}{figures/fig20_01_euler2}
+
+Using the results from Examples \ref{ex_euler1} and \ref{ex_euler2}, we can make a few observations about Euler's method.  First, the Euler approximation generally gets worse as we get farther from the initial condition.  This is because Euler's method involves two sources of error.  The first comes from the fact that we're using a positive $h$-value in the derivative approximation instead of using a limit as $h$ approaches zero.  Essentially, we're using a linear approximation to the solution $y$ (similar to the process described in Section \ref{sec:differentials} on Differentials.) This error is often called the \emph{local truncation error.}  The second source of error comes from the fact that every step in Euler's method uses the result of the previous step.  That means we're using an approximate $y$-value to approximate the next $y$-value.  Doing this repeatedly causes the errors to build on each other.  This second type of error is often called the \emph{propagated} or \emph{accumulated error.} 
+
+A second observation is that the Euler approximation is more accurate for smaller $h$-values.  This accuracy comes at a cost, though.  Example \ref{ex_euler2} is more accurate than Example \ref{ex_euler1}, but takes twice as many computations.  In general, numerical algorithms (even when performed by a computer program) require striking a balance between a desired level of accuracy and the amount of computational effort we are willing to undertake.
+
+Let's do one final example of Euler's Method.\\
+
+\appendixexample{ex_euler3}{Using Euler's Method 3}{
+Find an approximation for the solution to the logistic differential equation\\
+$\yp = y(1-y)$ with $y(0) = 0.25$, for $0 \leq y \leq 4.$  Use $N = 10$ steps.
+}
+{The logistic differential equation is what is called an \emph{autonomous equation}.  An autonomous differential equation  has no explicit dependence on the independent variable ($t$ in this case).  This has no real effect on the application of Euler's method other than the fact that the function $f(t,y)$ is really just a function of $y$.  To take steps in the $y$ variable, we use
+\[y_{i+1} = y_i + hf(t_i,y_i) = y_i + hy_i(1-y_i).\]
+
+Using $N=10$ steps requires $\displaystyle h = \frac{4-0}{10} = 0.4.$  Implementing Euler's Method, we have
+
+\[
+\begin{array}{rl | rl}
+x_0  &= 0			& 	y_0	&= 0.25\\ \hline
+x_1 	&= 0.4		&	y_1 	&= 0.25 + 0.4(0.25)(1-0.25)\\
+	&			&		&= 0.325\\ \hline
+x_2 	&= 0.8 		& 	y_2 	&= 0.325 + 0.4(0.325)(1-0.325)\\
+	&			&		&= 0.41275\\ \hline
+x_3	&= 1.2		&	y_3 	&= 0.41275 + 0.4(0.41275)(1-0.41275)\\
+	&			&		&= 0.50970\\ \hline
+\end{array}
+\]
+\[
+\begin{array}{rl | rl}
+x_4	&= 1.6		&	y_4	&= 0.50970 + 0.4(0.50970)(1 - 0.50970)\\
+	&			&		&= 0.60966\\ \hline
+x_5  &= 2.0		& 	y_5	&= 0.60966 + 0.4(0.60966)(1-0.60966)\\
+	&			&		&=  0.70485\\ \hline
+x_6 	&= 2.4		&	y_6 	&= 0.70485 + 0.4(0.70485)(1 - 0.70485)\\
+	&			&		&= 0.78806\\ \hline
+x_7 	&= 2.8 		& 	y_7 	&= 0.78806 + 0.4(0.78806)(1-0.78806)\\
+	&			&		&= 0.85487\\ \hline
+x_8	&= 3.2		&	y_8 	&= 0.85487 + 0.4(0.85487)(1-0.85487)\\
+	&			&		&= 0.90450\\ \hline
+x_9	&= 3.6		&	y_9	&= 0.90450 + 0.4(0.90450)(1 - 0.90450)\\
+	&			&		&= 0.93905\\ \hline
+x_{10}&= 4.0		&	y_{10}&= 0.93905 + 0.4(0.93905)(1 - 0.93905)\\
+	&			&		&= 0.96194\\ \hline
+\end{array}
+\]
+
+These 11 points, along with the  the analytic solution, are plotted in Figure \ref{fig:20_01_euler3}. Notice how well they seem to match the true solution.
+}\\
+
+\appendixmfigure{.8}{Euler's Method approximation to $\yp = y(1-y)$ with $y(0) = 0.25$ from Example \ref{ex_euler3}, along with the analytical solution.}{fig:20_01_euler3}{figures/fig20_01_euler3}
+
+The study of differential equations is a natural extension of the study of derivatives and integrals.  The equations themselves involve derivatives, and methods to find analytic solutions often involve finding antiderivatives.   In this section, we focus on graphical and numerical techniques to understand solutions to differential equations.  We restrict our examples to relatively simple initial value problems that permit analytic solutions to the equations, but we should remember that this is only for comparison purposes.  In reality, many differential equations, even some that appear straightforward, do not have solutions we can find analytically.  Even so, we can use the techniques presented in this section to understand the behavior of solutions.  In the next two sections, we explore two techniques to find analytic solutions to two different classes of differential equations.
+
+\printexercises{exercises/20_01_exercises}

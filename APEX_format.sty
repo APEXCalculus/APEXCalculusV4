@@ -30,6 +30,8 @@
 
 \RequirePackage{chngcntr}
 
+\RequirePackage{xstring}
+\RequirePackage{ifoddpage}
 
 
 \makeindex
@@ -240,7 +242,8 @@
 \hskip -\marginlinelength
 \parbox{70pt}{{\bf Example \refstepcounter{examplecounter}\theexamplecounter\label{#1}}}% ends parbox
 }% ends if example in text
-\ifthenelse{\pageref{#1}=\pageref{e#1}}% if the beginning and end are on the same page
+%\ifthenelse{\pageref{#1}=\pageref{e#1}}
+\ifthenelse{\equal{\pageref{#1}}{\pageref{e#1}}}% if the beginning and end are on the same page
 {%
 \textbf{#2}\\
 #3 \vskip \baselineskip%
@@ -394,6 +397,22 @@
 				\ifthenelse{\isodd{\thepage}}{%
 				\node [xshift=\oddpagemarginlength,yshift=\topmarginlength](tleft) at (current page.north west)  {};}
 				{\node [xshift=\evenpagemarginlength,yshift=\topmarginlength](tleft) at (current page.north west)  {};}
+        \draw \linestyle (tleft) -- ++(0,\bottommarginlength+1in);
+        \end{tikzpicture}%
+}
+
+\newcommand{\drawoddexampleline}{%
+\begin{tikzpicture}[remember picture,overlay]
+				%
+				\node [xshift=\oddpagemarginlength,yshift=\topmarginlength](tleft) at (current page.north west)  {};
+        \draw \linestyle (tleft) -- ++(0,\bottommarginlength+1in);
+        \end{tikzpicture}%
+}
+
+\newcommand{\drawevenexampleline}{%
+\begin{tikzpicture}[remember picture,overlay]
+				%
+				\node [xshift=\evenpagemarginlength,yshift=\topmarginlength](tleft) at (current page.north west)  {};
         \draw \linestyle (tleft) -- ++(0,\bottommarginlength+1in);
         \end{tikzpicture}%
 }
@@ -740,3 +759,121 @@
 %
 \write\answrite{\noexpand\small\noexpand\raggedright\noexpand\begin{multicols}{2}}
 \write\answrite{\noexpand\thispagestyle{empty}}
+
+%%%
+%%%\drawexampleline
+%%%
+\newboolean{oddpg}
+\setboolean{oddpg}{false}
+\newcommand{\oddcheck}[1]{\edef\mystring{\getpagerefnumber{#1}}%
+  \IfInteger{\mystring}{}{\StrBehind{\mystring}{.}[\mystring]}%
+  \ifthenelse{\isodd{\mystring}}{\setboolean{oddpg}{true}}{\setboolean{oddpg}{false}}}
+	
+	%% This is the no-star (regular) version of
+%% the example command.
+\newcommand{\appendixexample}[4]{%
+%\ifthenelse{\boolean{in_color}}{renewcommand{\thelinecolor}{\colorlinecolor}}{\renewcommand{\thelinecolor}{\bwlinecolor}}%
+\noindent%
+\ifthenelse{\boolean{exampleisintext}}
+{% default: the Example word is in text
+\hskip -2\marginlinelength%
+\parbox{\marginlinelength}{%
+\begin{tikzpicture}[remember picture,overlay]%
+\ifthenelse{\boolean{showexamplelines}}{\ifthenelse{\boolean{showexamplemarks}}
+{\draw (0,0) circle (1pt) node (#1) {};}%
+{\draw (0,0) node (#1) {};}
+}
+{}% ends the ``Draw example lines and marks?'' booleans
+\end{tikzpicture}%
+}% ends parbox where line begins
+\hskip \marginlinelength% puts us back in line
+\parbox{80pt}{{\bf Example \refstepcounter{examplecounter}\theexamplecounter\label{#1}}}% ends parbox
+%\ifthenelse{\boolean{printlabelname}}%
+%{\hskip -35pt%
+%\parbox{35pt}{\tiny\texttt{\detokenize{#1}}}%
+%}%
+%{}%
+}% ends the if example in text; next do if not in text
+{%
+%\hskip -\marginlinelength%
+\hskip -70pt%
+\parbox{\marginlinelength}{%
+\begin{tikzpicture}[remember picture,overlay]%
+\ifthenelse{\boolean{showexamplelines}}{\ifthenelse{\boolean{showexamplemarks}}
+{\draw (0,0) circle (1pt) node (#1) {};}%
+{\draw (0,0) node (#1) {};}
+}%
+{}% ends the ``Draw example lines and marks?'' booleans
+\end{tikzpicture}%
+}%
+\hskip -\marginlinelength
+\parbox{70pt}{{\bf Example \refstepcounter{examplecounter}\theexamplecounter\label{#1}}}% ends parbox
+}% ends if example in text
+%\ifthenelse{\pageref{#1}=\pageref{e#1}}
+\ifthenelse{\equal{\pageref{#1}}{\pageref{e#1}}}% if the beginning and end are on the same page
+{%
+\textbf{#2}\\
+#3 \vskip \baselineskip%
+\ifthenelse{\boolean{exampleisintext}}
+{%solution is in text
+\parbox{65pt}{\textsc{\small\bfseries Solution}}% 
+}% solution is in margin
+{\hskip -80pt%
+\parbox{65pt}{\textsc{\small\bfseries Solution}}% 
+\hskip 15pt%
+}% end solution in margin
+#4\nopagebreak\label{e#1}% writes the full example then draws the lines
+\ifthenelse{\boolean{showexamplelines}}{%
+\begin{tikzpicture}[remember picture,overlay]%
+\ifthenelse{\boolean{showexamplemarks}}
+{\draw (0,0) circle (1pt) node (e#1) {};}%
+{\draw (0,0) node (e#1) {};}%
+\ifthenelse{\boolean{exampleisintext}}
+{\draw \linestyle (#1) -- (#1.south |- e#1.south) -- ++(10pt,0);}
+{\draw \linestyle ([yshift=-3pt]#1.south) -- ++(70pt-2\marginlinelength,0) node (f#1) {} -- (f#1 |- e#1.south) -- ++(10pt,0);} 
+\end{tikzpicture}
+}{}% ends if/then/else show lines
+}% ends if beginning and end are on same page.
+% next is if they are on different pages
+{% first draw line from start to bottom of page
+\ifthenelse{\boolean{showexamplelines}}{%
+\begin{tikzpicture}[remember picture,overlay]% 
+%\ifthenelse{\isodd{\pageref{#1}}}% draws lines based on whether on an even or odd page %
+\oddcheck{#1}%
+\ifthenelse{\boolean{oddpg}}%
+{\node [xshift=\oddpagemarginlength,yshift=\bottommarginlength](bottomleft) at (current page.north west)  {};}%
+{\node [xshift=\evenpagemarginlength,yshift=\bottommarginlength](bottomleft) at (current page.north west)  {};}%
+\ifthenelse{\boolean{exampleisintext}}% is example in text?
+{\draw \linestyle (#1) -- (bottomleft);}%
+{\draw \linestyle ([yshift=-3pt]#1.south) -- ++(70pt-2\marginlinelength,0) --(bottomleft);}% 
+\end{tikzpicture}%
+}{}% ends if/then/else show lines
+% end drawing of line
+\textbf{#2}\\
+#3 \vskip \baselineskip%
+\ifthenelse{\boolean{exampleisintext}}%
+{%solution is in text
+\parbox{65pt}{\textsc{\small\bfseries Solution}}% 
+}% solution is in margin
+{\hskip -80pt%
+\parbox{65pt}{\textsc{\small\bfseries Solution}}% 
+\hskip 15pt%
+}% end solution in margin
+#4\label{e#1}% now write out full example
+% now draw line from end to top of page
+\ifthenelse{\boolean{showexamplelines}}{%
+\begin{tikzpicture}[remember picture,overlay] 
+\ifthenelse{\boolean{showexamplemarks}}
+{\draw (0,0) circle (1pt) node (e#1) {};}%
+{\draw (0,0) node (e#1) {};}%
+%\ifthenelse{\isodd{\pageref{e#1}}}% draws lines based on whether on an even or odd page %
+\oddcheck{e#1}%
+\ifthenelse{\boolean{oddpg}}%
+{\node [xshift=\oddpagemarginlength,yshift=\topmarginlength](topleft) at (current page.north west)  {};}
+{\node [xshift=\evenpagemarginlength,yshift=\topmarginlength](topleft) at (current page.north west)  {};}
+\draw \linestyle (topleft)--(e#1.south -| topleft) -- ++(10pt,0);
+\end{tikzpicture}%
+}{}% ends if/then/else show lines
+}% ends the check for same page or not
+%
+}%ends the definition of example

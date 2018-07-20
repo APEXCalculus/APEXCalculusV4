@@ -1,0 +1,23 @@
+\def\length{sqrt(1+(y*(1-y))^2)}
+\begin{tikzpicture}
+\begin{axis}[width=\marginparwidth+25pt,
+tick label style={font=\scriptsize},
+%axis y line=middle,axis x line=middle,
+axis lines = middle,
+name=myplot,%
+			xtick={1,1.5,2},%
+%			xticklabels={-2,-1,..,2},
+			ytick={-1,-.5,0},
+%			yticklabels = {-2,-1,0,1,2},
+%			minor x tick num=1,
+%			extra x ticks={.25,.75},%
+			ymin=-1.25,ymax=0.1,%
+			xmin=.9,xmax=2.1%
+]
+\addplot [{\colortwo},thick,domain=1:2,samples = 51] {-(x+1)+exp(x-1)};
+\addplot [{\colorone}, mark = *] coordinates{ (1,-1) (1.5,-1) (2,-0.75)};
+%\legend{True Solution, Euler's Method}
+\end{axis}
+\node [right] at (myplot.right of origin) {\scriptsize $x$};
+\node [above] at (myplot.above origin) {\scriptsize $y$};
+\end{tikzpicture}

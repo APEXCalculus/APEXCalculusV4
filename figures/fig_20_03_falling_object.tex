@@ -1,0 +1,21 @@
+\begin{tikzpicture}
+\begin{axis}[width=\marginparwidth+25pt,
+tick label style={font=\scriptsize},
+%axis y line=middle,axis x line=middle,
+axis lines = center,
+name=myplot,%
+			xtick={0,2,...,10},%
+%			xticklabels={-2,-1,..,2},
+%			ytick={0,0.5,1},
+%			yticklabels = {-2,-1,0,1,2},
+%			minor x tick num=1,
+%			extra x ticks={.25,.75},%
+			ymin=-.1,ymax=10.5,%
+			xmin=-.1,xmax=10.5%
+]
+\addplot [{\colortwo},thick,domain = 0:10, samples=50, dashed] {9.8*x};
+\addplot [{\colortwo},thick,domain = 0:10, samples=50] {9.8-9.8*exp(-x)};
+\end{axis}
+\node [right] at (myplot.right of origin) {\scriptsize $t$};
+\node [above] at (myplot.above origin) {\scriptsize $v$};
+\end{tikzpicture}
