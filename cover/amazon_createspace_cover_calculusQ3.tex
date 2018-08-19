@@ -1,7 +1,7 @@
 \documentclass{article}
 
 %%% Width is 0.002252 x page count + 0.125 bleed + 0.125 bleed + 8.5*2
-\usepackage[paperwidth=17.75in,paperheight=11.25in]{geometry}
+\usepackage[paperwidth=17.95in,paperheight=11.25in]{geometry}
 %\usepackage{fontspec}
 %\usepackage{pgfplots}
 \usepackage{tikz}
@@ -43,13 +43,13 @@
 \begin{tikzpicture}[remember picture,overlay]
 %\shade [bottom color=red!50!black,top color=red!70!black!60]
 %(top left) rectangle (bot right);
-\draw [fill=red] (top left) rectangle (bot right);
+\draw [fill=blue] (top left) rectangle (bot right);
 
-\draw [fill=red!40!white,draw=red!40!white] (rspine top) -- (current page.north east) -- (frontpagecenter) -- cycle;
+\draw [fill=blue!40!white,draw=blue!40!white] (rspine top) -- (current page.north east) -- (frontpagecenter) -- cycle;
 
-\draw [fill=red!60!white,draw=red!60!white] (current page.north east) -- (frontpagecenter) -- (current page.south east) --cycle;
+\draw [fill=blue!60!white,draw=blue!60!white] (current page.north east) -- (frontpagecenter) -- (current page.south east) --cycle;
 
-\draw [fill=red!80!white,draw=red!80!white] (frontpagecenter) -- (current page.south east) -- (rspine bot) -- cycle;
+\draw [fill=blue!80!white,draw=blue!80!white] (frontpagecenter) -- (current page.south east) -- (rspine bot) -- cycle;
 
 
 %%
@@ -62,24 +62,21 @@
 \begin{scope}%[rotate=90]
 
 
-\node[xshift=-2in,yshift=0in,scale=5,yellow,transform shape,rotate=90] at ($.5*(ptop right)+.5*(pbot right)$) {\fontspec[Scale=3]{Calibri}\scshape C\fontspec[Scale=2.5]{Calibri}alculus \fontspec[Scale=3]{Calibri}Q1};
+\node[xshift=-2in,yshift=0in,scale=5,yellow,transform shape,rotate=90] at ($.5*(ptop right)+.5*(pbot right)$) {\fontspec[Scale=3]{Calibri}\scshape C\fontspec[Scale=2.5]{Calibri}alculus \fontspec[Scale=3]{Calibri}Q3};
 
 
 
 \node[xshift=-.75in,yshift=-.10in,scale=4,white,transform shape,rotate=90] at ($.5*(ptop right)+.5*(pbot right)$) {\fontspec[Scale=1]{Calibri} \parbox{170pt}{\hfill\ Version 4.0}};
 
-\node [xshift=-2.55in,yshift=-2.9in,black,scale=3,transform shape,rotate=90] at ($.5*(ptop right)+.5*(pbot right)$) {\fontspec[Scale=1]{Calibri} \apex};
-
-
+\node [xshift=-2.55in,yshift=-2.9in,white,scale=3,transform shape,rotate=90] at ($.5*(ptop right)+.5*(pbot right)$) {\fontspec[Scale=1]{Calibri} \apex};
 
 \end{scope}
 
-\draw [black] ($(current page.center)!.75!(current page.south)$) node [xshift=3in] {\fontspec[Scale=2]{Calibri}\parbox{4in}{{ Volume One of }\\[8pt] \apex\ Calculus for Quarters\\[4pt] Chapters 1 - 4}};
+\draw [white] ($(current page.center)!.75!(current page.south)$) node [xshift=3in] {\fontspec[Scale=2]{Calibri}\parbox{4in}{{ Volume Three of }\\[8pt] \apex\ Calculus for Quarters\\[4pt] Chapters 8 - 11}};
 
+\draw (current page.center) node [yshift=0in,rotate=-90,white] {\fontspec[Scale=2]{Calibri} \scshape \apex \fontspec[Scale=4]{Calibri} \hskip 2in \hskip 2.5in\hskip 2in \fontspec[Scale=2]{Calibri} Version 4.0};
 
-\draw (current page.center) node [yshift=0in,rotate=-90,black] {\fontspec[Scale=2]{Calibri} \scshape \apex \fontspec[Scale=4]{Calibri} \hskip 2in \hskip 2.5in\hskip 2in \fontspec[Scale=2]{Calibri} Version 4.0};
-
-\draw (current page.center) node [yshift=0in,rotate=-90,yellow] { \scshape  \fontspec[Scale=4]{Calibri}  Calculus Q1 };
+\draw (current page.center) node [yshift=0in,rotate=-90,yellow] { \scshape  \fontspec[Scale=4]{Calibri}  Calculus Q3 };
 
 \end{tikzpicture}
 
